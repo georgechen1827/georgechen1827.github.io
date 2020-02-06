@@ -1,14 +1,14 @@
 ---
 title: About the Blog
-date: 2020-02-06 00:26:15
 categories: instructions
 tags: instructions
+date: 2020-02-06 00:26:15
 ---
 
 ### 搭建参考
 
-搭建：<https://zhuanlan.zhihu.com/p/44213627>
-主题使用：<https://github.com/Shen-Yu/hexo-theme-ayer>
+搭建：<https://zhuanlan.zhihu.com/p/44213627>  
+主题使用：<https://github.com/Shen-Yu/hexo-theme-ayer>  
 分类设置：<https://www.zhihu.com/question/29017171>
 
 ### 常用命令
@@ -30,6 +30,8 @@ $ git push      # 默认分支为hexo
 
 # 新建博文
 $ hexo new [layout] <title>
+$ hexo g    
+$ hexo s    # 显示文章
 
 # 新建菜单页
 $ hexo new page <title>
@@ -42,4 +44,5 @@ $ hexo publish draft newpage    # 发布草稿
 
 ### markdown语法
 
-<https://www.jianshu.com/p/ebe52d2d468f>
+<https://www.jianshu.com/p/ebe52d2d468f>  
+<https://www.runoob.com/markdown/md-tutorial.html>

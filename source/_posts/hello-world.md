@@ -2,6 +2,7 @@
 title: Hello World
 categories: default
 tags: default
+date: 2000-02-28 10:00:00
 ---
 欢迎来访！
 本人初建博客，水平有限，请大家多谅解。
