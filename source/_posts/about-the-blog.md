@@ -1,7 +1,7 @@
 ---
 title: About the Blog
 categories: instructions
-tags: instructions
+tags: [instructions,hexo]
 date: 2020-02-06 00:26:15
 ---
 
