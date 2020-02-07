@@ -65,6 +65,142 @@
     
     
     
+    <article id="post-android-hexo-setting" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/07/android-hexo-setting/"
+    >使用termux在安卓系统下搭建hexo-github博客编写环境</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/02/07/android-hexo-setting/" class="article-date">
+  <time datetime="2020-02-07T06:46:16.000Z" itemprop="datePublished">2020-02-07</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/instructions/">instructions</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>在hexo已经部署到github的情况下，本文将记录如何把自己的移动设备(安卓手机、平板)变成可以编辑并上传博客的平台。<br><br/><br>关于如何在github上搭建hexo，详见<a href="https://zhuanlan.zhihu.com/p/44213627" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/44213627</a><br>注意：使用多终端更新博客之前，请确保自己的博客系统在github上面同时有编译前、后两个分支，多终端更新方法可参考<a href="https://keyanbu.club/2020/02/05/guide/" target="_blank" rel="noopener">https://keyanbu.club/2020/02/05/guide/</a><br><br/><br>本博文使用matepad pro在安卓环境下编写并完成上传。  </p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>由于安卓系统下没有直接支持git及hexo的软件，我们使用termux来虚拟出一个linux环境，在终端中安装git及相关包，使用vim或安卓的相关文本编辑器(我用的920编辑器)来编写博文，用termux终端同步博客。<br><br/><br>相关问题：</p>
+<ul>
+<li>使用termux的pkg安装nodejs时可能会出现与npm版本不兼容的情况，安装nodejs-lts可解决。</li>
+<li>使用在使用hexo generate和hexo server本地查看博客时可能会出现网页排版错误，尚未解决。  <br/>
+以下所有操作都相对小白，懂的可以直接略过  
+
+</li>
+</ul>
+<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><p>除了安装termux之外，其他操作几乎和电脑上是一样的</p>
+<ul>
+<li>安装termux</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 自己去网上找安装包安装，这里不说了</span></span><br><span class="line"><span class="comment"># 安装好之后进入termux，应该是一个显示如下的终端</span></span><br><span class="line"></span><br><span class="line">Welcome to Termux!</span><br><span class="line"></span><br><span class="line">Wiki:            https://wiki.termux.com</span><br><span class="line">Community forum: https://termux.com/community</span><br><span class="line">Gitter chat:     https://gitter.im/termux/termux</span><br><span class="line">IRC channel:     <span class="comment">#termux on freenode</span></span><br><span class="line"></span><br><span class="line">Working with packages:</span><br><span class="line"></span><br><span class="line"> * Search packages:   pkg search &lt;query&gt;</span><br><span class="line"> * Install a package: pkg install &lt;package&gt;</span><br><span class="line"> * Upgrade packages:  pkg upgrade</span><br><span class="line"></span><br><span class="line">Subscribing to additional repositories:</span><br><span class="line"></span><br><span class="line"> * Root:     pkg install root-repo</span><br><span class="line"> * Unstable: pkg install unstable-repo</span><br><span class="line"> * X11:      pkg install x11-repo</span><br><span class="line"></span><br><span class="line">Report issues at https://termux.com/issues</span><br><span class="line"></span><br><span class="line">$</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装git</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pkg install git</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>设置git全局邮箱和用户名</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"yourname"</span></span><br><span class="line">$ git config --global user.email <span class="string">"youremail"</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>设置ssh key  </li>
+</ul>
+<p>这里得先安openssh  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pkg install openssh</span><br></pre></td></tr></table></figure>
+<p>然后生成ssh key  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">"youremail"</span></span><br><span class="line"><span class="comment"># 然后一路默认回车即可</span></span><br></pre></td></tr></table></figure>
+<p>这里注意，生成的ssh_key路径是在隐藏目录home/.ssh下的，需要进入˜/.ssh用vim打开id_rsa.pub复制公钥。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 此时是默认home路径</span></span><br><span class="line">$ <span class="built_in">cd</span> .ssh    <span class="comment"># 切换到.ssh目录</span></span><br><span class="line">$ vim id_rsa.pub</span><br><span class="line"><span class="comment"># 此时进入vim编辑器，内容屏幕上应该和如下类似</span></span><br><span class="line"></span><br><span class="line">ssh-rsa AAAADAQABAAABgQC8uwcEZdQna+zv/HTa2W4I</span><br><span class="line">AvqiNyKxgVdi07ce8hRTpb/lejdVK5rux7jOkWM00Pl73</span><br><span class="line">7qTKXAgWkgVckflinjfd6bxgOEA0ZUYRcFjuMYNccOdWO</span><br><span class="line">XDfmX0w4GYaKhGG5RMsWxVsNSfoskjYpCs1fiSTvM49Y6</span><br><span class="line">FWsEzyXaQ46VWedZJKqEhVPoAtZOEmNOi0krsqymzfjZj</span><br><span class="line">7/iVzuZiFP/zN5itPJXHvYMTA0OzDiPo3qHGHW8yvUpPd</span><br><span class="line">mSY65mXUk1odGmUMBo3/VoOW9ki9t0G6BTqK4lW4qijII</span><br><span class="line">lhrVocrs6APlyAuyPbi5cCtrwQxJSd6J+h8d9t9qdZD/E</span><br><span class="line">DUUdh63jdk07vmlv/+qUza15SZaAptfmFFbKOES8b7qfk</span><br><span class="line">iUXvCr+kCH36lz+rTbF75cW1aU3dJ1/WWj3jgumVyqeMU</span><br><span class="line">bE/OiF3ZBQA7mmz93Jho+Wis5mG07QjI3f18d+ZG0xonf</span><br><span class="line">wg+sjQf3fIujCPq99PcKlM= georgechen1827@gmail.</span><br><span class="line">com</span><br><span class="line">~</span><br><span class="line">~</span><br><span class="line">~</span><br><span class="line">~</span><br><span class="line">~</span><br><span class="line">id_rsa.pub                1,1            All</span><br></pre></td></tr></table></figure>
+<p>复制从ssh到.com的内容，粘贴到你的github-&gt;settings-&gt;SSH and GPG keys-&gt;New SSH key-&gt;Key中(Title随便取个名就行),Add SSH key即可<br>然后回到终端，退出vim并且测试一下是否可以通过git连上github</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关于退出vim，只要输入':q'回车就行</span></span><br><span class="line">$ ssh -T git@github.com    <span class="comment"># 测试是否能够连上github，第一次可能需要连接确认</span></span><br></pre></td></tr></table></figure>
+<p>顺便说一句，这个终端中所有的目录和文件都是termux应用的内部数据，从外部(如安卓手机上的文件管理器)一般是访问不到的(如这个id_rsa.pub就无法从外部来访问)，如果你所操作的文件是在外部存储中；或者想将文件保存在外部存储中，需要给予termux访问存储设备的权限，具体操作下一节会讲到。  </p>
+<ul>
+<li>安装nodejs</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ pkg install nodejs-lts</span><br><span class="line"><span class="comment"># 如果这里 pkg install nodejs 可能会出现npm与nodejs版本不兼容问题，具体原因未知</span></span><br><span class="line"><span class="comment"># 如果termux没有安装npm，需要pkg install npm</span></span><br><span class="line"><span class="comment"># 通过node -v和npm -v可以查看相应的版本</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装hexo</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>git自己的博客源文件</li>
+</ul>
+<p>先cd到你想存放博客的某个文件夹下(如果可以的话，我建议将这个文件夹设在一个能被其他应用访问到的地方，具体操作见下一节)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@github.com:yourname/yourname.github.io.git</span><br><span class="line"><span class="comment"># clone你的博客源文件</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>生成部署编写…</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> yourname.github.io</span><br><span class="line">$ npm install</span><br><span class="line">$ npm install hexo-deployer-git --save</span><br><span class="line">$ hexo g</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+<p>然后就可以开始写博客啦！</p>
+<h3 id="关于termux访问外部存储"><a href="#关于termux访问外部存储" class="headerlink" title="关于termux访问外部存储"></a>关于termux访问外部存储</h3><p>上面讲过，termux终端中所有的目录和文件都是作为应用的内部数据存在的，从外部一般访问不到(当然理论上是能访问到的，只是我水平有限)，如果你将博客源文件放在了home目录中，那就意味着你只能用termux中的vim编辑器写博文了，这既不方便也不优雅。<br><br/><br>在此，我的建议是，将你的博客文件存到外部存储(一个容易被你手机/平板的文件管理器访问到的)中，然后做一个文件夹的软链接到你的home目录下，这样即能够使用你手机/平板上其他的app来编辑博文，又方便你在终端中用命令同步文件(软链接可以省去输入难以记住的路径信息)。<br><br/><br>具体操作如下:  </p>
+<ul>
+<li>开放存储访问权限</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ apt install termux-tools <span class="comment"># 这是termux自带的管理工具</span></span><br><span class="line">$ termux-setup-storage <span class="comment"># 设置存储访问权限</span></span><br><span class="line"><span class="comment"># 这个时候手机应该会跳出一个权限确认弹窗，点击确定</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>链接一个合适的文件夹到home目录下<br>开放存储访问权限之后，你可以在home目录下发现一个新目录storage，如下:  </li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># home目录下</span></span><br><span class="line">$ dir</span><br><span class="line">storage</span><br><span class="line">$ <span class="built_in">cd</span> storage <span class="comment"># storage目录里面是一些常用文件夹</span></span><br><span class="line">$ dir</span><br><span class="line">dcim       movies  pictures</span><br><span class="line">downloads  music   shared</span><br><span class="line">$ <span class="built_in">cd</span> shared <span class="comment"># shared文件夹里面就是你安卓设备能访问到的根目录(不严谨地说)</span></span><br><span class="line">$ dir</span><br><span class="line">ANRSnap        Alarms         </span><br><span class="line">Android        BaiduMapAuto   </span><br><span class="line">DCIM           Documents      </span><br><span class="line">Download       Fonts          </span><br><span class="line">Foxit          GDTDOWNLOAD    </span><br><span class="line">Huawei         HuaweiSystem   </span><br><span class="line">Movies         Music          </span><br><span class="line">Notifications  Pictures</span><br></pre></td></tr></table></figure>
+
+<p>我个人是这样做的:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># shared目录下</span></span><br><span class="line">$ mkdir github <span class="comment"># 创建一个github文件夹，以后里面也可以clone其他项目</span></span><br><span class="line">$ <span class="built_in">cd</span> ˜ <span class="comment"># 回到home目录</span></span><br><span class="line">$ ln -s ˜/storage/shared/github github <span class="comment"># 将刚刚创建的文件夹链接到home目录下，方便以后访问</span></span><br><span class="line">$ <span class="built_in">cd</span> github</span><br><span class="line">$ git <span class="built_in">clone</span> git@github.com:yourname/yourname.github.io.git <span class="comment"># 做clone，具体不细讲，上一节有</span></span><br><span class="line">$ <span class="built_in">cd</span> ..</span><br><span class="line">$ ln -s ˜/github/yourname.github.io hexo <span class="comment"># 链接博客目录</span></span><br><span class="line">$ ln -s ˜/hexo/<span class="built_in">source</span>/_posts <span class="comment"># 链接博客文章</span></span><br><span class="line"><span class="comment"># 这样，你的home目录下面应该有博客文章、github、博客三个快速访问链接</span></span><br><span class="line">$ ls</span><br><span class="line">blog  github  hexo  storage</span><br></pre></td></tr></table></figure>
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/02/07/android-hexo-setting/" data-id="ck6c9x8ts0000v4vnco1o94fd"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/instructions/" rel="tag">instructions</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+  
+
+</article>
+    
     <article id="post-csharp-learing" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -241,7 +377,7 @@
         class="article-share-link">share</a>
         
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/instructions/" rel="tag">instructions</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/instructions/" rel="tag">instructions</a></li></ul>
 
     </footer>
 
