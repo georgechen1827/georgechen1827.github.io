@@ -100,7 +100,7 @@ namespace HelloWorldApplication //一个名字空间
 
 #### 可空类型
 
-<data_type>?或Nullable<data_type>表示一个可空类型,其除了可以被data_type范围内的对象赋值之外还可以被赋值为null  
+\<data_type\>?或Nullable\<data_type\>表示一个可空类型,其除了可以被data_type范围内的对象赋值之外还可以被赋值为null  
 
 ```c#
 int? i = 3 

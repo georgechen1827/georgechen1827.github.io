@@ -24,14 +24,13 @@ $ hexo generate # hexo g
 $ hexo deploy   # hexo d
 
 # 更新hexo分支
+$ git pull origin hexo  # 同步博客
 $ git add .     # .github.io目录下
 $ git commit -m "update hexo branch" # 带解释地提交
-$ git push      # 默认分支为hexo
+$ git push      # 默认分支为hexo, -f 进行强制覆盖
 
 # 新建博文
 $ hexo new [layout] <title>
-$ hexo g    
-$ hexo s    # 显示文章
 
 # 新建菜单页
 $ hexo new page <title>
