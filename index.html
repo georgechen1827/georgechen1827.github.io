@@ -65,6 +65,118 @@
     
     
     
+    <article id="post-matlab" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/09/matlab/"
+    >matlab常用语法</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/02/09/matlab/" class="article-date">
+  <time datetime="2020-02-09T09:10:30.000Z" itemprop="datePublished">2020-02-09</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>仅作随笔用,不完善不严谨</p>
+<h3 id="变量-符号-数组-矩阵"><a href="#变量-符号-数组-矩阵" class="headerlink" title="变量 符号 数组 矩阵"></a>变量 符号 数组 矩阵</h3><h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;var&gt; = &lt;expression&gt;</span><br></pre></td></tr></table></figure>
+
+<p>预定义变量   </p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pi</span>  <span class="comment">% 圆周率</span></span><br><span class="line"><span class="built_in">inf</span> <span class="comment">% 又Inf,无穷大</span></span><br><span class="line"><span class="built_in">nan</span> <span class="comment">% 又NaN,不定值</span></span><br><span class="line"><span class="built_in">eps</span> <span class="comment">% 浮点数运算相对精度,无穷小</span></span><br><span class="line"><span class="built_in">i</span>   <span class="comment">% 又j,虚部单位</span></span><br><span class="line"><span class="built_in">ans</span> <span class="comment">% 上一次运算结果</span></span><br></pre></td></tr></table></figure>
+
+<p>变量存储 读取 清除  </p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">save [filename.mat] [var1] [var2] ...</span><br><span class="line">load &lt;filename.mat&gt; [var1] [var2] ...</span><br><span class="line">clear [var1] [var2]</span><br></pre></td></tr></table></figure>
+
+<p>相关命令</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">who <span class="comment">% 显示工作空间中的所有变量  </span></span><br><span class="line">whos    <span class="comment">% 查看工作空间中变量的详细属性 </span></span><br><span class="line"><span class="built_in">realmin</span> <span class="comment">% 最小可用正实数</span></span><br><span class="line"><span class="built_in">realmax</span> <span class="comment">% 最大可用正实数</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="符号-符号表达式"><a href="#符号-符号表达式" class="headerlink" title="符号 符号表达式"></a>符号 符号表达式</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">syms [symbol1] &lt;symbol2&gt; &lt;symbol3&gt; ...  <span class="comment">% 创建多个符号变量, 相当于symbol1 = sym('symbol'); symbol2 = sym('symbol2'); ...</span></span><br><span class="line">[symbol] = sym([symbol/value/symbolexpression])  <span class="comment">% 用符号/数值/表达式来创建符号变量/常量/表达式</span></span><br></pre></td></tr></table></figure>
+
+<p>相关函数  </p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">findsym(expression [, N])   <span class="comment">% 查找符号表达式中的[离x最近的N个]符号变量</span></span><br><span class="line">subs(expression, symbol1, symbol2)  <span class="comment">% 在表达式中用s2替换s1</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="数组-矩阵"><a href="#数组-矩阵" class="headerlink" title="数组 矩阵"></a>数组 矩阵</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[matrix] = [row1 ; row2 ; ... ]</span><br><span class="line">[row] = [sym1 sym2 ...] <span class="comment">% row = start: step: end</span></span><br><span class="line">[matrix](n) = value <span class="comment">% 元素赋值</span></span><br><span class="line">[matrix] = [matrix ; matrix2]   <span class="comment">% 矩阵列拼接</span></span><br><span class="line">[matrix] = [matrix matrix2] <span class="comment">% 矩阵行拼接</span></span><br></pre></td></tr></table></figure>
+
+<p>相关操作</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A(i1 : step : i2, j1 : step : j2)   <span class="comment">% 矩阵切片</span></span><br><span class="line">.* ./ .^    <span class="comment">% 点乘点除点幂乘</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="基本函数"><a href="#基本函数" class="headerlink" title="基本函数"></a>基本函数</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sin</span>、<span class="built_in">cos</span>、<span class="built_in">tan</span>、<span class="built_in">cot</span>、<span class="built_in">sec</span>、<span class="built_in">csc</span>、…</span><br><span class="line"><span class="built_in">asin</span>、<span class="built_in">acos</span>、<span class="built_in">atan</span>、<span class="built_in">acot</span>、<span class="built_in">asec</span>、<span class="built_in">acsc</span>、…</span><br><span class="line"><span class="built_in">exp</span>、<span class="built_in">log</span>、<span class="built_in">log2</span>、<span class="built_in">log10</span>、<span class="built_in">sqrt</span></span><br><span class="line"><span class="built_in">abs</span>、<span class="built_in">conj</span>、<span class="built_in">real</span>、<span class="built_in">imag</span></span><br><span class="line">rank、det、inv、eig、lu、qr、svd</span><br><span class="line"><span class="built_in">diag</span>、<span class="built_in">triu</span>、<span class="built_in">tril</span>、expm</span><br></pre></td></tr></table></figure>
+
+<p>相关命令  </p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">findsym(expr)   <span class="comment">% 按字母顺序列出符号表达式 expr 中的所有符号变量</span></span><br><span class="line">findsym(expr, N)    <span class="comment">% 按顺序列出 expr 中离 x 最近的 N 个符号变量</span></span><br><span class="line">nargin  <span class="comment">% 所用函数的输入变量数目</span></span><br><span class="line">nargout <span class="comment">% 所用函数的输出变量数目</span></span><br></pre></td></tr></table></figure>
+
+<p>####　运算函数</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">factor</span>(f)   <span class="comment">% 因式分解或质因数分解</span></span><br><span class="line">expand(f)   <span class="comment">% 函数展开</span></span><br><span class="line">taylor(f,x,a)   <span class="comment">% f关于符号x在a处进行5项泰勒展开</span></span><br><span class="line">collect(f,v)    <span class="comment">% f对(默认变量)v进行合并同类项</span></span><br><span class="line">simplify(f) <span class="comment">% 对f化简函数</span></span><br><span class="line">numden(f)   <span class="comment">% 函数化简 -&gt; [N,D] N为分子,D为分母</span></span><br><span class="line">horner(f)   <span class="comment">% 多项式转嵌套多项式 x(...x(x+i)+j)+k</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">limit(fun,x,x0 [, <span class="string">'left'</span>/<span class="string">'right'</span>])  <span class="comment">% 在fun中对符号x在x0处求极限</span></span><br><span class="line">int(f [, v, a, b])  <span class="comment">% 在f中对(默认)变量[v][在区间(a,b)上]的(不)定积分</span></span><br><span class="line">symsum(f, v, a, b)  <span class="comment">% 在v=a,a+1....b上对f(v)进行求和</span></span><br><span class="line">solve(f,v)  <span class="comment">% 求方程(组)关于指定自变量的解</span></span><br><span class="line">y=dsolve(eq1, eq2, ..., cond1, cond2, ..., v)   <span class="comment">% 微分方程eq1,eq2...在cond1,cond2...为初值条件下自变量v的解 -&gt; 输出解y,若无显式函数,则输出[x,y]</span></span><br><span class="line">finverse(f,v)   <span class="comment">% f关于(默认变量)v的反函数</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="多项式函数"><a href="#多项式函数" class="headerlink" title="多项式函数"></a>多项式函数</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">p = [a1, a2, a3, a4 ...]    <span class="comment">% 多项式降幂系数的行向量表示</span></span><br><span class="line">r = roots(p)    <span class="comment">% 求出多项式为0的根</span></span><br><span class="line">p = poly(r) <span class="comment">% 通过多项式为0的根求出多项式</span></span><br><span class="line">c = conv(a,b)   <span class="comment">% 多项式相乘</span></span><br><span class="line">[q, r] = deconv(c, b)   <span class="comment">% 多项式相除</span></span><br><span class="line">d = polyder(a)  <span class="comment">% 微分多项式</span></span><br><span class="line">n = polyval(a, <span class="number">2</span>)   <span class="comment">% 多项式函数求值</span></span><br><span class="line">p = polyfit(x,y,n)  <span class="comment">% 在x, y样本点向量下求出一个n阶多项式的拟合p</span></span><br><span class="line">[a,Jm] = lsqcurvefit(Fun,a0,x,y)    <span class="comment">% 最小二乘曲线拟合,Fun为原函数，x,y 为原始输入数据,a0为最优化初值，a为最小二乘系数，Jm为目标</span></span><br><span class="line">yi = interp1(x, y, xi, <span class="string">'method'</span>)    <span class="comment">% 一维插值计算</span></span><br><span class="line">zi = interp2(x，y，z，xi，yi，<span class="string">'method'</span>)  <span class="comment">% 二维插值计算</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="作图函数"><a href="#作图函数" class="headerlink" title="作图函数"></a>作图函数</h4><p>参考<a href="https://www.cnblogs.com/ileanj1998/p/9060664.html" target="_blank" rel="noopener">https://www.cnblogs.com/ileanj1998/p/9060664.html</a></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">plot</span>(x,y)   <span class="comment">% x 为向量, y为x的函数或者同长度向量</span></span><br><span class="line">xlabel(<span class="string">'x'</span>) ylabel(<span class="string">'y'</span>) <span class="comment">% 坐标轴信息]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="其他技巧"><a href="#其他技巧" class="headerlink" title="其他技巧"></a>其他技巧</h3><ul>
+<li>若不想在屏幕上输出结果，可以在语句最后加分号  </li>
+<li>如果语句很长，可用续行符 “…”（三个点）续行,续行符的前面最好留一个空格</li>
+<li>Matlab 的命令记忆功能：上下箭头键  </li>
+<li>命令补全功能： Tab 键   </li>
+<li>用 Esc 键 删除命令行</li>
+</ul>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/02/09/matlab/" data-id="ck6f7mai60000jkvn5o5g8xnh"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/matlab/" rel="tag">matlab</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-making-rolls" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
