@@ -65,6 +65,592 @@
     
     
     
+    <article id="post-Lucence0" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/24/Lucence0/"
+    >Lucence相关</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/02/24/Lucence0/" class="article-date">
+  <time datetime="2020-02-24T10:01:26.000Z" itemprop="datePublished">2020-02-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>未完结,不定期更新</p>
+<hr>
+<p>参考:<br><a href="https://www.cnblogs.com/forfuture1978/archive/2010/06/13/1757479.html" target="_blank" rel="noopener">https://www.cnblogs.com/forfuture1978/archive/2010/06/13/1757479.html</a><br><a href="http://lucene.apache.org/" target="_blank" rel="noopener">http://lucene.apache.org/</a><br><a href="https://blog.csdn.net/PZ_eng/article/details/91977083" target="_blank" rel="noopener">https://blog.csdn.net/PZ_eng/article/details/91977083</a></p>
+<h2 id="总论"><a href="#总论" class="headerlink" title="总论"></a>总论</h2><h3 id="全文检索"><a href="#全文检索" class="headerlink" title="全文检索"></a>全文检索</h3><h4 id="生活中数据总体分为如下几种"><a href="#生活中数据总体分为如下几种" class="headerlink" title="生活中数据总体分为如下几种:"></a>生活中数据总体分为如下几种:</h4><ul>
+<li>结构化数据: 具有固定格式或有限长度的数据(数据库,元数据)</li>
+<li>非结构化数据: 不定长或无固定格式数据(word文档)</li>
+<li>半结构化数据: 可根据需要当成结构化数据处理,也可以抽取纯文本按非结构化数据处理  </li>
+</ul>
+<p>其中,非结构化数据又叫全文数据</p>
+<h4 id="全文数据搜索主要有两种方法"><a href="#全文数据搜索主要有两种方法" class="headerlink" title="全文数据搜索主要有两种方法:"></a>全文数据搜索主要有两种方法:</h4><ul>
+<li>顺序扫描法: 直接,方便,较慢</li>
+<li>索引法: 将非结构化数据中一部分信息提取出来重新组织,使其有一定结构后再搜索  </li>
+</ul>
+<p>索引构成了全文检索的基本思路<br>这种先建立索引,再对索引进行搜索的过程就叫做全文检索</p>
+<p>全文检索大体分为两个过程: 索引创建,搜索索引</p>
+<h4 id="因此-全文检索需要关注下面三个问题"><a href="#因此-全文检索需要关注下面三个问题" class="headerlink" title="因此,全文检索需要关注下面三个问题:"></a>因此,全文检索需要关注下面三个问题:</h4><ol>
+<li>索引里面应该存什么(index)</li>
+<li>如何创建索引(indexing)</li>
+<li>如何对索引进行搜索(search)</li>
+</ol>
+<h3 id="索引里面应该存什么–倒排索引"><a href="#索引里面应该存什么–倒排索引" class="headerlink" title="索引里面应该存什么–倒排索引"></a>索引里面应该存什么–倒排索引</h3><p>倒排索引一般形式如下:</p>
+<blockquote>
+<p>token1-&gt;doc1 doc2 doc3 …<br>token2-&gt;doc3 doc5 doc6 …</p>
+</blockquote>
+<p>其中:</p>
+<ul>
+<li>token所在的地方称为词典</li>
+<li>每个token指向一个文档链表,此链表称为倒排表</li>
+</ul>
+<p>通过这种索引方式,加上对链表的一系列操作,可以大大加速全文搜索的速度</p>
+<h3 id="索引创建一般过程"><a href="#索引创建一般过程" class="headerlink" title="索引创建一般过程"></a>索引创建一般过程</h3><p>创建索引一般分为如下几步:</p>
+<ol>
+<li>整理要索引的Document</li>
+<li>将Document传给Tokenizer,得到Token(分词)</li>
+<li>将Token传给Linguistic Processor进行预处理,得到Term(转变大小写,词性,单复数)</li>
+<li>将Term传给Indexer进行倒排索引</li>
+</ol>
+<h3 id="搜索一般过程"><a href="#搜索一般过程" class="headerlink" title="搜索一般过程"></a>搜索一般过程</h3><p>对索引进行搜索一般分为如下几步:</p>
+<ol>
+<li>用户输入query</li>
+<li>对query进行词法,语法分析以及语言处理,得到语法树</li>
+<li>搜索索引,得到符合语法树的文档</li>
+<li>根据得到的文档和query的相关性对结果进行排序</li>
+</ol>
+<h3 id="Lucence"><a href="#Lucence" class="headerlink" title="Lucence"></a>Lucence</h3><p>Lucence是一个由Java实现的,支持纯文本文件的索引和搜索的高效、可扩展的全文检索框架</p>
+<h4 id="Lucence和外界的交互如下所示"><a href="#Lucence和外界的交互如下所示" class="headerlink" title="Lucence和外界的交互如下所示:"></a>Lucence和外界的交互如下所示:</h4><p><img src="/2020/02/24/Lucence0/Lucence0.png" alt="Lucence"></p>
+<h4 id="Lucence内部结构如下"><a href="#Lucence内部结构如下" class="headerlink" title="Lucence内部结构如下:"></a>Lucence内部结构如下:</h4><p><img src="/2020/02/24/Lucence0/Lucence1.png" alt="Lucence"></p>
+<p>其中:</p>
+<ul>
+<li>被索引的文档用Document对象表示  </li>
+<li>IndexWriter通过函数addDocument将文档添加到索引中 ,实现创建索引的过程  </li>
+<li>Lucene的索引是应用倒排索引  </li>
+<li>当用户有请求时,Query代表用户的查询语句  </li>
+<li>IndexSearcher通过函数search搜索Lucene Index  </li>
+<li>IndexSearcher计算term weight和score并且将结果返回给用户</li>
+<li>返回给用户的文档集合用TopDocsCollector表示  </li>
+</ul>
+<h4 id="Lucence索引过程如下"><a href="#Lucence索引过程如下" class="headerlink" title="Lucence索引过程如下:"></a>Lucence索引过程如下:</h4><ol>
+<li>创建一个IndexWriter用来写索引文件,它有几个参数,INDEX_DIR 就是索引文件所存放的位置,Analyzer便是用来对文档进行词法分析和语言处理的 </li>
+<li>创建一个 Document 代表我们要索引的文档 </li>
+<li>将不同的Field加入到文档中;我们知道,一篇文档有多种信息,如题目,作者,修改时间,内容等;不同类型的信息用不同的Field来表示  </li>
+<li>IndexWriter调用函数addDocument将索引写到索引文件夹中 　</li>
+</ol>
+<h4 id="Lucence搜索过程如下"><a href="#Lucence搜索过程如下" class="headerlink" title="Lucence搜索过程如下:"></a>Lucence搜索过程如下:</h4><ol>
+<li>IndexReader将磁盘上的索引信息读入到内存</li>
+<li>创建IndexSearcher准备进行搜索  </li>
+<li>创建Analyer用来对查询语句进行词法分析和语言处理 </li>
+<li>创建QueryParser用来对查询语句进行语法分析 </li>
+<li>QueryParser调用parser进行语法分析,形成查询语法树,放到Query中  </li>
+<li>IndexSearcher调用search对查询语法树Query进行搜索,得到结果TopScoreDocCollector</li>
+</ol>
+<h4 id="Lucence的包结构可由如下图表示"><a href="#Lucence的包结构可由如下图表示" class="headerlink" title="Lucence的包结构可由如下图表示:"></a>Lucence的包结构可由如下图表示:</h4><p><img src="/2020/02/24/Lucence0/Lucence2.png" alt="Lucence"></p>
+<p>其中:</p>
+<ul>
+<li>Lucene的analysis模块主要负责词法分析及语言处理而形成Term  </li>
+<li>Lucene的index模块主要负责索引的创建,里面有里面有IndexWriter</li>
+<li>Lucene的store模块主要负责索引的读写</li>
+<li>Lucene的QueryParser主要负责语法分析</li>
+<li>Lucene的search模块主要负责对索引的搜索</li>
+<li>Lucene的similarity模块主要负责对相关性打分的实现  </li>
+</ul>
+<h2 id="C-中的Lucence"><a href="#C-中的Lucence" class="headerlink" title="C#中的Lucence"></a>C#中的Lucence</h2><p><a href="http://lucenenet.apache.org/" target="_blank" rel="noopener">http://lucenenet.apache.org/</a></p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/02/24/Lucence0/" data-id="ck70lf90u0000xsvn85cif7b8"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/" rel="tag">c#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" rel="tag">搜索引擎</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-compilers0" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/24/compilers0/"
+    >编译原理相关知识</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/02/24/compilers0/" class="article-date">
+  <time datetime="2020-02-24T08:32:03.000Z" itemprop="datePublished">2020-02-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a> / <a class="article-category-link" href="/categories/notes/%E5%AD%A6%E4%BD%8D%E8%AF%BE%E7%A8%8B/">学位课程</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>未完结,持续更新</p>
+<hr>
+<p>课程内容:</p>
+<ul>
+<li>编译器构造的一般原理和基本实现方法</li>
+<li>理论知识: 形式语言和自动机理论,语法制导的定义和属性方法,程序分析原理</li>
+<li>强调形式描述技术和自动生成技术</li>
+<li>强调对编译原理和技术的宏观理解,不把注意力分散到枝节算法,不偏向于任何源语言或目标机器</li>
+</ul>
+<h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><h3 id="编译原理概述"><a href="#编译原理概述" class="headerlink" title="编译原理概述"></a>编译原理概述</h3><p>语言处理器: 由编译器,解释器,汇编器,连接器,加载器,调试器及程序概要提取工具等所构成的集成软件开发环境<br>机器语言和汇编语言: 第一和第二代程序设计语言<br>高级语言: 能够自动进行内存管理,类型一致性检查等功能的程序设计语言<br>翻译器: 能完成一种语言到另一种语言变换的软件</p>
+<p>翻译器的不同形式:</p>
+<ul>
+<li>编译器(c,c++): 从源程序通过编译器得到目标程序,从输入通过目标程序得到输出(效率高)</li>
+<li>解释器(Python,JavaScript): 从源程序和输入经过解释器直接得到输出 (平台无关)  </li>
+<li>区别: 编译器通过翻译来生成目标程序,解释器直接生成源程序指定的运算*</li>
+<li>混和编译器(Java,C#): 源程序通过翻译器得到中间程序,中间程序和输入经过虚拟机得到输出(效率稍高,平台无关,但每个平台都要装虚拟机)</li>
+</ul>
+<p>语言处理系统: 预处理器,编译器,汇编器,连接器\加载器<br>源程序-&gt;修改后的源程序-&gt;目标汇编程序-&gt;可重定位的机器代码-(库文件,可重定位目标文件)&gt;可执行目标程序</p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/02/24/compilers0/" data-id="ck70lf9100001xsvn04w278gu"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="tag">编译原理</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-computer-composition0" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/24/computer-composition0/"
+    >计算机组成相关知识</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/02/24/computer-composition0/" class="article-date">
+  <time datetime="2020-02-24T02:32:00.000Z" itemprop="datePublished">2020-02-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a> / <a class="article-category-link" href="/categories/notes/%E5%AD%A6%E4%BD%8D%E8%AF%BE%E7%A8%8B/">学位课程</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>未完结,持续更新</p>
+<hr>
+<p>课程内容:</p>
+<ul>
+<li>讨论单机系统范围内计算机各部件和系统的组成原理以及内部工作机制</li>
+</ul>
+<p>课程目标:</p>
+<ul>
+<li>计算机个大部件的组成原理</li>
+<li>…的逻辑实现</li>
+<li>…的设计方法</li>
+<li>…互联构成整体系统的技术</li>
+<li>(为后继课程的学习打好基础)</li>
+</ul>
+<p>课程地位: 承上启下</p>
+<ul>
+<li>先导课程: 计算机导论,数字逻辑</li>
+<li>后继课程: 微机原理,接口技术,计算机系统结构</li>
+</ul>
+<p>重点难点:</p>
+<ul>
+<li>掌握五大基本部件的原理及实现</li>
+<li>掌握各部件互联构成整机系统的知识(整机概念的建立)</li>
+</ul>
+<p>课程要求:</p>
+<ul>
+<li>重点掌握: 多层次的存储器,中央处理器</li>
+<li>掌握: 运算方法和运算器,指令系统,总线系统</li>
+<li>理解: 外存与io设备</li>
+<li>了解: 计算机系统概论,输入输出系统</li>
+</ul>
+<h2 id="计算机系统概论"><a href="#计算机系统概论" class="headerlink" title="计算机系统概论"></a>计算机系统概论</h2><p>计算机的定义,分类.发展史</p>
+<h3 id="计算机发展简史"><a href="#计算机发展简史" class="headerlink" title="计算机发展简史"></a>计算机发展简史</h3><p>计算机: 能够连续自动进行数值和逻辑运算的机器</p>
+<p>分类:</p>
+<ul>
+<li>原理角度: 数字计算机,模拟计算机</li>
+<li>性能指标: 巨型机,大型机,小型机,微型机</li>
+<li>用途角度: 专用机,通用机</li>
+</ul>
+<p>计算机发展阶段:</p>
+<ul>
+<li>1946-1957: 电子管时代,ENIAC(1946)</li>
+<li>1958-1964: 晶体管时代,整体性能大幅度提高,TRADIC(增加浮点运算)</li>
+<li>1965-1971: 中小规模集成电路,进入文字处理和图形图像处理</li>
+<li>1972-: 大和超大规模集成电路,出现微处理器</li>
+</ul>
+<h3 id="计算机性能指标和层次结构"><a href="#计算机性能指标和层次结构" class="headerlink" title="计算机性能指标和层次结构"></a>计算机性能指标和层次结构</h3><p>NAN</p>
+<h3 id="计算机系统"><a href="#计算机系统" class="headerlink" title="计算机系统"></a>计算机系统</h3><h4 id="硬件系统的组成-冯诺依曼结构-以存储器为中心"><a href="#硬件系统的组成-冯诺依曼结构-以存储器为中心" class="headerlink" title="硬件系统的组成: 冯诺依曼结构,以存储器为中心"></a>硬件系统的组成: 冯诺依曼结构,以存储器为中心</h4><p>存储程序:</p>
+<ul>
+<li>计算机(硬件)应由运算器,存储器,控制器,出入设备,输出设备组成</li>
+<li>计算机内部采用二进制来表示指令和数据</li>
+<li>将编好的程序和原始数据实现存入存储器中然后再启动计算机工作</li>
+</ul>
+<p>其中:</p>
+<blockquote>
+<p>运算器,控制器一般为cpu<br>存储器一般由主存(内存)和辅存组成<br>cpu和主存一般构成主机<br>运算器: 数据的加工处理<br>控制器: 指令控制,操作控制,时序控制<br>存储器: 存放数据和程序<br>输入设备: 将外部数据送给计算机并转换成计算机能够识别的形式<br>输出设备: 将计算机处理结果送出给外界并转换成外界能够识别的形式</p>
+</blockquote>
+<ul>
+<li>以运算器为核心的构造: 输入设备的数据得通过运算器才能进入存储器中</li>
+<li>以存储器为核心的构造: 可以提高计算机系统运行的效率</li>
+</ul>
+<h4 id="软件系统的组成-应用软件-系统软件"><a href="#软件系统的组成-应用软件-系统软件" class="headerlink" title="软件系统的组成: 应用软件,系统软件"></a>软件系统的组成: 应用软件,系统软件</h4><p>系统软件:</p>
+<ul>
+<li>操作系统: 硬件软件之间的桥梁</li>
+<li>语言程序</li>
+<li>服务性程序</li>
+<li>DMZ</li>
+</ul>
+<p>软件和硬件之间存在着逻辑等价关系</p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/02/24/computer-composition0/" data-id="ck70lf920000kxsvn8b49e7r1"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/" rel="tag">计算机组成</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-java0" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/24/java0/"
+    >Java学习笔记</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/02/24/java0/" class="article-date">
+  <time datetime="2020-02-24T00:33:24.000Z" itemprop="datePublished">2020-02-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a> / <a class="article-category-link" href="/categories/notes/%E5%AD%A6%E4%BD%8D%E8%AF%BE%E7%A8%8B/">学位课程</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>未完结,持续更新</p>
+<hr>
+<h2 id="Java常识"><a href="#Java常识" class="headerlink" title="Java常识"></a>Java常识</h2><h3 id="Java特点"><a href="#Java特点" class="headerlink" title="Java特点"></a>Java特点</h3><p>c++ - -</p>
+<ul>
+<li>无直接指针操作</li>
+<li>自动内存管理</li>
+<li>数据类型长度固定</li>
+<li>不用头文件</li>
+<li>不包含结构和联合</li>
+<li>不支持宏</li>
+<li>不用多重继承(接口实现)</li>
+<li>无类外全局变量</li>
+<li>无goto</li>
+</ul>
+<p>Java三种核心机制</p>
+<ul>
+<li>Java虚拟机</li>
+<li>代码安全性监测</li>
+<li>垃圾回收机制</li>
+</ul>
+<p><em>Java程序都是运行在虚拟机之上的,与平台无关</em></p>
+<ul>
+<li>JRE(java运行环境)=JVM+API</li>
+<li>JDK(Java开发工具包)=JRE+Tools</li>
+</ul>
+<h3 id="Java面向对象程序设计"><a href="#Java面向对象程序设计" class="headerlink" title="Java面向对象程序设计"></a>Java面向对象程序设计</h3><p>类</p>
+<ul>
+<li>属性: 变量,字段</li>
+<li>行为: 函数,方法</li>
+</ul>
+<p>类与对象的关系</p>
+<ul>
+<li>类是对象的抽象</li>
+<li>对象是类的实例</li>
+</ul>
+<p>面向对象三大特性</p>
+<ul>
+<li>封装: 模块化,信息隐蔽</li>
+<li>继承: 父类子类间共享数据,更好地抽象和分类,增强代码重用性和可维护性</li>
+<li>多态: 方法重载</li>
+</ul>
+<h3 id="简单Java程序"><a href="#简单Java程序" class="headerlink" title="简单Java程序"></a>简单Java程序</h3><p>Java程序类型:</p>
+<ul>
+<li>Application: 独立程序,需要执行器(虚拟机)来运行</li>
+<li>Applect: 非独立程序,嵌入在HTML网页中运行</li>
+</ul>
+<p>应用程序要点(helloword)</p>
+<ul>
+<li>class是主体</li>
+<li>public类名与文件名同名</li>
+<li>main()的写法是固定的: public static void main()</li>
+<li>System.out.print及println及printf</li>
+</ul>
+<p>Applet程序(helloword)</p>
+<ul>
+<li>import表示导入</li>
+<li>extends JApplet表示继承</li>
+<li>有paint()方法,表示如何绘制</li>
+<li>没有main()方法</li>
+</ul>
+<p>Java程序基本构成</p>
+<ul>
+<li>package语句(0或1句)</li>
+<li>import语句(0或多句)</li>
+<li>类定义(1或多个,但只能有一个public类,与文件同名)</li>
+</ul>
+<h3 id="Java程序开发过程"><a href="#Java程序开发过程" class="headerlink" title="Java程序开发过程"></a>Java程序开发过程</h3><p>编辑,编译与运行</p>
+<ul>
+<li>编辑: 编辑器编辑,文件名要与public class类名一致</li>
+<li>程序编译: 转换程序为字节码,扩展名.class  javac name.java</li>
+<li>程序运行: 执行.class中的文件    java name</li>
+</ul>
+<p>JDK安装目录</p>
+<blockquote>
+<p>Bin 存放工具文件<br>Jre 存放与Java运行环境相关的文件<br>Demo 存放示例文件<br>Include 存放与C相关的头文件<br>Lib 存放程序库<br>DB 数据库相关</p>
+</blockquote>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/02/24/java0/" data-id="ck70lf92c000vxsvnha7598fz"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-python-plot1" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/12/python-plot1/"
+    >python作图</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/02/12/python-plot1/" class="article-date">
+  <time datetime="2020-02-12T09:21:50.000Z" itemprop="datePublished">2020-02-12</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>一些参考网站:<br><a href="https://zhuanlan.zhihu.com/p/39077155" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/39077155</a><br><a href="https://zhuanlan.zhihu.com/p/49035741" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/49035741</a><br><a href="https://zhuanlan.zhihu.com/p/27401041" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/27401041</a><br><a href="https://zhuanlan.zhihu.com/p/37360133" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/37360133</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzUzODYwMDAzNA==&amp;mid=2247488701&amp;idx=4&amp;sn=73c8ca23d8eced3590ab285f9f43d99b&amp;chksm=fad463b0cda3eaa6f9be051e3c1e0c1a7ddc8922c5c6bf1dfa75f2db84affb88fa248760b781&amp;mpshare=1&amp;scene=23&amp;srcid=&amp;sharer_sharetime=1581401241375&amp;sharer_shareid=ab6f5905c1aa5f4891f8d87e4501862b#rd" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzUzODYwMDAzNA==&amp;mid=2247488701&amp;idx=4&amp;sn=73c8ca23d8eced3590ab285f9f43d99b&amp;chksm=fad463b0cda3eaa6f9be051e3c1e0c1a7ddc8922c5c6bf1dfa75f2db84affb88fa248760b781&amp;mpshare=1&amp;scene=23&amp;srcid=&amp;sharer_sharetime=1581401241375&amp;sharer_shareid=ab6f5905c1aa5f4891f8d87e4501862b#rd</a>  </p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/02/12/python-plot1/" data-id="ck70lf92e000yxsvne77nguwf"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-matlab" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -157,7 +743,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/09/matlab/" data-id="ck6f7mai60000jkvn5o5g8xnh"
+      <a data-url="http://georgechen1827.github.io/2020/02/09/matlab/" data-id="ck70lf92g0014xsvn20f7c7jo"
         class="article-share-link">share</a>
         
       
@@ -269,7 +855,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/08/making-rolls/" data-id="ck6dt36h40006lovn03976llw"
+      <a data-url="http://georgechen1827.github.io/2020/02/08/making-rolls/" data-id="ck70lf92e0011xsvnfzhigmw3"
         class="article-share-link">share</a>
         
       
@@ -415,7 +1001,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/07/android-hexo-setting/" data-id="ck6dt36go0001lovnf8h2e7r2"
+      <a data-url="http://georgechen1827.github.io/2020/02/07/android-hexo-setting/" data-id="ck70lf929000pxsvnenh43waz"
         class="article-share-link">share</a>
         
       
@@ -477,7 +1063,9 @@
       
 
       
-      <p>源:<a href="https://www.runoob.com/csharp/csharp-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/csharp/csharp-tutorial.html</a></p>
+      <p>未完结,不定期更新</p>
+<hr>
+<p>源:<a href="https://www.runoob.com/csharp/csharp-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/csharp/csharp-tutorial.html</a></p>
 <h2 id="c-入门"><a href="#c-入门" class="headerlink" title="c#入门"></a>c#入门</h2><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>特性:</p>
 <blockquote>
 <p>现代的、通用的编程语言<br>面向对象<br>面向组件<br>容易学习<br>结构化语言<br>它产生高效率的程序<br>它可以在多种计算机平台上编译<br>.Net 框架的一部分  </p>
@@ -531,13 +1119,14 @@
 <h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">RectangleApplication</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">Rectangle</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//成员变量</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">double</span> length;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">double</span> width;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">GetArea</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">return</span> length * width;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Display</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">"长度： &#123;0&#125;"</span>, length);</span><br><span class="line">            Console.WriteLine(<span class="string">"宽度： &#123;0&#125;"</span>, width);</span><br><span class="line">            Console.WriteLine(<span class="string">"面积： &#123;0&#125;"</span>, GetArea());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="comment">// Rectangle 结束</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title">ExecuteRectangle</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Rectangle r = <span class="keyword">new</span> Rectangle();</span><br><span class="line">            r.length = <span class="number">4.5</span>;</span><br><span class="line">            r.width = <span class="number">3.5</span>;</span><br><span class="line">            r.Display();</span><br><span class="line">            Console.ReadLine();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>封装<a href="https://www.runoob.com/csharp/csharp-encapsulation.html" target="_blank" rel="noopener">https://www.runoob.com/csharp/csharp-encapsulation.html</a><br>方法<a href="https://www.runoob.com/csharp/csharp-methods.html" target="_blank" rel="noopener">https://www.runoob.com/csharp/csharp-methods.html</a><br>结构体<a href="https://www.runoob.com/csharp/csharp-struct.html" target="_blank" rel="noopener">https://www.runoob.com/csharp/csharp-struct.html</a><br>类<a href="https://www.runoob.com/csharp/csharp-class.html" target="_blank" rel="noopener">https://www.runoob.com/csharp/csharp-class.html</a><br>继承<a href="https://www.runoob.com/csharp/csharp-inheritance.html" target="_blank" rel="noopener">https://www.runoob.com/csharp/csharp-inheritance.html</a><br>多态<a href="https://www.runoob.com/csharp/csharp-polymorphism.html" target="_blank" rel="noopener">https://www.runoob.com/csharp/csharp-polymorphism.html</a><br>重载运算符<a href="https://www.runoob.com/csharp/csharp-operator-overloading.html" target="_blank" rel="noopener">https://www.runoob.com/csharp/csharp-operator-overloading.html</a><br>接口<a href="https://www.runoob.com/csharp/csharp-interface.html" target="_blank" rel="noopener">https://www.runoob.com/csharp/csharp-interface.html</a></p>
+<h2 id="WPF应用程序-程序和界面分离"><a href="#WPF应用程序-程序和界面分离" class="headerlink" title="WPF应用程序,程序和界面分离"></a>WPF应用程序,程序和界面分离</h2><p>参考<a href="https://www.cnblogs.com/zpfbuaa/p/5380352.html" target="_blank" rel="noopener">https://www.cnblogs.com/zpfbuaa/p/5380352.html</a></p>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/06/csharp-learing/" data-id="ck6dt36h70008lovnfjwbconp"
+      <a data-url="http://georgechen1827.github.io/2020/02/06/csharp-learing/" data-id="ck70lf924000oxsvn1t2b6rhl"
         class="article-share-link">share</a>
         
       
@@ -609,7 +1198,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/06/about-the-blog/" data-id="ck6dt36gz0003lovndtzgdkyi"
+      <a data-url="http://georgechen1827.github.io/2020/02/06/about-the-blog/" data-id="ck70lf91z000ixsvnfzqg3wks"
         class="article-share-link">share</a>
         
       
@@ -629,93 +1218,14 @@
 
 </article>
     
-    <article id="post-hello-world" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2000/02/28/hello-world/"
-    >Hello World</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2000/02/28/hello-world/" class="article-date">
-  <time datetime="2000-02-28T02:00:00.000Z" itemprop="datePublished">2000-02-28</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/default/">default</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>欢迎来访！<br>本人初建博客，水平有限，请大家多谅解。</p>
-<p><em>以下为原博文</em></p>
-<hr>
-<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2000/02/28/hello-world/" data-id="ck6dt36h50007lovnb33929vu"
-        class="article-share-link">share</a>
-        
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/default/" rel="tag">default</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
   </article>
   
 
+  
+  <nav class="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next</a>
+  </nav>
   
 </section>
 </div>

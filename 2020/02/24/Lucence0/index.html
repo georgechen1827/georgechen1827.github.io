@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="this is George Chen&#39;s blog!" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    Lucence相关 |  George
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-Lucence0" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Lucence相关
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/02/24/Lucence0/" class="article-date">
+  <time datetime="2020-02-24T10:01:26.000Z" itemprop="datePublished">2020-02-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> about </span>
+            <span class="post-count">1.1k words</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> costs </span>
+            <span class="post-count">3 minutes</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>未完结,不定期更新</p>
+<hr>
+<p>参考:<br><a href="https://www.cnblogs.com/forfuture1978/archive/2010/06/13/1757479.html" target="_blank" rel="noopener">https://www.cnblogs.com/forfuture1978/archive/2010/06/13/1757479.html</a><br><a href="http://lucene.apache.org/" target="_blank" rel="noopener">http://lucene.apache.org/</a><br><a href="https://blog.csdn.net/PZ_eng/article/details/91977083" target="_blank" rel="noopener">https://blog.csdn.net/PZ_eng/article/details/91977083</a></p>
+<h2 id="总论"><a href="#总论" class="headerlink" title="总论"></a>总论</h2><h3 id="全文检索"><a href="#全文检索" class="headerlink" title="全文检索"></a>全文检索</h3><h4 id="生活中数据总体分为如下几种"><a href="#生活中数据总体分为如下几种" class="headerlink" title="生活中数据总体分为如下几种:"></a>生活中数据总体分为如下几种:</h4><ul>
+<li>结构化数据: 具有固定格式或有限长度的数据(数据库,元数据)</li>
+<li>非结构化数据: 不定长或无固定格式数据(word文档)</li>
+<li>半结构化数据: 可根据需要当成结构化数据处理,也可以抽取纯文本按非结构化数据处理  </li>
+</ul>
+<p>其中,非结构化数据又叫全文数据</p>
+<h4 id="全文数据搜索主要有两种方法"><a href="#全文数据搜索主要有两种方法" class="headerlink" title="全文数据搜索主要有两种方法:"></a>全文数据搜索主要有两种方法:</h4><ul>
+<li>顺序扫描法: 直接,方便,较慢</li>
+<li>索引法: 将非结构化数据中一部分信息提取出来重新组织,使其有一定结构后再搜索  </li>
+</ul>
+<p>索引构成了全文检索的基本思路<br>这种先建立索引,再对索引进行搜索的过程就叫做全文检索</p>
+<p>全文检索大体分为两个过程: 索引创建,搜索索引</p>
+<h4 id="因此-全文检索需要关注下面三个问题"><a href="#因此-全文检索需要关注下面三个问题" class="headerlink" title="因此,全文检索需要关注下面三个问题:"></a>因此,全文检索需要关注下面三个问题:</h4><ol>
+<li>索引里面应该存什么(index)</li>
+<li>如何创建索引(indexing)</li>
+<li>如何对索引进行搜索(search)</li>
+</ol>
+<h3 id="索引里面应该存什么–倒排索引"><a href="#索引里面应该存什么–倒排索引" class="headerlink" title="索引里面应该存什么–倒排索引"></a>索引里面应该存什么–倒排索引</h3><p>倒排索引一般形式如下:</p>
+<blockquote>
+<p>token1-&gt;doc1 doc2 doc3 …<br>token2-&gt;doc3 doc5 doc6 …</p>
+</blockquote>
+<p>其中:</p>
+<ul>
+<li>token所在的地方称为词典</li>
+<li>每个token指向一个文档链表,此链表称为倒排表</li>
+</ul>
+<p>通过这种索引方式,加上对链表的一系列操作,可以大大加速全文搜索的速度</p>
+<h3 id="索引创建一般过程"><a href="#索引创建一般过程" class="headerlink" title="索引创建一般过程"></a>索引创建一般过程</h3><p>创建索引一般分为如下几步:</p>
+<ol>
+<li>整理要索引的Document</li>
+<li>将Document传给Tokenizer,得到Token(分词)</li>
+<li>将Token传给Linguistic Processor进行预处理,得到Term(转变大小写,词性,单复数)</li>
+<li>将Term传给Indexer进行倒排索引</li>
+</ol>
+<h3 id="搜索一般过程"><a href="#搜索一般过程" class="headerlink" title="搜索一般过程"></a>搜索一般过程</h3><p>对索引进行搜索一般分为如下几步:</p>
+<ol>
+<li>用户输入query</li>
+<li>对query进行词法,语法分析以及语言处理,得到语法树</li>
+<li>搜索索引,得到符合语法树的文档</li>
+<li>根据得到的文档和query的相关性对结果进行排序</li>
+</ol>
+<h3 id="Lucence"><a href="#Lucence" class="headerlink" title="Lucence"></a>Lucence</h3><p>Lucence是一个由Java实现的,支持纯文本文件的索引和搜索的高效、可扩展的全文检索框架</p>
+<h4 id="Lucence和外界的交互如下所示"><a href="#Lucence和外界的交互如下所示" class="headerlink" title="Lucence和外界的交互如下所示:"></a>Lucence和外界的交互如下所示:</h4><p><img src="/2020/02/24/Lucence0/Lucence0.png" alt="Lucence"></p>
+<h4 id="Lucence内部结构如下"><a href="#Lucence内部结构如下" class="headerlink" title="Lucence内部结构如下:"></a>Lucence内部结构如下:</h4><p><img src="/2020/02/24/Lucence0/Lucence1.png" alt="Lucence"></p>
+<p>其中:</p>
+<ul>
+<li>被索引的文档用Document对象表示  </li>
+<li>IndexWriter通过函数addDocument将文档添加到索引中 ,实现创建索引的过程  </li>
+<li>Lucene的索引是应用倒排索引  </li>
+<li>当用户有请求时,Query代表用户的查询语句  </li>
+<li>IndexSearcher通过函数search搜索Lucene Index  </li>
+<li>IndexSearcher计算term weight和score并且将结果返回给用户</li>
+<li>返回给用户的文档集合用TopDocsCollector表示  </li>
+</ul>
+<h4 id="Lucence索引过程如下"><a href="#Lucence索引过程如下" class="headerlink" title="Lucence索引过程如下:"></a>Lucence索引过程如下:</h4><ol>
+<li>创建一个IndexWriter用来写索引文件,它有几个参数,INDEX_DIR 就是索引文件所存放的位置,Analyzer便是用来对文档进行词法分析和语言处理的 </li>
+<li>创建一个 Document 代表我们要索引的文档 </li>
+<li>将不同的Field加入到文档中;我们知道,一篇文档有多种信息,如题目,作者,修改时间,内容等;不同类型的信息用不同的Field来表示  </li>
+<li>IndexWriter调用函数addDocument将索引写到索引文件夹中 　</li>
+</ol>
+<h4 id="Lucence搜索过程如下"><a href="#Lucence搜索过程如下" class="headerlink" title="Lucence搜索过程如下:"></a>Lucence搜索过程如下:</h4><ol>
+<li>IndexReader将磁盘上的索引信息读入到内存</li>
+<li>创建IndexSearcher准备进行搜索  </li>
+<li>创建Analyer用来对查询语句进行词法分析和语言处理 </li>
+<li>创建QueryParser用来对查询语句进行语法分析 </li>
+<li>QueryParser调用parser进行语法分析,形成查询语法树,放到Query中  </li>
+<li>IndexSearcher调用search对查询语法树Query进行搜索,得到结果TopScoreDocCollector</li>
+</ol>
+<h4 id="Lucence的包结构可由如下图表示"><a href="#Lucence的包结构可由如下图表示" class="headerlink" title="Lucence的包结构可由如下图表示:"></a>Lucence的包结构可由如下图表示:</h4><p><img src="/2020/02/24/Lucence0/Lucence2.png" alt="Lucence"></p>
+<p>其中:</p>
+<ul>
+<li>Lucene的analysis模块主要负责词法分析及语言处理而形成Term  </li>
+<li>Lucene的index模块主要负责索引的创建,里面有里面有IndexWriter</li>
+<li>Lucene的store模块主要负责索引的读写</li>
+<li>Lucene的QueryParser主要负责语法分析</li>
+<li>Lucene的search模块主要负责对索引的搜索</li>
+<li>Lucene的similarity模块主要负责对相关性打分的实现  </li>
+</ul>
+<h2 id="C-中的Lucence"><a href="#C-中的Lucence" class="headerlink" title="C#中的Lucence"></a>C#中的Lucence</h2><p><a href="http://lucenenet.apache.org/" target="_blank" rel="noopener">http://lucenenet.apache.org/</a></p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/02/24/Lucence0/" data-id="ck70lf90u0000xsvn85cif7b8"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/" rel="tag">c#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" rel="tag">搜索引擎</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/02/24/compilers0/" class="article-nav-link">
+        <strong class="article-nav-caption">Next Post</strong>
+        <div class="article-nav-title">编译原理相关知识</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        notify: false,
+        verify: '',
+        app_id: 'ze0YzGUMUrLXgdRQpKyDCEEm-gzGzoHsz',
+        app_key: 'NnhAiNVNGXwbCD1sMGNRjA8B',
+        path: window.location.pathname,
+        avatar: 'mp',
+        placeholder: 'Leave your comments here ~',
+        recordIP: true,
+        lang: 'en'
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2019-2020
+        George Chen
+      </li>
+      <li>
+        
+          Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+      </li>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+    <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+      <aside class="sidebar">
+        <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="George"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">HOME</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives/">ARCHIVE</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/">CATE.</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/">TAGS</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="https://github.com/georgechen1827/" target="_blank" rel="noopener">about me</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/coming_soon.html" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+      </aside>
+      <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+      
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer:'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
+
+
+<script>
+  var ayerConfig = {
+    mathjax: false
+  }
+</script>
+
+
+<script src="/js/ayer.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+  </div>
+</body>
+
+</html>
