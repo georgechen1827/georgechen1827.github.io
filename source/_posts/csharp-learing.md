@@ -5,6 +5,10 @@ tags: [c#,learning]
 date: 2020-02-06 16:48:15
 ---
 
+未完结,不定期更新
+
+---
+
 源:<https://www.runoob.com/csharp/csharp-tutorial.html>
 
 ## c#入门
@@ -260,7 +264,8 @@ namespace RectangleApplication
 重载运算符<https://www.runoob.com/csharp/csharp-operator-overloading.html>  
 接口<https://www.runoob.com/csharp/csharp-interface.html>
 
-
+## WPF应用程序,程序和界面分离
+参考<https://www.cnblogs.com/zpfbuaa/p/5380352.html>
 
 
 
