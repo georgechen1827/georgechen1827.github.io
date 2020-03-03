@@ -102,6 +102,6 @@ theme: ayer
 deploy:
   type: git
   repo: 
-    https://github.com/georgechen1827/georgechen1827.github.io.git
-    https://e.coding.net/georgechen1827/georgechen1827.git
+    github: git@github.com:georgechen1827/georgechen1827.github.io.git
+    coding: git@e.coding.net:georgechen1827/georgechen1827.git
   branch: master

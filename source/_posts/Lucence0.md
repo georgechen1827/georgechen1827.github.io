@@ -5,16 +5,20 @@ tags: [搜索引擎,c#,learning]
 date: 2020-02-24 18:01:26
 ---
 
-未完结,不定期更新
+~~未完结,不定期更新~~  完结
 
 ---
+
+Lucence是一个由Java实现的,支持纯文本文件索引和搜索的高效、可扩展、开源的的全文检索框架
+
+因自己需要用到lucence.net相关知识, 学习时参阅了不少资料, 将一些要点记录在此, 以供参考
+
+## 总论
 
 参考:  
 <https://www.cnblogs.com/forfuture1978/archive/2010/06/13/1757479.html>  
 <https://blog.csdn.net/PZ_eng/article/details/91977083>   
 <http://lucene.apache.org/>  
-
-## 总论
 
 ### 全文检索
 
@@ -115,14 +119,160 @@ Lucence是一个由Java实现的,支持纯文本文件的索引和搜索的高�
 
 ## Lucence.net
 
+参考:  
 <http://lucenenet.apache.org/>  
+<https://www.cnblogs.com/xiaoyaodijun/p/4140507.html>  
+<https://blog.csdn.net/xuezhongsong/article/details/4388241>
 
-<https://www.cnblogs.com/xiaoyaodijun/p/4140507.html>
+### lucence.net中主要的几个类
 
-<https://blog.csdn.net/weixin_34129145/article/details/86096189>
+#### Document
+
+Document用于描述一个文档,由多个Field(相当于属性)组成
+
+常用方法: 
+```C#
+public sealed class Document{
+    public Document();
+    puclib void Add(IFieldable field);  //  添加字段/属性field
+    public Field GetField(string name); //  获得第一个名为name的field,无则返回null
+    public string Get(string name); // 获得第一个名为name的field 中的文本内容
+    public Field[] GetFields(string name);  //获得所有名为name的field,无则返回null
+    public string[] GetValues(string name); //  获得所有名为name的field 中的文本内容
+}
+```
+
+#### Field
+
+Field用于描述一个文档的某个属性,一般由名字和属性值构成
+
+常用方法:
+```C#
+public sealed class Field : AbstractField, IFieldable{
+    //  inherited
+    public virtual string Name { get; } //  名字
+    public override string StringValue { get; } //  属性值
+    
+    public Field(string name, string value, Store store, Index index);
+    public void SetValue(string value); //更改属性值   
+}
+```
+
+关于构造函数中的参数的说明:
+* name: 字段名称
+* value: 字段内容,也就是属性值
+* store: 存储类型
+> Field.Store有三个属性：  
+>* Field.Store.YES: 索引文件本来只存储索引数据,此设计将原文内容直接也存储在索引文件中,如文档的标题
+>* Field.Store.NO：原文不存储在索引文件中，搜索结果命中后，再根据其他附加属性如文件的Path，数据库的主键等，重新连接打开原文，适合原文内容较大的情况。
+>* Field.Store.COMPRESS 压缩存储  
+         
+* index: 索引类型
+> Field.Index有四个属性：
+>* Field.Index.TOKENIZED：分词索引
+>* Field.Index.UN_TOKENIZED：进行索引，但不对其进行分词，如作者名，日期等，Rod Johnson本身为一单词，不再需要分词。
+>* Field.Index.NO 和 Field.Index.NO_NORMS: 不进行索引，存放不能被搜索的内容如文档的一些附加属性如文档类型, URL等  
+
+#### Analyzer
+
+在一个文档被索引之前，首先需要对文档内容进行分词处理，这部分工作就是由 Analyzer 来做的。Analyzer 类是一个抽象类，它有多个实现。针对不同的语言和应用需要选择适合的 Analyzer。Analyzer 把分词后的内容交给 IndexWriter 来建立索引。
+
+一般用法(不太会用,先这么写着吧):
+```C#
+StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_CURRENT);
+```
+
+#### IndexWriter
+
+IndexWriter 是 Lucene 用来创建索引的一个核心的类，他的作用是把一个个的 Document 对象加到索引中来。建立索引必须从它开始。而且，从它的构造函数开始
+
+一般用法:
+```C#
+ IndexWriter writer = new IndexWriter(string idxDir,Analyzer analyzer,bool isNewCreate,MaxFieldLength IndexWriter.MaxFieldLength.LIMITED);
+ 
+ writer.AddDocument(doc);//向索引文件中写数据 
+writer.Optimize();// 索引优化，一般执行此步骤时，所消耗的内存是写入索引所需内存的2倍，在执行索引生成操作的时候本身就对内存有比较大的消耗，最好在索引创建完成之后，执行此步骤。 
+writer.Commit();//数据提交 
+writer.Rollback();//数据回滚 
+writer.Close();//关闭流索引写入器，此步骤才真正将数据写入到索引文件中。 
+```
+
+#### Directory
+
+这个类代表了 Lucene 的索引的存储的位置，这是一个抽象类，它目前有两个实现，第一个是 FSDirectory，它表示一个存储在文件系统中的索引的位置。第二个是 RAMDirectory，它表示一个存储在内存当中的索引的位置
+
+一般用法:
+```C#
+string indexDir = "idx";
+DirectoryInfo dir = new DirectoryInfo(indexDir);
+
+Lucene.Net.Store.Directory idxDir = new SimpleFSDirectory(dir, new SimpleFSLockFactory());  //  创建上面的indexwriter需要用到
+```
+
+### Lucence.net中的索引建立
+
+总结一下建立索引的一般过程
+```C#
+/*  前期准备    */
+var indexDir = "idx";   //  索引目录
+var isNewCreate = true;
+
+DirectoryInfo dir = new DirectoryInfo(indexDir);
+Lucene.Net.Store.Directory idxDir = new SimpleFSDirectory(dir, new SimpleFSLockFactory());
+
+StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_CURRENT);
+
+IndexWriter writer = new IndexWriter(idxDir, analyzer, isNewCreate, IndexWriter.MaxFieldLength.LIMITED);
+// writer.MergeFactor(50); 多少个合并一次【优化缓存】 
+// writer.MaxMergeDocs(5000); 一个segment最多有多少个document【优化索引存储的segment文件】 
 
 
+/*  写索引   */
+Document doc = new Document();
+Field field = new Field("name", "content", Field.Store.YES, Field.Index.ANALYZED);
+doc.Add(field);
+writer.AddDocument(doc);
 
+
+/*  关文件   */
+writer.Optimize();
+writer.Commit(); 
+writer.Rollback(); 
+writer.Close(); 
+```
+
+### Lucence.net中的索引搜索
+
+下面是我自己写的一个索引搜索的流程模板
+```C#
+var indexDir = "idx";   //  指定索引的目录
+IndexSearcher searcher = new IndexSearcher(LuceneConnection.GetIndexDirectory(indexDir));// 建立搜索引擎; readOnly 为boolean值
+
+StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_CURRENT);   //  分词器用于分析query,此分词器应当与建立索引的分词器保持一致
+
+// MultiFieldQueryParser parser = new MultiFieldQueryParser(Version.LUCENE_CURRENT, new string[] { title, content }, analyzer); 多字段搜索   
+var q = new QueryParser(Version.LUCENE_CURRENT, "name", new StandardAnalyzer(Version.LUCENE_CURRENT)).Parse("content");   //  单字段搜索,字段是name搜索词是content   
+
+SortField sfield = new SortField(null, SortField.SCORE, true);
+Sort sort = new Sort(sfield);    //  指定一个排序方式
+
+var hits = searcher.Search(q, null, searcher.MaxDoc, sort); //  搜索,返回前searcher.MaxDoc个Docs组成的TopFieldDocs
+//TopFieldDocs docs = searcher.Search(q,null, searcher.MaxDoc, sort);
+
+
+/*  下面是通过搜索结果获取Doc的一般方法  */
+ScoreDoc[] scoreDocs = hits.ScoreDocs;//权值对象 包含document下标信息，能确定searcher中的document的下标。 
+int docCount = scoreDocs.Length;// 结果个数统计  
+Document doc = searcher.Doc(scoreDocs[docCount - 1].Doc); // 通过document下标值，获取document对象 
+
+//  输出结果
+Console.WriteLine("字段{2}搜索到:{0} 字段{3}搜索到:{1}", doc.Get("name"), doc.Get("content"), "name", "hello");
+searcher.Close();
+
+```
+
+---
+说实话,本人没有对搜索引擎有过系统的学习,文中有些地方也是根据自己的理解来写的; 如果各位发现有写得不妥之处，欢迎指正！
 
 
 

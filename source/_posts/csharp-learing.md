@@ -1,5 +1,5 @@
 ---
-title: 'c# notes'
+title: c# notes
 categories: notes
 tags: [c#,learning]
 date: 2020-02-06 16:48:15
