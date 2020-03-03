@@ -11,6 +11,8 @@ date: 2020-02-24 08:33:24
 
 ## Java常识
 
+Java: 一次编译，处处运行
+
 ### Java特点
 
 c++ - -
@@ -98,7 +100,66 @@ JDK安装目录
 > Lib 存放程序库
 > DB 数据库相关
 
+### Java的几个工具
 
+主要工具
+
+* javac 编译
+* java 运行(控制台及图形界面程序)
+* javaw 运行图形界面程序
+* appletViewer 运行applet程序
+
+另外常用工具
+
+* jar 打包工具
+* javadoc 生成文档
+* javap 查看类信息及反汇编
+
+### Java的输入和输出
+
+#### 文本界面: 使用Scanner类
+使用java.util.Scanner类
+* Scanner.nextInt()
+* Scanner.nextDouble()
+* Scanner.next 得到下一个单词
+```java
+import java.util.Scanner
+class ScannerTest{
+    public static void main( String[] args){
+        Scanner scanner = new Scanner(System.in);
+        int a = scanner.nextInt();
+    }
+}
+```
+
+#### 使用in及out
+使用java.io包
+* System.in.read()
+* System.out.print()
+```java
+char c = '';
+System.out.print('Hello');
+try{
+    c = (char)System.in.read();
+}catch(IOExceprion e){}
+```
+
+#### 图形界面输入输出
+添加按钮,监听事件...
+
+### 集成开发环境
+
+#### eclips
+
+java里的程序应当都以工程的形式存在
+
+* 新建一个工程，起一个名字(文件夹的名字)
+* 在src文件夹中建立package包(一般小写字母)
+* 在package里面建立类(首字母大写)
+* 写主函数...
+* 右击包文件 run as application
+
+##
 
 
 

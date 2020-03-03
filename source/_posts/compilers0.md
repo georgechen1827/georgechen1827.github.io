@@ -25,13 +25,352 @@ date: 2020-02-24 16:32:03
 翻译器: 能完成一种语言到另一种语言变换的软件
 
 翻译器的不同形式:
-* 编译器(c,c++): 从源程序通过编译器得到目标程序,从输入通过目标程序得到输出(效率高)
+* 编译器(c,c++): 从源程序通过编译器得到目标程序,从输入通过目标程序得到输出(效率高,平台相关)
 * 解释器(Python,JavaScript): 从源程序和输入经过解释器直接得到输出 (平台无关)  
 *区别: 编译器通过翻译来生成目标程序,解释器直接生成源程序指定的运算*
 * 混和编译器(Java,C#): 源程序通过翻译器得到中间程序,中间程序和输入经过虚拟机得到输出(效率稍高,平台无关,但每个平台都要装虚拟机)
 
 语言处理系统: 预处理器,编译器,汇编器,连接器\加载器  
 源程序->修改后的源程序->目标汇编程序->可重定位的机器代码-(库文件,可重定位目标文件)>可执行目标程序
+
+### 编译器基本结构
+
+编译器: 将源程序编译为目标可执行程序的系统  
+特点: 目标语言比源语言低级
+
+#### 编译器结构
+* 分析部分,前端: 源程序->中间表示
+* 综合部分,后端: 中间表示->目标程序
+
+前端,只依赖于源语言: 词法分析->语法分析->语义分析->中间代码生成
+* 词法分析: 识别词法单元,如变量、数字等
+* 语法分析: 识别语句,得到语法树
+* 语义分析: 识别语义的合理性,得到语义分析结果
+* 中间代码生成: 得到中间表示
+
+后端,独立于源语言;和中间语言与目标机器有关: ->代码优化->代码生成
+* 代码优化: 得到中间表示
+* 代码生成: 得到可执行程序
+
+同一前端和不同后端组合可以得到同一源语言在不同机器上的编译器  
+不同前端和同一后端组合可以得到同一机器上的几个编译器
+
+总体过程可以如下表示:  
+![progress](proc0.png)  
+编译的几个阶段常用一趟/遍（pass）扫描来实现，一趟/遍扫描 包括读一个输入文件和写一个输出文件。
+#### 词法分析
+逐个扫描构成源程序的字符,把它们组成词法单元(token)流
+``` c
+position = rate * 60
+```
+词法单元:
+* 标识符: position,rate
+* 运算符: *
+* 赋值符: =
+* 数字: 60
+
+词法分析结果: *<id,1> <=> <id,2> <\*> <60>*  
+
+词法分析也可以叫做线性分析或扫描
+
+#### 语法分析
+把词法单元流依照语言的语法结构按层次分组,来形式化成语法短语
+``` c
+position = rate * 60
+```
+构建语法树:
+![grammer analysis](ga0.png)
+
+表达式、语句等程序层次结构通常由递归的规则表示
+
+#### 语义分析
+检查程序语义的正确性,保证程序各个部分能有意义地结合在一起,为后面代码生成阶段手机类型信息  
+
+语义分析包括:
+* 类型转换
+* 类型检查
+* 语法制导翻译
+
+语义分析结果:  
+![grammer analysis](ga1.png)
+
+#### 中间代码生成
+生成一个位于高级编程语言和机器语言(目标程序)之间的中间代码  
+
+一般有后缀表示,抽象语法树,三地址码表示法:  
+![grammer analysis](ga2.png)  
+*三地址码表示中只有三个变量*
+
+#### 代码优化
+改进代码,以产生执行较快的机器代码:  
+![grammer analysis](ga3.png)
+
+#### 目标程序生成
+生成可以重定位的机器代码或汇编码:  
+![grammer analysis](ga4.png)  
+* 为源程序所用的每个变量选择存储单元，并且把中间代码翻译成等价的机器指令序列。
+* 关键问题是寄存器分配
+
+#### 关于符号表管理
+编译器的一项重要工作是记录源程序中使用的标识符，并收集每个标识符的各种属性  
+* 这些属性提供标识符的存储分配、类型和作用域信息  
+* 如果是过程标识符，还有参数的个数和类型、参数传递方式和返回值类型  
+
+符号表是为每个标识符保存一个记录的数据结构，记录的域是标识符的属性   
+* 该数据结构允许我们迅速地找到一个标识符的记录，在此记录中存储和读取数据 
+
+管理符号表:
+* 词法分析器发现源程序的标识符时，把该标识符填入符号表;但是,词法分析期间不能确定一个标识符的属性
+* 其余的阶段把标识符的信息填入符号表，然后以不同的方式使用这些信息
+
+![grammer analysis](ga5.png)
+
+#### 关于出错管理
+每个阶段都可能发现源程序的错误。发现错误后，该阶段必须处理此错误，使得编译可以继续进行，以便进一步发现源程序的其他错误。
+* 词法分析：当前被扫描的字符串不能形成语言的词法记号。
+* 语法分析：记号流违反语言的语法规则。
+* 语义分析：编译器试图找出语法正确但对所含的操作来说是无意义的结构，如相加的两个标识符，其一是数组名，另一个是过程名。
+
+## 一个简单的语法制导翻译器
+语法制导翻译器:
+* 词法分析
+* 语法分析(上下文无关文法)
+* 中间代码生成(语法知道翻译)
+
+前端模型如下:  
+![grammer analysis](ga5.png)
+
+### 词法分析
+源程序--(词法分析器)->词法单元序列
+
+#### 词法分析基本原理
+词法分析基本步骤:
+* 剔除空白和注释
+* 识别和计算常量
+* 识别关键字和标识符  
+
+创建一个符合语法的状态机,并优化,编程实现它
+
+下面代码可以不用细看,后面会细讲  
+#### 剔除空白和注释
+```java
+for ( ; ; peek = next input character) {    // peek为预读字符
+       if( peek is a blank or a tab ) do nothing;
+       else if( peek is a newline) 
+              line = line + 1;
+       else break;
+}
+```
+剔除空行和空白,直到扫描到下一个有效词法单元
+
+#### 识别和计算常量
+```java
+if ( peek holds a digit) {
+       v = 0;
+       do {
+               v = v * 10 + integer value of digit peek;
+               peek = next  input  character
+        }while ( peek holds a digit);
+        return token (num, v);
+}
+```
+
+#### 识别关键字和标识符
+```java
+if ( peek 存放了一个字母) {
+     将字母或数位读入一个缓冲区b;
+      s = b 中的字符形成的字符串;
+      w = words.get(s) 返回的词法单元；
+      if ( w 不是 null) return w;
+      else {
+             将键-值对(s, <id, s>)加入到words;
+              return 词法单元<id, s>;
+      }
+}
+```
+
+#### 主流程
+```java
+Token scan () {
+       跳过空白符；
+       处理数字；
+       处理保留字和标识符；
+       /*如果运行到这里，就将预读字符peek作为一个词法单元*/
+       Token t = new Token (peek);
+        peek = 空白符 /*按照预读的规则进行初始化,参见龙书p48*/；
+        return t;
+}
+```
+
+#### 词法分析建立的类
+各个对象关系如下:  
+![relatives](proc1.png)
+
+Token类:
+```java
+//Token.java
+Package lexer;
+public class Token {
+      public  final  int  tag;
+      public  Token ( int  t ) { tag = t; }
+}
+
+//Tag.java
+Package lexer;
+public class Tag {
+     public final  static int 
+     NUM = 256; ID = 257; TRUE = 258; FALSE = 259;
+}
+
+
+//子类Num和Word
+
+//Num.java
+package lexer;              
+public  class  Num extends Token {
+     public  final int value;
+     public  Num ( int v )  {super(Tag.NUM); value = v; }
+}
+
+//Word.java
+package lexer;            
+public  class  Word  extends  Token {
+       public  final  String  lexeme;
+       public  Word ( int t, String s)  {
+               super(t); lexeme = new String (s);
+       }
+}
+```
+
+词法分析器:Lexer
+```java
+//Lexer.java
+package lexer;                 
+import java.io.*; import java.util.*;
+public class Lexer {
+	public int line = 1;
+	private char peek = ' ';
+	private Hashtable words = new Hashtable();
+	void reserve(Word t) {words.put(t.lexeme, t);}
+	public Lexer () {
+		reserve(new Word(Tag.TRUE, "true"));
+		reserve(new Word(Tag.FALSE, "false"));
+	}
+	public Token scan() throws IOException {
+		for( ; ; peek = (char)System.in.read() ) {
+			if(peek == ' ' || peek == '\t') continue;
+			else if(peek == '\n') line = line + 1;
+			else break;
+		}
+        if(Character.isDigit(peek)) {
+			int v = 0;
+			do {
+				v = 10 * v + Character.digit(peek, 10);
+				peek = (char)System.in.read();
+			}while(Character.isDigit(peek));
+			return new Num(v);
+		}
+		if(Character.isLetter(peek)) {
+			StringBuffer b = new StringBuffer();
+			do {
+				b.append(peek);
+				peek = (char) System.in.read();
+			}while(Character.isLetterOrDigit(peek));
+			String s = b.toString();
+			Word w = (Word)words.get(s);
+			if( w != null ) return w;
+			w = new Word(Tag.ID, s);
+			words.put(s, w);
+			return w;
+		}
+		Token t = new Token(peek);
+		peek = ' ';
+		return t;
+	}
+}
+```
+
+### 语法分析
+语法分析是决定如何使用一个文法生成一个终结符号串的过程
+
+举例如下:  
+![analysis](proc3.png)  
+
+步骤:
+* 根据语法构建文法
+* 根据文法构建预测分析表(LL文法,LR文法)
+
+#### 上下文无关文法 CFG
+上下文无关文法(Context Free Grammar)由一个四元组G构成  
+![grammer](gra0.png)
+
+在这里，有  
+![grammer](gra1.png)
+
+例如，由+，-号分隔的数位序列可以由如下语法表示  
+```java
+// 终结符号集合 {0,1,2,3,4,5,6,7,8,9,+,-} (叶子节点)
+// 非终结符号集合 {list,digit}
+// 产生式集合:{
+    list->list+digit
+    list->list-digit
+    list->digit
+    digit->0|1|2|3|4|5|6|7|8|9
+}
+// 开始符号 list
+```
+#### 预测分析表
+NaN
+
+#### 语法分析树
+语法分析树用图形的方式展现从文法的开始符号推出相应符号串的过程  
+
+从定义上看,给定一个上下文无关文法,该文法的一棵语法分析树(parse tree)是具有如下性质的树:
+1. 根节点的标号为文法的开始符号
+2. 每个叶子节点的标号为一个终结符号或空串(e)
+3. 每个内部节点的标号为一个非终结符号
+4. 如果非终结符号A是某个内部节点的标号,并且它的子节点的标号从左到右分别为X1,X2...Xn,那么必然存在产生式A->X1,X2...Xn, 其中X1...Xn既可以是终结符号也可以是非终结符号
+
+例如:  
+![tree](tree0.png)
+
+#### 左递归问题的消除
+考虑表达式 ```yxxxx...x```
+
+原始公式:
+```java
+A -> A x | y
+```
+
+改进公式:将左递归化为循环
+```java
+A -> x R
+R -> y R | e(空白符)
+```
+
+效果如下:  
+![recursive](recu0.png)
+
+### 语法制导翻译
+语法制导翻译的两种方式:
+* 语法制导定义
+* 语法制导翻译方案
+
+#### 语法制导定义
+* 每一个产生式和一组语义规则相关联
+* 每个文法符号(非终结符)和一个属性集合相关联
+
+此时,产生式和语义规则是分离的,如下:  
+![trans](trans0.png)
+语法制导定义类似于一种属性文法
+
+#### 语法制导翻译方案
+* 将程序片段附加到一个文法的各个产生式上的表示
+* 被嵌入到产生式体中的程序片段成为语义动作,语义动作用花括号括起来
+
+此时,语义是嵌入到产生式中的,如下:  
+![trans](trans1.png)
+
 
 
 

@@ -101,5 +101,7 @@ theme: ayer
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/georgechen1827/georgechen1827.github.io.git
+  repo: 
+    https://github.com/georgechen1827/georgechen1827.github.io.git
+    https://e.coding.net/georgechen1827/georgechen1827.git
   branch: master

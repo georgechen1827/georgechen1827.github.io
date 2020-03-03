@@ -11,21 +11,22 @@ date: 2020-02-24 18:01:26
 
 参考:  
 <https://www.cnblogs.com/forfuture1978/archive/2010/06/13/1757479.html>  
+<https://blog.csdn.net/PZ_eng/article/details/91977083>   
 <http://lucene.apache.org/>  
-<https://blog.csdn.net/PZ_eng/article/details/91977083>
 
 ## 总论
 
 ### 全文检索
 
-#### 生活中数据总体分为如下几种:  
+#### 数据的分类  
+生活中数据总体分为如下几种:
 * 结构化数据: 具有固定格式或有限长度的数据(数据库,元数据)
 * 非结构化数据: 不定长或无固定格式数据(word文档)
 * 半结构化数据: 可根据需要当成结构化数据处理,也可以抽取纯文本按非结构化数据处理  
 
 其中,非结构化数据又叫全文数据
 
-#### 全文数据搜索主要有两种方法:
+#### 全文数据搜索的主要方法
 * 顺序扫描法: 直接,方便,较慢
 * 索引法: 将非结构化数据中一部分信息提取出来重新组织,使其有一定结构后再搜索  
  
@@ -34,7 +35,8 @@ date: 2020-02-24 18:01:26
 
 全文检索大体分为两个过程: 索引创建,搜索索引
 
-#### 因此,全文检索需要关注下面三个问题:
+#### 全文检索需要关注的问题
+因此,全文检索需要关注下面三个问题:  
 1. 索引里面应该存什么(index)
 2. 如何创建索引(indexing)
 3. 如何对索引进行搜索(search)
@@ -71,10 +73,10 @@ date: 2020-02-24 18:01:26
 
 Lucence是一个由Java实现的,支持纯文本文件的索引和搜索的高效、可扩展的全文检索框架
 
-#### Lucence和外界的交互如下所示:  
+#### Lucence和外界的交互  
 ![Lucence](Lucence0.png)
 
-#### Lucence内部结构如下:  
+#### Lucence内部结构  
 ![Lucence](Lucence1.png)
 
 其中:
@@ -86,13 +88,13 @@ Lucence是一个由Java实现的,支持纯文本文件的索引和搜索的高�
 * IndexSearcher计算term weight和score并且将结果返回给用户
 * 返回给用户的文档集合用TopDocsCollector表示  
 
-#### Lucence索引过程如下:
+#### Lucence索引过程
 1. 创建一个IndexWriter用来写索引文件,它有几个参数,INDEX_DIR 就是索引文件所存放的位置,Analyzer便是用来对文档进行词法分析和语言处理的 
 2. 创建一个 Document 代表我们要索引的文档 
 3. 将不同的Field加入到文档中;我们知道,一篇文档有多种信息,如题目,作者,修改时间,内容等;不同类型的信息用不同的Field来表示  
 4. IndexWriter调用函数addDocument将索引写到索引文件夹中 　
 
-#### Lucence搜索过程如下:
+#### Lucence搜索过程
 1. IndexReader将磁盘上的索引信息读入到内存
 2. 创建IndexSearcher准备进行搜索  
 3. 创建Analyer用来对查询语句进行词法分析和语言处理 
@@ -100,7 +102,7 @@ Lucence是一个由Java实现的,支持纯文本文件的索引和搜索的高�
 5. QueryParser调用parser进行语法分析,形成查询语法树,放到Query中  
 6. IndexSearcher调用search对查询语法树Query进行搜索,得到结果TopScoreDocCollector
 
-#### Lucence的包结构可由如下图表示:
+#### Lucence的包结构
 ![Lucence](Lucence2.png)
 
 其中:
@@ -111,10 +113,13 @@ Lucence是一个由Java实现的,支持纯文本文件的索引和搜索的高�
 * Lucene的search模块主要负责对索引的搜索
 * Lucene的similarity模块主要负责对相关性打分的实现  
 
-## C#中的Lucence
+## Lucence.net
 
-<http://lucenenet.apache.org/>
+<http://lucenenet.apache.org/>  
 
+<https://www.cnblogs.com/xiaoyaodijun/p/4140507.html>
+
+<https://blog.csdn.net/weixin_34129145/article/details/86096189>
 
 
 

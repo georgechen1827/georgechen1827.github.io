@@ -264,6 +264,12 @@ namespace RectangleApplication
 重载运算符<https://www.runoob.com/csharp/csharp-operator-overloading.html>  
 接口<https://www.runoob.com/csharp/csharp-interface.html>
 
+## 关于NuGet
+参考<https://www.cnblogs.com/nizhenghua/p/6422078.html>
+NuGet（读作New Get）是用于微软.NET开发平台的软件包管理器，是一个Visual Studio的扩展。在使用Visual Studio开发基于.NET Framework的应用时，NuGet能够令你在项目中添加、移除和更新引用的工作变得更加快捷方便。  
+
+可以在VS中打开安装相应的包, 相当于pip之于python、npm之于nodejs
+
 ## WPF应用程序,程序和界面分离
 参考<https://www.cnblogs.com/zpfbuaa/p/5380352.html>
 
