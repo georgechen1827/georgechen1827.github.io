@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">491 words</span>
+            <span class="post-count">752 words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">1 minutes</span>
+            <span class="post-count">2 minutes</span>
         </span>
     </span>
 </div>
@@ -102,7 +102,8 @@
       
       <p>未完结,持续更新</p>
 <hr>
-<h2 id="Java常识"><a href="#Java常识" class="headerlink" title="Java常识"></a>Java常识</h2><h3 id="Java特点"><a href="#Java特点" class="headerlink" title="Java特点"></a>Java特点</h3><p>c++ - -</p>
+<h2 id="Java常识"><a href="#Java常识" class="headerlink" title="Java常识"></a>Java常识</h2><p>Java: 一次编译，处处运行</p>
+<h3 id="Java特点"><a href="#Java特点" class="headerlink" title="Java特点"></a>Java特点</h3><p>c++ - -</p>
 <ul>
 <li>无直接指针操作</li>
 <li>自动内存管理</li>
@@ -176,13 +177,51 @@
 <blockquote>
 <p>Bin 存放工具文件<br>Jre 存放与Java运行环境相关的文件<br>Demo 存放示例文件<br>Include 存放与C相关的头文件<br>Lib 存放程序库<br>DB 数据库相关</p>
 </blockquote>
+<h3 id="Java的几个工具"><a href="#Java的几个工具" class="headerlink" title="Java的几个工具"></a>Java的几个工具</h3><p>主要工具</p>
+<ul>
+<li>javac 编译</li>
+<li>java 运行(控制台及图形界面程序)</li>
+<li>javaw 运行图形界面程序</li>
+<li>appletViewer 运行applet程序</li>
+</ul>
+<p>另外常用工具</p>
+<ul>
+<li>jar 打包工具</li>
+<li>javadoc 生成文档</li>
+<li>javap 查看类信息及反汇编</li>
+</ul>
+<h3 id="Java的输入和输出"><a href="#Java的输入和输出" class="headerlink" title="Java的输入和输出"></a>Java的输入和输出</h3><h4 id="文本界面-使用Scanner类"><a href="#文本界面-使用Scanner类" class="headerlink" title="文本界面: 使用Scanner类"></a>文本界面: 使用Scanner类</h4><p>使用java.util.Scanner类</p>
+<ul>
+<li>Scanner.nextInt()</li>
+<li>Scanner.nextDouble()</li>
+<li>Scanner.next 得到下一个单词<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ScannerTest</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">( String[] args)</span></span>&#123;</span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> a = scanner.nextInt();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="使用in及out"><a href="#使用in及out" class="headerlink" title="使用in及out"></a>使用in及out</h4><p>使用java.io包</p>
+<ul>
+<li>System.in.read()</li>
+<li>System.out.print()<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> c = <span class="string">''</span>;</span><br><span class="line">System.out.print(<span class="string">'Hello'</span>);</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    c = (<span class="keyword">char</span>)System.in.read();</span><br><span class="line">&#125;<span class="keyword">catch</span>(IOExceprion e)&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="图形界面输入输出"><a href="#图形界面输入输出" class="headerlink" title="图形界面输入输出"></a>图形界面输入输出</h4><p>添加按钮,监听事件…</p>
+<h3 id="集成开发环境"><a href="#集成开发环境" class="headerlink" title="集成开发环境"></a>集成开发环境</h3><h4 id="eclips"><a href="#eclips" class="headerlink" title="eclips"></a>eclips</h4><p>java里的程序应当都以工程的形式存在</p>
+<ul>
+<li>新建一个工程，起一个名字(文件夹的名字)</li>
+<li>在src文件夹中建立package包(一般小写字母)</li>
+<li>在package里面建立类(首字母大写)</li>
+<li>写主函数…</li>
+<li>右击包文件 run as application</li>
+</ul>
+<p>##</p>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/java0/" data-id="ck70lf92c000vxsvnha7598fz"
+      <a data-url="http://georgechen1827.github.io/2020/02/24/java0/" data-id="ck7biaybg0013bsvnhkff32p5"
         class="article-share-link">share</a>
         
       

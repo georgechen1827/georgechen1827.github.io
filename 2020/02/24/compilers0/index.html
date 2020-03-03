@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">470 words</span>
+            <span class="post-count">2.9k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">1 minutes</span>
+            <span class="post-count">11 minutes</span>
         </span>
     </span>
 </div>
@@ -112,19 +112,165 @@
 <h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><h3 id="编译原理概述"><a href="#编译原理概述" class="headerlink" title="编译原理概述"></a>编译原理概述</h3><p>语言处理器: 由编译器,解释器,汇编器,连接器,加载器,调试器及程序概要提取工具等所构成的集成软件开发环境<br>机器语言和汇编语言: 第一和第二代程序设计语言<br>高级语言: 能够自动进行内存管理,类型一致性检查等功能的程序设计语言<br>翻译器: 能完成一种语言到另一种语言变换的软件</p>
 <p>翻译器的不同形式:</p>
 <ul>
-<li>编译器(c,c++): 从源程序通过编译器得到目标程序,从输入通过目标程序得到输出(效率高)</li>
+<li>编译器(c,c++): 从源程序通过编译器得到目标程序,从输入通过目标程序得到输出(效率高,平台相关)</li>
 <li>解释器(Python,JavaScript): 从源程序和输入经过解释器直接得到输出 (平台无关)  </li>
 <li>区别: 编译器通过翻译来生成目标程序,解释器直接生成源程序指定的运算*</li>
 <li>混和编译器(Java,C#): 源程序通过翻译器得到中间程序,中间程序和输入经过虚拟机得到输出(效率稍高,平台无关,但每个平台都要装虚拟机)</li>
 </ul>
 <p>语言处理系统: 预处理器,编译器,汇编器,连接器\加载器<br>源程序-&gt;修改后的源程序-&gt;目标汇编程序-&gt;可重定位的机器代码-(库文件,可重定位目标文件)&gt;可执行目标程序</p>
+<h3 id="编译器基本结构"><a href="#编译器基本结构" class="headerlink" title="编译器基本结构"></a>编译器基本结构</h3><p>编译器: 将源程序编译为目标可执行程序的系统<br>特点: 目标语言比源语言低级</p>
+<h4 id="编译器结构"><a href="#编译器结构" class="headerlink" title="编译器结构"></a>编译器结构</h4><ul>
+<li>分析部分,前端: 源程序-&gt;中间表示</li>
+<li>综合部分,后端: 中间表示-&gt;目标程序</li>
+</ul>
+<p>前端,只依赖于源语言: 词法分析-&gt;语法分析-&gt;语义分析-&gt;中间代码生成</p>
+<ul>
+<li>词法分析: 识别词法单元,如变量、数字等</li>
+<li>语法分析: 识别语句,得到语法树</li>
+<li>语义分析: 识别语义的合理性,得到语义分析结果</li>
+<li>中间代码生成: 得到中间表示</li>
+</ul>
+<p>后端,独立于源语言;和中间语言与目标机器有关: -&gt;代码优化-&gt;代码生成</p>
+<ul>
+<li>代码优化: 得到中间表示</li>
+<li>代码生成: 得到可执行程序</li>
+</ul>
+<p>同一前端和不同后端组合可以得到同一源语言在不同机器上的编译器<br>不同前端和同一后端组合可以得到同一机器上的几个编译器</p>
+<p>总体过程可以如下表示:<br><img src="/2020/02/24/compilers0/proc0.png" alt="progress"><br>编译的几个阶段常用一趟/遍（pass）扫描来实现，一趟/遍扫描 包括读一个输入文件和写一个输出文件。</p>
+<h4 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h4><p>逐个扫描构成源程序的字符,把它们组成词法单元(token)流</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">position</span> = rate * <span class="number">60</span></span><br></pre></td></tr></table></figure>
+<p>词法单元:</p>
+<ul>
+<li>标识符: position,rate</li>
+<li>运算符: *</li>
+<li>赋值符: =</li>
+<li>数字: 60</li>
+</ul>
+<p>词法分析结果: *&lt;id,1&gt; &lt;=&gt; &lt;id,2&gt; &lt;*&gt; &lt;60&gt;*  </p>
+<p>词法分析也可以叫做线性分析或扫描</p>
+<h4 id="语法分析"><a href="#语法分析" class="headerlink" title="语法分析"></a>语法分析</h4><p>把词法单元流依照语言的语法结构按层次分组,来形式化成语法短语</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">position</span> = rate * <span class="number">60</span></span><br></pre></td></tr></table></figure>
+<p>构建语法树:<br><img src="/2020/02/24/compilers0/ga0.png" alt="grammer analysis"></p>
+<p>表达式、语句等程序层次结构通常由递归的规则表示</p>
+<h4 id="语义分析"><a href="#语义分析" class="headerlink" title="语义分析"></a>语义分析</h4><p>检查程序语义的正确性,保证程序各个部分能有意义地结合在一起,为后面代码生成阶段手机类型信息  </p>
+<p>语义分析包括:</p>
+<ul>
+<li>类型转换</li>
+<li>类型检查</li>
+<li>语法制导翻译</li>
+</ul>
+<p>语义分析结果:<br><img src="/2020/02/24/compilers0/ga1.png" alt="grammer analysis"></p>
+<h4 id="中间代码生成"><a href="#中间代码生成" class="headerlink" title="中间代码生成"></a>中间代码生成</h4><p>生成一个位于高级编程语言和机器语言(目标程序)之间的中间代码  </p>
+<p>一般有后缀表示,抽象语法树,三地址码表示法:<br><img src="/2020/02/24/compilers0/ga2.png" alt="grammer analysis"><br><em>三地址码表示中只有三个变量</em></p>
+<h4 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h4><p>改进代码,以产生执行较快的机器代码:<br><img src="/2020/02/24/compilers0/ga3.png" alt="grammer analysis"></p>
+<h4 id="目标程序生成"><a href="#目标程序生成" class="headerlink" title="目标程序生成"></a>目标程序生成</h4><p>生成可以重定位的机器代码或汇编码:<br><img src="/2020/02/24/compilers0/ga4.png" alt="grammer analysis">  </p>
+<ul>
+<li>为源程序所用的每个变量选择存储单元，并且把中间代码翻译成等价的机器指令序列。</li>
+<li>关键问题是寄存器分配</li>
+</ul>
+<h4 id="关于符号表管理"><a href="#关于符号表管理" class="headerlink" title="关于符号表管理"></a>关于符号表管理</h4><p>编译器的一项重要工作是记录源程序中使用的标识符，并收集每个标识符的各种属性  </p>
+<ul>
+<li>这些属性提供标识符的存储分配、类型和作用域信息  </li>
+<li>如果是过程标识符，还有参数的个数和类型、参数传递方式和返回值类型  </li>
+</ul>
+<p>符号表是为每个标识符保存一个记录的数据结构，记录的域是标识符的属性   </p>
+<ul>
+<li>该数据结构允许我们迅速地找到一个标识符的记录，在此记录中存储和读取数据 </li>
+</ul>
+<p>管理符号表:</p>
+<ul>
+<li>词法分析器发现源程序的标识符时，把该标识符填入符号表;但是,词法分析期间不能确定一个标识符的属性</li>
+<li>其余的阶段把标识符的信息填入符号表，然后以不同的方式使用这些信息</li>
+</ul>
+<p><img src="/2020/02/24/compilers0/ga5.png" alt="grammer analysis"></p>
+<h4 id="关于出错管理"><a href="#关于出错管理" class="headerlink" title="关于出错管理"></a>关于出错管理</h4><p>每个阶段都可能发现源程序的错误。发现错误后，该阶段必须处理此错误，使得编译可以继续进行，以便进一步发现源程序的其他错误。</p>
+<ul>
+<li>词法分析：当前被扫描的字符串不能形成语言的词法记号。</li>
+<li>语法分析：记号流违反语言的语法规则。</li>
+<li>语义分析：编译器试图找出语法正确但对所含的操作来说是无意义的结构，如相加的两个标识符，其一是数组名，另一个是过程名。</li>
+</ul>
+<h2 id="一个简单的语法制导翻译器"><a href="#一个简单的语法制导翻译器" class="headerlink" title="一个简单的语法制导翻译器"></a>一个简单的语法制导翻译器</h2><p>语法制导翻译器:</p>
+<ul>
+<li>词法分析</li>
+<li>语法分析(上下文无关文法)</li>
+<li>中间代码生成(语法知道翻译)</li>
+</ul>
+<p>前端模型如下:<br><img src="/2020/02/24/compilers0/ga5.png" alt="grammer analysis"></p>
+<h3 id="词法分析-1"><a href="#词法分析-1" class="headerlink" title="词法分析"></a>词法分析</h3><p>源程序–(词法分析器)-&gt;词法单元序列</p>
+<h4 id="词法分析基本原理"><a href="#词法分析基本原理" class="headerlink" title="词法分析基本原理"></a>词法分析基本原理</h4><p>词法分析基本步骤:</p>
+<ul>
+<li>剔除空白和注释</li>
+<li>识别和计算常量</li>
+<li>识别关键字和标识符  </li>
+</ul>
+<p>创建一个符合语法的状态机,并优化,编程实现它</p>
+<p>下面代码可以不用细看,后面会细讲  </p>
+<h4 id="剔除空白和注释"><a href="#剔除空白和注释" class="headerlink" title="剔除空白和注释"></a>剔除空白和注释</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ( ; ; peek = next input character) &#123;    <span class="comment">// peek为预读字符</span></span><br><span class="line">       <span class="keyword">if</span>( peek is a blank or a tab ) <span class="keyword">do</span> nothing;</span><br><span class="line">       <span class="keyword">else</span> <span class="keyword">if</span>( peek is a newline) </span><br><span class="line">              line = line + <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>剔除空行和空白,直到扫描到下一个有效词法单元</p>
+<h4 id="识别和计算常量"><a href="#识别和计算常量" class="headerlink" title="识别和计算常量"></a>识别和计算常量</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( peek holds a digit) &#123;</span><br><span class="line">       v = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">do</span> &#123;</span><br><span class="line">               v = v * <span class="number">10</span> + integer value of digit peek;</span><br><span class="line">               peek = next  input  character</span><br><span class="line">        &#125;<span class="keyword">while</span> ( peek holds a digit);</span><br><span class="line">        <span class="keyword">return</span> token (num, v);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="识别关键字和标识符"><a href="#识别关键字和标识符" class="headerlink" title="识别关键字和标识符"></a>识别关键字和标识符</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( peek 存放了一个字母) &#123;</span><br><span class="line">     将字母或数位读入一个缓冲区b;</span><br><span class="line">      s = b 中的字符形成的字符串;</span><br><span class="line">      w = words.get(s) 返回的词法单元；</span><br><span class="line">      <span class="keyword">if</span> ( w 不是 <span class="keyword">null</span>) <span class="keyword">return</span> w;</span><br><span class="line">      <span class="keyword">else</span> &#123;</span><br><span class="line">             将键-值对(s, &lt;id, s&gt;)加入到words;</span><br><span class="line">              <span class="keyword">return</span> 词法单元&lt;id, s&gt;;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="主流程"><a href="#主流程" class="headerlink" title="主流程"></a>主流程</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Token <span class="title">scan</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">       跳过空白符；</span><br><span class="line">       处理数字；</span><br><span class="line">       处理保留字和标识符；</span><br><span class="line">       <span class="comment">/*如果运行到这里，就将预读字符peek作为一个词法单元*/</span></span><br><span class="line">       Token t = <span class="keyword">new</span> Token (peek);</span><br><span class="line">        peek = 空白符 <span class="comment">/*按照预读的规则进行初始化,参见龙书p48*/</span>；</span><br><span class="line">        <span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="词法分析建立的类"><a href="#词法分析建立的类" class="headerlink" title="词法分析建立的类"></a>词法分析建立的类</h4><p>各个对象关系如下:<br><img src="/2020/02/24/compilers0/proc1.png" alt="relatives"></p>
+<p>Token类:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Token.java</span></span><br><span class="line">Package lexer;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Token</span> </span>&#123;</span><br><span class="line">      <span class="keyword">public</span>  <span class="keyword">final</span>  <span class="keyword">int</span>  tag;</span><br><span class="line">      <span class="function"><span class="keyword">public</span>  <span class="title">Token</span> <span class="params">( <span class="keyword">int</span>  t )</span> </span>&#123; tag = t; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Tag.java</span></span><br><span class="line">Package lexer;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tag</span> </span>&#123;</span><br><span class="line">     <span class="keyword">public</span> <span class="keyword">final</span>  <span class="keyword">static</span> <span class="keyword">int</span> </span><br><span class="line">     NUM = <span class="number">256</span>; ID = <span class="number">257</span>; TRUE = <span class="number">258</span>; FALSE = <span class="number">259</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//子类Num和Word</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Num.java</span></span><br><span class="line"><span class="keyword">package</span> lexer;              </span><br><span class="line"><span class="keyword">public</span>  <span class="class"><span class="keyword">class</span>  <span class="title">Num</span> <span class="keyword">extends</span> <span class="title">Token</span> </span>&#123;</span><br><span class="line">     <span class="keyword">public</span>  <span class="keyword">final</span> <span class="keyword">int</span> value;</span><br><span class="line">     <span class="function"><span class="keyword">public</span>  <span class="title">Num</span> <span class="params">( <span class="keyword">int</span> v )</span>  </span>&#123;<span class="keyword">super</span>(Tag.NUM); value = v; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Word.java</span></span><br><span class="line"><span class="keyword">package</span> lexer;            </span><br><span class="line"><span class="keyword">public</span>  <span class="class"><span class="keyword">class</span>  <span class="title">Word</span>  <span class="keyword">extends</span>  <span class="title">Token</span> </span>&#123;</span><br><span class="line">       <span class="keyword">public</span>  <span class="keyword">final</span>  String  lexeme;</span><br><span class="line">       <span class="function"><span class="keyword">public</span>  <span class="title">Word</span> <span class="params">( <span class="keyword">int</span> t, String s)</span>  </span>&#123;</span><br><span class="line">               <span class="keyword">super</span>(t); lexeme = <span class="keyword">new</span> String (s);</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>词法分析器:Lexer</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Lexer.java</span></span><br><span class="line"><span class="keyword">package</span> lexer;                 </span><br><span class="line"><span class="keyword">import</span> java.io.*; <span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Lexer</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> line = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">char</span> peek = <span class="string">' '</span>;</span><br><span class="line">	<span class="keyword">private</span> Hashtable words = <span class="keyword">new</span> Hashtable();</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">reserve</span><span class="params">(Word t)</span> </span>&#123;words.put(t.lexeme, t);&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Lexer</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">		reserve(<span class="keyword">new</span> Word(Tag.TRUE, <span class="string">"true"</span>));</span><br><span class="line">		reserve(<span class="keyword">new</span> Word(Tag.FALSE, <span class="string">"false"</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Token <span class="title">scan</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>( ; ; peek = (<span class="keyword">char</span>)System.in.read() ) &#123;</span><br><span class="line">			<span class="keyword">if</span>(peek == <span class="string">' '</span> || peek == <span class="string">'\t'</span>) <span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(peek == <span class="string">'\n'</span>) line = line + <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="keyword">if</span>(Character.isDigit(peek)) &#123;</span><br><span class="line">			<span class="keyword">int</span> v = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">do</span> &#123;</span><br><span class="line">				v = <span class="number">10</span> * v + Character.digit(peek, <span class="number">10</span>);</span><br><span class="line">				peek = (<span class="keyword">char</span>)System.in.read();</span><br><span class="line">			&#125;<span class="keyword">while</span>(Character.isDigit(peek));</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">new</span> Num(v);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(Character.isLetter(peek)) &#123;</span><br><span class="line">			StringBuffer b = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">			<span class="keyword">do</span> &#123;</span><br><span class="line">				b.append(peek);</span><br><span class="line">				peek = (<span class="keyword">char</span>) System.in.read();</span><br><span class="line">			&#125;<span class="keyword">while</span>(Character.isLetterOrDigit(peek));</span><br><span class="line">			String s = b.toString();</span><br><span class="line">			Word w = (Word)words.get(s);</span><br><span class="line">			<span class="keyword">if</span>( w != <span class="keyword">null</span> ) <span class="keyword">return</span> w;</span><br><span class="line">			w = <span class="keyword">new</span> Word(Tag.ID, s);</span><br><span class="line">			words.put(s, w);</span><br><span class="line">			<span class="keyword">return</span> w;</span><br><span class="line">		&#125;</span><br><span class="line">		Token t = <span class="keyword">new</span> Token(peek);</span><br><span class="line">		peek = <span class="string">' '</span>;</span><br><span class="line">		<span class="keyword">return</span> t;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="语法分析-1"><a href="#语法分析-1" class="headerlink" title="语法分析"></a>语法分析</h3><p>语法分析是决定如何使用一个文法生成一个终结符号串的过程</p>
+<p>举例如下:<br><img src="/2020/02/24/compilers0/proc3.png" alt="analysis">  </p>
+<p>步骤:</p>
+<ul>
+<li>根据语法构建文法</li>
+<li>根据文法构建预测分析表(LL文法,LR文法)</li>
+</ul>
+<h4 id="上下文无关文法-CFG"><a href="#上下文无关文法-CFG" class="headerlink" title="上下文无关文法 CFG"></a>上下文无关文法 CFG</h4><p>上下文无关文法(Context Free Grammar)由一个四元组G构成<br><img src="/2020/02/24/compilers0/gra0.png" alt="grammer"></p>
+<p>在这里，有<br><img src="/2020/02/24/compilers0/gra1.png" alt="grammer"></p>
+<p>例如，由+，-号分隔的数位序列可以由如下语法表示  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 终结符号集合 &#123;0,1,2,3,4,5,6,7,8,9,+,-&#125; (叶子节点)</span></span><br><span class="line"><span class="comment">// 非终结符号集合 &#123;list,digit&#125;</span></span><br><span class="line"><span class="comment">// 产生式集合:&#123;</span></span><br><span class="line">    list-&gt;list+digit</span><br><span class="line">    list-&gt;list-digit</span><br><span class="line">    list-&gt;digit</span><br><span class="line">    digit-&gt;<span class="number">0</span>|<span class="number">1</span>|<span class="number">2</span>|<span class="number">3</span>|<span class="number">4</span>|<span class="number">5</span>|<span class="number">6</span>|<span class="number">7</span>|<span class="number">8</span>|<span class="number">9</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 开始符号 list</span></span><br></pre></td></tr></table></figure>
+<h4 id="预测分析表"><a href="#预测分析表" class="headerlink" title="预测分析表"></a>预测分析表</h4><p>NaN</p>
+<h4 id="语法分析树"><a href="#语法分析树" class="headerlink" title="语法分析树"></a>语法分析树</h4><p>语法分析树用图形的方式展现从文法的开始符号推出相应符号串的过程  </p>
+<p>从定义上看,给定一个上下文无关文法,该文法的一棵语法分析树(parse tree)是具有如下性质的树:</p>
+<ol>
+<li>根节点的标号为文法的开始符号</li>
+<li>每个叶子节点的标号为一个终结符号或空串(e)</li>
+<li>每个内部节点的标号为一个非终结符号</li>
+<li>如果非终结符号A是某个内部节点的标号,并且它的子节点的标号从左到右分别为X1,X2…Xn,那么必然存在产生式A-&gt;X1,X2…Xn, 其中X1…Xn既可以是终结符号也可以是非终结符号</li>
+</ol>
+<p>例如:<br><img src="/2020/02/24/compilers0/tree0.png" alt="tree"></p>
+<h4 id="左递归问题的消除"><a href="#左递归问题的消除" class="headerlink" title="左递归问题的消除"></a>左递归问题的消除</h4><p>考虑表达式 <code>yxxxx...x</code></p>
+<p>原始公式:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A -&gt; A x | y</span><br></pre></td></tr></table></figure>
+
+<p>改进公式:将左递归化为循环</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A -&gt; x R</span><br><span class="line">R -&gt; y R | e(空白符)</span><br></pre></td></tr></table></figure>
+
+<p>效果如下:<br><img src="/2020/02/24/compilers0/recu0.png" alt="recursive"></p>
+<h3 id="语法制导翻译"><a href="#语法制导翻译" class="headerlink" title="语法制导翻译"></a>语法制导翻译</h3><p>语法制导翻译的两种方式:</p>
+<ul>
+<li>语法制导定义</li>
+<li>语法制导翻译方案</li>
+</ul>
+<h4 id="语法制导定义"><a href="#语法制导定义" class="headerlink" title="语法制导定义"></a>语法制导定义</h4><ul>
+<li>每一个产生式和一组语义规则相关联</li>
+<li>每个文法符号(非终结符)和一个属性集合相关联</li>
+</ul>
+<p>此时,产生式和语义规则是分离的,如下:<br><img src="/2020/02/24/compilers0/trans0.png" alt="trans"><br>语法制导定义类似于一种属性文法</p>
+<h4 id="语法制导翻译方案"><a href="#语法制导翻译方案" class="headerlink" title="语法制导翻译方案"></a>语法制导翻译方案</h4><ul>
+<li>将程序片段附加到一个文法的各个产生式上的表示</li>
+<li>被嵌入到产生式体中的程序片段成为语义动作,语义动作用花括号括起来</li>
+</ul>
+<p>此时,语义是嵌入到产生式中的,如下:<br><img src="/2020/02/24/compilers0/trans1.png" alt="trans"></p>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/compilers0/" data-id="ck70lf9100001xsvn04w278gu"
+      <a data-url="http://georgechen1827.github.io/2020/02/24/compilers0/" data-id="ck7biayb5000qbsvn7lf48h1f"
         class="article-share-link">share</a>
         
       
