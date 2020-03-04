@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="this is George Chen&#39;s blog!" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    形式语言和自动机初步 |  George
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-formal-language-and-automata" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  形式语言和自动机初步
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/04/formal-language-and-automata/" class="article-date">
+  <time datetime="2020-03-04T08:23:51.000Z" itemprop="datePublished">2020-03-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> about </span>
+            <span class="post-count">2.3k words</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> costs </span>
+            <span class="post-count">8 minutes</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>参考离散数学(清华大学出版社,第五版)相关内容</p>
+<hr>
+<p>自动机是描述计算的数学模型,用来识别语言或计算函数. 形式文法也是一种数学模型,用来产生形式语言. 形式语言和自动机理论密切相关,是计算机科学和技术的重要理论基础.  </p>
+<p>本文扼要地介绍形式文法的基本概念,有穷自动机和图灵机以及它们识别的语言类</p>
+<h2 id="形式语言和形式文法"><a href="#形式语言和形式文法" class="headerlink" title="形式语言和形式文法"></a>形式语言和形式文法</h2><p>形式语言的描述最早在1956年由语言学家乔姆斯基建立</p>
+<p>在乔姆斯基的分类中,形式文法一共有如下几类:</p>
+<ul>
+<li>0型文法: 现证明等价于图灵机(下同)</li>
+<li>1型文法: 等价于非确定型线性界限自动机</li>
+<li>2型文法: 等价于非确定型下推自动机</li>
+<li>3型文法: 等价于有穷自动机</li>
+</ul>
+<p>形式文法,特别是上下文无关文法(2型文法)和正则文法(3型文法)在程序设计语言和编译理论中起着重要的作用</p>
+<h3 id="字符串和形式语言"><a href="#字符串和形式语言" class="headerlink" title="字符串和形式语言"></a>字符串和形式语言</h3><p>抽象而言,语言是按照一定规则排列的符号的集合</p>
+<p>定义:</p>
+<ul>
+<li>字母表$\Sigma$: 一个非空的有穷集合</li>
+<li>字符串$\omega$: 由$\Sigma$中的符号组成的有穷序列,如$a_ia_j…a_k$; 特别地,$aaa…a$记作$a^n$</li>
+<li>$\vert \omega \vert$: 字符串$\omega$的长度, 空串$\epsilon$长度为0  </li>
+</ul>
+<ul>
+<li>形式语言(语言): $\Sigma^*$的任何子集称作字母表$\Sigma$上的形式语言, 其中,$\Sigma^*$是$\Sigma$上字符串的全体  </li>
+</ul>
+<blockquote>
+<p>$\emptyset, \lbrace \epsilon \rbrace, \Sigma^*$都是$\Sigma$上的语言. 注意,前两者是不同的</p>
+</blockquote>
+<p>在字符串$\omega$中:</p>
+<ul>
+<li>前缀: 由$\omega$左端若干个连续符号组成的字符串</li>
+<li>后缀: 由$\omega$右端若干个连续符号组成的字符串</li>
+<li>字串: 由$\omega$任何部位若干个连续符号组成的字符串</li>
+<li>连接运算: $\omega_1\omega_2$表示把$\omega_2$接在$\omega_1$的右边, 显然,它是可结合的</li>
+</ul>
+<h3 id="形式文法"><a href="#形式文法" class="headerlink" title="形式文法"></a>形式文法</h3><p>语言是由一定规则产生出来的,这种规则就是文法</p>
+<p>例如,<code>9+5-2</code>这个字符串可由如下文法规则产生:</p>
+<blockquote>
+<ol>
+<li>表达式-&gt;表达式+数字;  </li>
+<li>表达式-&gt;表达式-数字;  </li>
+<li>表达式-&gt;数字;</li>
+<li>数字-&gt;2;  </li>
+<li>数字-&gt;5;  </li>
+<li>数字-&gt;9;</li>
+</ol>
+</blockquote>
+<p>定义:</p>
+<ul>
+<li>产生式: 文法中的每一条规则都叫做产生式</li>
+<li>终结符: 不能产生其他字符串的符号, 如上述文法中的2,5,9</li>
+<li>非终结符: 文法规则中除了终结符之外的其他符号,如<code>表达式</code>,<code>数字</code>,<code>+</code>,<code>-</code></li>
+</ul>
+<p><code>9+5-2</code>的推理过程:</p>
+<ul>
+<li>从<code>表达式</code>开始由2,1,3得到<code>数字+数字+数字</code></li>
+<li>由4,5,6可以得到<code>9+5-2</code></li>
+</ul>
+<p>当然,这组规则不仅仅只能推出<code>9+5-2</code>  </p>
+<p>注意: 规则所推出的字符串在语义上不一定正确,但在形式上都是合法的</p>
+<h4 id="形式文法的定义"><a href="#形式文法的定义" class="headerlink" title="形式文法的定义"></a>形式文法的定义</h4><p>一个形式文法是一个有序四元组$G=&lt;V,T,S,P&gt;$, 其中:</p>
+<ul>
+<li>$V$是一个非空有限集合,集合的元素称作变元或<strong>非终结符</strong></li>
+<li>$T$是一个非空有限集合,$V\cap T=\emptyset$,集合中的元素称作<strong>终结符</strong></li>
+<li>$S\in V$称作<strong>起始符</strong></li>
+<li>$P$是一个非空有穷集合,它的元素称作<strong>产生式</strong>或改写规则<br>&emsp; $P$中元素应有这样的形式: a-&gt;b; 其中a,b$\in (V\cup T)^*$, 且a$\ne \epsilon$</li>
+</ul>
+<h4 id="派生-生成语言"><a href="#派生-生成语言" class="headerlink" title="派生,生成语言"></a>派生,生成语言</h4><p>直接派生:</p>
+<ul>
+<li>给定文法$G=&lt;V,T,S,P&gt;$,设$x,y \in (V \cup T)^*$. 称<strong>$y$是$x$的直接派生($x\Rightarrow y$)</strong>,当且仅当:  <blockquote>
+<p>$\exists u,v \in (V \cup T)^* $ 且 $ \exists$ ‘a-&gt;b’ $\in P$ 使得 $x = uav,y = ubv$ (即把x中的a改写成b后得到y)  </p>
+</blockquote>
+</li>
+</ul>
+<p>派生:</p>
+<ul>
+<li>给定文法$G=&lt;V,T,S,P&gt;$,设$x_1,x_2,…,x_n \in (V \cup T)^*, n \ge 1 且 x_1\Rightarrow x_2 \Rightarrow … \Rightarrow x_n $, 则称<strong>$x_n$是由$X_1$派生出来的($x_1 \dot \Rightarrow x_n$)</strong>  <blockquote>
+<p>注意,对$V \cup T$上的所有字符串$\omega$有$\omega \dot \Rightarrow \omega$. 可见$\dot \Rightarrow$是$\Rightarrow$的自反传递闭包  </p>
+</blockquote>
+</li>
+</ul>
+<p>生成语言:  </p>
+<ul>
+<li>设$G=&lt;V,T,S,P&gt;$是一个文法,$L(G)$是文法G<strong>生成的语言</strong>,则$L(G)$满足<br>$$ L(G) = \lbrace \omega \in T^* | S \dot \Rightarrow \omega \rbrace $$   <blockquote>
+<p>根据定义,$L(G)$中的字符串满足如下两个条件:</p>
+<ol>
+<li>字符串由终结符构成</li>
+<li>字符串可以由起始符派生出来</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<p>文法的等价</p>
+<ul>
+<li>如果$L(G_1) = L(G_2)$,则称文法$G_1$和$G_2$<strong>等价</strong></li>
+</ul>
+<h3 id="形式文法分类"><a href="#形式文法分类" class="headerlink" title="形式文法分类"></a>形式文法分类</h3><h4 id="0型文法-无限制文法"><a href="#0型文法-无限制文法" class="headerlink" title="0型文法: 无限制文法"></a>0型文法: 无限制文法</h4><p>0型文法就是一般形式的文法,在形式文法定义的基础上不附加任何条件  </p>
+<p>一个0型文法是一个有序四元组$G=&lt;V,T,S,P&gt;$, 其中:</p>
+<ul>
+<li>$V$是非终结符集合,非空有限</li>
+<li>$T$是终结符集合,非空有限,$V\cap T=\emptyset$</li>
+<li>$S\in V$是<strong>起始符</strong></li>
+<li>$P$是产生式集合,非空有限</li>
+</ul>
+<p>0型文法又称作短语结构文法或无限制文法,0型文法生成的语言称作0型语言</p>
+<h4 id="1型文法-上下文有关文法"><a href="#1型文法-上下文有关文法" class="headerlink" title="1型文法: 上下文有关文法"></a>1型文法: 上下文有关文法</h4><p>1型文法在0型文法上加了一条限制: 对P中每一个产生式a-&gt;b都有$\vert a \vert \ge \vert b \vert$  </p>
+<p>一个1型文法是一个有序四元组$G=&lt;V,T,S,P&gt;$, 其中:</p>
+<ul>
+<li>$V$是非终结符集合,非空有限</li>
+<li>$T$是终结符集合,非空有限,$V\cap T=\emptyset$</li>
+<li>$S\in V$是<strong>起始符</strong></li>
+<li>$P$是产生式集合,非空有限<blockquote>
+<p>$P$中元素应有这样的形式: 对P中任意一个产生式a-&gt;b都有$\vert a \vert \ge \vert b \vert$  </p>
+</blockquote>
+</li>
+</ul>
+<p>每一个1型文法都等价于这样一个文法(证明略),它的产生式形如<br>$$ uAv \to u \alpha v $$  </p>
+<blockquote>
+<p>这里$ A \in V, u,v \in (V \cup T)^* ,\alpha \ne \epsilon$  </p>
+</blockquote>
+<p>也就是说,在这种文法中,替换变元时必须考虑它的上下文,才能把$A$换成$\alpha$  </p>
+<p>因此,1型文法又叫做上下文有关文法,若$L-\lbrace \epsilon \rbrace$可由1型文法生成,则L称作1型语言或上下文有关语言(1型文法本身不能生成$\epsilon$)</p>
+<h4 id="2型文法-上下文无关文法"><a href="#2型文法-上下文无关文法" class="headerlink" title="2型文法: 上下文无关文法"></a>2型文法: 上下文无关文法</h4><p>2型文法在1型文法的基础上又做了一些限制(令上文中的$u,v = \epsilon$)</p>
+<p>一个2型文法是一个有序四元组$G=&lt;V,T,S,P&gt;$, 其中:</p>
+<ul>
+<li>$V$是非终结符集合,非空有限</li>
+<li>$T$是终结符集合,非空有限,$V\cap T=\emptyset$</li>
+<li>$S\in V$是<strong>起始符</strong></li>
+<li>$P$是产生式集合,非空有限<blockquote>
+<p>$P$中元素应有这样的形式: $ A \to \alpha $; 其中$A \in V, \alpha \in (V\cup T)^*$ <em>(0型文法是$A \in (V\cup T)^*$)</em>  </p>
+</blockquote>
+</li>
+</ul>
+<p>此时,在这种文法中,替换变元时不需要考虑它的上下文</p>
+<p>因此,2型文法又称作上下文无关文法,2型文法生成的语言称作2型语言或上下文无关语言</p>
+<h4 id="3型文法-正则文法"><a href="#3型文法-正则文法" class="headerlink" title="3型文法: 正则文法"></a>3型文法: 正则文法</h4><p>3型文法在2型文法的基础上做了更多的限制,其分为右线性文法和左线性文法</p>
+<p>一个<strong>右线性文法</strong>是一个有序四元组$G=&lt;V,T,S,P&gt;$, 其中:</p>
+<ul>
+<li>$V$是非终结符集合,非空有限</li>
+<li>$T$是终结符集合,非空有限,$V\cap T=\emptyset$</li>
+<li>$S\in V$是<strong>起始符</strong></li>
+<li>$P$是产生式集合,非空有限<blockquote>
+<p>$P$中元素应有这样的形式: $ A \to \alpha B $或$ A \to \alpha $; 其中$A,B \in V, \alpha \in T^*$ <em>(注意符号所属范围)</em></p>
+</blockquote>
+</li>
+</ul>
+<p>一个<strong>左线性文法</strong>是一个有序四元组$G=&lt;V,T,S,P&gt;$, 其中:</p>
+<ul>
+<li>$V$是非终结符集合,非空有限</li>
+<li>$T$是终结符集合,非空有限,$V\cap T=\emptyset$</li>
+<li>$S\in V$是<strong>起始符</strong></li>
+<li>$P$是产生式集合,非空有限<blockquote>
+<p>$P$中元素应有这样的形式: $ A \to B \alpha $或$ A \to \alpha $; 其中$A,B \in V, \alpha \in T^*$  </p>
+</blockquote>
+</li>
+</ul>
+<p>右线性文法和左线性文法统称做3型文法或正则文法,3型文法生成的语言称作3型语言或正则语言  </p>
+<p>可以证明的是,每一个右线性文法都存在与之等价的左线性文法,反之亦然; 即每一个正则语言都可以同时用右线性文法和左线性文法生成</p>
+<h4 id="几种形式文法生成的语言类之间的关系"><a href="#几种形式文法生成的语言类之间的关系" class="headerlink" title="几种形式文法生成的语言类之间的关系"></a>几种形式文法生成的语言类之间的关系</h4><p>这几种语言类之间存在着真包含关系</p>
+<ul>
+<li>正则语言是上下文无关语言</li>
+<li>上下文无关语言是上下文有关语言</li>
+<li>上下文有关语言是0型语言</li>
+</ul>
+<p>在编译原理中,词法分析可以用正则文法解决,而语法分析使用上下文无关文法</p>
+<p>注: 在正则文法和上下文无关文法中,当同一个符号作为多个产生式的左端时,可以用”或”<code>|</code>来合在一起写</p>
+<h2 id="有穷自动机"><a href="#有穷自动机" class="headerlink" title="有穷自动机"></a>有穷自动机</h2><p>有穷自动机是具有离散输入和输出系统的一种数学模型,它有有限个内部状态.随着信号的输入,内部状态不断地转移</p>
+<hr>
+<p>未完结,持续更新</p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/03/04/formal-language-and-automata/" data-id="ck7dihqyt000gswvn1xspfsqo"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="tag">编译原理</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/03/04/markdown-formula-editor/" class="article-nav-link">
+        <strong class="article-nav-caption">Next Post</strong>
+        <div class="article-nav-title">markdown中的公式编辑</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        notify: false,
+        verify: '',
+        app_id: 'ze0YzGUMUrLXgdRQpKyDCEEm-gzGzoHsz',
+        app_key: 'NnhAiNVNGXwbCD1sMGNRjA8B',
+        path: window.location.pathname,
+        avatar: 'mp',
+        placeholder: 'Leave your comments here ~',
+        recordIP: true,
+        lang: 'en'
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2019-2020
+        George Chen
+      </li>
+      <li>
+        
+          Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+      </li>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+    <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+      <aside class="sidebar">
+        <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="George"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">HOME</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives/">ARCHIVE</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/">CATE.</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/">TAGS</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="https://github.com/georgechen1827/" target="_blank" rel="noopener">about me</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/coming_soon.html" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+      </aside>
+      <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+      
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer:'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
+
+
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+
+<script src="/js/ayer.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+  </div>
+</body>
+
+</html>

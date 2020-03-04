@@ -109,7 +109,12 @@
 <li>强调形式描述技术和自动生成技术</li>
 <li>强调对编译原理和技术的宏观理解,不把注意力分散到枝节算法,不偏向于任何源语言或目标机器</li>
 </ul>
-<h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><h3 id="编译原理概述"><a href="#编译原理概述" class="headerlink" title="编译原理概述"></a>编译原理概述</h3><p>语言处理器: 由编译器,解释器,汇编器,连接器,加载器,调试器及程序概要提取工具等所构成的集成软件开发环境<br>机器语言和汇编语言: 第一和第二代程序设计语言<br>高级语言: 能够自动进行内存管理,类型一致性检查等功能的程序设计语言<br>翻译器: 能完成一种语言到另一种语言变换的软件</p>
+<h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><h3 id="编译原理概述"><a href="#编译原理概述" class="headerlink" title="编译原理概述"></a>编译原理概述</h3><p>语言处理器: 由编译器,解释器,汇编器,连接器,加载器,调试器及程序概要提取工具等所构成的集成软件开发环境  </p>
+<ul>
+<li>机器语言和汇编语言: 第一和第二代程序设计语言  </li>
+<li>高级语言: 能够自动进行内存管理,类型一致性检查等功能的程序设计语言   </li>
+</ul>
+<p>翻译器: 能完成一种语言到另一种语言变换的软件</p>
 <p>翻译器的不同形式:</p>
 <ul>
 <li>编译器(c,c++): 从源程序通过编译器得到目标程序,从输入通过目标程序得到输出(效率高,平台相关)</li>
@@ -117,7 +122,8 @@
 <li>区别: 编译器通过翻译来生成目标程序,解释器直接生成源程序指定的运算*</li>
 <li>混和编译器(Java,C#): 源程序通过翻译器得到中间程序,中间程序和输入经过虚拟机得到输出(效率稍高,平台无关,但每个平台都要装虚拟机)</li>
 </ul>
-<p>语言处理系统: 预处理器,编译器,汇编器,连接器\加载器<br>源程序-&gt;修改后的源程序-&gt;目标汇编程序-&gt;可重定位的机器代码-(库文件,可重定位目标文件)&gt;可执行目标程序</p>
+<p>语言处理系统: 预处理器,编译器,汇编器,连接器\加载器  </p>
+<p>主要流程: 源程序-&gt;修改后的源程序-&gt;目标汇编程序-&gt;可重定位的机器代码-(库文件,可重定位目标文件)&gt;可执行目标程序</p>
 <h3 id="编译器基本结构"><a href="#编译器基本结构" class="headerlink" title="编译器基本结构"></a>编译器基本结构</h3><p>编译器: 将源程序编译为目标可执行程序的系统<br>特点: 目标语言比源语言低级</p>
 <h4 id="编译器结构"><a href="#编译器结构" class="headerlink" title="编译器结构"></a>编译器结构</h4><ul>
 <li>分析部分,前端: 源程序-&gt;中间表示</li>
@@ -272,7 +278,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/compilers0/" data-id="ck7c1wgqc000cz0vn08hc77ps"
+      <a data-url="http://georgechen1827.github.io/2020/02/24/compilers0/" data-id="ck7dihqym000bswvnch0kbb41"
         class="article-share-link">share</a>
         
       
@@ -525,7 +531,7 @@
 
 <script>
   var ayerConfig = {
-    mathjax: false
+    mathjax: true
   }
 </script>
 
@@ -645,6 +651,25 @@
 </script>
 
 
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 
 <script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>

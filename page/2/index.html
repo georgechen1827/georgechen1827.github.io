@@ -65,6 +65,536 @@
     
     
     
+    <article id="post-computer-composition0" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/24/computer-composition0/"
+    >计算机组成相关知识</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/02/24/computer-composition0/" class="article-date">
+  <time datetime="2020-02-24T02:32:00.000Z" itemprop="datePublished">2020-02-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a> / <a class="article-category-link" href="/categories/notes/%E5%AD%A6%E4%BD%8D%E8%AF%BE%E7%A8%8B/">学位课程</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>未完结,持续更新</p>
+<hr>
+<p>课程内容:</p>
+<ul>
+<li>讨论单机系统范围内计算机各部件和系统的组成原理以及内部工作机制</li>
+</ul>
+<p>课程目标:</p>
+<ul>
+<li>计算机个大部件的组成原理</li>
+<li>…的逻辑实现</li>
+<li>…的设计方法</li>
+<li>…互联构成整体系统的技术</li>
+<li>(为后继课程的学习打好基础)</li>
+</ul>
+<p>课程地位: 承上启下</p>
+<ul>
+<li>先导课程: 计算机导论,数字逻辑</li>
+<li>后继课程: 微机原理,接口技术,计算机系统结构</li>
+</ul>
+<p>重点难点:</p>
+<ul>
+<li>掌握五大基本部件的原理及实现</li>
+<li>掌握各部件互联构成整机系统的知识(整机概念的建立)</li>
+</ul>
+<p>课程要求:</p>
+<ul>
+<li>重点掌握: 多层次的存储器,中央处理器</li>
+<li>掌握: 运算方法和运算器,指令系统,总线系统</li>
+<li>理解: 外存与io设备</li>
+<li>了解: 计算机系统概论,输入输出系统</li>
+</ul>
+<h2 id="计算机系统概论"><a href="#计算机系统概论" class="headerlink" title="计算机系统概论"></a>计算机系统概论</h2><p>计算机的定义,分类.发展史</p>
+<h3 id="计算机发展简史"><a href="#计算机发展简史" class="headerlink" title="计算机发展简史"></a>计算机发展简史</h3><p>计算机: 能够连续自动进行数值和逻辑运算的机器</p>
+<p>分类:</p>
+<ul>
+<li>原理角度: 数字计算机,模拟计算机</li>
+<li>性能指标: 巨型机,大型机,小型机,微型机</li>
+<li>用途角度: 专用机,通用机</li>
+</ul>
+<p>计算机发展阶段:</p>
+<ul>
+<li>1946-1957: 电子管时代,ENIAC(1946)</li>
+<li>1958-1964: 晶体管时代,整体性能大幅度提高,TRADIC(增加浮点运算)</li>
+<li>1965-1971: 中小规模集成电路,进入文字处理和图形图像处理</li>
+<li>1972-: 大和超大规模集成电路,出现微处理器</li>
+</ul>
+<h3 id="计算机性能指标和层次结构"><a href="#计算机性能指标和层次结构" class="headerlink" title="计算机性能指标和层次结构"></a>计算机性能指标和层次结构</h3><p>NAN</p>
+<h3 id="计算机系统"><a href="#计算机系统" class="headerlink" title="计算机系统"></a>计算机系统</h3><h4 id="硬件系统的组成-冯诺依曼结构-以存储器为中心"><a href="#硬件系统的组成-冯诺依曼结构-以存储器为中心" class="headerlink" title="硬件系统的组成: 冯诺依曼结构,以存储器为中心"></a>硬件系统的组成: 冯诺依曼结构,以存储器为中心</h4><p>存储程序:</p>
+<ul>
+<li>计算机(硬件)应由运算器,存储器,控制器,出入设备,输出设备组成</li>
+<li>计算机内部采用二进制来表示指令和数据</li>
+<li>将编好的程序和原始数据实现存入存储器中然后再启动计算机工作</li>
+</ul>
+<p><img src="/2020/02/24/computer-composition0/compo0.png" alt="composition">  </p>
+<p>其中:</p>
+<blockquote>
+<p>运算器,控制器一般为cpu<br>存储器一般由主存(内存)和辅存组成<br>cpu和主存一般构成主机<br>运算器: 数据的加工处理<br>控制器: 指令控制,操作控制,时序控制<br>存储器: 存放数据和程序<br>输入设备: 将外部数据送给计算机并转换成计算机能够识别的形式<br>输出设备: 将计算机处理结果送出给外界并转换成外界能够识别的形式</p>
+</blockquote>
+<ul>
+<li>以运算器为核心的构造: 输入设备的数据得通过运算器才能进入存储器中</li>
+<li>以存储器为核心的构造: 可以提高计算机系统运行的效率</li>
+</ul>
+<h4 id="软件系统的组成-应用软件-系统软件"><a href="#软件系统的组成-应用软件-系统软件" class="headerlink" title="软件系统的组成: 应用软件,系统软件"></a>软件系统的组成: 应用软件,系统软件</h4><p>系统软件:</p>
+<ul>
+<li>操作系统: 硬件软件之间的桥梁</li>
+<li>语言程序</li>
+<li>服务性程序</li>
+<li>DMZ</li>
+</ul>
+<p>软件和硬件之间存在着逻辑等价关系</p>
+<h2 id="计算机中常用的组合逻辑电路"><a href="#计算机中常用的组合逻辑电路" class="headerlink" title="计算机中常用的组合逻辑电路"></a>计算机中常用的组合逻辑电路</h2><h3 id="组合逻辑电路"><a href="#组合逻辑电路" class="headerlink" title="组合逻辑电路"></a>组合逻辑电路</h3><h4 id="三态门"><a href="#三态门" class="headerlink" title="三态门"></a>三态门</h4><p>三态门: 0,1,高阻态Z<br><img src="/2020/02/24/computer-composition0/compo1.png" alt="composition">  </p>
+<h4 id="异或门"><a href="#异或门" class="headerlink" title="异或门"></a>异或门</h4><p><img src="/2020/02/24/computer-composition0/compo2.png" alt="composition"></p>
+<p>异或门应用:</p>
+<ul>
+<li><p>数码比较器(上图)  </p>
+</li>
+<li><p>原码/反码输出电路<br><img src="/2020/02/24/computer-composition0/compo3.png" alt="composition"></p>
+</li>
+<li><p>奇偶检测电路</p>
+</li>
+<li><p>半加器</p>
+</li>
+<li><p>全加器</p>
+</li>
+<li><p>n位加法器</p>
+</li>
+<li><p>超前进位加法器</p>
+</li>
+<li><p>ALU算术逻辑单元</p>
+</li>
+<li><p>译码器</p>
+</li>
+<li><p>数据选择器</p>
+</li>
+</ul>
+<h3 id="时序逻辑电路"><a href="#时序逻辑电路" class="headerlink" title="时序逻辑电路"></a>时序逻辑电路</h3><hr>
+<p><em>待更新…</em></p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/02/24/computer-composition0/" data-id="ck7dihqyn000cswvn6k99bg8f"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/" rel="tag">计算机组成</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-java0" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/24/java0/"
+    >Java学习笔记</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/02/24/java0/" class="article-date">
+  <time datetime="2020-02-24T00:33:24.000Z" itemprop="datePublished">2020-02-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a> / <a class="article-category-link" href="/categories/notes/%E5%AD%A6%E4%BD%8D%E8%AF%BE%E7%A8%8B/">学位课程</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>未完结,持续更新</p>
+<hr>
+<h2 id="Java常识"><a href="#Java常识" class="headerlink" title="Java常识"></a>Java常识</h2><p>Java: 一次编译，处处运行</p>
+<h3 id="Java特点"><a href="#Java特点" class="headerlink" title="Java特点"></a>Java特点</h3><p>c++ - -</p>
+<ul>
+<li>无直接指针操作</li>
+<li>自动内存管理</li>
+<li>数据类型长度固定</li>
+<li>不用头文件</li>
+<li>不包含结构和联合</li>
+<li>不支持宏</li>
+<li>不用多重继承(接口实现)</li>
+<li>无类外全局变量</li>
+<li>无goto</li>
+</ul>
+<p>Java三种核心机制</p>
+<ul>
+<li>Java虚拟机</li>
+<li>代码安全性监测</li>
+<li>垃圾回收机制</li>
+</ul>
+<p><em>Java程序都是运行在虚拟机之上的,与平台无关</em></p>
+<ul>
+<li>JRE(java运行环境)=JVM+API</li>
+<li>JDK(Java开发工具包)=JRE+Tools</li>
+</ul>
+<h3 id="Java面向对象程序设计"><a href="#Java面向对象程序设计" class="headerlink" title="Java面向对象程序设计"></a>Java面向对象程序设计</h3><p>类</p>
+<ul>
+<li>属性: 变量,字段</li>
+<li>行为: 函数,方法</li>
+</ul>
+<p>类与对象的关系</p>
+<ul>
+<li>类是对象的抽象</li>
+<li>对象是类的实例</li>
+</ul>
+<p>面向对象三大特性</p>
+<ul>
+<li>封装: 模块化,信息隐蔽</li>
+<li>继承: 父类子类间共享数据,更好地抽象和分类,增强代码重用性和可维护性</li>
+<li>多态: 方法重载</li>
+</ul>
+<h3 id="简单Java程序"><a href="#简单Java程序" class="headerlink" title="简单Java程序"></a>简单Java程序</h3><p>Java程序类型:</p>
+<ul>
+<li>Application: 独立程序,需要执行器(虚拟机)来运行</li>
+<li>Applect: 非独立程序,嵌入在HTML网页中运行</li>
+</ul>
+<p>应用程序要点(helloword)</p>
+<ul>
+<li>class是主体</li>
+<li>public类名与文件名同名</li>
+<li>main()的写法是固定的: public static void main()</li>
+<li>System.out.print及println及printf</li>
+</ul>
+<p>Applet程序(helloword)</p>
+<ul>
+<li>import表示导入</li>
+<li>extends JApplet表示继承</li>
+<li>有paint()方法,表示如何绘制</li>
+<li>没有main()方法</li>
+</ul>
+<p>Java程序基本构成</p>
+<ul>
+<li>package语句(0或1句)</li>
+<li>import语句(0或多句)</li>
+<li>类定义(1或多个,但只能有一个public类,与文件同名)</li>
+</ul>
+<h3 id="Java程序开发过程"><a href="#Java程序开发过程" class="headerlink" title="Java程序开发过程"></a>Java程序开发过程</h3><p>编辑,编译与运行</p>
+<ul>
+<li>编辑: 编辑器编辑,文件名要与public class类名一致</li>
+<li>程序编译: 转换程序为字节码,扩展名.class  javac name.java</li>
+<li>程序运行: 执行.class中的文件    java name</li>
+</ul>
+<p>JDK安装目录</p>
+<blockquote>
+<p>Bin 存放工具文件<br>Jre 存放与Java运行环境相关的文件<br>Demo 存放示例文件<br>Include 存放与C相关的头文件<br>Lib 存放程序库<br>DB 数据库相关</p>
+</blockquote>
+<h3 id="Java的几个工具"><a href="#Java的几个工具" class="headerlink" title="Java的几个工具"></a>Java的几个工具</h3><p>主要工具</p>
+<ul>
+<li>javac 编译</li>
+<li>java 运行(控制台及图形界面程序)</li>
+<li>javaw 运行图形界面程序</li>
+<li>appletViewer 运行applet程序</li>
+</ul>
+<p>另外常用工具</p>
+<ul>
+<li>jar 打包工具</li>
+<li>javadoc 生成文档</li>
+<li>javap 查看类信息及反汇编</li>
+</ul>
+<h3 id="Java的输入和输出"><a href="#Java的输入和输出" class="headerlink" title="Java的输入和输出"></a>Java的输入和输出</h3><h4 id="文本界面-使用Scanner类"><a href="#文本界面-使用Scanner类" class="headerlink" title="文本界面: 使用Scanner类"></a>文本界面: 使用Scanner类</h4><p>使用java.util.Scanner类</p>
+<ul>
+<li>Scanner.nextInt()</li>
+<li>Scanner.nextDouble()</li>
+<li>Scanner.next 得到下一个单词<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ScannerTest</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">( String[] args)</span></span>&#123;</span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> a = scanner.nextInt();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="使用in及out"><a href="#使用in及out" class="headerlink" title="使用in及out"></a>使用in及out</h4><p>使用java.io包</p>
+<ul>
+<li>System.in.read()</li>
+<li>System.out.print()<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> c = <span class="string">''</span>;</span><br><span class="line">System.out.print(<span class="string">'Hello'</span>);</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    c = (<span class="keyword">char</span>)System.in.read();</span><br><span class="line">&#125;<span class="keyword">catch</span>(IOExceprion e)&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="图形界面输入输出"><a href="#图形界面输入输出" class="headerlink" title="图形界面输入输出"></a>图形界面输入输出</h4><p>添加按钮,监听事件…</p>
+<h3 id="集成开发环境"><a href="#集成开发环境" class="headerlink" title="集成开发环境"></a>集成开发环境</h3><h4 id="eclips"><a href="#eclips" class="headerlink" title="eclips"></a>eclips</h4><p>java里的程序应当都以工程的形式存在</p>
+<ul>
+<li>新建一个工程，起一个名字(文件夹的名字)</li>
+<li>在src文件夹中建立package包(一般小写字母)</li>
+<li>在package里面建立类(首字母大写)</li>
+<li>写主函数…</li>
+<li>右击包文件 run as application</li>
+</ul>
+<hr>
+<p><em>待更新…</em></p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/02/24/java0/" data-id="ck7dihqyz000pswvn55pv7rrs"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-python-plot1" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/12/python-plot1/"
+    >python作图</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/02/12/python-plot1/" class="article-date">
+  <time datetime="2020-02-12T09:21:50.000Z" itemprop="datePublished">2020-02-12</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>一些参考网站:<br><a href="https://zhuanlan.zhihu.com/p/39077155" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/39077155</a><br><a href="https://zhuanlan.zhihu.com/p/49035741" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/49035741</a><br><a href="https://zhuanlan.zhihu.com/p/27401041" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/27401041</a><br><a href="https://zhuanlan.zhihu.com/p/37360133" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/37360133</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzUzODYwMDAzNA==&amp;mid=2247488701&amp;idx=4&amp;sn=73c8ca23d8eced3590ab285f9f43d99b&amp;chksm=fad463b0cda3eaa6f9be051e3c1e0c1a7ddc8922c5c6bf1dfa75f2db84affb88fa248760b781&amp;mpshare=1&amp;scene=23&amp;srcid=&amp;sharer_sharetime=1581401241375&amp;sharer_shareid=ab6f5905c1aa5f4891f8d87e4501862b#rd" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzUzODYwMDAzNA==&amp;mid=2247488701&amp;idx=4&amp;sn=73c8ca23d8eced3590ab285f9f43d99b&amp;chksm=fad463b0cda3eaa6f9be051e3c1e0c1a7ddc8922c5c6bf1dfa75f2db84affb88fa248760b781&amp;mpshare=1&amp;scene=23&amp;srcid=&amp;sharer_sharetime=1581401241375&amp;sharer_shareid=ab6f5905c1aa5f4891f8d87e4501862b#rd</a>  </p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/02/12/python-plot1/" data-id="ck7dihqz8001cswvn99jg7rot"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-matlab" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/09/matlab/"
+    >matlab常用语法</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/02/09/matlab/" class="article-date">
+  <time datetime="2020-02-09T09:10:30.000Z" itemprop="datePublished">2020-02-09</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>仅作随笔用,不完善不严谨</p>
+<h3 id="变量-符号-数组-矩阵"><a href="#变量-符号-数组-矩阵" class="headerlink" title="变量 符号 数组 矩阵"></a>变量 符号 数组 矩阵</h3><h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;var&gt; = &lt;expression&gt;</span><br></pre></td></tr></table></figure>
+
+<p>预定义变量   </p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pi</span>  <span class="comment">% 圆周率</span></span><br><span class="line"><span class="built_in">inf</span> <span class="comment">% 又Inf,无穷大</span></span><br><span class="line"><span class="built_in">nan</span> <span class="comment">% 又NaN,不定值</span></span><br><span class="line"><span class="built_in">eps</span> <span class="comment">% 浮点数运算相对精度,无穷小</span></span><br><span class="line"><span class="built_in">i</span>   <span class="comment">% 又j,虚部单位</span></span><br><span class="line"><span class="built_in">ans</span> <span class="comment">% 上一次运算结果</span></span><br></pre></td></tr></table></figure>
+
+<p>变量存储 读取 清除  </p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">save [filename.mat] [var1] [var2] ...</span><br><span class="line">load &lt;filename.mat&gt; [var1] [var2] ...</span><br><span class="line">clear [var1] [var2]</span><br></pre></td></tr></table></figure>
+
+<p>相关命令</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">who <span class="comment">% 显示工作空间中的所有变量  </span></span><br><span class="line">whos    <span class="comment">% 查看工作空间中变量的详细属性 </span></span><br><span class="line"><span class="built_in">realmin</span> <span class="comment">% 最小可用正实数</span></span><br><span class="line"><span class="built_in">realmax</span> <span class="comment">% 最大可用正实数</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="符号-符号表达式"><a href="#符号-符号表达式" class="headerlink" title="符号 符号表达式"></a>符号 符号表达式</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">syms [symbol1] &lt;symbol2&gt; &lt;symbol3&gt; ...  <span class="comment">% 创建多个符号变量, 相当于symbol1 = sym('symbol'); symbol2 = sym('symbol2'); ...</span></span><br><span class="line">[symbol] = sym([symbol/value/symbolexpression])  <span class="comment">% 用符号/数值/表达式来创建符号变量/常量/表达式</span></span><br></pre></td></tr></table></figure>
+
+<p>相关函数  </p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">findsym(expression [, N])   <span class="comment">% 查找符号表达式中的[离x最近的N个]符号变量</span></span><br><span class="line">subs(expression, symbol1, symbol2)  <span class="comment">% 在表达式中用s2替换s1</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="数组-矩阵"><a href="#数组-矩阵" class="headerlink" title="数组 矩阵"></a>数组 矩阵</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[matrix] = [row1 ; row2 ; ... ]</span><br><span class="line">[row] = [sym1 sym2 ...] <span class="comment">% row = start: step: end</span></span><br><span class="line">[matrix](n) = value <span class="comment">% 元素赋值</span></span><br><span class="line">[matrix] = [matrix ; matrix2]   <span class="comment">% 矩阵列拼接</span></span><br><span class="line">[matrix] = [matrix matrix2] <span class="comment">% 矩阵行拼接</span></span><br></pre></td></tr></table></figure>
+
+<p>相关操作</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A(i1 : step : i2, j1 : step : j2)   <span class="comment">% 矩阵切片</span></span><br><span class="line">.* ./ .^    <span class="comment">% 点乘点除点幂乘</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="基本函数"><a href="#基本函数" class="headerlink" title="基本函数"></a>基本函数</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sin</span>、<span class="built_in">cos</span>、<span class="built_in">tan</span>、<span class="built_in">cot</span>、<span class="built_in">sec</span>、<span class="built_in">csc</span>、…</span><br><span class="line"><span class="built_in">asin</span>、<span class="built_in">acos</span>、<span class="built_in">atan</span>、<span class="built_in">acot</span>、<span class="built_in">asec</span>、<span class="built_in">acsc</span>、…</span><br><span class="line"><span class="built_in">exp</span>、<span class="built_in">log</span>、<span class="built_in">log2</span>、<span class="built_in">log10</span>、<span class="built_in">sqrt</span></span><br><span class="line"><span class="built_in">abs</span>、<span class="built_in">conj</span>、<span class="built_in">real</span>、<span class="built_in">imag</span></span><br><span class="line">rank、det、inv、eig、lu、qr、svd</span><br><span class="line"><span class="built_in">diag</span>、<span class="built_in">triu</span>、<span class="built_in">tril</span>、expm</span><br></pre></td></tr></table></figure>
+
+<p>相关命令  </p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">findsym(expr)   <span class="comment">% 按字母顺序列出符号表达式 expr 中的所有符号变量</span></span><br><span class="line">findsym(expr, N)    <span class="comment">% 按顺序列出 expr 中离 x 最近的 N 个符号变量</span></span><br><span class="line">nargin  <span class="comment">% 所用函数的输入变量数目</span></span><br><span class="line">nargout <span class="comment">% 所用函数的输出变量数目</span></span><br></pre></td></tr></table></figure>
+
+<p>####　运算函数</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">factor</span>(f)   <span class="comment">% 因式分解或质因数分解</span></span><br><span class="line">expand(f)   <span class="comment">% 函数展开</span></span><br><span class="line">taylor(f,x,a)   <span class="comment">% f关于符号x在a处进行5项泰勒展开</span></span><br><span class="line">collect(f,v)    <span class="comment">% f对(默认变量)v进行合并同类项</span></span><br><span class="line">simplify(f) <span class="comment">% 对f化简函数</span></span><br><span class="line">numden(f)   <span class="comment">% 函数化简 -&gt; [N,D] N为分子,D为分母</span></span><br><span class="line">horner(f)   <span class="comment">% 多项式转嵌套多项式 x(...x(x+i)+j)+k</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">limit(fun,x,x0 [, <span class="string">'left'</span>/<span class="string">'right'</span>])  <span class="comment">% 在fun中对符号x在x0处求极限</span></span><br><span class="line">int(f [, v, a, b])  <span class="comment">% 在f中对(默认)变量[v][在区间(a,b)上]的(不)定积分</span></span><br><span class="line">symsum(f, v, a, b)  <span class="comment">% 在v=a,a+1....b上对f(v)进行求和</span></span><br><span class="line">solve(f,v)  <span class="comment">% 求方程(组)关于指定自变量的解</span></span><br><span class="line">y=dsolve(eq1, eq2, ..., cond1, cond2, ..., v)   <span class="comment">% 微分方程eq1,eq2...在cond1,cond2...为初值条件下自变量v的解 -&gt; 输出解y,若无显式函数,则输出[x,y]</span></span><br><span class="line">finverse(f,v)   <span class="comment">% f关于(默认变量)v的反函数</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="多项式函数"><a href="#多项式函数" class="headerlink" title="多项式函数"></a>多项式函数</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">p = [a1, a2, a3, a4 ...]    <span class="comment">% 多项式降幂系数的行向量表示</span></span><br><span class="line">r = roots(p)    <span class="comment">% 求出多项式为0的根</span></span><br><span class="line">p = poly(r) <span class="comment">% 通过多项式为0的根求出多项式</span></span><br><span class="line">c = conv(a,b)   <span class="comment">% 多项式相乘</span></span><br><span class="line">[q, r] = deconv(c, b)   <span class="comment">% 多项式相除</span></span><br><span class="line">d = polyder(a)  <span class="comment">% 微分多项式</span></span><br><span class="line">n = polyval(a, <span class="number">2</span>)   <span class="comment">% 多项式函数求值</span></span><br><span class="line">p = polyfit(x,y,n)  <span class="comment">% 在x, y样本点向量下求出一个n阶多项式的拟合p</span></span><br><span class="line">[a,Jm] = lsqcurvefit(Fun,a0,x,y)    <span class="comment">% 最小二乘曲线拟合,Fun为原函数，x,y 为原始输入数据,a0为最优化初值，a为最小二乘系数，Jm为目标</span></span><br><span class="line">yi = interp1(x, y, xi, <span class="string">'method'</span>)    <span class="comment">% 一维插值计算</span></span><br><span class="line">zi = interp2(x，y，z，xi，yi，<span class="string">'method'</span>)  <span class="comment">% 二维插值计算</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="作图函数"><a href="#作图函数" class="headerlink" title="作图函数"></a>作图函数</h4><p>参考<a href="https://www.cnblogs.com/ileanj1998/p/9060664.html" target="_blank" rel="noopener">https://www.cnblogs.com/ileanj1998/p/9060664.html</a></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">plot</span>(x,y)   <span class="comment">% x 为向量, y为x的函数或者同长度向量</span></span><br><span class="line">xlabel(<span class="string">'x'</span>) ylabel(<span class="string">'y'</span>) <span class="comment">% 坐标轴信息]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="其他技巧"><a href="#其他技巧" class="headerlink" title="其他技巧"></a>其他技巧</h3><ul>
+<li>若不想在屏幕上输出结果，可以在语句最后加分号  </li>
+<li>如果语句很长，可用续行符 “…”（三个点）续行,续行符的前面最好留一个空格</li>
+<li>Matlab 的命令记忆功能：上下箭头键  </li>
+<li>命令补全功能： Tab 键   </li>
+<li>用 Esc 键 删除命令行</li>
+</ul>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/02/09/matlab/" data-id="ck7dihqz50015swvngl8l3h4k"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/matlab/" rel="tag">matlab</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-making-rolls" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -157,7 +687,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/08/making-rolls/" data-id="ck7c1wgqi000nz0vnh159gs02"
+      <a data-url="http://georgechen1827.github.io/2020/02/08/making-rolls/" data-id="ck7dihqz2000xswvn428jcpj6"
         class="article-share-link">share</a>
         
       
@@ -303,7 +833,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/07/android-hexo-setting/" data-id="ck7c1wgq20006z0vn98v7gd64"
+      <a data-url="http://georgechen1827.github.io/2020/02/07/android-hexo-setting/" data-id="ck7dihqyh0006swvn545154v6"
         class="article-share-link">share</a>
         
       
@@ -430,7 +960,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/06/csharp-learing/" data-id="ck7c1wgq80008z0vn0d70ecz6"
+      <a data-url="http://georgechen1827.github.io/2020/02/06/csharp-learing/" data-id="ck7dihqyk0008swvnagyj38j5"
         class="article-share-link">share</a>
         
       
@@ -502,7 +1032,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/06/about-the-blog/" data-id="ck7c1wgpx0002z0vnfe6u9pvq"
+      <a data-url="http://georgechen1827.github.io/2020/02/06/about-the-blog/" data-id="ck7dihqyd0002swvn63fi16fv"
         class="article-share-link">share</a>
         
       
@@ -586,7 +1116,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2000/02/28/hello-world/" data-id="ck7c1wgqg000iz0vnfeefda1z"
+      <a data-url="http://georgechen1827.github.io/2000/02/28/hello-world/" data-id="ck7dihqz1000uswvn1xvl2a5p"
         class="article-share-link">share</a>
         
       
@@ -752,7 +1282,7 @@
 
 <script>
   var ayerConfig = {
-    mathjax: false
+    mathjax: true
   }
 </script>
 
@@ -872,6 +1402,25 @@
 </script>
 
 
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 
 <script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>

@@ -65,7 +65,7 @@
     
     
     
-    <article id="post-maotheory" class="article article-type-post" itemscope
+    <article id="post-formal-language-and-automata" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -73,7 +73,1433 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/03/03/maotheory/"
+  <a class="article-title" href="/2020/03/04/formal-language-and-automata/"
+    >形式语言和自动机初步</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/04/formal-language-and-automata/" class="article-date">
+  <time datetime="2020-03-04T08:23:51.000Z" itemprop="datePublished">2020-03-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>参考离散数学(清华大学出版社,第五版)相关内容</p>
+<hr>
+<p>自动机是描述计算的数学模型,用来识别语言或计算函数. 形式文法也是一种数学模型,用来产生形式语言. 形式语言和自动机理论密切相关,是计算机科学和技术的重要理论基础.  </p>
+<p>本文扼要地介绍形式文法的基本概念,有穷自动机和图灵机以及它们识别的语言类</p>
+<h2 id="形式语言和形式文法"><a href="#形式语言和形式文法" class="headerlink" title="形式语言和形式文法"></a>形式语言和形式文法</h2><p>形式语言的描述最早在1956年由语言学家乔姆斯基建立</p>
+<p>在乔姆斯基的分类中,形式文法一共有如下几类:</p>
+<ul>
+<li>0型文法: 现证明等价于图灵机(下同)</li>
+<li>1型文法: 等价于非确定型线性界限自动机</li>
+<li>2型文法: 等价于非确定型下推自动机</li>
+<li>3型文法: 等价于有穷自动机</li>
+</ul>
+<p>形式文法,特别是上下文无关文法(2型文法)和正则文法(3型文法)在程序设计语言和编译理论中起着重要的作用</p>
+<h3 id="字符串和形式语言"><a href="#字符串和形式语言" class="headerlink" title="字符串和形式语言"></a>字符串和形式语言</h3><p>抽象而言,语言是按照一定规则排列的符号的集合</p>
+<p>定义:</p>
+<ul>
+<li>字母表$\Sigma$: 一个非空的有穷集合</li>
+<li>字符串$\omega$: 由$\Sigma$中的符号组成的有穷序列,如$a_ia_j…a_k$; 特别地,$aaa…a$记作$a^n$</li>
+<li>$\vert \omega \vert$: 字符串$\omega$的长度, 空串$\epsilon$长度为0  </li>
+</ul>
+<ul>
+<li>形式语言(语言): $\Sigma^*$的任何子集称作字母表$\Sigma$上的形式语言, 其中,$\Sigma^*$是$\Sigma$上字符串的全体  </li>
+</ul>
+<blockquote>
+<p>$\emptyset, \lbrace \epsilon \rbrace, \Sigma^*$都是$\Sigma$上的语言. 注意,前两者是不同的</p>
+</blockquote>
+<p>在字符串$\omega$中:</p>
+<ul>
+<li>前缀: 由$\omega$左端若干个连续符号组成的字符串</li>
+<li>后缀: 由$\omega$右端若干个连续符号组成的字符串</li>
+<li>字串: 由$\omega$任何部位若干个连续符号组成的字符串</li>
+<li>连接运算: $\omega_1\omega_2$表示把$\omega_2$接在$\omega_1$的右边, 显然,它是可结合的</li>
+</ul>
+<h3 id="形式文法"><a href="#形式文法" class="headerlink" title="形式文法"></a>形式文法</h3><p>语言是由一定规则产生出来的,这种规则就是文法</p>
+<p>例如,<code>9+5-2</code>这个字符串可由如下文法规则产生:</p>
+<blockquote>
+<ol>
+<li>表达式-&gt;表达式+数字;  </li>
+<li>表达式-&gt;表达式-数字;  </li>
+<li>表达式-&gt;数字;</li>
+<li>数字-&gt;2;  </li>
+<li>数字-&gt;5;  </li>
+<li>数字-&gt;9;</li>
+</ol>
+</blockquote>
+<p>定义:</p>
+<ul>
+<li>产生式: 文法中的每一条规则都叫做产生式</li>
+<li>终结符: 不能产生其他字符串的符号, 如上述文法中的2,5,9</li>
+<li>非终结符: 文法规则中除了终结符之外的其他符号,如<code>表达式</code>,<code>数字</code>,<code>+</code>,<code>-</code></li>
+</ul>
+<p><code>9+5-2</code>的推理过程:</p>
+<ul>
+<li>从<code>表达式</code>开始由2,1,3得到<code>数字+数字+数字</code></li>
+<li>由4,5,6可以得到<code>9+5-2</code></li>
+</ul>
+<p>当然,这组规则不仅仅只能推出<code>9+5-2</code>  </p>
+<p>注意: 规则所推出的字符串在语义上不一定正确,但在形式上都是合法的</p>
+<h4 id="形式文法的定义"><a href="#形式文法的定义" class="headerlink" title="形式文法的定义"></a>形式文法的定义</h4><p>一个形式文法是一个有序四元组$G=&lt;V,T,S,P&gt;$, 其中:</p>
+<ul>
+<li>$V$是一个非空有限集合,集合的元素称作变元或<strong>非终结符</strong></li>
+<li>$T$是一个非空有限集合,$V\cap T=\emptyset$,集合中的元素称作<strong>终结符</strong></li>
+<li>$S\in V$称作<strong>起始符</strong></li>
+<li>$P$是一个非空有穷集合,它的元素称作<strong>产生式</strong>或改写规则<br>&emsp; $P$中元素应有这样的形式: a-&gt;b; 其中a,b$\in (V\cup T)^*$, 且a$\ne \epsilon$</li>
+</ul>
+<h4 id="派生-生成语言"><a href="#派生-生成语言" class="headerlink" title="派生,生成语言"></a>派生,生成语言</h4><p>直接派生:</p>
+<ul>
+<li>给定文法$G=&lt;V,T,S,P&gt;$,设$x,y \in (V \cup T)^*$. 称<strong>$y$是$x$的直接派生($x\Rightarrow y$)</strong>,当且仅当:  <blockquote>
+<p>$\exists u,v \in (V \cup T)^* $ 且 $ \exists$ ‘a-&gt;b’ $\in P$ 使得 $x = uav,y = ubv$ (即把x中的a改写成b后得到y)  </p>
+</blockquote>
+</li>
+</ul>
+<p>派生:</p>
+<ul>
+<li>给定文法$G=&lt;V,T,S,P&gt;$,设$x_1,x_2,…,x_n \in (V \cup T)^*, n \ge 1 且 x_1\Rightarrow x_2 \Rightarrow … \Rightarrow x_n $, 则称<strong>$x_n$是由$X_1$派生出来的($x_1 \dot \Rightarrow x_n$)</strong>  <blockquote>
+<p>注意,对$V \cup T$上的所有字符串$\omega$有$\omega \dot \Rightarrow \omega$. 可见$\dot \Rightarrow$是$\Rightarrow$的自反传递闭包  </p>
+</blockquote>
+</li>
+</ul>
+<p>生成语言:  </p>
+<ul>
+<li>设$G=&lt;V,T,S,P&gt;$是一个文法,$L(G)$是文法G<strong>生成的语言</strong>,则$L(G)$满足<br>$$ L(G) = \lbrace \omega \in T^* | S \dot \Rightarrow \omega \rbrace $$   <blockquote>
+<p>根据定义,$L(G)$中的字符串满足如下两个条件:</p>
+<ol>
+<li>字符串由终结符构成</li>
+<li>字符串可以由起始符派生出来</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<p>文法的等价</p>
+<ul>
+<li>如果$L(G_1) = L(G_2)$,则称文法$G_1$和$G_2$<strong>等价</strong></li>
+</ul>
+<h3 id="形式文法分类"><a href="#形式文法分类" class="headerlink" title="形式文法分类"></a>形式文法分类</h3><h4 id="0型文法-无限制文法"><a href="#0型文法-无限制文法" class="headerlink" title="0型文法: 无限制文法"></a>0型文法: 无限制文法</h4><p>0型文法就是一般形式的文法,在形式文法定义的基础上不附加任何条件  </p>
+<p>一个0型文法是一个有序四元组$G=&lt;V,T,S,P&gt;$, 其中:</p>
+<ul>
+<li>$V$是非终结符集合,非空有限</li>
+<li>$T$是终结符集合,非空有限,$V\cap T=\emptyset$</li>
+<li>$S\in V$是<strong>起始符</strong></li>
+<li>$P$是产生式集合,非空有限</li>
+</ul>
+<p>0型文法又称作短语结构文法或无限制文法,0型文法生成的语言称作0型语言</p>
+<h4 id="1型文法-上下文有关文法"><a href="#1型文法-上下文有关文法" class="headerlink" title="1型文法: 上下文有关文法"></a>1型文法: 上下文有关文法</h4><p>1型文法在0型文法上加了一条限制: 对P中每一个产生式a-&gt;b都有$\vert a \vert \ge \vert b \vert$  </p>
+<p>一个1型文法是一个有序四元组$G=&lt;V,T,S,P&gt;$, 其中:</p>
+<ul>
+<li>$V$是非终结符集合,非空有限</li>
+<li>$T$是终结符集合,非空有限,$V\cap T=\emptyset$</li>
+<li>$S\in V$是<strong>起始符</strong></li>
+<li>$P$是产生式集合,非空有限<blockquote>
+<p>$P$中元素应有这样的形式: 对P中任意一个产生式a-&gt;b都有$\vert a \vert \ge \vert b \vert$  </p>
+</blockquote>
+</li>
+</ul>
+<p>每一个1型文法都等价于这样一个文法(证明略),它的产生式形如<br>$$ uAv \to u \alpha v $$  </p>
+<blockquote>
+<p>这里$ A \in V, u,v \in (V \cup T)^* ,\alpha \ne \epsilon$  </p>
+</blockquote>
+<p>也就是说,在这种文法中,替换变元时必须考虑它的上下文,才能把$A$换成$\alpha$  </p>
+<p>因此,1型文法又叫做上下文有关文法,若$L-\lbrace \epsilon \rbrace$可由1型文法生成,则L称作1型语言或上下文有关语言(1型文法本身不能生成$\epsilon$)</p>
+<h4 id="2型文法-上下文无关文法"><a href="#2型文法-上下文无关文法" class="headerlink" title="2型文法: 上下文无关文法"></a>2型文法: 上下文无关文法</h4><p>2型文法在1型文法的基础上又做了一些限制(令上文中的$u,v = \epsilon$)</p>
+<p>一个2型文法是一个有序四元组$G=&lt;V,T,S,P&gt;$, 其中:</p>
+<ul>
+<li>$V$是非终结符集合,非空有限</li>
+<li>$T$是终结符集合,非空有限,$V\cap T=\emptyset$</li>
+<li>$S\in V$是<strong>起始符</strong></li>
+<li>$P$是产生式集合,非空有限<blockquote>
+<p>$P$中元素应有这样的形式: $ A \to \alpha $; 其中$A \in V, \alpha \in (V\cup T)^*$ <em>(0型文法是$A \in (V\cup T)^*$)</em>  </p>
+</blockquote>
+</li>
+</ul>
+<p>此时,在这种文法中,替换变元时不需要考虑它的上下文</p>
+<p>因此,2型文法又称作上下文无关文法,2型文法生成的语言称作2型语言或上下文无关语言</p>
+<h4 id="3型文法-正则文法"><a href="#3型文法-正则文法" class="headerlink" title="3型文法: 正则文法"></a>3型文法: 正则文法</h4><p>3型文法在2型文法的基础上做了更多的限制,其分为右线性文法和左线性文法</p>
+<p>一个<strong>右线性文法</strong>是一个有序四元组$G=&lt;V,T,S,P&gt;$, 其中:</p>
+<ul>
+<li>$V$是非终结符集合,非空有限</li>
+<li>$T$是终结符集合,非空有限,$V\cap T=\emptyset$</li>
+<li>$S\in V$是<strong>起始符</strong></li>
+<li>$P$是产生式集合,非空有限<blockquote>
+<p>$P$中元素应有这样的形式: $ A \to \alpha B $或$ A \to \alpha $; 其中$A,B \in V, \alpha \in T^*$ <em>(注意符号所属范围)</em></p>
+</blockquote>
+</li>
+</ul>
+<p>一个<strong>左线性文法</strong>是一个有序四元组$G=&lt;V,T,S,P&gt;$, 其中:</p>
+<ul>
+<li>$V$是非终结符集合,非空有限</li>
+<li>$T$是终结符集合,非空有限,$V\cap T=\emptyset$</li>
+<li>$S\in V$是<strong>起始符</strong></li>
+<li>$P$是产生式集合,非空有限<blockquote>
+<p>$P$中元素应有这样的形式: $ A \to B \alpha $或$ A \to \alpha $; 其中$A,B \in V, \alpha \in T^*$  </p>
+</blockquote>
+</li>
+</ul>
+<p>右线性文法和左线性文法统称做3型文法或正则文法,3型文法生成的语言称作3型语言或正则语言  </p>
+<p>可以证明的是,每一个右线性文法都存在与之等价的左线性文法,反之亦然; 即每一个正则语言都可以同时用右线性文法和左线性文法生成</p>
+<h4 id="几种形式文法生成的语言类之间的关系"><a href="#几种形式文法生成的语言类之间的关系" class="headerlink" title="几种形式文法生成的语言类之间的关系"></a>几种形式文法生成的语言类之间的关系</h4><p>这几种语言类之间存在着真包含关系</p>
+<ul>
+<li>正则语言是上下文无关语言</li>
+<li>上下文无关语言是上下文有关语言</li>
+<li>上下文有关语言是0型语言</li>
+</ul>
+<p>在编译原理中,词法分析可以用正则文法解决,而语法分析使用上下文无关文法</p>
+<p>注: 在正则文法和上下文无关文法中,当同一个符号作为多个产生式的左端时,可以用”或”<code>|</code>来合在一起写</p>
+<h2 id="有穷自动机"><a href="#有穷自动机" class="headerlink" title="有穷自动机"></a>有穷自动机</h2><p>有穷自动机是具有离散输入和输出系统的一种数学模型,它有有限个内部状态.随着信号的输入,内部状态不断地转移</p>
+<hr>
+<p>未完结,持续更新</p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/03/04/formal-language-and-automata/" data-id="ck7dihqyt000gswvn1xspfsqo"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="tag">编译原理</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-markdown-formula-editor" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/04/markdown-formula-editor/"
+    >markdown中的公式编辑</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/04/markdown-formula-editor/" class="article-date">
+  <time datetime="2020-03-04T05:23:34.000Z" itemprop="datePublished">2020-03-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/instructions/">instructions</a> / <a class="article-category-link" href="/categories/instructions/notes/">notes</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><h3 id="行内公式"><a href="#行内公式" class="headerlink" title="行内公式"></a>行内公式</h3><p>正文(inline)中的LaTeX公式用<code>$...$</code>定义</p>
+<p>例如<code>$\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t$</code></p>
+<p>显示为$\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t$</p>
+<h3 id="行间公式"><a href="#行间公式" class="headerlink" title="行间公式"></a>行间公式</h3><p>单独显示(display)的LaTeX公式用<code>$$...$$</code>定义，此时公式居中并放大显示  </p>
+<p>例如<code>$$\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t$$</code>   </p>
+<p>显示为$$\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t$$ </p>
+<h2 id="希腊字母"><a href="#希腊字母" class="headerlink" title="希腊字母"></a>希腊字母</h2><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">显示</th>
+<th align="center">命令</th>
+<th align="center">显示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\alpha</td>
+<td align="center">$\alpha$</td>
+<td align="center">A</td>
+<td align="center">$A$</td>
+</tr>
+<tr>
+<td align="center">\beta</td>
+<td align="center">$\beta$</td>
+<td align="center">B</td>
+<td align="center">$B$</td>
+</tr>
+<tr>
+<td align="center">\gamma</td>
+<td align="center">$\gamma$</td>
+<td align="center">\Gamma</td>
+<td align="center">$\Gamma$</td>
+</tr>
+<tr>
+<td align="center">\delta</td>
+<td align="center">$\delta$</td>
+<td align="center">\Delta</td>
+<td align="center">$\Delta$</td>
+</tr>
+<tr>
+<td align="center">\epsilon</td>
+<td align="center">$\epsilon$</td>
+<td align="center">E</td>
+<td align="center">$E$</td>
+</tr>
+<tr>
+<td align="center">\zeta</td>
+<td align="center">$\zeta$</td>
+<td align="center">Z</td>
+<td align="center">$Z$</td>
+</tr>
+<tr>
+<td align="center">\eta</td>
+<td align="center">$\eta$</td>
+<td align="center">H</td>
+<td align="center">$H$</td>
+</tr>
+<tr>
+<td align="center">\theta</td>
+<td align="center">$\theta$</td>
+<td align="center">\Theta</td>
+<td align="center">$\Theta$</td>
+</tr>
+<tr>
+<td align="center">\iota</td>
+<td align="center">$\iota$</td>
+<td align="center">I</td>
+<td align="center">$I$</td>
+</tr>
+<tr>
+<td align="center">\kappa</td>
+<td align="center">$\kappa$</td>
+<td align="center">K</td>
+<td align="center">$K$</td>
+</tr>
+<tr>
+<td align="center">\lambda</td>
+<td align="center">$\lambda$</td>
+<td align="center">\Lambda</td>
+<td align="center">$\Lambda$</td>
+</tr>
+<tr>
+<td align="center">\mu</td>
+<td align="center">$\mu$</td>
+<td align="center">M</td>
+<td align="center">$M$</td>
+</tr>
+<tr>
+<td align="center">\nu</td>
+<td align="center">$\nu$</td>
+<td align="center">N</td>
+<td align="center">$N$</td>
+</tr>
+<tr>
+<td align="center">\xi</td>
+<td align="center">$\xi$</td>
+<td align="center">\Xi</td>
+<td align="center">$\Xi$</td>
+</tr>
+<tr>
+<td align="center">\omicron</td>
+<td align="center">$\omicron$</td>
+<td align="center">O</td>
+<td align="center">$O$</td>
+</tr>
+<tr>
+<td align="center">\pi</td>
+<td align="center">$\pi$</td>
+<td align="center">\Pi</td>
+<td align="center">$\Pi$</td>
+</tr>
+<tr>
+<td align="center">\rho</td>
+<td align="center">$\rho$</td>
+<td align="center">P</td>
+<td align="center">$P$</td>
+</tr>
+<tr>
+<td align="center">\sigma</td>
+<td align="center">$\sigma$</td>
+<td align="center">\Sigma</td>
+<td align="center">$\Sigma$</td>
+</tr>
+<tr>
+<td align="center">\tau</td>
+<td align="center">$\tau$</td>
+<td align="center">T</td>
+<td align="center">$T$</td>
+</tr>
+<tr>
+<td align="center">\upsilon</td>
+<td align="center">$\upsilon$</td>
+<td align="center">Y</td>
+<td align="center">$Y$</td>
+</tr>
+<tr>
+<td align="center">\phi</td>
+<td align="center">$\phi$</td>
+<td align="center">\Phi</td>
+<td align="center">$\Phi$</td>
+</tr>
+<tr>
+<td align="center">\chi</td>
+<td align="center">$\chi$</td>
+<td align="center">X</td>
+<td align="center">$X$</td>
+</tr>
+<tr>
+<td align="center">\psi</td>
+<td align="center">$\psi$</td>
+<td align="center">\Psi</td>
+<td align="center">$\Psi$</td>
+</tr>
+<tr>
+<td align="center">\omega</td>
+<td align="center">$\omega$</td>
+<td align="center">\Omega</td>
+<td align="center">$\Omega$</td>
+</tr>
+</tbody></table>
+<h2 id="上下标"><a href="#上下标" class="headerlink" title="上下标"></a>上下标</h2><p>上标和下标分别使用<code>^</code>与<code>_</code>，例如<code>$x_i^2$</code>表示的是$x_i^2$  </p>
+<p>默认情况下, 上下标符号仅仅对下一个组起作用。一个组即单个字符或者使用<code>{..}</code> 包裹起来的内容。如果使用<code>$10^10$</code>表示的是$10^10$;而<code>$10^{10}$</code>才是$10^{10}$。同时,大括号还能消除二义性，如<code>x^5^6</code> 将得到一个错误，必须使用大括号来界定^的结合性，如<code>${x^5}^6$</code>:${x^5}^6$或者<code>$x^{5^6}$</code>:$x^{5^6}$。</p>
+<h2 id="括号"><a href="#括号" class="headerlink" title="括号"></a>括号</h2><p>使用原始的<code>( )</code>,<code>[ ]</code> 即可，如<code>$(2+3)[4+4]$</code>:$(2+3)[4+4]$<br>使用\left(或\right)使符号大小与邻近的公式相适应（该语句适用于所有括号类型），如<code>$\left(\frac{x}{y}\right)$</code>:$\left(\frac{x}{y}\right)$</p>
+<p>以下转载<a href="https://www.jianshu.com/p/8b6fc36035c0" target="_blank" rel="noopener">https://www.jianshu.com/p/8b6fc36035c0</a></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title></title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+<style>
+body, html {
+    width: 100%;
+    height: 100%;
+}
+*, ::after, ::before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section {
+    display: block;
+}
+._2rhmJa {
+    font-weight: 400;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    padding-right: 50px;
+}
+._3Z3nHf, .ouvJEz {
+    background-color: #fff;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+.ouvJEz {
+    padding: 24px;
+}
+._gp-ck {
+    flex-shrink: 0;
+    width: 730px;
+    margin-bottom: 24px;
+    margin-right: 10px;
+}
+._3VRLsv {
+    box-sizing: content-box;
+    padding-left: 16px;
+    padding-right: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+._3VRLsv {
+    justify-content: center;
+    align-items: flex-start;
+    min-height: calc(-66px + 100vh);
+}
+._3kbg6I {
+    background-color: #f9f9f9;
+}
+body {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    line-height: 1.5;
+    -webkit-font-feature-settings: "tnum","tnum";
+    font-feature-settings: "tnum" 1, "tnum" 1;
+}
+body {
+    line-height: 1.4285;
+    color: #404040;
+    background-color: #fff;
+    font-family: -apple-system,BlinkMacSystemFont,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-feature-settings: "tnum" 1;
+    font-variant: tabular-nums;
+}
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -ms-overflow-style: scrollbar;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+html {
+    --antd-wave-shadow-color: #ec7259;
+}
+p {
+    margin-top: 0px;
+    margin-bottom: 1em;
+}
+._2rhmJa p {
+    margin-bottom: 20px;
+    word-break: break-word;
+}
+hr {
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0px;
+    overflow: visible;
+}
+._2rhmJa hr {
+    margin: 0 0 20px;
+    border: 0;
+    border-top: 1px solid #eee !important;
+}
+table {
+    border-collapse: collapse;
+}
+._2rhmJa table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    border: 1px solid #eee;
+    border-left: none;
+    word-break: break-word;
+}
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0px;
+    margin-bottom: 0.5em;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 500;
+}
+b, strong {
+    font-weight: bolder;
+}
+b, h1, h2, h3, h4, h5, h6, strong {
+    font-weight: 600;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: #404040;
+    text-rendering: optimizelegibility;
+}
+._2rhmJa h1, ._2rhmJa h2, ._2rhmJa h3, ._2rhmJa h4, ._2rhmJa h5, ._2rhmJa h6 {
+    margin-bottom: 16px;
+}
+._2rhmJa h2 {
+    font-size: 24px;
+}
+dl, ol, ul {
+    margin-top: 0px;
+    margin-bottom: 1em;
+}
+ol, ul {
+    padding-left: 0px;
+    margin: 0;
+    list-style: none;
+}
+ol ol, ol ul, ul ol, ul ul {
+    margin-bottom: 0px;
+}
+._2rhmJa ol, ._2rhmJa ul {
+    word-break: break-word;
+    margin: 0 0 20px 20px;
+}
+._2rhmJa ul {
+    list-style-type: disc;
+}
+._2Uzcx_ {
+    position: relative;
+    overflow: hidden;
+}
+._2rhmJa h3 {
+    font-size: 22px;
+}
+._2rhmJa ol {
+    list-style-type: decimal;
+}
+._2rhmJa table tr:nth-of-type(2n) {
+    background-color: hsla(0, 0%, 70%, 0.15);
+}
+th {
+    text-align: inherit;
+}
+._2rhmJa table td, ._2rhmJa table th {
+    padding: 8px;
+    border: 1px solid #eee;
+    line-height: 20px;
+    vertical-align: middle;
+}
+a {
+    color: #ec7259;
+    text-decoration: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    -webkit-transition: color .3s;
+    transition: color .3s;
+    -webkit-text-decoration-skip: objects;
+}
+[role=button], a, area, button, input:not([type=range]), label, select, summary, textarea {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
+a {
+    color: #0681d0;
+}
+code, kbd, pre, samp {
+    font-size: 1em;
+    font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
+}
+pre {
+    margin-top: 0px;
+    margin-bottom: 1em;
+    overflow: auto;
+}
+._2rhmJa code {
+    padding: 2px 4px;
+    border: none;
+    vertical-align: middle;
+    white-space: pre-wrap;
+}
+code[class*=language-], pre[class*=language-] {
+    color: #ccc;
+    background: none;
+    font-family: Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;
+    font-size: 1em;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+}
+pre[class*=language-] {
+    padding: 1em;
+    margin: .5em 0;
+    overflow: auto;
+}
+:not(pre) > code[class*=language-], pre[class*=language-] {
+    background: #2d2d2d;
+}
+._2rhmJa code, ._2rhmJa pre, ._2rhmJa pre[class*=language-] {
+    font-family: Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;
+    font-size: 12px;
+}
+._2rhmJa pre, ._2rhmJa pre[class*=language-] {
+    word-wrap: normal;
+    word-break: break-all;
+    white-space: pre;
+    overflow-x: scroll;
+    overscroll-behavior-x: contain;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    z-index: 0;
+    padding: 1em;
+    line-height: 1.5;
+    color: #ccc;
+    background: #2d2d2d;
+}
+._2rhmJa :not(pre) code {
+    color: #c7254e;
+    background-color: #f2f2f2;
+}
+._2rhmJa table th {
+    font-weight: bold;
+}
+._2rhmJa table thead th {
+    vertical-align: middle;
+    text-align: inherit;
+}
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+._2rhmJa img {
+    max-width: 100%;
+}
+._2rhmJa [mathimg='1'].math-inline {
+    display: inline;
+    margin: 0 3px;
+    vertical-align: middle;
+}
+._2rhmJa [mathimg='1'].math-block {
+    display: block;
+    margin: 1em auto;
+}
+._2rhmJa [mathimg='1'].math-block, ._2rhmJa [mathimg='1'].math-inline {
+    max-width: 100%;
+}
+button, input, optgroup, select, textarea {
+    margin: 0;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+}
+button, input {
+    overflow: visible;
+}
+button, select {
+    text-transform: none;
+}
+.VJbwyy {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 24px;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0;
+    border: none;
+    border-radius: 6px;
+    color: #ccc;
+    background-color: hsla(0, 0%, 90%, 0.2);
+    box-shadow: 0px 2px 0px 0px rgba(0,0,0,0.25);
+    opacity: 0;
+    visibility: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: opacity .2s ease-in-out,visibility .2s ease-in-out;
+    z-index: 1;
+}
+[type=reset], [type=submit], button, html [type=button] {
+    -webkit-appearance: button;
+}
+[role=button], button {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+pre[class*=language-].line-numbers {
+    position: relative;
+    padding-left: 3.8em;
+    counter-reset: linenumber;
+}
+._2rhmJa pre[class*=language-] code, ._2rhmJa pre code {
+    padding: 0;
+    background-color: transparent;
+    color: inherit;
+    white-space: pre;
+    vertical-align: unset;
+}
+pre[class*=language-].line-numbers > code {
+    position: relative;
+    white-space: inherit;
+}
+.token.atrule, .token.builtin, .token.important, .token.keyword, .token.selector {
+    color: #cc99cd;
+}
+.token.punctuation {
+    color: #ccc;
+}
+.token.entity, .token.operator, .token.url {
+    color: #67cdcc;
+}
+.token.boolean, .token.function, .token.number {
+    color: #f08d49;
+}
+.line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: 0px;
+    font-size: 100%;
+    left: -3.8em;
+    width: 3em;
+    letter-spacing: -1px;
+    border-right: 1px solid #999;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.line-numbers-rows > span {
+    pointer-events: none;
+    display: block;
+    counter-increment: linenumber;
+}
+.anticon {
+    display: inline-block;
+    color: inherit;
+    font-style: normal;
+    line-height: 0;
+    text-align: center;
+    text-transform: none;
+    vertical-align: -0.12em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.anticon > * {
+    line-height: 1;
+}
+svg:not(:root) {
+    overflow: hidden;
+}
+.anticon svg {
+    display: inline-block;
+}
+._2rhmJa ol li, ._2rhmJa ul li {
+    line-height: 30px;
+}
+.token.class-name, .token.constant, .token.property, .token.symbol {
+    color: #f8c555;
+}
+.token.attr-value, .token.char, .token.regex, .token.string, .token.variable {
+    color: #7ec699;
+}
+._2rhmJa ol li ol, ._2rhmJa ol li ul, ._2rhmJa ul li ol, ._2rhmJa ul li ul {
+    margin-top: 16px;
+}
+</style>
+</head>
+<body><div id="__next"><div class="_21bLU4 _3kbg6I"><div class="_3VRLsv" role="main"><div class="_gp-ck"><section class="ouvJEz"><article class="_2rhmJa">
+<hr>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Author</th>
+<th style="text-align:left">shaniadolphin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">e-mail</td>
+<td style="text-align:left"><a href="mailto:349948204@qq.com" target="_blank" rel="nofollow">349948204@qq.com</a></td>
+</tr>
+<tr>
+<td style="text-align:center">github</td>
+<td style="text-align:left"><a href="https://github.com/shaniadolphin/" target="_blank" rel="nofollow">https://github.com/shaniadolphin/</a></td>
+</tr>
+</tbody>
+</table>
+<h3>大括号</h3>
+<p>  由于大括号<code>{}</code> 被用于分组，因此需要使用<code>\{</code>和<code>\}</code>表示大括号，也可以使用<code>\lbrace</code> 和<code>\rbrace</code>来表示。如<code>$\{a\*b\}:a\∗b$</code> 或<code>$\lbrace a\*b\rbrace :a\*b$</code> 表示<img class="math-inline" alt="\{a*b\}:a∗b" src="https://math.jianshu.com/math?formula=%5C%7Ba*b%5C%7D%3Aa%E2%88%97b" mathimg="1">。</p>
+<h3>尖括号</h3>
+<p>  区分于小于号和大于号，使用<code>\langle</code> 和<code>\rangle</code> 表示左尖括号和右尖括号。如<code>$\langle x \rangle$</code> 表示：<img class="math-inline" alt="\langle x \rangle" src="https://math.jianshu.com/math?formula=%5Clangle%20x%20%5Crangle" mathimg="1">。</p>
+<h3>上取整</h3>
+<p>  使用<code>\lceil</code> 和 <code>\rceil</code> 表示。 如，<code>$\lceil x \rceil$</code>：<img class="math-inline" alt="\lceil x \rceil" src="https://math.jianshu.com/math?formula=%5Clceil%20x%20%5Crceil" mathimg="1">。</p>
+<h3>下取整</h3>
+<p>  使用<code>\lfloor</code> 和 <code>\rfloor</code> 表示。如，<code>$\lfloor x \rfloor$</code>：<img class="math-inline" alt="\lfloor x \rfloor" src="https://math.jianshu.com/math?formula=%5Clfloor%20x%20%5Crfloor" mathimg="1">。</p>
+<h2><strong>求和与积分</strong></h2>
+<h3>求和</h3>
+<p>  <code>\sum</code> 用来表示求和符号，其下标表示求和下限，上标表示上限。如:<br>
+  <code>$\sum_{r=1}^n$</code>表示：<img class="math-inline" alt="\sum_{r=1}^n" src="https://math.jianshu.com/math?formula=%5Csum_%7Br%3D1%7D%5En" mathimg="1">。<br>
+  <code>$$\sum_{r=1}^n$$</code>表示：<img class="math-block" alt="\sum_{r=1}^n" src="https://math.jianshu.com/math?formula=%5Csum_%7Br%3D1%7D%5En" mathimg="1"></p>
+<h3>积分</h3>
+<p>  <code>\int</code> 用来表示积分符号，同样地，其上下标表示积分的上下限。如，<code>$\int_{r=1}^\infty$</code>：<img class="math-inline" alt="\int_{r=1}^\infty" src="https://math.jianshu.com/math?formula=%5Cint_%7Br%3D1%7D%5E%5Cinfty" mathimg="1">。<br>
+  多重积分同样使用 <strong>int</strong> ，通过 <strong>i</strong> 的数量表示积分导数：<br>
+  <code>$\iint$</code> ：<img class="math-inline" alt="\iint" src="https://math.jianshu.com/math?formula=%5Ciint" mathimg="1"><br>
+  <code>$\iiint$</code> ：<img class="math-inline" alt="\iiint" src="https://math.jianshu.com/math?formula=%5Ciiint" mathimg="1"><br>
+  <code>$\iiiint$</code> ：<img class="math-inline" alt="\iiiint" src="https://math.jianshu.com/math?formula=%5Ciiiint" mathimg="1"></p>
+<h3>连乘</h3>
+<p>  <code>$\prod {a+b}$</code>，输出：<img class="math-inline" alt="\prod {a+b}" src="https://math.jianshu.com/math?formula=%5Cprod%20%7Ba%2Bb%7D" mathimg="1">。<br>
+  <code>$\prod_{i=1}^{K}$</code>，输出：<img class="math-inline" alt="\prod_{i=1}^{K}" src="https://math.jianshu.com/math?formula=%5Cprod_%7Bi%3D1%7D%5E%7BK%7D" mathimg="1">。<br>
+  <code>$$\prod_{i=1}^{K}$$</code>，输出：<img class="math-inline" alt="\prod_{i=1}^{K}" src="https://math.jianshu.com/math?formula=%5Cprod_%7Bi%3D1%7D%5E%7BK%7D" mathimg="1">。</p>
+<h3>其他</h3>
+<p>  与此类似的符号还有，<br>
+  <code>$\prod$</code> ：<img class="math-inline" alt="\prod" src="https://math.jianshu.com/math?formula=%5Cprod" mathimg="1"><br>
+  <code>$\bigcup$</code> ：<img class="math-inline" alt="\bigcup" src="https://math.jianshu.com/math?formula=%5Cbigcup" mathimg="1"><br>
+  <code>$\bigcap$</code> ：<img class="math-inline" alt="\bigcap" src="https://math.jianshu.com/math?formula=%5Cbigcap" mathimg="1"><br>
+  <code>$arg\,\max_{c_k}$</code>：<img class="math-inline" alt="arg\,\max_{c_k}" src="https://math.jianshu.com/math?formula=arg%5C%2C%5Cmax_%7Bc_k%7D" mathimg="1"><br>
+  <code>$arg\,\min_{c_k}$</code>：<img class="math-inline" alt="arg\,\min_{c_k}" src="https://math.jianshu.com/math?formula=arg%5C%2C%5Cmin_%7Bc_k%7D" mathimg="1"><br>
+  <code>$\mathop {argmin}_{c_k}$</code>：<img class="math-inline" alt="\mathop {argmin}_{c_k}" src="https://math.jianshu.com/math?formula=%5Cmathop%20%7Bargmin%7D_%7Bc_k%7D" mathimg="1"><br>
+  <code>$\mathop {argmax}_{c_k}$</code>：<img class="math-inline" alt="\mathop {argmax}_{c_k}" src="https://math.jianshu.com/math?formula=%5Cmathop%20%7Bargmax%7D_%7Bc_k%7D" mathimg="1"><br>
+  <code>$\max_{c_k}$</code>：<img class="math-inline" alt="\max_{c_k}" src="https://math.jianshu.com/math?formula=%5Cmax_%7Bc_k%7D" mathimg="1"><br>
+  <code>$\min_{c_k}$</code>：<img class="math-inline" alt="\min_{c_k}" src="https://math.jianshu.com/math?formula=%5Cmin_%7Bc_k%7D" mathimg="1"></p>
+<h2><strong>分式与根式</strong></h2>
+<h3>分式</h3>
+<ul>
+<li>第一种，使用<code>\frac ab</code>，<code>\frac</code>作用于其后的两个组<code>a</code> ，<code>b</code> ，结果为<img class="math-inline" alt="\frac ab" src="https://math.jianshu.com/math?formula=%5Cfrac%20ab" mathimg="1">。如果你的分子或分母不是单个字符，请使用<code>{..}</code>来分组，比如<code>$\frac {a+c+1}{b+c+2}$</code>表示<img class="math-inline" alt="\frac {a+c+1}{b+c+2}" src="https://math.jianshu.com/math?formula=%5Cfrac%20%7Ba%2Bc%2B1%7D%7Bb%2Bc%2B2%7D" mathimg="1">。</li>
+<li>第二种，使用<code>\over</code>来分隔一个组的前后两部分，如<code>{a+1\over b+1}</code>：<img class="math-inline" alt="{a+1\over b+1}" src="https://math.jianshu.com/math?formula=%7Ba%2B1%5Cover%20b%2B1%7D" mathimg="1">
+</li>
+</ul>
+<h3>连分数</h3>
+<p>  书写连分数表达式时，请使用<code>\cfrac</code>代替<code>\frac</code>或者<code>\over</code>两者效果对比如下：<br>
+  <code>\frac</code> 表示如下：</p>
+<div class="_2Uzcx_"><button class="VJbwyy" aria-label="复制代码" type="button"><i class="anticon anticon-copy" aria-label="icon: copy"><svg xmlns="http://www.w3.org/2000/svg" class="" aria-hidden="true" fill="currentColor" viewbox="64 64 896 896" focusable="false" width="1em" height="1em" data-icon="copy"><path d="M 832 64 H 296 c -4.4 0 -8 3.6 -8 8 v 56 c 0 4.4 3.6 8 8 8 h 496 v 688 c 0 4.4 3.6 8 8 8 h 56 c 4.4 0 8 -3.6 8 -8 V 96 c 0 -17.7 -14.3 -32 -32 -32 Z M 704 192 H 192 c -17.7 0 -32 14.3 -32 32 v 530.7 c 0 8.5 3.4 16.6 9.4 22.6 l 173.3 173.3 c 2.2 2.2 4.7 4 7.4 5.5 v 1.9 h 4.2 c 3.5 1.3 7.2 2 11 2 H 704 c 17.7 0 32 -14.3 32 -32 V 224 c 0 -17.7 -14.3 -32 -32 -32 Z M 350 856.2 L 263.9 770 H 350 v 86.2 Z M 664 888 H 414 V 746 c 0 -22.1 -17.9 -40 -40 -40 H 232 V 264 h 432 v 624 Z"/></svg></i></button><pre class="line-numbers  language-ruby"><code class="  language-ruby"><span class="token variable">$$x</span><span class="token operator">=</span>a_0 <span class="token operator">+</span> \frac <span class="token punctuation">{</span><span class="token number">1</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">{</span>a_1 <span class="token operator">+</span> \frac <span class="token punctuation">{</span><span class="token number">2</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">{</span>a_2 <span class="token operator">+</span> \frac <span class="token punctuation">{</span><span class="token number">3</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">{</span>a_3 <span class="token operator">+</span> \frac <span class="token punctuation">{</span><span class="token number">4</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">{</span>a_4 <span class="token operator">+</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span>$$
+<span class="line-numbers-rows" aria-hidden="true"><span></span></span></code></pre></div>
+<p>  显示如下：<br>
+<img class="math-block" alt="x=a_0 + \frac {1^2}{a_1 + \frac {2^2}{a_2 + \frac {3^2}{a_3 + \frac {4^2}{a_4 + ...}}}}" src="https://math.jianshu.com/math?formula=x%3Da_0%20%2B%20%5Cfrac%20%7B1%5E2%7D%7Ba_1%20%2B%20%5Cfrac%20%7B2%5E2%7D%7Ba_2%20%2B%20%5Cfrac%20%7B3%5E2%7D%7Ba_3%20%2B%20%5Cfrac%20%7B4%5E2%7D%7Ba_4%20%2B%20...%7D%7D%7D%7D" mathimg="1"><br>
+  <code>\cfrac</code> 表示如下：</p>
+<div class="_2Uzcx_"><button class="VJbwyy" aria-label="复制代码" type="button"><i class="anticon anticon-copy" aria-label="icon: copy"><svg xmlns="http://www.w3.org/2000/svg" class="" aria-hidden="true" fill="currentColor" viewbox="64 64 896 896" focusable="false" width="1em" height="1em" data-icon="copy"><path d="M 832 64 H 296 c -4.4 0 -8 3.6 -8 8 v 56 c 0 4.4 3.6 8 8 8 h 496 v 688 c 0 4.4 3.6 8 8 8 h 56 c 4.4 0 8 -3.6 8 -8 V 96 c 0 -17.7 -14.3 -32 -32 -32 Z M 704 192 H 192 c -17.7 0 -32 14.3 -32 32 v 530.7 c 0 8.5 3.4 16.6 9.4 22.6 l 173.3 173.3 c 2.2 2.2 4.7 4 7.4 5.5 v 1.9 h 4.2 c 3.5 1.3 7.2 2 11 2 H 704 c 17.7 0 32 -14.3 32 -32 V 224 c 0 -17.7 -14.3 -32 -32 -32 Z M 350 856.2 L 263.9 770 H 350 v 86.2 Z M 664 888 H 414 V 746 c 0 -22.1 -17.9 -40 -40 -40 H 232 V 264 h 432 v 624 Z"/></svg></i></button><pre class="line-numbers  language-ruby"><code class="  language-ruby"><span class="token variable">$$x</span><span class="token operator">=</span>a_0 <span class="token operator">+</span> \cfrac <span class="token punctuation">{</span><span class="token number">1</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">{</span>a_1 <span class="token operator">+</span> \cfrac <span class="token punctuation">{</span><span class="token number">2</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">{</span>a_2 <span class="token operator">+</span> \cfrac <span class="token punctuation">{</span><span class="token number">3</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">{</span>a_3 <span class="token operator">+</span> \cfrac <span class="token punctuation">{</span><span class="token number">4</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">{</span>a_4 <span class="token operator">+</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span>$$
+<span class="line-numbers-rows" aria-hidden="true"><span></span></span></code></pre></div>
+<p>  显示如下：<br>
+<img class="math-block" alt="x=a_0 + \cfrac {1^2}{a_1 + \cfrac {2^2}{a_2 + \cfrac {3^2}{a_3 + \cfrac {4^2}{a_4 + ...}}}}" src="https://math.jianshu.com/math?formula=x%3Da_0%20%2B%20%5Ccfrac%20%7B1%5E2%7D%7Ba_1%20%2B%20%5Ccfrac%20%7B2%5E2%7D%7Ba_2%20%2B%20%5Ccfrac%20%7B3%5E2%7D%7Ba_3%20%2B%20%5Ccfrac%20%7B4%5E2%7D%7Ba_4%20%2B%20...%7D%7D%7D%7D" mathimg="1"></p>
+<h3>根式</h3>
+<p>  根式使用<code>\sqrt</code> 来表示。<br>
+  如开4次方：<code>$\sqrt[4]{\frac xy}$</code> ：<img class="math-inline" alt="\sqrt[4]{\frac xy}" src="https://math.jianshu.com/math?formula=%5Csqrt%5B4%5D%7B%5Cfrac%20xy%7D" mathimg="1">。<br>
+  开平方：<code>$\sqrt {a+b}$</code>：<img class="math-inline" alt="\sqrt {a+b}" src="https://math.jianshu.com/math?formula=%5Csqrt%20%7Ba%2Bb%7D" mathimg="1">。</p>
+<h2><strong>多行表达式</strong></h2>
+<h3>分类表达式</h3>
+<p>  定义函数的时候经常需要分情况给出表达式，使用<code>\begin{cases}…\end{cases}</code> 。其中：</p>
+<ul>
+<li>  使用<code>\\</code> 来分类，</li>
+<li>  使用<code>&amp;</code> 指示需要对齐的位置，</li>
+<li>  使用<code>\</code> +<code>空格</code>表示空格。</li>
+</ul>
+<div class="_2Uzcx_"><button class="VJbwyy" aria-label="复制代码" type="button"><i class="anticon anticon-copy" aria-label="icon: copy"><svg xmlns="http://www.w3.org/2000/svg" class="" aria-hidden="true" fill="currentColor" viewbox="64 64 896 896" focusable="false" width="1em" height="1em" data-icon="copy"><path d="M 832 64 H 296 c -4.4 0 -8 3.6 -8 8 v 56 c 0 4.4 3.6 8 8 8 h 496 v 688 c 0 4.4 3.6 8 8 8 h 56 c 4.4 0 8 -3.6 8 -8 V 96 c 0 -17.7 -14.3 -32 -32 -32 Z M 704 192 H 192 c -17.7 0 -32 14.3 -32 32 v 530.7 c 0 8.5 3.4 16.6 9.4 22.6 l 173.3 173.3 c 2.2 2.2 4.7 4 7.4 5.5 v 1.9 h 4.2 c 3.5 1.3 7.2 2 11 2 H 704 c 17.7 0 32 -14.3 32 -32 V 224 c 0 -17.7 -14.3 -32 -32 -32 Z M 350 856.2 L 263.9 770 H 350 v 86.2 Z M 664 888 H 414 V 746 c 0 -22.1 -17.9 -40 -40 -40 H 232 V 264 h 432 v 624 Z"/></svg></i></button><pre class="line-numbers  language-ruby"><code class="  language-ruby">$$
+f<span class="token punctuation">(</span>n<span class="token punctuation">)</span>
+\<span class="token keyword">begin</span><span class="token punctuation">{</span>cases<span class="token punctuation">}</span>
+\cfrac n2<span class="token punctuation">,</span> <span class="token operator">&amp;</span><span class="token keyword">if</span>\ n\ is\ even\\
+<span class="token number">3</span>n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span><span class="token keyword">if</span>\  n\ is\ odd
+\<span class="token keyword">end</span><span class="token punctuation">{</span>cases<span class="token punctuation">}</span>
+$$
+<span class="line-numbers-rows" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>  表示:<br>
+<img class="math-block" alt="f(n) \begin{cases} \cfrac n2, &amp;if\ n\ is\ even\\ 3n + 1, &amp;if\ n\ is\ odd \end{cases}" src="https://math.jianshu.com/math?formula=f(n)%20%5Cbegin%7Bcases%7D%20%5Ccfrac%20n2%2C%20%26if%5C%20n%5C%20is%5C%20even%5C%5C%203n%20%2B%201%2C%20%26if%5C%20n%5C%20is%5C%20odd%20%5Cend%7Bcases%7D" mathimg="1"></p>
+<div class="_2Uzcx_"><button class="VJbwyy" aria-label="复制代码" type="button"><i class="anticon anticon-copy" aria-label="icon: copy"><svg xmlns="http://www.w3.org/2000/svg" class="" aria-hidden="true" fill="currentColor" viewbox="64 64 896 896" focusable="false" width="1em" height="1em" data-icon="copy"><path d="M 832 64 H 296 c -4.4 0 -8 3.6 -8 8 v 56 c 0 4.4 3.6 8 8 8 h 496 v 688 c 0 4.4 3.6 8 8 8 h 56 c 4.4 0 8 -3.6 8 -8 V 96 c 0 -17.7 -14.3 -32 -32 -32 Z M 704 192 H 192 c -17.7 0 -32 14.3 -32 32 v 530.7 c 0 8.5 3.4 16.6 9.4 22.6 l 173.3 173.3 c 2.2 2.2 4.7 4 7.4 5.5 v 1.9 h 4.2 c 3.5 1.3 7.2 2 11 2 H 704 c 17.7 0 32 -14.3 32 -32 V 224 c 0 -17.7 -14.3 -32 -32 -32 Z M 350 856.2 L 263.9 770 H 350 v 86.2 Z M 664 888 H 414 V 746 c 0 -22.1 -17.9 -40 -40 -40 H 232 V 264 h 432 v 624 Z"/></svg></i></button><pre class="line-numbers  language-ruby"><code class="  language-ruby">$$
+<span class="token constant">L</span><span class="token punctuation">(</span><span class="token constant">Y</span><span class="token punctuation">,</span>f<span class="token punctuation">(</span><span class="token constant">X</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=</span>
+\<span class="token keyword">begin</span><span class="token punctuation">{</span>cases<span class="token punctuation">}</span>
+<span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span> \text<span class="token punctuation">{</span><span class="token constant">Y</span> <span class="token operator">=</span> f<span class="token punctuation">(</span><span class="token constant">X</span><span class="token punctuation">)</span><span class="token punctuation">}</span>  \\
+<span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span> \text<span class="token punctuation">{</span><span class="token constant">Y</span> $\neq$ f<span class="token punctuation">(</span><span class="token constant">X</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+\<span class="token keyword">end</span><span class="token punctuation">{</span>cases<span class="token punctuation">}</span>
+$$
+<span class="line-numbers-rows" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>  表示:<br>
+<img class="math-block" alt="L(Y,f(X)) = \begin{cases} 0, &amp; \text{Y = f(X)} \\ 1, &amp; \text{Y $\neq$ f(X)} \end{cases}" src="https://math.jianshu.com/math?formula=L(Y%2Cf(X))%20%3D%20%5Cbegin%7Bcases%7D%200%2C%20%26%20%5Ctext%7BY%20%3D%20f(X)%7D%20%5C%5C%201%2C%20%26%20%5Ctext%7BY%20%24%5Cneq%24%20f(X)%7D%20%5Cend%7Bcases%7D" mathimg="1"><br>
+  如果想分类之间的垂直间隔变大，可以使用<code>\\[2ex]</code> 代替<code>\\</code> 来分隔不同的情况。(<code>3ex,4ex</code> 也可以用，<code>1ex</code> 相当于原始距离）。如下所示：</p>
+<div class="_2Uzcx_"><button class="VJbwyy" aria-label="复制代码" type="button"><i class="anticon anticon-copy" aria-label="icon: copy"><svg xmlns="http://www.w3.org/2000/svg" class="" aria-hidden="true" fill="currentColor" viewbox="64 64 896 896" focusable="false" width="1em" height="1em" data-icon="copy"><path d="M 832 64 H 296 c -4.4 0 -8 3.6 -8 8 v 56 c 0 4.4 3.6 8 8 8 h 496 v 688 c 0 4.4 3.6 8 8 8 h 56 c 4.4 0 8 -3.6 8 -8 V 96 c 0 -17.7 -14.3 -32 -32 -32 Z M 704 192 H 192 c -17.7 0 -32 14.3 -32 32 v 530.7 c 0 8.5 3.4 16.6 9.4 22.6 l 173.3 173.3 c 2.2 2.2 4.7 4 7.4 5.5 v 1.9 h 4.2 c 3.5 1.3 7.2 2 11 2 H 704 c 17.7 0 32 -14.3 32 -32 V 224 c 0 -17.7 -14.3 -32 -32 -32 Z M 350 856.2 L 263.9 770 H 350 v 86.2 Z M 664 888 H 414 V 746 c 0 -22.1 -17.9 -40 -40 -40 H 232 V 264 h 432 v 624 Z"/></svg></i></button><pre class="line-numbers  language-ruby"><code class="  language-ruby">$$
+<span class="token constant">L</span><span class="token punctuation">(</span><span class="token constant">Y</span><span class="token punctuation">,</span>f<span class="token punctuation">(</span><span class="token constant">X</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=</span>
+\<span class="token keyword">begin</span><span class="token punctuation">{</span>cases<span class="token punctuation">}</span>
+<span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span> \text<span class="token punctuation">{</span><span class="token constant">Y</span> <span class="token operator">=</span> f<span class="token punctuation">(</span><span class="token constant">X</span><span class="token punctuation">)</span><span class="token punctuation">}</span> \\<span class="token punctuation">[</span><span class="token number">5</span>ex<span class="token punctuation">]</span>
+<span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span> \text<span class="token punctuation">{</span><span class="token constant">Y</span> $\neq$ f<span class="token punctuation">(</span><span class="token constant">X</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+\<span class="token keyword">end</span><span class="token punctuation">{</span>cases<span class="token punctuation">}</span>
+$$
+<span class="line-numbers-rows" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>  表示：<br>
+<img class="math-block" alt="L(Y,f(X)) = \begin{cases} 0, &amp; \text{Y = f(X)} \\[5ex] 1, &amp; \text{Y $\neq$ f(X)} \end{cases}" src="https://math.jianshu.com/math?formula=L(Y%2Cf(X))%20%3D%20%5Cbegin%7Bcases%7D%200%2C%20%26%20%5Ctext%7BY%20%3D%20f(X)%7D%20%5C%5C%5B5ex%5D%201%2C%20%26%20%5Ctext%7BY%20%24%5Cneq%24%20f(X)%7D%20%5Cend%7Bcases%7D" mathimg="1"></p>
+<h3>多行表达式</h3>
+<p>  有时候需要将一行公式分多行进行显示。</p>
+<div class="_2Uzcx_"><button class="VJbwyy" aria-label="复制代码" type="button"><i class="anticon anticon-copy" aria-label="icon: copy"><svg xmlns="http://www.w3.org/2000/svg" class="" aria-hidden="true" fill="currentColor" viewbox="64 64 896 896" focusable="false" width="1em" height="1em" data-icon="copy"><path d="M 832 64 H 296 c -4.4 0 -8 3.6 -8 8 v 56 c 0 4.4 3.6 8 8 8 h 496 v 688 c 0 4.4 3.6 8 8 8 h 56 c 4.4 0 8 -3.6 8 -8 V 96 c 0 -17.7 -14.3 -32 -32 -32 Z M 704 192 H 192 c -17.7 0 -32 14.3 -32 32 v 530.7 c 0 8.5 3.4 16.6 9.4 22.6 l 173.3 173.3 c 2.2 2.2 4.7 4 7.4 5.5 v 1.9 h 4.2 c 3.5 1.3 7.2 2 11 2 H 704 c 17.7 0 32 -14.3 32 -32 V 224 c 0 -17.7 -14.3 -32 -32 -32 Z M 350 856.2 L 263.9 770 H 350 v 86.2 Z M 664 888 H 414 V 746 c 0 -22.1 -17.9 -40 -40 -40 H 232 V 264 h 432 v 624 Z"/></svg></i></button><pre class="line-numbers  language-ruby"><code class="  language-ruby">$$
+\<span class="token keyword">begin</span><span class="token punctuation">{</span>equation<span class="token punctuation">}</span>\<span class="token keyword">begin</span><span class="token punctuation">{</span>split<span class="token punctuation">}</span> 
+a<span class="token operator">&amp;</span><span class="token operator">=</span>b<span class="token operator">+</span>c<span class="token operator">-</span>d \\ 
+<span class="token operator">&amp;</span>\quad <span class="token operator">+</span>e<span class="token operator">-</span>f\\ 
+<span class="token operator">&amp;</span><span class="token operator">=</span>g<span class="token operator">+</span>h\\ 
+<span class="token operator">&amp;</span> <span class="token operator">=</span>i 
+\<span class="token keyword">end</span><span class="token punctuation">{</span>split<span class="token punctuation">}</span>\<span class="token keyword">end</span><span class="token punctuation">{</span>equation<span class="token punctuation">}</span>
+$$
+<span class="line-numbers-rows" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>  表示：<br>
+<img class="math-block" alt="\begin{equation}\begin{split} a&amp;=b+c-d \\ &amp;\quad +e-f\\ &amp;=g+h\\ &amp; =i \end{split}\end{equation}" src="https://math.jianshu.com/math?formula=%5Cbegin%7Bequation%7D%5Cbegin%7Bsplit%7D%20a%26%3Db%2Bc-d%20%5C%5C%20%26%5Cquad%20%2Be-f%5C%5C%20%26%3Dg%2Bh%5C%5C%20%26%20%3Di%20%5Cend%7Bsplit%7D%5Cend%7Bequation%7D" mathimg="1"><br>
+  其中<code>begin{equation}</code> 表示开始方程，<code>end{equation}</code> 表示方程结束；<code>begin{split}</code> 表示开始多行公式，<code>end{split}</code> 表示结束；公式中用<code>\\</code> 表示回车到下一行，<code>&amp;</code> 表示对齐的位置。</p>
+<h3>方程组</h3>
+<p>  使用<code>\begin{array}...\end{array}</code> 与<code>\left \{</code> 与<code>\right.</code> 配合表示方程组:</p>
+<div class="_2Uzcx_"><button class="VJbwyy" aria-label="复制代码" type="button"><i class="anticon anticon-copy" aria-label="icon: copy"><svg xmlns="http://www.w3.org/2000/svg" class="" aria-hidden="true" fill="currentColor" viewbox="64 64 896 896" focusable="false" width="1em" height="1em" data-icon="copy"><path d="M 832 64 H 296 c -4.4 0 -8 3.6 -8 8 v 56 c 0 4.4 3.6 8 8 8 h 496 v 688 c 0 4.4 3.6 8 8 8 h 56 c 4.4 0 8 -3.6 8 -8 V 96 c 0 -17.7 -14.3 -32 -32 -32 Z M 704 192 H 192 c -17.7 0 -32 14.3 -32 32 v 530.7 c 0 8.5 3.4 16.6 9.4 22.6 l 173.3 173.3 c 2.2 2.2 4.7 4 7.4 5.5 v 1.9 h 4.2 c 3.5 1.3 7.2 2 11 2 H 704 c 17.7 0 32 -14.3 32 -32 V 224 c 0 -17.7 -14.3 -32 -32 -32 Z M 350 856.2 L 263.9 770 H 350 v 86.2 Z M 664 888 H 414 V 746 c 0 -22.1 -17.9 -40 -40 -40 H 232 V 264 h 432 v 624 Z"/></svg></i></button><pre class="line-numbers  language-ruby"><code class="  language-ruby">$$
+\left \<span class="token punctuation">{</span> 
+\<span class="token keyword">begin</span><span class="token punctuation">{</span>array<span class="token punctuation">}</span><span class="token punctuation">{</span>c<span class="token punctuation">}</span>
+a_1x<span class="token operator">+</span>b_1y<span class="token operator">+</span>c_1z<span class="token operator">=</span>d_1 \\ 
+a_2x<span class="token operator">+</span>b_2y<span class="token operator">+</span>c_2z<span class="token operator">=</span>d_2 \\ 
+a_3x<span class="token operator">+</span>b_3y<span class="token operator">+</span>c_3z<span class="token operator">=</span>d_3
+\<span class="token keyword">end</span><span class="token punctuation">{</span>array<span class="token punctuation">}</span>
+\right<span class="token punctuation">.</span>
+$$
+<span class="line-numbers-rows" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>  表示：<br>
+<img class="math-block" alt="\left \{ \begin{array}{c} a_1x+b_1y+c_1z=d_1 \\ a_2x+b_2y+c_2z=d_2 \\ a_3x+b_3y+c_3z=d_3 \end{array} \right." src="https://math.jianshu.com/math?formula=%5Cleft%20%5C%7B%20%5Cbegin%7Barray%7D%7Bc%7D%20a_1x%2Bb_1y%2Bc_1z%3Dd_1%20%5C%5C%20a_2x%2Bb_2y%2Bc_2z%3Dd_2%20%5C%5C%20a_3x%2Bb_3y%2Bc_3z%3Dd_3%20%5Cend%7Barray%7D%20%5Cright." mathimg="1"><br>
+  注意：通常MathJax通过内部策略自己管理公式内部的空间，因此<code>a…b</code> 与<code>a…….b</code> （<code>.</code>表示空格）都会显示为<code>ab</code> 。可以通过在<code>ab</code> 间加入<code>\</code> ,增加些许间隙，<code>\;</code> 增加较宽的间隙，<code>\quad</code>  与<code>\qquad</code> 会增加更大的间隙。</p>
+<h2><strong>特殊函数与符号</strong></h2>
+<h3>三角函数</h3>
+<p>  <code>\snx$</code> : <img class="math-inline" alt="sinx" src="https://math.jianshu.com/math?formula=sinx" mathimg="1"><br>
+  <code>\arctanx</code> : <img class="math-inline" alt="arctanx" src="https://math.jianshu.com/math?formula=arctanx" mathimg="1"></p>
+<h3>比较运算符</h3>
+<p>  小于(<code>\lt</code> )：<img class="math-inline" alt="\lt" src="https://math.jianshu.com/math?formula=%5Clt" mathimg="1"><br>
+  大于(<code>\gt</code> )：<img class="math-inline" alt="\gt" src="https://math.jianshu.com/math?formula=%5Cgt" mathimg="1"><br>
+  小于等于(<code>\le</code> )：<img class="math-inline" alt="\le" src="https://math.jianshu.com/math?formula=%5Cle" mathimg="1"><br>
+  大于等于(<code>\ge</code> )：<img class="math-inline" alt="\ge" src="https://math.jianshu.com/math?formula=%5Cge" mathimg="1"><br>
+  不等于(<code>\ne</code> ) : <img class="math-inline" alt="\ne" src="https://math.jianshu.com/math?formula=%5Cne" mathimg="1"><br>
+  可以在这些运算符前面加上<code>\not</code> ，如<code>\not\lt</code> : <img class="math-inline" alt="\not\lt`" src="https://math.jianshu.com/math?formula=%5Cnot%5Clt%60" mathimg="1"></p>
+<h3>集合关系与运算</h3>
+<p>  并集(<code>\cup</code> ): <img class="math-inline" alt="\cup" src="https://math.jianshu.com/math?formula=%5Ccup" mathimg="1"><br>
+  交集(<code>\cap</code> ): <img class="math-inline" alt="\cap" src="https://math.jianshu.com/math?formula=%5Ccap" mathimg="1"><br>
+  差集(<code>\setminus</code> ): <img class="math-inline" alt="\setminus" src="https://math.jianshu.com/math?formula=%5Csetminus" mathimg="1"><br>
+  子集(<code>\subset</code> ): <img class="math-inline" alt="\subset" src="https://math.jianshu.com/math?formula=%5Csubset" mathimg="1"><br>
+  子集(<code>\subseteq</code> ): <img class="math-inline" alt="\subseteq" src="https://math.jianshu.com/math?formula=%5Csubseteq" mathimg="1"><br>
+  非子集(<code>\subsetneq</code> ): <img class="math-inline" alt="\subsetneq" src="https://math.jianshu.com/math?formula=%5Csubsetneq" mathimg="1"><br>
+  父集(<code>\supset</code> ): <img class="math-inline" alt="\supset" src="https://math.jianshu.com/math?formula=%5Csupset" mathimg="1"><br>
+  属于(<code>\in</code> ): <img class="math-inline" alt="\in" src="https://math.jianshu.com/math?formula=%5Cin" mathimg="1"><br>
+  不属于(<code>\notin</code> ): <img class="math-inline" alt="\notin" src="https://math.jianshu.com/math?formula=%5Cnotin" mathimg="1"><br>
+  空集(<code>\emptyset</code> ): <img class="math-inline" alt="\emptyset" src="https://math.jianshu.com/math?formula=%5Cemptyset" mathimg="1"><br>
+  空(<code>\varnothing</code> ): <img class="math-inline" alt="\varnothing" src="https://math.jianshu.com/math?formula=%5Cvarnothing" mathimg="1"></p>
+<h3>排列</h3>
+<p>  <code>\binom{n+1}{2k}</code> : <img class="math-inline" alt="\binom{n+1}{2k}" src="https://math.jianshu.com/math?formula=%5Cbinom%7Bn%2B1%7D%7B2k%7D" mathimg="1"><br>
+  <code>{n+1 \choose 2k}</code> : <img class="math-inline" alt="{n+1 \choose 2k}" src="https://math.jianshu.com/math?formula=%7Bn%2B1%20%5Cchoose%202k%7D" mathimg="1"></p>
+<h3>箭头</h3>
+<p>  (<code>\to</code> ):<img class="math-inline" alt="\to" src="https://math.jianshu.com/math?formula=%5Cto" mathimg="1"><br>
+  (<code>\rightarrow</code> ): <img class="math-inline" alt="\rightarrow" src="https://math.jianshu.com/math?formula=%5Crightarrow" mathimg="1"><br>
+  (<code>\leftarrow</code> ): <img class="math-inline" alt="\leftarrow" src="https://math.jianshu.com/math?formula=%5Cleftarrow" mathimg="1"><br>
+  (<code>\Rightarrow</code> ): <img class="math-inline" alt="\Rightarrow" src="https://math.jianshu.com/math?formula=%5CRightarrow" mathimg="1"><br>
+  (<code>\Leftarrow</code> ): <img class="math-inline" alt="\Leftarrow" src="https://math.jianshu.com/math?formula=%5CLeftarrow" mathimg="1"><br>
+  (<code>\mapsto</code> ): <img class="math-inline" alt="\mapsto" src="https://math.jianshu.com/math?formula=%5Cmapsto" mathimg="1"></p>
+<h3>逻辑运算符</h3>
+<p>  (<code>\land</code> ): <img class="math-inline" alt="\land" src="https://math.jianshu.com/math?formula=%5Cland" mathimg="1"><br>
+  (<code>\lor</code> ): <img class="math-inline" alt="\lor" src="https://math.jianshu.com/math?formula=%5Clor" mathimg="1"><br>
+  (<code>\lnot</code> ): <img class="math-inline" alt="\lnot" src="https://math.jianshu.com/math?formula=%5Clnot" mathimg="1"><br>
+  (<code>\forall</code> ): <img class="math-inline" alt="\forall" src="https://math.jianshu.com/math?formula=%5Cforall" mathimg="1"><br>
+  (<code>\exists</code> ): <img class="math-inline" alt="\exists" src="https://math.jianshu.com/math?formula=%5Cexists" mathimg="1"><br>
+  (<code>\top</code> ): <img class="math-inline" alt="\top" src="https://math.jianshu.com/math?formula=%5Ctop" mathimg="1"><br>
+  (<code>\bot</code> ): <img class="math-inline" alt="\bot" src="https://math.jianshu.com/math?formula=%5Cbot" mathimg="1"><br>
+  (<code>\vdash</code> ): <img class="math-inline" alt="\vdash" src="https://math.jianshu.com/math?formula=%5Cvdash" mathimg="1"><br>
+  (<code>\vDash</code> ): <img class="math-inline" alt="\vDash" src="https://math.jianshu.com/math?formula=%5CvDash" mathimg="1"></p>
+<h3>操作符</h3>
+<p>  (<code>\star</code> ): <img class="math-inline" alt="\star" src="https://math.jianshu.com/math?formula=%5Cstar" mathimg="1"><br>
+  (<code>\ast</code> ): <img class="math-inline" alt="\ast" src="https://math.jianshu.com/math?formula=%5Cast" mathimg="1"><br>
+  (<code>\oplus</code> ): <img class="math-inline" alt="\oplus" src="https://math.jianshu.com/math?formula=%5Coplus" mathimg="1"><br>
+  (<code>\circ</code> ): <img class="math-inline" alt="\circ" src="https://math.jianshu.com/math?formula=%5Ccirc" mathimg="1"><br>
+  (<code>\bullet</code> ): <img class="math-inline" alt="\bullet" src="https://math.jianshu.com/math?formula=%5Cbullet" mathimg="1"></p>
+<h3>等于</h3>
+<p>  (<code>\approx</code> ): <img class="math-inline" alt="\approx" src="https://math.jianshu.com/math?formula=%5Capprox" mathimg="1"><br>
+  (<code>\sim</code> ): <img class="math-inline" alt="\sim" src="https://math.jianshu.com/math?formula=%5Csim" mathimg="1"><br>
+  (<code>\equiv</code> ): <img class="math-inline" alt="\equiv" src="https://math.jianshu.com/math?formula=%5Cequiv" mathimg="1"><br>
+  (<code>\prec</code> ): <img class="math-inline" alt="\prec" src="https://math.jianshu.com/math?formula=%5Cprec" mathimg="1"></p>
+<h3>范围</h3>
+<p>  (<code>\infty</code> ): <img class="math-inline" alt="\infty" src="https://math.jianshu.com/math?formula=%5Cinfty" mathimg="1"><br>
+  (<code>\aleph_o</code> ): <img class="math-inline" alt="\aleph_o" src="https://math.jianshu.com/math?formula=%5Caleph_o" mathimg="1"><br>
+  (<code>\nabla</code> ): <img class="math-inline" alt="\nabla" src="https://math.jianshu.com/math?formula=%5Cnabla" mathimg="1"><br>
+  (<code>\Im</code> ): <img class="math-inline" alt="\Im" src="https://math.jianshu.com/math?formula=%5CIm" mathimg="1"><br>
+  (<code>\Re</code> ): <img class="math-inline" alt="\Re" src="https://math.jianshu.com/math?formula=%5CRe" mathimg="1"></p>
+<h3>模运算</h3>
+<p>  (<code>\pmod</code> ): <img class="math-inline" alt="b \pmod n" src="https://math.jianshu.com/math?formula=b%20%5Cpmod%20n" mathimg="1"><br>
+  如<code>a \equiv b \pmod n</code> : <img class="math-inline" alt="a \equiv b \pmod n" src="https://math.jianshu.com/math?formula=a%20%5Cequiv%20b%20%5Cpmod%20n" mathimg="1"></p>
+<h3>点</h3>
+<p>  (<code>\ldots</code> ): <img class="math-inline" alt="\ldots" src="https://math.jianshu.com/math?formula=%5Cldots" mathimg="1"><br>
+  (<code>\cdots</code> ): <img class="math-inline" alt="\cdots" src="https://math.jianshu.com/math?formula=%5Ccdots" mathimg="1"><br>
+  (<code>\cdot</code> ): <img class="math-inline" alt="\cdot" src="https://math.jianshu.com/math?formula=%5Ccdot" mathimg="1"><br>
+  其区别是点的位置不同，<code>\ldots</code> 位置稍低，<code>\cdots</code> 位置居中。</p>
+<div class="_2Uzcx_"><button class="VJbwyy" aria-label="复制代码" type="button"><i class="anticon anticon-copy" aria-label="icon: copy"><svg xmlns="http://www.w3.org/2000/svg" class="" aria-hidden="true" fill="currentColor" viewbox="64 64 896 896" focusable="false" width="1em" height="1em" data-icon="copy"><path d="M 832 64 H 296 c -4.4 0 -8 3.6 -8 8 v 56 c 0 4.4 3.6 8 8 8 h 496 v 688 c 0 4.4 3.6 8 8 8 h 56 c 4.4 0 8 -3.6 8 -8 V 96 c 0 -17.7 -14.3 -32 -32 -32 Z M 704 192 H 192 c -17.7 0 -32 14.3 -32 32 v 530.7 c 0 8.5 3.4 16.6 9.4 22.6 l 173.3 173.3 c 2.2 2.2 4.7 4 7.4 5.5 v 1.9 h 4.2 c 3.5 1.3 7.2 2 11 2 H 704 c 17.7 0 32 -14.3 32 -32 V 224 c 0 -17.7 -14.3 -32 -32 -32 Z M 350 856.2 L 263.9 770 H 350 v 86.2 Z M 664 888 H 414 V 746 c 0 -22.1 -17.9 -40 -40 -40 H 232 V 264 h 432 v 624 Z"/></svg></i></button><pre class="line-numbers  language-ruby"><code class="  language-ruby">$$
+\<span class="token keyword">begin</span><span class="token punctuation">{</span>equation<span class="token punctuation">}</span>
+a_1<span class="token operator">+</span>a_2<span class="token operator">+</span>\ldots<span class="token operator">+</span>a_n \\ 
+a_1<span class="token operator">+</span>a_2<span class="token operator">+</span>\cdots<span class="token operator">+</span>a_n
+\<span class="token keyword">end</span><span class="token punctuation">{</span>equation<span class="token punctuation">}</span>
+$$
+<span class="line-numbers-rows" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>  表示：<br>
+<img class="math-block" alt="\begin{equation} a_1+a_2+\ldots+a_n \\ a_1+a_2+\cdots+a_n \end{equation}" src="https://math.jianshu.com/math?formula=%5Cbegin%7Bequation%7D%20a_1%2Ba_2%2B%5Cldots%2Ba_n%20%5C%5C%20a_1%2Ba_2%2B%5Ccdots%2Ba_n%20%5Cend%7Bequation%7D" mathimg="1"></p>
+<h2><strong>顶部符号</strong></h2>
+<p>  对于单字符，<code>\hat x</code> ：<img class="math-inline" alt="\hat x" src="https://math.jianshu.com/math?formula=%5Chat%20x" mathimg="1"><br>
+  多字符可以使用<code>\widehat {xy}</code> ：<img class="math-inline" alt="\widehat {xy}" src="https://math.jianshu.com/math?formula=%5Cwidehat%20%7Bxy%7D" mathimg="1"><br>
+  类似的还有:<br>
+  (<code>\overline x</code> ): <img class="math-inline" alt="\overline x" src="https://math.jianshu.com/math?formula=%5Coverline%20x" mathimg="1"><br>
+  矢量(<code>\vec</code> ): <img class="math-inline" alt="\vec x" src="https://math.jianshu.com/math?formula=%5Cvec%20x" mathimg="1"><br>
+  向量(<code>\overrightarrow {xy}</code> ): <img class="math-inline" alt="\overrightarrow {xy}" src="https://math.jianshu.com/math?formula=%5Coverrightarrow%20%7Bxy%7D" mathimg="1"><br>
+  (<code>\dot x</code> ): <img class="math-inline" alt="\dot x" src="https://math.jianshu.com/math?formula=%5Cdot%20x" mathimg="1"><br>
+  (<code>\ddot x</code> ): <img class="math-inline" alt="\ddot x" src="https://math.jianshu.com/math?formula=%5Cddot%20x" mathimg="1"><br>
+  (<code>\dot {\dot x}</code> ): <img class="math-inline" alt="\dot {\dot x}" src="https://math.jianshu.com/math?formula=%5Cdot%20%7B%5Cdot%20x%7D" mathimg="1"></p>
+<h2><strong>表格</strong></h2>
+<p>  使用<code>\begin{array}{列样式}…\end{array}</code> 这样的形式来创建表格，列样式可以是<code>clr</code> 表示居中，左，右对齐，还可以使用<code>|</code> 表示一条竖线。表格中各行使用<code>\\</code> 分隔，各列使用<code>&amp;</code> 分隔。使用<code>\hline</code> 在本行前加入一条直线。 例如:</p>
+<div class="_2Uzcx_"><button class="VJbwyy" aria-label="复制代码" type="button"><i class="anticon anticon-copy" aria-label="icon: copy"><svg xmlns="http://www.w3.org/2000/svg" class="" aria-hidden="true" fill="currentColor" viewbox="64 64 896 896" focusable="false" width="1em" height="1em" data-icon="copy"><path d="M 832 64 H 296 c -4.4 0 -8 3.6 -8 8 v 56 c 0 4.4 3.6 8 8 8 h 496 v 688 c 0 4.4 3.6 8 8 8 h 56 c 4.4 0 8 -3.6 8 -8 V 96 c 0 -17.7 -14.3 -32 -32 -32 Z M 704 192 H 192 c -17.7 0 -32 14.3 -32 32 v 530.7 c 0 8.5 3.4 16.6 9.4 22.6 l 173.3 173.3 c 2.2 2.2 4.7 4 7.4 5.5 v 1.9 h 4.2 c 3.5 1.3 7.2 2 11 2 H 704 c 17.7 0 32 -14.3 32 -32 V 224 c 0 -17.7 -14.3 -32 -32 -32 Z M 350 856.2 L 263.9 770 H 350 v 86.2 Z M 664 888 H 414 V 746 c 0 -22.1 -17.9 -40 -40 -40 H 232 V 264 h 432 v 624 Z"/></svg></i></button><pre class="line-numbers  language-ruby"><code class="  language-ruby">$$
+\<span class="token keyword">begin</span><span class="token punctuation">{</span>array<span class="token punctuation">}</span><span class="token punctuation">{</span>c<span class="token operator">|</span>lcr<span class="token punctuation">}</span>
+n <span class="token operator">&amp;</span> \text<span class="token punctuation">{</span><span class="token constant">Left</span><span class="token punctuation">}</span> <span class="token operator">&amp;</span> \text<span class="token punctuation">{</span><span class="token constant">Center</span><span class="token punctuation">}</span> <span class="token operator">&amp;</span> \text<span class="token punctuation">{</span><span class="token constant">Right</span><span class="token punctuation">}</span> \\
+\hline
+<span class="token number">1</span> <span class="token operator">&amp;</span> <span class="token number">0.24</span> <span class="token operator">&amp;</span> <span class="token number">1</span> <span class="token operator">&amp;</span> <span class="token number">125</span> \\
+<span class="token number">2</span> <span class="token operator">&amp;</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">&amp;</span> <span class="token number">189</span> <span class="token operator">&amp;</span> <span class="token operator">-</span><span class="token number">8</span> \\
+<span class="token number">3</span> <span class="token operator">&amp;</span> <span class="token operator">-</span><span class="token number">20</span> <span class="token operator">&amp;</span> <span class="token number">2000</span> <span class="token operator">&amp;</span> <span class="token number">1</span><span class="token operator">+</span><span class="token number">10</span>i \\
+\<span class="token keyword">end</span><span class="token punctuation">{</span>array<span class="token punctuation">}</span>
+$$
+<span class="line-numbers-rows" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>  得到：<br>
+<img class="math-block" alt="\begin{array}{c|lcr} n &amp; \text{Left} &amp; \text{Center} &amp; \text{Right} \\ \hline 1 &amp; 0.24 &amp; 1 &amp; 125 \\ 2 &amp; -1 &amp; 189 &amp; -8 \\ 3 &amp; -20 &amp; 2000 &amp; 1+10i \\ \end{array}" src="https://math.jianshu.com/math?formula=%5Cbegin%7Barray%7D%7Bc%7Clcr%7D%20n%20%26%20%5Ctext%7BLeft%7D%20%26%20%5Ctext%7BCenter%7D%20%26%20%5Ctext%7BRight%7D%20%5C%5C%20%5Chline%201%20%26%200.24%20%26%201%20%26%20125%20%5C%5C%202%20%26%20-1%20%26%20189%20%26%20-8%20%5C%5C%203%20%26%20-20%20%26%202000%20%26%201%2B10i%20%5C%5C%20%5Cend%7Barray%7D" mathimg="1"></p>
+<h2><strong>矩阵</strong></h2>
+<h3>基本内容</h3>
+<p>  使用<code>\begin{matrix}…\end{matrix}</code> 这样的形式来表示矩阵，在<code>\begin</code> 与<code>\end</code> 之间加入矩阵中的元素即可。矩阵的行之间使用<code>\\</code> 分隔，列之间使用<code>&amp;</code> 分隔，例如:</p>
+<div class="_2Uzcx_"><button class="VJbwyy" aria-label="复制代码" type="button"><i class="anticon anticon-copy" aria-label="icon: copy"><svg xmlns="http://www.w3.org/2000/svg" class="" aria-hidden="true" fill="currentColor" viewbox="64 64 896 896" focusable="false" width="1em" height="1em" data-icon="copy"><path d="M 832 64 H 296 c -4.4 0 -8 3.6 -8 8 v 56 c 0 4.4 3.6 8 8 8 h 496 v 688 c 0 4.4 3.6 8 8 8 h 56 c 4.4 0 8 -3.6 8 -8 V 96 c 0 -17.7 -14.3 -32 -32 -32 Z M 704 192 H 192 c -17.7 0 -32 14.3 -32 32 v 530.7 c 0 8.5 3.4 16.6 9.4 22.6 l 173.3 173.3 c 2.2 2.2 4.7 4 7.4 5.5 v 1.9 h 4.2 c 3.5 1.3 7.2 2 11 2 H 704 c 17.7 0 32 -14.3 32 -32 V 224 c 0 -17.7 -14.3 -32 -32 -32 Z M 350 856.2 L 263.9 770 H 350 v 86.2 Z M 664 888 H 414 V 746 c 0 -22.1 -17.9 -40 -40 -40 H 232 V 264 h 432 v 624 Z"/></svg></i></button><pre class="line-numbers  language-ruby"><code class="  language-ruby">$$
+\<span class="token keyword">begin</span><span class="token punctuation">{</span>matrix<span class="token punctuation">}</span>
+<span class="token number">1</span> <span class="token operator">&amp;</span> x <span class="token operator">&amp;</span> x<span class="token operator">^</span><span class="token number">2</span> \\
+<span class="token number">1</span> <span class="token operator">&amp;</span> y <span class="token operator">&amp;</span> y<span class="token operator">^</span><span class="token number">2</span> \\
+<span class="token number">1</span> <span class="token operator">&amp;</span> z <span class="token operator">&amp;</span> z<span class="token operator">^</span><span class="token number">2</span> \\
+\<span class="token keyword">end</span><span class="token punctuation">{</span>matrix<span class="token punctuation">}</span>
+$$
+<span class="line-numbers-rows" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>  得到：<br>
+<img class="math-block" alt="\begin{matrix} 1 &amp; x &amp; x^2 \\ 1 &amp; y &amp; y^2 \\ 1 &amp; z &amp; z^2 \\ \end{matrix}" src="https://math.jianshu.com/math?formula=%5Cbegin%7Bmatrix%7D%201%20%26%20x%20%26%20x%5E2%20%5C%5C%201%20%26%20y%20%26%20y%5E2%20%5C%5C%201%20%26%20z%20%26%20z%5E2%20%5C%5C%20%5Cend%7Bmatrix%7D" mathimg="1"></p>
+<h3>括号</h3>
+<p>  如果要对矩阵加括号，可以像上文中提到的一样，使用<code>\left</code> 与<code>\right</code> 配合表示括号符号。也可以使用特殊的<code>matrix</code> 。即替换<code>\begin{matrix}…\end{matrix}</code> 中<code>matrix</code> 为<code>pmatrix</code> ，<code>bmatrix</code> ，<code>Bmatrix</code> ，<code>vmatrix</code> , <code>Vmatrix</code> 。</p>
+<ol>
+<li>pmatrix<code>$\begin{pmatrix}1 &amp; 2 \\ 3 &amp; 4\\ \end{pmatrix}$</code> : <img class="math-inline" alt="\begin{pmatrix}1 &amp; 2 \\ 3 &amp; 4\\ \end{pmatrix}" src="https://math.jianshu.com/math?formula=%5Cbegin%7Bpmatrix%7D1%20%26%202%20%5C%5C%203%20%26%204%5C%5C%20%5Cend%7Bpmatrix%7D" mathimg="1">
+</li>
+<li>bmatrix<code>$\begin{bmatrix}1 &amp; 2 \\ 3 &amp; 4\\ \end{bmatrix}$</code> : <img class="math-inline" alt="\begin{bmatrix}1 &amp; 2 \\ 3 &amp; 4\\ \end{bmatrix}" src="https://math.jianshu.com/math?formula=%5Cbegin%7Bbmatrix%7D1%20%26%202%20%5C%5C%203%20%26%204%5C%5C%20%5Cend%7Bbmatrix%7D" mathimg="1">
+</li>
+<li>Bmatrix<code>$\begin{Bmatrix}1 &amp; 2 \\ 3 &amp; 4\\ \end{Bmatrix}$</code> : <img class="math-inline" alt="\begin{Bmatrix}1 &amp; 2 \\ 3 &amp; 4\\ \end{Bmatrix}" src="https://math.jianshu.com/math?formula=%5Cbegin%7BBmatrix%7D1%20%26%202%20%5C%5C%203%20%26%204%5C%5C%20%5Cend%7BBmatrix%7D" mathimg="1">
+</li>
+<li>vmatrix<code>$\begin{vmatrix}1 &amp; 2 \\ 3 &amp; 4\\ \end{vmatrix}$</code> : <img class="math-inline" alt="\begin{vmatrix}1 &amp; 2 \\ 3 &amp; 4\\ \end{vmatrix}" src="https://math.jianshu.com/math?formula=%5Cbegin%7Bvmatrix%7D1%20%26%202%20%5C%5C%203%20%26%204%5C%5C%20%5Cend%7Bvmatrix%7D" mathimg="1">
+</li>
+<li>Vmatrix<code>$\begin{Vmatrix}1 &amp; 2 \\ 3 &amp; 4\\ \end{Vmatrix}$</code> : <img class="math-inline" alt="\begin{Vmatrix}1 &amp; 2 \\ 3 &amp; 4\\ \end{Vmatrix}" src="https://math.jianshu.com/math?formula=%5Cbegin%7BVmatrix%7D1%20%26%202%20%5C%5C%203%20%26%204%5C%5C%20%5Cend%7BVmatrix%7D" mathimg="1">
+</li>
+</ol>
+<h3>元素省略</h3>
+<p>  可以使用<code>\cdots</code> ：⋯，<code>\ddots</code>：⋱ ，<code>\vdots</code>：⋮ 来省略矩阵中的元素，如：</p>
+<div class="_2Uzcx_"><button class="VJbwyy" aria-label="复制代码" type="button"><i class="anticon anticon-copy" aria-label="icon: copy"><svg xmlns="http://www.w3.org/2000/svg" class="" aria-hidden="true" fill="currentColor" viewbox="64 64 896 896" focusable="false" width="1em" height="1em" data-icon="copy"><path d="M 832 64 H 296 c -4.4 0 -8 3.6 -8 8 v 56 c 0 4.4 3.6 8 8 8 h 496 v 688 c 0 4.4 3.6 8 8 8 h 56 c 4.4 0 8 -3.6 8 -8 V 96 c 0 -17.7 -14.3 -32 -32 -32 Z M 704 192 H 192 c -17.7 0 -32 14.3 -32 32 v 530.7 c 0 8.5 3.4 16.6 9.4 22.6 l 173.3 173.3 c 2.2 2.2 4.7 4 7.4 5.5 v 1.9 h 4.2 c 3.5 1.3 7.2 2 11 2 H 704 c 17.7 0 32 -14.3 32 -32 V 224 c 0 -17.7 -14.3 -32 -32 -32 Z M 350 856.2 L 263.9 770 H 350 v 86.2 Z M 664 888 H 414 V 746 c 0 -22.1 -17.9 -40 -40 -40 H 232 V 264 h 432 v 624 Z"/></svg></i></button><pre class="line-numbers  language-ruby"><code class="  language-ruby">$$
+\<span class="token keyword">begin</span><span class="token punctuation">{</span>pmatrix<span class="token punctuation">}</span>
+<span class="token number">1</span><span class="token operator">&amp;</span>a_1<span class="token operator">&amp;</span>a_1<span class="token operator">^</span><span class="token number">2</span><span class="token operator">&amp;</span>\cdots<span class="token operator">&amp;</span>a_1<span class="token operator">^</span>n\\
+<span class="token number">1</span><span class="token operator">&amp;</span>a_2<span class="token operator">&amp;</span>a_2<span class="token operator">^</span><span class="token number">2</span><span class="token operator">&amp;</span>\cdots<span class="token operator">&amp;</span>a_2<span class="token operator">^</span>n\\
+\vdots<span class="token operator">&amp;</span>\vdots<span class="token operator">&amp;</span>\vdots<span class="token operator">&amp;</span>\ddots<span class="token operator">&amp;</span>\vdots\\
+<span class="token number">1</span><span class="token operator">&amp;</span>a_m<span class="token operator">&amp;</span>a_m<span class="token operator">^</span><span class="token number">2</span><span class="token operator">&amp;</span>\cdots<span class="token operator">&amp;</span>a_m<span class="token operator">^</span>n\\
+\<span class="token keyword">end</span><span class="token punctuation">{</span>pmatrix<span class="token punctuation">}</span>
+$$
+<span class="line-numbers-rows" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>  表示：<br>
+<img class="math-block" alt="\begin{pmatrix} 1&amp;a_1&amp;a_1^2&amp;\cdots&amp;a_1^n\\ 1&amp;a_2&amp;a_2^2&amp;\cdots&amp;a_2^n\\ \vdots&amp;\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\ 1&amp;a_m&amp;a_m^2&amp;\cdots&amp;a_m^n\\ \end{pmatrix}" src="https://math.jianshu.com/math?formula=%5Cbegin%7Bpmatrix%7D%201%26a_1%26a_1%5E2%26%5Ccdots%26a_1%5En%5C%5C%201%26a_2%26a_2%5E2%26%5Ccdots%26a_2%5En%5C%5C%20%5Cvdots%26%5Cvdots%26%5Cvdots%26%5Cddots%26%5Cvdots%5C%5C%201%26a_m%26a_m%5E2%26%5Ccdots%26a_m%5En%5C%5C%20%5Cend%7Bpmatrix%7D" mathimg="1"></p>
+<h3>增广矩阵</h3>
+<p>  增广矩阵需要使用前面的表格中使用到的<code>\begin{array} ... \end{array}</code> 来实现。</p>
+<div class="_2Uzcx_"><button class="VJbwyy" aria-label="复制代码" type="button"><i class="anticon anticon-copy" aria-label="icon: copy"><svg xmlns="http://www.w3.org/2000/svg" class="" aria-hidden="true" fill="currentColor" viewbox="64 64 896 896" focusable="false" width="1em" height="1em" data-icon="copy"><path d="M 832 64 H 296 c -4.4 0 -8 3.6 -8 8 v 56 c 0 4.4 3.6 8 8 8 h 496 v 688 c 0 4.4 3.6 8 8 8 h 56 c 4.4 0 8 -3.6 8 -8 V 96 c 0 -17.7 -14.3 -32 -32 -32 Z M 704 192 H 192 c -17.7 0 -32 14.3 -32 32 v 530.7 c 0 8.5 3.4 16.6 9.4 22.6 l 173.3 173.3 c 2.2 2.2 4.7 4 7.4 5.5 v 1.9 h 4.2 c 3.5 1.3 7.2 2 11 2 H 704 c 17.7 0 32 -14.3 32 -32 V 224 c 0 -17.7 -14.3 -32 -32 -32 Z M 350 856.2 L 263.9 770 H 350 v 86.2 Z M 664 888 H 414 V 746 c 0 -22.1 -17.9 -40 -40 -40 H 232 V 264 h 432 v 624 Z"/></svg></i></button><pre class="line-numbers  language-swift"><code class="  language-swift">$$
+\<span class="token keyword">left</span><span class="token punctuation">[</span>  \begin<span class="token punctuation">{</span>array<span class="token punctuation">}</span>  <span class="token punctuation">{</span>c c <span class="token operator">|</span> c<span class="token punctuation">}</span> <span class="token operator">%</span>这里的c表示数组中元素对其方式：c居中、r右对齐、l左对齐，竖线表示<span class="token number">2</span>、<span class="token number">3</span>列间插入竖线
+<span class="token number">1</span> <span class="token operator">&amp;</span> <span class="token number">2</span> <span class="token operator">&amp;</span> <span class="token number">3</span> \\
+\hline <span class="token operator">%</span>插入横线，如果去掉\hline就是增广矩阵
+<span class="token number">4</span> <span class="token operator">&amp;</span> <span class="token number">5</span> <span class="token operator">&amp;</span> <span class="token number">6</span>
+\end<span class="token punctuation">{</span>array<span class="token punctuation">}</span>  \<span class="token keyword">right</span><span class="token punctuation">]</span>
+$$
+<span class="line-numbers-rows" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>显示为：<br>
+<img class="math-block" alt="\left[ \begin{array} {c c | c} 1 &amp; 2 &amp; 3 \\ \hline 4 &amp; 5 &amp; 6 \end{array} \right]" src="https://math.jianshu.com/math?formula=%5Cleft%5B%20%5Cbegin%7Barray%7D%20%7Bc%20c%20%7C%20c%7D%201%20%26%202%20%26%203%20%5C%5C%20%5Chline%204%20%26%205%20%26%206%20%5Cend%7Barray%7D%20%5Cright%5D" mathimg="1"></p>
+<h2><strong>公式标记与引用</strong></h2>
+<p>  使用<code>\tag{yourtag}</code> 来标记公式，如果想在之后引用该公式，则还需要加上<code>\label{yourlabel}</code> 在<code>\tag</code> 之后，如<code>$$a = x^2 - y^3 \tag{1}\label{1}$$</code> 显示为：<br>
+<img class="math-block" alt="a := x^2 - y^3 \tag{1}\label{311}" src="https://math.jianshu.com/math?formula=a%20%3A%3D%20x%5E2%20-%20y%5E3%20%5Ctag%7B1%7D%5Clabel%7B311%7D" mathimg="1"><br>
+  如果不需要被引用，只使用<code>\tag{yourtag}</code> ，<code>$$x+y=z\tag{1.1}$$</code>显示为：<br>
+<img class="math-block" alt="x+y=z\tag{1.1}" src="https://math.jianshu.com/math?formula=x%2By%3Dz%5Ctag%7B1.1%7D" mathimg="1"><br>
+  <code>\tab{yourtab}</code> 中的内容用于显示公式后面的标记。公式之间通过<code>\label{}</code> 设置的内容来引用。为了引用公式，可以使用<code>\eqref{yourlabel}</code> ，如<code>$$a + y^3 \stackrel{\eqref{1}}= x^2$$</code> 显示为：<br>
+<img class="math-block" alt="a + y^3 \stackrel{\eqref{1}}= x^2" src="https://math.jianshu.com/math?formula=a%20%2B%20y%5E3%20%5Cstackrel%7B%5Ceqref%7B1%7D%7D%3D%20x%5E2" mathimg="1"></p>
+<p>或者使用<code>\ref{yourlabel}</code> 不带括号引用，如<code>$$a + y^3 \stackrel{\ref{111}}= x^2$$</code> 显示为:<br>
+<img class="math-block" alt="a + y^3 \stackrel{\ref{1}}= x^2" src="https://math.jianshu.com/math?formula=a%20%2B%20y%5E3%20%5Cstackrel%7B%5Cref%7B1%7D%7D%3D%20x%5E2" mathimg="1"></p>
+<h2><strong>字体</strong></h2>
+<h3>黑板粗体字</h3>
+<p>此字体经常用来表示代表实数、整数、有理数、复数的大写字母。<br>
+<code>$\mathbb ABCDEF$</code>：<img class="math-inline" alt="\mathbb ABCDEF" src="https://math.jianshu.com/math?formula=%5Cmathbb%20ABCDEF" mathimg="1"><br>
+<code>$\Bbb ABCDEF$</code>：<img class="math-inline" alt="\Bbb ABCDEF" src="https://math.jianshu.com/math?formula=%5CBbb%20ABCDEF" mathimg="1"></p>
+<h3>黑体字</h3>
+<p><code>$\mathbf ABCDEFGHIJKLMNOPQRSTUVWXYZ$</code> :<img class="math-inline" alt="\mathbf ABCDEFGHIJKLMNOPQRSTUVWXYZ" src="https://math.jianshu.com/math?formula=%5Cmathbf%20ABCDEFGHIJKLMNOPQRSTUVWXYZ" mathimg="1"><br>
+<code>$\mathbf abcdefghijklmnopqrstuvwxyz$</code> :<img class="math-inline" alt="\mathbf abcdefghijklmnopqrstuvwxyz" src="https://math.jianshu.com/math?formula=%5Cmathbf%20abcdefghijklmnopqrstuvwxyz" mathimg="1"></p>
+<h3>打印机字体</h3>
+<p><code>$\mathtt ABCDEFGHIJKLMNOPQRSTUVWXYZ$</code> :<img class="math-inline" alt="\mathtt ABCDEFGHIJKLMNOPQRSTUVWXYZ" src="https://math.jianshu.com/math?formula=%5Cmathtt%20ABCDEFGHIJKLMNOPQRSTUVWXYZ" mathimg="1"></p>
+<h2><strong>参考文档</strong></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>链接地址</th>
+<th>文档名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>blog.csdn.net/dabokele/article/details/79577072</code></td>
+<td><a href="https://blog.csdn.net/dabokele/article/details/79577072" target="_blank" rel="nofollow">Mathjax公式教程</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>blog.csdn.net/ethmery/article/details/50670297</code></td>
+<td><a href="https://blog.csdn.net/ethmery/article/details/50670297" target="_blank" rel="nofollow">基本数学公式语法</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>blog.csdn.net/lilongsy/article/details/79378620</code></td>
+<td><a href="https://blog.csdn.net/lilongsy/article/details/79378620" target="_blank" rel="nofollow">常用数学符号的LaTeX表示方法</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>www.mathjax.org</code></td>
+<td><a href="https://www.mathjax.org/" target="_blank" rel="nofollow">Beautiful math in all browsers</a></td>
+</tr>
+</tbody>
+</table>
+</article></section></div></div></div></div></body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/03/04/markdown-formula-editor/" data-id="ck7dihr070031swvncp3q7kdd"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/instructions/" rel="tag">instructions</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-python-multithreading" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/04/python-multithreading/"
+    >python多线程、多进程</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/04/python-multithreading/" class="article-date">
+  <time datetime="2020-03-04T03:36:58.000Z" itemprop="datePublished">2020-03-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>浅尝辄止,能用就行</p>
+<hr>
+<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line">lock = threading.Lock() <span class="comment"># 设置一个全局线程锁,某个线程在获得此锁之后其他线程不能再获得</span></span><br><span class="line"></span><br><span class="line">sem = threading.Semaphore(<span class="number">12</span>) <span class="comment"># 设置最大线程数量</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> sem:</span><br><span class="line">    t = threading.Thread(target=function,args=(a,b,c))  <span class="comment"># 用function(a,b,c)创建一个线程</span></span><br><span class="line">    t.setDaemon(<span class="literal">True</span>)   <span class="comment">#   设置t线程为主线程的守护线程,即主线程结束后会自动杀死子线程(默认为false)</span></span><br><span class="line">    t.start()   <span class="comment"># 启动线程</span></span><br><span class="line">    t.join(<span class="number">60</span>)  <span class="comment"># 线程同步，主线程任务结束之后，进入阻塞状态，一直等待其他的子线程执行结束之后，主线程再终止;如果超时主线程也会终止(默认为无)</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">#   若在function中执行lock.acquire(),则线程阻塞直到其他线程释放此锁</span></span><br><span class="line"><span class="comment">#   function中执行完lock.acquire()后必须进行lock.release(),否则其他线程将永远无法获得此锁</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>多进程与多线程运用方式相仿</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> multiprocessing</span><br><span class="line"></span><br><span class="line">lock = multiprocessing.Lock()   <span class="comment"># 设置一个全局进程锁,某个进程在获得此锁之后其他进程不能再获得</span></span><br><span class="line"></span><br><span class="line">p = multiprocessing.Pool(<span class="number">72</span>)    <span class="comment"># 建立一个进程池,设置最大的进程数量</span></span><br><span class="line"></span><br><span class="line">p.apply_async(func=function,args=(a,))  <span class="comment"># 用function(a)创建一个进程</span></span><br><span class="line"></span><br><span class="line">p.close()   <span class="comment">#   关闭进程池,不再接受新的进程</span></span><br><span class="line">p.join()    <span class="comment">#   主进程阻塞,等待其他进程结束</span></span><br></pre></td></tr></table></figure>
+
+<p>注: windows中多线程的代码应当写道<code>if __name__ == &#39;main&#39;</code>中</p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/03/04/python-multithreading/" data-id="ck7dihqz60018swvngvs18u2e"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-python-spider" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/04/python-spider/"
+    >python spider</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/04/python-spider/" class="article-date">
+  <time datetime="2020-03-04T00:48:22.000Z" itemprop="datePublished">2020-03-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>烂尾中…</p>
+<hr>
+<p>资料主要来源于北理工的<a href="https://www.icourse163.org/learn/BIT-1001870001?tid=1206951268#" target="_blank" rel="noopener">爬虫课程</a><br>有requests库、beautifulsoup库、scrapy框架等</p>
+<h2 id="request库"><a href="#request库" class="headerlink" title="request库"></a>request库</h2><p><code>import requests</code></p>
+<h3 id="request"><a href="#request" class="headerlink" title="request."></a>request.</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.request()</span><br><span class="line">.get() 获取网页</span><br><span class="line">.head() 获取网页头</span><br><span class="line">.post() 提交post请求</span><br><span class="line">.put() 提交put请求</span><br><span class="line">.patch() 提交局部修改请求</span><br><span class="line">.delete() 提交删除请求</span><br></pre></td></tr></table></figure>
+
+<h3 id="关于url"><a href="#关于url" class="headerlink" title="关于url"></a>关于url</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">url:http:&#x2F;&#x2F;host[:port][path]</span><br><span class="line">http协议资源操作：</span><br><span class="line">GET 请求获取url位置的资源</span><br><span class="line">HEAD 获取url资源头部信息</span><br><span class="line">POST 请求向资源后附加的新数据</span><br><span class="line">PUT 请求向url位置存储资源，覆盖原有url位置资源</span><br><span class="line">PATCH 请求向资源进行局部更新</span><br><span class="line">DELETE 请求删除资源</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="request-get-url"><a href="#request-get-url" class="headerlink" title="request.get(url)"></a>request.get(url)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">r=requests.get(<span class="string">'http://www.baidu.com'</span>,) <span class="comment">#Response</span></span><br><span class="line"></span><br><span class="line">r.status_code-&gt;200/404</span><br><span class="line">r.text-&gt;string text</span><br><span class="line">r.encodonig-&gt;header enconding</span><br><span class="line">r.apparent_encoding-&gt;text encoding</span><br><span class="line">r.content-&gt;binary text</span><br><span class="line">r.headers</span><br><span class="line"></span><br><span class="line">r.raise_for_status(</span><br><span class="line"></span><br><span class="line">requests.ConnectionError</span><br><span class="line">        HTTPError</span><br><span class="line">        URLRequired</span><br><span class="line">        TooManyRedirects</span><br><span class="line">        ConnectTimeout</span><br><span class="line">        TImeout</span><br></pre></td></tr></table></figure>
+
+<h4 id="请求头部r-head"><a href="#请求头部r-head" class="headerlink" title="请求头部r.head"></a>请求头部r.head</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">print(r.headers)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">&#123;'Cache-Control': 'private</span></span><br><span class="line"><span class="string">, no-cache, no-store, proxy-revalidate, no-transform', </span></span><br><span class="line"><span class="string">'Connection': 'keep-alive', 'Content-Encoding': 'gzip', </span></span><br><span class="line"><span class="string">'Content-Type': 'text/html', 'Date': 'Sat, 11 Jan 2020 08:39:34 GMT', </span></span><br><span class="line"><span class="string">'Last-Modified': 'Mon, 23 Jan 2017 13:27:36 GMT', 'Pragma': 'no-cache', </span></span><br><span class="line"><span class="string">'Server': 'bfe/1.0.8.18', 'Set-Cookie': 'BDORZ=27315; max-age=86400; domain=.baidu.com; path=/', </span></span><br><span class="line"><span class="string">'Transfer-Encoding': 'chunked'&#125;</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="在url中附加数据"><a href="#在url中附加数据" class="headerlink" title="在url中附加数据"></a>在url中附加数据</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">payload = &#123;<span class="string">'key1'</span>:<span class="string">'value1'</span>, <span class="string">'key2'</span>:<span class="string">'value2'</span>&#125;</span><br><span class="line">r = requests.post(<span class="string">'http://httpbin.org/post'</span>,data=payload)</span><br><span class="line">print(r.text)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">&#123; ...</span></span><br><span class="line"><span class="string">  "form": &#123;</span></span><br><span class="line"><span class="string">    "key1": "value1", </span></span><br><span class="line"><span class="string">    "key2": "value2"</span></span><br><span class="line"><span class="string">  &#125;, </span></span><br><span class="line"><span class="string">  ...</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">r = requests.post(<span class="string">'http://httpbin.org/post'</span>,data=<span class="string">'ABC'</span>)</span><br><span class="line">print(r.text)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">&#123; ...</span></span><br><span class="line"><span class="string">  "data": "ABC", </span></span><br><span class="line"><span class="string">  "form": &#123;&#125;, </span></span><br><span class="line"><span class="string">  ...</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="comment"># r = requests.post('http://httpbin.org/post',data=payload)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="beautifulsoup库"><a href="#beautifulsoup库" class="headerlink" title="beautifulsoup库"></a>beautifulsoup库</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br></pre></td></tr></table></figure>
+
+<h3 id="整理网页格式"><a href="#整理网页格式" class="headerlink" title="整理网页格式"></a>整理网页格式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">r = requests.get(<span class="string">"http://python123.io/ws/demo.html"</span>)</span><br><span class="line">demo = r.text   <span class="comment"># print(demo)</span></span><br><span class="line"></span><br><span class="line">soup = BeautifulSoup(demo , <span class="string">"html.parser"</span>) <span class="comment"># demo-&gt;open("path.html")</span></span><br><span class="line">print(soup.prettify)</span><br></pre></td></tr></table></figure>
+
+<h3 id="bf类的基本元素"><a href="#bf类的基本元素" class="headerlink" title="bf类的基本元素"></a>bf类的基本元素</h3><ul>
+<li>tag: &lt;&gt;…&lt;/&gt; 标签,基本信息组织单元</li>
+<li>Name:<tag>.name   标签名字</tag></li>
+<li>Attributs:<tag>.attrs 标签属性</tag></li>
+<li>NavigableString:<tag>.string  标签内字符串</tag></li>
+<li>Comment:特殊注释:&lt;!content&gt;为注释   </li>
+</ul>
+<p><img src="/2020/03/04/python-spider/tag0.png" alt="tag"> </p>
+<h3 id="HTML结构"><a href="#HTML结构" class="headerlink" title="HTML结构"></a>HTML结构</h3><p>HTML基本结构:树形结构</p>
+<p><img src="/2020/03/04/python-spider/tag1.png" alt="tag"> </p>
+<p>节点查找与遍历:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">print(soup.title)</span><br><span class="line">print(soup.a) #返回第一个a标签</span><br><span class="line">print(soup.a.parent.name)</span><br><span class="line">print(soup.a.attrs)</span><br><span class="line">print(soup.a.string)</span><br><span class="line"></span><br><span class="line">&#39;&#39;&#39;</span><br><span class="line">&lt;tag&gt;.contents  儿子节点列表</span><br><span class="line">&lt;tag&gt;.children  儿子节点迭代器</span><br><span class="line">&lt;tag&gt;.descendent    子孙节点列表</span><br><span class="line"></span><br><span class="line">&lt;tag&gt;.parent 父亲节点</span><br><span class="line">&lt;tag&gt;.parents 父辈节点迭代器</span><br><span class="line"></span><br><span class="line">&lt;tag&gt;.next_sibling(s) 同一父节点下才构成兄弟关系</span><br><span class="line">&lt;tag&gt;.previous_sibling(s)</span><br><span class="line">&#39;&#39;&#39;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">print(soup.find_all(<span class="string">'a'</span>))</span><br><span class="line">print(soup.find_all(re.compile(<span class="string">'b'</span>))) <span class="comment"># 返回以b开头的标签</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">&lt;&gt;.find_all(name,attrs,recursive,string,**kwargs)</span></span><br><span class="line"><span class="string">            名字  属性  是否搜索子孙 字符串检索</span></span><br><span class="line"><span class="string">tag.find_all(True)-&gt;所有标签</span></span><br><span class="line"><span class="string">tag.find_all(id='link')-&gt;attrs</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">soup()=soup.find_all</span></span><br><span class="line"><span class="string">&lt;tag&gt;()=&lt;tag&gt;.find_all()</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">.fing()</span></span><br><span class="line"><span class="string">.find_parents()</span></span><br><span class="line"><span class="string">......</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="scrapy框架"><a href="#scrapy框架" class="headerlink" title="scrapy框架"></a>scrapy框架</h2><p>cmd命令</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pip install scapy</span><br><span class="line">scapy startproject &lt;name&gt; [<span class="built_in">dir</span>] //创建工程</span><br><span class="line">scrapy genspider [options] &lt;name&gt; &lt;domain&gt;  //创建爬虫</span><br><span class="line">scrapy crawl &lt;spider&gt;</span><br></pre></td></tr></table></figure>
+
+<p>太乱了,写不下去了…</p>
+<p>关于scrapy,可以参考<a href="https://www.jianshu.com/p/cecb29c04cd2" target="_blank" rel="noopener">https://www.jianshu.com/p/cecb29c04cd2</a></p>
+<hr>
+<p>等我哪天有兴趣了再回来整理整理这篇博文</p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/03/04/python-spider/" data-id="ck7dihqzb001eswvn2owodt4s"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-mao-theory" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/03/mao-theory/"
     >毛概相关</a
   >
 </h2>
@@ -84,7 +1510,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/03/03/maotheory/" class="article-date">
+      <a href="/2020/03/03/mao-theory/" class="article-date">
   <time datetime="2020-03-03T07:25:05.000Z" itemprop="datePublished">2020-03-03</time>
 </a>
       
@@ -123,7 +1549,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/03/03/maotheory/" data-id="ck7c1wgql000uz0vnduka4vpb"
+      <a data-url="http://georgechen1827.github.io/2020/03/03/mao-theory/" data-id="ck7dihqz40011swvnfdtmg2ws"
         class="article-share-link">share</a>
         
       
@@ -143,7 +1569,7 @@
 
 </article>
     
-    <article id="post-db0" class="article article-type-post" itemscope
+    <article id="post-data-base0" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -151,7 +1577,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/02/27/db0/"
+  <a class="article-title" href="/2020/02/27/data-base0/"
     >数据库原理与设计</a
   >
 </h2>
@@ -162,7 +1588,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/02/27/db0/" class="article-date">
+      <a href="/2020/02/27/data-base0/" class="article-date">
   <time datetime="2020-02-27T05:24:32.000Z" itemprop="datePublished">2020-02-27</time>
 </a>
       
@@ -219,7 +1645,7 @@
 <p>数据库系统构成: 数据库, 数据库管理系统(及其应用开发工具), 应用程序, 数据库管理员(DBA)</p>
 </blockquote>
 <h4 id="数据库管理技术"><a href="#数据库管理技术" class="headerlink" title="数据库管理技术"></a>数据库管理技术</h4><p>数据管理: 对数据进行分类,组织,编码,存储,检索和维护<br>数据管理是数据处理和数据分析的中心问题</p>
-<p>发展: 人工管理-&gt;文件系统管理-&gt;数据库系统管理<br><img src="/2020/02/27/db0/diff0.png" alt="diff"></p>
+<p>发展: 人工管理-&gt;文件系统管理-&gt;数据库系统管理<br><img src="/2020/02/27/data-base0/diff0.png" alt="diff"></p>
 <ul>
 <li>人工管理阶段, 应用程序和数据集是一一对应的</li>
 <li>文件系统阶段, 存取方法是共享的, 但应用程序和数据集是一一对应的</li>
@@ -239,7 +1665,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/27/db0/" data-id="ck7c1wgqa000bz0vn8b0c7k6q"
+      <a data-url="http://georgechen1827.github.io/2020/02/27/data-base0/" data-id="ck7dihqyy000mswvn8xjdbhr6"
         class="article-share-link">share</a>
         
       
@@ -283,7 +1709,7 @@
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/note/">note</a>
+    <a class="article-category-link" href="/categories/notes/">notes</a>
   </div>
 
       
@@ -309,7 +1735,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/26/featured-chinese-culture/" data-id="ck7c1wgqe000gz0vn57w2dpgy"
+      <a data-url="http://georgechen1827.github.io/2020/02/26/featured-chinese-culture/" data-id="ck7dihqyw000iswvn2b253roj"
         class="article-share-link">share</a>
         
       
@@ -353,7 +1779,7 @@
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/note/">note</a>
+    <a class="article-category-link" href="/categories/notes/">notes</a>
   </div>
 
       
@@ -379,7 +1805,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/25/chinese-garden/" data-id="ck7c1wgq50007z0vn6ej98aek"
+      <a data-url="http://georgechen1827.github.io/2020/02/25/chinese-garden/" data-id="ck7dihqyj0007swvneiz79l7n"
         class="article-share-link">share</a>
         
       
@@ -445,7 +1871,8 @@
 <hr>
 <p>Lucence是一个由Java实现的,支持纯文本文件索引和搜索的高效、可扩展、开源的的全文检索框架</p>
 <p>因自己需要用到lucence.net相关知识, 学习时参阅了不少资料, 将一些要点记录在此, 以供参考</p>
-<h2 id="总论"><a href="#总论" class="headerlink" title="总论"></a>总论</h2><p>参考:<br><a href="https://www.cnblogs.com/forfuture1978/archive/2010/06/13/1757479.html" target="_blank" rel="noopener">https://www.cnblogs.com/forfuture1978/archive/2010/06/13/1757479.html</a><br><a href="https://blog.csdn.net/PZ_eng/article/details/91977083" target="_blank" rel="noopener">https://blog.csdn.net/PZ_eng/article/details/91977083</a><br><a href="http://lucene.apache.org/" target="_blank" rel="noopener">http://lucene.apache.org/</a>  </p>
+<h2 id="总论"><a href="#总论" class="headerlink" title="总论"></a>总论</h2><p>参考:<br><a href="https://www.cnblogs.com/forfuture1978/archive/2010/06/13/1757479.html" target="_blank" rel="noopener">https://www.cnblogs.com/forfuture1978/archive/2010/06/13/1757479.html</a><br><a href="https://blog.csdn.net/PZ_eng/article/details/91977083" target="_blank" rel="noopener">https://blog.csdn.net/PZ_eng/article/details/91977083</a>  </p>
+<p><a href="http://lucene.apache.org/" target="_blank" rel="noopener">http://lucene.apache.org/</a>  </p>
 <h3 id="全文检索"><a href="#全文检索" class="headerlink" title="全文检索"></a>全文检索</h3><h4 id="数据的分类"><a href="#数据的分类" class="headerlink" title="数据的分类"></a>数据的分类</h4><p>生活中数据总体分为如下几种:</p>
 <ul>
 <li>结构化数据: 具有固定格式或有限长度的数据(数据库,元数据)</li>
@@ -588,7 +2015,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/Lucence0/" data-id="ck7c1wgpn0000z0vn7kfmf6mw"
+      <a data-url="http://georgechen1827.github.io/2020/02/24/Lucence0/" data-id="ck7dihqy60000swvnht8i53vr"
         class="article-share-link">share</a>
         
       
@@ -659,7 +2086,12 @@
 <li>强调形式描述技术和自动生成技术</li>
 <li>强调对编译原理和技术的宏观理解,不把注意力分散到枝节算法,不偏向于任何源语言或目标机器</li>
 </ul>
-<h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><h3 id="编译原理概述"><a href="#编译原理概述" class="headerlink" title="编译原理概述"></a>编译原理概述</h3><p>语言处理器: 由编译器,解释器,汇编器,连接器,加载器,调试器及程序概要提取工具等所构成的集成软件开发环境<br>机器语言和汇编语言: 第一和第二代程序设计语言<br>高级语言: 能够自动进行内存管理,类型一致性检查等功能的程序设计语言<br>翻译器: 能完成一种语言到另一种语言变换的软件</p>
+<h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><h3 id="编译原理概述"><a href="#编译原理概述" class="headerlink" title="编译原理概述"></a>编译原理概述</h3><p>语言处理器: 由编译器,解释器,汇编器,连接器,加载器,调试器及程序概要提取工具等所构成的集成软件开发环境  </p>
+<ul>
+<li>机器语言和汇编语言: 第一和第二代程序设计语言  </li>
+<li>高级语言: 能够自动进行内存管理,类型一致性检查等功能的程序设计语言   </li>
+</ul>
+<p>翻译器: 能完成一种语言到另一种语言变换的软件</p>
 <p>翻译器的不同形式:</p>
 <ul>
 <li>编译器(c,c++): 从源程序通过编译器得到目标程序,从输入通过目标程序得到输出(效率高,平台相关)</li>
@@ -667,7 +2099,8 @@
 <li>区别: 编译器通过翻译来生成目标程序,解释器直接生成源程序指定的运算*</li>
 <li>混和编译器(Java,C#): 源程序通过翻译器得到中间程序,中间程序和输入经过虚拟机得到输出(效率稍高,平台无关,但每个平台都要装虚拟机)</li>
 </ul>
-<p>语言处理系统: 预处理器,编译器,汇编器,连接器\加载器<br>源程序-&gt;修改后的源程序-&gt;目标汇编程序-&gt;可重定位的机器代码-(库文件,可重定位目标文件)&gt;可执行目标程序</p>
+<p>语言处理系统: 预处理器,编译器,汇编器,连接器\加载器  </p>
+<p>主要流程: 源程序-&gt;修改后的源程序-&gt;目标汇编程序-&gt;可重定位的机器代码-(库文件,可重定位目标文件)&gt;可执行目标程序</p>
 <h3 id="编译器基本结构"><a href="#编译器基本结构" class="headerlink" title="编译器基本结构"></a>编译器基本结构</h3><p>编译器: 将源程序编译为目标可执行程序的系统<br>特点: 目标语言比源语言低级</p>
 <h4 id="编译器结构"><a href="#编译器结构" class="headerlink" title="编译器结构"></a>编译器结构</h4><ul>
 <li>分析部分,前端: 源程序-&gt;中间表示</li>
@@ -822,541 +2255,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/compilers0/" data-id="ck7c1wgqc000cz0vn08hc77ps"
+      <a data-url="http://georgechen1827.github.io/2020/02/24/compilers0/" data-id="ck7dihqym000bswvnch0kbb41"
         class="article-share-link">share</a>
         
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="tag">编译原理</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-computer-composition0" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/24/computer-composition0/"
-    >计算机组成相关知识</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/02/24/computer-composition0/" class="article-date">
-  <time datetime="2020-02-24T02:32:00.000Z" itemprop="datePublished">2020-02-24</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/notes/">notes</a> / <a class="article-category-link" href="/categories/notes/%E5%AD%A6%E4%BD%8D%E8%AF%BE%E7%A8%8B/">学位课程</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>未完结,持续更新</p>
-<hr>
-<p>课程内容:</p>
-<ul>
-<li>讨论单机系统范围内计算机各部件和系统的组成原理以及内部工作机制</li>
-</ul>
-<p>课程目标:</p>
-<ul>
-<li>计算机个大部件的组成原理</li>
-<li>…的逻辑实现</li>
-<li>…的设计方法</li>
-<li>…互联构成整体系统的技术</li>
-<li>(为后继课程的学习打好基础)</li>
-</ul>
-<p>课程地位: 承上启下</p>
-<ul>
-<li>先导课程: 计算机导论,数字逻辑</li>
-<li>后继课程: 微机原理,接口技术,计算机系统结构</li>
-</ul>
-<p>重点难点:</p>
-<ul>
-<li>掌握五大基本部件的原理及实现</li>
-<li>掌握各部件互联构成整机系统的知识(整机概念的建立)</li>
-</ul>
-<p>课程要求:</p>
-<ul>
-<li>重点掌握: 多层次的存储器,中央处理器</li>
-<li>掌握: 运算方法和运算器,指令系统,总线系统</li>
-<li>理解: 外存与io设备</li>
-<li>了解: 计算机系统概论,输入输出系统</li>
-</ul>
-<h2 id="计算机系统概论"><a href="#计算机系统概论" class="headerlink" title="计算机系统概论"></a>计算机系统概论</h2><p>计算机的定义,分类.发展史</p>
-<h3 id="计算机发展简史"><a href="#计算机发展简史" class="headerlink" title="计算机发展简史"></a>计算机发展简史</h3><p>计算机: 能够连续自动进行数值和逻辑运算的机器</p>
-<p>分类:</p>
-<ul>
-<li>原理角度: 数字计算机,模拟计算机</li>
-<li>性能指标: 巨型机,大型机,小型机,微型机</li>
-<li>用途角度: 专用机,通用机</li>
-</ul>
-<p>计算机发展阶段:</p>
-<ul>
-<li>1946-1957: 电子管时代,ENIAC(1946)</li>
-<li>1958-1964: 晶体管时代,整体性能大幅度提高,TRADIC(增加浮点运算)</li>
-<li>1965-1971: 中小规模集成电路,进入文字处理和图形图像处理</li>
-<li>1972-: 大和超大规模集成电路,出现微处理器</li>
-</ul>
-<h3 id="计算机性能指标和层次结构"><a href="#计算机性能指标和层次结构" class="headerlink" title="计算机性能指标和层次结构"></a>计算机性能指标和层次结构</h3><p>NAN</p>
-<h3 id="计算机系统"><a href="#计算机系统" class="headerlink" title="计算机系统"></a>计算机系统</h3><h4 id="硬件系统的组成-冯诺依曼结构-以存储器为中心"><a href="#硬件系统的组成-冯诺依曼结构-以存储器为中心" class="headerlink" title="硬件系统的组成: 冯诺依曼结构,以存储器为中心"></a>硬件系统的组成: 冯诺依曼结构,以存储器为中心</h4><p>存储程序:</p>
-<ul>
-<li>计算机(硬件)应由运算器,存储器,控制器,出入设备,输出设备组成</li>
-<li>计算机内部采用二进制来表示指令和数据</li>
-<li>将编好的程序和原始数据实现存入存储器中然后再启动计算机工作</li>
-</ul>
-<p><img src="/2020/02/24/computer-composition0/compo0.png" alt="composition">  </p>
-<p>其中:</p>
-<blockquote>
-<p>运算器,控制器一般为cpu<br>存储器一般由主存(内存)和辅存组成<br>cpu和主存一般构成主机<br>运算器: 数据的加工处理<br>控制器: 指令控制,操作控制,时序控制<br>存储器: 存放数据和程序<br>输入设备: 将外部数据送给计算机并转换成计算机能够识别的形式<br>输出设备: 将计算机处理结果送出给外界并转换成外界能够识别的形式</p>
-</blockquote>
-<ul>
-<li>以运算器为核心的构造: 输入设备的数据得通过运算器才能进入存储器中</li>
-<li>以存储器为核心的构造: 可以提高计算机系统运行的效率</li>
-</ul>
-<h4 id="软件系统的组成-应用软件-系统软件"><a href="#软件系统的组成-应用软件-系统软件" class="headerlink" title="软件系统的组成: 应用软件,系统软件"></a>软件系统的组成: 应用软件,系统软件</h4><p>系统软件:</p>
-<ul>
-<li>操作系统: 硬件软件之间的桥梁</li>
-<li>语言程序</li>
-<li>服务性程序</li>
-<li>DMZ</li>
-</ul>
-<p>软件和硬件之间存在着逻辑等价关系</p>
-<h2 id="计算机中常用的组合逻辑电路"><a href="#计算机中常用的组合逻辑电路" class="headerlink" title="计算机中常用的组合逻辑电路"></a>计算机中常用的组合逻辑电路</h2><h3 id="组合逻辑电路"><a href="#组合逻辑电路" class="headerlink" title="组合逻辑电路"></a>组合逻辑电路</h3><h4 id="三态门"><a href="#三态门" class="headerlink" title="三态门"></a>三态门</h4><p>三态门: 0,1,高阻态Z<br><img src="/2020/02/24/computer-composition0/compo1.png" alt="composition">  </p>
-<h4 id="异或门"><a href="#异或门" class="headerlink" title="异或门"></a>异或门</h4><p><img src="/2020/02/24/computer-composition0/compo2.png" alt="composition"></p>
-<p>异或门应用:</p>
-<ul>
-<li><p>数码比较器(上图)  </p>
-</li>
-<li><p>原码/反码输出电路<br><img src="/2020/02/24/computer-composition0/compo3.png" alt="composition"></p>
-</li>
-<li><p>奇偶检测电路</p>
-</li>
-<li><p>半加器</p>
-</li>
-<li><p>全加器</p>
-</li>
-<li><p>n位加法器</p>
-</li>
-<li><p>超前进位加法器</p>
-</li>
-<li><p>ALU算术逻辑单元</p>
-</li>
-<li><p>译码器</p>
-</li>
-<li><p>数据选择器</p>
-</li>
-</ul>
-<h3 id="时序逻辑电路"><a href="#时序逻辑电路" class="headerlink" title="时序逻辑电路"></a>时序逻辑电路</h3><hr>
-<p><em>待更新…</em></p>
-
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/computer-composition0/" data-id="ck7c1wgqp0012z0vnhee2a4q7"
-        class="article-share-link">share</a>
-        
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/" rel="tag">计算机组成</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-java0" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/24/java0/"
-    >Java学习笔记</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/02/24/java0/" class="article-date">
-  <time datetime="2020-02-24T00:33:24.000Z" itemprop="datePublished">2020-02-24</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/notes/">notes</a> / <a class="article-category-link" href="/categories/notes/%E5%AD%A6%E4%BD%8D%E8%AF%BE%E7%A8%8B/">学位课程</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>未完结,持续更新</p>
-<hr>
-<h2 id="Java常识"><a href="#Java常识" class="headerlink" title="Java常识"></a>Java常识</h2><p>Java: 一次编译，处处运行</p>
-<h3 id="Java特点"><a href="#Java特点" class="headerlink" title="Java特点"></a>Java特点</h3><p>c++ - -</p>
-<ul>
-<li>无直接指针操作</li>
-<li>自动内存管理</li>
-<li>数据类型长度固定</li>
-<li>不用头文件</li>
-<li>不包含结构和联合</li>
-<li>不支持宏</li>
-<li>不用多重继承(接口实现)</li>
-<li>无类外全局变量</li>
-<li>无goto</li>
-</ul>
-<p>Java三种核心机制</p>
-<ul>
-<li>Java虚拟机</li>
-<li>代码安全性监测</li>
-<li>垃圾回收机制</li>
-</ul>
-<p><em>Java程序都是运行在虚拟机之上的,与平台无关</em></p>
-<ul>
-<li>JRE(java运行环境)=JVM+API</li>
-<li>JDK(Java开发工具包)=JRE+Tools</li>
-</ul>
-<h3 id="Java面向对象程序设计"><a href="#Java面向对象程序设计" class="headerlink" title="Java面向对象程序设计"></a>Java面向对象程序设计</h3><p>类</p>
-<ul>
-<li>属性: 变量,字段</li>
-<li>行为: 函数,方法</li>
-</ul>
-<p>类与对象的关系</p>
-<ul>
-<li>类是对象的抽象</li>
-<li>对象是类的实例</li>
-</ul>
-<p>面向对象三大特性</p>
-<ul>
-<li>封装: 模块化,信息隐蔽</li>
-<li>继承: 父类子类间共享数据,更好地抽象和分类,增强代码重用性和可维护性</li>
-<li>多态: 方法重载</li>
-</ul>
-<h3 id="简单Java程序"><a href="#简单Java程序" class="headerlink" title="简单Java程序"></a>简单Java程序</h3><p>Java程序类型:</p>
-<ul>
-<li>Application: 独立程序,需要执行器(虚拟机)来运行</li>
-<li>Applect: 非独立程序,嵌入在HTML网页中运行</li>
-</ul>
-<p>应用程序要点(helloword)</p>
-<ul>
-<li>class是主体</li>
-<li>public类名与文件名同名</li>
-<li>main()的写法是固定的: public static void main()</li>
-<li>System.out.print及println及printf</li>
-</ul>
-<p>Applet程序(helloword)</p>
-<ul>
-<li>import表示导入</li>
-<li>extends JApplet表示继承</li>
-<li>有paint()方法,表示如何绘制</li>
-<li>没有main()方法</li>
-</ul>
-<p>Java程序基本构成</p>
-<ul>
-<li>package语句(0或1句)</li>
-<li>import语句(0或多句)</li>
-<li>类定义(1或多个,但只能有一个public类,与文件同名)</li>
-</ul>
-<h3 id="Java程序开发过程"><a href="#Java程序开发过程" class="headerlink" title="Java程序开发过程"></a>Java程序开发过程</h3><p>编辑,编译与运行</p>
-<ul>
-<li>编辑: 编辑器编辑,文件名要与public class类名一致</li>
-<li>程序编译: 转换程序为字节码,扩展名.class  javac name.java</li>
-<li>程序运行: 执行.class中的文件    java name</li>
-</ul>
-<p>JDK安装目录</p>
-<blockquote>
-<p>Bin 存放工具文件<br>Jre 存放与Java运行环境相关的文件<br>Demo 存放示例文件<br>Include 存放与C相关的头文件<br>Lib 存放程序库<br>DB 数据库相关</p>
-</blockquote>
-<h3 id="Java的几个工具"><a href="#Java的几个工具" class="headerlink" title="Java的几个工具"></a>Java的几个工具</h3><p>主要工具</p>
-<ul>
-<li>javac 编译</li>
-<li>java 运行(控制台及图形界面程序)</li>
-<li>javaw 运行图形界面程序</li>
-<li>appletViewer 运行applet程序</li>
-</ul>
-<p>另外常用工具</p>
-<ul>
-<li>jar 打包工具</li>
-<li>javadoc 生成文档</li>
-<li>javap 查看类信息及反汇编</li>
-</ul>
-<h3 id="Java的输入和输出"><a href="#Java的输入和输出" class="headerlink" title="Java的输入和输出"></a>Java的输入和输出</h3><h4 id="文本界面-使用Scanner类"><a href="#文本界面-使用Scanner类" class="headerlink" title="文本界面: 使用Scanner类"></a>文本界面: 使用Scanner类</h4><p>使用java.util.Scanner类</p>
-<ul>
-<li>Scanner.nextInt()</li>
-<li>Scanner.nextDouble()</li>
-<li>Scanner.next 得到下一个单词<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ScannerTest</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">( String[] args)</span></span>&#123;</span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> a = scanner.nextInt();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="使用in及out"><a href="#使用in及out" class="headerlink" title="使用in及out"></a>使用in及out</h4><p>使用java.io包</p>
-<ul>
-<li>System.in.read()</li>
-<li>System.out.print()<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> c = <span class="string">''</span>;</span><br><span class="line">System.out.print(<span class="string">'Hello'</span>);</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    c = (<span class="keyword">char</span>)System.in.read();</span><br><span class="line">&#125;<span class="keyword">catch</span>(IOExceprion e)&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="图形界面输入输出"><a href="#图形界面输入输出" class="headerlink" title="图形界面输入输出"></a>图形界面输入输出</h4><p>添加按钮,监听事件…</p>
-<h3 id="集成开发环境"><a href="#集成开发环境" class="headerlink" title="集成开发环境"></a>集成开发环境</h3><h4 id="eclips"><a href="#eclips" class="headerlink" title="eclips"></a>eclips</h4><p>java里的程序应当都以工程的形式存在</p>
-<ul>
-<li>新建一个工程，起一个名字(文件夹的名字)</li>
-<li>在src文件夹中建立package包(一般小写字母)</li>
-<li>在package里面建立类(首字母大写)</li>
-<li>写主函数…</li>
-<li>右击包文件 run as application</li>
-</ul>
-<hr>
-<p><em>待更新…</em></p>
-
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/java0/" data-id="ck7c1wgqj000pz0vn6wbnf0af"
-        class="article-share-link">share</a>
-        
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-python-plot1" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/12/python-plot1/"
-    >python作图</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/02/12/python-plot1/" class="article-date">
-  <time datetime="2020-02-12T09:21:50.000Z" itemprop="datePublished">2020-02-12</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/notes/">notes</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>一些参考网站:<br><a href="https://zhuanlan.zhihu.com/p/39077155" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/39077155</a><br><a href="https://zhuanlan.zhihu.com/p/49035741" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/49035741</a><br><a href="https://zhuanlan.zhihu.com/p/27401041" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/27401041</a><br><a href="https://zhuanlan.zhihu.com/p/37360133" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/37360133</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzUzODYwMDAzNA==&amp;mid=2247488701&amp;idx=4&amp;sn=73c8ca23d8eced3590ab285f9f43d99b&amp;chksm=fad463b0cda3eaa6f9be051e3c1e0c1a7ddc8922c5c6bf1dfa75f2db84affb88fa248760b781&amp;mpshare=1&amp;scene=23&amp;srcid=&amp;sharer_sharetime=1581401241375&amp;sharer_shareid=ab6f5905c1aa5f4891f8d87e4501862b#rd" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzUzODYwMDAzNA==&amp;mid=2247488701&amp;idx=4&amp;sn=73c8ca23d8eced3590ab285f9f43d99b&amp;chksm=fad463b0cda3eaa6f9be051e3c1e0c1a7ddc8922c5c6bf1dfa75f2db84affb88fa248760b781&amp;mpshare=1&amp;scene=23&amp;srcid=&amp;sharer_sharetime=1581401241375&amp;sharer_shareid=ab6f5905c1aa5f4891f8d87e4501862b#rd</a>  </p>
-
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/12/python-plot1/" data-id="ck7c1wgqn000zz0vna6tebbk4"
-        class="article-share-link">share</a>
-        
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-matlab" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/09/matlab/"
-    >matlab常用语法</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/02/09/matlab/" class="article-date">
-  <time datetime="2020-02-09T09:10:30.000Z" itemprop="datePublished">2020-02-09</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/notes/">notes</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>仅作随笔用,不完善不严谨</p>
-<h3 id="变量-符号-数组-矩阵"><a href="#变量-符号-数组-矩阵" class="headerlink" title="变量 符号 数组 矩阵"></a>变量 符号 数组 矩阵</h3><h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;var&gt; = &lt;expression&gt;</span><br></pre></td></tr></table></figure>
-
-<p>预定义变量   </p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pi</span>  <span class="comment">% 圆周率</span></span><br><span class="line"><span class="built_in">inf</span> <span class="comment">% 又Inf,无穷大</span></span><br><span class="line"><span class="built_in">nan</span> <span class="comment">% 又NaN,不定值</span></span><br><span class="line"><span class="built_in">eps</span> <span class="comment">% 浮点数运算相对精度,无穷小</span></span><br><span class="line"><span class="built_in">i</span>   <span class="comment">% 又j,虚部单位</span></span><br><span class="line"><span class="built_in">ans</span> <span class="comment">% 上一次运算结果</span></span><br></pre></td></tr></table></figure>
-
-<p>变量存储 读取 清除  </p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">save [filename.mat] [var1] [var2] ...</span><br><span class="line">load &lt;filename.mat&gt; [var1] [var2] ...</span><br><span class="line">clear [var1] [var2]</span><br></pre></td></tr></table></figure>
-
-<p>相关命令</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">who <span class="comment">% 显示工作空间中的所有变量  </span></span><br><span class="line">whos    <span class="comment">% 查看工作空间中变量的详细属性 </span></span><br><span class="line"><span class="built_in">realmin</span> <span class="comment">% 最小可用正实数</span></span><br><span class="line"><span class="built_in">realmax</span> <span class="comment">% 最大可用正实数</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="符号-符号表达式"><a href="#符号-符号表达式" class="headerlink" title="符号 符号表达式"></a>符号 符号表达式</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">syms [symbol1] &lt;symbol2&gt; &lt;symbol3&gt; ...  <span class="comment">% 创建多个符号变量, 相当于symbol1 = sym('symbol'); symbol2 = sym('symbol2'); ...</span></span><br><span class="line">[symbol] = sym([symbol/value/symbolexpression])  <span class="comment">% 用符号/数值/表达式来创建符号变量/常量/表达式</span></span><br></pre></td></tr></table></figure>
-
-<p>相关函数  </p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">findsym(expression [, N])   <span class="comment">% 查找符号表达式中的[离x最近的N个]符号变量</span></span><br><span class="line">subs(expression, symbol1, symbol2)  <span class="comment">% 在表达式中用s2替换s1</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="数组-矩阵"><a href="#数组-矩阵" class="headerlink" title="数组 矩阵"></a>数组 矩阵</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[matrix] = [row1 ; row2 ; ... ]</span><br><span class="line">[row] = [sym1 sym2 ...] <span class="comment">% row = start: step: end</span></span><br><span class="line">[matrix](n) = value <span class="comment">% 元素赋值</span></span><br><span class="line">[matrix] = [matrix ; matrix2]   <span class="comment">% 矩阵列拼接</span></span><br><span class="line">[matrix] = [matrix matrix2] <span class="comment">% 矩阵行拼接</span></span><br></pre></td></tr></table></figure>
-
-<p>相关操作</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A(i1 : step : i2, j1 : step : j2)   <span class="comment">% 矩阵切片</span></span><br><span class="line">.* ./ .^    <span class="comment">% 点乘点除点幂乘</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="基本函数"><a href="#基本函数" class="headerlink" title="基本函数"></a>基本函数</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sin</span>、<span class="built_in">cos</span>、<span class="built_in">tan</span>、<span class="built_in">cot</span>、<span class="built_in">sec</span>、<span class="built_in">csc</span>、…</span><br><span class="line"><span class="built_in">asin</span>、<span class="built_in">acos</span>、<span class="built_in">atan</span>、<span class="built_in">acot</span>、<span class="built_in">asec</span>、<span class="built_in">acsc</span>、…</span><br><span class="line"><span class="built_in">exp</span>、<span class="built_in">log</span>、<span class="built_in">log2</span>、<span class="built_in">log10</span>、<span class="built_in">sqrt</span></span><br><span class="line"><span class="built_in">abs</span>、<span class="built_in">conj</span>、<span class="built_in">real</span>、<span class="built_in">imag</span></span><br><span class="line">rank、det、inv、eig、lu、qr、svd</span><br><span class="line"><span class="built_in">diag</span>、<span class="built_in">triu</span>、<span class="built_in">tril</span>、expm</span><br></pre></td></tr></table></figure>
-
-<p>相关命令  </p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">findsym(expr)   <span class="comment">% 按字母顺序列出符号表达式 expr 中的所有符号变量</span></span><br><span class="line">findsym(expr, N)    <span class="comment">% 按顺序列出 expr 中离 x 最近的 N 个符号变量</span></span><br><span class="line">nargin  <span class="comment">% 所用函数的输入变量数目</span></span><br><span class="line">nargout <span class="comment">% 所用函数的输出变量数目</span></span><br></pre></td></tr></table></figure>
-
-<p>####　运算函数</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">factor</span>(f)   <span class="comment">% 因式分解或质因数分解</span></span><br><span class="line">expand(f)   <span class="comment">% 函数展开</span></span><br><span class="line">taylor(f,x,a)   <span class="comment">% f关于符号x在a处进行5项泰勒展开</span></span><br><span class="line">collect(f,v)    <span class="comment">% f对(默认变量)v进行合并同类项</span></span><br><span class="line">simplify(f) <span class="comment">% 对f化简函数</span></span><br><span class="line">numden(f)   <span class="comment">% 函数化简 -&gt; [N,D] N为分子,D为分母</span></span><br><span class="line">horner(f)   <span class="comment">% 多项式转嵌套多项式 x(...x(x+i)+j)+k</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">limit(fun,x,x0 [, <span class="string">'left'</span>/<span class="string">'right'</span>])  <span class="comment">% 在fun中对符号x在x0处求极限</span></span><br><span class="line">int(f [, v, a, b])  <span class="comment">% 在f中对(默认)变量[v][在区间(a,b)上]的(不)定积分</span></span><br><span class="line">symsum(f, v, a, b)  <span class="comment">% 在v=a,a+1....b上对f(v)进行求和</span></span><br><span class="line">solve(f,v)  <span class="comment">% 求方程(组)关于指定自变量的解</span></span><br><span class="line">y=dsolve(eq1, eq2, ..., cond1, cond2, ..., v)   <span class="comment">% 微分方程eq1,eq2...在cond1,cond2...为初值条件下自变量v的解 -&gt; 输出解y,若无显式函数,则输出[x,y]</span></span><br><span class="line">finverse(f,v)   <span class="comment">% f关于(默认变量)v的反函数</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="多项式函数"><a href="#多项式函数" class="headerlink" title="多项式函数"></a>多项式函数</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">p = [a1, a2, a3, a4 ...]    <span class="comment">% 多项式降幂系数的行向量表示</span></span><br><span class="line">r = roots(p)    <span class="comment">% 求出多项式为0的根</span></span><br><span class="line">p = poly(r) <span class="comment">% 通过多项式为0的根求出多项式</span></span><br><span class="line">c = conv(a,b)   <span class="comment">% 多项式相乘</span></span><br><span class="line">[q, r] = deconv(c, b)   <span class="comment">% 多项式相除</span></span><br><span class="line">d = polyder(a)  <span class="comment">% 微分多项式</span></span><br><span class="line">n = polyval(a, <span class="number">2</span>)   <span class="comment">% 多项式函数求值</span></span><br><span class="line">p = polyfit(x,y,n)  <span class="comment">% 在x, y样本点向量下求出一个n阶多项式的拟合p</span></span><br><span class="line">[a,Jm] = lsqcurvefit(Fun,a0,x,y)    <span class="comment">% 最小二乘曲线拟合,Fun为原函数，x,y 为原始输入数据,a0为最优化初值，a为最小二乘系数，Jm为目标</span></span><br><span class="line">yi = interp1(x, y, xi, <span class="string">'method'</span>)    <span class="comment">% 一维插值计算</span></span><br><span class="line">zi = interp2(x，y，z，xi，yi，<span class="string">'method'</span>)  <span class="comment">% 二维插值计算</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="作图函数"><a href="#作图函数" class="headerlink" title="作图函数"></a>作图函数</h4><p>参考<a href="https://www.cnblogs.com/ileanj1998/p/9060664.html" target="_blank" rel="noopener">https://www.cnblogs.com/ileanj1998/p/9060664.html</a></p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">plot</span>(x,y)   <span class="comment">% x 为向量, y为x的函数或者同长度向量</span></span><br><span class="line">xlabel(<span class="string">'x'</span>) ylabel(<span class="string">'y'</span>) <span class="comment">% 坐标轴信息]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="其他技巧"><a href="#其他技巧" class="headerlink" title="其他技巧"></a>其他技巧</h3><ul>
-<li>若不想在屏幕上输出结果，可以在语句最后加分号  </li>
-<li>如果语句很长，可用续行符 “…”（三个点）续行,续行符的前面最好留一个空格</li>
-<li>Matlab 的命令记忆功能：上下箭头键  </li>
-<li>命令补全功能： Tab 键   </li>
-<li>用 Esc 键 删除命令行</li>
-</ul>
-
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/09/matlab/" data-id="ck7c1wgqm000wz0vn2dp5cy5d"
-        class="article-share-link">share</a>
-        
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/matlab/" rel="tag">matlab</a></li></ul>
 
     </footer>
 
@@ -1518,7 +2421,7 @@
 
 <script>
   var ayerConfig = {
-    mathjax: false
+    mathjax: true
   }
 </script>
 
@@ -1638,6 +2541,25 @@
 </script>
 
 
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 
 <script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>

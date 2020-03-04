@@ -35,7 +35,7 @@
       <section class="outer">
   
     <h1 class="page-type-title">Categories</h1>
-    <!-- <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/default/">default</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/instructions/">instructions</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/note/">note</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/notes/%E5%AD%A6%E4%BD%8D%E8%AF%BE%E7%A8%8B/">学位课程</a></li></ul></li></ul> -->
+    <!-- <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/default/">default</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/instructions/">instructions</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/instructions/notes/">notes</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/notes/%E5%AD%A6%E4%BD%8D%E8%AF%BE%E7%A8%8B/">学位课程</a></li></ul></li></ul> -->
     <ul class="category-list">
       
          
@@ -49,7 +49,7 @@
          
           <a class="category-list-link" href="/categories/instructions/" title="instructions">
             <li class="category-list-item">
-            instructions<i>2</i>
+            instructions<i>3</i>
             </li>
           </a>
         
@@ -63,17 +63,17 @@
         
       
          
-          <a class="category-list-link" href="/categories/note/" title="note">
+          <a class="category-list-link" href="/categories/notes/" title="notes">
             <li class="category-list-item">
-            note<i>2</i>
+            notes<i>14</i>
             </li>
           </a>
         
       
          
-          <a class="category-list-link" href="/categories/notes/" title="notes">
+          <a class="category-list-link" href="/categories/instructions/notes/" title="notes">
             <li class="category-list-item">
-            notes<i>9</i>
+            notes<i>1</i>
             </li>
           </a>
         
@@ -223,7 +223,7 @@
 
 <script>
   var ayerConfig = {
-    mathjax: false
+    mathjax: true
   }
 </script>
 
@@ -343,6 +343,25 @@
 </script>
 
 
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 
 <script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>

@@ -54,6 +54,34 @@
       <article class="archive-article archive-type-post">
   <div class="archive-article-inner">
     <header class="archive-article-header">
+      <a href="/2020/03/04/markdown-formula-editor/" class="archive-article-date">
+  <time datetime="2020-03-04T05:23:34.000Z" itemprop="datePublished">03/04</time>
+</a>
+       
+<h2 itemprop="name">
+  <a class="archive-article-title" href="/2020/03/04/markdown-formula-editor/"
+    >markdown中的公式编辑</a
+  >
+</h2>
+  
+
+    </header>
+    
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/instructions/">instructions</a> / <a class="article-category-link" href="/categories/instructions/notes/">notes</a>
+  </div>
+
+    
+    
+  </div>
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
       <a href="/2020/02/07/android-hexo-setting/" class="archive-article-date">
   <time datetime="2020-02-07T06:46:16.000Z" itemprop="datePublished">02/07</time>
 </a>
@@ -247,7 +275,7 @@
 
 <script>
   var ayerConfig = {
-    mathjax: false
+    mathjax: true
   }
 </script>
 
@@ -367,6 +395,25 @@
 </script>
 
 
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 
 <script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
