@@ -17,7 +17,8 @@ Lucence是一个由Java实现的,支持纯文本文件索引和搜索的高效�
 
 参考:  
 <https://www.cnblogs.com/forfuture1978/archive/2010/06/13/1757479.html>  
-<https://blog.csdn.net/PZ_eng/article/details/91977083>   
+<https://blog.csdn.net/PZ_eng/article/details/91977083>  
+ 
 <http://lucene.apache.org/>  
 
 ### 全文检索

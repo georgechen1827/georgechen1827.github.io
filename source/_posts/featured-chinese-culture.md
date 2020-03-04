@@ -1,6 +1,6 @@
 ---
 title: featured-chinese-culture
-categories: note
+categories: notes
 tags: [learning]
 date: 2020-02-26 08:02:23
 ---
