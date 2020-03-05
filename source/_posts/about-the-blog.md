@@ -11,6 +11,8 @@ date: 2020-02-06 00:26:15
 主题使用：<https://github.com/Shen-Yu/hexo-theme-ayer>  
 分类设置：<https://www.zhihu.com/question/29017171>
 
+<!--more-->
+
 ### 常用命令
 
 ``` bash

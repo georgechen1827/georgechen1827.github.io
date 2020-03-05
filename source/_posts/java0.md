@@ -38,6 +38,8 @@ Java三种核心机制
 * JRE(java运行环境)=JVM+API
 * JDK(Java开发工具包)=JRE+Tools
 
+<!--more-->
+
 ### Java面向对象程序设计
 
 类

@@ -28,6 +28,8 @@ with sem:
 #   function中执行完lock.acquire()后必须进行lock.release(),否则其他线程将永远无法获得此锁
 ```
 
+<!--more-->
+
 ## 多进程
 
 多进程与多线程运用方式相仿

@@ -64,6 +64,8 @@ date: 2020-02-06 16:48:15
 > Windows 通信基础（Windows Communication Foundation - WCF）  
 > LINQ    
 
+<!--more-->
+
 ### 程序结构
 
 ```c#
