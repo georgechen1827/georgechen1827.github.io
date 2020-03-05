@@ -80,7 +80,7 @@
 </ul>
 <p>派生:</p>
 <ul>
-<li>给定文法$G=&lt;V,T,S,P&gt;$,设$x_1,x_2,…,x_n \in (V \cup T)^*, n \ge 1 且 x_1\Rightarrow x_2 \Rightarrow … \Rightarrow x_n $, 则称<strong>$x_n$是由$X_1$派生出来的($x_1 \dot \Rightarrow x_n$)</strong>  <blockquote>
+<li>给定文法$G=&lt;V,T,S,P&gt;$,设$x_1,x_2,…,x_n \in (V \cup T)^*, n \ge 1 且 x_1\Rightarrow x_2 \Rightarrow … \Rightarrow x_n $, 则称<strong>$x_n$是由$x_1$派生出来的($x_1 \dot \Rightarrow x_n$)</strong>  <blockquote>
 <p>注意,对$V \cup T$上的所有字符串$\omega$有$\omega \dot \Rightarrow \omega$. 可见$\dot \Rightarrow$是$\Rightarrow$的自反传递闭包  </p>
 </blockquote>
 </li>
@@ -1766,9 +1766,9 @@ $$
         <category>notes</category>
       </categories>
       <tags>
+        <tag>learning</tag>
         <tag>搜索引擎</tag>
         <tag>c#</tag>
-        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -2491,8 +2491,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>c#</tag>
         <tag>learning</tag>
+        <tag>c#</tag>
       </tags>
   </entry>
   <entry>
