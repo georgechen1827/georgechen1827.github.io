@@ -8,6 +8,8 @@
 <hr>
 <p>自动机是描述计算的数学模型,用来识别语言或计算函数. 形式文法也是一种数学模型,用来产生形式语言. 形式语言和自动机理论密切相关,是计算机科学和技术的重要理论基础.  </p>
 <p>本文扼要地介绍形式文法的基本概念,有穷自动机和图灵机以及它们识别的语言类,其他不做分析</p>
+<a id="more"></a>
+
 <h2 id="形式语言和形式文法"><a href="#形式语言和形式文法" class="headerlink" title="形式语言和形式文法"></a>形式语言和形式文法</h2><p>形式语言的描述最早在1956年由语言学家乔姆斯基建立</p>
 <p>在乔姆斯基的分类中,形式文法一共有如下几类:</p>
 <ul>
@@ -168,8 +170,6 @@
 </ul>
 <p>在编译原理中,词法分析可以用正则文法解决,而语法分析使用上下文无关文法</p>
 <p>注: 在正则文法和上下文无关文法中,当同一个符号作为多个产生式的左端时,可以用”或”<code>|</code>来合在一起写</p>
-<a id="more"></a>
-
 <h2 id="图灵机TM"><a href="#图灵机TM" class="headerlink" title="图灵机TM"></a>图灵机TM</h2><p>图灵机是图灵于1936年提出的一种数学模型, 这个模型很好地描述了计算的过程. 大量事实表明, 任何算法都可以用一个图灵机来描述, 这就是Chruch论题.  </p>
 <p>图灵机在可计算性理论中起着重要的作用, 可以证明, 图灵机识别的语言是0型语言</p>
 <h3 id="图灵机的基本模型"><a href="#图灵机的基本模型" class="headerlink" title="图灵机的基本模型"></a>图灵机的基本模型</h3><p>设想图灵机由一个控制器和一条无穷长的纸带组成,纸带分成了一个一个的小方格，每个方格有不同的颜色。有一个机器头在纸带上移来移去。机器头有一组内部状态，还有一些固定的程序。在每个时刻，机器头都要从当前纸带上读入一个方格信息，然后结合自己的内部状态查找程序表，根据程序输出信息到纸带方格上，并转换自己的内部状态，然后进行移动, 如下图:<br><img src="/2020/03/04/formal-language-and-automata/TM0.jpg" alt="TM"></p>
@@ -305,6 +305,8 @@
 <h3 id="行间公式"><a href="#行间公式" class="headerlink" title="行间公式"></a>行间公式</h3><p>单独显示(display)的LaTeX公式用<code>$$...$$</code>定义，此时公式居中并放大显示  </p>
 <p>例如<code>$$\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t$$</code>   </p>
 <p>显示为$$\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t$$ </p>
+<a id="more"></a>
+
 <h2 id="希腊字母"><a href="#希腊字母" class="headerlink" title="希腊字母"></a>希腊字母</h2><table>
 <thead>
 <tr>
@@ -1254,6 +1256,8 @@ $$
 <hr>
 <h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line">lock = threading.Lock() <span class="comment"># 设置一个全局线程锁,某个线程在获得此锁之后其他线程不能再获得</span></span><br><span class="line"></span><br><span class="line">sem = threading.Semaphore(<span class="number">12</span>) <span class="comment"># 设置最大线程数量</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> sem:</span><br><span class="line">    t = threading.Thread(target=function,args=(a,b,c))  <span class="comment"># 用function(a,b,c)创建一个线程</span></span><br><span class="line">    t.setDaemon(<span class="literal">True</span>)   <span class="comment">#   设置t线程为主线程的守护线程,即主线程结束后会自动杀死子线程(默认为false)</span></span><br><span class="line">    t.start()   <span class="comment"># 启动线程</span></span><br><span class="line">    t.join(<span class="number">60</span>)  <span class="comment"># 线程同步，主线程任务结束之后，进入阻塞状态，一直等待其他的子线程执行结束之后，主线程再终止;如果超时主线程也会终止(默认为无)</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">#   若在function中执行lock.acquire(),则线程阻塞直到其他线程释放此锁</span></span><br><span class="line"><span class="comment">#   function中执行完lock.acquire()后必须进行lock.release(),否则其他线程将永远无法获得此锁</span></span><br></pre></td></tr></table></figure>
 
+<a id="more"></a>
+
 <h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>多进程与多线程运用方式相仿</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> multiprocessing</span><br><span class="line"></span><br><span class="line">lock = multiprocessing.Lock()   <span class="comment"># 设置一个全局进程锁,某个进程在获得此锁之后其他进程不能再获得</span></span><br><span class="line"></span><br><span class="line">p = multiprocessing.Pool(<span class="number">72</span>)    <span class="comment"># 建立一个进程池,设置最大的进程数量</span></span><br><span class="line"></span><br><span class="line">p.apply_async(func=function,args=(a,))  <span class="comment"># 用function(a)创建一个进程</span></span><br><span class="line"></span><br><span class="line">p.close()   <span class="comment">#   关闭进程池,不再接受新的进程</span></span><br><span class="line">p.join()    <span class="comment">#   主进程阻塞,等待其他进程结束</span></span><br></pre></td></tr></table></figure>
 
@@ -1275,6 +1279,8 @@ $$
 <p>资料主要来源于北理工的<a href="https://www.icourse163.org/learn/BIT-1001870001?tid=1206951268#" target="_blank" rel="noopener">爬虫课程</a><br>有requests库、beautifulsoup库、scrapy框架等</p>
 <h2 id="request库"><a href="#request库" class="headerlink" title="request库"></a>request库</h2><p><code>import requests</code></p>
 <h3 id="request"><a href="#request" class="headerlink" title="request."></a>request.</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">.request()</span><br><span class="line">.get() 获取网页</span><br><span class="line">.head() 获取网页头</span><br><span class="line">.post() 提交post请求</span><br><span class="line">.put() 提交put请求</span><br><span class="line">.patch() 提交局部修改请求</span><br><span class="line">.delete() 提交删除请求</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
 
 <h3 id="关于url"><a href="#关于url" class="headerlink" title="关于url"></a>关于url</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">url:http:&#x2F;&#x2F;host[:port][path]</span><br><span class="line">http协议资源操作：</span><br><span class="line">GET 请求获取url位置的资源</span><br><span class="line">HEAD 获取url资源头部信息</span><br><span class="line">POST 请求向资源后附加的新数据</span><br><span class="line">PUT 请求向url位置存储资源，覆盖原有url位置资源</span><br><span class="line">PATCH 请求向资源进行局部更新</span><br><span class="line">DELETE 请求删除资源</span><br></pre></td></tr></table></figure>
 
@@ -1333,7 +1339,7 @@ $$
 <li>根本工作路线: 群众路线;一切为了群众,一切依靠群众,从群众中来,到群众中去,把党的主张变为群众的自觉行动</li>
 <li>根本政治原则: 独立自主;坚持独立思考,走自己的路;坚定不移地维护民族独立,捍卫国家主权,把立足点放在依靠自己力量的基础之上;同时积极争取外援,开展国际经济文化交流,学习外国一切对我们有益的先进事物</li>
 </ol>
-]]></content>
+<a id="more"></a>]]></content>
       <categories>
         <category>notes</category>
         <category>学位课程</category>
@@ -1348,8 +1354,10 @@ $$
     <url>/2020/02/27/data-base0/</url>
     <content><![CDATA[<p>未完结,持续更新</p>
 <hr>
-<p>赵朋朋<a href="http://web.suda.edu.cn/ppzhao/" target="_blank" rel="noopener">http://web.suda.edu.cn/ppzhao/</a></p>
+<p>任课教师: 赵朋朋<a href="http://web.suda.edu.cn/ppzhao/" target="_blank" rel="noopener">http://web.suda.edu.cn/ppzhao/</a></p>
 <p>课程主要讲述关系型数据库的原理, 不着重于具体数据库的使用</p>
+<a id="more"></a>
+
 <h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><h3 id="数据库系统概述"><a href="#数据库系统概述" class="headerlink" title="数据库系统概述"></a>数据库系统概述</h3><h4 id="数据库中的基本概念"><a href="#数据库中的基本概念" class="headerlink" title="数据库中的基本概念"></a>数据库中的基本概念</h4><ul>
 <li>数据(data): 是数据库中存储的基本对象; 是描述事物的符号记录,包括数字、文字等不同种类 </li>
 </ul>
@@ -1613,6 +1621,8 @@ $$
 <hr>
 <p>Lucence是一个由Java实现的,支持纯文本文件索引和搜索的高效、可扩展、开源的的全文检索框架</p>
 <p>因自己需要用到lucence.net相关知识, 学习时参阅了不少资料, 将一些要点记录在此, 以供参考</p>
+<a id="more"></a>
+
 <h2 id="总论"><a href="#总论" class="headerlink" title="总论"></a>总论</h2><p>参考:<br><a href="https://www.cnblogs.com/forfuture1978/archive/2010/06/13/1757479.html" target="_blank" rel="noopener">https://www.cnblogs.com/forfuture1978/archive/2010/06/13/1757479.html</a><br><a href="https://blog.csdn.net/PZ_eng/article/details/91977083" target="_blank" rel="noopener">https://blog.csdn.net/PZ_eng/article/details/91977083</a>  </p>
 <p><a href="http://lucene.apache.org/" target="_blank" rel="noopener">http://lucene.apache.org/</a>  </p>
 <h3 id="全文检索"><a href="#全文检索" class="headerlink" title="全文检索"></a>全文检索</h3><h4 id="数据的分类"><a href="#数据的分类" class="headerlink" title="数据的分类"></a>数据的分类</h4><p>生活中数据总体分为如下几种:</p>
@@ -1773,6 +1783,8 @@ $$
 <li>强调形式描述技术和自动生成技术</li>
 <li>强调对编译原理和技术的宏观理解,不把注意力分散到枝节算法,不偏向于任何源语言或目标机器</li>
 </ul>
+<a id="more"></a>
+
 <h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><h3 id="编译原理概述"><a href="#编译原理概述" class="headerlink" title="编译原理概述"></a>编译原理概述</h3><p>语言处理器: 由编译器,解释器,汇编器,连接器,加载器,调试器及程序概要提取工具等所构成的集成软件开发环境  </p>
 <ul>
 <li>机器语言和汇编语言: 第一和第二代程序设计语言  </li>
@@ -1980,6 +1992,8 @@ $$
 <li>理解: 外存与io设备</li>
 <li>了解: 计算机系统概论,输入输出系统</li>
 </ul>
+<a id="more"></a>
+
 <h2 id="计算机系统概论"><a href="#计算机系统概论" class="headerlink" title="计算机系统概论"></a>计算机系统概论</h2><p>计算机的定义,分类.发展史</p>
 <h3 id="计算机发展简史"><a href="#计算机发展简史" class="headerlink" title="计算机发展简史"></a>计算机发展简史</h3><p>计算机: 能够连续自动进行数值和逻辑运算的机器</p>
 <p>分类:</p>
@@ -2085,6 +2099,8 @@ $$
 <li>JRE(java运行环境)=JVM+API</li>
 <li>JDK(Java开发工具包)=JRE+Tools</li>
 </ul>
+<a id="more"></a>
+
 <h3 id="Java面向对象程序设计"><a href="#Java面向对象程序设计" class="headerlink" title="Java面向对象程序设计"></a>Java面向对象程序设计</h3><p>类</p>
 <ul>
 <li>属性: 变量,字段</li>
@@ -2213,6 +2229,8 @@ $$
 <p>相关命令</p>
 <figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">who <span class="comment">% 显示工作空间中的所有变量  </span></span><br><span class="line">whos    <span class="comment">% 查看工作空间中变量的详细属性 </span></span><br><span class="line"><span class="built_in">realmin</span> <span class="comment">% 最小可用正实数</span></span><br><span class="line"><span class="built_in">realmax</span> <span class="comment">% 最大可用正实数</span></span><br></pre></td></tr></table></figure>
 
+<a id="more"></a>
+
 <h4 id="符号-符号表达式"><a href="#符号-符号表达式" class="headerlink" title="符号 符号表达式"></a>符号 符号表达式</h4><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">syms [symbol1] &lt;symbol2&gt; &lt;symbol3&gt; ...  <span class="comment">% 创建多个符号变量, 相当于symbol1 = sym('symbol'); symbol2 = sym('symbol2'); ...</span></span><br><span class="line">[symbol] = sym([symbol/value/symbolexpression])  <span class="comment">% 用符号/数值/表达式来创建符号变量/常量/表达式</span></span><br></pre></td></tr></table></figure>
 
 <p>相关函数  </p>
@@ -2259,6 +2277,8 @@ $$
     <url>/2020/02/08/making-rolls/</url>
     <content><![CDATA[<p><em>这是一次从面粉到面花卷过程</em>  </p>
 <hr>
+<a id="more"></a>
+
 <ol>
 <li>一斤玉米面、一斤荞麦面、一斤白面、一包奶粉一勺糖，混合均匀  </li>
 </ol>
@@ -2316,6 +2336,8 @@ $$
     <content><![CDATA[<p>在hexo已经部署到github的情况下，本文将记录如何把自己的移动设备(安卓手机、平板)变成可以编辑并上传博客的平台。  </p>
 <p>关于如何在github上搭建hexo，详见<a href="https://zhuanlan.zhihu.com/p/44213627" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/44213627</a><br>注意：使用多终端更新博客之前，请确保自己的博客系统在github上面同时有编译前、后两个分支，多终端更新方法可参考<a href="https://keyanbu.club/2020/02/05/guide/" target="_blank" rel="noopener">https://keyanbu.club/2020/02/05/guide/</a></p>
 <p>本博文使用matepad pro在安卓环境下编写完成。  </p>
+<a id="more"></a>
+
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>由于安卓系统下没有直接支持git及hexo的软件，我们使用termux来虚拟出一个linux环境，在终端中安装git及相关包，使用vim或安卓的相关文本编辑器(我用的920编辑器)来编写博文，用termux终端同步博客。  </p>
 <p>相关问题：</p>
 <ul>
@@ -2422,6 +2444,8 @@ $$
 <blockquote>
 <p>.Net 框架由一个巨大的代码库组成，用于 C# 等客户端语言。下面列出一些 .Net 框架的组件：<br>公共语言运行库（Common Language Runtime - CLR）<br>.Net 框架类库（.Net Framework Class Library）<br>公共语言规范（Common Language Specification）<br>通用类型系统（Common Type System）<br>元数据（Metadata）和组件（Assemblies）<br>Windows 窗体（Windows Forms）<br>ASP.Net 和 ASP.Net AJAX<br>ADO.Net<br>Windows 工作流基础（Windows Workflow Foundation - WF）<br>Windows 显示基础（Windows Presentation Foundation）<br>Windows 通信基础（Windows Communication Foundation - WCF）<br>LINQ    </p>
 </blockquote>
+<a id="more"></a>
+
 <h3 id="程序结构"><a href="#程序结构" class="headerlink" title="程序结构"></a>程序结构</h3><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;   <span class="comment">//使用名字空间</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">HelloWorldApplication</span> <span class="comment">//一个名字空间</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">class</span> <span class="title">HelloWorld</span> <span class="comment">//一个类</span></span><br><span class="line">   &#123;    <span class="comment">//类方法、类属性</span></span><br><span class="line">      <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)   <span class="comment">//main方法</span></span></span><br><span class="line"><span class="function"></span>      &#123;</span><br><span class="line">         <span class="comment">/* 我的第一个 C# 程序*/</span></span><br><span class="line">         Console.WriteLine(<span class="string">"Hello World"</span>);</span><br><span class="line">         Console.ReadKey();</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>说明:</p>
@@ -2475,6 +2499,8 @@ $$
     <title>About the Blog</title>
     <url>/2020/02/06/about-the-blog/</url>
     <content><![CDATA[<h3 id="搭建参考"><a href="#搭建参考" class="headerlink" title="搭建参考"></a>搭建参考</h3><p>搭建：<a href="https://zhuanlan.zhihu.com/p/44213627" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/44213627</a><br>主题使用：<a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank" rel="noopener">https://github.com/Shen-Yu/hexo-theme-ayer</a><br>分类设置：<a href="https://www.zhihu.com/question/29017171" target="_blank" rel="noopener">https://www.zhihu.com/question/29017171</a></p>
+<a id="more"></a>
+
 <h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 本地运行博客</span></span><br><span class="line">$ hexo g</span><br><span class="line">$ hexo server </span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署博客到github</span></span><br><span class="line">$ hexo clean    <span class="comment"># 可不加</span></span><br><span class="line">$ hexo generate <span class="comment"># hexo g</span></span><br><span class="line">$ hexo deploy   <span class="comment"># hexo d</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新hexo分支</span></span><br><span class="line">$ git pull origin hexo  <span class="comment"># 同步博客</span></span><br><span class="line">$ git add .     <span class="comment"># .github.io目录下</span></span><br><span class="line">$ git commit -m <span class="string">"update hexo branch"</span> <span class="comment"># 带解释地提交</span></span><br><span class="line">$ git push      <span class="comment"># 默认分支为hexo, -f 进行强制覆盖</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建博文</span></span><br><span class="line">$ hexo new [layout] &lt;title&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建菜单页</span></span><br><span class="line">$ hexo new page &lt;title&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建草稿</span></span><br><span class="line">$ hexo new draft &lt;title&gt;</span><br><span class="line">$ hexo server --draft   <span class="comment"># 预览草稿</span></span><br><span class="line">$ hexo publish draft newpage    <span class="comment"># 发布草稿</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="markdown语法"><a href="#markdown语法" class="headerlink" title="markdown语法"></a>markdown语法</h3><p><a href="https://www.jianshu.com/p/ebe52d2d468f" target="_blank" rel="noopener">https://www.jianshu.com/p/ebe52d2d468f</a><br><a href="https://www.runoob.com/markdown/md-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/markdown/md-tutorial.html</a></p>
