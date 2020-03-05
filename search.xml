@@ -3,10 +3,11 @@
   <entry>
     <title>形式语言和自动机初步</title>
     <url>/2020/03/04/formal-language-and-automata/</url>
-    <content><![CDATA[<p>参考离散数学(清华大学出版社,第五版)相关内容</p>
+    <content><![CDATA[<p>参考离散数学(清华大学出版社,第五版)相关内容  </p>
+<p>ps: 编辑公式真费时间$\to$_$\to$</p>
 <hr>
 <p>自动机是描述计算的数学模型,用来识别语言或计算函数. 形式文法也是一种数学模型,用来产生形式语言. 形式语言和自动机理论密切相关,是计算机科学和技术的重要理论基础.  </p>
-<p>本文扼要地介绍形式文法的基本概念,有穷自动机和图灵机以及它们识别的语言类</p>
+<p>本文扼要地介绍形式文法的基本概念,有穷自动机和图灵机以及它们识别的语言类,其他不做分析</p>
 <h2 id="形式语言和形式文法"><a href="#形式语言和形式文法" class="headerlink" title="形式语言和形式文法"></a>形式语言和形式文法</h2><p>形式语言的描述最早在1956年由语言学家乔姆斯基建立</p>
 <p>在乔姆斯基的分类中,形式文法一共有如下几类:</p>
 <ul>
@@ -167,9 +168,125 @@
 </ul>
 <p>在编译原理中,词法分析可以用正则文法解决,而语法分析使用上下文无关文法</p>
 <p>注: 在正则文法和上下文无关文法中,当同一个符号作为多个产生式的左端时,可以用”或”<code>|</code>来合在一起写</p>
-<h2 id="有穷自动机"><a href="#有穷自动机" class="headerlink" title="有穷自动机"></a>有穷自动机</h2><p>有穷自动机是具有离散输入和输出系统的一种数学模型,它有有限个内部状态.随着信号的输入,内部状态不断地转移</p>
-<hr>
-<p>未完结,持续更新</p>
+<a id="more"></a>
+
+<h2 id="图灵机TM"><a href="#图灵机TM" class="headerlink" title="图灵机TM"></a>图灵机TM</h2><p>图灵机是图灵于1936年提出的一种数学模型, 这个模型很好地描述了计算的过程. 大量事实表明, 任何算法都可以用一个图灵机来描述, 这就是Chruch论题.  </p>
+<p>图灵机在可计算性理论中起着重要的作用, 可以证明, 图灵机识别的语言是0型语言</p>
+<h3 id="图灵机的基本模型"><a href="#图灵机的基本模型" class="headerlink" title="图灵机的基本模型"></a>图灵机的基本模型</h3><p>设想图灵机由一个控制器和一条无穷长的纸带组成,纸带分成了一个一个的小方格，每个方格有不同的颜色。有一个机器头在纸带上移来移去。机器头有一组内部状态，还有一些固定的程序。在每个时刻，机器头都要从当前纸带上读入一个方格信息，然后结合自己的内部状态查找程序表，根据程序输出信息到纸带方格上，并转换自己的内部状态，然后进行移动, 如下图:<br><img src="/2020/03/04/formal-language-and-automata/TM0.jpg" alt="TM"></p>
+<h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>图灵机是一个有序组$M = &lt;Q, \Sigma, \Gamma, \delta, q_0, B, A&gt;$, 其中</p>
+<ul>
+<li>$Q$是非空有穷的状态集合</li>
+<li>$\Sigma$是非空有穷的输入字母表</li>
+<li>$\Gamma$是非空有穷的带字母表且$\Sigma \subset \Gamma$</li>
+<li>$\delta$为一个$Q \times \Gamma \to \Gamma \times \lbrace L, R \rbrace \times Q$的映射,是动作函数</li>
+<li>$q_0 \in Q$是初始状态</li>
+<li>$B \in \Gamma - \Sigma$是空白符</li>
+<li>$A \subset Q$是接收状态的集合<blockquote>
+<p>对于$\delta$, 给定当前状态$q$和当前位置的符号$s$,它能将当前位置的符号改为$s’$、并且给出扫描头移动方向和次态$q’$; 即$\delta (q,s) = (s’, L/R, q’)$</p>
+</blockquote>
+</li>
+</ul>
+<p>显然,对于每一步计算,带上只有穷个方格的内容是非空白符,因此,纸带可以表示为$$Ba_1a_2…a_nB$$即两边都有无穷多个空白符的形式  </p>
+<p>给定了图灵机M和纸带,为了描述计算中的每一步,这里又有一些定义:</p>
+<ul>
+<li><p>格局: 计算中某一步时带上的内容、控制器的状态和读写头扫视的带方格称为M的一个格局</p>
+<blockquote>
+<p>一般地,一个格局总可以表示成$\alpha_1 q \alpha_2$, 其中$\alpha_1, \alpha_2 \in \Gamma, q \in Q$<br>这表示带上的内容为$\alpha_1 \alpha_2$, 当前状态为$q$, 读写头正在扫视$\alpha_2$的第一个字符(若$\alpha_2$是空串则扫视紧挨在右边的空白符)   </p>
+<ul>
+<li>$q_0\omega$是M的初始格局,$\omega \in \Sigma^*$是输入字符串  </li>
+</ul>
+</blockquote>
+</li>
+<li><p>接受格局: $\sigma = \alpha_1 q \alpha_2$中的$q$是接收状态,即$q \in A$</p>
+</li>
+<li><p>停机格局: $\sigma$时对应的&amp;\delta (q,s)&amp;没有定义,即图灵机不知道接下来一步要干什么  </p>
+</li>
+<li><p>$\vdash$: 设$\sigma_1, \sigma_2$是两个格局, 如果从$\sigma_1$经过一步到达$sigma_2$,则记作$\sigma_1\vdash\sigma_2$</p>
+</li>
+<li><p>$\dot \vdash$: 设$\sigma_1, \sigma_2$是两个格局, 如果从$\sigma_1$经过有限步到达$sigma_2$,则记作$\sigma_1\dot\vdash\sigma_2$  </p>
+</li>
+<li><p>计算: 一个格局序列$\sigma_1,\sigma_2,…,\sigma_n,…$(可以有穷也可以无穷)中每一个$\sigma_{i+1}$都能由$\sigma_i$一步得到,则称这个序列是一个计算</p>
+</li>
+</ul>
+<h3 id="图灵机接受的语言"><a href="#图灵机接受的语言" class="headerlink" title="图灵机接受的语言"></a>图灵机接受的语言</h3><p>任给一个字符串$\omega$,从初始格局开始,图灵机M在字符串上的计算有如下三种可能:</p>
+<ul>
+<li>停机在接受状态,此时称图灵机M接受字符串$\omega$</li>
+<li>婷机在非接受状态,此时图灵机M不接受或拒绝字符串$\omega$</li>
+<li>用不停机,此时也称图灵机M不接受或拒绝字符串$\omega$</li>
+</ul>
+<p>则图灵机M接受的语言L(M)可定义为:<br>$$L(M) = \lbrace \omega | \omega \in \Sigma^* , M接受\omega \rbrace$$</p>
+<h3 id="状态转移图"><a href="#状态转移图" class="headerlink" title="状态转移图"></a>状态转移图</h3><p>状态转移图是一个有向图,每一个节点代表一个状态; 初始状态用一个指向该节点的箭头标明, 终结状态用双圈标明; 边上应注明状态转换时的输入/输出</p>
+<p>例如:<br><img src="/2020/03/04/formal-language-and-automata/TM1.png" alt="TM"></p>
+<ul>
+<li>状态转移图有时候也可以用状态转移表表示</li>
+</ul>
+<h3 id="用图灵机计算函数"><a href="#用图灵机计算函数" class="headerlink" title="用图灵机计算函数"></a>用图灵机计算函数</h3><p>NaN</p>
+<h2 id="线性界限自动机LBA"><a href="#线性界限自动机LBA" class="headerlink" title="线性界限自动机LBA"></a>线性界限自动机LBA</h2><p>线性界限自动机(Linear Bounded Automaton)是有限制的图灵机; 它不使用无限纸带，它的纸带有同输入符号数目成正比的空间  </p>
+<p>可以证明,LBA 接受上下文有关语言</p>
+<h2 id="下推自动机PDA"><a href="#下推自动机PDA" class="headerlink" title="下推自动机PDA"></a>下推自动机PDA</h2><p>下推自动机(Pushdown Automation)可以看成是一个带有附加下推存储器的有穷自动机,下推存储器是一个堆栈,如下:<br><img src="/2020/03/04/formal-language-and-automata/PDA0.png" alt="PDA"></p>
+<p>如果把下推自动机扩展，允许一个有限状态自动机存取两个栈，我们得到一个能力更强的自动机，这个自动机与图灵机等价</p>
+<h2 id="有穷自动机FA"><a href="#有穷自动机FA" class="headerlink" title="有穷自动机FA"></a>有穷自动机FA</h2><p>有穷自动机(Finity Automation)是具有离散输入和输出系统的一种数学模型,它有有限个内部状态.随着信号的输入,内部状态不断地转移</p>
+<h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>有穷自动机(FA)是一个有序五元组$M = &lt;Q, \Sigma, \delta, q_0, F&gt;$, 其中</p>
+<ul>
+<li>$Q$是非空有穷的状态集合</li>
+<li>$\Sigma$是非空有穷的输入字母表</li>
+<li>$\delta$为一个$Q \times \Sigma \to Q$上的映射,是状态转移函数</li>
+<li>$q_0 \in Q$是初始状态</li>
+<li>$F \subseteq Q$是终结状态集合</li>
+</ul>
+<p>为了精确描述有穷自动机在输入字符串上的动作,我们推广状态转移函数为$\hat \delta : Q \times \Sigma^* to Q $如下</p>
+<blockquote>
+<p>对任意的$q \in Q, \omega \in \Sigma^*, a \in \Sigma$都有:<br>$$\hat \delta (q, \epsilon) = q$$  $$\hat \delta (q, \omega a) = \delta (\hat \delta (q, \omega), a)$$<br>即$\hat \delta (q, \omega)$正好是自动机从状态$q$开始扫描完$\omega$所有符号后所处的状态</p>
+</blockquote>
+<h3 id="有穷自动机接受的语言"><a href="#有穷自动机接受的语言" class="headerlink" title="有穷自动机接受的语言"></a>有穷自动机接受的语言</h3><p>有穷自动机$M = &lt;Q, \Sigma, \delta, q_0, F&gt;$接受的语言$L(M)$为:<br>$$L(M) = \lbrace \omega | \omega \in \Sigma^* , \hat \delta (q_0, \omega) \in F \rbrace$$</p>
+<p>由$\delta$定义可知,对于一个确定的状态$q$和输入$a$,输出的次态是唯一的,所以FA在给定字符串上的动作是确定的; 因此上面讲的有穷自动机又叫确定型有穷自动机(DFA)</p>
+<h3 id="非确定型有穷自动机NFA"><a href="#非确定型有穷自动机NFA" class="headerlink" title="非确定型有穷自动机NFA"></a>非确定型有穷自动机NFA</h3><p>若在有穷自动机中,FA在输入字符串上的动作是不确定的,那么这种自动机叫做非确定型有穷自动机</p>
+<h4 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h4><p>非确定型有穷自动机是一个有序五元组$M = &lt;Q, \Sigma, \delta, q_0, F&gt;$, 其中</p>
+<ul>
+<li>$Q$是非空有穷的状态集合</li>
+<li>$\Sigma$是非空有穷的输入字母表</li>
+<li>$\delta$为一个$Q \times \Sigma \to \rho(Q)$上的映射,$\rho(Q)$表示Q的幂集</li>
+<li>$q_0 \in Q$是初始状态</li>
+<li>$F \subseteq Q$是终结状态集合<br>这样,$\delta (q, a)$就是一个状态集合,它可以含有一个或多个状态,也可以是空集</li>
+</ul>
+<p>类似地,我们将$\delta$推广成$\hat \delta : Q \times \Sigma^* to \rho(Q)$:</p>
+<blockquote>
+<p>对任意的$q \in Q, \omega \in \Sigma^*, a \in \Sigma$都有:<br>$$\hat \delta (q, \epsilon) = \lbrace q \rbrace$$  $$\hat \delta (q, \omega a) =\bigcup_{r \in \hat \delta (q, \omega)} \hat \delta (r, a)$$<br>此时$\hat \delta (q, \omega)$表示的是从状态$q$开始扫描完$\omega$所有符号后所有可能的结束状态的集合</p>
+</blockquote>
+<h4 id="NFA接受的语言"><a href="#NFA接受的语言" class="headerlink" title="NFA接受的语言"></a>NFA接受的语言</h4><p>非确定型有穷自动机$M = &lt;Q, \Sigma, \delta, q_0, F&gt;$接受的语言$L(M)$为:<br>$$L(M) = \lbrace \omega | \omega \in \Sigma^* , \hat \delta (q_0, \omega) \cap F \ne \emptyset \rbrace$$</p>
+<h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><ul>
+<li>每一个DFA都可以看成一个特殊的NFA,只要把$\hat \delta (q, \epsilon) = q$看成$\hat \delta (q, \epsilon) = \lbrace q \rbrace$即可  </li>
+</ul>
+<p>实际上,相比于DFA,非确定性并没有增加NFA的能力,正如下面所述:</p>
+<ul>
+<li>对每一个非确定型有穷自动机$M$,都存在一个确定型有穷自动机$M’$,使得$L(M) = L(M’)$(证明略)  </li>
+</ul>
+<p>这种转换方式在此不做介绍</p>
+<h3 id="带-epsilon-转移的非确定型有穷自动机"><a href="#带-epsilon-转移的非确定型有穷自动机" class="headerlink" title="带$\epsilon$转移的非确定型有穷自动机"></a>带$\epsilon$转移的非确定型有穷自动机</h3><p>对NFA稍加推广,不仅对$\Sigma$中的每一个符号都可以有状态转移, 而且在不读入任何符号(或者说读入空串$\epsilon$)的情况下,自动机在某些状态下也可以自动转移高另一个状态, 这样的NFA称为带$\epsilon$转移的NFA</p>
+<h4 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h4><p>带$\epsilon$转移的非确定型有穷自动机是一个有序五元组$M = &lt;Q, \Sigma, \delta, q_0, F&gt;$, 其中</p>
+<ul>
+<li>$Q$是非空有穷的状态集合</li>
+<li>$\Sigma$是非空有穷的输入字母表</li>
+<li>$\delta$为一个$Q \times (\Sigma \cup \lbrace \epsilon \rbrace) \to \rho(Q)$上的映射,$\rho(Q)$表示Q的幂集</li>
+<li>$q_0 \in Q$是初始状态</li>
+<li>$F \subseteq Q$是终结状态集合</li>
+</ul>
+<h4 id="性质-1"><a href="#性质-1" class="headerlink" title="性质"></a>性质</h4><ul>
+<li>NFA可以看成是特殊的带$\epsilon$转移的NFA  </li>
+</ul>
+<p>实际上,带$\epsilon$转移也没有增加NFA的能力:</p>
+<ul>
+<li>对每一个带$\epsilon$转移的非确定型有穷自动机$M$,都存在一个非确定型有穷自动机$M’$,使得$L(M) = L(M’)$(证明略)  </li>
+</ul>
+<p>可见,DFA、NFA、带$\epsilon$转移的NFA这三种自动机模型是等价的</p>
+<h3 id="有穷自动机和正则文法的等价性"><a href="#有穷自动机和正则文法的等价性" class="headerlink" title="有穷自动机和正则文法的等价性"></a>有穷自动机和正则文法的等价性</h3><ul>
+<li>模拟是证明两个计算模型等价的主要方法; 用模型A模拟模型B,就是用模型A实现模型B的计算  </li>
+</ul>
+<p>可以证明,有穷自动机识别的语言类型恰好是正则语言:</p>
+<ul>
+<li>对每一个正则语言L,都存在一个带$\epsilon$转移的非确定型有穷自动机$M$使得$L(M) = L$</li>
+<li>对每一个带$\epsilon$转移的非确定型有穷自动机$M$,都存在一个右线性文法$G$和左线性文法$G’$使得$L(G) = L(G’)=L(M)$</li>
+</ul>
 ]]></content>
       <categories>
         <category>notes</category>
@@ -1275,7 +1392,183 @@ $$
 <li>数据独立性高</li>
 <li>数据由数据库管理系统统一管理和控制</li>
 </ul>
-<h3 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h3><h3 id="数据库系统的结构"><a href="#数据库系统的结构" class="headerlink" title="数据库系统的结构"></a>数据库系统的结构</h3><h3 id="数据库系统的组成"><a href="#数据库系统的组成" class="headerlink" title="数据库系统的组成"></a>数据库系统的组成</h3><h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><hr>
+<h3 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h3><p>数据模型是对现实世界数据特征的抽象</p>
+<p>数据模型应满足三方面要求</p>
+<ul>
+<li>能比较真实地模拟现实世界</li>
+<li>容易为人所理解</li>
+<li>便于在计算机上实现  </li>
+</ul>
+<p>数据模型是数据库系统的核心和基础 </p>
+<h4 id="两类数据模型"><a href="#两类数据模型" class="headerlink" title="两类数据模型"></a>两类数据模型</h4><p>数据模型分为两类(两个不同层次):  </p>
+<ul>
+<li>概念模型，也称信息模型 : 它是按用户的观点来对数据和信息建模，用于数据库设计  </li>
+<li>逻辑模型和物理模型 <blockquote>
+<ul>
+<li>逻辑模型主要包括网状模型、层次模型、关系模型、面向对象数据模型、对 象关系数据模型、半结构化数据模型等</li>
+<li>逻辑模型是按计算机系统的观点对数据建模，用于DBMS实现</li>
+<li>物理模型是对数据最底层的抽象, 是描述数据在系统内（磁盘上）的表示方式和存取方法</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>现实世界中客观对象的抽象过程:<br>1<a href="proc0.png">proc</a></p>
+<h4 id="概念模型"><a href="#概念模型" class="headerlink" title="概念模型"></a>概念模型</h4><ul>
+<li>概念模型用于信息世界的建模 </li>
+<li>是现实世界到机器世界的一个中间层次</li>
+<li>是数据库设计的有力工具</li>
+<li>数据库设计人员和用户之间进行交流的语言 </li>
+</ul>
+<p>概念模型的特点:  </p>
+<ul>
+<li>较强的语义表达能力</li>
+<li>简单、清晰、易于用户理解 </li>
+</ul>
+<p>信息世界中的基本概念: </p>
+<ul>
+<li>实体（Entity）: 客观存在并可相互区别的事物称为实体。可以是具体的人、事、物或抽象的概念。</li>
+<li>属性（Attribute）: 实体所具有的某一特性称为属性。一个实体可以由若干个属性来刻画。</li>
+<li>码（Key）: 唯一标识实体的属性集称为码。</li>
+<li>实体型（Entity Type）: 用实体名及其属性名集合来抽象和刻画同类实体称为实体型</li>
+<li>实体集（Entity Set）: 同一类型实体的集合称为实体集 </li>
+<li>联系（Relationship）: 现实世界中事物内部以及事物之间的联系在信息世界中反映为实体（型）内部的联系和实体（型）之间的联系。<blockquote>
+<ul>
+<li>实体内部的联系: 是指组成实体的各属性之间的联系 </li>
+<li>实体之间的联系: 通常是指不同实体集之间的联系, 实体之间的联系有一对一（1:1）、一对多（1:n）和多对多（m:n）等多种类型 </li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>实体-联系方法（Entity-Relationship Approach）是概念模型的一种表示方法:</p>
+<ul>
+<li>用E-R图来描述现实世界的概念模型 </li>
+<li>E-R方法也称为E-R模型<br><img src="/2020/02/27/data-base0/rela0.png" alt="relation">  </li>
+</ul>
+<p>(具体方法在数据库设计中会讲到)</p>
+<h3 id="数据模型的组成要素"><a href="#数据模型的组成要素" class="headerlink" title="数据模型的组成要素"></a>数据模型的组成要素</h3><p>数据模型是严格定义的一组概念的集合</p>
+<ul>
+<li>它精确地描述了系统的静态特性、动态特性和完整性约束条件 (Integrity Constraints)。</li>
+</ul>
+<p>数据模型由三部分组成</p>
+<ul>
+<li>数据结构–描述系统的静态特性 </li>
+<li>数据操作–描述系统的动态特性 </li>
+<li>完整性约束条件</li>
+</ul>
+<h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><ul>
+<li><p>数据结构是刻画数据模型性质的重要方面  </p>
+<blockquote>
+<ul>
+<li>一般用数据结构的类型来命名数据模型,如: 层次结构-层次模型、网状结构–网状模型、关系结构—关系模型 </li>
+</ul>
+</blockquote>
+</li>
+<li><p>数据结构是用来描述数据库的组成对象–对象的类型、内容、性质</p>
+</li>
+<li><p>数据结构可以用来描述对象之间的联系 </p>
+</li>
+</ul>
+<h4 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h4><p>数据操作是对数据库中各种对象的实例允许执行的操作的集合，包括操作的类型及有关的操作规则</p>
+<p>操作的类型: 增删改查</p>
+<p>数据操作语言: </p>
+<ul>
+<li>数据操作语言需要定义数据操作的确切含义、符号、优先级别</li>
+<li>数据操作语言需要实现查询语言(Query Language)和更新语言(Insert、Delete、Update) </li>
+</ul>
+<h4 id="数据完整性约束条件"><a href="#数据完整性约束条件" class="headerlink" title="数据完整性约束条件"></a>数据完整性约束条件</h4><p>数据完整性约束条件是一组完整性规则的集合</p>
+<ul>
+<li>完整性规则：给定的数据模型中数据及其联系所具有的制约和依存规则</li>
+<li>完整性规则可以限定符合数据模型的数据库状态以及状态的变化，以保证数 据的正确、有效和相容。</li>
+</ul>
+<p>数据模型对完整性约束条件的定义:</p>
+<ul>
+<li>反映和规定必须遵守的基本的通用的完整性约束条件</li>
+<li>提供定义完整性约束条件的机制，以反映具体应用所涉及的数据必须遵守的特定的语义约束条件。</li>
+</ul>
+<h4 id="常用的数据模型"><a href="#常用的数据模型" class="headerlink" title="常用的数据模型"></a>常用的数据模型</h4><ul>
+<li>格式化模型: 层次模型,网状模型 </li>
+<li>关系模型</li>
+<li>对象模型: 面向对象数据模型,对象关系数据模型</li>
+<li>半结构化数据模型:XML,HTML</li>
+<li>非结构化数据模型,图模型,…</li>
+</ul>
+<h4 id="层次模型"><a href="#层次模型" class="headerlink" title="层次模型"></a>层次模型</h4><p>层次模型用树形结构来表示各类实体以及实体间的联系</p>
+<p>表示方法：</p>
+<ul>
+<li>实体型：用纪录类描述，每个节点表示一个记录类型</li>
+<li>属性：用字段描述，每个记录类型可包含若干个字段</li>
+<li>联系：用结点之间的连线表示记录类型（实体）之间的一对多的父子联系</li>
+</ul>
+<p>特点:</p>
+<ul>
+<li>结点的双亲是唯一的</li>
+<li>只能直接处理一对多的实体联系</li>
+<li>任何记录值只有按其路径查看</li>
+<li>没有一个子女记录值能够脱离双亲记录值而独立存在 </li>
+</ul>
+<p>优缺点:</p>
+<ul>
+<li>(优点)层次模型的数据结构比较简单清晰</li>
+<li>查询效率高，性能优于关系模型，不低于网状模型</li>
+<li>层次数据模型提供了良好的完整性支持</li>
+<li>(缺点)结点之间的多对多联系表示不自然</li>
+<li>对插入和删除操作的限制多，应用程序的编写比较复杂</li>
+<li>查询子女结点必须通过双亲结点</li>
+<li>层次数据库的命令（语言）趋于程序化  </li>
+</ul>
+<h4 id="网状模型"><a href="#网状模型" class="headerlink" title="网状模型"></a>网状模型</h4><p>网状数据库系统采用网状结构来表示各类实体以及实体间的联系(有向图)</p>
+<p>网状模型表示方法和层次模型相同</p>
+<p>特点:</p>
+<ul>
+<li>允许多个结点没有双亲结点</li>
+<li>允许一个结点有多个双亲结点</li>
+<li>允许两个结点之间有多种联系</li>
+<li>要为每个联系命名并指出与该联系有关的双亲记录和子女记录 </li>
+</ul>
+<p>优缺点:</p>
+<ul>
+<li>(优点)能够更为直接地描述现实世界，如一个结点可以有多个双亲</li>
+<li>具有良好的性能，存取效率较高</li>
+<li>(缺点)结构比较复杂，而且随着应用环境的扩大，数据库的结构就变得越来越复杂，不利于最终用户掌握</li>
+<li>DDL、DML语言复杂，用户不容易使用</li>
+<li>记录之间联系是通过存取路径实现的，应用程序必须选择存取路径，加重了程序员的负担</li>
+</ul>
+<h4 id="关系模型"><a href="#关系模型" class="headerlink" title="关系模型"></a>关系模型</h4><p>在用户观点下，关系模型中数据的逻辑结构是一张二维表,如下<br><img src="/2020/02/27/data-base0/rela0.png" alt="relation">  </p>
+<p>其中:</p>
+<ul>
+<li>关系: 一个关系对应通常来说的一张表</li>
+<li>元组: 表中的一行即为一个元组</li>
+<li>属性: 表中的一列即为一个属性, 每一个属性都会有一个属性名</li>
+<li>主码(key): 也称码键, 是可以唯一确定一个元组的属性组</li>
+<li>域(domain): 是一组具有相同数据类型的值的集合, 是属性的取值范围</li>
+<li>分量: 元组中的一个属性值</li>
+<li>关系模式: 对关系的描述</li>
+</ul>
+<p>注意: 关系模型中的关系必须是规范化的, 关系中的每一个分量必须是不可分的数据项, 即不允许表中套表(这个表应该是个纯粹的二维数组)</p>
+<p>优点:</p>
+<ul>
+<li>建立在严格的数学概念的基础上</li>
+<li>概念单一<blockquote>
+<ul>
+<li>实体和各类联系都用关系来表示 </li>
+<li>对数据的检索结果也是关系 </li>
+</ul>
+</blockquote>
+</li>
+<li>关系模型的存取路径对用户透明(用户感受不到路径)<blockquote>
+<ul>
+<li>具有更高的数据独立性，更好的安全保密性 </li>
+<li>简化了程序员的工作和数据库开发建立的工作 </li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>缺点:</p>
+<ul>
+<li>存取路径对用户透明，查询效率往往不如格式化数据模型</li>
+<li>为提高性能，必须对用户的查询请求进行优化，增加了开发数据库管理系统的难度</li>
+</ul>
+<h2 id="数据库系统的结构"><a href="#数据库系统的结构" class="headerlink" title="数据库系统的结构"></a>数据库系统的结构</h2><h2 id="数据库系统的组成"><a href="#数据库系统的组成" class="headerlink" title="数据库系统的组成"></a>数据库系统的组成</h2><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><hr>
 <p><em>待更新…</em></p>
 ]]></content>
       <categories>

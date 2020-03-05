@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">2.3k words</span>
+            <span class="post-count">4.7k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">8 minutes</span>
+            <span class="post-count">18 minutes</span>
         </span>
     </span>
 </div>
@@ -100,10 +100,11 @@
       
 
       
-      <p>参考离散数学(清华大学出版社,第五版)相关内容</p>
+      <p>参考离散数学(清华大学出版社,第五版)相关内容  </p>
+<p>ps: 编辑公式真费时间$\to$_$\to$</p>
 <hr>
 <p>自动机是描述计算的数学模型,用来识别语言或计算函数. 形式文法也是一种数学模型,用来产生形式语言. 形式语言和自动机理论密切相关,是计算机科学和技术的重要理论基础.  </p>
-<p>本文扼要地介绍形式文法的基本概念,有穷自动机和图灵机以及它们识别的语言类</p>
+<p>本文扼要地介绍形式文法的基本概念,有穷自动机和图灵机以及它们识别的语言类,其他不做分析</p>
 <h2 id="形式语言和形式文法"><a href="#形式语言和形式文法" class="headerlink" title="形式语言和形式文法"></a>形式语言和形式文法</h2><p>形式语言的描述最早在1956年由语言学家乔姆斯基建立</p>
 <p>在乔姆斯基的分类中,形式文法一共有如下几类:</p>
 <ul>
@@ -264,16 +265,132 @@
 </ul>
 <p>在编译原理中,词法分析可以用正则文法解决,而语法分析使用上下文无关文法</p>
 <p>注: 在正则文法和上下文无关文法中,当同一个符号作为多个产生式的左端时,可以用”或”<code>|</code>来合在一起写</p>
-<h2 id="有穷自动机"><a href="#有穷自动机" class="headerlink" title="有穷自动机"></a>有穷自动机</h2><p>有穷自动机是具有离散输入和输出系统的一种数学模型,它有有限个内部状态.随着信号的输入,内部状态不断地转移</p>
-<hr>
-<p>未完结,持续更新</p>
+<a id="more"></a>
+
+<h2 id="图灵机TM"><a href="#图灵机TM" class="headerlink" title="图灵机TM"></a>图灵机TM</h2><p>图灵机是图灵于1936年提出的一种数学模型, 这个模型很好地描述了计算的过程. 大量事实表明, 任何算法都可以用一个图灵机来描述, 这就是Chruch论题.  </p>
+<p>图灵机在可计算性理论中起着重要的作用, 可以证明, 图灵机识别的语言是0型语言</p>
+<h3 id="图灵机的基本模型"><a href="#图灵机的基本模型" class="headerlink" title="图灵机的基本模型"></a>图灵机的基本模型</h3><p>设想图灵机由一个控制器和一条无穷长的纸带组成,纸带分成了一个一个的小方格，每个方格有不同的颜色。有一个机器头在纸带上移来移去。机器头有一组内部状态，还有一些固定的程序。在每个时刻，机器头都要从当前纸带上读入一个方格信息，然后结合自己的内部状态查找程序表，根据程序输出信息到纸带方格上，并转换自己的内部状态，然后进行移动, 如下图:<br><img src="/2020/03/04/formal-language-and-automata/TM0.jpg" alt="TM"></p>
+<h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>图灵机是一个有序组$M = &lt;Q, \Sigma, \Gamma, \delta, q_0, B, A&gt;$, 其中</p>
+<ul>
+<li>$Q$是非空有穷的状态集合</li>
+<li>$\Sigma$是非空有穷的输入字母表</li>
+<li>$\Gamma$是非空有穷的带字母表且$\Sigma \subset \Gamma$</li>
+<li>$\delta$为一个$Q \times \Gamma \to \Gamma \times \lbrace L, R \rbrace \times Q$的映射,是动作函数</li>
+<li>$q_0 \in Q$是初始状态</li>
+<li>$B \in \Gamma - \Sigma$是空白符</li>
+<li>$A \subset Q$是接收状态的集合<blockquote>
+<p>对于$\delta$, 给定当前状态$q$和当前位置的符号$s$,它能将当前位置的符号改为$s’$、并且给出扫描头移动方向和次态$q’$; 即$\delta (q,s) = (s’, L/R, q’)$</p>
+</blockquote>
+</li>
+</ul>
+<p>显然,对于每一步计算,带上只有穷个方格的内容是非空白符,因此,纸带可以表示为$$Ba_1a_2…a_nB$$即两边都有无穷多个空白符的形式  </p>
+<p>给定了图灵机M和纸带,为了描述计算中的每一步,这里又有一些定义:</p>
+<ul>
+<li><p>格局: 计算中某一步时带上的内容、控制器的状态和读写头扫视的带方格称为M的一个格局</p>
+<blockquote>
+<p>一般地,一个格局总可以表示成$\alpha_1 q \alpha_2$, 其中$\alpha_1, \alpha_2 \in \Gamma, q \in Q$<br>这表示带上的内容为$\alpha_1 \alpha_2$, 当前状态为$q$, 读写头正在扫视$\alpha_2$的第一个字符(若$\alpha_2$是空串则扫视紧挨在右边的空白符)   </p>
+<ul>
+<li>$q_0\omega$是M的初始格局,$\omega \in \Sigma^*$是输入字符串  </li>
+</ul>
+</blockquote>
+</li>
+<li><p>接受格局: $\sigma = \alpha_1 q \alpha_2$中的$q$是接收状态,即$q \in A$</p>
+</li>
+<li><p>停机格局: $\sigma$时对应的&amp;\delta (q,s)&amp;没有定义,即图灵机不知道接下来一步要干什么  </p>
+</li>
+<li><p>$\vdash$: 设$\sigma_1, \sigma_2$是两个格局, 如果从$\sigma_1$经过一步到达$sigma_2$,则记作$\sigma_1\vdash\sigma_2$</p>
+</li>
+<li><p>$\dot \vdash$: 设$\sigma_1, \sigma_2$是两个格局, 如果从$\sigma_1$经过有限步到达$sigma_2$,则记作$\sigma_1\dot\vdash\sigma_2$  </p>
+</li>
+<li><p>计算: 一个格局序列$\sigma_1,\sigma_2,…,\sigma_n,…$(可以有穷也可以无穷)中每一个$\sigma_{i+1}$都能由$\sigma_i$一步得到,则称这个序列是一个计算</p>
+</li>
+</ul>
+<h3 id="图灵机接受的语言"><a href="#图灵机接受的语言" class="headerlink" title="图灵机接受的语言"></a>图灵机接受的语言</h3><p>任给一个字符串$\omega$,从初始格局开始,图灵机M在字符串上的计算有如下三种可能:</p>
+<ul>
+<li>停机在接受状态,此时称图灵机M接受字符串$\omega$</li>
+<li>婷机在非接受状态,此时图灵机M不接受或拒绝字符串$\omega$</li>
+<li>用不停机,此时也称图灵机M不接受或拒绝字符串$\omega$</li>
+</ul>
+<p>则图灵机M接受的语言L(M)可定义为:<br>$$L(M) = \lbrace \omega | \omega \in \Sigma^* , M接受\omega \rbrace$$</p>
+<h3 id="状态转移图"><a href="#状态转移图" class="headerlink" title="状态转移图"></a>状态转移图</h3><p>状态转移图是一个有向图,每一个节点代表一个状态; 初始状态用一个指向该节点的箭头标明, 终结状态用双圈标明; 边上应注明状态转换时的输入/输出</p>
+<p>例如:<br><img src="/2020/03/04/formal-language-and-automata/TM1.png" alt="TM"></p>
+<ul>
+<li>状态转移图有时候也可以用状态转移表表示</li>
+</ul>
+<h3 id="用图灵机计算函数"><a href="#用图灵机计算函数" class="headerlink" title="用图灵机计算函数"></a>用图灵机计算函数</h3><p>NaN</p>
+<h2 id="线性界限自动机LBA"><a href="#线性界限自动机LBA" class="headerlink" title="线性界限自动机LBA"></a>线性界限自动机LBA</h2><p>线性界限自动机(Linear Bounded Automaton)是有限制的图灵机; 它不使用无限纸带，它的纸带有同输入符号数目成正比的空间  </p>
+<p>可以证明,LBA 接受上下文有关语言</p>
+<h2 id="下推自动机PDA"><a href="#下推自动机PDA" class="headerlink" title="下推自动机PDA"></a>下推自动机PDA</h2><p>下推自动机(Pushdown Automation)可以看成是一个带有附加下推存储器的有穷自动机,下推存储器是一个堆栈,如下:<br><img src="/2020/03/04/formal-language-and-automata/PDA0.png" alt="PDA"></p>
+<p>如果把下推自动机扩展，允许一个有限状态自动机存取两个栈，我们得到一个能力更强的自动机，这个自动机与图灵机等价</p>
+<h2 id="有穷自动机FA"><a href="#有穷自动机FA" class="headerlink" title="有穷自动机FA"></a>有穷自动机FA</h2><p>有穷自动机(Finity Automation)是具有离散输入和输出系统的一种数学模型,它有有限个内部状态.随着信号的输入,内部状态不断地转移</p>
+<h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>有穷自动机(FA)是一个有序五元组$M = &lt;Q, \Sigma, \delta, q_0, F&gt;$, 其中</p>
+<ul>
+<li>$Q$是非空有穷的状态集合</li>
+<li>$\Sigma$是非空有穷的输入字母表</li>
+<li>$\delta$为一个$Q \times \Sigma \to Q$上的映射,是状态转移函数</li>
+<li>$q_0 \in Q$是初始状态</li>
+<li>$F \subseteq Q$是终结状态集合</li>
+</ul>
+<p>为了精确描述有穷自动机在输入字符串上的动作,我们推广状态转移函数为$\hat \delta : Q \times \Sigma^* to Q $如下</p>
+<blockquote>
+<p>对任意的$q \in Q, \omega \in \Sigma^*, a \in \Sigma$都有:<br>$$\hat \delta (q, \epsilon) = q$$  $$\hat \delta (q, \omega a) = \delta (\hat \delta (q, \omega), a)$$<br>即$\hat \delta (q, \omega)$正好是自动机从状态$q$开始扫描完$\omega$所有符号后所处的状态</p>
+</blockquote>
+<h3 id="有穷自动机接受的语言"><a href="#有穷自动机接受的语言" class="headerlink" title="有穷自动机接受的语言"></a>有穷自动机接受的语言</h3><p>有穷自动机$M = &lt;Q, \Sigma, \delta, q_0, F&gt;$接受的语言$L(M)$为:<br>$$L(M) = \lbrace \omega | \omega \in \Sigma^* , \hat \delta (q_0, \omega) \in F \rbrace$$</p>
+<p>由$\delta$定义可知,对于一个确定的状态$q$和输入$a$,输出的次态是唯一的,所以FA在给定字符串上的动作是确定的; 因此上面讲的有穷自动机又叫确定型有穷自动机(DFA)</p>
+<h3 id="非确定型有穷自动机NFA"><a href="#非确定型有穷自动机NFA" class="headerlink" title="非确定型有穷自动机NFA"></a>非确定型有穷自动机NFA</h3><p>若在有穷自动机中,FA在输入字符串上的动作是不确定的,那么这种自动机叫做非确定型有穷自动机</p>
+<h4 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h4><p>非确定型有穷自动机是一个有序五元组$M = &lt;Q, \Sigma, \delta, q_0, F&gt;$, 其中</p>
+<ul>
+<li>$Q$是非空有穷的状态集合</li>
+<li>$\Sigma$是非空有穷的输入字母表</li>
+<li>$\delta$为一个$Q \times \Sigma \to \rho(Q)$上的映射,$\rho(Q)$表示Q的幂集</li>
+<li>$q_0 \in Q$是初始状态</li>
+<li>$F \subseteq Q$是终结状态集合<br>这样,$\delta (q, a)$就是一个状态集合,它可以含有一个或多个状态,也可以是空集</li>
+</ul>
+<p>类似地,我们将$\delta$推广成$\hat \delta : Q \times \Sigma^* to \rho(Q)$:</p>
+<blockquote>
+<p>对任意的$q \in Q, \omega \in \Sigma^*, a \in \Sigma$都有:<br>$$\hat \delta (q, \epsilon) = \lbrace q \rbrace$$  $$\hat \delta (q, \omega a) =\bigcup_{r \in \hat \delta (q, \omega)} \hat \delta (r, a)$$<br>此时$\hat \delta (q, \omega)$表示的是从状态$q$开始扫描完$\omega$所有符号后所有可能的结束状态的集合</p>
+</blockquote>
+<h4 id="NFA接受的语言"><a href="#NFA接受的语言" class="headerlink" title="NFA接受的语言"></a>NFA接受的语言</h4><p>非确定型有穷自动机$M = &lt;Q, \Sigma, \delta, q_0, F&gt;$接受的语言$L(M)$为:<br>$$L(M) = \lbrace \omega | \omega \in \Sigma^* , \hat \delta (q_0, \omega) \cap F \ne \emptyset \rbrace$$</p>
+<h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><ul>
+<li>每一个DFA都可以看成一个特殊的NFA,只要把$\hat \delta (q, \epsilon) = q$看成$\hat \delta (q, \epsilon) = \lbrace q \rbrace$即可  </li>
+</ul>
+<p>实际上,相比于DFA,非确定性并没有增加NFA的能力,正如下面所述:</p>
+<ul>
+<li>对每一个非确定型有穷自动机$M$,都存在一个确定型有穷自动机$M’$,使得$L(M) = L(M’)$(证明略)  </li>
+</ul>
+<p>这种转换方式在此不做介绍</p>
+<h3 id="带-epsilon-转移的非确定型有穷自动机"><a href="#带-epsilon-转移的非确定型有穷自动机" class="headerlink" title="带$\epsilon$转移的非确定型有穷自动机"></a>带$\epsilon$转移的非确定型有穷自动机</h3><p>对NFA稍加推广,不仅对$\Sigma$中的每一个符号都可以有状态转移, 而且在不读入任何符号(或者说读入空串$\epsilon$)的情况下,自动机在某些状态下也可以自动转移高另一个状态, 这样的NFA称为带$\epsilon$转移的NFA</p>
+<h4 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h4><p>带$\epsilon$转移的非确定型有穷自动机是一个有序五元组$M = &lt;Q, \Sigma, \delta, q_0, F&gt;$, 其中</p>
+<ul>
+<li>$Q$是非空有穷的状态集合</li>
+<li>$\Sigma$是非空有穷的输入字母表</li>
+<li>$\delta$为一个$Q \times (\Sigma \cup \lbrace \epsilon \rbrace) \to \rho(Q)$上的映射,$\rho(Q)$表示Q的幂集</li>
+<li>$q_0 \in Q$是初始状态</li>
+<li>$F \subseteq Q$是终结状态集合</li>
+</ul>
+<h4 id="性质-1"><a href="#性质-1" class="headerlink" title="性质"></a>性质</h4><ul>
+<li>NFA可以看成是特殊的带$\epsilon$转移的NFA  </li>
+</ul>
+<p>实际上,带$\epsilon$转移也没有增加NFA的能力:</p>
+<ul>
+<li>对每一个带$\epsilon$转移的非确定型有穷自动机$M$,都存在一个非确定型有穷自动机$M’$,使得$L(M) = L(M’)$(证明略)  </li>
+</ul>
+<p>可见,DFA、NFA、带$\epsilon$转移的NFA这三种自动机模型是等价的</p>
+<h3 id="有穷自动机和正则文法的等价性"><a href="#有穷自动机和正则文法的等价性" class="headerlink" title="有穷自动机和正则文法的等价性"></a>有穷自动机和正则文法的等价性</h3><ul>
+<li>模拟是证明两个计算模型等价的主要方法; 用模型A模拟模型B,就是用模型A实现模型B的计算  </li>
+</ul>
+<p>可以证明,有穷自动机识别的语言类型恰好是正则语言:</p>
+<ul>
+<li>对每一个正则语言L,都存在一个带$\epsilon$转移的非确定型有穷自动机$M$使得$L(M) = L$</li>
+<li>对每一个带$\epsilon$转移的非确定型有穷自动机$M$,都存在一个右线性文法$G$和左线性文法$G’$使得$L(G) = L(G’)=L(M)$</li>
+</ul>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/03/04/formal-language-and-automata/" data-id="ck7dihqyt000gswvn1xspfsqo"
+      <a data-url="http://georgechen1827.github.io/2020/03/04/formal-language-and-automata/" data-id="ck7en6d0a0008csvn65cl72af"
         class="article-share-link">share</a>
         
       
