@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Windows下C#对cmd的操作</title>
+    <url>/2020/03/10/csharp-command/</url>
+    <content><![CDATA[<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line">Console.WriteLine(<span class="string">"请输入要执行的命令:"</span>);</span><br><span class="line"><span class="keyword">string</span> strInput = Console.ReadLine();</span><br><span class="line">Process p = <span class="keyword">new</span> Process();</span><br><span class="line"><span class="comment">//设置要启动的应用程序</span></span><br><span class="line">p.StartInfo.FileName = <span class="string">"cmd.exe"</span>;</span><br><span class="line"><span class="comment">//是否使用操作系统shell启动</span></span><br><span class="line">p.StartInfo.UseShellExecute = <span class="literal">false</span>;</span><br><span class="line"><span class="comment">// 接受来自调用程序的输入信息</span></span><br><span class="line">p.StartInfo.RedirectStandardInput = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">//输出信息</span></span><br><span class="line">p.StartInfo.RedirectStandardOutput = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">// 输出错误</span></span><br><span class="line">p.StartInfo.RedirectStandardError = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">//不显示程序窗口</span></span><br><span class="line">p.StartInfo.CreateNoWindow = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">//启动程序</span></span><br><span class="line">p.Start();</span><br><span class="line"></span><br><span class="line"><span class="comment">//向cmd窗口发送输入信息</span></span><br><span class="line">p.StandardInput.WriteLine(strInput);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.StandardInput.WriteLine(<span class="string">"exit"</span>);</span><br><span class="line">p.StandardInput.AutoFlush = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">string</span> strOuput = p.StandardOutput.ReadToEnd();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//获取输出信息</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//等待程序执行完退出进程</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Console.WriteLine(strOuput);</span><br><span class="line"></span><br><span class="line">Console.ReadKey();</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>notes</category>
+      </categories>
+      <tags>
+        <tag>c#</tag>
+        <tag>learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>命名管道和进程通讯</title>
+    <url>/2020/03/10/FIFO/</url>
+    <content><![CDATA[<h2 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h2><p>参考<a href="https://blog.csdn.net/wh_sjc/article/details/70283843" target="_blank" rel="noopener">https://blog.csdn.net/wh_sjc/article/details/70283843</a><br>IPC（进程间通讯）的方式通常有管道（包括无名管道和命名管道）、消息队列、信号量、共享存储、Socket、Streams等。</p>
+<h2 id="命名管道"><a href="#命名管道" class="headerlink" title="命名管道"></a>命名管道</h2><p>“命名管道”是一种简单的进程间通信（IPC）机制，命名管道可在同一台计算机的不同进程之间或在跨越一个网络的不同计算机的不同进程之间，支持可靠的、单向或双向的数据通信。</p>
+<h2 id="python中的命名管道"><a href="#python中的命名管道" class="headerlink" title="python中的命名管道"></a>python中的命名管道</h2><p>参考<a href="https://blog.csdn.net/kongxx/article/details/78037069" target="_blank" rel="noopener">https://blog.csdn.net/kongxx/article/details/78037069</a><br><a href="https://www.programcreek.com/python/example/62752/win32pipe.PIPE_WAIT" target="_blank" rel="noopener">https://www.programcreek.com/python/example/62752/win32pipe.PIPE_WAIT</a><br><a href="https://www.cnblogs.com/achillis/p/10462585.html" target="_blank" rel="noopener">https://www.cnblogs.com/achillis/p/10462585.html</a>  </p>
+<p>在 Windows 上的命名管道主要是通过调用 win32 api 的以下方法来实现的</p>
+<h3 id="server端"><a href="#server端" class="headerlink" title="server端"></a>server端</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> win32file</span><br><span class="line"><span class="keyword">import</span> win32pipe</span><br><span class="line"></span><br><span class="line">PIPE_NAME = <span class="string">r'\\.\pipe\test_pipe'</span></span><br><span class="line">PIPE_BUFFER_SIZE = <span class="number">65535</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    named_pipe = win32pipe.CreateNamedPipe(PIPE_NAME,</span><br><span class="line">                                           win32pipe.PIPE_ACCESS_DUPLEX,</span><br><span class="line">                                           win32pipe.PIPE_TYPE_MESSAGE | win32pipe.PIPE_WAIT | win32pipe.PIPE_READMODE_MESSAGE,</span><br><span class="line">                                           win32pipe.PIPE_UNLIMITED_INSTANCES,</span><br><span class="line">                                           PIPE_BUFFER_SIZE,</span><br><span class="line">                                           PIPE_BUFFER_SIZE, <span class="number">500</span>, <span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                win32pipe.ConnectNamedPipe(named_pipe, <span class="literal">None</span>)    <span class="comment">#连接管道</span></span><br><span class="line">                data = win32file.ReadFile(named_pipe, PIPE_BUFFER_SIZE, <span class="literal">None</span>)   <span class="comment">#接收消息</span></span><br><span class="line">                win32file.WriteFile(named_pipe, bytes(<span class="string">"OK"</span>, encoding=<span class="string">'utf-8'</span>))  <span class="comment">#发送消息(二进制)</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> data <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> len(data) &lt; <span class="number">2</span>:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">                print(<span class="string">'receive msg:'</span>, data)</span><br><span class="line">            <span class="keyword">except</span> BaseException <span class="keyword">as</span> e:</span><br><span class="line">                print(<span class="string">"exception:"</span>, e)  </span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            win32pipe.DisconnectNamedPipe(named_pipe)   <span class="comment">#断开连接</span></span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="client客户端"><a href="#client客户端" class="headerlink" title="client客户端"></a>client客户端</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> win32pipe, win32file</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">PIPE_NAME = <span class="string">r'\\.\pipe\test_pipe'</span></span><br><span class="line"></span><br><span class="line">file_handle = win32file.CreateFile(PIPE_NAME,</span><br><span class="line">                                   win32file.GENERIC_READ | win32file.GENERIC_WRITE,</span><br><span class="line">                                   win32file.FILE_SHARE_WRITE, <span class="literal">None</span>,</span><br><span class="line">                                   win32file.OPEN_EXISTING, <span class="number">0</span>, <span class="literal">None</span>)    <span class="comment"># 连接管道</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">11</span>):</span><br><span class="line">        msg = str(i)</span><br><span class="line">        print(<span class="string">'send msg:'</span>, msg)</span><br><span class="line">        win32file.WriteFile(file_handle, bytes(msg,encoding=<span class="string">'utf-8'</span>))   <span class="comment"># 发送信息</span></span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        data = win32file.ReadFile(file_handle, <span class="number">65535</span>, <span class="literal">None</span>) <span class="comment"># 接收信息(阻塞)</span></span><br><span class="line">        print(data)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        win32file.CloseHandle(file_handle)  <span class="comment"># 关闭连接</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="C-中的命名管道"><a href="#C-中的命名管道" class="headerlink" title="C#中的命名管道"></a>C#中的命名管道</h2><h3 id="server端-1"><a href="#server端-1" class="headerlink" title="server端"></a>server端</h3><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">NamedPipeServerStream server = <span class="keyword">new</span> NamedPipeServerStream(<span class="string">"test_pipe"</span>, PipeDirection.InOut, <span class="number">100</span>, PipeTransmissionMode.Byte, PipeOptions.None, <span class="number">65535</span>, <span class="number">65535</span>);</span><br><span class="line">server.WaitForConnection();</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (server.IsConnected)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> n = server.Read(res, <span class="number">0</span>, <span class="number">65535</span>); <span class="comment">//接收信息</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">string</span> s = System.Text.Encoding.UTF8.GetString(res,<span class="number">0</span>,n);</span><br><span class="line"></span><br><span class="line">        Console.WriteLine(s);</span><br><span class="line"></span><br><span class="line">        n = Encoding.UTF8.GetBytes(s, <span class="number">0</span>, s.Length, res, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        server.Write(res, <span class="number">0</span>, n);    <span class="comment">//发送信息</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="client端"><a href="#client端" class="headerlink" title="client端"></a>client端</h3><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">NamedPipeClientStream client = <span class="keyword">new</span> NamedPipeClientStream(<span class="string">"test_pipe"</span>);</span><br><span class="line">client.Connect();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (client.IsConnected)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> n = client.Read(res, <span class="number">0</span>, <span class="number">65535</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">string</span> s = System.Text.Encoding.UTF8.GetString(res,<span class="number">0</span>,n);</span><br><span class="line"></span><br><span class="line">    Console.WriteLine(s);</span><br><span class="line"></span><br><span class="line">    n = Encoding.UTF8.GetBytes(s, <span class="number">0</span>, s.Length, res, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    client.Write(res, <span class="number">0</span>, n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="python和C-交互代码示例"><a href="#python和C-交互代码示例" class="headerlink" title="python和C#交互代码示例"></a>python和C#交互代码示例</h2><p>python端  </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> win32file</span><br><span class="line"><span class="keyword">import</span> win32pipe</span><br><span class="line"></span><br><span class="line">PIPE_NAME = <span class="string">r'\\.\pipe\test_pipe'</span></span><br><span class="line">PIPE_BUFFER_SIZE = <span class="number">65535</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    named_pipe = win32pipe.CreateNamedPipe(PIPE_NAME,</span><br><span class="line">                                           win32pipe.PIPE_ACCESS_DUPLEX,</span><br><span class="line">                                           win32pipe.PIPE_TYPE_MESSAGE | win32pipe.PIPE_WAIT | win32pipe.PIPE_READMODE_MESSAGE,</span><br><span class="line">                                           win32pipe.PIPE_UNLIMITED_INSTANCES,</span><br><span class="line">                                           PIPE_BUFFER_SIZE,</span><br><span class="line">                                           PIPE_BUFFER_SIZE, <span class="number">500</span>, <span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                win32pipe.ConnectNamedPipe(named_pipe, <span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line">                win32file.WriteFile(named_pipe, bytes(<span class="string">"hello"</span>, encoding=<span class="string">'utf-8'</span>))</span><br><span class="line"></span><br><span class="line">                data = win32file.ReadFile(named_pipe, PIPE_BUFFER_SIZE, <span class="literal">None</span>)</span><br><span class="line">                time.sleep(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">                <span class="comment"># data = str.encode()</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> data <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> len(data) &lt; <span class="number">2</span>:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">                print(<span class="string">'receive msg:'</span>, data)</span><br><span class="line">            <span class="keyword">except</span> BaseException <span class="keyword">as</span> e:</span><br><span class="line">                print(<span class="string">"exception:"</span>, e)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            win32pipe.DisconnectNamedPipe(named_pipe)</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>C#端</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>   &#123;</span><br><span class="line">   <span class="keyword">byte</span>[] res = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">65535</span>];</span><br><span class="line"></span><br><span class="line">       NamedPipeClientStream client = <span class="keyword">new</span> NamedPipeClientStream(<span class="string">"test_pipe"</span>);</span><br><span class="line">       client.Connect();</span><br><span class="line">       </span><br><span class="line"></span><br><span class="line">       <span class="keyword">while</span> (client.IsConnected)</span><br><span class="line">       &#123;</span><br><span class="line">           <span class="keyword">int</span> n = client.Read(res, <span class="number">0</span>, <span class="number">65535</span>);</span><br><span class="line"></span><br><span class="line">           <span class="keyword">string</span> s = System.Text.Encoding.UTF8.GetString(res,<span class="number">0</span>,n);</span><br><span class="line"></span><br><span class="line">           Console.WriteLine(s);</span><br><span class="line"></span><br><span class="line">           n = Encoding.UTF8.GetBytes(s, <span class="number">0</span>, s.Length, res, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">           client.Write(res, <span class="number">0</span>, n);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>notes</category>
+      </categories>
+      <tags>
+        <tag>c#</tag>
+        <tag>python</tag>
+        <tag>learning</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>形式语言和自动机初步</title>
     <url>/2020/03/04/formal-language-and-automata/</url>
     <content><![CDATA[<p>参考离散数学(清华大学出版社,第五版)相关内容  </p>
@@ -1267,8 +1309,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>learning</tag>
         <tag>python</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -1322,8 +1364,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>learning</tag>
         <tag>python</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -1766,9 +1808,9 @@ $$
         <category>notes</category>
       </categories>
       <tags>
+        <tag>c#</tag>
         <tag>learning</tag>
         <tag>搜索引擎</tag>
-        <tag>c#</tag>
       </tags>
   </entry>
   <entry>
@@ -1896,23 +1938,11 @@ $$
 <h4 id="主流程"><a href="#主流程" class="headerlink" title="主流程"></a>主流程</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function">Token <span class="title">scan</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">       跳过空白符；</span><br><span class="line">       处理数字；</span><br><span class="line">       处理保留字和标识符；</span><br><span class="line">       <span class="comment">/*如果运行到这里，就将预读字符peek作为一个词法单元*/</span></span><br><span class="line">       Token t = <span class="keyword">new</span> Token (peek);</span><br><span class="line">        peek = 空白符 <span class="comment">/*按照预读的规则进行初始化,参见龙书p48*/</span>；</span><br><span class="line">        <span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="词法分析建立的类"><a href="#词法分析建立的类" class="headerlink" title="词法分析建立的类"></a>词法分析建立的类</h4><p>各个对象关系如下:<br><img src="/2020/02/24/compilers0/proc1.png" alt="relatives"></p>
-<p>Token类:</p>
+<!--Token类:
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Token.java</span></span><br><span class="line">Package lexer;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Token</span> </span>&#123;</span><br><span class="line">      <span class="keyword">public</span>  <span class="keyword">final</span>  <span class="keyword">int</span>  tag;</span><br><span class="line">      <span class="function"><span class="keyword">public</span>  <span class="title">Token</span> <span class="params">( <span class="keyword">int</span>  t )</span> </span>&#123; tag = t; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Tag.java</span></span><br><span class="line">Package lexer;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tag</span> </span>&#123;</span><br><span class="line">     <span class="keyword">public</span> <span class="keyword">final</span>  <span class="keyword">static</span> <span class="keyword">int</span> </span><br><span class="line">     NUM = <span class="number">256</span>; ID = <span class="number">257</span>; TRUE = <span class="number">258</span>; FALSE = <span class="number">259</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//子类Num和Word</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Num.java</span></span><br><span class="line"><span class="keyword">package</span> lexer;              </span><br><span class="line"><span class="keyword">public</span>  <span class="class"><span class="keyword">class</span>  <span class="title">Num</span> <span class="keyword">extends</span> <span class="title">Token</span> </span>&#123;</span><br><span class="line">     <span class="keyword">public</span>  <span class="keyword">final</span> <span class="keyword">int</span> value;</span><br><span class="line">     <span class="function"><span class="keyword">public</span>  <span class="title">Num</span> <span class="params">( <span class="keyword">int</span> v )</span>  </span>&#123;<span class="keyword">super</span>(Tag.NUM); value = v; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Word.java</span></span><br><span class="line"><span class="keyword">package</span> lexer;            </span><br><span class="line"><span class="keyword">public</span>  <span class="class"><span class="keyword">class</span>  <span class="title">Word</span>  <span class="keyword">extends</span>  <span class="title">Token</span> </span>&#123;</span><br><span class="line">       <span class="keyword">public</span>  <span class="keyword">final</span>  String  lexeme;</span><br><span class="line">       <span class="function"><span class="keyword">public</span>  <span class="title">Word</span> <span class="params">( <span class="keyword">int</span> t, String s)</span>  </span>&#123;</span><br><span class="line">               <span class="keyword">super</span>(t); lexeme = <span class="keyword">new</span> String (s);</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>词法分析器:Lexer</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Lexer.java</span></span><br><span class="line"><span class="keyword">package</span> lexer;                 </span><br><span class="line"><span class="keyword">import</span> java.io.*; <span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Lexer</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> line = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">char</span> peek = <span class="string">' '</span>;</span><br><span class="line">	<span class="keyword">private</span> Hashtable words = <span class="keyword">new</span> Hashtable();</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">reserve</span><span class="params">(Word t)</span> </span>&#123;words.put(t.lexeme, t);&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Lexer</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">		reserve(<span class="keyword">new</span> Word(Tag.TRUE, <span class="string">"true"</span>));</span><br><span class="line">		reserve(<span class="keyword">new</span> Word(Tag.FALSE, <span class="string">"false"</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Token <span class="title">scan</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>( ; ; peek = (<span class="keyword">char</span>)System.in.read() ) &#123;</span><br><span class="line">			<span class="keyword">if</span>(peek == <span class="string">' '</span> || peek == <span class="string">'\t'</span>) <span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(peek == <span class="string">'\n'</span>) line = line + <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="keyword">if</span>(Character.isDigit(peek)) &#123;</span><br><span class="line">			<span class="keyword">int</span> v = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">do</span> &#123;</span><br><span class="line">				v = <span class="number">10</span> * v + Character.digit(peek, <span class="number">10</span>);</span><br><span class="line">				peek = (<span class="keyword">char</span>)System.in.read();</span><br><span class="line">			&#125;<span class="keyword">while</span>(Character.isDigit(peek));</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">new</span> Num(v);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(Character.isLetter(peek)) &#123;</span><br><span class="line">			StringBuffer b = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">			<span class="keyword">do</span> &#123;</span><br><span class="line">				b.append(peek);</span><br><span class="line">				peek = (<span class="keyword">char</span>) System.in.read();</span><br><span class="line">			&#125;<span class="keyword">while</span>(Character.isLetterOrDigit(peek));</span><br><span class="line">			String s = b.toString();</span><br><span class="line">			Word w = (Word)words.get(s);</span><br><span class="line">			<span class="keyword">if</span>( w != <span class="keyword">null</span> ) <span class="keyword">return</span> w;</span><br><span class="line">			w = <span class="keyword">new</span> Word(Tag.ID, s);</span><br><span class="line">			words.put(s, w);</span><br><span class="line">			<span class="keyword">return</span> w;</span><br><span class="line">		&#125;</span><br><span class="line">		Token t = <span class="keyword">new</span> Token(peek);</span><br><span class="line">		peek = <span class="string">' '</span>;</span><br><span class="line">		<span class="keyword">return</span> t;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="语法分析-1"><a href="#语法分析-1" class="headerlink" title="语法分析"></a>语法分析</h3><p>语法分析是决定如何使用一个文法生成一个终结符号串的过程</p>
-<p>举例如下:<br><img src="/2020/02/24/compilers0/proc3.png" alt="analysis">  </p>
-<p>步骤:</p>
-<ul>
-<li>根据语法构建文法</li>
-<li>根据文法构建预测分析表(LL文法,LR文法)</li>
-</ul>
-<h4 id="上下文无关文法-CFG"><a href="#上下文无关文法-CFG" class="headerlink" title="上下文无关文法 CFG"></a>上下文无关文法 CFG</h4><p>上下文无关文法(Context Free Grammar)由一个四元组G构成<br><img src="/2020/02/24/compilers0/gra0.png" alt="grammer"></p>
-<p>在这里，有<br><img src="/2020/02/24/compilers0/gra1.png" alt="grammer"></p>
-<p>例如，由+，-号分隔的数位序列可以由如下语法表示  </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 终结符号集合 &#123;0,1,2,3,4,5,6,7,8,9,+,-&#125; (叶子节点)</span></span><br><span class="line"><span class="comment">// 非终结符号集合 &#123;list,digit&#125;</span></span><br><span class="line"><span class="comment">// 产生式集合:&#123;</span></span><br><span class="line">    list-&gt;list+digit</span><br><span class="line">    list-&gt;list-digit</span><br><span class="line">    list-&gt;digit</span><br><span class="line">    digit-&gt;<span class="number">0</span>|<span class="number">1</span>|<span class="number">2</span>|<span class="number">3</span>|<span class="number">4</span>|<span class="number">5</span>|<span class="number">6</span>|<span class="number">7</span>|<span class="number">8</span>|<span class="number">9</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 开始符号 list</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Lexer.java</span></span><br><span class="line"><span class="keyword">package</span> lexer;                 </span><br><span class="line"><span class="keyword">import</span> java.io.*; <span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Lexer</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> line = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">char</span> peek = <span class="string">' '</span>;</span><br><span class="line">	<span class="keyword">private</span> Hashtable words = <span class="keyword">new</span> Hashtable();</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">reserve</span><span class="params">(Word t)</span> </span>&#123;words.put(t.lexeme, t);&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Lexer</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">		reserve(<span class="keyword">new</span> Word(Tag.TRUE, <span class="string">"true"</span>));</span><br><span class="line">		reserve(<span class="keyword">new</span> Word(Tag.FALSE, <span class="string">"false"</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Token <span class="title">scan</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>( ; ; peek = (<span class="keyword">char</span>)System.in.read() ) &#123;</span><br><span class="line">			<span class="keyword">if</span>(peek == <span class="string">' '</span> || peek == <span class="string">'\t'</span>) <span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(peek == <span class="string">'\n'</span>) line = line + <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="keyword">if</span>(Character.isDigit(peek)) &#123;</span><br><span class="line">			<span class="keyword">int</span> v = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">do</span> &#123;</span><br><span class="line">				v = <span class="number">10</span> * v + Character.digit(peek, <span class="number">10</span>);</span><br><span class="line">				peek = (<span class="keyword">char</span>)System.in.read();</span><br><span class="line">			&#125;<span class="keyword">while</span>(Character.isDigit(peek));</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">new</span> Num(v);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(Character.isLetter(peek)) &#123;</span><br><span class="line">			StringBuffer b = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">			<span class="keyword">do</span> &#123;</span><br><span class="line">				b.append(peek);</span><br><span class="line">				peek = (<span class="keyword">char</span>) System.in.read();</span><br><span class="line">			&#125;<span class="keyword">while</span>(Character.isLetterOrDigit(peek));</span><br><span class="line">			String s = b.toString();</span><br><span class="line">			Word w = (Word)words.get(s);</span><br><span class="line">			<span class="keyword">if</span>( w != <span class="keyword">null</span> ) <span class="keyword">return</span> w;</span><br><span class="line">			w = <span class="keyword">new</span> Word(Tag.ID, s);</span><br><span class="line">			words.put(s, w);</span><br><span class="line">			<span class="keyword">return</span> w;</span><br><span class="line">		&#125;</span><br><span class="line">		Token t = <span class="keyword">new</span> Token(peek);</span><br><span class="line">		peek = <span class="string">' '</span>;</span><br><span class="line">		<span class="keyword">return</span> t;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">```--&gt;</span><br><span class="line"></span><br><span class="line">### 语法分析</span><br><span class="line">语法分析是决定如何使用一个文法生成一个终结符号串的过程</span><br><span class="line"></span><br><span class="line">举例如下:  </span><br><span class="line">![analysis](proc3.png)  </span><br><span class="line"></span><br><span class="line">步骤:</span><br><span class="line">* 根据语法构建文法</span><br><span class="line">* 根据文法构建预测分析表(LL文法,LR文法)</span><br><span class="line"></span><br><span class="line">#### 上下文无关文法 CFG</span><br><span class="line">上下文无关文法(Context Free Grammar)由一个四元组G构成  </span><br><span class="line">![grammer](gra0.png)</span><br><span class="line"></span><br><span class="line">在这里，有  </span><br><span class="line">![grammer](gra1.png)</span><br><span class="line"></span><br><span class="line">例如，由+，-号分隔的数位序列可以由如下语法表示  </span><br><span class="line">```java</span><br><span class="line"><span class="comment">// 终结符号集合 &#123;0,1,2,3,4,5,6,7,8,9,+,-&#125; (叶子节点)</span></span><br><span class="line"><span class="comment">// 非终结符号集合 &#123;list,digit&#125;</span></span><br><span class="line"><span class="comment">// 产生式集合:&#123;</span></span><br><span class="line">    list-&gt;list+digit</span><br><span class="line">    list-&gt;list-digit</span><br><span class="line">    list-&gt;digit</span><br><span class="line">    digit-&gt;<span class="number">0</span>|<span class="number">1</span>|<span class="number">2</span>|<span class="number">3</span>|<span class="number">4</span>|<span class="number">5</span>|<span class="number">6</span>|<span class="number">7</span>|<span class="number">8</span>|<span class="number">9</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 开始符号 list</span></span><br></pre></td></tr></table></figure>
 <h4 id="预测分析表"><a href="#预测分析表" class="headerlink" title="预测分析表"></a>预测分析表</h4><p>NaN</p>
 <h4 id="语法分析树"><a href="#语法分析树" class="headerlink" title="语法分析树"></a>语法分析树</h4><p>语法分析树用图形的方式展现从文法的开始符号推出相应符号串的过程  </p>
 <p>从定义上看,给定一个上下文无关文法,该文法的一棵语法分析树(parse tree)是具有如下性质的树:</p>
@@ -1922,15 +1952,14 @@ $$
 <li>每个内部节点的标号为一个非终结符号</li>
 <li>如果非终结符号A是某个内部节点的标号,并且它的子节点的标号从左到右分别为X1,X2…Xn,那么必然存在产生式A-&gt;X1,X2…Xn, 其中X1…Xn既可以是终结符号也可以是非终结符号</li>
 </ol>
-<p>例如:<br><img src="/2020/02/24/compilers0/tree0.png" alt="tree"></p>
-<h4 id="左递归问题的消除"><a href="#左递归问题的消除" class="headerlink" title="左递归问题的消除"></a>左递归问题的消除</h4><p>考虑表达式 <code>yxxxx...x</code></p>
-<p>原始公式:</p>
+<p>例如:<br><img src="tree0.png" alt="tree"></p>
+<h4 id="左递归问题的消除"><a href="#左递归问题的消除" class="headerlink" title="左递归问题的消除"></a>左递归问题的消除</h4><p>原始公式:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">A -&gt; A x | y</span><br></pre></td></tr></table></figure>
-
+<p>这种公式在考虑FRONT(A)时会遇到无穷递归的问题</p>
 <p>改进公式:将左递归化为循环</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">A -&gt; x R</span><br><span class="line">R -&gt; y R | e(空白符)</span><br></pre></td></tr></table></figure>
 
-<p>效果如下:<br><img src="/2020/02/24/compilers0/recu0.png" alt="recursive"></p>
+<p>效果如下:<br><img src="recu0.png" alt="recursive"></p>
 <h3 id="语法制导翻译"><a href="#语法制导翻译" class="headerlink" title="语法制导翻译"></a>语法制导翻译</h3><p>语法制导翻译的两种方式:</p>
 <ul>
 <li>语法制导定义</li>
@@ -1940,15 +1969,34 @@ $$
 <li>每一个产生式和一组语义规则相关联</li>
 <li>每个文法符号(非终结符)和一个属性集合相关联</li>
 </ul>
-<p>此时,产生式和语义规则是分离的,如下:<br><img src="/2020/02/24/compilers0/trans0.png" alt="trans"><br>语法制导定义类似于一种属性文法</p>
+<p>此时,产生式和语义规则是分离的,如下:<br><img src="trans0.png" alt="trans"><br>语法制导定义类似于一种属性文法</p>
 <h4 id="语法制导翻译方案"><a href="#语法制导翻译方案" class="headerlink" title="语法制导翻译方案"></a>语法制导翻译方案</h4><ul>
 <li>将程序片段附加到一个文法的各个产生式上的表示</li>
 <li>被嵌入到产生式体中的程序片段成为语义动作,语义动作用花括号括起来</li>
 </ul>
-<p>此时,语义是嵌入到产生式中的,如下:<br><img src="/2020/02/24/compilers0/trans1.png" alt="trans"></p>
-<hr>
+<p>此时,语义是嵌入到产生式中的,如下:<br><img src="trans1.png" alt="trans"></p>
+<h2 id="词法分析概述"><a href="#词法分析概述" class="headerlink" title="词法分析概述"></a>词法分析概述</h2><p><img src="lex0.png" alt="lex"></p>
+<ul>
+<li>词法记号：由记号名和属性值构成的二元组，属性值不是必须项，记号名是语法分析的输入符号。(这个模式的名字)</li>
+<li>模式：一个记号的模式描述属于该记号的词法单元的形式。和一个给定模式匹配的字（字符串）的集合成为该模式的语言。(一个词法单元可能具有的形式)</li>
+<li>词法单元：是源程序中匹配一个记号模式的字符序列，由词法分析器识别为该记号的一个实例。(一个具体的词法单元)</li>
+</ul>
+<p>常见的词法分析生成器:lex,flex,jlex,ply等  </p>
+<h3 id="串和语言的定义"><a href="#串和语言的定义" class="headerlink" title="串和语言的定义"></a>串和语言的定义</h3><ul>
+<li>字母表：符号的有限集合</li>
+<li>串：符号的有穷序列,空串为$\epsilon$</li>
+<li>语言：字母表上的一个串集,可以只包含空串或是空集</li>
+<li>句子：属于语言的串</li>
+</ul>
+<p>串的运算:<br><img src="lex1.png" alt="lex"></p>
+<h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><h4 id="正则表达式的递归定义"><a href="#正则表达式的递归定义" class="headerlink" title="正则表达式的递归定义"></a>正则表达式的递归定义</h4><p><img src="re0.png" alt="re"></p>
+<h4 id="正则表达式的一些公理"><a href="#正则表达式的一些公理" class="headerlink" title="正则表达式的一些公理"></a>正则表达式的一些公理</h4><p><img src="re1.png" alt="re"></p>
+<h4 id="正则定义"><a href="#正则定义" class="headerlink" title="正则定义"></a>正则定义</h4><p><img src="re2.png" alt="re"></p>
+<h4 id="正则表达式的扩展"><a href="#正则表达式的扩展" class="headerlink" title="正则表达式的扩展"></a>正则表达式的扩展</h4><p>为了方便书写,对一些常用的正则表达式做如下定义<br><img src="re3.png" alt="re"><br><img src="re4.png" alt="re">  </p>
+<p>一些数量方面的运算符也做了扩展<br><img src="re5.png" alt="re"><br><img src="re6.png" alt="re"></p>
+<h3 id="状态转换图"><a href="#状态转换图" class="headerlink" title="状态转换图"></a>状态转换图</h3><hr>
 <p><em>待更新…</em></p>
-]]></content>
+-->]]></content>
       <categories>
         <category>notes</category>
         <category>学位课程</category>
@@ -2058,7 +2106,8 @@ $$
 <li><p>数据选择器</p>
 </li>
 </ul>
-<h3 id="时序逻辑电路"><a href="#时序逻辑电路" class="headerlink" title="时序逻辑电路"></a>时序逻辑电路</h3><hr>
+<h3 id="时序逻辑电路"><a href="#时序逻辑电路" class="headerlink" title="时序逻辑电路"></a>时序逻辑电路</h3><p>如果逻辑电路的输出状态不但和当时的输入状态有关，而且还与电路在此以前的输入状态有关，称这种电路为时序逻辑电路。</p>
+<hr>
 <p><em>待更新…</em></p>
 ]]></content>
       <categories>
@@ -2181,7 +2230,8 @@ $$
 </li>
 </ul>
 <h4 id="图形界面输入输出"><a href="#图形界面输入输出" class="headerlink" title="图形界面输入输出"></a>图形界面输入输出</h4><p>添加按钮,监听事件…</p>
-<h3 id="集成开发环境"><a href="#集成开发环境" class="headerlink" title="集成开发环境"></a>集成开发环境</h3><h4 id="eclips"><a href="#eclips" class="headerlink" title="eclips"></a>eclips</h4><p>java里的程序应当都以工程的形式存在</p>
+<h3 id="集成开发环境"><a href="#集成开发环境" class="headerlink" title="集成开发环境"></a>集成开发环境</h3><p>NaN</p>
+<h4 id="eclips"><a href="#eclips" class="headerlink" title="eclips"></a>eclips</h4><p>java里的程序应当都以工程的形式存在</p>
 <ul>
 <li>新建一个工程，起一个名字(文件夹的名字)</li>
 <li>在src文件夹中建立package包(一般小写字母)</li>
@@ -2189,7 +2239,28 @@ $$
 <li>写主函数…</li>
 <li>右击包文件 run as application</li>
 </ul>
-<hr>
+<h2 id="Java数据运算-流程控制和数组"><a href="#Java数据运算-流程控制和数组" class="headerlink" title="Java数据运算,流程控制和数组"></a>Java数据运算,流程控制和数组</h2><p>数据类型决定数据的存储方式和运算方式</p>
+<p>主要有两类数据类型:</p>
+<ul>
+<li>基本数据类型(实体直接存储在栈里)</li>
+<li>引用数据类型(实体存储在堆里)<blockquote>
+<p>赋值时,基本类型复制的是值,引用类型复制的是引用</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><ul>
+<li>整数型(byte,short,int,long(3.14L))</li>
+<li>浮点数型</li>
+<li>逻辑型</li>
+<li>字符型</li>
+</ul>
+<h3 id="运算符与表达式"><a href="#运算符与表达式" class="headerlink" title="运算符与表达式"></a>运算符与表达式</h3><ul>
+<li>短路与:&amp;&amp; 短路或||</li>
+<li>注意: ^不是乘方,是位运算异或</li>
+<li>赋值的强制类型转换</li>
+<li>字符串连接运算符:+ 可以将非字符串类型转换成字符串类型并连接</li>
+</ul>
+<h3 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h3><h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><hr>
 <p><em>待更新…</em></p>
 ]]></content>
       <categories>
@@ -2210,8 +2281,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>learning</tag>
         <tag>python</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -2491,8 +2562,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>learning</tag>
         <tag>c#</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>

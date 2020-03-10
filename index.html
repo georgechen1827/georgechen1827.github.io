@@ -37,7 +37,7 @@
     
   <div class="cover-frame">
     <div class="bg-box">
-      <img src="/images/cover.jpg" alt="image frame" />
+      <img src="/images/Cover.jpg" alt="image frame" />
     </div>
     <div class="cover-inner text-center text-white">
       <h1><a href="/">George</a></h1>
@@ -64,6 +64,159 @@
     
     
     
+    
+    <article id="post-csharp-command" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/10/csharp-command/"
+    >Windows下C#对cmd的操作</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/10/csharp-command/" class="article-date">
+  <time datetime="2020-03-10T12:06:08.000Z" itemprop="datePublished">2020-03-10</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">Console.WriteLine(<span class="string">"请输入要执行的命令:"</span>);</span><br><span class="line"><span class="keyword">string</span> strInput = Console.ReadLine();</span><br><span class="line">Process p = <span class="keyword">new</span> Process();</span><br><span class="line"><span class="comment">//设置要启动的应用程序</span></span><br><span class="line">p.StartInfo.FileName = <span class="string">"cmd.exe"</span>;</span><br><span class="line"><span class="comment">//是否使用操作系统shell启动</span></span><br><span class="line">p.StartInfo.UseShellExecute = <span class="literal">false</span>;</span><br><span class="line"><span class="comment">// 接受来自调用程序的输入信息</span></span><br><span class="line">p.StartInfo.RedirectStandardInput = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">//输出信息</span></span><br><span class="line">p.StartInfo.RedirectStandardOutput = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">// 输出错误</span></span><br><span class="line">p.StartInfo.RedirectStandardError = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">//不显示程序窗口</span></span><br><span class="line">p.StartInfo.CreateNoWindow = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">//启动程序</span></span><br><span class="line">p.Start();</span><br><span class="line"></span><br><span class="line"><span class="comment">//向cmd窗口发送输入信息</span></span><br><span class="line">p.StandardInput.WriteLine(strInput);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.StandardInput.WriteLine(<span class="string">"exit"</span>);</span><br><span class="line">p.StandardInput.AutoFlush = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">string</span> strOuput = p.StandardOutput.ReadToEnd();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//获取输出信息</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//等待程序执行完退出进程</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Console.WriteLine(strOuput);</span><br><span class="line"></span><br><span class="line">Console.ReadKey();</span><br></pre></td></tr></table></figure>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/03/10/csharp-command/" data-id="ck7lvcm4h000c1cvn0elu6xfz"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/" rel="tag">c#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-FIFO" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/10/FIFO/"
+    >命名管道和进程通讯</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/10/FIFO/" class="article-date">
+  <time datetime="2020-03-10T05:36:26.000Z" itemprop="datePublished">2020-03-10</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h2 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h2><p>参考<a href="https://blog.csdn.net/wh_sjc/article/details/70283843" target="_blank" rel="noopener">https://blog.csdn.net/wh_sjc/article/details/70283843</a><br>IPC（进程间通讯）的方式通常有管道（包括无名管道和命名管道）、消息队列、信号量、共享存储、Socket、Streams等。</p>
+<h2 id="命名管道"><a href="#命名管道" class="headerlink" title="命名管道"></a>命名管道</h2><p>“命名管道”是一种简单的进程间通信（IPC）机制，命名管道可在同一台计算机的不同进程之间或在跨越一个网络的不同计算机的不同进程之间，支持可靠的、单向或双向的数据通信。</p>
+<h2 id="python中的命名管道"><a href="#python中的命名管道" class="headerlink" title="python中的命名管道"></a>python中的命名管道</h2><p>参考<a href="https://blog.csdn.net/kongxx/article/details/78037069" target="_blank" rel="noopener">https://blog.csdn.net/kongxx/article/details/78037069</a><br><a href="https://www.programcreek.com/python/example/62752/win32pipe.PIPE_WAIT" target="_blank" rel="noopener">https://www.programcreek.com/python/example/62752/win32pipe.PIPE_WAIT</a><br><a href="https://www.cnblogs.com/achillis/p/10462585.html" target="_blank" rel="noopener">https://www.cnblogs.com/achillis/p/10462585.html</a>  </p>
+<p>在 Windows 上的命名管道主要是通过调用 win32 api 的以下方法来实现的</p>
+<h3 id="server端"><a href="#server端" class="headerlink" title="server端"></a>server端</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> win32file</span><br><span class="line"><span class="keyword">import</span> win32pipe</span><br><span class="line"></span><br><span class="line">PIPE_NAME = <span class="string">r'\\.\pipe\test_pipe'</span></span><br><span class="line">PIPE_BUFFER_SIZE = <span class="number">65535</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    named_pipe = win32pipe.CreateNamedPipe(PIPE_NAME,</span><br><span class="line">                                           win32pipe.PIPE_ACCESS_DUPLEX,</span><br><span class="line">                                           win32pipe.PIPE_TYPE_MESSAGE | win32pipe.PIPE_WAIT | win32pipe.PIPE_READMODE_MESSAGE,</span><br><span class="line">                                           win32pipe.PIPE_UNLIMITED_INSTANCES,</span><br><span class="line">                                           PIPE_BUFFER_SIZE,</span><br><span class="line">                                           PIPE_BUFFER_SIZE, <span class="number">500</span>, <span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                win32pipe.ConnectNamedPipe(named_pipe, <span class="literal">None</span>)    <span class="comment">#连接管道</span></span><br><span class="line">                data = win32file.ReadFile(named_pipe, PIPE_BUFFER_SIZE, <span class="literal">None</span>)   <span class="comment">#接收消息</span></span><br><span class="line">                win32file.WriteFile(named_pipe, bytes(<span class="string">"OK"</span>, encoding=<span class="string">'utf-8'</span>))  <span class="comment">#发送消息(二进制)</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> data <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> len(data) &lt; <span class="number">2</span>:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">                print(<span class="string">'receive msg:'</span>, data)</span><br><span class="line">            <span class="keyword">except</span> BaseException <span class="keyword">as</span> e:</span><br><span class="line">                print(<span class="string">"exception:"</span>, e)  </span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            win32pipe.DisconnectNamedPipe(named_pipe)   <span class="comment">#断开连接</span></span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="client客户端"><a href="#client客户端" class="headerlink" title="client客户端"></a>client客户端</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> win32pipe, win32file</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">PIPE_NAME = <span class="string">r'\\.\pipe\test_pipe'</span></span><br><span class="line"></span><br><span class="line">file_handle = win32file.CreateFile(PIPE_NAME,</span><br><span class="line">                                   win32file.GENERIC_READ | win32file.GENERIC_WRITE,</span><br><span class="line">                                   win32file.FILE_SHARE_WRITE, <span class="literal">None</span>,</span><br><span class="line">                                   win32file.OPEN_EXISTING, <span class="number">0</span>, <span class="literal">None</span>)    <span class="comment"># 连接管道</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">11</span>):</span><br><span class="line">        msg = str(i)</span><br><span class="line">        print(<span class="string">'send msg:'</span>, msg)</span><br><span class="line">        win32file.WriteFile(file_handle, bytes(msg,encoding=<span class="string">'utf-8'</span>))   <span class="comment"># 发送信息</span></span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        data = win32file.ReadFile(file_handle, <span class="number">65535</span>, <span class="literal">None</span>) <span class="comment"># 接收信息(阻塞)</span></span><br><span class="line">        print(data)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        win32file.CloseHandle(file_handle)  <span class="comment"># 关闭连接</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="C-中的命名管道"><a href="#C-中的命名管道" class="headerlink" title="C#中的命名管道"></a>C#中的命名管道</h2><h3 id="server端-1"><a href="#server端-1" class="headerlink" title="server端"></a>server端</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">NamedPipeServerStream server = <span class="keyword">new</span> NamedPipeServerStream(<span class="string">"test_pipe"</span>, PipeDirection.InOut, <span class="number">100</span>, PipeTransmissionMode.Byte, PipeOptions.None, <span class="number">65535</span>, <span class="number">65535</span>);</span><br><span class="line">server.WaitForConnection();</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (server.IsConnected)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> n = server.Read(res, <span class="number">0</span>, <span class="number">65535</span>); <span class="comment">//接收信息</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">string</span> s = System.Text.Encoding.UTF8.GetString(res,<span class="number">0</span>,n);</span><br><span class="line"></span><br><span class="line">        Console.WriteLine(s);</span><br><span class="line"></span><br><span class="line">        n = Encoding.UTF8.GetBytes(s, <span class="number">0</span>, s.Length, res, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        server.Write(res, <span class="number">0</span>, n);    <span class="comment">//发送信息</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="client端"><a href="#client端" class="headerlink" title="client端"></a>client端</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">NamedPipeClientStream client = <span class="keyword">new</span> NamedPipeClientStream(<span class="string">"test_pipe"</span>);</span><br><span class="line">client.Connect();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (client.IsConnected)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> n = client.Read(res, <span class="number">0</span>, <span class="number">65535</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">string</span> s = System.Text.Encoding.UTF8.GetString(res,<span class="number">0</span>,n);</span><br><span class="line"></span><br><span class="line">    Console.WriteLine(s);</span><br><span class="line"></span><br><span class="line">    n = Encoding.UTF8.GetBytes(s, <span class="number">0</span>, s.Length, res, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    client.Write(res, <span class="number">0</span>, n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="python和C-交互代码示例"><a href="#python和C-交互代码示例" class="headerlink" title="python和C#交互代码示例"></a>python和C#交互代码示例</h2><p>python端  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> win32file</span><br><span class="line"><span class="keyword">import</span> win32pipe</span><br><span class="line"></span><br><span class="line">PIPE_NAME = <span class="string">r'\\.\pipe\test_pipe'</span></span><br><span class="line">PIPE_BUFFER_SIZE = <span class="number">65535</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    named_pipe = win32pipe.CreateNamedPipe(PIPE_NAME,</span><br><span class="line">                                           win32pipe.PIPE_ACCESS_DUPLEX,</span><br><span class="line">                                           win32pipe.PIPE_TYPE_MESSAGE | win32pipe.PIPE_WAIT | win32pipe.PIPE_READMODE_MESSAGE,</span><br><span class="line">                                           win32pipe.PIPE_UNLIMITED_INSTANCES,</span><br><span class="line">                                           PIPE_BUFFER_SIZE,</span><br><span class="line">                                           PIPE_BUFFER_SIZE, <span class="number">500</span>, <span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                win32pipe.ConnectNamedPipe(named_pipe, <span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line">                win32file.WriteFile(named_pipe, bytes(<span class="string">"hello"</span>, encoding=<span class="string">'utf-8'</span>))</span><br><span class="line"></span><br><span class="line">                data = win32file.ReadFile(named_pipe, PIPE_BUFFER_SIZE, <span class="literal">None</span>)</span><br><span class="line">                time.sleep(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">                <span class="comment"># data = str.encode()</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> data <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> len(data) &lt; <span class="number">2</span>:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">                print(<span class="string">'receive msg:'</span>, data)</span><br><span class="line">            <span class="keyword">except</span> BaseException <span class="keyword">as</span> e:</span><br><span class="line">                print(<span class="string">"exception:"</span>, e)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            win32pipe.DisconnectNamedPipe(named_pipe)</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>C#端</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>   &#123;</span><br><span class="line">   <span class="keyword">byte</span>[] res = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">65535</span>];</span><br><span class="line"></span><br><span class="line">       NamedPipeClientStream client = <span class="keyword">new</span> NamedPipeClientStream(<span class="string">"test_pipe"</span>);</span><br><span class="line">       client.Connect();</span><br><span class="line">       </span><br><span class="line"></span><br><span class="line">       <span class="keyword">while</span> (client.IsConnected)</span><br><span class="line">       &#123;</span><br><span class="line">           <span class="keyword">int</span> n = client.Read(res, <span class="number">0</span>, <span class="number">65535</span>);</span><br><span class="line"></span><br><span class="line">           <span class="keyword">string</span> s = System.Text.Encoding.UTF8.GetString(res,<span class="number">0</span>,n);</span><br><span class="line"></span><br><span class="line">           Console.WriteLine(s);</span><br><span class="line"></span><br><span class="line">           n = Encoding.UTF8.GetBytes(s, <span class="number">0</span>, s.Length, res, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">           client.Write(res, <span class="number">0</span>, n);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/03/10/FIFO/" data-id="ck7lvcm3u00001cvnbwnhbibp"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/" rel="tag">c#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
     
     <article id="post-formal-language-and-automata" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
@@ -120,7 +273,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/03/04/formal-language-and-automata/" data-id="ck7eyp6rq000mp4vnba6ggyu6"
+      <a data-url="http://georgechen1827.github.io/2020/03/04/formal-language-and-automata/" data-id="ck7lvcm4z000y1cvn2452dolh"
         class="article-share-link">share</a>
         
       
@@ -196,7 +349,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/03/04/markdown-formula-editor/" data-id="ck7eyp6th0032p4vn0pebdqqs"
+      <a data-url="http://georgechen1827.github.io/2020/03/04/markdown-formula-editor/" data-id="ck7lvcm5z00381cvndmpz36rm"
         class="article-share-link">share</a>
         
       
@@ -269,7 +422,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/03/04/python-multithreading/" data-id="ck7eyp6sy002ap4vn8k8dhrbp"
+      <a data-url="http://georgechen1827.github.io/2020/03/04/python-multithreading/" data-id="ck7lvcm58001m1cvn8lsq1j2m"
         class="article-share-link">share</a>
         
       
@@ -344,7 +497,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/03/04/python-spider/" data-id="ck7eyp6t0002ep4vn9hrmcp0v"
+      <a data-url="http://georgechen1827.github.io/2020/03/04/python-spider/" data-id="ck7lvcm5a001q1cvn9k3q6yyi"
         class="article-share-link">share</a>
         
       
@@ -424,7 +577,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/03/03/mao-theory/" data-id="ck7eyp6sw0029p4vn7smb10k5"
+      <a data-url="http://georgechen1827.github.io/2020/03/03/mao-theory/" data-id="ck7lvcm53001a1cvn0rigah4k"
         class="article-share-link">share</a>
         
       
@@ -498,7 +651,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/27/data-base0/" data-id="ck7eyp6ro000hp4vn6h0j9t3g"
+      <a data-url="http://georgechen1827.github.io/2020/02/27/data-base0/" data-id="ck7lvcm4p000i1cvnbhk2018j"
         class="article-share-link">share</a>
         
       
@@ -568,7 +721,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/26/featured-chinese-culture/" data-id="ck7eyp6rf000ap4vndx6p2a6l"
+      <a data-url="http://georgechen1827.github.io/2020/02/26/featured-chinese-culture/" data-id="ck7lvcm4v000q1cvnhfsi1xch"
         class="article-share-link">share</a>
         
       
@@ -638,164 +791,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/25/chinese-garden/" data-id="ck7eyp6r50001p4vnfy1sf4ez"
+      <a data-url="http://georgechen1827.github.io/2020/02/25/chinese-garden/" data-id="ck7lvcm4n000g1cvnbjeddq1w"
         class="article-share-link">share</a>
         
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-Lucence0" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/24/Lucence0/"
-    >Lucence相关</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/02/24/Lucence0/" class="article-date">
-  <time datetime="2020-02-24T10:01:26.000Z" itemprop="datePublished">2020-02-24</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/notes/">notes</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p><del>未完结,不定期更新</del>  完结</p>
-<hr>
-<p>Lucence是一个由Java实现的,支持纯文本文件索引和搜索的高效、可扩展、开源的的全文检索框架</p>
-<p>因自己需要用到lucence.net相关知识, 学习时参阅了不少资料, 将一些要点记录在此, 以供参考</p>
-      
-      <a class="article-more-link" href="/2020/02/24/Lucence0/">more...</a>
-      
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/Lucence0/" data-id="ck7eyp6r90004p4vnf2873sda"
-        class="article-share-link">share</a>
-        
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/" rel="tag">c#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" rel="tag">搜索引擎</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-compilers0" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/24/compilers0/"
-    >编译原理相关知识</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/02/24/compilers0/" class="article-date">
-  <time datetime="2020-02-24T08:32:03.000Z" itemprop="datePublished">2020-02-24</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/notes/">notes</a> / <a class="article-category-link" href="/categories/notes/%E5%AD%A6%E4%BD%8D%E8%AF%BE%E7%A8%8B/">学位课程</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>未完结,持续更新</p>
-<hr>
-<p>课程内容:</p>
-<ul>
-<li>编译器构造的一般原理和基本实现方法</li>
-<li>理论知识: 形式语言和自动机理论,语法制导的定义和属性方法,程序分析原理</li>
-<li>强调形式描述技术和自动生成技术</li>
-<li>强调对编译原理和技术的宏观理解,不把注意力分散到枝节算法,不偏向于任何源语言或目标机器</li>
-</ul>
-      
-      <a class="article-more-link" href="/2020/02/24/compilers0/">more...</a>
-      
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/compilers0/" data-id="ck7eyp6rb0005p4vnaiyr97i5"
-        class="article-share-link">share</a>
-        
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="tag">编译原理</a></li></ul>
 
     </footer>
 
@@ -817,7 +817,7 @@
   
   <nav class="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next</a>
   </nav>
   
 </section>
