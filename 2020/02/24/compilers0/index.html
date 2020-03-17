@@ -278,7 +278,40 @@
 <h4 id="正则定义"><a href="#正则定义" class="headerlink" title="正则定义"></a>正则定义</h4><p><img src="re2.png" alt="re"></p>
 <h4 id="正则表达式的扩展"><a href="#正则表达式的扩展" class="headerlink" title="正则表达式的扩展"></a>正则表达式的扩展</h4><p>为了方便书写,对一些常用的正则表达式做如下定义<br><img src="re3.png" alt="re"><br><img src="re4.png" alt="re">  </p>
 <p>一些数量方面的运算符也做了扩展<br><img src="re5.png" alt="re"><br><img src="re6.png" alt="re"></p>
-<h3 id="状态转换图"><a href="#状态转换图" class="headerlink" title="状态转换图"></a>状态转换图</h3><hr>
+<h4 id="状态转换图"><a href="#状态转换图" class="headerlink" title="状态转换图"></a>状态转换图</h4><p>状态转换图描述词法分析器被语法分析器调用时，词法分析器为返回下一个记号所做的动作</p>
+<p>绘制状态转换图是构造词法分析器的第一步</p>
+<ul>
+<li>圆圈表示状态，开始状态由一条没有出发节点、标号为“开始”的边指明</li>
+<li>双层圆圈表示接受状态，表示已识别一个记号</li>
+<li>有向边表示从一个状态到另一状态</li>
+<li>每条边的标号包含一个或多个符号，若离开状态s的某边上标号为other，则它表示离开s的其他边所指示的字符以外的任意字符</li>
+<li>*表示输入指针必须回退的转态</li>
+</ul>
+<p><img src="status.png" alt="status"></p>
+<h3 id="有限自动状态机"><a href="#有限自动状态机" class="headerlink" title="有限自动状态机"></a>有限自动状态机</h3><h4 id="不确定的有限状态自动机NFA"><a href="#不确定的有限状态自动机NFA" class="headerlink" title="不确定的有限状态自动机NFA"></a>不确定的有限状态自动机NFA</h4><ul>
+<li>$Q$是非空有穷的状态集合</li>
+<li>$\Sigma$是非空有穷的输入字母表</li>
+<li>$\delta$为一个$Q \times (\Sigma \cup \lbrace \epsilon \rbrace) \to \rho(Q)$上的映射,$\rho(Q)$表示Q的幂集</li>
+<li>$q_0 \in Q$是初始状态</li>
+<li>$F \subseteq Q$是接受状态集合  <blockquote>
+<p>此时,这个自动机在确定的状态接收到了一个确定的符号后,其下一个状态时不确定的</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="确定的有限状态自动机DFA"><a href="#确定的有限状态自动机DFA" class="headerlink" title="确定的有限状态自动机DFA"></a>确定的有限状态自动机DFA</h4><ul>
+<li>$Q$是非空有穷的状态集合</li>
+<li>$\Sigma$是非空有穷的输入字母表</li>
+<li>$\delta$为一个$Q \times \Sigma \to Q$上的映射,是状态转移函数</li>
+<li>$q_0 \in Q$是初始状态</li>
+<li>$F \subseteq Q$是接受状态集合<blockquote>
+<ul>
+<li>一个符号标记离开同一状态只有一条边</li>
+<li>任何状态下都没有ε转换</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<hr>
 <p><em>待更新…</em></p>
 -->
       
@@ -286,7 +319,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/compilers0/" data-id="ck7lvcm4200021cvnhyntfk6b"
+      <a data-url="http://georgechen1827.github.io/2020/02/24/compilers0/" data-id="ck7v6qetf0001xcvn8mzmc9aj"
         class="article-share-link">share</a>
         
       

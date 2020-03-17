@@ -304,7 +304,7 @@
 <li>对每一个非确定型有穷自动机$M$,都存在一个确定型有穷自动机$M’$,使得$L(M) = L(M’)$(证明略)  </li>
 </ul>
 <p>这种转换方式在此不做介绍</p>
-<h3 id="带-epsilon-转移的非确定型有穷自动机"><a href="#带-epsilon-转移的非确定型有穷自动机" class="headerlink" title="带$\epsilon$转移的非确定型有穷自动机"></a>带$\epsilon$转移的非确定型有穷自动机</h3><p>对NFA稍加推广,不仅对$\Sigma$中的每一个符号都可以有状态转移, 而且在不读入任何符号(或者说读入空串$\epsilon$)的情况下,自动机在某些状态下也可以自动转移高另一个状态, 这样的NFA称为带$\epsilon$转移的NFA</p>
+<h3 id="带-epsilon-转移的非确定型有穷自动机"><a href="#带-epsilon-转移的非确定型有穷自动机" class="headerlink" title="带$\epsilon$转移的非确定型有穷自动机"></a>带$\epsilon$转移的非确定型有穷自动机</h3><p>对NFA稍加推广,不仅对$\Sigma$中的每一个符号都可以有状态转移, 而且在不读入任何符号(或者说读入空串$\epsilon$)的情况下,自动机在某些状态下也可以自动转移到另一个状态, 这样的NFA称为带$\epsilon$转移的NFA</p>
 <h4 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h4><p>带$\epsilon$转移的非确定型有穷自动机是一个有序五元组$M = &lt;Q, \Sigma, \delta, q_0, F&gt;$, 其中</p>
 <ul>
 <li>$Q$是非空有穷的状态集合</li>
@@ -1400,7 +1400,7 @@ $$
 <p>课程主要讲述关系型数据库的原理, 不着重于具体数据库的使用</p>
 <a id="more"></a>
 
-<h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><h3 id="数据库系统概述"><a href="#数据库系统概述" class="headerlink" title="数据库系统概述"></a>数据库系统概述</h3><h4 id="数据库中的基本概念"><a href="#数据库中的基本概念" class="headerlink" title="数据库中的基本概念"></a>数据库中的基本概念</h4><ul>
+<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><h2 id="数据库系统概述"><a href="#数据库系统概述" class="headerlink" title="数据库系统概述"></a>数据库系统概述</h2><h3 id="数据库中的基本概念"><a href="#数据库中的基本概念" class="headerlink" title="数据库中的基本概念"></a>数据库中的基本概念</h3><ul>
 <li>数据(data): 是数据库中存储的基本对象; 是描述事物的符号记录,包括数字、文字等不同种类 </li>
 </ul>
 <blockquote>
@@ -1429,20 +1429,20 @@ $$
 <blockquote>
 <p>数据库系统构成: 数据库, 数据库管理系统(及其应用开发工具), 应用程序, 数据库管理员(DBA)</p>
 </blockquote>
-<h4 id="数据库管理技术"><a href="#数据库管理技术" class="headerlink" title="数据库管理技术"></a>数据库管理技术</h4><p>数据管理: 对数据进行分类,组织,编码,存储,检索和维护<br>数据管理是数据处理和数据分析的中心问题</p>
+<h3 id="数据库管理技术"><a href="#数据库管理技术" class="headerlink" title="数据库管理技术"></a>数据库管理技术</h3><p>数据管理: 对数据进行分类,组织,编码,存储,检索和维护<br>数据管理是数据处理和数据分析的中心问题</p>
 <p>发展: 人工管理-&gt;文件系统管理-&gt;数据库系统管理<br><img src="/2020/02/27/data-base0/diff0.png" alt="diff"></p>
 <ul>
 <li>人工管理阶段, 应用程序和数据集是一一对应的</li>
 <li>文件系统阶段, 存取方法是共享的, 但应用程序和数据集是一一对应的</li>
 <li>数据库系统阶段, 多个应用程序通过同一个数据库管理系统对同一个数据库进行操作</li>
 </ul>
-<h4 id="数据库系统的特点"><a href="#数据库系统的特点" class="headerlink" title="数据库系统的特点"></a>数据库系统的特点</h4><ul>
+<h3 id="数据库系统的特点"><a href="#数据库系统的特点" class="headerlink" title="数据库系统的特点"></a>数据库系统的特点</h3><ul>
 <li>数据结构化</li>
 <li>数据的共享性高,冗余度低且易扩充</li>
 <li>数据独立性高</li>
 <li>数据由数据库管理系统统一管理和控制</li>
 </ul>
-<h3 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h3><p>数据模型是对现实世界数据特征的抽象</p>
+<h2 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h2><p>数据模型是对现实世界数据特征的抽象</p>
 <p>数据模型应满足三方面要求</p>
 <ul>
 <li>能比较真实地模拟现实世界</li>
@@ -1450,7 +1450,7 @@ $$
 <li>便于在计算机上实现  </li>
 </ul>
 <p>数据模型是数据库系统的核心和基础 </p>
-<h4 id="两类数据模型"><a href="#两类数据模型" class="headerlink" title="两类数据模型"></a>两类数据模型</h4><p>数据模型分为两类(两个不同层次):  </p>
+<h3 id="两类数据模型"><a href="#两类数据模型" class="headerlink" title="两类数据模型"></a>两类数据模型</h3><p>数据模型分为两类(两个不同层次):  </p>
 <ul>
 <li>概念模型，也称信息模型 : 它是按用户的观点来对数据和信息建模，用于数据库设计  </li>
 <li>逻辑模型和物理模型 <blockquote>
@@ -1462,8 +1462,8 @@ $$
 </blockquote>
 </li>
 </ul>
-<p>现实世界中客观对象的抽象过程:<br>1<a href="proc0.png">proc</a></p>
-<h4 id="概念模型"><a href="#概念模型" class="headerlink" title="概念模型"></a>概念模型</h4><ul>
+<p>现实世界中客观对象的抽象过程:<br><img src="/2020/02/27/data-base0/proc0.png" alt="proc"></p>
+<h3 id="概念模型"><a href="#概念模型" class="headerlink" title="概念模型"></a>概念模型</h3><ul>
 <li>概念模型用于信息世界的建模 </li>
 <li>是现实世界到机器世界的一个中间层次</li>
 <li>是数据库设计的有力工具</li>
@@ -1618,7 +1618,190 @@ $$
 <li>存取路径对用户透明，查询效率往往不如格式化数据模型</li>
 <li>为提高性能，必须对用户的查询请求进行优化，增加了开发数据库管理系统的难度</li>
 </ul>
-<h2 id="数据库系统的结构"><a href="#数据库系统的结构" class="headerlink" title="数据库系统的结构"></a>数据库系统的结构</h2><h2 id="数据库系统的组成"><a href="#数据库系统的组成" class="headerlink" title="数据库系统的组成"></a>数据库系统的组成</h2><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><hr>
+<h2 id="数据库系统的结构"><a href="#数据库系统的结构" class="headerlink" title="数据库系统的结构"></a>数据库系统的结构</h2><p>从数据库应用开发人员角度看：</p>
+<ul>
+<li>数据库系统采用三级模式结构，是数据库系统内部的系统结构</li>
+</ul>
+<p>从数据库最终用户角度看，数据库系统的结构有：</p>
+<ul>
+<li>单用户结构</li>
+<li>主从式结构</li>
+<li>分布式结构</li>
+<li>客户-服务器</li>
+<li>浏览器-应用服务器／数据库服务器等</li>
+</ul>
+<h3 id="数据库系统模式的概念"><a href="#数据库系统模式的概念" class="headerlink" title="数据库系统模式的概念"></a>数据库系统模式的概念</h3><p>模式:</p>
+<ul>
+<li>是对数据库逻辑结构和特征的描述</li>
+<li>是型的描述,不涉及具体值</li>
+<li>模式是相对稳定的</li>
+</ul>
+<p>实例</p>
+<ul>
+<li>数据库某一时刻的状态: 模式的一个具体值</li>
+<li>同一个模式可以有很多实例</li>
+<li>实例随数据库中的数据的更新而变动</li>
+</ul>
+<h3 id="数据库系统的三级模式结构"><a href="#数据库系统的三级模式结构" class="headerlink" title="数据库系统的三级模式结构"></a>数据库系统的三级模式结构</h3><p><img src="/2020/02/27/data-base0/pattern0.png" alt="pattern"></p>
+<h4 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h4><p>模式(逻辑模式)</p>
+<ul>
+<li>是数据库中全体数据的逻辑结构和特征描述 </li>
+<li>是所有用户的公共数据视图<blockquote>
+<p>一般,某个应用的数据库有一个模式  </p>
+</blockquote>
+</li>
+</ul>
+<p>模式是数据库系统模式结构的中心:</p>
+<ul>
+<li>与数据的物理存储细节和硬件环境无关</li>
+<li>与具体的应用程序、开发工具及高级程序设计语言无关 </li>
+</ul>
+<p>定义模式</p>
+<ul>
+<li>DDL定义数据的逻辑结构，以某种数据模型为基础</li>
+<li>数据记录由哪些数据项构成，数据项的名字、类型、取值范围等</li>
+<li>定义数据之间的联系</li>
+<li>定义与数据有关的安全性、完整性要求</li>
+</ul>
+<h4 id="外模式"><a href="#外模式" class="headerlink" title="外模式"></a>外模式</h4><p>外模式（也称子模式或用户模式）</p>
+<ul>
+<li>数据库用户使用的局部数据的逻辑结构和特征的描述</li>
+<li>数据库用户的数据视图，是与某一应用有关的数据的逻辑表示 </li>
+</ul>
+<p>外模式与模式的关系</p>
+<ul>
+<li>外模式通常是模式的子集、一个模式可以有多个外模式</li>
+<li>反映了不同的用户的应用需求、看待数据的方式、对数据保密的要求</li>
+<li>对模式中某一数据，在不同的外模式中 结构、类型、长度、保密级别等都可以不同 </li>
+</ul>
+<p>外模式与应用的关系</p>
+<ul>
+<li>一个外模式可以为 多个应用系统所使用，一个应用程序只能使用一个外模式 </li>
+</ul>
+<p>外模式的用途</p>
+<ul>
+<li>每个用户只能看见和访问所对应的外模式中的数据，简化用户视图</li>
+<li>保证数据库安全性的一个有力措施</li>
+</ul>
+<h4 id="内模式"><a href="#内模式" class="headerlink" title="内模式"></a>内模式</h4><p>内模式（也称存储模式）</p>
+<ul>
+<li><p>是数据物理结构和存储方式的描述</p>
+</li>
+<li><p>是数据在数据库内部的表示方式</p>
+<blockquote>
+<ul>
+<li>记录的存储方式 （例如，顺序存储，堆存储，Cluste按hash方法存储等）</li>
+<li>索引的组织方式（B+树，Bitmap，Hash）</li>
+<li>数据是否压缩存储</li>
+<li>数据是否加密</li>
+<li>数据存储记录结构的规定—如定长/变长，记录是否可以跨页存放等 </li>
+</ul>
+</blockquote>
+</li>
+<li><p>一个数据库只有一个内模式</p>
+</li>
+</ul>
+<h3 id="数据库的二级映像（mapping）功能与数据独立性"><a href="#数据库的二级映像（mapping）功能与数据独立性" class="headerlink" title="数据库的二级映像（mapping）功能与数据独立性"></a>数据库的二级映像（mapping）功能与数据独立性</h3><p>三级模式实际上是对数据的三个抽象级别</p>
+<p>数据库管理系统内部提供了二级映像</p>
+<ul>
+<li>外模式/模式映像</li>
+<li>模式/内模式映像</li>
+</ul>
+<h4 id="外模式-模式映像"><a href="#外模式-模式映像" class="headerlink" title="外模式/模式映像"></a>外模式/模式映像</h4><p>对每一个外模式,有一个外模式/模式映像</p>
+<ul>
+<li>它定义了外模式与模式之间的对应关系</li>
+<li>映像定义通常包含在各外模式的描述中</li>
+</ul>
+<p>这种映像可以保证数据(和程序)的逻辑独立性</p>
+<ul>
+<li>当模式改变时，数据库管理员对外模式／模式映像作相应改变，使外模式保持不变</li>
+<li>应用程序是依据数据的外模式编写的，应用程序不必修改，保证了数据 与程序的逻辑独立性，简称数据的逻辑独立性 </li>
+</ul>
+<h4 id="模式-内模式映像"><a href="#模式-内模式映像" class="headerlink" title="模式/内模式映像"></a>模式/内模式映像</h4><p>模式/内模式映像定义了全局数据逻辑结构与存储结构之间的对应关系(如，说明某个逻辑记录对应何种存储结构)</p>
+<p>数据库中模式/内模式映像是唯一的,该映像定义通常包含在模式的描述中</p>
+<p>这种映像能保证数据的物理独立性</p>
+<ul>
+<li>当数据库的存储结构改变了（例如选用了另一种存储结构），数据库管理员 修改模式／内模式映象，使模式保持不变。</li>
+<li>模式不变，则应用程序不变。保证了数据与程序的物理独立性，简称数据的 物理独立性。</li>
+</ul>
+<h4 id="数据库二级映像功能与数据独立性"><a href="#数据库二级映像功能与数据独立性" class="headerlink" title="数据库二级映像功能与数据独立性"></a>数据库二级映像功能与数据独立性</h4><ul>
+<li><p>保证了应用程序的稳定性</p>
+<blockquote>
+<ul>
+<li>除非应用需求本身发生变化，否则应用程序一般不需要修改。</li>
+</ul>
+</blockquote>
+</li>
+<li><p>从程序为中心——发展为 以数据为中心</p>
+<blockquote>
+<ul>
+<li>具有了数据与程序之间的独立性，使得数据的定义和描述可以从应用 程序中分离出去</li>
+</ul>
+</blockquote>
+</li>
+<li><p>数据的存取由数据库管理系统管理</p>
+<blockquote>
+<ul>
+<li>简化了应用程序的编制</li>
+<li>大大减少了应用程序的维护和修改  </li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="数据库系统的组成"><a href="#数据库系统的组成" class="headerlink" title="数据库系统的组成"></a>数据库系统的组成</h2><ul>
+<li>数据库</li>
+<li>数据库管理系统（及其开发工具）</li>
+<li>应用程序</li>
+<li>数据库管理员 </li>
+</ul>
+<ol>
+<li>硬件平台及数据库</li>
+<li>软件</li>
+<li>人员  </li>
+</ol>
+<h1 id="关系数据库"><a href="#关系数据库" class="headerlink" title="关系数据库"></a>关系数据库</h1><h2 id="关系模型-1"><a href="#关系模型-1" class="headerlink" title="关系模型"></a>关系模型</h2><h3 id="关系数据结构"><a href="#关系数据结构" class="headerlink" title="关系数据结构"></a>关系数据结构</h3><p>关系数据结构是单一的数据结构-关系</p>
+<p>关系数据结构示意图如下:<br><img src="/2020/02/27/data-base0/relation0.png" alt="rela"></p>
+<h4 id="域和笛卡尔积空间"><a href="#域和笛卡尔积空间" class="headerlink" title="域和笛卡尔积空间"></a>域和笛卡尔积空间</h4><p>域是一组具有相同数据类型的值的集合,是属性的取值范围</p>
+<p>笛卡尔积空间是一组域的笛卡尔积</p>
+<h4 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h4><p>关系是在笛卡尔积上的子集  </p>
+<p>关系中的元素可以用元组表示</p>
+<ul>
+<li>属性: 关系中不同列称为属性,每个属性有一个名字; n目关系有n个属性</li>
+<li>码: 码是能唯一标识一个元组属性<blockquote>
+<ul>
+<li>候选码:关系中的某一属性组的值能唯一地标识一个元组，则称该属性 组为候选码 </li>
+<li>全码:关系模式的所有属性组是这个关系模式的候选码， 称为全码（All-key）</li>
+<li>主码:若一个关系有多个候选码，则选定其中一个为主码（Primary key）</li>
+<li>主属性:候选码的诸属性称为主属性（Prime attribute）不包含在任何侯选码中的属性称为非主属性（Non-Prime attribute）或非码属性（Non-key attribute）  </li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h4 id="关系模式"><a href="#关系模式" class="headerlink" title="关系模式"></a>关系模式</h4><p>关系模式是对关系的描述<br><img src="/2020/02/27/data-base0/relation1.png" alt="relation"></p>
+<h3 id="关系完整性约束"><a href="#关系完整性约束" class="headerlink" title="关系完整性约束"></a>关系完整性约束</h3><p>实体完整性和参照完整性</p>
+<ul>
+<li>关系模型必须满足的完整性约束条件称为关系的两个 不变性，应该由关系系统自动支持</li>
+</ul>
+<p>用户定义的完整性</p>
+<ul>
+<li>应用领域需要遵循的约束条件，体现了具体领域中的 语义约束 </li>
+</ul>
+<h4 id="实体完整性"><a href="#实体完整性" class="headerlink" title="实体完整性"></a>实体完整性</h4><ul>
+<li>关系的主属性不能取空值(码不能为空)</li>
+</ul>
+<p>说明: </p>
+<ol>
+<li>实体完整性规则是针对基本关系而言的。一个基本表通常对应现实世界的一个实体集。</li>
+<li>现实世界中的实体是可区分的，即它们具有某种唯一性标识。</li>
+<li>关系模型中以主码作为唯一性标识。</li>
+<li>主码中的属性即主属性不能取空值。主属性取空值，就说明存在某个不可标识的实体，即存在不可区分的实体，这与第（2）点相矛盾，因此这个规则称为实体完整性</li>
+</ol>
+<h4 id="参照完整性"><a href="#参照完整性" class="headerlink" title="参照完整性"></a>参照完整性</h4><p>关系间的引用: 在关系模型中实体及实体间的联系都是用关系来描述的， 自然存在着关系与关系间的引用。  </p>
+<ul>
+<li>引用应当是有意义的 </li>
+</ul>
+<p>外码: </p>
+<h4 id="用户定义完整性"><a href="#用户定义完整性" class="headerlink" title="用户定义完整性"></a>用户定义完整性</h4><h2 id="关系代数"><a href="#关系代数" class="headerlink" title="关系代数"></a>关系代数</h2><h2 id="关系演算"><a href="#关系演算" class="headerlink" title="关系演算"></a>关系演算</h2><hr>
 <p><em>待更新…</em></p>
 ]]></content>
       <categories>
@@ -1994,7 +2177,40 @@ $$
 <h4 id="正则定义"><a href="#正则定义" class="headerlink" title="正则定义"></a>正则定义</h4><p><img src="re2.png" alt="re"></p>
 <h4 id="正则表达式的扩展"><a href="#正则表达式的扩展" class="headerlink" title="正则表达式的扩展"></a>正则表达式的扩展</h4><p>为了方便书写,对一些常用的正则表达式做如下定义<br><img src="re3.png" alt="re"><br><img src="re4.png" alt="re">  </p>
 <p>一些数量方面的运算符也做了扩展<br><img src="re5.png" alt="re"><br><img src="re6.png" alt="re"></p>
-<h3 id="状态转换图"><a href="#状态转换图" class="headerlink" title="状态转换图"></a>状态转换图</h3><hr>
+<h4 id="状态转换图"><a href="#状态转换图" class="headerlink" title="状态转换图"></a>状态转换图</h4><p>状态转换图描述词法分析器被语法分析器调用时，词法分析器为返回下一个记号所做的动作</p>
+<p>绘制状态转换图是构造词法分析器的第一步</p>
+<ul>
+<li>圆圈表示状态，开始状态由一条没有出发节点、标号为“开始”的边指明</li>
+<li>双层圆圈表示接受状态，表示已识别一个记号</li>
+<li>有向边表示从一个状态到另一状态</li>
+<li>每条边的标号包含一个或多个符号，若离开状态s的某边上标号为other，则它表示离开s的其他边所指示的字符以外的任意字符</li>
+<li>*表示输入指针必须回退的转态</li>
+</ul>
+<p><img src="status.png" alt="status"></p>
+<h3 id="有限自动状态机"><a href="#有限自动状态机" class="headerlink" title="有限自动状态机"></a>有限自动状态机</h3><h4 id="不确定的有限状态自动机NFA"><a href="#不确定的有限状态自动机NFA" class="headerlink" title="不确定的有限状态自动机NFA"></a>不确定的有限状态自动机NFA</h4><ul>
+<li>$Q$是非空有穷的状态集合</li>
+<li>$\Sigma$是非空有穷的输入字母表</li>
+<li>$\delta$为一个$Q \times (\Sigma \cup \lbrace \epsilon \rbrace) \to \rho(Q)$上的映射,$\rho(Q)$表示Q的幂集</li>
+<li>$q_0 \in Q$是初始状态</li>
+<li>$F \subseteq Q$是接受状态集合  <blockquote>
+<p>此时,这个自动机在确定的状态接收到了一个确定的符号后,其下一个状态时不确定的</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="确定的有限状态自动机DFA"><a href="#确定的有限状态自动机DFA" class="headerlink" title="确定的有限状态自动机DFA"></a>确定的有限状态自动机DFA</h4><ul>
+<li>$Q$是非空有穷的状态集合</li>
+<li>$\Sigma$是非空有穷的输入字母表</li>
+<li>$\delta$为一个$Q \times \Sigma \to Q$上的映射,是状态转移函数</li>
+<li>$q_0 \in Q$是初始状态</li>
+<li>$F \subseteq Q$是接受状态集合<blockquote>
+<ul>
+<li>一个符号标记离开同一状态只有一条边</li>
+<li>任何状态下都没有ε转换</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<hr>
 <p><em>待更新…</em></p>
 -->]]></content>
       <categories>
@@ -2060,7 +2276,7 @@ $$
 <h3 id="计算机性能指标和层次结构"><a href="#计算机性能指标和层次结构" class="headerlink" title="计算机性能指标和层次结构"></a>计算机性能指标和层次结构</h3><p>NAN</p>
 <h3 id="计算机系统"><a href="#计算机系统" class="headerlink" title="计算机系统"></a>计算机系统</h3><h4 id="硬件系统的组成-冯诺依曼结构-以存储器为中心"><a href="#硬件系统的组成-冯诺依曼结构-以存储器为中心" class="headerlink" title="硬件系统的组成: 冯诺依曼结构,以存储器为中心"></a>硬件系统的组成: 冯诺依曼结构,以存储器为中心</h4><p>存储程序:</p>
 <ul>
-<li>计算机(硬件)应由运算器,存储器,控制器,出入设备,输出设备组成</li>
+<li>计算机(硬件)应由运算器,存储器,控制器,输入设备,输出设备组成</li>
 <li>计算机内部采用二进制来表示指令和数据</li>
 <li>将编好的程序和原始数据实现存入存储器中然后再启动计算机工作</li>
 </ul>
@@ -2260,7 +2476,53 @@ $$
 <li>赋值的强制类型转换</li>
 <li>字符串连接运算符:+ 可以将非字符串类型转换成字符串类型并连接</li>
 </ul>
-<h3 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h3><h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><hr>
+<h3 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h3><p><em>类似C++</em></p>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p><em>类似C++</em></p>
+<h2 id="Java的类"><a href="#Java的类" class="headerlink" title="Java的类"></a>Java的类</h2><h3 id="字段和方法"><a href="#字段和方法" class="headerlink" title="字段和方法"></a>字段和方法</h3><ul>
+<li>字段是类的属性</li>
+<li>方法时类内部的函数</li>
+</ul>
+<p>Java的对象时通过引用来表示的，没有指针</p>
+<h3 id="方法重载"><a href="#方法重载" class="headerlink" title="方法重载"></a>方法重载</h3><p>方法重载是指多个方法有相同的名字，但编译的时候能识别出来</p>
+<ul>
+<li>同通过方法重载可以实现多态</li>
+</ul>
+<h3 id="this指针"><a href="#this指针" class="headerlink" title="this指针"></a>this指针</h3><p>类中this可以解决局部变量与域同名的问题，也可以用来调用另一个构造方法:<code>this(args**)</code></p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>java一个类只能有一个直接父类</p>
+<ul>
+<li>子类继承父类的状态和行为</li>
+<li>子类可以修改父类的状态或重载父类的行为</li>
+<li>子类可以添加新的状态和行为<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">c1</span> <span class="keyword">extends</span> <span class="title">c2</span></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+在UML图中,继承用箭头表示</li>
+</ul>
+<h3 id="方法覆盖"><a href="#方法覆盖" class="headerlink" title="方法覆盖"></a>方法覆盖</h3><p>方法覆盖可以用<code>@override</code>标注</p>
+<h3 id="super的使用"><a href="#super的使用" class="headerlink" title="super的使用"></a>super的使用</h3><ul>
+<li>使用super在同名的情况下可以在类内访问父类的方法</li>
+<li>super可以在子类的构造函数中调用父类的构造函数<code>super(args**)</code></li>
+</ul>
+<h3 id="父类对象和子类对象转换"><a href="#父类对象和子类对象转换" class="headerlink" title="父类对象和子类对象转换"></a>父类对象和子类对象转换</h3><p>子类对象可以赋值给父类对象,反之不行</p>
+<h3 id="包"><a href="#包" class="headerlink" title="包"></a>包</h3><p>包和子包的定义,实际上时为了解决名字空间,名字冲突的问题</p>
+<ul>
+<li>同一个包中的类,默认情况下可以互相访问</li>
+</ul>
+<h4 id="package语句和import导入语句"><a href="#package语句和import导入语句" class="headerlink" title="package语句和import导入语句"></a>package语句和import导入语句</h4><p>package可以封装包,import可以导入包</p>
+<h3 id="访问控制符"><a href="#访问控制符" class="headerlink" title="访问控制符"></a>访问控制符</h3><p>访问修饰符和C++类似C</p>
+<ul>
+<li>默认情况是一种包内可访问性</li>
+</ul>
+<p>非访问控制符:</p>
+<ul>
+<li>static静态类,静态成员</li>
+<li>final最终的类,成员,方法</li>
+<li>abstract抽象类,抽象成员</li>
+</ul>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><p>定义接口<code>interface i1</code></p>
+<ul>
+<li>接口所有方法都自动是public abstract<br>实现接口implements</li>
+<li>实现接口可以解决多继承问题</li>
+<li>实现接口与类的继承无关</li>
+</ul>
+<hr>
 <p><em>待更新…</em></p>
 ]]></content>
       <categories>
