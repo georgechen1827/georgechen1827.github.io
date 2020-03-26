@@ -1764,12 +1764,12 @@ $$
 <h4 id="域和笛卡尔积空间"><a href="#域和笛卡尔积空间" class="headerlink" title="域和笛卡尔积空间"></a>域和笛卡尔积空间</h4><p>域是一组具有相同数据类型的值的集合,是属性的取值范围</p>
 <p>笛卡尔积空间是一组域的笛卡尔积</p>
 <h4 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h4><p>关系是在笛卡尔积上的子集  </p>
-<p>关系中的元素可以用元组表示</p>
+<p>关系中的元素可以用元组表示,在二维表中由一行表示</p>
 <ul>
 <li>属性: 关系中不同列称为属性,每个属性有一个名字; n目关系有n个属性</li>
-<li>码: 码是能唯一标识一个元组属性<blockquote>
+<li>码: 码是能唯一标识一个元组的属性<blockquote>
 <ul>
-<li>候选码:关系中的某一属性组的值能唯一地标识一个元组，则称该属性 组为候选码 </li>
+<li>候选码:关系中能唯一地标识一个元组的最小属性组，则称该属性组为候选码 </li>
 <li>全码:关系模式的所有属性组是这个关系模式的候选码， 称为全码（All-key）</li>
 <li>主码:若一个关系有多个候选码，则选定其中一个为主码（Primary key）</li>
 <li>主属性:候选码的诸属性称为主属性（Prime attribute）不包含在任何侯选码中的属性称为非主属性（Non-Prime attribute）或非码属性（Non-key attribute）  </li>
@@ -1780,12 +1780,13 @@ $$
 <h4 id="关系模式"><a href="#关系模式" class="headerlink" title="关系模式"></a>关系模式</h4><p>关系模式是对关系的描述<br><img src="/2020/02/27/data-base0/relation1.png" alt="relation"></p>
 <h3 id="关系完整性约束"><a href="#关系完整性约束" class="headerlink" title="关系完整性约束"></a>关系完整性约束</h3><p>实体完整性和参照完整性</p>
 <ul>
-<li>关系模型必须满足的完整性约束条件称为关系的两个 不变性，应该由关系系统自动支持</li>
+<li>关系模型必须满足的完整性约束条件称为关系的两个不变性，应该由关系系统自动支持</li>
 </ul>
 <p>用户定义的完整性</p>
 <ul>
-<li>应用领域需要遵循的约束条件，体现了具体领域中的 语义约束 </li>
+<li>应用领域需要遵循的约束条件，体现了具体领域中的语义约束 </li>
 </ul>
+<p>关系完整性约束能够使得一些不符合条件的元组不能进入数据库</p>
 <h4 id="实体完整性"><a href="#实体完整性" class="headerlink" title="实体完整性"></a>实体完整性</h4><ul>
 <li>关系的主属性不能取空值(码不能为空)</li>
 </ul>
@@ -1800,8 +1801,66 @@ $$
 <ul>
 <li>引用应当是有意义的 </li>
 </ul>
-<p>外码: </p>
-<h4 id="用户定义完整性"><a href="#用户定义完整性" class="headerlink" title="用户定义完整性"></a>用户定义完整性</h4><h2 id="关系代数"><a href="#关系代数" class="headerlink" title="关系代数"></a>关系代数</h2><h2 id="关系演算"><a href="#关系演算" class="headerlink" title="关系演算"></a>关系演算</h2><hr>
+<p>外键:一个外键能使两个二维表之间形成关系</p>
+<ul>
+<li>外键只能为空或者另一个表中某个元组的主码值(有意义)</li>
+</ul>
+<h4 id="用户定义完整性"><a href="#用户定义完整性" class="headerlink" title="用户定义完整性"></a>用户定义完整性</h4><p>其他一些用户定义的完整性规则</p>
+<h2 id="关系代数"><a href="#关系代数" class="headerlink" title="关系代数"></a>关系代数</h2><p>关系数据库语言分类：</p>
+<ul>
+<li>关系代数语言: 用对关系的运算来表达查询要求</li>
+<li>关系演算语言：用谓词来表达查询要求</li>
+<li>具有关系代数和关系演算双重特点的语言(SQL)</li>
+</ul>
+<p>关系代数是一种抽象的查询语言，它用对关系的运算来表达查询</p>
+<ul>
+<li>关系代数运算对象是关系</li>
+<li>关系代数运算结果是关系</li>
+<li>关系代数运算符分为集合运算符和专门关系的运算符</li>
+</ul>
+<h3 id="传统集合操作"><a href="#传统集合操作" class="headerlink" title="传统集合操作"></a>传统集合操作</h3><h4 id="关系的并"><a href="#关系的并" class="headerlink" title="关系的并"></a>关系的并</h4><ul>
+<li>关系R和S目数相同,相应的属性属于同一个域</li>
+<li>R并S仍为n目关系,是R和S上所有元组的集合</li>
+<li>并完之后要去重</li>
+</ul>
+<h4 id="关系的差"><a href="#关系的差" class="headerlink" title="关系的差"></a>关系的差</h4><ul>
+<li>关系R和S目数相同,相应的属性属于同一个域</li>
+<li>R并S仍为n目关系</li>
+</ul>
+<h4 id="关系的交"><a href="#关系的交" class="headerlink" title="关系的交"></a>关系的交</h4><ul>
+<li>同上,是在R和S中都存在的元组的集合</li>
+</ul>
+<h4 id="笛卡尔积"><a href="#笛卡尔积" class="headerlink" title="笛卡尔积"></a>笛卡尔积</h4><ul>
+<li>行:运算后为n+m目关系</li>
+<li>列:运算后有k1*k2个元组</li>
+</ul>
+<h3 id="关系特有操作"><a href="#关系特有操作" class="headerlink" title="关系特有操作"></a>关系特有操作</h3><h4 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h4><ul>
+<li>选择运算又称为限制</li>
+<li>是在关系R中选择符合条件的元组组成集合</li>
+</ul>
+<h4 id="投影"><a href="#投影" class="headerlink" title="投影"></a>投影</h4><ul>
+<li>从关系R中选择出若干属性列组成新的关系</li>
+<li>投影后形成的新的关系目数会减少</li>
+<li>需要去重</li>
+</ul>
+<h4 id="连接-theta-连接"><a href="#连接-theta-连接" class="headerlink" title="连接($\theta$连接)"></a>连接($\theta$连接)</h4><ul>
+<li><p>从两个关系的笛卡尔积中选择属性满足一定条件$\theta$的元组组成的关系</p>
+</li>
+<li><p>等值连接: $\theta$ 为$=$时的连接</p>
+</li>
+<li><p>自然连接: 一种特殊的等值连接,两个关系中进行比较的分量必须是相同的属性组,</p>
+</li>
+<li><p>两个关系R和S在做自然连接时，关系R中某些元组有可能在S中不存在公共属性上值相等的元组，从而造成R中这些元组在操作时被舍弃了，这些被舍弃的元组称为悬浮元组。</p>
+</li>
+<li><p>外连接: 将悬浮元组也保留在结果关系中,又有左外连接和右外连接</p>
+</li>
+</ul>
+<h3 id="除运算"><a href="#除运算" class="headerlink" title="除运算"></a>除运算</h3><ul>
+<li>给定关系R (X，Y) 和S (Y，Z)，其中X，Y，Z为属性组。</li>
+<li>R/S的结果是R上的一个投影的子集P(X)</li>
+<li>元组在X上分量值x 的象集Yx<strong>包含</strong>S在Y上投影的集合，记作：</li>
+</ul>
+<h2 id="关系演算"><a href="#关系演算" class="headerlink" title="关系演算"></a>关系演算</h2><hr>
 <p><em>待更新…</em></p>
 ]]></content>
       <categories>
@@ -2187,7 +2246,7 @@ $$
 <li>*表示输入指针必须回退的转态</li>
 </ul>
 <p><img src="status.png" alt="status"></p>
-<h3 id="有限自动状态机"><a href="#有限自动状态机" class="headerlink" title="有限自动状态机"></a>有限自动状态机</h3><h4 id="不确定的有限状态自动机NFA"><a href="#不确定的有限状态自动机NFA" class="headerlink" title="不确定的有限状态自动机NFA"></a>不确定的有限状态自动机NFA</h4><ul>
+<h3 id="有限状态自动机"><a href="#有限状态自动机" class="headerlink" title="有限状态自动机"></a>有限状态自动机</h3><h4 id="不确定的有限状态自动机NFA"><a href="#不确定的有限状态自动机NFA" class="headerlink" title="不确定的有限状态自动机NFA"></a>不确定的有限状态自动机NFA</h4><ul>
 <li>$Q$是非空有穷的状态集合</li>
 <li>$\Sigma$是非空有穷的输入字母表</li>
 <li>$\delta$为一个$Q \times (\Sigma \cup \lbrace \epsilon \rbrace) \to \rho(Q)$上的映射,$\rho(Q)$表示Q的幂集</li>
@@ -2210,8 +2269,26 @@ $$
 </blockquote>
 </li>
 </ul>
-<hr>
-<p><em>待更新…</em></p>
+<h3 id="基于MYT算法从正则表达式到NFA"><a href="#基于MYT算法从正则表达式到NFA" class="headerlink" title="基于MYT算法从正则表达式到NFA"></a>基于MYT算法从正则表达式到NFA</h3><p>正则表达式-(MYT算法)&gt;NFA-(子集构造算法)&gt;DFA-(hopcorft最小化算法)&gt;词法分析器代码</p>
+<h4 id="MYT算法"><a href="#MYT算法" class="headerlink" title="MYT算法"></a>MYT算法</h4><p>基本思路: 对正则表达式的结构做归纳  </p>
+<ul>
+<li>一些基本元素如下构造<br><img src="construct0.png" alt="cons"><br><img src="construct1.png" alt="cons"><br><img src="construct2.png" alt="cons"><br><img src="construct3.png" alt="cons">  </li>
+</ul>
+<p>正则表达式的分解和构造:<br><img src="construct4.png" alt="cons"></p>
+<h4 id="从NFA到DFA的转换-子集构造算法"><a href="#从NFA到DFA的转换-子集构造算法" class="headerlink" title="从NFA到DFA的转换(子集构造算法)"></a>从NFA到DFA的转换(子集构造算法)</h4><ul>
+<li>找出字母表</li>
+<li>分析转换过程(注意$\epsilon$状态可以进行多次输入/滑行),得到DFA<blockquote>
+<ol>
+<li>以初始状态为中心,将它接受$\epsilon$所能滑行到的状态和这个状态设为一个新状态</li>
+<li>扫描字母表,将新状态接受相同字母所能到达的所有状态设合并为一个状态</li>
+<li>以2.中所得到的状态为中心执行操作1.,直到没有新状态产生  </li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<p>一些概念:<br><img src="construct5.png" alt="cons">  </p>
+<p>子集构造算法不一定得到最简的DFA</p>
+<h4 id="DFA的化简"><a href="#DFA的化简" class="headerlink" title="DFA的化简"></a>DFA的化简</h4><h2 id="目标-使得DFA的状态最少"><a href="#目标-使得DFA的状态最少" class="headerlink" title="目标: 使得DFA的状态最少"></a>目标: 使得DFA的状态最少</h2><p><em>待更新…</em></p>
 -->]]></content>
       <categories>
         <category>notes</category>
@@ -2522,8 +2599,42 @@ $$
 <li>实现接口可以解决多继承问题</li>
 <li>实现接口与类的继承无关</li>
 </ul>
-<hr>
-<p><em>待更新…</em></p>
+<h2 id="Java内的一些机制"><a href="#Java内的一些机制" class="headerlink" title="Java内的一些机制"></a>Java内的一些机制</h2><h3 id="变量及其传递"><a href="#变量及其传递" class="headerlink" title="变量及其传递"></a>变量及其传递</h3><p>变量分为基本类型和引用类型</p>
+<p>变量也可以分为字段变量和局部变量</p>
+<ul>
+<li>字段变量在堆中存储，局部变量在栈中存储</li>
+<li>字段变量可以自动赋初始值，局部变量要显式赋值</li>
+<li>相对于字段变量，局部变量不能被访问控制符或static修饰，但可以被final修饰</li>
+<li>Java参数传递是值传递(引用变量传递的是引用值)</li>
+</ul>
+<h3 id="多态和虚方法调用"><a href="#多态和虚方法调用" class="headerlink" title="多态和虚方法调用"></a>多态和虚方法调用</h3><ul>
+<li>编译时的多态: 重载</li>
+<li>运行时的多态: 覆盖,动态绑定(虚方法调用)<blockquote>
+<ul>
+<li>所有的非final方法都会进行动态绑定</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>上溯造型: 将派生类当作基本类处理</p>
+<h3 id="虚方法"><a href="#虚方法" class="headerlink" title="虚方法"></a>虚方法</h3><ul>
+<li>Java中,普通的方法是虚方法</li>
+<li>static,private方法不是虚方法调用(编译后的指令是不同的)</li>
+</ul>
+<h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><p>对象都有构造方法,包括抽象类</p>
+<ul>
+<li>实例初始化: 在类中直接写{}</li>
+<li>静态初始化: 在类中写static {}</li>
+</ul>
+<h3 id="构造方法执行过程"><a href="#构造方法执行过程" class="headerlink" title="构造方法执行过程"></a>构造方法执行过程</h3><ul>
+<li>调用本类或父类构造方法直到objct类</li>
+<li>按照声明顺序执行字段的初始化赋值</li>
+<li>执行构造方法中的语句</li>
+</ul>
+<h3 id="对象清除与对象回收"><a href="#对象清除与对象回收" class="headerlink" title="对象清除与对象回收"></a>对象清除与对象回收</h3><p>Java中对象销毁是自动的,不需要进行delete</p>
+<p>System.gc()可以建议系统进行垃圾回收</p>
+<p>Java中没有析构方法,但子类可以重写finalize()方法</p>
+<h3 id="内部类和匿名类"><a href="#内部类和匿名类" class="headerlink" title="内部类和匿名类"></a>内部类和匿名类</h3><h4 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h4><h2 id="在类内定义class即为内部类"><a href="#在类内定义class即为内部类" class="headerlink" title="在类内定义class即为内部类"></a>在类内定义class即为内部类</h2><p><em>待更新…</em></p>
 ]]></content>
       <categories>
         <category>notes</category>

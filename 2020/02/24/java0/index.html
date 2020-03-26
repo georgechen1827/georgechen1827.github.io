@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">1.4k words</span>
+            <span class="post-count">1.8k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">5 minutes</span>
+            <span class="post-count">6 minutes</span>
         </span>
     </span>
 </div>
@@ -284,15 +284,49 @@
 <li>实现接口可以解决多继承问题</li>
 <li>实现接口与类的继承无关</li>
 </ul>
-<hr>
-<p><em>待更新…</em></p>
+<h2 id="Java内的一些机制"><a href="#Java内的一些机制" class="headerlink" title="Java内的一些机制"></a>Java内的一些机制</h2><h3 id="变量及其传递"><a href="#变量及其传递" class="headerlink" title="变量及其传递"></a>变量及其传递</h3><p>变量分为基本类型和引用类型</p>
+<p>变量也可以分为字段变量和局部变量</p>
+<ul>
+<li>字段变量在堆中存储，局部变量在栈中存储</li>
+<li>字段变量可以自动赋初始值，局部变量要显式赋值</li>
+<li>相对于字段变量，局部变量不能被访问控制符或static修饰，但可以被final修饰</li>
+<li>Java参数传递是值传递(引用变量传递的是引用值)</li>
+</ul>
+<h3 id="多态和虚方法调用"><a href="#多态和虚方法调用" class="headerlink" title="多态和虚方法调用"></a>多态和虚方法调用</h3><ul>
+<li>编译时的多态: 重载</li>
+<li>运行时的多态: 覆盖,动态绑定(虚方法调用)<blockquote>
+<ul>
+<li>所有的非final方法都会进行动态绑定</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>上溯造型: 将派生类当作基本类处理</p>
+<h3 id="虚方法"><a href="#虚方法" class="headerlink" title="虚方法"></a>虚方法</h3><ul>
+<li>Java中,普通的方法是虚方法</li>
+<li>static,private方法不是虚方法调用(编译后的指令是不同的)</li>
+</ul>
+<h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><p>对象都有构造方法,包括抽象类</p>
+<ul>
+<li>实例初始化: 在类中直接写{}</li>
+<li>静态初始化: 在类中写static {}</li>
+</ul>
+<h3 id="构造方法执行过程"><a href="#构造方法执行过程" class="headerlink" title="构造方法执行过程"></a>构造方法执行过程</h3><ul>
+<li>调用本类或父类构造方法直到objct类</li>
+<li>按照声明顺序执行字段的初始化赋值</li>
+<li>执行构造方法中的语句</li>
+</ul>
+<h3 id="对象清除与对象回收"><a href="#对象清除与对象回收" class="headerlink" title="对象清除与对象回收"></a>对象清除与对象回收</h3><p>Java中对象销毁是自动的,不需要进行delete</p>
+<p>System.gc()可以建议系统进行垃圾回收</p>
+<p>Java中没有析构方法,但子类可以重写finalize()方法</p>
+<h3 id="内部类和匿名类"><a href="#内部类和匿名类" class="headerlink" title="内部类和匿名类"></a>内部类和匿名类</h3><h4 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h4><h2 id="在类内定义class即为内部类"><a href="#在类内定义class即为内部类" class="headerlink" title="在类内定义class即为内部类"></a>在类内定义class即为内部类</h2><p><em>待更新…</em></p>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/java0/" data-id="ck7w1ja82000y4gvn4l8v1zqo"
+      <a data-url="http://georgechen1827.github.io/2020/02/24/java0/" data-id="ck86l3kco000nhsvn1quvdl4s"
         class="article-share-link">share</a>
         
       

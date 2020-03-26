@@ -288,7 +288,7 @@
 <li>*表示输入指针必须回退的转态</li>
 </ul>
 <p><img src="status.png" alt="status"></p>
-<h3 id="有限自动状态机"><a href="#有限自动状态机" class="headerlink" title="有限自动状态机"></a>有限自动状态机</h3><h4 id="不确定的有限状态自动机NFA"><a href="#不确定的有限状态自动机NFA" class="headerlink" title="不确定的有限状态自动机NFA"></a>不确定的有限状态自动机NFA</h4><ul>
+<h3 id="有限状态自动机"><a href="#有限状态自动机" class="headerlink" title="有限状态自动机"></a>有限状态自动机</h3><h4 id="不确定的有限状态自动机NFA"><a href="#不确定的有限状态自动机NFA" class="headerlink" title="不确定的有限状态自动机NFA"></a>不确定的有限状态自动机NFA</h4><ul>
 <li>$Q$是非空有穷的状态集合</li>
 <li>$\Sigma$是非空有穷的输入字母表</li>
 <li>$\delta$为一个$Q \times (\Sigma \cup \lbrace \epsilon \rbrace) \to \rho(Q)$上的映射,$\rho(Q)$表示Q的幂集</li>
@@ -311,15 +311,33 @@
 </blockquote>
 </li>
 </ul>
-<hr>
-<p><em>待更新…</em></p>
+<h3 id="基于MYT算法从正则表达式到NFA"><a href="#基于MYT算法从正则表达式到NFA" class="headerlink" title="基于MYT算法从正则表达式到NFA"></a>基于MYT算法从正则表达式到NFA</h3><p>正则表达式-(MYT算法)&gt;NFA-(子集构造算法)&gt;DFA-(hopcorft最小化算法)&gt;词法分析器代码</p>
+<h4 id="MYT算法"><a href="#MYT算法" class="headerlink" title="MYT算法"></a>MYT算法</h4><p>基本思路: 对正则表达式的结构做归纳  </p>
+<ul>
+<li>一些基本元素如下构造<br><img src="construct0.png" alt="cons"><br><img src="construct1.png" alt="cons"><br><img src="construct2.png" alt="cons"><br><img src="construct3.png" alt="cons">  </li>
+</ul>
+<p>正则表达式的分解和构造:<br><img src="construct4.png" alt="cons"></p>
+<h4 id="从NFA到DFA的转换-子集构造算法"><a href="#从NFA到DFA的转换-子集构造算法" class="headerlink" title="从NFA到DFA的转换(子集构造算法)"></a>从NFA到DFA的转换(子集构造算法)</h4><ul>
+<li>找出字母表</li>
+<li>分析转换过程(注意$\epsilon$状态可以进行多次输入/滑行),得到DFA<blockquote>
+<ol>
+<li>以初始状态为中心,将它接受$\epsilon$所能滑行到的状态和这个状态设为一个新状态</li>
+<li>扫描字母表,将新状态接受相同字母所能到达的所有状态设合并为一个状态</li>
+<li>以2.中所得到的状态为中心执行操作1.,直到没有新状态产生  </li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<p>一些概念:<br><img src="construct5.png" alt="cons">  </p>
+<p>子集构造算法不一定得到最简的DFA</p>
+<h4 id="DFA的化简"><a href="#DFA的化简" class="headerlink" title="DFA的化简"></a>DFA的化简</h4><h2 id="目标-使得DFA的状态最少"><a href="#目标-使得DFA的状态最少" class="headerlink" title="目标: 使得DFA的状态最少"></a>目标: 使得DFA的状态最少</h2><p><em>待更新…</em></p>
 -->
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/compilers0/" data-id="ck7w1ja7k000b4gvn8qm52hrj"
+      <a data-url="http://georgechen1827.github.io/2020/02/24/compilers0/" data-id="ck86l3kc50009hsvn8siefg6y"
         class="article-share-link">share</a>
         
       
