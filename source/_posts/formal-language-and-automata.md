@@ -91,7 +91,7 @@ ps: 编辑公式真费时间$\to$_$\to$
 > $\exists u,v \in (V \cup T)^\* $ 且 $ \exists$ 'a->b' $\in P$ 使得 $x = uav,y = ubv$ (即把x中的a改写成b后得到y)  
 
 派生:
-* 给定文法$G=<V,T,S,P>$,设$x_1,x_2,...,x_n \in (V \cup T)^\*, n \ge 1 且 x_1\Rightarrow x_2 \Rightarrow ... \Rightarrow x_n $, 则称**$x_n$是由$X_1$派生出来的($x_1 \dot \Rightarrow x_n$)**  
+* 给定文法$G=<V,T,S,P>$,设$x_1,x_2,...,x_n \in (V \cup T)^\*, n \ge 1 且 x_1\Rightarrow x_2 \Rightarrow ... \Rightarrow x_n $, 则称**$x_n$是由$x_1$派生出来的($x_1 \dot \Rightarrow x_n$)**  
 > 注意,对$V \cup T$上的所有字符串$\omega$有$\omega \dot \Rightarrow \omega$. 可见$\dot \Rightarrow$是$\Rightarrow$的自反传递闭包  
 
 生成语言:  
@@ -299,7 +299,7 @@ $$L(M) = \lbrace \omega | \omega \in \Sigma^\* , \hat \delta (q_0, \omega) \cap 
 这种转换方式在此不做介绍
 
 ### 带$\epsilon$转移的非确定型有穷自动机
-对NFA稍加推广,不仅对$\Sigma$中的每一个符号都可以有状态转移, 而且在不读入任何符号(或者说读入空串$\epsilon$)的情况下,自动机在某些状态下也可以自动转移高另一个状态, 这样的NFA称为带$\epsilon$转移的NFA
+对NFA稍加推广,不仅对$\Sigma$中的每一个符号都可以有状态转移, 而且在不读入任何符号(或者说读入空串$\epsilon$)的情况下,自动机在某些状态下也可以自动转移到另一个状态, 这样的NFA称为带$\epsilon$转移的NFA
 
 #### 定义
 带$\epsilon$转移的非确定型有穷自动机是一个有序五元组$M = <Q, \Sigma, \delta, q_0, F>$, 其中

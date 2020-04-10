@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d2be997f-3688-4002-9d3a-ed9349c321a9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/source/_posts/Lucence0/Lucene 原理与代码分析完整版.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/compilers0/analysis0.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/compilers0/analysis0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/compilers0/ga0.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/compilers0/ga0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/compilers0/ga1.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/compilers0/ga1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/compilers0/ga2.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/compilers0/ga2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/compilers0/ga3.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/compilers0/ga3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/compilers0/ga4.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/compilers0/ga4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/compilers0/ga5.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/compilers0/ga5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/compilers0/gra0.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/compilers0/gra0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/compilers0/proc0.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/compilers0/proc0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/compilers0/proc1.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/compilers0/proc1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/compilers0/proc3.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/compilers0/proc3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/compilers0/recu0.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/compilers0/recu0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/compilers0/trans0.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/compilers0/trans0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/compilers0/trans1.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/compilers0/trans1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/compilers0/tree0.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/compilers0/tree0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/computer-composition0/comp1.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/computer-composition0/comp1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/computer-composition0/comp2.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/computer-composition0/comp2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/computer-composition0/comp3.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/computer-composition0/comp3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/computer-composition0/compo0.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/computer-composition0/compo0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/data-base0/diff0.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/data-base0/diff0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/data-base0/proc0.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/data-base0/proc0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/data-base0/rela0.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/data-base0/rela0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/data-base0/table0.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/data-base0/table0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/formal-language-and-automata.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/formal-language-and-automata.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/ayer/source/images/alipay.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/themes/ayer/source/images/alipay.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/ayer/source/images/cover.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/themes/ayer/source/images/cover.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/ayer/source/images/sponsor.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/themes/ayer/source/images/sponsor.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/ayer/source/images/wechat.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/themes/ayer/source/images/wechat.jpg" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1YkrDTNaGtC1AcM0Ssc2chEnDlA" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d2be997f-3688-4002-9d3a-ed9349c321a9" name="Default Changelist" comment="" />
+      <created>1583497314259</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1583497314259</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1061" y="444" key="FileChooserDialogImpl" timestamp="1583497347639">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1061" y="444" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1583497347639" />
+    <state x="976" y="528" key="com.intellij.ide.util.TipDialog" timestamp="1583497318415">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="976" y="528" key="com.intellij.ide.util.TipDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1583497318415" />
+    <state x="668" y="427" key="new project wizard" timestamp="1583497351612">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="668" y="427" key="new project wizard/0.0.2560.1400@0.0.2560.1400" timestamp="1583497351612" />
+  </component>
+</project>

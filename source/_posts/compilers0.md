@@ -211,90 +211,6 @@ Token scan () {
 各个对象关系如下:  
 ![relatives](proc1.png)
 
-Token类:
-```java
-//Token.java
-Package lexer;
-public class Token {
-      public  final  int  tag;
-      public  Token ( int  t ) { tag = t; }
-}
-
-//Tag.java
-Package lexer;
-public class Tag {
-     public final  static int 
-     NUM = 256; ID = 257; TRUE = 258; FALSE = 259;
-}
-
-
-//子类Num和Word
-
-//Num.java
-package lexer;              
-public  class  Num extends Token {
-     public  final int value;
-     public  Num ( int v )  {super(Tag.NUM); value = v; }
-}
-
-//Word.java
-package lexer;            
-public  class  Word  extends  Token {
-       public  final  String  lexeme;
-       public  Word ( int t, String s)  {
-               super(t); lexeme = new String (s);
-       }
-}
-```
-
-词法分析器:Lexer
-```java
-//Lexer.java
-package lexer;                 
-import java.io.*; import java.util.*;
-public class Lexer {
-	public int line = 1;
-	private char peek = ' ';
-	private Hashtable words = new Hashtable();
-	void reserve(Word t) {words.put(t.lexeme, t);}
-	public Lexer () {
-		reserve(new Word(Tag.TRUE, "true"));
-		reserve(new Word(Tag.FALSE, "false"));
-	}
-	public Token scan() throws IOException {
-		for( ; ; peek = (char)System.in.read() ) {
-			if(peek == ' ' || peek == '\t') continue;
-			else if(peek == '\n') line = line + 1;
-			else break;
-		}
-        if(Character.isDigit(peek)) {
-			int v = 0;
-			do {
-				v = 10 * v + Character.digit(peek, 10);
-				peek = (char)System.in.read();
-			}while(Character.isDigit(peek));
-			return new Num(v);
-		}
-		if(Character.isLetter(peek)) {
-			StringBuffer b = new StringBuffer();
-			do {
-				b.append(peek);
-				peek = (char) System.in.read();
-			}while(Character.isLetterOrDigit(peek));
-			String s = b.toString();
-			Word w = (Word)words.get(s);
-			if( w != null ) return w;
-			w = new Word(Tag.ID, s);
-			words.put(s, w);
-			return w;
-		}
-		Token t = new Token(peek);
-		peek = ' ';
-		return t;
-	}
-}
-```
-
 ### 语法分析
 语法分析是决定如何使用一个文法生成一个终结符号串的过程
 
@@ -340,12 +256,12 @@ NaN
 ![tree](tree0.png)
 
 #### 左递归问题的消除
-考虑表达式 ```yxxxx...x```
-
 原始公式:
 ```java
 A -> A x | y
 ```
+这种公式在考虑FRONT(A)时会遇到无穷递归的问题
+
 
 改进公式:将左递归化为循环
 ```java
@@ -375,6 +291,133 @@ R -> y R | e(空白符)
 
 此时,语义是嵌入到产生式中的,如下:  
 ![trans](trans1.png)
+
+## 词法分析概述
+![lex](lex0.png)
+
+* 词法记号：由记号名和属性值构成的二元组，属性值不是必须项，记号名是语法分析的输入符号。(这个模式的名字)
+* 模式：一个记号的模式描述属于该记号的词法单元的形式。和一个给定模式匹配的字（字符串）的集合成为该模式的语言。(一个词法单元可能具有的形式)
+* 词法单元：是源程序中匹配一个记号模式的字符序列，由词法分析器识别为该记号的一个实例。(一个具体的词法单元)
+
+常见的词法分析生成器:lex,flex,jlex,ply等  
+
+### 串和语言的定义
+* 字母表：符号的有限集合
+* 串：符号的有穷序列,空串为$\epsilon$
+* 语言：字母表上的一个串集,可以只包含空串或是空集
+* 句子：属于语言的串
+
+串的运算:  
+![lex](lex1.png)
+
+### 正则表达式
+
+#### 正则表达式的递归定义   
+![re](re0.png)
+
+#### 正则表达式的一些公理
+![re](re1.png)
+
+#### 正则定义
+![re](re2.png)
+
+#### 正则表达式的扩展
+为了方便书写,对一些常用的正则表达式做如下定义  
+![re](re3.png)  
+![re](re4.png)  
+
+一些数量方面的运算符也做了扩展  
+![re](re5.png)  
+![re](re6.png)
+
+#### 状态转换图
+状态转换图描述词法分析器被语法分析器调用时，词法分析器为返回下一个记号所做的动作
+
+绘制状态转换图是构造词法分析器的第一步
+* 圆圈表示状态，开始状态由一条没有出发节点、标号为“开始”的边指明
+* 双层圆圈表示接受状态，表示已识别一个记号
+* 有向边表示从一个状态到另一状态
+* 每条边的标号包含一个或多个符号，若离开状态s的某边上标号为other，则它表示离开s的其他边所指示的字符以外的任意字符
+* \*表示输入指针必须回退的转态
+
+![status](status0.png)
+
+### 有限状态自动机
+
+#### 不确定的有限状态自动机NFA
+* $Q$是非空有穷的状态集合
+* $\Sigma$是非空有穷的输入字母表
+* $\delta$为一个$Q \times (\Sigma \cup \lbrace \epsilon \rbrace) \to \rho(Q)$上的映射,$\rho(Q)$表示Q的幂集
+* $q_0 \in Q$是初始状态
+* $F \subseteq Q$是接受状态集合  
+> 此时,这个自动机在确定的状态接收到了一个确定的符号后,其下一个状态时不确定的
+
+#### 确定的有限状态自动机DFA
+* $Q$是非空有穷的状态集合
+* $\Sigma$是非空有穷的输入字母表
+* $\delta$为一个$Q \times \Sigma \to Q$上的映射,是状态转移函数
+* $q_0 \in Q$是初始状态
+* $F \subseteq Q$是接受状态集合
+>* 一个符号标记离开同一状态只有一条边
+>* 任何状态下都没有ε转换
+
+### 基于MYT算法从正则表达式到NFA
+正则表达式-(MYT算法)>NFA-(子集构造算法)>DFA-(hopcorft最小化算法)>词法分析器代码
+
+#### MYT算法
+基本思路: 对正则表达式的结构做归纳  
+
+* 一些基本元素如下构造  
+![cons](construct0.png)  
+![cons](construct1.png)  
+![cons](construct2.png)  
+![cons](construct3.png)  
+
+正则表达式的分解和构造:  
+![cons](construct4.png)
+
+#### 从NFA到DFA的转换(子集构造算法)
+* 找出字母表
+* 分析转换过程(注意$\epsilon$状态可以进行多次输入/滑行),得到DFA
+>1. 以初始状态为中心,将它接受$\epsilon$所能滑行到的状态和这个状态设为一个新状态
+>2. 扫描字母表,将新状态接受相同字母所能到达的所有状态设合并为一个状态
+>3. 以2.中所得到的状态为中心执行操作1.,直到没有新状态产生  
+
+一些概念:
+![cons](construct5.png)  
+
+子集构造算法不一定得到最简的DFA
+
+#### DFA的化简
+目标: 使得DFA的状态最少
+* 找出字母表
+* 分析DFA转换过程,得到最简DFA
+* 主要思想:对状态进行最小划分
+* 化简条件:化简前DFA的函数应是全函数(对每一个状态s和输入a都有对应输出状态)
+>0. 如果DFA不是全函数,需要引入非终结的死状态E
+>>* 所有未定义的输出状态全部转到死状态E
+>>* 死状态接受E的所有输入都转换到本身
+>1. 构造状态集合的初始划分$\Pi$={接收状态,非接收状态}
+>2. 对$\Pi$中每个子集G,对G进行如下划分:
+>> 把G划分为若干子集，G的两个状态s和t在同一子集中，当且仅当对任意输入符号a，s和t的a转换都到π的同一子集中
+>3. 重复2.直到$\Pi$不再改变
+>4. 去除死状态,得到最简的状态集合:
+>>* 删除死状态和所有和这个状态连接的边,所有边都改成无定义
+>>* 从开始状态不可达到的状态也删除
+
+### 直接从正则表达式到DFA
+NaN
+
+## 语法分析概述
+语法分析器读取词法分析器提供的记号流，检查它是否能由源语言的文法产生，输出分析树的某种表示。
+
+![token](token0.png)
+
+语法分析器类型:
+* 通用语法分析（Cocke-Younger-Kasami算法，Earley算法）:效率低
+* 自顶向下语法分析: 从语法分析树的根节点开始向叶子节点构造语法分析树
+* 自底向上语法分析: 从叶子结点开始，逐渐向根节点方向构造语法分析树
+
 
 ---
 
