@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="this is George Chen&#39;s blog!" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    sql使用 |  George
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-mysql0" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  sql使用
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/04/11/mysql0/" class="article-date">
+  <time datetime="2020-04-11T07:18:05.000Z" itemprop="datePublished">2020-04-11</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a> / <a class="article-category-link" href="/categories/notes/%E5%AD%A6%E4%BD%8D%E8%AF%BE%E7%A8%8B/">学位课程</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> about </span>
+            <span class="post-count">5.7k words</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> costs </span>
+            <span class="post-count">21 minutes</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>mysql的使用大全可以参考<a href="http://c.biancheng.net/view/2433.html" target="_blank" rel="noopener">http://c.biancheng.net/view/2433.html</a></p>
+<p>本文根据笔记<a href="http://georgechen.top/2020/02/27/data-base0/" target="_blank" rel="noopener">http://georgechen.top/2020/02/27/data-base0/</a>精简整理,保留常用语句用法</p>
+<a id="more"></a>
+
+<h2 id="1-入手"><a href="#1-入手" class="headerlink" title="1. 入手"></a>1. 入手</h2><h3 id="建立用户账户及更改权限"><a href="#建立用户账户及更改权限" class="headerlink" title="建立用户账户及更改权限"></a>建立用户账户及更改权限</h3><p><code>GRANT ALL ON DataBaseA.* TO &#39;root&#39;@&#39;localhost&#39;;</code></p>
+<h3 id="创建数据库及表"><a href="#创建数据库及表" class="headerlink" title="创建数据库及表"></a>创建数据库及表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create database school;</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; use school;</span><br><span class="line">Database changed</span><br></pre></td></tr></table></figure>
+
+<p>mysql数据存储位置:</p>
+<ul>
+<li>这个位置文件的路径在my.ini中datadir中可以找到  </li>
+<li>一般情况下,my.ini在mysql安装目录下(例如C:\ProgramData\MySQL\MySQL Server 8.0)</li>
+</ul>
+<h2 id="2-数据定义"><a href="#2-数据定义" class="headerlink" title="2. 数据定义"></a>2. 数据定义</h2><h3 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h3><p>为某人创建某名的模式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">SCHEMA</span> &lt;模式名&gt; AUTHORIZATION &lt;用户名&gt;</span><br><span class="line">[&lt;表定义子句&gt;|&lt;视图定义子句&gt;|&lt;权限定义子句&gt;];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>若没有指定模式名,则模式名隐含为用户名</li>
+</ul>
+<p>删除某模式:<code>DROP SCHEMA &lt;模式名&gt; &lt;CASCADE|RESTRICT&gt;</code><br>删除选项:</p>
+<blockquote>
+<ul>
+<li>CASADE 级联: 删除模式同时将该模式下的所有数据库对象删除</li>
+<li>RESTRICT 限制: 仅当该模式中没有任何下属对象时才能执行, 如果这个模式下有表/视图等定义,则拒绝执行语句</li>
+</ul>
+</blockquote>
+<h3 id="基本表的定义"><a href="#基本表的定义" class="headerlink" title="基本表的定义"></a>基本表的定义</h3><h4 id="创建基本表"><a href="#创建基本表" class="headerlink" title="创建基本表"></a>创建基本表</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> &lt;表名&gt; <span class="comment">/* 基本表的名称 */</span> </span><br><span class="line">(&lt;列名&gt; &lt;数据类型&gt;[ &lt;列级完整性约束条件&gt; ] <span class="comment">/*组成该表的列*/</span> </span><br><span class="line">[,&lt;列名&gt; &lt;数据类型&gt;[ &lt;列级完整性约束条件&gt;] ] </span><br><span class="line">… </span><br><span class="line">[,&lt;表级完整性约束条件&gt; ] );</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>&lt;列级完整性约束条件&gt;: 涉及仅单个属性列的完整性约束条件 </p>
+</li>
+<li><p>&lt;表级完整性约束条件&gt;: 涉及一个或多个属性列的完整性约束条件 </p>
+</li>
+<li><p>&lt;表名&gt;:每一个基本表需属于某个模式,可以显式地在表名中给出,也可以在搜索路径中设置 </p>
+<blockquote>
+<p>设置搜索路径(默认模式):<code>SET search_path TO &lt;模式名&gt;,PUBLIC;</code></p>
+</blockquote>
+</li>
+<li><p>&lt;数据类型&gt;: 有如下数据类型</p>
+<table>
+<thead>
+<tr>
+<th align="left">数据类型</th>
+<th align="left">含义</th>
+<th align="left">数据类型</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">CHAR(n)</td>
+<td align="left">n位定长字符串</td>
+<td align="left">CHARACTER(n)</td>
+<td align="left">同CHAR(n)</td>
+</tr>
+<tr>
+<td align="left">VRCHAR(n)</td>
+<td align="left">最大长度为n的变长字符串</td>
+<td align="left">VRCHARACTER(n)</td>
+<td align="left">同VRCHAR(n)</td>
+</tr>
+<tr>
+<td align="left">CLOB</td>
+<td align="left">字符串大对象</td>
+<td align="left">BLOB</td>
+<td align="left">二进制大对象</td>
+</tr>
+<tr>
+<td align="left">INT</td>
+<td align="left">长整数(4字节)</td>
+<td align="left">INTEGER</td>
+<td align="left">同INT</td>
+</tr>
+<tr>
+<td align="left">BIGINT</td>
+<td align="left">大整数(8字节)</td>
+<td align="left">SMALLINT</td>
+<td align="left">短整数(2字节)</td>
+</tr>
+<tr>
+<td align="left">DEC(p,d)</td>
+<td align="left">精度为d的p位定点数</td>
+<td align="left">DECIMAL(p,d),NUMERIC(p,d)</td>
+<td align="left">同DEC(p,d)</td>
+</tr>
+<tr>
+<td align="left">REAL</td>
+<td align="left">单精度浮点数</td>
+<td align="left">DOUBLE PRECISION</td>
+<td align="left">双精度浮点数</td>
+</tr>
+<tr>
+<td align="left">FLOAT(n)</td>
+<td align="left">精度为n的浮点数</td>
+<td align="left">BOOLEAN</td>
+<td align="left">布尔值</td>
+</tr>
+<tr>
+<td align="left">DATE</td>
+<td align="left">格式为YYYY-MM-DD的日期</td>
+<td align="left">TIME</td>
+<td align="left">格式为HH:MM:SS的时间</td>
+</tr>
+<tr>
+<td align="left">TIMESTAP</td>
+<td align="left">时间戳类型</td>
+<td align="left">INTERVAL</td>
+<td align="left">时间间隔类型</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h4 id="修改基本表"><a href="#修改基本表" class="headerlink" title="修改基本表"></a>修改基本表</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;表名&gt;</span><br><span class="line">[<span class="keyword">ADD</span>[<span class="keyword">COLUMN</span>] &lt;新列名&gt; &lt;数据类型&gt; [ 完整性约束 ] ]</span><br><span class="line">[<span class="keyword">ADD</span> &lt;表级完整性约束&gt;] <span class="comment">/*完整性约束只能添加表级完整性约束*/</span></span><br><span class="line">[<span class="keyword">DROP</span> [ <span class="keyword">COLUMN</span> ] &lt;列名&gt; [<span class="keyword">CASCADE</span>| RESTRICT] ]</span><br><span class="line">[<span class="keyword">DROP</span> <span class="keyword">CONSTRAINT</span>&lt;完整性约束名&gt;[ RESTRICT | <span class="keyword">CASCADE</span> ] ]</span><br><span class="line">[<span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> &lt;列名&gt;&lt;数据类型&gt; ] ;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>ADD COLUMN: 增加列</li>
+<li>DROP COLUMN: 删除列<blockquote>
+<ul>
+<li>级联: 删除该列及引用该列的其他对象</li>
+<li>限制: 如果该列被其他对象引用,则拒绝删除</li>
+</ul>
+</blockquote>
+</li>
+<li>ALTER COLUMN:修改列,也可以用以下两种方法<blockquote>
+<ul>
+<li><code>MODIFY &lt;列名&gt; &lt;数据类型&gt;</code>:修改列的数据类型</li>
+<li><code>CHANGE &lt;列名&gt; &lt;新列名&gt; &lt;新数据类型&gt;</code>:修改列名</li>
+</ul>
+</blockquote>
+</li>
+<li>RENAME TO &lt;新表名&gt;:改个新表名</li>
+</ul>
+<h4 id="删除基本表"><a href="#删除基本表" class="headerlink" title="删除基本表"></a>删除基本表</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> &lt;表名&gt;［RESTRICT| <span class="keyword">CASCADE</span>］;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>级联:在删除基本表的同时，相关的依赖对象一起删除</li>
+<li>限制:如果存在依赖该表的对象(该表被其他表引用),则拒绝删除</li>
+</ul>
+<h3 id="索引的定义"><a href="#索引的定义" class="headerlink" title="索引的定义"></a>索引的定义</h3><p>建立索引目的: 加快查询速度</p>
+<ul>
+<li>常见索引:顺序索引,B+树索引,散列索引,位图索引</li>
+<li>索引由数据库管理员或建表者建立</li>
+<li>索引由关系数据库系统自动完成维护</li>
+</ul>
+<h4 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> [<span class="keyword">UNIQUE</span>] [CLUSTER] <span class="keyword">INDEX</span> &lt;索引名&gt;</span><br><span class="line"><span class="keyword">ON</span> &lt;表名&gt;(&lt;列名&gt;[&lt;次序&gt;][,&lt;列名&gt;[&lt;次序&gt;] ]…);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>&lt;表名&gt;：要建索引的基本表的名字  </li>
+<li>索引：可以建立在该表的一列或多列上，各列名之间用逗号分隔  </li>
+<li>&lt;次序&gt;：指定索引值的排列次序，升序：ASC，降序：DESC。缺省 值：ASC  </li>
+<li>UNIQUE：此索引的每一个索引值只对应唯一的数据记录  </li>
+<li>CLUSTER：表示要建立的索引是聚簇索引</li>
+</ul>
+<h4 id="修改索引"><a href="#修改索引" class="headerlink" title="修改索引"></a>修改索引</h4><p><code>ALTER INDEX &lt;旧索引名&gt; RENAME TO &lt;新索 引名&gt;;</code></p>
+<h4 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h4><p><code>DROP INDEX &lt;索引名&gt;;</code><br>删除索引时，系统会从数据字典中删去有关该索引的描述</p>
+<h2 id="3-数据完整性约束"><a href="#3-数据完整性约束" class="headerlink" title="3. 数据完整性约束"></a>3. 数据完整性约束</h2><p>数据库的完整性包括以下两个方面:</p>
+<ul>
+<li>数据的正确性(实体完整性等)</li>
+<li>数据的相容性(参照完整性)</li>
+</ul>
+<p>在2.中定义和修改表时需要用到数据库完整性约束</p>
+<h3 id="实体完整性"><a href="#实体完整性" class="headerlink" title="实体完整性"></a>实体完整性</h3><h4 id="实体完整性定义"><a href="#实体完整性定义" class="headerlink" title="实体完整性定义"></a>实体完整性定义</h4><p>关系模型的实体完整性用主码PRIMARY KEY描述</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;列名&gt; ... PRIMARY KEY /* 列级完整性约束 */</span><br><span class="line">PRIMARY KEY(&lt;列名&gt;[,&lt;列名&gt;,...]) /* 表级完整性约束 */</span><br></pre></td></tr></table></figure>
+<ul>
+<li>列级完整性约束可以定义单属性构成的码</li>
+<li>表级完整性约束可以定义单个或多个属性构成的码</li>
+</ul>
+<p>违约处理:拒绝插入或更新</p>
+<h3 id="参照完整性"><a href="#参照完整性" class="headerlink" title="参照完整性"></a>参照完整性</h3><h4 id="参照完整性定义"><a href="#参照完整性定义" class="headerlink" title="参照完整性定义"></a>参照完整性定义</h4><ul>
+<li>定义表中的外码,以及被参照关系的主码<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 列级完整性约束 */</span></span><br><span class="line">&lt;外码列名&gt; ... FOREIGN KEY REFERENCES DEPT(&lt;被参考关系主码&gt;) [ON DELETE|UPDATE CASCADE|NO ACTION|SET-NULL]</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 表级完整性约束 */</span></span><br><span class="line">FOREIGN KEY(&lt;外码列名&gt;) REFERENCES DEPT(&lt;被参考关系主码&gt;) [ON DELETE|UPDATE CASCADE|NO ACTION|SET-NULL]</span><br></pre></td></tr></table></figure></li>
+<li>对于参照表的元组插入或外码值修改,违约即拒绝执行</li>
+<li>对于被参照表的元组删除或主码值修改,有三种违约处理方式:<blockquote>
+<ul>
+<li>拒绝执行:不执行语句</li>
+<li>级联操作:将参照表中有关联的元组删除或进行外码修改</li>
+<li>设置空值:将参照表中有关联的元组外码置为空值,这可能会导致参照表中的元组违反实体完整性约束</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="用户定义完整性约束"><a href="#用户定义完整性约束" class="headerlink" title="用户定义完整性约束"></a>用户定义完整性约束</h3><h4 id="用户完整性约束定义"><a href="#用户完整性约束定义" class="headerlink" title="用户完整性约束定义"></a>用户完整性约束定义</h4><p>列级完整性约束定义(属性约束条件)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;列名&gt; ... [UNIQUE] [NOT NULL] [CHECK(expr)]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>NOT NULL:列值非空</li>
+<li>UNIQUE:列值唯一(相当于主码)</li>
+<li>CHECK(expr):列值满足某表达式</li>
+</ul>
+<p>表级完整性约束定义(元组约束条件):用于设置不同属性之间的取值的相互约束条件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CHECK(expr)</span><br></pre></td></tr></table></figure>
+
+<p>违约处理:拒绝执行</p>
+<h3 id="完整性约束命名字句"><a href="#完整性约束命名字句" class="headerlink" title="完整性约束命名字句"></a>完整性约束命名字句</h3><h4 id="完整性约束命名子句定义"><a href="#完整性约束命名子句定义" class="headerlink" title="完整性约束命名子句定义"></a>完整性约束命名子句定义</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONSTANT &lt;完整性约束条件名&gt; &lt;完整性约束条件&gt;</span><br></pre></td></tr></table></figure>
+<p>该子句可以作为列级完整性约束或表级完整性约束使用</p>
+<h4 id="完整性约束子句的删除和添加"><a href="#完整性约束子句的删除和添加" class="headerlink" title="完整性约束子句的删除和添加"></a>完整性约束子句的删除和添加</h4><p>用ALTER TABLE对约束条件进行删除和添加</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 删除 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;表名&gt;</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">CONSTANT</span> &lt;完整性约束条件名&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 添加 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;表名&gt;</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTANT</span> &lt;完整性约束条件名&gt; &lt;完整性约束条件&gt;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>实现完整性约束子句的修改时,需要先删除约束,再添加约束,如上所示</li>
+</ul>
+<h3 id="域中的完整性限制"><a href="#域中的完整性限制" class="headerlink" title="域中的完整性限制"></a>域中的完整性限制</h3><p>对于多个具有联系的表,表中的一些属性可能具有相同的域,可以通过建立域的完整性约束来使不同表中的相同的属性域也相同</p>
+<h4 id="域完整性约束定义"><a href="#域完整性约束定义" class="headerlink" title="域完整性约束定义"></a>域完整性约束定义</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 定义完整性约束 */</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DOMAIN</span> &lt;完整性约束条件名&gt; &lt;被约束列的值类型&gt; &lt;完整性约束子句&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 修改完整性约束中的限制条件 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">DOMAIN</span> &lt;完整性约束条件名&gt; &lt;完整性约束修改子句&gt;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>完整性约束修改子句包括完整性约束子句的删除和添加,需要指定完整性约束条件名</li>
+</ul>
+<h4 id="域完整性约束使用"><a href="#域完整性约束使用" class="headerlink" title="域完整性约束使用"></a>域完整性约束使用</h4><p>定义好域的完整性约束后,可以直接使用完整性约束条件名来作为同类型的属性的完整性约束条件</p>
+<h2 id="4-数据查询"><a href="#4-数据查询" class="headerlink" title="4. 数据查询"></a>4. 数据查询</h2><h3 id="单表查询"><a href="#单表查询" class="headerlink" title="单表查询"></a>单表查询</h3><p>语句格式:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> [<span class="keyword">ALL</span>|<span class="keyword">DISTINCT</span>] &lt;目标列表达式&gt;[,&lt;目标列表达式&gt;] …</span><br><span class="line"><span class="keyword">FROM</span> &lt;表名或视图名&gt;[,&lt;表名或视图名&gt; ]…|(<span class="keyword">SELECT</span> 语句)</span><br><span class="line">[<span class="keyword">AS</span>]&lt;别名&gt;</span><br><span class="line">[ <span class="keyword">WHERE</span> &lt;条件表达式&gt; ]</span><br><span class="line">[ <span class="keyword">GROUP</span> <span class="keyword">BY</span> &lt;列名<span class="number">1</span>&gt; [ <span class="keyword">HAVING</span> &lt;条件表达式&gt; ] ]</span><br><span class="line">[ <span class="keyword">ORDER</span> <span class="keyword">BY</span> &lt;列名<span class="number">2</span>&gt; [ <span class="keyword">ASC</span>|<span class="keyword">DESC</span> ] ]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>SELECT:指定要显示的结果属性列,*表示所有列<blockquote>
+<ul>
+<li>目标列值可以为常量,即使它不在查询对象中</li>
+<li>LOWER(&lt;目标列&gt;)可以使目标列值小写输出</li>
+<li>目标列值可以用聚集函数表示</li>
+<li>可以用别名<code>&lt;目标列表达式&gt; &lt;目标列别名&gt;</code>改变查询结果的列标题</li>
+<li>ALL表示不去除重复的行(默认),DISTINCT表示去重</li>
+</ul>
+</blockquote>
+</li>
+<li>FROM:指定查询对象</li>
+<li>WHERE:查询条件<blockquote>
+<p>常用查询条件:</p>
+<ul>
+<li>基本比较运算符</li>
+<li>确定范围: [NOT] BETWEEN .. AND ..</li>
+<li>确定集合: [NOT] IN &lt;值表&gt; ; &lt;值表&gt;=(值1,值2,…)</li>
+<li>字符匹配: [NOT] LIKE &lt;匹配字符串&gt; [ESCAPE &lt;换码字符&gt;]  <blockquote>
+<p>匹配串中’%’表示任意长度通配,’_’表示单字符通配,’&#39;可以将通配符转义(需要ESCAPE’&#39;来表明转义字符)</p>
+</blockquote>
+</li>
+<li>空值:IS [NOT] NULL;其中IS不能用’=’代替</li>
+<li>连接运算符:NOT AND OR,优先级从高到低</li>
+</ul>
+</blockquote>
+</li>
+<li>GROUP BY:对查询结果按指定列的值分组,列值相等的元素归到一组;通常会在每组中使用聚集函数<blockquote>
+<p>常用聚集函数:</p>
+<ul>
+<li>COUNT([ALL|DISTINCT] &lt;列名&gt;): 列值计数</li>
+<li>SUM([ALL|DISTINCT] &lt;列名&gt;): 对数值型的列求总和</li>
+<li>AVG([ALL|DISTINCT] &lt;列名&gt;): 对数值型的列求均值</li>
+<li>MAX|MIN([ALL|DISTINCT] &lt;列名&gt;): 求列的最大|最小值  </li>
+</ul>
+<p>没有GROUP BY语句时,聚集函数将作用于整个查询结果,使用分组后函数将分别作用于每个组</p>
+</blockquote>
+</li>
+<li>HAVING:在分组时选择指定条件的组,可以使用聚集函数,不能用WHERE替代</li>
+<li>ORDER BY:对查询结果按指定值升序或降序排序,支持以不同优先级设置多个排序标准</li>
+</ul>
+<h3 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h3><p>SQL中的“连接”是用“连接条件”来表达的。  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> &lt;表名&gt;.&lt;列名&gt;,...</span><br><span class="line"><span class="keyword">FROM</span> &lt;表<span class="number">1</span>&gt;,&lt;表<span class="number">2</span>&gt;,...</span><br><span class="line"><span class="keyword">WHERE</span> [&lt;表名<span class="number">1</span>&gt;.]&lt;列名<span class="number">1</span>&gt;  &lt;比较运算符&gt;  [&lt;表名<span class="number">2</span>&gt;.]&lt;列名<span class="number">2</span>&gt;</span><br><span class="line">      <span class="keyword">AND</span> &lt;其他条件&gt;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>WHERE子句中除了连接条件,还可以有选择条件,同时完成选择和连接查询</li>
+<li>对于表的自身连接,可以给同一个表取不同的别名来区分,来实现一些复杂的连接条件</li>
+<li>左右外连接:<blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ...</span><br><span class="line"><span class="keyword">FROM</span> &lt;表<span class="number">1</span>&gt; <span class="keyword">LEFT</span>|<span class="keyword">RIGHT</span> <span class="keyword">OUT</span> <span class="keyword">JOIN</span> &lt;表<span class="number">2</span>&gt; </span><br><span class="line"><span class="keyword">ON</span> &lt;连接条件&gt;; </span><br></pre></td></tr></table></figure></blockquote>
+</li>
+<li>FROM中也可以有多个表,进行多表连接</li>
+</ul>
+<h3 id="嵌套查询"><a href="#嵌套查询" class="headerlink" title="嵌套查询"></a>嵌套查询</h3><p>一个SELECT-FROM-WHERE语句称为一个查询块,将一个查询块嵌套在另一个查询块的WHERE子句或HAVING短语的条件中的查询称为嵌套查询</p>
+<h4 id="IN子查询"><a href="#IN子查询" class="headerlink" title="IN子查询"></a>IN子查询</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> ...</span><br><span class="line"><span class="keyword">WHERE</span> &lt;列名(值)&gt; <span class="keyword">IN</span></span><br><span class="line">    (</span><br><span class="line">        <span class="keyword">SELECT</span> &lt;列名&gt;</span><br><span class="line">        ...</span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
+
+<h4 id="ANY-ALL子查询"><a href="#ANY-ALL子查询" class="headerlink" title="ANY/ALL子查询"></a>ANY/ALL子查询</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> ...</span><br><span class="line"><span class="keyword">WHERE</span> &lt;列名&gt; &lt;比较运算符&gt; <span class="keyword">ANY</span>/<span class="keyword">ALL</span></span><br><span class="line">    (</span><br><span class="line">        <span class="keyword">SELECT</span> &lt;列名&gt;</span><br><span class="line">        ...</span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
+<ul>
+<li>当确定内层子查询返回结果是单个值时,可以省略ANY/ALL</li>
+<li>ANY/ALL的对象为某个查询结果,表示其中任意一个值或者全部值<blockquote>
+<p>有时ANY/ALL谓词表达式可以用子查询中的聚集函数代替,如<code>&lt; ANY (SELECT &lt;列名&gt;)</code>可以用<code>&lt; (SELECT MIN(&lt;列名&gt;))</code>实现</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="EXISTS子查询"><a href="#EXISTS子查询" class="headerlink" title="EXISTS子查询"></a>EXISTS子查询</h4><p>EXISTS是相关子查询,它依次取外层查询中表内的各元组,根据它与内层查询相关的属性值处理内层查询,若WHERE子句返回值为真,则取此元组放入结果表中</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> &lt;表<span class="number">1</span>&gt;</span><br><span class="line"><span class="keyword">WHERE</span> [<span class="keyword">NOT</span>] <span class="keyword">EXISTS</span></span><br><span class="line">    (</span><br><span class="line">        <span class="keyword">SELECT</span> *</span><br><span class="line">        <span class="keyword">FROM</span> &lt;表<span class="number">2</span>&gt;,...</span><br><span class="line">        <span class="keyword">WHERE</span> &lt;表<span class="number">1</span>&gt;...&lt;表<span class="number">2</span>&gt;...;</span><br><span class="line">    );</span><br><span class="line"><span class="comment">/* 表示查询结果中的每条记录都满足/不满足EXISTS子句 */</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>EXIST的对象也是某个查询结果，若查询结果非空则返回真<blockquote>
+<ul>
+<li>由EXISTS引出的子查询中一般都是SELECT *</li>
+<li>所有带IN谓词、比较运算符、ANY和ALL谓词的子查询都能用带EXISTS谓词的子查询等价替换</li>
+<li>SQL中的存在,任意,蕴含等谓词都需要用EXISTS手动实现</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h4 id="除法运算"><a href="#除法运算" class="headerlink" title="除法运算"></a>除法运算</h4><p>除法运算需要用EXIST子句实现</p>
+<p>原理:</p>
+<ol>
+<li>计算C(X)=A(X,Y)/B(Y,Z)</li>
+<li>根据上式,需要找出所有的c[X],使得对于所有的b[Y],都存在a[X,Y]使得a[X]=c[X],a[Y]=b[Y]</li>
+<li>SQL中没有全称量词,需要对上式进行转换:找出所有的c[X],使得不存在b[Y],不存在a[X,Y]使得a[X]=c[X],a[Y]=b[Y]</li>
+<li>对于 ‘不存在a[X,Y]使得a[X]=c[X],a[Y]=b[Y]’, 还可以使用集合差运算转化成 ‘全体a[X,Y] - 使得a[X]=c[X],a[Y]=b[Y]的a[X,Y]’</li>
+</ol>
+<p>3的实现代码如下:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> X </span><br><span class="line"><span class="keyword">FROM</span> A [<span class="keyword">AS</span>] R <span class="comment">/* 换名防止后面混淆 */</span></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>(</span><br><span class="line">    <span class="keyword">SELECT</span> * </span><br><span class="line">    <span class="keyword">FROM</span> B</span><br><span class="line">    <span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>(</span><br><span class="line">        <span class="keyword">SELECT</span> *</span><br><span class="line">        <span class="keyword">FROM</span> A</span><br><span class="line">        <span class="keyword">WHERE</span> &lt;X=R.X&gt;</span><br><span class="line">          <span class="keyword">AND</span> &lt;Y=B.Y&gt;</span><br><span class="line">    )</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>4的实现代码如下:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> X </span><br><span class="line"><span class="keyword">FROM</span> A [<span class="keyword">AS</span>] R <span class="comment">/* 换名防止后面混淆 */</span></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>(</span><br><span class="line">    (<span class="keyword">SELECT</span> *</span><br><span class="line">     <span class="keyword">FROM</span> A</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">EXCEPT</span> <span class="comment">/* 集合做差 */</span></span><br><span class="line">    (<span class="keyword">SELECT</span> X,Y </span><br><span class="line">     <span class="keyword">FROM</span> A,B</span><br><span class="line">     <span class="keyword">WHERE</span> &lt;A.X=R.X&gt;</span><br><span class="line">       <span class="keyword">AND</span> &lt;A.Y=B.Y&gt;</span><br><span class="line">    )</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h4 id="蕴含逻辑"><a href="#蕴含逻辑" class="headerlink" title="蕴含逻辑"></a>蕴含逻辑</h4><p>蕴含逻辑也需要用EXISTS子句实现</p>
+<ol>
+<li>给定逻辑:对于任意的a,都有B-&gt;C</li>
+<li>化简逻辑:不存在a,使得B或非C</li>
+<li>用NOT EXISTS实现上述语句;注意,非C也可以用NOT EXISTS实现</li>
+</ol>
+<h3 id="集合查询"><a href="#集合查询" class="headerlink" title="集合查询"></a>集合查询</h3><p>集合查询可以对两个查询结果进行集合运算</p>
+<ul>
+<li>UNION:并</li>
+<li>INTERSECT:交</li>
+<li>EXCEPT:差<br>注意:参加集合操作的各查询结果的列数必须相同;对应项的数据类型也必须相同 </li>
+</ul>
+<h2 id="5-数据更新"><a href="#5-数据更新" class="headerlink" title="5. 数据更新"></a>5. 数据更新</h2><h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><p>可以直接插入元组或者插入子查询结果(多个元组)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> &lt;表名&gt;[属性列,...]</span><br><span class="line"><span class="keyword">VALUES</span> (属性值,);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> &lt;表名&gt;[属性列,...]</span><br><span class="line">&lt;子查询&gt;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>没有出现的属性列赋空值  </li>
+<li>没有定义属性列时默认为原表所有属性</li>
+<li>VALUES可以由子查询表示</li>
+<li>子查询结果或元组值需要与上面定义的属性列相匹配(子查询结果列的个数和列的类型都要匹配)</li>
+<li>除了属性匹配,数据库还会检查所插入元素是否会破坏表的完整性规则</li>
+</ul>
+<h3 id="修改数据"><a href="#修改数据" class="headerlink" title="修改数据"></a>修改数据</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span>  &lt;表名&gt;</span><br><span class="line"><span class="keyword">SET</span>  &lt;列名&gt;=&lt;表达式&gt;[,&lt;列名&gt;=&lt;表达式&gt;]…</span><br><span class="line">[<span class="keyword">WHERE</span> &lt;条件&gt;];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>语句将修改指定表中满足WHERE子句条件的元组</li>
+<li>SET子句给出&lt;表达式&gt;的值用于取代相应的属性列</li>
+<li>注意,如果省略WHERE子句,则会修改表中的所有元组 </li>
+<li>执行修改语句时,数据库会检查修改操作是否会破坏表的完整性规则</li>
+</ul>
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM &lt;表名&gt;</span><br><span class="line">WHERE &lt;条件&gt;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>语句将会删除指定表中满足WHERE子句条件的元组</li>
+<li>注意,如果省略WHERE子句,则会删除表中的所有元组</li>
+</ul>
+<h2 id="6-视图"><a href="#6-视图" class="headerlink" title="6. 视图"></a>6. 视图</h2><h3 id="视图定义"><a href="#视图定义" class="headerlink" title="视图定义"></a>视图定义</h3><h4 id="创建视图"><a href="#创建视图" class="headerlink" title="创建视图"></a>创建视图</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE  VIEW </span><br><span class="line">    &lt;视图名&gt;  [(&lt;列名&gt;  [,&lt;列名&gt;]…)] </span><br><span class="line">   AS &lt;子查询&gt; </span><br><span class="line">   [WITH  CHECK  OPTION];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>列名缺省时由子查询中SELECT的列构成<blockquote>
+<p>一般出现以下情况,需要指定视图的列名:</p>
+<ul>
+<li>SELECT的某个列需要聚集函数或列表达式,即出现了一些新的列</li>
+<li>多表连接时选出了几个同名列作为视图的字段</li>
+<li>需要在视图中为某个列启用新的更合适的名字</li>
+</ul>
+</blockquote>
+</li>
+<li>WITH CHECK OPTION 可以保证通过该视图插入的数据符合该视图的定义,即插入成功的数据也会在视图中显示</li>
+</ul>
+<p>常见视图:</p>
+<ul>
+<li>行列子集视图:在保留单个基本表主码的情况下,去掉了这个表的某些行和列</li>
+<li>基于多个表的视图</li>
+<li>基于视图的视图</li>
+<li>带表达式的视图:SELECT的某个列为表达式</li>
+<li>分组视图:SELECT的某个列为聚集函数</li>
+</ul>
+<h4 id="删除视图"><a href="#删除视图" class="headerlink" title="删除视图"></a>删除视图</h4><p><code>DROP  VIEW  &lt;视图名&gt;[CASCADE];</code></p>
+<ul>
+<li>该语句从数据字典中删除指定的视图定义</li>
+<li>如果该视图上还导出了其他视图，需要使用CASCADE级联删除语句，把该视图和由它导出的所有视图一起删除,否则会拒绝删除</li>
+<li>删除基表时，由该基表导出的所有视图定义都必须显式地使用DROP VIEW语句删除</li>
+</ul>
+<h3 id="查询视图"><a href="#查询视图" class="headerlink" title="查询视图"></a>查询视图</h3><p>视图查询与上述基本表的查询相同</p>
+<p>原理:视图消解法</p>
+<ul>
+<li>对于数据库系统而言,先得将视图查询转换为对基本表的查询,再进行对基本表的查询</li>
+<li>转换时需要进行有效性检查和语句修正</li>
+</ul>
+<h3 id="更新视图-数据"><a href="#更新视图-数据" class="headerlink" title="更新视图(数据)"></a>更新视图(数据)</h3><p>视图的插入,删除,修改操作与基本表相同</p>
+<ul>
+<li>一些视图是不可更新的,因为 对这些视图的更新不能唯一地有意义地转换成对相应基本表的更新,如带聚集函数的视图<blockquote>
+<p>一般而言,行列子集视图是可以进行更新的  </p>
+<p>DB2对视图更新的限制:</p>
+<ul>
+<li>若视图是由两个以上基本表导出的，则此视图不允许更新。</li>
+<li>若视图的字段来自字段表达式或常数，则不允许对此视图执行INSERT 和UPDATE操作，但允许执行DELETE操作。  </li>
+<li>若视图的字段来自集函数，则此视图不允许更新。</li>
+<li>若视图定义中含有GROUP BY子句，则此视图不允许更新。</li>
+<li>若视图定义中含有DISTINCT短语，则此视图不允许更新。</li>
+<li>若视图定义中有嵌套查询，并且内层查询的FROM子句中涉及的表也是导出该视图的基本表，则此视图不允许更新</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="7-自主存取控制"><a href="#7-自主存取控制" class="headerlink" title="7. 自主存取控制"></a>7. 自主存取控制</h2><p>通过SQL的GRANT语句和REVOKE语句实现自主存取控制</p>
+<h3 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h3><h4 id="权限的授予"><a href="#权限的授予" class="headerlink" title="权限的授予"></a>权限的授予</h4><p>给某用户授予对某对象的某操作权限</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> &lt;权限&gt;[,&lt;权限&gt;]...</span><br><span class="line"><span class="keyword">ON</span> &lt;对象类型&gt; &lt;对象名&gt;[,&lt;对象类型&gt; &lt;对象名&gt;]...</span><br><span class="line"><span class="keyword">TO</span> &lt;用户&gt;[,&lt;用户&gt;]...</span><br><span class="line">[<span class="keyword">WITH</span> <span class="keyword">GRANT</span> <span class="keyword">OPTION</span>];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>权限有SELECT，INSERT，UPDATE，DELETE，REFERENCES几种; ALL PRIVILEGES表示所有操作权限<blockquote>
+<p>至于CREATE,ALTER等权限,是数据库管理员在创建用户时授予的</p>
+</blockquote>
+</li>
+<li>指定了ON的对象,表名这是一种实体权限的授予,而不是系统权限(对任意对象的操作)的授予</li>
+<li>TO用户可以时一个或多个具体用户,也可以是全体用户PUBLIC</li>
+<li>WITH GRANT OPTION表示授予的权限可以再由该用户向下转授<blockquote>
+<p>注意:权限不能循环授予,这样会导致回收权限时遇到无穷递归</p>
+</blockquote>
+</li>
+<li>GRANT语句的发出者可以是数据库管理员,数据库对象创建者或者拥有该权限的用户</li>
+</ul>
+<h4 id="权限的回收"><a href="#权限的回收" class="headerlink" title="权限的回收"></a>权限的回收</h4><p>收回本授权者对某用户的某对象某操作权限的授权</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> &lt;权限&gt;[,&lt;权限&gt;]...</span><br><span class="line"><span class="keyword">ON</span> &lt;对象类型&gt; &lt;对象名&gt;[,&lt;对象类型&gt;&lt;对象名&gt;]...</span><br><span class="line"><span class="keyword">FROM</span> &lt;用户&gt;[,&lt;用户&gt;]...</span><br><span class="line">[<span class="keyword">CASCADE</span> | RESTRICT];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>级联回收: 将用户和他传播的权限全部回收</li>
+<li>受限回收: 若用户传播过该权限并没有收回,则拒绝执行回收操作</li>
+<li>权限的回收可由管理员或授权者来执行</li>
+<li>回收只回收本用户直接或间接对目标用户授予的权限,若该用户还从其他地方获得了相同的权限,则他们仍具有此权限</li>
+</ul>
+<h3 id="用户-用户的创建"><a href="#用户-用户的创建" class="headerlink" title="用户:用户的创建"></a>用户:用户的创建</h3><p>CREATE USER不是SQL标准,不同数据库对用户创建的实现不一样</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span>  <span class="keyword">USER</span>  &lt;username&gt;</span><br><span class="line">[<span class="keyword">WITH</span>][DBA|<span class="keyword">RESOURCE</span>|<span class="keyword">CONNECT</span>];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>DBA:可以创建用户,模式,表以及登录数据库执行增删改查等操作</li>
+<li>RESOURCE:只能创建表并登录数据库执行增删改查等操作</li>
+<li>CONNECT: 能登陆数据库进行增删改查等操作,但必须获得相应权限</li>
+</ul>
+<h3 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h3><p>角色是权限的集合,能够通过为一组具有相同权限的用户创建一个角色来简化授权的过程</p>
+<h4 id="角色的创建"><a href="#角色的创建" class="headerlink" title="角色的创建"></a>角色的创建</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">ROLE</span> &lt;角色名&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="给角色添加权限"><a href="#给角色添加权限" class="headerlink" title="给角色添加权限"></a>给角色添加权限</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> &lt;权限&gt;[,&lt;权限&gt;]...</span><br><span class="line"><span class="keyword">ON</span> &lt;对象类型&gt; &lt;对象名&gt;[,&lt;对象类型&gt; &lt;对象名&gt;]...</span><br><span class="line"><span class="keyword">TO</span> &lt;角色&gt;[,&lt;角色&gt;]...</span><br></pre></td></tr></table></figure>
+
+<h4 id="回收角色的某权限"><a href="#回收角色的某权限" class="headerlink" title="回收角色的某权限"></a>回收角色的某权限</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> &lt;权限&gt;[,&lt;权限&gt;]...</span><br><span class="line"><span class="keyword">ON</span> &lt;对象类型&gt; &lt;对象名&gt;[,&lt;对象类型&gt;&lt;对象名&gt;]...</span><br><span class="line"><span class="keyword">FROM</span> &lt;角色&gt;[,&lt;角色&gt;]...</span><br></pre></td></tr></table></figure>
+<ul>
+<li>用户可以回收角色的权限，从而修改角色拥有的权限</li>
+<li>(不知道对不对)之前通过此角色授予出去的权限也会因为这个操作而被回收</li>
+<li>这个REVOKE的发起者是角色的创建者或者拥有该角色ADMIN OPTION的用户</li>
+</ul>
+<h4 id="把角色授予给某用户或角色"><a href="#把角色授予给某用户或角色" class="headerlink" title="把角色授予给某用户或角色"></a>把角色授予给某用户或角色</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span>  &lt;角色<span class="number">1</span>&gt;[,&lt;角色<span class="number">2</span>&gt;]...</span><br><span class="line"><span class="keyword">TO</span>  &lt;角色<span class="number">3</span>&gt;[,&lt;用户<span class="number">1</span>&gt;]...</span><br><span class="line">[<span class="keyword">WITH</span> <span class="keyword">ADMIN</span> <span class="keyword">OPTION</span>]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>一个角色的权限是直接授予这个角色的全部权限加上其他角色授予这个角色的全部权限 </li>
+<li>把角色授给目标用户后,该用户获得这个角色的所有权限</li>
+<li>WITH ADMIN OPTION表示目标角色或用户还可以把这种角色权限授予其他的角色或用户,也有权力更改这个角色的权限</li>
+<li>这个GRANT的发起者是角色的创建者或者拥有该角色ADMIN OPTION的用户</li>
+</ul>
+<h4 id="通过角色收回赋予出去的权限"><a href="#通过角色收回赋予出去的权限" class="headerlink" title="通过角色收回赋予出去的权限"></a>通过角色收回赋予出去的权限</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> &lt;角色<span class="number">1</span>&gt;[,&lt;角色<span class="number">2</span>&gt;]...</span><br><span class="line"><span class="keyword">FROM</span> &lt;角色<span class="number">3</span>&gt;[,&lt;用户<span class="number">1</span>&gt;]...</span><br></pre></td></tr></table></figure>
+<ul>
+<li>目标用户或角色失去了原角色赋予给他的权限</li>
+</ul>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/04/11/mysql0/" data-id="ck8vu62mt001ij0vnenrwc6kl"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/03/10/csharp-command/" class="article-nav-link">
+        <strong class="article-nav-caption">Next Post</strong>
+        <div class="article-nav-title">Windows下C#对cmd的操作</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        notify: false,
+        verify: '',
+        app_id: 'ze0YzGUMUrLXgdRQpKyDCEEm-gzGzoHsz',
+        app_key: 'NnhAiNVNGXwbCD1sMGNRjA8B',
+        path: window.location.pathname,
+        avatar: 'mp',
+        placeholder: 'Leave your comments here ~',
+        recordIP: true,
+        lang: 'en'
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2019-2020
+        George Chen
+      </li>
+      <li>
+        
+          Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+      </li>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+    <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+      <aside class="sidebar">
+        <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="George"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">HOME</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives/">ARCHIVE</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/">CATE.</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/">TAGS</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="https://github.com/georgechen1827/" target="_blank" rel="noopener">about me</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/coming_soon.html" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+      </aside>
+      <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+      
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer:'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
+
+
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+
+<script src="/js/ayer.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+  </div>
+</body>
+
+</html>

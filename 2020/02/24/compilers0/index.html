@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">2k words</span>
+            <span class="post-count">4k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">7 minutes</span>
+            <span class="post-count">14 minutes</span>
         </span>
     </span>
 </div>
@@ -222,11 +222,17 @@
 <h4 id="主流程"><a href="#主流程" class="headerlink" title="主流程"></a>主流程</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Token <span class="title">scan</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">       跳过空白符；</span><br><span class="line">       处理数字；</span><br><span class="line">       处理保留字和标识符；</span><br><span class="line">       <span class="comment">/*如果运行到这里，就将预读字符peek作为一个词法单元*/</span></span><br><span class="line">       Token t = <span class="keyword">new</span> Token (peek);</span><br><span class="line">        peek = 空白符 <span class="comment">/*按照预读的规则进行初始化,参见龙书p48*/</span>；</span><br><span class="line">        <span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="词法分析建立的类"><a href="#词法分析建立的类" class="headerlink" title="词法分析建立的类"></a>词法分析建立的类</h4><p>各个对象关系如下:<br><img src="/2020/02/24/compilers0/proc1.png" alt="relatives"></p>
-<!--Token类:
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Token.java</span></span><br><span class="line">Package lexer;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Token</span> </span>&#123;</span><br><span class="line">      <span class="keyword">public</span>  <span class="keyword">final</span>  <span class="keyword">int</span>  tag;</span><br><span class="line">      <span class="function"><span class="keyword">public</span>  <span class="title">Token</span> <span class="params">( <span class="keyword">int</span>  t )</span> </span>&#123; tag = t; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Tag.java</span></span><br><span class="line">Package lexer;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tag</span> </span>&#123;</span><br><span class="line">     <span class="keyword">public</span> <span class="keyword">final</span>  <span class="keyword">static</span> <span class="keyword">int</span> </span><br><span class="line">     NUM = <span class="number">256</span>; ID = <span class="number">257</span>; TRUE = <span class="number">258</span>; FALSE = <span class="number">259</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//子类Num和Word</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Num.java</span></span><br><span class="line"><span class="keyword">package</span> lexer;              </span><br><span class="line"><span class="keyword">public</span>  <span class="class"><span class="keyword">class</span>  <span class="title">Num</span> <span class="keyword">extends</span> <span class="title">Token</span> </span>&#123;</span><br><span class="line">     <span class="keyword">public</span>  <span class="keyword">final</span> <span class="keyword">int</span> value;</span><br><span class="line">     <span class="function"><span class="keyword">public</span>  <span class="title">Num</span> <span class="params">( <span class="keyword">int</span> v )</span>  </span>&#123;<span class="keyword">super</span>(Tag.NUM); value = v; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Word.java</span></span><br><span class="line"><span class="keyword">package</span> lexer;            </span><br><span class="line"><span class="keyword">public</span>  <span class="class"><span class="keyword">class</span>  <span class="title">Word</span>  <span class="keyword">extends</span>  <span class="title">Token</span> </span>&#123;</span><br><span class="line">       <span class="keyword">public</span>  <span class="keyword">final</span>  String  lexeme;</span><br><span class="line">       <span class="function"><span class="keyword">public</span>  <span class="title">Word</span> <span class="params">( <span class="keyword">int</span> t, String s)</span>  </span>&#123;</span><br><span class="line">               <span class="keyword">super</span>(t); lexeme = <span class="keyword">new</span> String (s);</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>词法分析器:Lexer</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Lexer.java</span></span><br><span class="line"><span class="keyword">package</span> lexer;                 </span><br><span class="line"><span class="keyword">import</span> java.io.*; <span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Lexer</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> line = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">char</span> peek = <span class="string">' '</span>;</span><br><span class="line">	<span class="keyword">private</span> Hashtable words = <span class="keyword">new</span> Hashtable();</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">reserve</span><span class="params">(Word t)</span> </span>&#123;words.put(t.lexeme, t);&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Lexer</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">		reserve(<span class="keyword">new</span> Word(Tag.TRUE, <span class="string">"true"</span>));</span><br><span class="line">		reserve(<span class="keyword">new</span> Word(Tag.FALSE, <span class="string">"false"</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Token <span class="title">scan</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>( ; ; peek = (<span class="keyword">char</span>)System.in.read() ) &#123;</span><br><span class="line">			<span class="keyword">if</span>(peek == <span class="string">' '</span> || peek == <span class="string">'\t'</span>) <span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(peek == <span class="string">'\n'</span>) line = line + <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="keyword">if</span>(Character.isDigit(peek)) &#123;</span><br><span class="line">			<span class="keyword">int</span> v = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">do</span> &#123;</span><br><span class="line">				v = <span class="number">10</span> * v + Character.digit(peek, <span class="number">10</span>);</span><br><span class="line">				peek = (<span class="keyword">char</span>)System.in.read();</span><br><span class="line">			&#125;<span class="keyword">while</span>(Character.isDigit(peek));</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">new</span> Num(v);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(Character.isLetter(peek)) &#123;</span><br><span class="line">			StringBuffer b = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">			<span class="keyword">do</span> &#123;</span><br><span class="line">				b.append(peek);</span><br><span class="line">				peek = (<span class="keyword">char</span>) System.in.read();</span><br><span class="line">			&#125;<span class="keyword">while</span>(Character.isLetterOrDigit(peek));</span><br><span class="line">			String s = b.toString();</span><br><span class="line">			Word w = (Word)words.get(s);</span><br><span class="line">			<span class="keyword">if</span>( w != <span class="keyword">null</span> ) <span class="keyword">return</span> w;</span><br><span class="line">			w = <span class="keyword">new</span> Word(Tag.ID, s);</span><br><span class="line">			words.put(s, w);</span><br><span class="line">			<span class="keyword">return</span> w;</span><br><span class="line">		&#125;</span><br><span class="line">		Token t = <span class="keyword">new</span> Token(peek);</span><br><span class="line">		peek = <span class="string">' '</span>;</span><br><span class="line">		<span class="keyword">return</span> t;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">```--&gt;</span><br><span class="line"></span><br><span class="line">### 语法分析</span><br><span class="line">语法分析是决定如何使用一个文法生成一个终结符号串的过程</span><br><span class="line"></span><br><span class="line">举例如下:  </span><br><span class="line">![analysis](proc3.png)  </span><br><span class="line"></span><br><span class="line">步骤:</span><br><span class="line">* 根据语法构建文法</span><br><span class="line">* 根据文法构建预测分析表(LL文法,LR文法)</span><br><span class="line"></span><br><span class="line">#### 上下文无关文法 CFG</span><br><span class="line">上下文无关文法(Context Free Grammar)由一个四元组G构成  </span><br><span class="line">![grammer](gra0.png)</span><br><span class="line"></span><br><span class="line">在这里，有  </span><br><span class="line">![grammer](gra1.png)</span><br><span class="line"></span><br><span class="line">例如，由+，-号分隔的数位序列可以由如下语法表示  </span><br><span class="line">```java</span><br><span class="line"><span class="comment">// 终结符号集合 &#123;0,1,2,3,4,5,6,7,8,9,+,-&#125; (叶子节点)</span></span><br><span class="line"><span class="comment">// 非终结符号集合 &#123;list,digit&#125;</span></span><br><span class="line"><span class="comment">// 产生式集合:&#123;</span></span><br><span class="line">    list-&gt;list+digit</span><br><span class="line">    list-&gt;list-digit</span><br><span class="line">    list-&gt;digit</span><br><span class="line">    digit-&gt;<span class="number">0</span>|<span class="number">1</span>|<span class="number">2</span>|<span class="number">3</span>|<span class="number">4</span>|<span class="number">5</span>|<span class="number">6</span>|<span class="number">7</span>|<span class="number">8</span>|<span class="number">9</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 开始符号 list</span></span><br></pre></td></tr></table></figure>
+<h3 id="语法分析-1"><a href="#语法分析-1" class="headerlink" title="语法分析"></a>语法分析</h3><p>语法分析是决定如何使用一个文法生成一个终结符号串的过程</p>
+<p>举例如下:<br><img src="/2020/02/24/compilers0/proc3.png" alt="analysis">  </p>
+<p>步骤:</p>
+<ul>
+<li>根据语法构建文法</li>
+<li>根据文法构建预测分析表(LL文法,LR文法)</li>
+</ul>
+<h4 id="上下文无关文法-CFG"><a href="#上下文无关文法-CFG" class="headerlink" title="上下文无关文法 CFG"></a>上下文无关文法 CFG</h4><p>上下文无关文法(Context Free Grammar)由一个四元组G构成<br><img src="/2020/02/24/compilers0/gra0.png" alt="grammer"></p>
+<p>在这里，有<br><img src="/2020/02/24/compilers0/gra1.png" alt="grammer"></p>
+<p>例如，由+，-号分隔的数位序列可以由如下语法表示  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 终结符号集合 &#123;0,1,2,3,4,5,6,7,8,9,+,-&#125; (叶子节点)</span></span><br><span class="line"><span class="comment">// 非终结符号集合 &#123;list,digit&#125;</span></span><br><span class="line"><span class="comment">// 产生式集合:&#123;</span></span><br><span class="line">    list-&gt;list+digit</span><br><span class="line">    list-&gt;list-digit</span><br><span class="line">    list-&gt;digit</span><br><span class="line">    digit-&gt;<span class="number">0</span>|<span class="number">1</span>|<span class="number">2</span>|<span class="number">3</span>|<span class="number">4</span>|<span class="number">5</span>|<span class="number">6</span>|<span class="number">7</span>|<span class="number">8</span>|<span class="number">9</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 开始符号 list</span></span><br></pre></td></tr></table></figure>
 <h4 id="预测分析表"><a href="#预测分析表" class="headerlink" title="预测分析表"></a>预测分析表</h4><p>NaN</p>
 <h4 id="语法分析树"><a href="#语法分析树" class="headerlink" title="语法分析树"></a>语法分析树</h4><p>语法分析树用图形的方式展现从文法的开始符号推出相应符号串的过程  </p>
 <p>从定义上看,给定一个上下文无关文法,该文法的一棵语法分析树(parse tree)是具有如下性质的树:</p>
@@ -236,14 +242,14 @@
 <li>每个内部节点的标号为一个非终结符号</li>
 <li>如果非终结符号A是某个内部节点的标号,并且它的子节点的标号从左到右分别为X1,X2…Xn,那么必然存在产生式A-&gt;X1,X2…Xn, 其中X1…Xn既可以是终结符号也可以是非终结符号</li>
 </ol>
-<p>例如:<br><img src="tree0.png" alt="tree"></p>
+<p>例如:<br><img src="/2020/02/24/compilers0/tree0.png" alt="tree"></p>
 <h4 id="左递归问题的消除"><a href="#左递归问题的消除" class="headerlink" title="左递归问题的消除"></a>左递归问题的消除</h4><p>原始公式:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A -&gt; A x | y</span><br></pre></td></tr></table></figure>
 <p>这种公式在考虑FRONT(A)时会遇到无穷递归的问题</p>
 <p>改进公式:将左递归化为循环</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A -&gt; x R</span><br><span class="line">R -&gt; y R | e(空白符)</span><br></pre></td></tr></table></figure>
 
-<p>效果如下:<br><img src="recu0.png" alt="recursive"></p>
+<p>效果如下:<br><img src="/2020/02/24/compilers0/recu0.png" alt="recursive"></p>
 <h3 id="语法制导翻译"><a href="#语法制导翻译" class="headerlink" title="语法制导翻译"></a>语法制导翻译</h3><p>语法制导翻译的两种方式:</p>
 <ul>
 <li>语法制导定义</li>
@@ -253,13 +259,13 @@
 <li>每一个产生式和一组语义规则相关联</li>
 <li>每个文法符号(非终结符)和一个属性集合相关联</li>
 </ul>
-<p>此时,产生式和语义规则是分离的,如下:<br><img src="trans0.png" alt="trans"><br>语法制导定义类似于一种属性文法</p>
+<p>此时,产生式和语义规则是分离的,如下:<br><img src="/2020/02/24/compilers0/trans0.png" alt="trans"><br>语法制导定义类似于一种属性文法</p>
 <h4 id="语法制导翻译方案"><a href="#语法制导翻译方案" class="headerlink" title="语法制导翻译方案"></a>语法制导翻译方案</h4><ul>
 <li>将程序片段附加到一个文法的各个产生式上的表示</li>
 <li>被嵌入到产生式体中的程序片段成为语义动作,语义动作用花括号括起来</li>
 </ul>
-<p>此时,语义是嵌入到产生式中的,如下:<br><img src="trans1.png" alt="trans"></p>
-<h2 id="词法分析概述"><a href="#词法分析概述" class="headerlink" title="词法分析概述"></a>词法分析概述</h2><p><img src="lex0.png" alt="lex"></p>
+<p>此时,语义是嵌入到产生式中的,如下:<br><img src="/2020/02/24/compilers0/trans1.png" alt="trans"></p>
+<h2 id="词法分析概述"><a href="#词法分析概述" class="headerlink" title="词法分析概述"></a>词法分析概述</h2><p><img src="/2020/02/24/compilers0/lex0.png" alt="lex"></p>
 <ul>
 <li>词法记号：由记号名和属性值构成的二元组，属性值不是必须项，记号名是语法分析的输入符号。(这个模式的名字)</li>
 <li>模式：一个记号的模式描述属于该记号的词法单元的形式。和一个给定模式匹配的字（字符串）的集合成为该模式的语言。(一个词法单元可能具有的形式)</li>
@@ -272,12 +278,12 @@
 <li>语言：字母表上的一个串集,可以只包含空串或是空集</li>
 <li>句子：属于语言的串</li>
 </ul>
-<p>串的运算:<br><img src="lex1.png" alt="lex"></p>
-<h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><h4 id="正则表达式的递归定义"><a href="#正则表达式的递归定义" class="headerlink" title="正则表达式的递归定义"></a>正则表达式的递归定义</h4><p><img src="re0.png" alt="re"></p>
-<h4 id="正则表达式的一些公理"><a href="#正则表达式的一些公理" class="headerlink" title="正则表达式的一些公理"></a>正则表达式的一些公理</h4><p><img src="re1.png" alt="re"></p>
-<h4 id="正则定义"><a href="#正则定义" class="headerlink" title="正则定义"></a>正则定义</h4><p><img src="re2.png" alt="re"></p>
-<h4 id="正则表达式的扩展"><a href="#正则表达式的扩展" class="headerlink" title="正则表达式的扩展"></a>正则表达式的扩展</h4><p>为了方便书写,对一些常用的正则表达式做如下定义<br><img src="re3.png" alt="re"><br><img src="re4.png" alt="re">  </p>
-<p>一些数量方面的运算符也做了扩展<br><img src="re5.png" alt="re"><br><img src="re6.png" alt="re"></p>
+<p>串的运算:<br><img src="/2020/02/24/compilers0/lex1.png" alt="lex"></p>
+<h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><h4 id="正则表达式的递归定义"><a href="#正则表达式的递归定义" class="headerlink" title="正则表达式的递归定义"></a>正则表达式的递归定义</h4><p><img src="/2020/02/24/compilers0/re0.png" alt="re"></p>
+<h4 id="正则表达式的一些公理"><a href="#正则表达式的一些公理" class="headerlink" title="正则表达式的一些公理"></a>正则表达式的一些公理</h4><p><img src="/2020/02/24/compilers0/re1.png" alt="re"></p>
+<h4 id="正则定义"><a href="#正则定义" class="headerlink" title="正则定义"></a>正则定义</h4><p><img src="/2020/02/24/compilers0/re2.png" alt="re"></p>
+<h4 id="正则表达式的扩展"><a href="#正则表达式的扩展" class="headerlink" title="正则表达式的扩展"></a>正则表达式的扩展</h4><p>为了方便书写,对一些常用的正则表达式做如下定义<br><img src="/2020/02/24/compilers0/re3.png" alt="re"><br><img src="/2020/02/24/compilers0/re4.png" alt="re">  </p>
+<p>一些数量方面的运算符也做了扩展<br><img src="/2020/02/24/compilers0/re5.png" alt="re"><br><img src="/2020/02/24/compilers0/re6.png" alt="re"></p>
 <h4 id="状态转换图"><a href="#状态转换图" class="headerlink" title="状态转换图"></a>状态转换图</h4><p>状态转换图描述词法分析器被语法分析器调用时，词法分析器为返回下一个记号所做的动作</p>
 <p>绘制状态转换图是构造词法分析器的第一步</p>
 <ul>
@@ -287,7 +293,7 @@
 <li>每条边的标号包含一个或多个符号，若离开状态s的某边上标号为other，则它表示离开s的其他边所指示的字符以外的任意字符</li>
 <li>*表示输入指针必须回退的转态</li>
 </ul>
-<p><img src="status.png" alt="status"></p>
+<p><img src="/2020/02/24/compilers0/status0.png" alt="status"></p>
 <h3 id="有限状态自动机"><a href="#有限状态自动机" class="headerlink" title="有限状态自动机"></a>有限状态自动机</h3><h4 id="不确定的有限状态自动机NFA"><a href="#不确定的有限状态自动机NFA" class="headerlink" title="不确定的有限状态自动机NFA"></a>不确定的有限状态自动机NFA</h4><ul>
 <li>$Q$是非空有穷的状态集合</li>
 <li>$\Sigma$是非空有穷的输入字母表</li>
@@ -314,9 +320,9 @@
 <h3 id="基于MYT算法从正则表达式到NFA"><a href="#基于MYT算法从正则表达式到NFA" class="headerlink" title="基于MYT算法从正则表达式到NFA"></a>基于MYT算法从正则表达式到NFA</h3><p>正则表达式-(MYT算法)&gt;NFA-(子集构造算法)&gt;DFA-(hopcorft最小化算法)&gt;词法分析器代码</p>
 <h4 id="MYT算法"><a href="#MYT算法" class="headerlink" title="MYT算法"></a>MYT算法</h4><p>基本思路: 对正则表达式的结构做归纳  </p>
 <ul>
-<li>一些基本元素如下构造<br><img src="construct0.png" alt="cons"><br><img src="construct1.png" alt="cons"><br><img src="construct2.png" alt="cons"><br><img src="construct3.png" alt="cons">  </li>
+<li>一些基本元素如下构造<br><img src="/2020/02/24/compilers0/construct0.png" alt="cons"><br><img src="/2020/02/24/compilers0/construct1.png" alt="cons"><br><img src="/2020/02/24/compilers0/construct2.png" alt="cons"><br><img src="/2020/02/24/compilers0/construct3.png" alt="cons">  </li>
 </ul>
-<p>正则表达式的分解和构造:<br><img src="construct4.png" alt="cons"></p>
+<p>正则表达式的分解和构造:<br><img src="/2020/02/24/compilers0/construct4.png" alt="cons"></p>
 <h4 id="从NFA到DFA的转换-子集构造算法"><a href="#从NFA到DFA的转换-子集构造算法" class="headerlink" title="从NFA到DFA的转换(子集构造算法)"></a>从NFA到DFA的转换(子集构造算法)</h4><ul>
 <li>找出字母表</li>
 <li>分析转换过程(注意$\epsilon$状态可以进行多次输入/滑行),得到DFA<blockquote>
@@ -328,16 +334,57 @@
 </blockquote>
 </li>
 </ul>
-<p>一些概念:<br><img src="construct5.png" alt="cons">  </p>
+<p>一些概念:<br><img src="/2020/02/24/compilers0/construct5.png" alt="cons">  </p>
 <p>子集构造算法不一定得到最简的DFA</p>
-<h4 id="DFA的化简"><a href="#DFA的化简" class="headerlink" title="DFA的化简"></a>DFA的化简</h4><h2 id="目标-使得DFA的状态最少"><a href="#目标-使得DFA的状态最少" class="headerlink" title="目标: 使得DFA的状态最少"></a>目标: 使得DFA的状态最少</h2><p><em>待更新…</em></p>
--->
+<h4 id="DFA的化简"><a href="#DFA的化简" class="headerlink" title="DFA的化简"></a>DFA的化简</h4><p>目标: 使得DFA的状态最少</p>
+<ul>
+<li>找出字母表</li>
+<li>分析DFA转换过程,得到最简DFA</li>
+<li>主要思想:对状态进行最小划分</li>
+<li>化简条件:化简前DFA的函数应是全函数(对每一个状态s和输入a都有对应输出状态)<blockquote>
+<ol start="0">
+<li>如果DFA不是全函数,需要引入非终结的死状态E<blockquote>
+<ul>
+<li>所有未定义的输出状态全部转到死状态E</li>
+<li>死状态接受E的所有输入都转换到本身</li>
+</ul>
+</blockquote>
+</li>
+<li>构造状态集合的初始划分$\Pi$={接收状态,非接收状态}</li>
+<li>对$\Pi$中每个子集G,对G进行如下划分:<blockquote>
+<p>把G划分为若干子集，G的两个状态s和t在同一子集中，当且仅当对任意输入符号a，s和t的a转换都到π的同一子集中</p>
+</blockquote>
+</li>
+<li>重复2.直到$\Pi$不再改变</li>
+<li>去除死状态,得到最简的状态集合:<blockquote>
+<ul>
+<li>删除死状态和所有和这个状态连接的边,所有边都改成无定义</li>
+<li>从开始状态不可达到的状态也删除</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h3 id="直接从正则表达式到DFA"><a href="#直接从正则表达式到DFA" class="headerlink" title="直接从正则表达式到DFA"></a>直接从正则表达式到DFA</h3><p>NaN</p>
+<h2 id="语法分析概述"><a href="#语法分析概述" class="headerlink" title="语法分析概述"></a>语法分析概述</h2><p>语法分析器读取词法分析器提供的记号流，检查它是否能由源语言的文法产生，输出分析树的某种表示。</p>
+<p><img src="/2020/02/24/compilers0/token0.png" alt="token"></p>
+<p>语法分析器类型:</p>
+<ul>
+<li>通用语法分析（Cocke-Younger-Kasami算法，Earley算法）:效率低</li>
+<li>自顶向下语法分析: 从语法分析树的根节点开始向叶子节点构造语法分析树</li>
+<li>自底向上语法分析: 从叶子结点开始，逐渐向根节点方向构造语法分析树</li>
+</ul>
+<hr>
+<p><em>待更新…</em></p>
+
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/compilers0/" data-id="ck86l3kc50009hsvn8siefg6y"
+      <a data-url="http://georgechen1827.github.io/2020/02/24/compilers0/" data-id="ck8vu62m10009j0vn7ls506g0"
         class="article-share-link">share</a>
         
       
