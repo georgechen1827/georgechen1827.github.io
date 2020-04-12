@@ -1,6 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Unithon 项目计划书模板</title>
+    <url>/2020/04/12/Unithon%20%E9%A1%B9%E7%9B%AE%E8%AE%A1%E5%88%92%E4%B9%A6%E6%A8%A1%E6%9D%BF/</url>
+    <content><![CDATA[<h2 id="一-团队信息"><a href="#一-团队信息" class="headerlink" title="一. 团队信息"></a>一. 团队信息</h2><ol>
+<li><p>团队名称：</p>
+<p>坐等全境封锁免费小队</p>
+</li>
+<li><p>成员信息：</p>
+<table>
+<thead>
+<tr>
+<th align="left">姓名</th>
+<th align="left">学校</th>
+<th align="left">专业</th>
+<th align="left">年级</th>
+<th align="left">邮箱</th>
+<th align="left">QQ号</th>
+<th align="left">项目分工</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">陈孜卓</td>
+<td align="left">苏州大学</td>
+<td align="left">计算机科学与技术</td>
+<td align="left">二年级</td>
+<td align="left"><a href="mailto:3528537606@qq.com">3528537606@qq.com</a></td>
+<td align="left">3528537606</td>
+<td align="left">构建、训练模型</td>
+</tr>
+<tr>
+<td align="left">王沛月</td>
+<td align="left">苏州大学</td>
+<td align="left">计算机科学与技术</td>
+<td align="left">二年级</td>
+<td align="left"><a href="mailto:1138411450@qq.com">1138411450@qq.com</a></td>
+<td align="left">1138411450</td>
+<td align="left">构建、训练模型</td>
+</tr>
+<tr>
+<td align="left">丁楚瑶</td>
+<td align="left">苏州大学</td>
+<td align="left">计算机科学与技术</td>
+<td align="left">二年级</td>
+<td align="left"><a href="mailto:1623030229@qq.com">1623030229@qq.com</a></td>
+<td align="left">1623030229</td>
+<td align="left">编写爬虫框架</td>
+</tr>
+<tr>
+<td align="left">徐镇宇</td>
+<td align="left">苏州大学</td>
+<td align="left">国际金融</td>
+<td align="left">三年级</td>
+<td align="left"><a href="mailto:andrew.xu@foxmail.com">andrew.xu@foxmail.com</a></td>
+<td align="left">565143480</td>
+<td align="left">编写web界面</td>
+</tr>
+<tr>
+<td align="left">张逸康</td>
+<td align="left">苏州大学</td>
+<td align="left">计算机科学与技术</td>
+<td align="left">二年级</td>
+<td align="left"><a href="mailto:zyk0126@126.com">zyk0126@126.com</a></td>
+<td align="left">1976497294</td>
+<td align="left">收集资料、统筹进度、评估软件</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>是否需要使用 Azure 虚拟机资源？</p>
+<ul>
+<li>是</li>
+</ul>
+<p>如果需要的话，更倾向于使用 Windows Server 还是 Linux Server ?</p>
+<ul>
+<li>Windows Server</li>
+</ul>
+</li>
+</ol>
+<h2 id="二-项目信息"><a href="#二-项目信息" class="headerlink" title="二. 项目信息"></a>二. 项目信息</h2><ol>
+<li><p>项目名称</p>
+<ul>
+<li>基于深度学习和信息提取的疫情热点分析平台</li>
+</ul>
+</li>
+<li><p>项目概要</p>
+<ul>
+<li>随着近一段时间复工复产的进行，大家普遍更加关心新冠疫情的发展。然而每天网络上产生的海量新闻数据，加上各种谣言的传播，使得人们需要花费大量的时间来筛选、综合信息，以对近期疫情发展有一个正确全面的认识。我们团队通过深度学习和信息提取的方式，对主流媒体的疫情报道进行分析、综合，以热点话题、热点人物事件关系网的方式将疫情态势展示给用户，使得用户能在短时间内高效地获取疫情新闻资讯，将更多的精力放在工作和事务上。</li>
+</ul>
+</li>
+<li><p>计划书</p>
+<ul>
+<li><p>项目构思</p>
+<ul>
+<li><p>项目想法产生的初衷;</p>
+<ul>
+<li>大家对疫情发展的认识主要来源于疫情新闻和疫情动态上。然而我们发现，即使花费很长的时间去不同的网站上获取新闻、阅读评论，能够获取的重要讯息通常也就只有那么几条；我们大部分的时间被浪费在了阅读重复的信息和鉴别信息的真假之上。因此，在疫情中，如何给大众高效地提供重要、准确的信息是非常重要的。</li>
+</ul>
+</li>
+<li><p>想解决什么样的问题;</p>
+<ol>
+<li>提供给大众整合过后的信息，促使大众能够高效地对于近期发生的疫情事件，对疫情热点人物有一个全面的、客观的了解。</li>
+<li>综合分析不同媒体对同一事件的报道，使得用户能够辨认出错误、片面的信息。</li>
+<li>提高信息的整合度，提高用户的新闻应用体验</li>
+</ol>
+</li>
+<li><p>项目的受益群体;</p>
+<ul>
+<li>关注疫情的群众。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>实施初步调研</p>
+<ul>
+<li><p>项目实施中可能存在哪些难点;</p>
+<ol>
+<li>相关新闻数据的获得</li>
+<li>文本的分析，包括新闻事件的关键词提取、聚类，事件主体、人物的识别，新闻情感取向的分析等</li>
+<li>数据的整理，包括根据主题进行新闻分类、根据人物和事件构建关系网络等</li>
+<li>分析结果的展示</li>
+</ol>
+<p>对于上述问题，我们的主要策略如下： </p>
+<ol>
+<li>对新闻数据的获得，我们选择通过爬虫定期对人民网、新华网等主流媒体以及国外媒体的疫情板块进行爬取，获得新闻数据</li>
+<li>对新闻文本的分析，我们的处理主要集中在以下几个方面：<ul>
+<li>文本关键词提取：使用TextRank对文本的关键词进行提取</li>
+<li>事件主体、人物的识别：使用深度学习对文本命名实体进行识别，我们选择使用BiLSTM+CRF模型来构建神经网络，使用开源的语料库来训练模型</li>
+<li>文本聚类：基于文本相似度计算对文本进行聚类</li>
+<li>文本情感取向分析：使用深度学习对文本的情感取向进行预测，我们选择使用BERT预训练模型来构建神经网络，使用开源的语料库来训练模型</li>
+</ul>
+</li>
+<li>对于数据的整理，我们根据文本关键词对新闻主题进行分类；结合命名实体识别结果和文本聚类结果来构建人物和事件关系网络  </li>
+<li>我们使用python语言来获取、分析、整理数据，使用JavaScript生成网页来展示分析结果<br>我们的网页应包括如下几个部分：  <ul>
+<li>按热度从高到低的次序向用户展示近期的疫情话题</li>
+<li>每个疫情话题中展示不同媒体对相关事件的新闻报道，并标注出各新闻的情感取向</li>
+<li>展示一个以近期重点人物和关键事件为中心的疫情关系网络  </li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>你会采用什么招数, 特别是独特的招数, 来解决用户的痛苦,  特别是和 AI 相关的手段; </p>
+<ul>
+<li>用户在阅读海量的新闻时，常会遇到以下两个问题：  </li>
+</ul>
+<ol>
+<li>用户获取的信息是松散的：新闻通常按时间顺序排序，上一篇阅读的新闻事件通常和下一篇阅读的新闻事件没有内在的联系；即使能够获取某一方面的新闻，也需要用户进入到专题板块或者通过搜索得到</li>
+<li>用户获取的信息是片面的：不同的新闻媒体，特别是国外的媒体，对于同一个事件报道的侧重点是不同的，导致用户有时很难在第一时间对整个事件有一个全面的了解</li>
+</ol>
+<ul>
+<li>我们使用深度学习技术结合关键词提取、文本聚类的方式，从话题、人物事件两个方面将一段时间内发生的新闻事件进行筛选、分类；同时使用深度学习技术对新闻的情感取向进行标注；使得用户一方面能在较短的时间内了解近期发生的重点事件，另一方面也能对某一个热点话题的内容进行多角度、全方面的了解</li>
+</ul>
+</li>
+<li><p>你会借鉴哪些数据或者工具去帮助你的项目的实施;</p>
+<ul>
+<li>语言及工具使用：</li>
+</ul>
+<ol>
+<li>python：用于编写数据获取、分析、整理的相关代码，使用包括keras，nltk，jieba等自然语言处理工具</li>
+<li>JavaScript：用于生成一个向用户展示数据的网页</li>
+</ol>
+<ul>
+<li>数据使用：</li>
+</ul>
+<ol>
+<li>人民网、新华网等主流媒体以及国外媒体的相关疫情报道数据</li>
+<li>BERT预训练模型以及nltk工具内的相关语料库资源</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>项目交付</p>
+<ul>
+<li><p>项目最终以何种形式呈现;</p>
+<ul>
+<li>项目最终以可互动的web网页形式呈现</li>
+</ul>
+</li>
+<li><p>通过怎样的数据指标来衡量项目效果;</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
     <title>sql使用</title>
     <url>/2020/04/11/mysql0/</url>
     <content><![CDATA[<p>mysql的使用大全可以参考<a href="http://c.biancheng.net/view/2433.html" target="_blank" rel="noopener">http://c.biancheng.net/view/2433.html</a></p>
@@ -475,8 +660,8 @@
       </categories>
       <tags>
         <tag>c#</tag>
-        <tag>learning</tag>
         <tag>python</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -1746,8 +1931,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>learning</tag>
         <tag>python</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -1801,8 +1986,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>learning</tag>
         <tag>python</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -3330,9 +3515,9 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>搜索引擎</tag>
         <tag>c#</tag>
         <tag>learning</tag>
+        <tag>搜索引擎</tag>
       </tags>
   </entry>
   <entry>
@@ -3984,8 +4169,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>learning</tag>
         <tag>python</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
