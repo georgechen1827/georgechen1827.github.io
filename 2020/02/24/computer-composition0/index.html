@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">912 words</span>
+            <span class="post-count">6.2k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">3 minutes</span>
+            <span class="post-count">22 minutes</span>
         </span>
     </span>
 </div>
@@ -102,6 +102,8 @@
       
       <p>未完结,持续更新</p>
 <hr>
+<p>网课资源: (智慧树)长春师范大学计算机组成</p>
+<p>参考教材: 清华大学出版社《计算机组成与结构(第5版)》</p>
 <p>课程内容:</p>
 <ul>
 <li>讨论单机系统范围内计算机各部件和系统的组成原理以及内部工作机制</li>
@@ -109,9 +111,9 @@
 <p>课程目标:</p>
 <ul>
 <li>计算机个大部件的组成原理</li>
-<li>…的逻辑实现</li>
-<li>…的设计方法</li>
-<li>…互联构成整体系统的技术</li>
+<li>计算机各大部件的逻辑实现</li>
+<li>计算机各大部件的设计方法</li>
+<li>计算机各大部件互联构成整体系统的技术</li>
 <li>(为后继课程的学习打好基础)</li>
 </ul>
 <p>课程地位: 承上启下</p>
@@ -133,8 +135,8 @@
 </ul>
 <a id="more"></a>
 
-<h2 id="计算机系统概论"><a href="#计算机系统概论" class="headerlink" title="计算机系统概论"></a>计算机系统概论</h2><p>计算机的定义,分类.发展史</p>
-<h3 id="计算机发展简史"><a href="#计算机发展简史" class="headerlink" title="计算机发展简史"></a>计算机发展简史</h3><p>计算机: 能够连续自动进行数值和逻辑运算的机器</p>
+<h1 id="一、计算机系统概论"><a href="#一、计算机系统概论" class="headerlink" title="一、计算机系统概论"></a>一、计算机系统概论</h1><p>计算机的定义,分类.发展史</p>
+<h2 id="1-1-计算机发展简史"><a href="#1-1-计算机发展简史" class="headerlink" title="1.1 计算机发展简史"></a>1.1 计算机发展简史</h2><p>计算机: 能够连续自动进行数值和逻辑运算的机器</p>
 <p>分类:</p>
 <ul>
 <li>原理角度: 数字计算机,模拟计算机</li>
@@ -148,57 +150,373 @@
 <li>1965-1971: 中小规模集成电路,进入文字处理和图形图像处理</li>
 <li>1972-: 大和超大规模集成电路,出现微处理器</li>
 </ul>
-<h3 id="计算机性能指标和层次结构"><a href="#计算机性能指标和层次结构" class="headerlink" title="计算机性能指标和层次结构"></a>计算机性能指标和层次结构</h3><p>NAN</p>
-<h3 id="计算机系统"><a href="#计算机系统" class="headerlink" title="计算机系统"></a>计算机系统</h3><h4 id="硬件系统的组成-冯诺依曼结构-以存储器为中心"><a href="#硬件系统的组成-冯诺依曼结构-以存储器为中心" class="headerlink" title="硬件系统的组成: 冯诺依曼结构,以存储器为中心"></a>硬件系统的组成: 冯诺依曼结构,以存储器为中心</h4><p>存储程序:</p>
+<h2 id="1-2-计算机硬件"><a href="#1-2-计算机硬件" class="headerlink" title="1.2 计算机硬件"></a>1.2 计算机硬件</h2><p>硬件系统的组成: 冯诺依曼结构,以存储器为中心</p>
+<p>特点:</p>
 <ul>
 <li>计算机(硬件)应由运算器,存储器,控制器,输入设备,输出设备组成</li>
 <li>计算机内部采用二进制来表示指令和数据</li>
 <li>将编好的程序和原始数据实现存入存储器中然后再启动计算机工作</li>
 </ul>
-<p><img src="/2020/02/24/computer-composition0/compo0.png" alt="composition">  </p>
-<p>其中:</p>
-<blockquote>
-<p>运算器,控制器一般为cpu<br>存储器一般由主存(内存)和辅存组成<br>cpu和主存一般构成主机<br>运算器: 数据的加工处理<br>控制器: 指令控制,操作控制,时序控制<br>存储器: 存放数据和程序<br>输入设备: 将外部数据送给计算机并转换成计算机能够识别的形式<br>输出设备: 将计算机处理结果送出给外界并转换成外界能够识别的形式</p>
+<p><img src="/2020/02/24/computer-composition0/compo0.jpg" alt="composition">  </p>
+<ul>
+<li>运算器: 数据的加工处理  </li>
+<li>控制器: 指令控制,操作控制,时序控制  </li>
+<li>存储器: 存放数据和程序  </li>
+<li>输入设备: 将外部数据送给计算机并转换成计算机能够识别的形式  </li>
+<li>输出设备: 将计算机处理结果送出给外界并转换成外界能够识别的形式<blockquote>
+<ul>
+<li>运算器,控制器一般为cpu  </li>
+<li>存储器一般由主存(内存)和辅存组成  </li>
+<li>cpu和主存一般构成主机</li>
+</ul>
 </blockquote>
-<ul>
-<li>以运算器为核心的构造: 输入设备的数据得通过运算器才能进入存储器中</li>
-<li>以存储器为核心的构造: 可以提高计算机系统运行的效率</li>
-</ul>
-<h4 id="软件系统的组成-应用软件-系统软件"><a href="#软件系统的组成-应用软件-系统软件" class="headerlink" title="软件系统的组成: 应用软件,系统软件"></a>软件系统的组成: 应用软件,系统软件</h4><p>系统软件:</p>
-<ul>
-<li>操作系统: 硬件软件之间的桥梁</li>
-<li>语言程序</li>
-<li>服务性程序</li>
-<li>DMZ</li>
-</ul>
-<p>软件和硬件之间存在着逻辑等价关系</p>
-<h2 id="计算机中常用的组合逻辑电路"><a href="#计算机中常用的组合逻辑电路" class="headerlink" title="计算机中常用的组合逻辑电路"></a>计算机中常用的组合逻辑电路</h2><h3 id="组合逻辑电路"><a href="#组合逻辑电路" class="headerlink" title="组合逻辑电路"></a>组合逻辑电路</h3><h4 id="三态门"><a href="#三态门" class="headerlink" title="三态门"></a>三态门</h4><p>三态门: 0,1,高阻态Z<br><img src="/2020/02/24/computer-composition0/compo1.png" alt="composition">  </p>
-<h4 id="异或门"><a href="#异或门" class="headerlink" title="异或门"></a>异或门</h4><p><img src="/2020/02/24/computer-composition0/compo2.png" alt="composition"></p>
-<p>异或门应用:</p>
-<ul>
-<li><p>数码比较器(上图)  </p>
-</li>
-<li><p>原码/反码输出电路<br><img src="/2020/02/24/computer-composition0/compo3.png" alt="composition"></p>
-</li>
-<li><p>奇偶检测电路</p>
-</li>
-<li><p>半加器</p>
-</li>
-<li><p>全加器</p>
-</li>
-<li><p>n位加法器</p>
-</li>
-<li><p>超前进位加法器</p>
-</li>
-<li><p>ALU算术逻辑单元</p>
-</li>
-<li><p>译码器</p>
-</li>
-<li><p>数据选择器</p>
 </li>
 </ul>
-<h3 id="时序逻辑电路"><a href="#时序逻辑电路" class="headerlink" title="时序逻辑电路"></a>时序逻辑电路</h3><p>如果逻辑电路的输出状态不但和当时的输入状态有关，而且还与电路在此以前的输入状态有关，称这种电路为时序逻辑电路。</p>
-<hr>
+<blockquote>
+<p>以运算器为核心构造时,输入设备的数据得通过运算器才能进入存储器中;因此以存储器为核心的构造可以提高计算机系统运行的效率</p>
+</blockquote>
+<p>个计算结构时以总线连接起来的: 总线上有地址,数据,控制三种信号线,结构如下:<br><img src="/2020/02/24/computer-composition0/bus0.jpg" alt="bus"></p>
+<h2 id="1-3-计算机软件"><a href="#1-3-计算机软件" class="headerlink" title="1.3 计算机软件"></a>1.3 计算机软件</h2><p>软件和硬件之间存在着逻辑等价关系</p>
+<p>语言: 计算机语言经历了由机器语言-&gt;汇编语言-&gt;高级语言的发展过程</p>
+<p>计算机系统的多级层次结构(由低到高):</p>
+<ul>
+<li>硬件(机器语言级)-&gt;操作系统级-&gt;中间件/平台级-&gt;应用程序级(高级语言)</li>
+</ul>
+<h1 id="二、计算机中常用的组合逻辑电路"><a href="#二、计算机中常用的组合逻辑电路" class="headerlink" title="二、计算机中常用的组合逻辑电路"></a>二、计算机中常用的组合逻辑电路</h1><h2 id="2-1-计算机种常用的组合逻辑电路"><a href="#2-1-计算机种常用的组合逻辑电路" class="headerlink" title="2.1 计算机种常用的组合逻辑电路"></a>2.1 计算机种常用的组合逻辑电路</h2><h3 id="三态门"><a href="#三态门" class="headerlink" title="三态门"></a>三态门</h3><p>三态: 0,1,高阻态Z<br><img src="/2020/02/24/computer-composition0/compo1.jpg" alt="composition"></p>
+<p>三态门通常用于驱动总线,当控制端G=1时,数据线A和总线接通,G=0时,该数据线和总线断开</p>
+<blockquote>
+<p>当总线传输数据时,应当只有一个三态门是正常工作的</p>
+</blockquote>
+<h3 id="异或门"><a href="#异或门" class="headerlink" title="异或门"></a>异或门</h3><p>异或门是计算单元中常用的逻辑电路<br><img src="/2020/02/24/computer-composition0/compo2.jpg" alt="composition"></p>
+<p>常见异或门应用:</p>
+<ul>
+<li>数码比较器 </li>
+<li>原码/反码输出电路  </li>
+<li>奇偶检测电路</li>
+</ul>
+<h3 id="加法器"><a href="#加法器" class="headerlink" title="加法器"></a>加法器</h3><p>加法器是计算机的基本运算部件之一</p>
+<p>半加器不考虑前一位的进位输入:<br><img src="/2020/02/24/computer-composition0/compo3.jpg" alt="composition"></p>
+<p>全加器考虑前一位的进位输入:<br><img src="/2020/02/24/computer-composition0/compo4.jpg" alt="composition"></p>
+<h4 id="串行进位加法器"><a href="#串行进位加法器" class="headerlink" title="串行进位加法器"></a>串行进位加法器</h4><p>将多个全加器串联,可以得到多位的加法器,但后一位的计算需要等前一位计算完成后才能开始,导致加法效率较低  </p>
+<h4 id="超前进位加法器"><a href="#超前进位加法器" class="headerlink" title="超前进位加法器"></a>超前进位加法器</h4><p>超前进位产生电路通过迭代各位进位的产生式,得到直接产生各位进位的表达式来实现的;后一位的进位无需等待前一位的进位就可以产生,高效但需要使用更多的组合逻辑单元</p>
+<p>原理如下:</p>
+<ol>
+<li>考虑第每一位进位ci的产生条件:<br>$X_i,Y_i$均为1,或$X_i,Y_i$有一个为1且$C_{i-1}$为1,即<br>$C_i=X_iY_i+(X_i+Y_i)C_{i-1}$</li>
+<li>由$C_1=X_1Y_1+(X_1+Y_1)C_0$不停对$C_i$进行迭代化简,得到:<br>$$C_i=X_iY_i+\sum_{n=i-1}^1(X_nY_n\prod_{k=i}^{n}(X_k+Y_k))+C_0\prod_{k=i}^{1}(X_k+Y_k)$$<br>如:$C_4=X_4Y_4+(X_4+Y_4)X_3Y_3+(X_4+Y_4)(X_3+Y_3)X_2Y_2+…+..C_0$</li>
+<li>定义进位传递函数$P_i=X_i+Y_i$,表明$X_i,Y_i$有一个为1时,将前一位进位传给下一位,达到一种进位传递的效果<br>定义进位产生函数$G_i=X_iY_i$,表明$X_i,Y_i$都为1时,无论$P_i$如何必定向高位产生进位<br>如,此时$C_3=G_3+P_3G_2+P_3P_2G_1+P_3P_2P_1C_0$</li>
+<li>将各进位改成与非式,画出电路图,如下<br><img src="/2020/02/24/computer-composition0/compo5.jpg" alt="composition"></li>
+</ol>
+<h4 id="ALU算数逻辑单元"><a href="#ALU算数逻辑单元" class="headerlink" title="ALU算数逻辑单元"></a>ALU算数逻辑单元</h4><p>考虑到超前进位电路的复杂程度是随着位数呈指数增加,一般可以将4位超前进位电路封装成算数逻辑单元,然后再通过组间的串行或超前进位组成16位的ALU</p>
+<p>16位快速ALU:组间快速进位<br><img src="/2020/02/24/computer-composition0/compo6.jpg" alt="composition"></p>
+<ul>
+<li>$G_n=(片内)G_3+P_3G_2+P_3P_2G_1+P_3P_2P_1G_0$</li>
+<li>$P_n=(片内)P_3P_2P_1P_0$</li>
+<li>$C_11=G_{N_2}+P_{N_2}G_{N_1}+P_{N_2}P_{N_1}G_{N_0}+P_{N_2}P_{N_1}P_{N_0}C_n$,依次类推</li>
+</ul>
+<p>相比于组间串行进位,最高位进位需要等待前三次进位;16位快速ALU只需要等待一次片内的进位即可;ALU在保证一定运行速度间的同时使得电路规模没有过大</p>
+<h3 id="译码器"><a href="#译码器" class="headerlink" title="译码器"></a>译码器</h3><p>由n个输入,最多$2^n$个输出组合而成的逻辑电路,包含:</p>
+<ul>
+<li>$\overline E$:使能端,一般低有效</li>
+<li>$A,B,C(A_1,A_2,A_3)…$:输入端,高有效</li>
+<li>$Y_1,Y_2,…,Y_8,…$:输出端,一般低有效</li>
+</ul>
+<p>通常将使能端连接另一个译码器的输出(CS:芯片选择功能),可以将译码器的译码范围进行扩展</p>
+<h3 id="数据选择器"><a href="#数据选择器" class="headerlink" title="数据选择器"></a>数据选择器</h3><p>由$2^n$个输入,n个输出组合而成的逻辑电路,包含:</p>
+<ul>
+<li>$\overline G_1,\overline G_2$(双数据选择器):使能信号,由一个三态门控制,一般低有效</li>
+<li>$S_0,S_1$:通道选择端,高有效</li>
+<li>$D_0,D_1,D_2,D_3,…,D_7$(双4选1):通道输入端</li>
+<li>$Y_1,Y_2$:输出端,输出所选择通道的电位</li>
+</ul>
+<p>在保证$\overline G_1,\overline G_2$反相的情况下,可以连接$Y_1,Y_2$来扩展选择通道数</p>
+<h2 id="2-2-时序逻辑电路"><a href="#2-2-时序逻辑电路" class="headerlink" title="2.2 时序逻辑电路"></a>2.2 时序逻辑电路</h2><p>如果逻辑电路的输出状态不但和当时的输入状态有关，而且还与电路在此以前的输入状态有关，称这种电路为时序逻辑电路。</p>
+<h3 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h3><h4 id="电位触发器"><a href="#电位触发器" class="headerlink" title="电位触发器"></a>电位触发器</h4><p><img src="/2020/02/24/computer-composition0/compo7.jpg" alt="composition"></p>
+<p>普通触发器存在触发不能被同步的问题</p>
+<h4 id="边沿D触发器"><a href="#边沿D触发器" class="headerlink" title="边沿D触发器"></a>边沿D触发器</h4><p>每当经过一个时钟周期时(CP上升沿或下降沿):<br>$Q^n=D$</p>
+<p>边沿触发器存在空翻问题</p>
+<h4 id="主从JK触发器"><a href="#主从JK触发器" class="headerlink" title="主从JK触发器"></a>主从JK触发器</h4><p>$Q^n=J \overline Q + \overline K Q$</p>
+<h3 id="移位寄存器"><a href="#移位寄存器" class="headerlink" title="移位寄存器"></a>移位寄存器</h3><p><img src="/2020/02/24/computer-composition0/compo8.jpg" alt="composition"></p>
+<p>每当经过一个时钟周期时,移位寄存器向最低位读取数据,将最高位数据输出,并进行移位</p>
+<h3 id="计数器"><a href="#计数器" class="headerlink" title="计数器"></a>计数器</h3><p>每当经过一个时钟周期,将计数加1,计数满则清零并输出进位信息</p>
+<ul>
+<li>$\overline R_D$:异步清零信号,一般低有效</li>
+<li>$L$:同步置数信号,高有效</li>
+<li>$Q_1,Q_2,…$:同步置数端</li>
+<li>$P,T$:计数使能信号,均高有效,否则为保持状态</li>
+<li>$CK$:时钟信号</li>
+<li>$RC$:进位信号</li>
+</ul>
+<h2 id="2-3-阵列逻辑电路"><a href="#2-3-阵列逻辑电路" class="headerlink" title="2.3 阵列逻辑电路"></a>2.3 阵列逻辑电路</h2><p>阵列逻辑电路表明逻辑元件以阵列的形式在硅芯片上排列</p>
+<h3 id="只读存储器ROM"><a href="#只读存储器ROM" class="headerlink" title="只读存储器ROM"></a>只读存储器ROM</h3><p>存储器:</p>
+<ul>
+<li>字:放置信息的单元,由多个位组成</li>
+<li>位:一个二进制信息</li>
+<li>地址(码):存储器中每个字的编号,用于寻找存入存储器的字</li>
+</ul>
+<p>ROM主要由地址译码器和存储单元体构成,通过在每个位置设置或不设置三极管、二极管、熔丝等元件来表示存入的二进制信息<br><img src="/2020/02/24/computer-composition0/rom0.jpg" alt="rom"><br><img src="/2020/02/24/computer-composition0/rom1.jpg" alt="rom"><br>由上图可以看出,ROM存储的是一种主析取范式的表达式</p>
+<p>ROM主要有如下两个缺陷:</p>
+<ul>
+<li>ROM实际存储的字数常少于它所能提供的字数,造成存储单元的闲置和芯片面积的浪费</li>
+<li>ROM中的地址和字之间有一一对应的关系,在存储大量重复内容时不能灵活节省空间</li>
+</ul>
+<h3 id="可编程序逻辑阵列PLA"><a href="#可编程序逻辑阵列PLA" class="headerlink" title="可编程序逻辑阵列PLA"></a>可编程序逻辑阵列PLA</h3><ul>
+<li>相比于ROM,PLA能用较少的存储单元存储大量的信息</li>
+<li>ROM存储的是一种主析取范式的表达式,而PLA可以存储最简的与或式,因此可以节省一些存储资源的消耗<br><img src="/2020/02/24/computer-composition0/rom2.jpg" alt="rom"> </li>
+</ul>
+<h3 id="可编程序阵列逻辑PAL"><a href="#可编程序阵列逻辑PAL" class="headerlink" title="可编程序阵列逻辑PAL"></a>可编程序阵列逻辑PAL</h3><ul>
+<li>PAL中的与阵列是可编程的,但或阵列不可编程;而在PAL中,两者都可以编程,还有一些PAL中带有记忆元件或反馈电路</li>
+</ul>
+<p><img src="/2020/02/24/computer-composition0/pal0.jpg" alt="pal"></p>
+<h3 id="通用阵列逻辑GAL"><a href="#通用阵列逻辑GAL" class="headerlink" title="通用阵列逻辑GAL"></a>通用阵列逻辑GAL</h3><ul>
+<li>ROM,PLA,PAL是一次性编程的,编程后不能修改</li>
+<li>GAL是一种可用电擦除的,可重复编程的高速PLD(可编程逻辑电路)</li>
+<li>可重复擦写100次以上,数据可保存20年以上,数秒内即可完成擦除和编程的过程</li>
+</ul>
+<h3 id="门阵列GA-宏单元阵列MCA，标准单元阵列SCA"><a href="#门阵列GA-宏单元阵列MCA，标准单元阵列SCA" class="headerlink" title="门阵列GA,宏单元阵列MCA，标准单元阵列SCA"></a>门阵列GA,宏单元阵列MCA，标准单元阵列SCA</h3><ul>
+<li>这些芯片是用来实现批量较大的专用集成电路的</li>
+<li>这三种芯片内部的单元都是以阵列形式排列的</li>
+</ul>
+<h4 id="门阵列"><a href="#门阵列" class="headerlink" title="门阵列"></a>门阵列</h4><p>门阵列设计利用预先制造好的“母片”来进行布图设计;母片上通常以一定的间距成行成列的排列着基本单元电路。</p>
+<ul>
+<li>这样可以降低设计成本,缩短设计周期:因为母片已完成了整个集成电路制造工艺的大部分流程,剩下只要进行布线连接,就可以实现各种逻辑需求</li>
+<li>门阵列器件是一种半用户器件或半定制器件</li>
+</ul>
+<h4 id="宏单元阵列"><a href="#宏单元阵列" class="headerlink" title="宏单元阵列"></a>宏单元阵列</h4><p>宏单元阵列是一种对门阵列的改进,逻辑功能更强,布图密度更高,制造周期更短</p>
+<h4 id="标准单元阵列"><a href="#标准单元阵列" class="headerlink" title="标准单元阵列"></a>标准单元阵列</h4><p>标准单元以预先设计好的功能单元(如门,触发器,加法器等)为基础进行设计生产</p>
+<ul>
+<li>不同于门阵列那样事先生产半成品芯片;在标准单元阵列中,所有单元都是根据用户逻辑图的需要安排在芯片上。</li>
+<li>标准单元阵列是定制器件而非半定制器件,但布局布线更易于实现</li>
+</ul>
+<h3 id="现场可编程序门阵列FPGA"><a href="#现场可编程序门阵列FPGA" class="headerlink" title="现场可编程序门阵列FPGA"></a>现场可编程序门阵列FPGA</h3><ul>
+<li>FPGA由大规模集成电路构成，门电路数达到几万个到几百万个</li>
+<li>它主要由四个部分组成：<blockquote>
+<ul>
+<li>可编程序逻辑宏单元(CLB)</li>
+<li>可编程序输入输出宏单元(IOB)</li>
+<li>互连资源</li>
+<li>重构逻辑的程序存储器: 可以允许多次逻辑的修改,适合在在产品试验或生产批蜇不大时使用</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h1 id="三、运算方法和运算部件"><a href="#三、运算方法和运算部件" class="headerlink" title="三、运算方法和运算部件"></a>三、运算方法和运算部件</h1><h2 id="3-1-数值型数据的表示方法和转换"><a href="#3-1-数值型数据的表示方法和转换" class="headerlink" title="3.1 数值型数据的表示方法和转换"></a>3.1 数值型数据的表示方法和转换</h2><ul>
+<li>数制: $ (D_m…D_0.D_{-1} .. D_{-k})i $ 是一个i进制数,可以表示成 $ \sum_{n=-k}^mD_n*i^n $,其中i称为基数或底</li>
+</ul>
+<h3 id="不同数制之间的数据转换"><a href="#不同数制之间的数据转换" class="headerlink" title="不同数制之间的数据转换"></a>不同数制之间的数据转换</h3><h4 id="二进制-八进制-和十六进制转换"><a href="#二进制-八进制-和十六进制转换" class="headerlink" title="二进制,八进制,和十六进制转换"></a>二进制,八进制,和十六进制转换</h4><ul>
+<li>二进制转八进制: 从小数点向两边三位成一组转换</li>
+<li>二进制转十六进制: 从小数点向两边四位成一组转换</li>
+</ul>
+<h4 id="二进制-十进制的转换"><a href="#二进制-十进制的转换" class="headerlink" title="二进制,十进制的转换"></a>二进制,十进制的转换</h4><ul>
+<li>二进制转十进制用公式$ \sum_{n=-k}^mD_n*2^n $</li>
+<li>十进制转二进制用除2取余法(整数部分)和乘2取整法(小数部分)</li>
+</ul>
+<h3 id="十进制数的编码与运算"><a href="#十进制数的编码与运算" class="headerlink" title="十进制数的编码与运算"></a>十进制数的编码与运算</h3><h4 id="有权码"><a href="#有权码" class="headerlink" title="有权码"></a>有权码</h4><p>如8421,5421,2421BCD编码</p>
+<ul>
+<li>注意,这种编码是对十进制的每一位进行编码运算,而不是对整个十进制数的运算</li>
+</ul>
+<h4 id="无权码"><a href="#无权码" class="headerlink" title="无权码"></a>无权码</h4><p>如余3码,格雷码(循环码)</p>
+<h2 id="3-2-带符号的二进制数在计算机中的表示方法及加减运算"><a href="#3-2-带符号的二进制数在计算机中的表示方法及加减运算" class="headerlink" title="3.2 带符号的二进制数在计算机中的表示方法及加减运算"></a>3.2 带符号的二进制数在计算机中的表示方法及加减运算</h2><ul>
+<li>计算机中表示的带符号的二进制数称为机器数</li>
+<li>机器数有原码,补码,反码三种表示方式</li>
+<li>这里,假设机器数的真值为[-1,1]的小数,小数部分为数值,整数部分为符号<blockquote>
+<p>如:1.0100=10100</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="原码-反码-补码及其加减运算"><a href="#原码-反码-补码及其加减运算" class="headerlink" title="原码,反码,补码及其加减运算"></a>原码,反码,补码及其加减运算</h3><h4 id="原码表示"><a href="#原码表示" class="headerlink" title="原码表示"></a>原码表示</h4><ul>
+<li>原码最高位是符号位,0表示正数,1表示负数</li>
+<li>其他位是数值位,以绝对值的方式给出</li>
+<li>数值0有+0和-0两种原码表示,即0.0000和1.0000</li>
+</ul>
+<p>原码的加减法需要判断正负号,比较麻烦</p>
+<h4 id="反码表示"><a href="#反码表示" class="headerlink" title="反码表示"></a>反码表示</h4><p>正数不变;负数反码在原码的基础上,符号位不变,其他位取反</p>
+<ul>
+<li>反码的反码是原码</li>
+<li>运算时，当最高位有进位而丢掉进位时,要在最低位加1(循环进位)。</li>
+</ul>
+<h4 id="补码表示"><a href="#补码表示" class="headerlink" title="补码表示"></a>补码表示</h4><p>正数不变;负数补码在反码的基础上,数值加1</p>
+<ul>
+<li>数值0的补码形式是唯一的,为0.0000</li>
+<li>补码的补码是原码</li>
+</ul>
+<p>补码在运算中有如下性质:</p>
+<ul>
+<li>符号位与数值位一样参与运算</li>
+<li>补码运算的结果仍为补码</li>
+<li>[X]补+[Y]补=[X+Y]补</li>
+<li>[X]补-[Y]补=[X]补+[-Y]补</li>
+<li>注意,Y与-Y正负号不同,求补码的策略也不同</li>
+<li>补码运算时最高位产生的进位直接舍去即可</li>
+</ul>
+<h3 id="加减运算的溢出处理"><a href="#加减运算的溢出处理" class="headerlink" title="加减运算的溢出处理"></a>加减运算的溢出处理</h3><p>溢出:运算结果超出机器数所能表示的范围</p>
+<ul>
+<li>异号相加或同号相减结果是不会溢出的,只考虑同号相加或异号相减的情况</li>
+<li>注意,最高位是否产生进位和运算结果是否溢出没有关系</li>
+</ul>
+<p>溢出判断有如下几种方法:</p>
+<ul>
+<li>同号两数相加,结果符号与两加数不相同,则溢出<blockquote>
+<p>$\overline f_A \overline f_B f_S + f_A f_B \overline f_S = 1,其中,f_A f_B f_S$分别为两运算数的符号和结果的符号</p>
+</blockquote>
+</li>
+<li>最高位进位和符号位进位不相同,则溢出<ul>
+<li>即,运算正确的情况下,最高位(符号位的前一位)的进位一定要导致符号位进<blockquote>
+<p>$C \overline C_f +\overline  C C_f = 1; 其中C,C_f$分别是最高位的进位和符号位的进位</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>采用双符号位运算,正数符号为00,负数为11,此时当结果的两个符号位不同时,溢出<blockquote>
+<p>$\overline f_{S2} f_{S1} + f_{S2} \overline f_{S1} = 1,其中f_{S2},f_{S1}$分别是两位符号位</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="定点数和浮点数"><a href="#定点数和浮点数" class="headerlink" title="定点数和浮点数"></a>定点数和浮点数</h3><p>在计算机中的数据有定点数和浮点数两种表示方式</p>
+<h4 id="定点数"><a href="#定点数" class="headerlink" title="定点数"></a>定点数</h4><p>定点数指小数点固定在某个位置上的数据,前面加减法中讨论的为定点数</p>
+<h4 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h4><p>浮点数指小数点位置可以浮动的数据,可以用$N = M*R^E$表示</p>
+<ul>
+<li>N为浮点数,M为尾数,E为阶码,R为阶的基数;一般情况下一个计算机中的R都是相同的,无需存储</li>
+</ul>
+<p>浮点数在计算机中一般以这样的形式显示:$M_S$–$E$–$M$</p>
+<ul>
+<li>$M_S$: 尾数的符号位(一般为一位),设置在最高位</li>
+<li>$E$: 阶码,有n+1位,一般为整数,第一位为符号位</li>
+<li>$M$: 尾数,有m位,和前面的$M_S$一同组成一个定点小数<blockquote>
+<ul>
+<li>规格化尾数:当R=2(二进制数)且尾数不为0时,其绝对值应大于或等于十进制的0.5(即最高位应当为1);对非规格化浮点数,需要将尾数左移或右移,并改变阶码使其满足规格化要求  <blockquote>
+<p>如:0.0011 —&gt; (0.11)*2^(0010)</p>
+</blockquote>
+</li>
+<li>机器零值:表示比机器数能表示的最小数还要小的值</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>浮点数国际标准: IEEE 754</p>
+<ul>
+<li>单精度浮点数(32位):阶码8位,尾数24位(含一位符号位)</li>
+<li>双精度浮点数(64位):阶码11位,尾数53位(含一位符号位)</li>
+<li>浮点数基数为2,阶码采用增码(移码),尾数采用原码</li>
+<li>而在多数通用机中，浮点数的尾数用原码或补码表示，阶码用补码或移码表示。</li>
+<li>注意,由于规格化后的原码最高位恒为1,存储时自动省略,需要在计算时自己加上去<blockquote>
+<ul>
+<li>移码:在补码基础上,将符号位取反;在阶码上的移码只执行加减运算,且需要对结果进行修正</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="数值范围和精度"><a href="#数值范围和精度" class="headerlink" title="数值范围和精度"></a>数值范围和精度</h3><p>数值范围指机器所能表示的一个数的最大值和最小值;精度是指一个数的有效位数</p>
+<ul>
+<li>32位定点小数(补码):$-1$(1000…)~$1-2^{-31}$(0111…)</li>
+<li>32位定点整数(补码):$-2^{31}$(1000…)~$2^{31}-1$(0111…)</li>
+<li>32位单精度浮点数:$-2^{127}$~$(1-2^{-23})*2^{127}$,精度为24位</li>
+</ul>
+<h2 id="3-3-二进制乘法运算"><a href="#3-3-二进制乘法运算" class="headerlink" title="3.3 二进制乘法运算"></a>3.3 二进制乘法运算</h2><h3 id="定点数一位乘法"><a href="#定点数一位乘法" class="headerlink" title="定点数一位乘法"></a>定点数一位乘法</h3><h4 id="定点原码一位乘"><a href="#定点原码一位乘" class="headerlink" title="定点原码一位乘"></a>定点原码一位乘</h4><p>人工算法:<br><img src="/2020/02/24/computer-composition0/multi0.jpg" alt="multipy"></p>
+<p>机器算法:<br><img src="/2020/02/24/computer-composition0/multi1.jpg" alt="multipy"></p>
+<ul>
+<li>在机器中,有3个寄存器ABC,分别存放部分积,被乘数和乘数的绝对值,其中部分积和被乘数都以双符号位表示;具体过程如下:</li>
+</ul>
+<ol>
+<li>初始化:A寄存器清零,被乘数X放在B中,n位乘数Y放在C中,Cd初始值设为n(用于判断C是否被乘完)</li>
+<li>判断C的最低为是否为1,是则将A+B赋给A</li>
+<li>将{A,C}向右移一位(A高位补符号位),此时A的最低位进入C的最高位,C的最低位丢失</li>
+<li>Cd减1,若减1后Cd仍不为0,转2.继续进行循环</li>
+<li>计算A的最高符号位,其为被乘数和乘数符号位的异或</li>
+<li>得出结果,此时结果的高位在A中,低位在C中</li>
+</ol>
+<p>示意图如下,其中被乘数X=0.1101,乘数Y=0.1011<br><img src="/2020/02/24/computer-composition0/multi2.jpg" alt="multipy"><br>得到X*Y=0.10001111</p>
+<h4 id="定点补码一位乘"><a href="#定点补码一位乘" class="headerlink" title="定点补码一位乘"></a>定点补码一位乘</h4><p>由于计算机中机器数常以补码形式存在,可以直接使用补码相乘</p>
+<p>补码相乘规则如下:</p>
+<blockquote>
+<p>设被乘数$[X]_补=X_0.X_1X_2…X_n$,乘数$[Y]_补=Y_0.Y_1Y_2…Y_n$,则有:<br>$$ [X*Y]_补=[X]_补*(0.Y_1Y_2…Y_n)-[X]_补*Y_0 $$<br>可见,如果$Y$为负数,需要补充进行$-[X]_补$操作</p>
+</blockquote>
+<p>布斯补码乘法规则如下:</p>
+<blockquote>
+<p>考虑相邻的两位$Y_{i+1}$和$Y_i$(乘数的最后一位和倒数第二位),将定点原码一位乘中的2.3.策略改成如下</p>
+<ul>
+<li>最后两位为00或11,{A,C}右移一位</li>
+<li>最后两位为01,将部分积A增加$[X]_补$,{A,C}右移一位</li>
+<li>最后两位为10,将部分积A增加$[-X]_补$,{A,C}右移一位</li>
+<li>最后一步运算结束后不需要移位<br>计算时,乘数末位需要添加附加位$Y_{n+1}=0$</li>
+</ul>
+</blockquote>
+<p>示意图如下,其中被乘数X=-0.1101,乘数Y=0.1011,即[X]补=11.0011,[Y]补=0.1011,[-X]补=00.1101:<br><img src="/2020/02/24/computer-composition0/multi3.jpg" alt="multipy"> </p>
+<h3 id="定点数二位乘"><a href="#定点数二位乘" class="headerlink" title="定点数二位乘"></a>定点数二位乘</h3><p>相比于定点一位乘法,定点数二位乘按乘数每两位的取值情况，一次求出对应于该两位的部分积。此时，只要增加少拭逻辑电路，就可使乘法速度提高一倍。 </p>
+<h3 id="阵列乘法器"><a href="#阵列乘法器" class="headerlink" title="阵列乘法器"></a>阵列乘法器</h3><p>为了进一步提高乘法运算速度，可采用类似于人了计算的方法，用一个阵列乘法器完成乘法运算</p>
+<h2 id="3-4-二进制除法运算"><a href="#3-4-二进制除法运算" class="headerlink" title="3.4 二进制除法运算"></a>3.4 二进制除法运算</h2><h3 id="定点除法运算"><a href="#定点除法运算" class="headerlink" title="定点除法运算"></a>定点除法运算</h3><h4 id="恢复余数法"><a href="#恢复余数法" class="headerlink" title="恢复余数法"></a>恢复余数法</h4><p>人工算法:<br><img src="/2020/02/24/computer-composition0/div0.jpg" alt="div"> </p>
+<p>机器算法:(要求被除数小于除数,即除法结果应小于1)</p>
+<ul>
+<li>使用3个寄存器ABC,存放余数(被除数),除数和商的绝对值,商的符号独立计算</li>
+</ul>
+<ol>
+<li>初始化:被除数X放在A中,n位除数Y放在B中,C寄存器清零,计数器i=n+1,若X&gt;Y,则溢出</li>
+<li>将A减去B;若余数大于等于0,则商C中的最低位上1,否则上0并恢复余数</li>
+<li>i减1,若减1后i仍不为0,将A,C左移一位,重复2.过程</li>
+<li>计算C的最高符号位,其为被除数和除数符号位的异或</li>
+<li>得出结果,此时商在C中,余数在A中</li>
+</ol>
+<p>示意图如下,其中被除数X=0.1011,Y=0.1101,即[Y]补=00.1101, [-Y]补=11.0011:<br><img src="/2020/02/24/computer-composition0/div1.jpg" alt="div"><br>得到结果X/Y=0.1101,余数位0.0111</p>
+<h4 id="加减交替法"><a href="#加减交替法" class="headerlink" title="加减交替法"></a>加减交替法</h4><p>加减交替法省略了恢复余数的操作,将恢复余数法中的2.策略改成如下</p>
+<blockquote>
+<ul>
+<li>若A&gt;0,则将A减去B;结果余数A&gt;0,则商C中的最低位上1,否则上0(此时下一步就会执行减法操作)</li>
+<li>若A&lt;0,则将A加上B;若余数A&gt;0,则商C中的最低位上1,否则上0<br>此时若最后一次上商为0,在计算余数时,依然需要为最后一步恢复余数</li>
+</ul>
+</blockquote>
+<p>示意图如下,其中被除数X=0.1011,Y=0.1101,即[-Y]补=11.0011:<br><img src="/2020/02/24/computer-composition0/div2.jpg" alt="div">  </p>
+<ul>
+<li>实际上在上述除法运算策略中,被除数的位数可以是除数的两倍,初始化时其高位放在A中,低位在C中,在左移操作时将C中的高位移入A中的低位</li>
+</ul>
+<h3 id="提高除法运算速度的方法"><a href="#提高除法运算速度的方法" class="headerlink" title="提高除法运算速度的方法"></a>提高除法运算速度的方法</h3><ul>
+<li>跳0跳1除法</li>
+<li>除法运算通过乘法操作来实现</li>
+</ul>
+<h2 id="3-5-浮点数的运算方法"><a href="#3-5-浮点数的运算方法" class="headerlink" title="3.5 浮点数的运算方法"></a>3.5 浮点数的运算方法</h2><h3 id="浮点数的加减法运算"><a href="#浮点数的加减法运算" class="headerlink" title="浮点数的加减法运算"></a>浮点数的加减法运算</h3><p>考虑两个浮点数$X = M_X*2^E_X, Y = X = M_Y*2^E_Y$的运算</p>
+<p>浮点数加减法运算需要如下五个过程:</p>
+<ol>
+<li>对阶操作,使得两个浮点数阶码相等(注意阶码是移码)<blockquote>
+<ul>
+<li>小阶向大阶对齐,将阶码小的数位数右移$\Delta$E位,使其阶码变成E(一般对于补码尾数,符号位参加移位,高位补符号位;但对于原码尾数对阶,符号位不参加移位,高位补0),右移所丢失的位可以保留下来以供舍入操作</li>
+</ul>
+</blockquote>
+</li>
+<li>尾数加减,即通常的尾数加减(两个符号位)</li>
+<li>(补码)结果规格化操作<blockquote>
+<ul>
+<li>右规: 运算结果两个符号位的值不同,即运算尾数向上溢出,需要将尾数结果右移一位(高位补符号位),阶码E+1</li>
+<li>左规: 运算结果最高数值位与符号位相同(补码),应将尾数连续左移直到最高位数值与符号位不同,并减去相应阶码</li>
+</ul>
+</blockquote>
+</li>
+<li>舍入操作: 用于右规和对阶操作时低位舍去的处理<blockquote>
+<ul>
+<li>截断法: 直接丢掉低位</li>
+<li>置1法: 舍去后最低位直接置1</li>
+<li>0舍1入法: 若舍去的最高位为1,则它前面的最低为加1,这是常用方法</li>
+</ul>
+</blockquote>
+</li>
+<li>检查阶码是否溢出: 在规格化和舍入时阶码可能发生溢出情况<blockquote>
+<ul>
+<li>阶码向下溢出: 运算结果为机器零</li>
+<li>阶码向上溢出: 置溢出标记</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<p>具体流程图如下:<br><img src="/2020/02/24/computer-composition0/float0.jpg" alt="float"></p>
+<h3 id="浮点数的乘除法运算"><a href="#浮点数的乘除法运算" class="headerlink" title="浮点数的乘除法运算"></a>浮点数的乘除法运算</h3><h4 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h4><ol>
+<li>检测操作数是否为0，若其中有一个操作数为0，则置结果为0；</li>
+<li>阶码相加，阶符相同的加可能会溢出，若溢出，则作溢出处理；(阶码一般是移码)</li>
+<li>尾数相乘；</li>
+<li>尾数乘积规格化,只有左规.</li>
+<li>舍入</li>
+<li>截断处理:无条件地丢掉正常尾数最低位之后的全部数值</li>
+<li>舍入处理:运算过程中保留右移中移出的若干高位的值,然而再按某种规则用这些位上的值修正尾数</li>
+<li>判溢出</li>
+</ol>
+<h4 id="除法"><a href="#除法" class="headerlink" title="除法"></a>除法</h4><p>浮点数除法运算与乘法运算类似,也分求商的阶码、尾数相除、规格化、舍入和判溢这几个步骤</p>
+<h2 id="3-6-运算部件"><a href="#3-6-运算部件" class="headerlink" title="3.6 运算部件"></a>3.6 运算部件</h2><hr>
 <p><em>待更新…</em></p>
 
       
@@ -206,7 +524,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/computer-composition0/" data-id="ck8x4p9zp000cssvn0j5khpf2"
+      <a data-url="http://georgechen1827.github.io/2020/02/24/computer-composition0/" data-id="ck90lisuw0006wcvn1x46cu4q"
         class="article-share-link">share</a>
         
       
