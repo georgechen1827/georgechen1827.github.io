@@ -1,6 +1,300 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>数据库原理与设计(高级篇)</title>
+    <url>/2020/04/16/data-base1/</url>
+    <content><![CDATA[<p>未完结,持续更新</p>
+<hr>
+<p>任课教师: 赵朋朋<a href="http://web.suda.edu.cn/ppzhao/" target="_blank" rel="noopener">http://web.suda.edu.cn/ppzhao/</a></p>
+<p>网课资源: 慕课中国人民大学数据库系统概论<a href="https://www.icourse163.org/course/RUC-488001" target="_blank" rel="noopener">https://www.icourse163.org/course/RUC-488001</a></p>
+<p>参考教材: 高等教育出版社《数据库系统概论(第5版)》</p>
+<p>课程主要讲述关系型数据库的原理, 不着重于具体数据库的使用</p>
+<p>在高级篇中,从管理系统的角度来介绍DBMS系统,用使用和应用的角度来讲解数据库设计的方法</p>
+<p>数据库原理与设计(基础篇)见<a href="http://georgechen.top/2020/02/27/data-base0/" target="_blank" rel="noopener">http://georgechen.top/2020/02/27/data-base0/</a></p>
+<h1 id="六、关系数据理论"><a href="#六、关系数据理论" class="headerlink" title="六、关系数据理论"></a>六、关系数据理论</h1><h2 id="6-1-关系数据理论的提出"><a href="#6-1-关系数据理论的提出" class="headerlink" title="6.1 关系数据理论的提出"></a>6.1 关系数据理论的提出</h2><p>需要解决的问题:怎么根据具体问题构造出一个合适的数据模式;即,什么是一个好的数据库逻辑设计</p>
+<p>好的关系模式不会因为数据冗余而发生:</p>
+<ul>
+<li>存储空间浪费</li>
+<li>更新异常</li>
+<li>插入异常</li>
+<li>删除异常<blockquote>
+<p>因此,好的关系模式数据冗余应尽可能少(但较少的冗余度可能会降低增删改查时的效率)</p>
+</blockquote>
+</li>
+</ul>
+<p>问题的根源:数据依赖</p>
+<h3 id="数据依赖"><a href="#数据依赖" class="headerlink" title="数据依赖"></a>数据依赖</h3><p>数据库中,数据依赖是完整性约束的一种表现形式,是数据库模式设计的关键</p>
+<ul>
+<li>限定属性的取值范围</li>
+<li>定义属性间的相互关联(一般以相等关系体现)</li>
+</ul>
+<p>现实生活中,数据依赖是</p>
+<ul>
+<li>现实世界属性间相互联系的抽象</li>
+<li>数据内在的性质</li>
+<li>语义的体现</li>
+</ul>
+<p>数据依赖的类型</p>
+<ul>
+<li>函数依赖FD</li>
+<li>多值依赖MVD</li>
+<li>连接依赖</li>
+<li>…</li>
+</ul>
+<p>不适合的数据依赖会造成插入、删除、更新异常和数据冗余问题</p>
+<h3 id="关系模式的简化表示"><a href="#关系模式的简化表示" class="headerlink" title="关系模式的简化表示"></a>关系模式的简化表示</h3><p>$R&lt;U,F&gt;$是一个简化表示的关系模式</p>
+<ul>
+<li>$U$:关系的属性集合</li>
+<li>$F$: 属性间数据依赖的关系集合<blockquote>
+<p>当且仅当$U$上的一个关系r满足$F$时,r为关系模式$R$的一个关系</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="6-2-规范化"><a href="#6-2-规范化" class="headerlink" title="6.2 规范化"></a>6.2 规范化</h2><h3 id="函数依赖"><a href="#函数依赖" class="headerlink" title="函数依赖"></a>函数依赖</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>设R(U)是一个属性集U上的关系模式，X和Y是U的子集.若对于R(U)的任意一个可能的关系r，r中不可能存在两个元组在X上的属性值相等， 而在Y上的属性值不等;则称“X函数确定Y”或“Y函数依赖于X”，记作X→Y。X称为这个函数依赖的决定属性组，也称为决定因素(Determinant)。</p>
+<ul>
+<li>Y依赖于X:X相等则Y相等</li>
+<li>X确定了那么Y也确定了</li>
+</ul>
+<p>注意: </p>
+<ul>
+<li>函数依赖是语义范畴的概念,只能根据数据的语义来确定函数依赖,而不能根据数据的具体形式来反推可能的函数依赖</li>
+<li>函数依赖确定后,所有的关系实例都要满足该约束条件<blockquote>
+<p>当然,数据库设计者可以对现实世界做强制的规定来使得某两个属性产生函数依赖;如:不允许有学生重名,则学生的其他信息可以依赖于学生姓名</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="平凡函数依赖和非平凡函数依赖"><a href="#平凡函数依赖和非平凡函数依赖" class="headerlink" title="平凡函数依赖和非平凡函数依赖"></a>平凡函数依赖和非平凡函数依赖</h4><ul>
+<li>$X\to Y,Y\subseteq X,X\to Y$为非平凡函数依赖</li>
+<li>$X\to Y,Y\not \subseteq X,X\to Y$为平凡函数依赖</li>
+</ul>
+<p>对于任一关系模式，平凡函数依赖都是必然成立的，它不反映新的语义，因此若不特别声明， 我们总是讨论非平凡 函数依赖。</p>
+<h4 id="完全函数依赖与部分函数依赖"><a href="#完全函数依赖与部分函数依赖" class="headerlink" title="完全函数依赖与部分函数依赖"></a>完全函数依赖与部分函数依赖</h4><ul>
+<li>$X\to Y$,且对于任意的$X’ \subsetneq X,X \not \to Y$,则$X\to Y$为完全函数依赖,记作$X$-F-&gt;$Y$(Full)</li>
+<li>非完全函数依赖记作$X$-P-&gt;$Y$(Part)<blockquote>
+<p>注意,X是一个属性的集合</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="传递函数依赖"><a href="#传递函数依赖" class="headerlink" title="传递函数依赖"></a>传递函数依赖</h4><ul>
+<li>$X\to Y,Y \to Z 且 Y \not \subseteq X,Y \not \to X$时,称Z传递函数依赖于X,X传递(函数)确定Z,记作$X$-传递-&gt;$Z$<blockquote>
+<p>注意,若$Y\to X$,则$Z$直接依赖于$X$</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="多值依赖"><a href="#多值依赖" class="headerlink" title="*多值依赖"></a>*多值依赖</h3><p>函数依赖中X确定一个单值Y,但有时给定X的值x,它能确定多个Y的值;在插入x时,需要插入多条(x,y)元组才能符合这种依赖关系,而且这种依赖关系是隐式的,十分不方便.</p>
+<h3 id="码"><a href="#码" class="headerlink" title="码"></a>码</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><ul>
+<li>候选码: $R&lt;U,F&gt;$中,$K \subset U,K$-F-&gt;$U$,则K为R的一个(候选)码</li>
+<li>超码: 上述情况下$K$-P-&gt;$U$</li>
+<li>主码: 若R有多个候选码,则选定其中一个作为主码</li>
+<li>全码: 整个属性组都是码,称为全码(候选码为整个属性组)<blockquote>
+<ul>
+<li>候选码长度是超码长度的一个极小值,即候选码的任意一个真子集都不是候选码</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h4 id="主属性和非主属性"><a href="#主属性和非主属性" class="headerlink" title="主属性和非主属性"></a>主属性和非主属性</h4><ul>
+<li>任意一个候选码中的任意一个属性都为主属性</li>
+<li>不包含在任何码中的属性为非主属性(非码属性)</li>
+</ul>
+<h4 id="外码"><a href="#外码" class="headerlink" title="外码"></a>外码</h4><ul>
+<li>$R&lt;U,F&gt;$中属性(组)$X$不是$R$的(候选)码,但$X$是另外一个关系模式的码,则称$X$是$R$的外部码</li>
+</ul>
+<p>主码与外码一起提供了表示关系间联系的手段</p>
+<h3 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h3><p>范式是符合某一种级别的关系模式的集合</p>
+<p>关系数据库中的关系必须满足一定的要求,满足不同程度要求的为不同范式</p>
+<p>范式种类(级别由低到高):</p>
+<ul>
+<li>第一范式1NF: 关系模式的最低要求</li>
+<li>第二范式2NF: 消除非主属性对码的部分函数依赖</li>
+<li>第三范式3NF: 消除非主属性对码的传递函数依赖</li>
+<li>修正的第三范式BCNF: 消除主属性对码的部分和传递函数依赖</li>
+<li>第四范式4NF: 消除非平凡且非函数依赖的多值依赖</li>
+<li>第五范式5NF: 消除非候选码所蕴含的连接依赖<blockquote>
+<ul>
+<li>低级别的范式一定包含高级别的范式</li>
+<li>某一关系模式R为第n范式,记为$R \in nNF$</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>一个低一级范式的关系模式,通过模式分解可以转化成若干个高一级范式的关系模式的集合,这种过程叫做规范化</p>
+<p>关系数据库的规范化理论是数据库逻辑设计的工具</p>
+<h4 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h4><p>如果一个关系模式$R$的所有属性都是不可分的基本数据项,则$R\in 1NF$</p>
+<ul>
+<li>即,不能表中嵌表</li>
+<li>所有的关系数据库模式都满足第一范式,第一范式是对关系模式的最起码的要求;不满足第一范式的数据库模式不能称为关系数据模式</li>
+</ul>
+<p>然而,满足第一范式的关系模式不一定是一个好的关系模式</p>
+<h4 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h4><p>若关系模式$R \in 1NF$,且每一个非主属性都完全依赖于$R$的码,则$R \in 2NF$</p>
+<ul>
+<li>即,$R$中码的任何一部分都不能单独决定一些属性,这些属性必须由整个码来确定<blockquote>
+<p>能够单独决定一些属性的码需要被独立成另外的关系</p>
+</blockquote>
+</li>
+<li>不符合第二范式的关系模式会产生问题<blockquote>
+<ul>
+<li>插入异常: 数据库不能插入一些只包含部分合理信息的元组(码的其他部分也得被确定下来)</li>
+<li>删除异常: 数据库有时不能将元组的部分信息合理删除(这些信息可能包含码的部分)</li>
+<li>数据冗余</li>
+<li>修改复杂: 修改元组部分信息时,表中其他元组的部分信息也得被修改(数据冗余造成的)<br>根本原因: 一些属性部分依赖于码</li>
+</ul>
+</blockquote>
+</li>
+<li>解决上述问题的方法: 投影分解法,消除部分依赖,使得关系符合第二范式</li>
+</ul>
+<p>但是,第二范式并不能完全消除关系模式中异常情况和修改复杂、数据冗余情况,因为有传递函数依赖的存在</p>
+<h4 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h4><p>若关系模式$R \in 1NF$,且不存在这样的码$X$、属性<strong>组</strong>$Y$以及非主属性$Z(Z\not \subset Y)$,使得$X\to Y,Y \to Z,Y \not \to X$成立($Z$不传递依赖于X),则$R \in 2NF$</p>
+<ul>
+<li>传递函数依赖的存在使得一些信息被”隐式”地存储在表中,需要将它们独立成另外的关系</li>
+</ul>
+<p>性质:</p>
+<ul>
+<li>第三范式关系中的每一个非主属性既不部分函数依赖于候选码也不传递函数依赖于候选码</li>
+<li>若R属于第三范式,那么R必定属于第二范式</li>
+<li>采用投影分解法能将一个第二范式关系分解成多个第三范式关系</li>
+</ul>
+<p>然而,第三范式还是不能完全消除关系模式中的各种异常情况和数据冗余,因为主属性之间也会存在依赖</p>
+<h4 id="修正的第三范式-BCNF"><a href="#修正的第三范式-BCNF" class="headerlink" title="修正的第三范式(BCNF)"></a>修正的第三范式(BCNF)</h4><p>若关系模式$R \in 1NF$,且对$R$中每个函数依赖$X\to Y 且 Y\not \in X时$,X必含有码,则$R \in 2NF$</p>
+<p>性质:</p>
+<ul>
+<li>所有非主属性对每一个码都是完全函数依赖</li>
+<li>所有主属性对每一个不包含它的码都是完全函数依赖</li>
+<li>没有任何属性完全函数依赖于一些非码属性(不存在传递函数依赖)</li>
+<li>符合BCNF的范式一定符合3NF,反之不然<blockquote>
+<p>BCNF在函数依赖范畴内已经实现了模式的彻底分解,达到了最高的规范化程度,消除了操作异常的诸多问题</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="6-3-数据依赖的公理系统"><a href="#6-3-数据依赖的公理系统" class="headerlink" title="6.3 数据依赖的公理系统"></a>6.3 数据依赖的公理系统</h2><p>数据依赖的公理系统式模式分解算法的理论基础</p>
+<p>Armstrong公理系统式函数依赖的一个有效而完备的公理系统</p>
+<h3 id="Armstrong公理系统"><a href="#Armstrong公理系统" class="headerlink" title="Armstrong公理系统"></a>Armstrong公理系统</h3><p>Armstrong公理系统是一套推理规则,用于回答某个函数依赖是否被某组函数依赖F蕴含</p>
+<ul>
+<li>有效性: 由F出发根据Armstrong公理推导出的每一个函数依赖一定在$F^+$中</li>
+<li>完备性: $F^+$中的每一个函数依赖必定可以由Armstrong公理推导出来</li>
+</ul>
+<h3 id="逻辑蕴涵的定义"><a href="#逻辑蕴涵的定义" class="headerlink" title="逻辑蕴涵的定义"></a>逻辑蕴涵的定义</h3><p>对于满足一组函数依赖F的关系模式$R(U,F)$,对符合它的任意关系r,若都有函数依赖$X\to Y$成立,则称F(逻辑)蕴涵$X\to Y$</p>
+<h3 id="几个导出的推理规则"><a href="#几个导出的推理规则" class="headerlink" title="几个导出的推理规则"></a>几个导出的推理规则</h3><p>设U为属性集总体, F是U上的一组函数依赖, 对关系$R&lt;U,F&gt;$ 来说, 有以下的推理规则: </p>
+<ul>
+<li>自反律: 若$Y \subseteq X \subseteq U$,则F蕴含$X\to Y$</li>
+<li>增广律: 若F蕴含$X\to Y$且$Z\subseteq U$,则F蕴含$XZ\to YZ$</li>
+<li>传递律: 若F蕴含$X\to Y和Y\to Z$,则F蕴含$X\to Z$</li>
+</ul>
+<p>上述三个推理规则可以进一步得到以下几个推理规则:</p>
+<ul>
+<li>合并规则: 由$X\to Y,X\to Z$,可以得到$X\to YZ$</li>
+<li>伪传递规则: 由$X\to Y,YW\to Z$,可以得到$XW\to Z$</li>
+<li>分解规则: 由$X\to Y,Z \subseteq Y$,可以得到$X\to Z$</li>
+</ul>
+<p>根据合并规则和分解规则可以得到下述重要引理:</p>
+<ul>
+<li>$X\to A_1A_2…A_n$成立的充要条件是$X\to A_i(i=1,2,…n)$</li>
+</ul>
+<h3 id="函数依赖闭包"><a href="#函数依赖闭包" class="headerlink" title="函数依赖闭包"></a>函数依赖闭包</h3><h4 id="定义和一些引理"><a href="#定义和一些引理" class="headerlink" title="定义和一些引理"></a>定义和一些引理</h4><ul>
+<li>在关系模式$R&lt;U,F&gt;$中被F所蕴含的函数依赖的全体称为F的闭包,记作$F^+$</li>
+<li>设F为属性集U上的一组函数依赖,$X\subseteq U$,$X_{F^+} = \lbrace A | X\to A能由F根据Armstrong公理导出 \rbrace$,称为属性集X关于函数依赖集F的闭包<blockquote>
+<ul>
+<li>$X_{F^+}$表示属性组X能根据F推导出的所有属性</li>
+<li>$F^+$不容易直接求出,在考虑某函数依赖是否在$F^+$中时,需要转化成对$X_{F^+}$的判定</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>关于闭包的引理</p>
+<ul>
+<li>F为属性集U上的一组函数依赖,X Y为U上的两个属性组;$X\to Y$能由F根据Armstrong公理导出的充要条件是$Y\subseteq X_{F^+}$<blockquote>
+<ul>
+<li>判断$X\to Y$是否在$F^+$中,只需判断Y是否是$X_{F^+}$的子集</li>
+<li>若$X_{F^+}=U$,则X为R的候选码</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h4 id="求-X-F-的算法"><a href="#求-X-F-的算法" class="headerlink" title="求$X_{F^+}$的算法"></a>求$X_{F^+}$的算法</h4><p>遵循如下迭代算法求取$X_{F^+}$:</p>
+<ol>
+<li>令$X_{add} = \emptyset$</li>
+<li>扫描F,将能根据X或部分X推导出的元素加入$X_{add}$</li>
+<li>$X = X \cup X_{add}$</li>
+<li>若X并没有改变,则得到结果$X_{F^+}$,否则转1.</li>
+</ol>
+<h3 id="函数依赖集的一些性质"><a href="#函数依赖集的一些性质" class="headerlink" title="函数依赖集的一些性质"></a>函数依赖集的一些性质</h3><h4 id="函数依赖集的等价"><a href="#函数依赖集的等价" class="headerlink" title="函数依赖集的等价"></a>函数依赖集的等价</h4><p>两个函数依赖集$F$和$G$,若$F^+=G^+$,则$F$与$G$等价(F覆盖G,F是G的覆盖或反之)</p>
+<ul>
+<li>函数依赖集的等价是指它们的闭包等价</li>
+</ul>
+<h4 id="最小-极小-依赖集"><a href="#最小-极小-依赖集" class="headerlink" title="最小(极小)依赖集"></a>最小(极小)依赖集</h4><p>满足下列条件的依赖集F称为一个最小依赖集</p>
+<ul>
+<li>F中任意一个函数依赖的右边只含有一个属性</li>
+<li>F中的每个函数依赖的左边均为最小属性集<blockquote>
+<p>若存在一个函数依赖$X\to A$,使得去掉这条依赖中X的部分属性,得到的函数依赖集F’与F等价,则原F不是最小依赖集</p>
+</blockquote>
+</li>
+<li>F中的每个函数依赖均不能由F中其他的函数依赖导出</li>
+</ul>
+<h4 id="求最小依赖集的算法"><a href="#求最小依赖集的算法" class="headerlink" title="求最小依赖集的算法"></a>求最小依赖集的算法</h4><ol>
+<li>扫描F中的函数依赖,将所有依赖项的右边拆分成单属性</li>
+<li>扫描每个函数依赖的左边,去除左边冗余的属性</li>
+<li>去掉F中冗余的函数依赖关系</li>
+</ol>
+<ul>
+<li>F的最小依赖集不是唯一的</li>
+</ul>
+<h2 id="6-4-模式的分解"><a href="#6-4-模式的分解" class="headerlink" title="6.4 模式的分解"></a>6.4 模式的分解</h2><p>关系模式的规范化是通过模式分解来实现的</p>
+<h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><p>投影:</p>
+<ul>
+<li>$F_i = \lbrace X\to Y | X\to Y \in F^+ , XY \subseteq U_i \rbrace$ 称为$F$在$U_i$上的投影</li>
+</ul>
+<p>关系模式的分解:</p>
+<ul>
+<li>$R&lt;U,F&gt;的一个分解为$\rho = \lbrace R_1&lt;U_1,F_1&gt;,…,R_n&lt;U_n,F_n&gt;\rbrace$,其中$U = U_1\cup … U_n$, 且不存在$U_i\subseteq U_j$</li>
+</ul>
+<p>模式分解主要涉及到投影和自然连接两个运算</p>
+<h3 id="模式分解的三个目标"><a href="#模式分解的三个目标" class="headerlink" title="模式分解的三个目标"></a>模式分解的三个目标</h3><p>一个模式有多种分解方法,符合一些要求的分解方法才有意义</p>
+<ul>
+<li><p>无损连接分解: 将分解后的多个模式进行自然连接,结果应和原模式一样</p>
+</li>
+<li><p>保持函数依赖: 分解前F的最小依赖集中的每个函数依赖都应该被投影到分解后的某个关系模式中去</p>
+<blockquote>
+<p>即:$F^+ = (F_1\cup … \cup F_n)^+</p>
+</blockquote>
+</li>
+<li><p>达到更高级范式: 分解得到的每个关系模式应该相比于分解前的关系模式达到更高级别的范式</p>
+</li>
+</ul>
+<h3 id="模式分解算法"><a href="#模式分解算法" class="headerlink" title="模式分解算法"></a>模式分解算法</h3><h4 id="达到BCNF并保持无损连接的算法"><a href="#达到BCNF并保持无损连接的算法" class="headerlink" title="达到BCNF并保持无损连接的算法"></a>达到BCNF并保持无损连接的算法</h4><ol>
+<li>令$\rho = \lbrace R&lt;U,F&gt; \rbrace$</li>
+<li>检查$\rho$中各关系模式是否属于BCNF,若是则返回结果</li>
+<li>发现有$R_i&lt;U_i,F_i&gt;$不是BCNF,即有$X\to A$在$F_i^+$中且X不包含$R_i$的码,则将$X\to A$单独从$R_i$中分出来,指定X为新模式的码,将新模式加入$\rho$中(原$R_i$中不再有$X\to A$),转2.</li>
+</ol>
+<blockquote>
+<p>这种分解方法能达到BCNF,但不一定保持原有的函数依赖</p>
+</blockquote>
+<h4 id="达到3NF并保持函数依赖的算法"><a href="#达到3NF并保持函数依赖的算法" class="headerlink" title="达到3NF并保持函数依赖的算法"></a>达到3NF并保持函数依赖的算法</h4><ol>
+<li>求出$F$的最小覆盖$F_m$</li>
+<li>找出不在$F_m$中出现的属性,将它们从U中分离出来构成一个新的关系模式(这个关系模式的码是全码)</li>
+<li>若有$X\to A \in F_m$ ，且XA=U，则$\rho$={R}，算法终止</li>
+<li>对FC按具有相同左部的原则进行分组（设为k组），每一组函数依赖所涉及的属性全体为Ui，令$F_i$为$F_m$在$U_i$上的投影，则$\rho$ = {R1&lt;U1 ,F1&gt; ,… , Rk&lt;Uk , Fk&gt;}是R&lt;U , F&gt;的一个保持函数依赖的分解，并且每个Ri&lt;Ui , Fi&gt; $\in$ 3NF</li>
+</ol>
+<blockquote>
+<p>这种分解算法可能有损</p>
+</blockquote>
+<h4 id="达到3NF并保持无损分解和函数依赖的算法"><a href="#达到3NF并保持无损分解和函数依赖的算法" class="headerlink" title="达到3NF并保持无损分解和函数依赖的算法"></a>达到3NF并保持无损分解和函数依赖的算法</h4><p>在上一个算法后继续进行操作</p>
+<ol start="5">
+<li>考虑R的码X,若X在某个$U_i$中,则无需进行操作,否则需要将{&lt;X,$F_X$&gt;}加入到$\rho$中</li>
+</ol>
+<blockquote>
+<p>这种分解算法不一定能达到BCNF</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>notes</category>
+        <category>学位课程</category>
+      </categories>
+      <tags>
+        <tag>learning</tag>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Unithon 项目计划书模板</title>
     <url>/2020/04/12/Unithon%20%E9%A1%B9%E7%9B%AE%E8%AE%A1%E5%88%92%E4%B9%A6%E6%A8%A1%E6%9D%BF/</url>
     <content><![CDATA[<h2 id="一-团队信息"><a href="#一-团队信息" class="headerlink" title="一. 团队信息"></a>一. 团队信息</h2><ol>
@@ -2017,15 +2311,16 @@ $$
       </tags>
   </entry>
   <entry>
-    <title>数据库原理与设计</title>
+    <title>数据库原理与设计(基础篇)</title>
     <url>/2020/02/27/data-base0/</url>
-    <content><![CDATA[<p>未完结,持续更新</p>
+    <content><![CDATA[<p><del>未完结,持续更新</del> 完结</p>
 <hr>
 <p>任课教师: 赵朋朋<a href="http://web.suda.edu.cn/ppzhao/" target="_blank" rel="noopener">http://web.suda.edu.cn/ppzhao/</a></p>
 <p>网课资源: 慕课中国人民大学数据库系统概论<a href="https://www.icourse163.org/course/RUC-488001" target="_blank" rel="noopener">https://www.icourse163.org/course/RUC-488001</a></p>
 <p>参考教材: 高等教育出版社《数据库系统概论(第5版)》</p>
 <p>课程主要讲述关系型数据库的原理, 不着重于具体数据库的使用</p>
 <p>简明的数据库使用笔记可参考<a href="http://georgechen.top/2020/04/11/mysql0/" target="_blank" rel="noopener">http://georgechen.top/2020/04/11/mysql0/</a></p>
+<p>后续见数据库原理与设计(高级篇)<a href="http://georgechen.top/2020/04/16/data-base1/" target="_blank" rel="noopener">http://georgechen.top/2020/04/16/data-base1/</a></p>
 <a id="more"></a>
 
 <h1 id="一、绪论"><a href="#一、绪论" class="headerlink" title="一、绪论"></a>一、绪论</h1><h2 id="1-1-数据库系统概述"><a href="#1-1-数据库系统概述" class="headerlink" title="1.1 数据库系统概述"></a>1.1 数据库系统概述</h2><h3 id="数据库中的基本概念"><a href="#数据库中的基本概念" class="headerlink" title="数据库中的基本概念"></a>数据库中的基本概念</h3><ul>
@@ -3328,8 +3623,64 @@ $$
 <li>完整性约束修改子句包括完整性约束子句的删除和添加,需要指定完整性约束条件名</li>
 </ul>
 <h3 id="域完整性约束使用"><a href="#域完整性约束使用" class="headerlink" title="域完整性约束使用"></a>域完整性约束使用</h3><p>定义好域的完整性约束后,可以直接使用完整性约束条件名来作为同类型的属性的完整性约束条件</p>
+<h2 id="5-6-断言"><a href="#5-6-断言" class="headerlink" title="5.6 断言"></a>5.6 断言</h2><p>SQL中更一般的约束可以用断言来指定</p>
+<ul>
+<li>涉及多个表或聚集操作比较复杂的完整性约束</li>
+<li>断言创建以后,任何对断言中所涉及的关系的操作都会触发检查</li>
+<li>断言不为真则拒绝执行</li>
+</ul>
+<p>断言创建</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">ASSERTION</span> &lt;断言名&gt; &lt;<span class="keyword">CHECK</span>子句&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>CHECK子句和WHERE子句的表达类似</li>
+</ul>
+<p>断言删除</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">ASSERTION</span> &lt;断言名&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-7-触发器"><a href="#5-7-触发器" class="headerlink" title="5.7 触发器"></a>5.7 触发器</h2><ul>
+<li>触发器是用户定义在关系表上的一类由事件驱动的特殊过程</li>
+<li>任何用户对表的增删改操作均由服务器自动激活相应的触发器</li>
+<li>触发器可以实施更为复杂的检查和操作(前面的完整性约束检查都是自动触发),具有更精细和更强大的数据控制能力</li>
+</ul>
+<p>触发器又叫做事件-条件-动作规则</p>
+<h3 id="定义触发器"><a href="#定义触发器" class="headerlink" title="定义触发器"></a>定义触发器</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> &lt;触发器名&gt;</span><br><span class="line">&#123;<span class="keyword">BEFORE</span>|<span class="keyword">AFTER</span>&#125; &lt;触发事件&gt; <span class="keyword">ON</span> &lt;表名&gt;</span><br><span class="line">[<span class="keyword">REFERENCING</span> </span><br><span class="line">    <span class="keyword">NEW</span>|<span class="keyword">OLD</span> <span class="keyword">ROW</span> <span class="keyword">AS</span> &lt;变量&gt;,</span><br><span class="line">    <span class="keyword">NEW</span>|<span class="keyword">OLD</span> <span class="keyword">ROW</span> <span class="keyword">AS</span> &lt;变量&gt;,...]</span><br><span class="line"><span class="keyword">FOR</span> <span class="keyword">EACH</span> &#123;<span class="keyword">ROW</span>|<span class="keyword">STATEMENT</span>&#125;</span><br><span class="line">[<span class="keyword">WHEN</span> &lt;触发条件&gt;] &lt;触发动作体&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>触发器只能由表的拥有者创建</li>
+<li>触发器只能定义在基本表上</li>
+<li>&lt;触发器名&gt;可以包含或不包含模式名,同一模式下触发器名必须是唯一的</li>
+<li>&lt;触发事件&gt;可以是对&lt;表名&gt;的INSERT,DELETE或UPDATE [OF &lt;触发列,…&gt;],触发器可在上述操作之后或者之前执行</li>
+<li>RECEFRENCING子句用于指出所引用的变量,在后面的行级触发器中可以用到</li>
+<li>FOR EACH子句可以定义触发器的类型:行级触发器或语句级触发器<blockquote>
+<ul>
+<li>行级触发器在对每一个元组进行相应的更改时激活(会多次激活触发器)</li>
+<li>语句级触发器在语句执行时进行激活(以所更改的行为对象一次性进行操作)</li>
+</ul>
+</blockquote>
+</li>
+<li>定义WHEN后,只有触发器在激活后满足&lt;触发条件&gt;,触发动作体才会执行</li>
+<li>&lt;触发动作体&gt;可以是一个匿名的SQL过程块,也可以是对已创建存储过程的调用;<blockquote>
+<ul>
+<li>行级触发器中用户可以在触发动作体中使用NEW和OLD引用实践之后的新之和事件之前的旧值</li>
+<li>如果触发器动作体执行失败,则激活触发器的事件会被拒绝执行</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="触发器的激活"><a href="#触发器的激活" class="headerlink" title="触发器的激活"></a>触发器的激活</h3><p>一个表上可以定义多个触发器,遵循如下顺序执行</p>
+<ul>
+<li>执行表上的BEFORE触发器</li>
+<li>执行SQL语句</li>
+<li>执行表上的AFTER触发器<blockquote>
+<p>有多个BEFORE或AFTER触发器时,一般上时间上先定义的触发器先执行</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="删除触发器"><a href="#删除触发器" class="headerlink" title="删除触发器"></a>删除触发器</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TRIGGER</span> &lt;触发器名&gt; <span class="keyword">ON</span> &lt;表名&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>只有具有相应权限的用户才能删除相应的触发器</li>
+</ul>
 <hr>
-<p><em>待更新…</em></p>
+<p>后续见数据库原理与设计(高级篇)<a href="http://georgechen.top/2020/04/16/data-base1/" target="_blank" rel="noopener">http://georgechen.top/2020/04/16/data-base1/</a></p>
 ]]></content>
       <categories>
         <category>notes</category>
@@ -3803,6 +4154,63 @@ $$
 <li>自顶向下语法分析: 从语法分析树的根节点开始向叶子节点构造语法分析树</li>
 <li>自底向上语法分析: 从叶子结点开始，逐渐向根节点方向构造语法分析树</li>
 </ul>
+<h2 id="4-1-上下文无关文法CFG"><a href="#4-1-上下文无关文法CFG" class="headerlink" title="4.1 上下文无关文法CFG"></a>4.1 上下文无关文法CFG</h2><p>正则文法属于一种上下文无关文法,但它不能描述诸如括号匹配或嵌套结构这样的语言</p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>上下文无关文法是一个有序四元组$G=&lt;V,T,S,P&gt;$, 其中:</p>
+<ul>
+<li>$V$是非终结符集合,非空有限</li>
+<li>$T$是终结符集合,非空有限,$V\cap T=\emptyset$</li>
+<li>$S\in V$是<strong>起始符</strong></li>
+<li>$P$是产生式集合,非空有限<blockquote>
+<p>$P$中元素应有这样的形式: $ A \to \alpha $; 其中$A \in V, \alpha \in (V\cup T)^*$ <em>(0型文法是$A \in (V\cup T)^*$)</em> </p>
+</blockquote>
+</li>
+</ul>
+<p>上下文无关文法是一个产生式文法</p>
+<p>约定:</p>
+<ul>
+<li>终结符号一般用小写字母abc,标点符号,运算符,数字,黑体单词表示</li>
+<li>非终结符一般用大写字母ABC(起始符一般为S),小写斜体单词表示</li>
+<li>XYZ可以表示文法符号(终结符或非终结符)</li>
+<li>$uvw$等表示终结符号(可以为空)串</li>
+<li>$\alpha \beta \gamma$等表示(可以为空)的文法符号串</li>
+<li>一般一组产生式中第一个产生式的头就是开始符号</li>
+</ul>
+<h3 id="文法的推导-派生"><a href="#文法的推导-派生" class="headerlink" title="文法的推导(派生)"></a>文法的推导(派生)</h3><p>直接推导:</p>
+<ul>
+<li>给定文法$G=&lt;V,T,S,P&gt;$,设$x,y \in (V \cup T)^*$. 称<strong>$y$是$x$的直接推导($x\Rightarrow y$)</strong>,当且仅当:  <blockquote>
+<p>$\exists u,v \in (V \cup T)^* $ 且 $ \exists$ ‘a-&gt;b’ $\in P$ 使得 $x = uav,y = ubv$ (即把x中的a改写成b后得到y)  </p>
+</blockquote>
+</li>
+</ul>
+<p>推导:</p>
+<ul>
+<li>给定文法$G=&lt;V,T,S,P&gt;$,设$x_1,x_2,…,x_n \in (V \cup T)^*, n \ge 1 且 x_1\Rightarrow x_2 \Rightarrow … \Rightarrow x_n $, 则称<strong>$x_n$是由$x_1$(经过$n-1$步)推导出来的($x_1 \dot \Rightarrow x_n$)</strong>  <blockquote>
+<p>注意,对$V \cup T$上的所有字符串$\omega$有$\omega \dot \Rightarrow \omega$. 可见$\dot \Rightarrow$是$\Rightarrow$的自反传递闭包 </p>
+<ul>
+<li>推导具有自反性和传递性</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>句型:</p>
+<ul>
+<li>从文法的开始符号推到含有非终结符的符号串$\alpha$,则$\alpha$是</li>
+</ul>
+<p>生成语言:  </p>
+<ul>
+<li>设$G=&lt;V,T,S,P&gt;$是一个文法,$L(G)$是文法G<strong>生成的语言</strong>,则$L(G)$满足<br>$$ L(G) = \lbrace \omega \in T^* | S \dot \Rightarrow \omega \rbrace $$   <blockquote>
+<p>根据定义,$L(G)$中的字符串满足如下两个条件:</p>
+<ol>
+<li>字符串由终结符构成</li>
+<li>字符串可以由起始符派生出来</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<p>文法的等价</p>
+<ul>
+<li>如果$L(G_1) = L(G_2)$,则称文法$G_1$和$G_2$<strong>等价</strong></li>
+</ul>
 <hr>
 <p><em>待更新…</em></p>
 ]]></content>
@@ -4234,7 +4642,439 @@ $$
 <li>判溢出</li>
 </ol>
 <h4 id="除法"><a href="#除法" class="headerlink" title="除法"></a>除法</h4><p>浮点数除法运算与乘法运算类似,也分求商的阶码、尾数相除、规格化、舍入和判溢这几个步骤</p>
-<h2 id="3-6-运算部件"><a href="#3-6-运算部件" class="headerlink" title="3.6 运算部件"></a>3.6 运算部件</h2><hr>
+<h2 id="3-6-运算部件"><a href="#3-6-运算部件" class="headerlink" title="3.6 运算部件"></a>3.6 运算部件</h2><h3 id="定点运算部件"><a href="#定点运算部件" class="headerlink" title="定点运算部件"></a>定点运算部件</h3><p>定点运算部件由算术逻辑运算部件ALU、多个寄存器、移位电路、计数器、门电路组成</p>
+<ul>
+<li>一般定点运算部件中有3个寄存器A、B、C,在不同运算中作用如下:<blockquote>
+<ul>
+<li>加法:A为被加数-&gt;运算结果,B为加数</li>
+<li>减法:A为被减数-&gt;运算结果,B为减数</li>
+<li>乘法:A为部分积-&gt;乘积高位,B为被乘数,C为乘数-&gt;乘积低位</li>
+<li>除法:A为被除数-&gt;余数,B为除数,C为商</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="浮点运算部件"><a href="#浮点运算部件" class="headerlink" title="浮点运算部件"></a>浮点运算部件</h3><p>浮点运算部件通常由阶码运算部件和尾数运算部件组成</p>
+<ul>
+<li>阶码部分仅执行加减运算</li>
+<li>尾数部分执行加减乘除运算</li>
+</ul>
+<h2 id="3-7-数据校验码"><a href="#3-7-数据校验码" class="headerlink" title="3.7 数据校验码"></a>3.7 数据校验码</h2><p>通过在数据为中加入一些冗余位,从而达到在数据传输过程中能自动发现错误和校正错误</p>
+<ul>
+<li>码距: 任意两个合法码之间至少由几个二进制位不同; 较大的码距能使得一个合法码变成另一个合法码的概率较小, 但会增加存储的代价</li>
+</ul>
+<h3 id="奇偶校验码"><a href="#奇偶校验码" class="headerlink" title="奇偶校验码"></a>奇偶校验码</h3><p>方法: 在数据(开头)补充一个校验位,使得补充校验位后的数据编码中1值的个数为奇数(奇校验)或偶数(偶校验)</p>
+<p><img src="/2020/02/24/computer-composition0/check0.jpg" alt="check"></p>
+<ul>
+<li>奇偶校验码只能发现一位或奇数个位的出错</li>
+<li>奇偶校验码只能发现错误,不能校正错误</li>
+<li>就校验码常用于存储器读写检查，或ASCII字符传送过程中的检查。</li>
+</ul>
+<h3 id="海明校验码"><a href="#海明校验码" class="headerlink" title="海明校验码"></a>海明校验码</h3><p>方法: 在数据中加入多个校验位,将数据中的每一个二进制位分配在几个校验组中;当某一位出错时,就会导致多个校验组的数值发生变化,通过综合分析这些变化来发现出错的位置,为纠错提供依据</p>
+<p>一位纠错海明码:</p>
+<ul>
+<li>设有r位校验位，则共有0到2^r-1个共2^r个组合。若用0表示无差错，则剩余2^r-1个值表示有差错，并指出错在第几位。由于差错可能发生在k个数据位中或r个校验位中，因此有: 2^r–1 &gt;= r+k<blockquote>
+<ul>
+<li>例如,5-11位数据可用4位校验位来校验</li>
+</ul>
+</blockquote>
+</li>
+<li>校验位的分布(下标从1开始):<blockquote>
+<ul>
+<li>将原数据按位从前向后标号,遇到第$2^{i-1}$个位时,插入第i个校验位$P_i$,得到海明码的数据排列</li>
+</ul>
+</blockquote>
+</li>
+<li>校验位的计算<blockquote>
+<ul>
+<li>按照上述的数据排列给每一位一个二进制编号(从1开始),则对于第i个校验位,它需要校验的是所有二进制编号中第i位为1的数<br>如,第二位校验码$P_2$就需要校验第2(010),3(011),6(110),7(111)位;注意,此时校验码本身也在这些校验位中</li>
+<li>用上述方法按校验位进行分组,校验位计算是进行偶校验计算,它等于同组的其他数据的异或</li>
+</ul>
+</blockquote>
+</li>
+<li>还可以加入一个总校验位$P_{i+1}$,它等于前面所有位的异或,这时的校验码不仅能纠正一位错,还能发现两位错</li>
+</ul>
+<p>此时,原数据中每一位都至少由两位校验码校验,码距为4<br>检验方法: 对上述分组中的每一组进行异或检验(包括总校验位),所有检验结果都为0则无措,若有些组为1则可根据检验结果推理出哪一位出错(或者是两位错)</p>
+<h3 id="循环冗余校验码CRC"><a href="#循环冗余校验码CRC" class="headerlink" title="循环冗余校验码CRC"></a>循环冗余校验码CRC</h3><p>CRC编码以模2运算为基础,可以发现并纠正多位错误</p>
+<h1 id="四、主存储器"><a href="#四、主存储器" class="headerlink" title="四、主存储器"></a>四、主存储器</h1><p>主存储器(主存或内存)在现代计算机中处于中心地位</p>
+<ul>
+<li>计算机执行的程序和数据均放在存储器中</li>
+<li>计算机系 统中输入输出设备数量增多,数据传送速度加快</li>
+<li>共享存储器的多处理机的出现 </li>
+</ul>
+<h2 id="4-1-主存储器分类-技术指标和基本操作"><a href="#4-1-主存储器分类-技术指标和基本操作" class="headerlink" title="4.1 主存储器分类,技术指标和基本操作"></a>4.1 主存储器分类,技术指标和基本操作</h2><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
+<li>随机存储器RAM<blockquote>
+<ul>
+<li>又称读写存储器,通过指令可以随机对各个存储单元进行访问的存储器;一般访问所需时间与存储单元的地址无关,但停电会造成信息丢失</li>
+</ul>
+</blockquote>
+</li>
+<li>非易失性存储器<blockquote>
+<ul>
+<li>停电仍能保持其内容</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="技术指标"><a href="#技术指标" class="headerlink" title="技术指标"></a>技术指标</h3><ul>
+<li>容量<blockquote>
+<ul>
+<li>计算机可寻址的最小单位是一个存储字;一个存储字所包括的二进制位数称为字长</li>
+<li>由于现代计算机中一个字节为8位,因此一个字的字长通常为8的倍数</li>
+<li>以字节为单位来表示主存储器存储单元的总数就是主存储器的容量</li>
+<li>指令中地址码的位数决定了主存储器可以直接寻址的最大空间,如32位微型机提供32位物理地址,支持对4G物理存储空间的访问</li>
+</ul>
+</blockquote>
+</li>
+<li>存取时间<blockquote>
+<ul>
+<li>存储器的存取时间又称存储器访问时间,是指启动一次存储器操作(读/写)到完成该操作所经历的时间<br>存储周期</li>
+<li>存储周期指连续启动两次独立的存储器操作(例如连续两次读操作)所需间隔的最小时间</li>
+<li>通常,存储周期略长于存取时间</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>主存储器的速度和容址两项指标随着存储器件的发展得到了极大的提高。但是，具有 合适价格的主存储器能提供信息的速度总是跟不上CPU的处理指令和数据的速度。</p>
+<h3 id="主存储器的基本操作"><a href="#主存储器的基本操作" class="headerlink" title="主存储器的基本操作"></a>主存储器的基本操作</h3><p>主存储器和CPU的连接是由总线支持的:<br><img src="/2020/02/24/computer-composition0/rw0.jpg" alt="rw"></p>
+<ul>
+<li>AR位地址寄存器</li>
+<li>DR为数码寄存器</li>
+</ul>
+<h4 id="读操作"><a href="#读操作" class="headerlink" title="读操作"></a>读操作</h4><p>读操作是将存储器的数据读取到CPU中:</p>
+<ol>
+<li>CPU把信息字的地址送到AR,经地址总线送往主存储器</li>
+<li>CPU发读(Read)命令</li>
+<li>CPU等待主存储器的Ready回答信号，Ready为 1，表示信息已读出经数据总线,送入DR</li>
+</ol>
+<h4 id="写操作"><a href="#写操作" class="headerlink" title="写操作"></a>写操作</h4><p>写操作是将CPU中的数据写入存储器中</p>
+<ol>
+<li>CPU把信息字的地址送到AR，经地址总线送往主存储器,并将信息字送往DR</li>
+<li>CPU发写(Write)命令</li>
+<li>CPU等待主存储器的Ready回答信号，Ready为 1，表示信息已从DR经数据总线写入主存储器</li>
+</ol>
+<h2 id="4-2-读-写存储器-的发展"><a href="#4-2-读-写存储器-的发展" class="headerlink" title="4.2 读/写存储器(的发展)"></a>4.2 读/写存储器(的发展)</h2><h3 id="静态存储器SRAM"><a href="#静态存储器SRAM" class="headerlink" title="静态存储器SRAM"></a>静态存储器SRAM</h3><p>静态存储器利用触发器保存信息,只要不断电,信息就不会丢失</p>
+<ul>
+<li>集成度低,功耗较大</li>
+</ul>
+<h3 id="动态存储器DRAM"><a href="#动态存储器DRAM" class="headerlink" title="动态存储器DRAM"></a>动态存储器DRAM</h3><p>动态存储器利用MOS管存储电荷来保存信息,需要不断给电容充电使信息保存</p>
+<ul>
+<li>使用单管存储单元,通过电容充电来保存信息</li>
+<li>再生: DRAM需要在电容的电荷漏掉之间进行充电,又称刷新,一般周期小于2ms</li>
+<li>集成度高,功耗小,速度快;但读出是破坏性的,读出后需要立即对单元进行重写</li>
+<li>单元读出信号很小,要求有高灵敏度的读出放大器</li>
+<li>主要用于大容量存储器<blockquote>
+<ul>
+<li>相比SRAM,DRAM每片存储容量约是前者4倍,造价约为前者1/4,功率约为前者1/6</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>DRAM发展:</p>
+<ul>
+<li>FPM快页式内存</li>
+<li>EDO DRAM</li>
+<li>同步DRAM(SDRAM):将RAM与CPU以相同的时钟频率进行控制,使RAM和CPU外频同步,取消等待时间</li>
+<li>DDR SDRAM:双数据传送速率的SDRAM,在时钟的上升沿和下降沿都能读出数据(预取2位)</li>
+<li>DDR 2:预读取能力为4位,降低电压和功耗,等效传输频率翻倍</li>
+<li>DDR 3:预读取能力为8位</li>
+</ul>
+<h2 id="4-3-非易失性半导体存储器"><a href="#4-3-非易失性半导体存储器" class="headerlink" title="4.3 非易失性半导体存储器"></a>4.3 非易失性半导体存储器</h2><p>非易失性半导体存储器在停电时所存储的内容也不会丢失</p>
+<ul>
+<li><p>只读存储器ROM: 掩模式ROM由芯片制造商在制造时写入内容,以后只能读而不能再写入,前面叙述过它的存储原理</p>
+</li>
+<li><p>可编程序的只读存储器PROM: 一次性写入的存储器;如熔丝式PROM，刚出厂的产品熔丝是全部接通的，使用前，用户根据需要断开某些单元的熔丝(写入)。</p>
+</li>
+<li><p>可擦除可编程序的只读存储器EPROM: 能多次修改数据的ROM;产品出厂时,所有存储单元都不导通,当浮置栅注入电子后,存储单元将通导;当芯片用紫外线照射后,浮置栅上的电子将逸散,即整体擦除</p>
+</li>
+<li><p>可电擦可编程序只读存储器E2PROM: 编程原理和EPROM同,但读写操作可按每个位或每字节进行(类似于SRAM),但每字节的写入周期要几毫秒,寿命为10万次。</p>
+</li>
+<li><p>快擦读写存储器Flash Memory: 用电擦除,但只能整体擦除或分区擦除; 可做成内存卡应用于各种电子产品</p>
+</li>
+</ul>
+<h2 id="4-4-存储器的组成与控制"><a href="#4-4-存储器的组成与控制" class="headerlink" title="4.4 存储器的组成与控制"></a>4.4 存储器的组成与控制</h2><h3 id="存储器容量扩展"><a href="#存储器容量扩展" class="headerlink" title="存储器容量扩展"></a>存储器容量扩展</h3><p>一个存储器的芯片容量是有限的,要达到所需要的存储字数和存储字长,需要在字向和位向进行扩充; 这里展示静态存储器的位扩展和字扩展</p>
+<p>静态存储芯片表示:</p>
+<ul>
+<li>芯片容量: 由字数*字长表示</li>
+<li>地址线: 用于寻址,地址线的位数可由字数表示;如16K表示地址线有14条($16K=2^{14}$,其中1K的地址线是10条</li>
+<li>数据线: 用于向芯片写入/读出数据,数据线的位数可由字长表示;如字长为4的芯片数据线有4条</li>
+<li>使能(片选)端: 用于控制芯片是否能进行读写操作,一般低有效</li>
+<li>读写控制端: 用于切换芯片的读/写操作,一般高位读取低位写入</li>
+</ul>
+<h4 id="位扩展-扩充数据线字长"><a href="#位扩展-扩充数据线字长" class="headerlink" title="位扩展(扩充数据线字长)"></a>位扩展(扩充数据线字长)</h4><ul>
+<li>地址线,使能线(片选$\overline {CS}$),读写控制端$R/ \overline W$并联</li>
+<li>数据线串联,分高低位分别引出<br>两片16K*4扩展成一片16K*8<br><img src="/2020/02/24/computer-composition0/sram0.jpg" alt="sram"></li>
+</ul>
+<h4 id="字扩展-扩充地址线字数"><a href="#字扩展-扩充地址线字数" class="headerlink" title="字扩展(扩充地址线字数)"></a>字扩展(扩充地址线字数)</h4><ul>
+<li>地址线,读写控制线,使能线并联</li>
+<li>片选连接译码器,用于区分各芯片的地址范围,地址高位通过译码器控制使能端来访问不同的芯片<br>四片16K*8扩展成一片64K*8<br><img src="/2020/02/24/computer-composition0/sram1.jpg" alt="sram"></li>
+</ul>
+<h4 id="字位扩展"><a href="#字位扩展" class="headerlink" title="字位扩展"></a>字位扩展</h4><p>同时对字向和位向进行扩展</p>
+<ul>
+<li>片内成组进行位扩展,然后组间进行字扩展</li>
+<li>需要用MN/LK个芯片将L*K的存储器扩展成M*N的存储器<br><img src="/2020/02/24/computer-composition0/sram2.jpg" alt="sram"></li>
+</ul>
+<h3 id="存储控制"><a href="#存储控制" class="headerlink" title="存储控制"></a>存储控制</h3><p>在存储器中，往往需要增设附加电路。这些附加电路包括地址多路转换线路、地址选 通、刷新逻辑，以及读／写控制逻辑等。</p>
+<ul>
+<li>在大容量存储芯片中,为了减少芯片的地址线引出端的数目,将地址码分两次送到存储器芯片中,使得芯片地址线引出端减少一半</li>
+<li>刷新逻辑: 通过定时刷新(读出)保证DRAM中的信息不丢失<blockquote>
+<ul>
+<li>刷新周期: 从上一次对整个存储器刷新结束到下一次刷新结束为止需要的时间,一般为2ms</li>
+<li>分布式刷新:  在2ms内分散地将存储器的每一行刷新</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="存储校验线路"><a href="#存储校验线路" class="headerlink" title="存储校验线路"></a>存储校验线路</h3><ul>
+<li>早期计算机多采用奇偶校验电路,只能发现一位错且不能纠正</li>
+<li>由于大规模集成电路的发展，主存储器的位数可以做得更多，使多数计算机的存储器有纠正错误代码的功能(ECC)</li>
+<li>一般采用的海明码校验线路可以纠正一位错</li>
+</ul>
+<h2 id="4-5-多体交叉存储器"><a href="#4-5-多体交叉存储器" class="headerlink" title="4.5 多体交叉存储器"></a>4.5 多体交叉存储器</h2><p>计算机中的大容量主存可由多个存储体构成,每个存储体都有自己的读写线路、地址寄存器和数据寄存器,称这种存储体为存储模块</p>
+<ul>
+<li>为了提高每个模块的使用率和总体的读取效率,对每个模块进行低位交叉编址,连续的地址分布在相邻的模块中<blockquote>
+<p>M个交叉模块的使用率在$\sqrt M$和$M$之间</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="五、存储系统"><a href="#五、存储系统" class="headerlink" title="五、存储系统"></a>五、存储系统</h1><p>(本章为原书第七章)</p>
+<h2 id="5-1-存储系统的层次结构"><a href="#5-1-存储系统的层次结构" class="headerlink" title="5.1 存储系统的层次结构"></a>5.1 存储系统的层次结构</h2><h3 id="存储器类型"><a href="#存储器类型" class="headerlink" title="存储器类型"></a>存储器类型</h3><ul>
+<li>主存储器:<blockquote>
+<ul>
+<li>一般为半导体存储器</li>
+<li>存放当前正在执行的程序和数据</li>
+<li>主存储器可以随机访问任一单元</li>
+</ul>
+</blockquote>
+</li>
+<li>辅助存储器(外存储器)<blockquote>
+<ul>
+<li>一般为磁盘,磁带,光盘等</li>
+<li>存放当前不在运行的大量程序和数据</li>
+<li>辅助存储器一般为串行访问存储器,需要顺序地按位进行访问,访问指定信息所需时间与信息所在位置有关   </li>
+</ul>
+<p>串行存储器:</p>
+<ul>
+<li>顺序存取存储器(磁带等): 磁带上的信息以顺序的方式存储在带上，读／写时要待磁带移动到合适位置后才能顺序读／写，需要耗费较多时间</li>
+<li>直接存取存储器(磁盘等): 它对信息的存取包括移动磁头到信息所在区域(磁道)和从磁道的合适位置进行顺序读写;它比磁带快得多</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="存储层次"><a href="#存储层次" class="headerlink" title="存储层次"></a>存储层次</h3><p>操作系统和硬件结合,把主存和辅存统一在一起,形成了一个存储层次</p>
+<ul>
+<li>整体上看,其速度接近于主存</li>
+<li>整体上看,其容量接近于辅存  </li>
+<li>主存-辅存层次满足了存储器的大容量和低成本的需求<br>这种系统的发展和完善形成了现在广泛使用的虚拟存储系统</li>
+</ul>
+<p>cache-主存层次</p>
+<ul>
+<li>在速度方面,计算机的主存和CPU存在一个数量级的差距</li>
+<li>高速缓冲存储器cache在速度上能满足CPU的要求</li>
+<li>从CPU的角度看,cache-主存层次的速度接近于cache,容量与每位价格接近于主存</li>
+<li>这个层次完全由硬件实现</li>
+</ul>
+<p>计算机的存储层次解决了速度与成本之间的矛盾</p>
+<p>现代计算机同时采用上述两种存储层次,构成cache-主存-辅存三级存储层次</p>
+<h2 id="5-2-高速缓冲存储器"><a href="#5-2-高速缓冲存储器" class="headerlink" title="5.2 高速缓冲存储器"></a>5.2 高速缓冲存储器</h2><h3 id="cache存在的合理性"><a href="#cache存在的合理性" class="headerlink" title="cache存在的合理性"></a>cache存在的合理性</h3><ul>
+<li>程序访问的局部性原理: 在一个较短的时间间隔内,程序访问的地址往往集中在一个很小的范围内<blockquote>
+<ul>
+<li>程序指令地址本身就是连续分布的,且循环程序段和子程序段经常被反复执行</li>
+<li>程序数据分布虽然不一定是集中的,但短时间内对数组的存储和访问以及对工作单元的选择也需要使用到局部范围的存储器地址</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>根据局部性原理,在主存和CPU之间设置一个高速而容量相对较小的存储器,将当前执行的程序和数据存放在这个存储器中;当程序运行时,不需要再从主存储器中取指令和数据,访问cache即可</p>
+<h3 id="cache的结构"><a href="#cache的结构" class="headerlink" title="cache的结构"></a>cache的结构</h3><p>cache一般由SRAM组成,它的工作速度数倍于主存,全部功能由硬件实现,并且对程序员是透明的</p>
+<p>其基本结构如下:<br><img src="/2020/02/24/computer-composition0/cache0.jpg" alt="cache">  </p>
+<ul>
+<li>将n位的主存地址分块,前m位为主存块号,后b位为块内地址;将cache也分成同样大小的多个块,前c位为cache块号,后b位为块内地址(块内字节数与主存相同)</li>
+<li>cache内每一个块外加一个标记地址,指明它是主存哪一块的副本,这个标记地址应该为m-c位</li>
+<li>注意,cache的块号和它的标记地址不同</li>
+</ul>
+<p>当CPU发出读请求时,将主存地址m位(或m中的一部分)与cache某块的标记相比较,当结果相等时,说明需要的数据已经在cache中,直接访问cache即可,在CPU与cache之间,通常一次传送一个字块;当比较结果不相等时,说明需要的数据尚未调入cache,那么就要把该数据所在的整个字块从主存中调进来</p>
+<ul>
+<li>命中: CPU所要访问的信息在cache中,否则为不命中</li>
+<li>命中率: CPU所要访问的信息在cache中的比率</li>
+<li>失效率: 所要访问的信息不在cache中的比率</li>
+</ul>
+<p>具有cache的存储器的平均存取时间的计算:</p>
+<ul>
+<li>设cache本身的存取时间(周期)为tc,命中率为h,主存的存取时间为tm,则:<blockquote>
+<p>平均存取时间t = h*tc+(1-h)(tc+tm) 或者估算为 h*tc+(1-h)tm</p>
+</blockquote>
+</li>
+</ul>
+<p>cache写策略:如何保证cache中的副本在更改后与主存一致</p>
+<ul>
+<li>标志交换或写回法: 暂时只修改cache中数据,待该字块被替换出去时写入主存</li>
+<li>通过式写法或写通法: 每次修改cache的同时也修改主存</li>
+<li>若被修改的单元根本不在cache中,也可以直接对主存进行写操作</li>
+</ul>
+<h3 id="cache映像"><a href="#cache映像" class="headerlink" title="cache映像"></a>cache映像</h3><h4 id="地址映射-映像-的概念"><a href="#地址映射-映像-的概念" class="headerlink" title="地址映射(映像)的概念"></a>地址映射(映像)的概念</h4><p>为了将信息存放到cache中,需要某种函数将主存的地址映射到cache中;执行程序时,需要通过地址变换将主存地址变换成cache地址,这种变换基于地址映像来实现</p>
+<h4 id="直接映射"><a href="#直接映射" class="headerlink" title="直接映射"></a>直接映射</h4><ul>
+<li>特点: 主存中第$2^i+k$块只能映射到cache中第k块,其中,i&gt;c(c为cache字块地址位数)<blockquote>
+<p>即: $cache字块号 = 主存字块号 mod 2^c$</p>
+</blockquote>
+</li>
+</ul>
+<p>从实现上,只需要将m位的主存分成t位主存字块标记和c位cache字块标记;cache中只需要t位进行标记,将其与t位主存字块标记对比即可判断是否命中</p>
+<p><img src="/2020/02/24/computer-composition0/cache1.jpg" alt="cache"></p>
+<p>由于cache块号与主存块号的部分相关连,因此标记只需要t位;实现简单,cache块的定位迅速(主存的块只能映射到一个cache块中),但不够灵活</p>
+<h4 id="全相联映射"><a href="#全相联映射" class="headerlink" title="全相联映射"></a>全相联映射</h4><ul>
+<li>特点: 主存中的每一块可以映射到cache中的任意一块<blockquote>
+<p>cache中的标记需要m位,在定位cache块时需要将m位主存块号和所有的cache标记比对一次,才能判断是否”命中”</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/2020/02/24/computer-composition0/cache2.jpg" alt="cache"></p>
+<p>这种方式最灵活,cache命中率最高,但成本也最高,开销大速度慢</p>
+<h4 id="组相联映射"><a href="#组相联映射" class="headerlink" title="组相联映射"></a>组相联映射</h4><ul>
+<li>特点: 是直接映射和全相联映射的一个折衷,主存中的每一块可以映射到cache中的$2^{c-r}$块<blockquote>
+<ul>
+<li>主存和cache分成r组,取主存块地址和cache块地址的后r位</li>
+<li>组间为直接映射,组内为全相联映射</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p><img src="/2020/02/24/computer-composition0/cache3.jpg" alt="cache"></p>
+<p>上图中cache每一组(行)内都有多个全相联的块</p>
+<h3 id="替换算法"><a href="#替换算法" class="headerlink" title="替换算法"></a>替换算法</h3><p>新的主存字块需要调入cache而原可用位置已被占满时,就需要用替换算法来更新cache内容</p>
+<h4 id="FIFO算法"><a href="#FIFO算法" class="headerlink" title="FIFO算法"></a>FIFO算法</h4><ul>
+<li>按调入cache的先后顺序来决定需要被替换出去的cache块;最先被调入cache的块最先被替换成新的块<blockquote>
+<ul>
+<li>这种算法考虑了局部访问性原理</li>
+<li>这种算法实现容易,开销小</li>
+<li>但有些时候会使得命中率下降</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h4 id="LRU算法"><a href="#LRU算法" class="headerlink" title="LRU算法"></a>LRU算法</h4><ul>
+<li>将近期长久未被访问过的块替换出去<blockquote>
+<ul>
+<li>这种算法按调用频繁程度来决定淘汰顺序,并没有考虑局部访问性原理,比较合理</li>
+<li>这种算法的cache命中率较高</li>
+<li>这种算法实现开销比FIFO稍大</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>LRU+FIFO实现: 每次命中新块,都将它移动到队头;若未命中,则将队尾元素替换成新块,然后将它移动到队头</p>
+<h4 id="cache地址的监听"><a href="#cache地址的监听" class="headerlink" title="cache地址的监听"></a>cache地址的监听</h4><p>在外部设备对存储器进行修改时,需要保证cache与主存对应快的内容一致,需要对地址进行监听</p>
+<p>做法: 若某一IO设备直接对存储器而非cache写入数据时,将对应地址的cache(若有的话)标记有效的位清0,当CPU再次访问该cache时将产生不命中信号;保证CPU所取数据的正确性</p>
+<h3 id="多层次cache"><a href="#多层次cache" class="headerlink" title="多层次cache"></a>多层次cache</h3><h4 id="指令cache和数据cache"><a href="#指令cache和数据cache" class="headerlink" title="指令cache和数据cache"></a>指令cache和数据cache</h4><p>将指令和数据放在同一cache中通常会使得存取数据操作和取指令操作发生冲突,延迟了指令的读取</p>
+<p>哈佛结构: 将指令cache和数据cache独立分开来</p>
+<h4 id="多层次cache-1"><a href="#多层次cache-1" class="headerlink" title="多层次cache"></a>多层次cache</h4><p>集成度高的芯片可用设计出高速的片内cache,与大容量的片外cache配合使用</p>
+<p>一般一级cache和二级cache设计在片内,高性能处理器均已采用三级cache方案</p>
+<h2 id="5-3-虚拟存储器"><a href="#5-3-虚拟存储器" class="headerlink" title="5.3 虚拟存储器"></a>5.3 虚拟存储器</h2><p>虚拟存储器指的是主存-辅存层次,程序员可以按虚存空间编址</p>
+<p>几个单位: 段,页,段页</p>
+<h3 id="段式管理"><a href="#段式管理" class="headerlink" title="段式管理"></a>段式管理</h3><p>段: 利用程序模块化性质,按照程序逻辑结构划分出的多个相对的独立部分</p>
+<ul>
+<li>如: 过程,子过程,数据表,阵列等</li>
+<li>这些逻辑部分可以互相调用或者被外部程序调用,形成段间连接,产生规模较大的程序</li>
+<li>一般用段表指明段在主存中的位置: 段号,段起点,装入位(表示段是否已经装入主存),段长等(段表本身也是由一个段存储)</li>
+</ul>
+<p>段式管理: 主存按段进行分配</p>
+<ul>
+<li>优点: 逻辑独立性好,与程序的自然分界相对应,易于编译、管理、修改和保护,也易于多道程序共享</li>
+<li>缺点: 会在段间留下许多空余的零碎存储空间,造成存储资源的浪费</li>
+</ul>
+<h3 id="页式管理"><a href="#页式管理" class="headerlink" title="页式管理"></a>页式管理</h3><p>页面: 主存的物理空间被划分位等长的固定区域,称为页面</p>
+<p>页式管理: 主存按页进行管理,信息传送单位是定长的页</p>
+<ul>
+<li>优点: 新页调入主存十分容易,,只要有空白页即可; 可能造成浪费的地方是程序最后一页的零头,它比段式管理系统的空间浪费要小得很多</li>
+<li>缺点: 由于页不是逻辑上独立的实体,在处理、保护和共享都不及段式来得方便</li>
+</ul>
+<p>段页式管理: 将程序按模块分段,段内再分页; 出入主存仍以页为信息传送单位, 用段表和页表(每段一个页表)进行两级管理</p>
+<p>####页式虚拟存储器</p>
+<ul>
+<li>逻辑页: 在页式虚拟存储器中,把虚拟空间分成页,称为虚页或逻辑页</li>
+<li>物理页: 主存空间分成和虚存同样大小的页,称为实页或物理页</li>
+<li>虚存地址: 虚拟地址由高低两个字段组成,高字段为逻辑页号,低字段为页内地址</li>
+<li>实存地址: 主存实地址由高低两个字段组成, 高字段为物理页号,低字段为页内地址</li>
+</ul>
+<p>虚存地址到主存实地址的变换是由页表来实现的<br><img src="/2020/02/24/computer-composition0/page0.jpg" alt="page"></p>
+<ul>
+<li>对应每个虚页号有一个页表条目,该条目要包含虚页对应主存的物理页号</li>
+<li>其他属性包含装入(有效)位,修改位(表示页面内容是否被修改),替换控制位(指出需要替换的页)和其他保护位等<blockquote>
+<p>页表本身也在主存中,如果一次访问不命中,那么进行替换、修改再访问,需要和主存进行多次通讯,效率较低</p>
+</blockquote>
+</li>
+</ul>
+<p>快表TLB: 将频繁访问的页表信息存放在一个快速存储器中<br><img src="/2020/02/24/computer-composition0/TLB0.jpg" alt="tlb"></p>
+<ul>
+<li>首先按虚页号同时查询快表慢表</li>
+<li>快表查到即访问,查不到即花费一个周期去主存中的慢表找</li>
+<li>找到后用替换算法将该页号调入快表</li>
+</ul>
+<p>页式虚拟存储器优点:</p>
+<ul>
+<li>主存储器利用率较高</li>
+<li>页表相对简单</li>
+<li>地址变换速度较快</li>
+<li>对磁盘管理比较容易</li>
+</ul>
+<p>缺点:</p>
+<ul>
+<li>程序模块化性能不好</li>
+<li>页表很长,需要占用大量的存储空间</li>
+</ul>
+<p>内页表: 虚地址到主存物理地址的变换表<br>外页表: 虚地址和具体辅存地址之间的变换表</p>
+<h3 id="段页式虚拟存储器"><a href="#段页式虚拟存储器" class="headerlink" title="段页式虚拟存储器"></a>段页式虚拟存储器</h3><p>在段页式管理的基础上,产生段页式虚拟存储器</p>
+<ul>
+<li>多道程序: 如果有多个用户在机器上运行,称为多道程序<blockquote>
+<ul>
+<li>每一道(每个用户)需要一个基号(用户标志号)</li>
+<li>这个地址需要指明该道程序的段表起点(存放在基址寄存器中)</li>
+</ul>
+</blockquote>
+</li>
+<li>虚拟地址: 包括基号D,段号S,页号P,页内地址D</li>
+</ul>
+<p>段页式虚拟存储器地址变换过程见课本第174 175页<br><img src="/2020/02/24/computer-composition0/para0.jpg" alt="para"><br>查询过程:</p>
+<ul>
+<li>程序段起点+段号-&gt;页表起点</li>
+<li>页表起点+页号+页内偏移量-&gt;实存地址</li>
+</ul>
+<h3 id="虚拟存储器工作过程"><a href="#虚拟存储器工作过程" class="headerlink" title="虚拟存储器工作过程"></a>虚拟存储器工作过程</h3><p><img src="/2020/02/24/computer-composition0/storage0.jpg" alt="storage"></p>
+<h3 id="存储管理部件MMU"><a href="#存储管理部件MMU" class="headerlink" title="存储管理部件MMU"></a>存储管理部件MMU</h3><p>虚拟存储系统的特点:</p>
+<ul>
+<li>允许用户程序用比主存空间大得多的空间来访问主存</li>
+<li>每次访存都要进行虚实地址的变换<br>整个虚拟存储器的管理是由存储管理部件MMU和操作系统共同完成的</li>
+</ul>
+<h2 id="5-4-相连存储器"><a href="#5-4-相连存储器" class="headerlink" title="5.4 相连存储器"></a>5.4 相连存储器</h2><p>在cache和虚拟存储器中,需要用到按内容寻址的相连存储器(页表查询等)</p>
+<ul>
+<li>相连存储器按照所存数据字的全部内容或部分内容进行查找(检索)访问<br><img src="/2020/02/24/computer-composition0/CR0.jpg" alt></li>
+<li>CR是比较数寄存器</li>
+<li>MR是屏蔽数寄存器,无需进行匹配的位置为0,置1的位为关键字段</li>
+<li>WSR为字选择寄存器,对应位为0的字不参与查找(可以用这个进行二次或多次查找;将上一次的SRR放入WSR即可)</li>
+<li>SRR为查找结果寄存器,满足要求的相应位为1</li>
+<li>相联存储器能够进行比较操作(相等比较,大小比较,求最值)看,比较操作是并行的,时间复杂度为常数</li>
+</ul>
+<h2 id="5-5-存储保护"><a href="#5-5-存储保护" class="headerlink" title="5.5 存储保护"></a>5.5 存储保护</h2><p>多个用户对主存进行共享,需要防止由于一个用户程序出错导致其他用户程序和系统软件被破坏,也要防止一个用户程序不合法地访问其他的主存区域</p>
+<h3 id="存储区域保护"><a href="#存储区域保护" class="headerlink" title="存储区域保护"></a>存储区域保护</h3><ul>
+<li>在主存系统中由系统软件经特权指令设置上下界寄存器为每个程序划定存储区域,禁止越界访问</li>
+</ul>
+<p>虚拟存储系统中:</p>
+<ul>
+<li>页表保护: 每个程序都有自己的页表和段表,对它们进行保护; 除非地址变换出错,否则程序只能影响分配给它的几个主存页面</li>
+<li>键保护: 为主存的每一页配一个由操作系统赋予的存储键,给相应的每个用户分配一个访问键,这个访问键赋予每道程序; 当访问键与存储键相符合时,这一页的数据才能被允许操作</li>
+<li>环保护: 按系统程序和用户程序的重要性对整个系统正常运行的影响程度进行分层(环); 环号大小表示保护级别,环号越大等级越低; 某环内的程序只能转到环号大于等于它本身的页中去</li>
+</ul>
+<h3 id="访问方式保护"><a href="#访问方式保护" class="headerlink" title="访问方式保护"></a>访问方式保护</h3><p>对主存信息进行读R,写W和执行E(指将数据作为指令使用)保护</p>
+<h3 id="管理状态和用户状态"><a href="#管理状态和用户状态" class="headerlink" title="管理状态和用户状态"></a>管理状态和用户状态</h3><p>大多数计算机在执行程序时把工作状态分成两种</p>
+<ul>
+<li>管理状态：执行操作系统或管理程序时所处的状态</li>
+<li>用户状态：执行用户程序时所处的状态<br>为了防止因程序员编程出错而影响整个系统的工作，在机器中设置了一些特权指令(规定特权指令只有操作系统等系统程序才能使用，如在用户程序中出现特权指令)，则在执行到该指令时立即中止程序的执行并发出中断。</li>
+</ul>
+<h1 id="六、指令系统"><a href="#六、指令系统" class="headerlink" title="六、指令系统"></a>六、指令系统</h1><p>(原书第五章)</p>
+<h2 id="指令系统的发展"><a href="#指令系统的发展" class="headerlink" title="指令系统的发展"></a>指令系统的发展</h2><ul>
+<li>指令: 计算机执行某种操作的命令 </li>
+</ul>
+<hr>
 <p><em>待更新…</em></p>
 ]]></content>
       <categories>
