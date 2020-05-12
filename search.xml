@@ -11,6 +11,8 @@
 <p>课程主要讲述关系型数据库的原理, 不着重于具体数据库的使用</p>
 <p>在高级篇中,从管理系统的角度来介绍DBMS系统,用使用和应用的角度来讲解数据库设计的方法</p>
 <p>数据库原理与设计(基础篇)见<a href="http://georgechen.top/2020/02/27/data-base0/" target="_blank" rel="noopener">http://georgechen.top/2020/02/27/data-base0/</a></p>
+<a id="more"></a>
+
 <h1 id="六、关系数据理论"><a href="#六、关系数据理论" class="headerlink" title="六、关系数据理论"></a>六、关系数据理论</h1><h2 id="6-1-关系数据理论的提出"><a href="#6-1-关系数据理论的提出" class="headerlink" title="6.1 关系数据理论的提出"></a>6.1 关系数据理论的提出</h2><p>需要解决的问题:怎么根据具体问题构造出一个合适的数据模式;即,什么是一个好的数据库逻辑设计</p>
 <p>好的关系模式不会因为数据冗余而发生:</p>
 <ul>
@@ -245,7 +247,7 @@
 </ul>
 <p>关系模式的分解:</p>
 <ul>
-<li>$R&lt;U,F&gt;的一个分解为$\rho = \lbrace R_1&lt;U_1,F_1&gt;,…,R_n&lt;U_n,F_n&gt;\rbrace$,其中$U = U_1\cup … U_n$, 且不存在$U_i\subseteq U_j$</li>
+<li>$R&lt;U,F&gt;$的一个分解为$\rho = \lbrace R_1&lt;U_1,F_1&gt;,…,R_n&lt;U_n,F_n&gt;\rbrace$,其中$U = U_1\cup … U_n$, 且不存在$U_i\subseteq U_j$</li>
 </ul>
 <p>模式分解主要涉及到投影和自然连接两个运算</p>
 <h3 id="模式分解的三个目标"><a href="#模式分解的三个目标" class="headerlink" title="模式分解的三个目标"></a>模式分解的三个目标</h3><p>一个模式有多种分解方法,符合一些要求的分解方法才有意义</p>
@@ -254,7 +256,7 @@
 </li>
 <li><p>保持函数依赖: 分解前F的最小依赖集中的每个函数依赖都应该被投影到分解后的某个关系模式中去</p>
 <blockquote>
-<p>即:$F^+ = (F_1\cup … \cup F_n)^+</p>
+<p>即:$F^+ = (F_1\cup … \cup F_n)^+$</p>
 </blockquote>
 </li>
 <li><p>达到更高级范式: 分解得到的每个关系模式应该相比于分解前的关系模式达到更高级别的范式</p>
@@ -284,6 +286,591 @@
 <blockquote>
 <p>这种分解算法不一定能达到BCNF</p>
 </blockquote>
+<h1 id="七、数据库设计"><a href="#七、数据库设计" class="headerlink" title="七、数据库设计"></a>七、数据库设计</h1><h2 id="7-1-数据库设计概述"><a href="#7-1-数据库设计概述" class="headerlink" title="7.1 数据库设计概述"></a>7.1 数据库设计概述</h2><ul>
+<li>广义上,数据库设计是设计整个数据库应用系统</li>
+<li>狭义上,数据库设计就是设计数据库本身</li>
+</ul>
+<p>特点:</p>
+<ul>
+<li>数据库设计是三分技术,七分管理,十二分基础数据</li>
+<li>数据库设计是结构(数据)设计和行为(处理)设计的结合</li>
+</ul>
+<p>数据库设计方法:</p>
+<ul>
+<li>手工设计法</li>
+<li>规范设计法:如新奥尔良法</li>
+<li>基于ER模型的设计方法</li>
+<li>3NF设计方法</li>
+<li>ODL方法</li>
+<li>UML方法</li>
+</ul>
+<p>数据库设计工具: SYSBASE等</p>
+<p>数据库设计基本步骤:</p>
+<ol>
+<li>需求分析: 了解和分析用户需求</li>
+<li>概念结构设计: 综合,归纳,抽象用户需求,形成概念模型(ER图 )<blockquote>
+<p>需求分析和概念结构设计独立于任何DBMS系统</p>
+</blockquote>
+</li>
+<li>逻辑结构设计: 将概念模型转化成数据模型,并进行数据模型优化</li>
+<li>物理结构设计: 为数据模型选取一个物理结构(存储结构和存取方法设计),并评价设计,预测性能;不满意需要重新进行逻辑设计<blockquote>
+<p>逻辑结构设计和物理结构设计与选用数据库系统相关</p>
+</blockquote>
+</li>
+<li>数据库实施: 进行物理实现和实验性运行;不满意需要返回物理结构或逻辑结构设计</li>
+<li>数据库运行和维护</li>
+</ol>
+<p>设计一个完善的数据库应用系统是上述6个阶段的不断反复</p>
+<h2 id="7-2-需求分析"><a href="#7-2-需求分析" class="headerlink" title="7.2 需求分析"></a>7.2 需求分析</h2><p>需求分析是分析用户的需求,是设计数据库的起点</p>
+<p>任务: 通过了解原系统的工作情况,调查应用的环境,明确用户的需求,从而确定新系统的功能</p>
+<ul>
+<li>调查重点是数据和处理两方面</li>
+</ul>
+<p>方法:</p>
+<ol>
+<li>调查组织机构总体情况</li>
+<li>熟悉业务活动<blockquote>
+<p>上述两点需要数据库设计人员和用户进行对接</p>
+</blockquote>
+</li>
+<li>明确用户的需求</li>
+<li>确定系统的边界: 设计数据字典,设计用户需求规格说明书</li>
+<li>概念设计等…</li>
+</ol>
+<p>数据字典:</p>
+<ul>
+<li>数据字典是对数据库中数据的描述,为元数据;它是一种数据的数据</li>
+<li>数据字典在需求分析阶段建立,在数据库设计过程总不断修改充实完善; 是详细数据收集和分析获得的主要结果<blockquote>
+<p>数据字典内容</p>
+<ul>
+<li>数据项: 数据最小组成单位; 有含义说明,取值范围和函数依赖等描述</li>
+<li>数据结构: 由若干个数据项或数据结构组成</li>
+<li>数据流: 由数据结构,数据流来源,数据流去向等组成; 描述数据结构在系统内部传输的路径</li>
+<li>数据存储: 是数据结构停留或保存的地方,也是数据流的来源和去向之一</li>
+<li>处理过程: 是从输入数据流到输出数据流的转换; 具体逻辑一般用判定表或判定树表示</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="7-3-概念结构设计"><a href="#7-3-概念结构设计" class="headerlink" title="7.3 概念结构设计"></a>7.3 概念结构设计</h2><p>概念结构设计: 将需求分析得到的用户需求抽象为信息结构(概念模型)的过程</p>
+<p>概念模型是现实世界的一种抽象</p>
+<h3 id="E-R模型"><a href="#E-R模型" class="headerlink" title="E-R模型"></a>E-R模型</h3><p>实体-联系模型称为E-R模型,它用E-R图来描述现实世界的概念模型</p>
+<p>实体之间的联系:</p>
+<ul>
+<li><p>一对一联系: 对于两个实体集中的每一个实体,它至多只与对方实体集中的一个实体有联系,则称两个实体集具有一对一联系,记为1:1</p>
+<blockquote>
+<p>当然,这并不要求每一个实体都得和另一个实体有联系</p>
+</blockquote>
+</li>
+<li><p>一对多联系: 对于实体集A中的每一个实体,实体集B中有多个实体与之联系,反之实体集B中的实体最多只能和A中的一个实体有联系,则称实体集A与实体集B有一对多联系,记为1:n</p>
+</li>
+<li><p>多对多联系: 于实体集A中的每一个实体,实体集B中有多个实体与之联系,反之亦然, 则称实体集A与实体集B有多对多联系,记为m:n</p>
+<blockquote>
+<p>多个实体围绕一个动作也可以形成一对一等联系,单个实体内部也可以形成联系</p>
+</blockquote>
+</li>
+<li><p>联系的度: 把参与联系的实体的数据称为联系的度,N个实体之间的联系的度为N,称为N元联系</p>
+</li>
+</ul>
+<p>E-R模型表示:</p>
+<ul>
+<li>实体型: 用矩形表示,矩形内写明实体名; 如学生</li>
+<li>属性: 用椭圆形表示,由无向边和实体型连接</li>
+<li>联系: 用菱形表示,框内标注联系名,用无向边与有关实体联系起来,同时在边上标明联系的类型(n:m); 联系也可以有自己的属性,由无向边连接</li>
+</ul>
+<h3 id="扩展的E-R模型"><a href="#扩展的E-R模型" class="headerlink" title="扩展的E-R模型"></a>扩展的E-R模型</h3><p>扩展的E-R模型用于丰富基本E-R模型的表达能力</p>
+<h4 id="ISA联系"><a href="#ISA联系" class="headerlink" title="ISA联系"></a>ISA联系</h4><ul>
+<li>ISA联系用三角形表示,表明某些实体是某个实体的子类型</li>
+<li>子类继承了父类的所有属性,同时也可以有自己的属性</li>
+</ul>
+<p>分类属性:</p>
+<ul>
+<li>分类属性是父实体型的一个属性</li>
+<li>分类属性的值把夫实体型中的实体分派到子实体型中</li>
+</ul>
+<p><img src="/2020/04/16/data-base1/ISA.jpg" alt="isa"></p>
+<p>约束:</p>
+<ul>
+<li>不相交约束: 表明父类某个实体最多只能属于一个子类实体集; 此时三角形中需要有一个叉号</li>
+<li>完备性约束: 表明父类中的某个实体必须是某一个子类中的实体,又称完全特化; 此时父类到子类之间的线用双线表示</li>
+</ul>
+<p><img src="/2020/04/16/data-base1/ISA1.jpg" alt="isa"></p>
+<h4 id="基数约束"><a href="#基数约束" class="headerlink" title="基数约束"></a>基数约束</h4><ul>
+<li>技术约束用于表明一个实体可以在联系中出现的次数上下限</li>
+<li>这是一个一对一,一对多,多对多联系的细化</li>
+<li>约束用一个数对min..max表示,标注在联系和实体之间,max为’*‘时表示无穷大</li>
+</ul>
+<p><img src="/2020/04/16/data-base1/restrain0.jpg" alt="res"></p>
+<p>约束类型:</p>
+<ul>
+<li>强制参与约束: min=1,表明被施加约束的实体型中的每个实体都要参与联系</li>
+<li>非强制参与约束: min=0,表明被施加约束的实体型中的实体可以出现在联系中,也可以不出现在联系中</li>
+</ul>
+<h4 id="PART-OF联系"><a href="#PART-OF联系" class="headerlink" title="PART-OF联系"></a>PART-OF联系</h4><ul>
+<li>PART-OF联系用于描述某个实体型是另外一个实体型的一部分</li>
+</ul>
+<p>PART-OF联系的分类:</p>
+<ul>
+<li>非独占联系: 整体实体如果被破坏,部分实体仍可以独立存在</li>
+<li>独占联系: 整体实体如果被破坏,则部分实体不能存在<blockquote>
+<ul>
+<li>非独占联系可以用用非强制参与的一对多联系表示(0..1)</li>
+<li>独占联系需要用弱实体类型和识别联系表示</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>弱实体类型和识别联系:</p>
+<ul>
+<li>弱实体类型表明该实体型的存在依赖于其他实体型的存在(否则为强实体型); 弱实体型用双矩形表示</li>
+<li>独占联系用双菱形表示</li>
+</ul>
+<p><img src="/2020/04/16/data-base1/PO0.jpg" alt="partof"></p>
+<h3 id="UML"><a href="#UML" class="headerlink" title="UML"></a>UML</h3><ul>
+<li>UML为统一建模语言,是对象管理组织的一个标准</li>
+<li>UML中的类大致对应E-R图中的实体</li>
+</ul>
+<p>用UML的类图表示E-R图:</p>
+<ul>
+<li>实体型: 用类表示; 矩形框上部记录实体名,下部列出属性名</li>
+<li>实体的码: 在类图中的属性后面加上’PK’表示码</li>
+<li>联系: 用类图之间的关联来表示</li>
+<li>基数约束: 和E-R图中的基数约束表示类似</li>
+<li>UML中的子类和E-R图中的ISA联系一致</li>
+</ul>
+<p><img src="/2020/04/16/data-base1/UML0.jpg" alt="UML"></p>
+<h3 id="概念结构设计方法"><a href="#概念结构设计方法" class="headerlink" title="概念结构设计方法"></a>概念结构设计方法</h3><h4 id="实体与属性的划分原则"><a href="#实体与属性的划分原则" class="headerlink" title="实体与属性的划分原则"></a>实体与属性的划分原则</h4><p>实体和属性的划分方法:</p>
+<ul>
+<li>对需求分析阶段收集到的数据进行分类,组织</li>
+<li>确定实体,实体的属性,实体之间的联系类型</li>
+</ul>
+<p>原则:</p>
+<ul>
+<li>现实世界的事物能以属性对待的,尽量以属性对待,这可以简化E-R图的处理</li>
+<li>作为属性,不能再具有需要描述的性质; 即它必须是不可分的数据项,不能包含其他属性</li>
+<li>属性不能与其他实体具有联系; 联系应当是实体之间的联系</li>
+</ul>
+<h4 id="分E-R图的设计"><a href="#分E-R图的设计" class="headerlink" title="分E-R图的设计"></a>分E-R图的设计</h4><ul>
+<li>先设计分E-R图的草图: 先写出框架</li>
+<li>对E-R图进行详细的设计和调整: 填入一些细节,加入一些具体的联系,填入如联系名等</li>
+</ul>
+<h4 id="E-R图的集成"><a href="#E-R图的集成" class="headerlink" title="E-R图的集成"></a>E-R图的集成</h4><p>合并: 解决各E-R图之间的冲突,将分E-R图合并,生成初步的E-R图</p>
+<ul>
+<li>属性冲突: 属性值的类型,取值范围,取值单位冲突</li>
+<li>命名冲突: 同名异义,异名同义<blockquote>
+<ul>
+<li>命名冲突在在实体,联系,属性中都可能发生</li>
+<li>命名冲突需要根据具体情况解决</li>
+</ul>
+</blockquote>
+</li>
+<li>结构冲突：<blockquote>
+<ul>
+<li>同一对象在不同应用中有不同的抽象,需要统一(全是实体或全是属性)</li>
+<li>同一实体在不同子系统的E-R图中的属性个数和次序不同; 需要取各系统属性的并集,再适当调整次序</li>
+<li>实体间的联系再不同E-R图中有不同的类型; 需要根据语义进行调整</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>消除不必要的冗余,设计基本E-R图:</p>
+<ul>
+<li>冗余的数据: 可由基本数据导出的数据</li>
+<li>冗余的联系: 可由其他联系导出的联系</li>
+<li>消除冗余的方法: 分析法,规范化理论法<blockquote>
+<p>规范化理论: </p>
+<ol>
+<li>确定分E-R图之间的数据依赖,可以通过联系的类型来确定函数依赖集F</li>
+<li>求F的最小覆盖G,求差集D=F-G</li>
+<li>注意考察D中的函数依赖,确定是否为冗余依赖,若是则将其去除<br>注意: 冗余的联系一定在D中,反之不然;当实体之间存在多种联系时,需要将其在形式上加以区分</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<p>一个例子:<br><img src="/2020/04/16/data-base1/example0.jpg" alt="example"></p>
+<h2 id="7-4-逻辑结构设计"><a href="#7-4-逻辑结构设计" class="headerlink" title="7.4 逻辑结构设计"></a>7.4 逻辑结构设计</h2><p>任务: 将概念结构的E-R图转换为DBMS产品支持的逻辑结构</p>
+<ul>
+<li>就目前关系数据库而言,其逻辑结构为一组关系模式的集合<br><img src="/2020/04/16/data-base1/logic.jpg" alt="logic"><h3 id="E-R图向关系模型的转换"><a href="#E-R图向关系模型的转换" class="headerlink" title="E-R图向关系模型的转换"></a>E-R图向关系模型的转换</h3></li>
+<li>实体型的转换: 一个实体型转换为一个关系模式<blockquote>
+<ul>
+<li>属性: 实体的各属性</li>
+<li>码: 实体的码</li>
+</ul>
+</blockquote>
+</li>
+<li>实体型间的一对一联系:<blockquote>
+<p>转换为独立的关系模式</p>
+<ul>
+<li>属性: 与该联系相连的各实体的码以及联系本身的属性</li>
+<li>码: 每个实体的码都是该关系模式的候选码<br>将上述关系模式合并到相连的任意一个关系模式中(更倾向)</li>
+<li>属性: 原关系模式属性加上上述属性</li>
+<li>码: 上述的码</li>
+</ul>
+</blockquote>
+</li>
+<li>实体间的一对多联系:<blockquote>
+<p>转换为一个独立的关系模式</p>
+<ul>
+<li>属性: 与该联系相连的各实体的码以及联系本身的属性</li>
+<li>码: n端的实体的码(即多端的实体的码)<br>与n端的关系模式合并(更倾向)</li>
+<li>属性: n端关系模式属性加上上述属性</li>
+<li>码: n端实体的码</li>
+</ul>
+</blockquote>
+</li>
+<li>实体间的多对多联系:转换成一个独立的关系模式<blockquote>
+<ul>
+<li>属性: 各实体的码以及联系本身的属性</li>
+<li>码: 各实体的码的组合</li>
+</ul>
+</blockquote>
+</li>
+<li>三个或以上实体间的一个多元联系: 转换成一个独立的关系模式</li>
+<li>可以合并具有相同码的关系模式(减少关系个数)<blockquote>
+<ul>
+<li>将其中一个关系模式的全部属性加入另一个关系模式中</li>
+<li>去掉同义的属性,并适当调整属性的次序</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="数据模型的优化"><a href="#数据模型的优化" class="headerlink" title="数据模型的优化"></a>数据模型的优化</h3><p>数据库逻辑设计结果不是唯一的,需要运用规范化理论进行修改和调整</p>
+<blockquote>
+<ul>
+<li>确定数据依赖</li>
+<li>对各个关系模式之间的数据依赖进行极小化处理,消除冗余</li>
+<li>确定各关系模式属于的范式</li>
+<li>按要求对各关系模式进行合并或分解<br>注意:</li>
+<li>规范化通常的代价是更多的连接运算</li>
+<li>非BCNF的关系模式只会存在更新异常,不会存在查询异常,若实际应用中只是查询为主,则高范式对关系模式没有实际影响</li>
+</ul>
+</blockquote>
+<h3 id="设计用户子模式"><a href="#设计用户子模式" class="headerlink" title="设计用户子模式"></a>设计用户子模式</h3><p>考虑局部应用的特殊需求和用户体验,可由视图机制来定义用户子模式</p>
+<ul>
+<li>使用更符合用户习惯的别名</li>
+<li>针对不同级别的用户定义不同的视图,提高系统的安全性</li>
+<li>简化用户对系统的使用</li>
+</ul>
+<h2 id="7-5-物理结构设计"><a href="#7-5-物理结构设计" class="headerlink" title="7.5 物理结构设计"></a>7.5 物理结构设计</h2><p>物理设计: 为逻辑数据模型选取一个最适合应用要求的物理结构,包括物理设备上的存储结构和存取方法</p>
+<p><img src="/2020/04/16/data-base1/phys0.jpg" alt="phys"></p>
+<h3 id="物理设计的内容和方法"><a href="#物理设计的内容和方法" class="headerlink" title="物理设计的内容和方法"></a>物理设计的内容和方法</h3><p>内容:</p>
+<ul>
+<li>为关系模式选择存取方法(建立存取路径)</li>
+<li>为关系,索引,日志,备份等数据库文件选择物理存储结构</li>
+</ul>
+<p>设计原则:</p>
+<ul>
+<li>充分了解应用环境: 分析运行的事物,选择设计所需参数</li>
+<li>充分了解RDBMS内部特征: 了解系统提供的存取方法和存储结构,如索引等<blockquote>
+<p>物理数据库设计参数</p>
+<ul>
+<li>数据库查询事务: 查询所涉及的关系,属性等</li>
+<li>数据更新事务: 被更新的关系,所设计的属性等</li>
+<li>每个事务在各关系上运行的频率和性能要求</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="关系模式存取方法选择"><a href="#关系模式存取方法选择" class="headerlink" title="关系模式存取方法选择"></a>关系模式存取方法选择</h3><h4 id="索引方法"><a href="#索引方法" class="headerlink" title="索引方法"></a>索引方法</h4><p>建立索引可以提高存取效率,索引存取方法的选择需要根据应用要求确定</p>
+<blockquote>
+<ul>
+<li>对哪些属性列建立索引</li>
+<li>对哪些索引要设计唯一索引,组合索引</li>
+<li>选择合适的索引方法</li>
+</ul>
+</blockquote>
+<p>创建索引:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> [<span class="keyword">UNIQUE</span>] <span class="keyword">INDEX</span> &lt;索引名&gt; <span class="keyword">ON</span> &lt;表名&gt;</span><br><span class="line">[<span class="keyword">USING</span> &lt;索引方法&gt;] (列<span class="number">1</span> [,列<span class="number">2</span>,...]);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>RDBMS提供的索引方法: B-tree(缺省),hash,R-tree,Bitmap等</li>
+</ul>
+<p>在某属性(组)上选择索引存取方法的一般规则:</p>
+<ul>
+<li>某属性(组)经常在查询条件中</li>
+<li>一个属性(组)常作为聚集函数(最值)的参数</li>
+<li>一个属性(组)常在连接操作的条件中出现</li>
+</ul>
+<p>索引建立会带来维护,查找,存储索引的开销</p>
+<h4 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h4><p>B+树特点:</p>
+<ul>
+<li>多分平衡树,存取效率高</li>
+<li>能随机查找也能顺序查找</li>
+<li>增删改操作中能通过算法保持树平衡  </li>
+</ul>
+<p>B+树结构如下:<br><img src="/2020/04/16/data-base1/B0.jpg" alt="B"></p>
+<ul>
+<li>随机查找: 与每一层进行一次比较,若在叶节点中找到码值相等的记录,则根据指针取出相应记录<blockquote>
+<p>若B+树完全存储在文件中,则进行一次比较消耗一次IO操作;若找到相等的节点,最后取记录也消耗一次IO操作</p>
+</blockquote>
+</li>
+<li>范围查找: 先找到起始记录(码值最小的记录),然后沿着叶节点链向后查找,直到码值超出范围</li>
+</ul>
+<h4 id="hash存取方法"><a href="#hash存取方法" class="headerlink" title="hash存取方法"></a>hash存取方法</h4><p>hash通过散列函数将key与record一一对应起来</p>
+<p>hash存取方法适用下列情况:</p>
+<ul>
+<li>一个关系属性主要出现在等值连接条件或等值比较选择条件中</li>
+<li>该关系大小可预知,且不变</li>
+<li>该关系大小动态改变,但所选用DBMS提供了动态hash存取方法</li>
+</ul>
+<h4 id="聚簇方法"><a href="#聚簇方法" class="headerlink" title="聚簇方法"></a>聚簇方法</h4><p>聚簇: 通过将属性(组)上具有相同值的元组集中存放在连续的物理块上,提高某个属性(组)的查询速度(减少IO操作)</p>
+<blockquote>
+<p>上述属性(组)称为聚簇码</p>
+</blockquote>
+<p>聚簇建立:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> CLUSTER &lt;聚簇名&gt; (&lt;聚簇码&gt;) <span class="keyword">SIZE</span> (&lt;大小&gt;);</span><br></pre></td></tr></table></figure>
+
+<p>适用范围:</p>
+<ul>
+<li>对单个关系进行独立聚簇,也适用多个关系组合聚簇</li>
+<li>SQL语句中包含有与聚簇码有关的排序,聚集,集合交并操作时,使用聚簇可以省去或减少对结果集的排序操作</li>
+<li>很少对基表进行增删操作</li>
+<li>很少对其中的变长列进行修改操作</li>
+</ul>
+<p>局限性:</p>
+<ul>
+<li>一个基本表上最多只能建立一个聚簇索引</li>
+<li>聚簇只能提高某些特定应用的性能</li>
+<li>建立与维护聚簇开销相当大<blockquote>
+<ul>
+<li>聚簇建立会导致关系中元组的物理存储位置移动,使关系上原有的索引失效,需要重建索引</li>
+<li>当一个元组聚簇码改变时,它的存储位置也要相应改变</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h4 id="确定数据的存储结构"><a href="#确定数据的存储结构" class="headerlink" title="确定数据的存储结构"></a>确定数据的存储结构</h4><p>基本原则:</p>
+<ul>
+<li>易变部分和稳定部分分开存放</li>
+<li>经常存取的部分和存取频率较低的部分分开存放</li>
+<li>将日志和数据库对象分开存放</li>
+</ul>
+<h4 id="评价物理结构"><a href="#评价物理结构" class="headerlink" title="评价物理结构"></a>评价物理结构</h4><p>物理设计可以有多种方案,需要从中选择一个较优的方案进行实现</p>
+<p>方法:</p>
+<ul>
+<li>定量估算各种方案<blockquote>
+<p>存储空间,存取时间,维护代价等</p>
+</blockquote>
+</li>
+<li>对估算结构进行权衡比较,选择出一个较优的合理的物理结构</li>
+<li>返回用户,征求意见,修改设计</li>
+</ul>
+<h2 id="7-6-数据库的实施和维护"><a href="#7-6-数据库的实施和维护" class="headerlink" title="7.6 数据库的实施和维护"></a>7.6 数据库的实施和维护</h2><p>示意图:<br><img src="/2020/04/16/data-base1/act0.jpg" alt></p>
+<h3 id="数据的载入和应用程序的调试"><a href="#数据的载入和应用程序的调试" class="headerlink" title="数据的载入和应用程序的调试"></a>数据的载入和应用程序的调试</h3><ul>
+<li>定义数据库结构: 用DDL语言创建基本表,视图,索引等(产生目标模式,生成数据字典)</li>
+<li>数据装载: 数据抽取,数据转换,数据载入(ETL)<blockquote>
+<p>数据装载相当费时费力,可以使用DBMS提供的ETL工具辅助完成</p>
+</blockquote>
+</li>
+<li>编制调试应用程序: 数据库设计和数据库应用程序设计是并行的,在数据库实施阶段应当进行编制与调试数据库的应用程序<blockquote>
+<p>此时可以使用一些模拟数据</p>
+</blockquote>
+<h3 id="数据库试运行"><a href="#数据库试运行" class="headerlink" title="数据库试运行"></a>数据库试运行</h3></li>
+</ul>
+<p>在调试完成后,让一小部分数据入库,对数据库系统进行综合的调试; 这里可以包括功能测试和性能测试</p>
+<ul>
+<li>数据库性能指标的测量: 需要测量实际运行的性能指标,若不符合设计目标,需要返回物理设计阶段调整物理结构,甚至返回逻辑设计阶段调整逻辑结构</li>
+<li>数据的分期入库: 先输入小批量数据供先期联合调试; 待试运行基本合格后再输入大批量数据; 逐步增加数据量来逐步完成运行评价</li>
+<li>数据库的转储和恢复: 做好数据库的转储和恢复工作,尽量减少对数据库的破坏</li>
+</ul>
+<h3 id="数据库的运行和维护"><a href="#数据库的运行和维护" class="headerlink" title="数据库的运行和维护"></a>数据库的运行和维护</h3><p>数据库的运行和维护主要由数据库管理员完成</p>
+<ul>
+<li>数据库的转储和恢复<blockquote>
+<ul>
+<li>针对不同的应用要求制定不同的转储计划,定期对数据库和日志文件进行备份</li>
+<li>一旦发生介质故障,需要利用数据库备份及日志文件备份尽快将数据库恢复到某种一致性的状态</li>
+</ul>
+</blockquote>
+</li>
+<li>数据库安全性,完整性控制<blockquote>
+<ul>
+<li>初始定义: 数据库管理员根据用户实际需求授予不同的操作权限</li>
+<li>修改定义: 应用环境发生变化时,数据库管理员需要根据实际情况修改原有的安全控制和完整性约束条件</li>
+</ul>
+</blockquote>
+</li>
+<li>数据库性能的监督,分析和改进<blockquote>
+<ul>
+<li>利用监测工具获取系统运行过程中的性能参数值</li>
+<li>分析数据判断系统的运行状态是否最佳</li>
+<li>适时通过调整某些参数来改进数据库的性能</li>
+</ul>
+</blockquote>
+</li>
+<li>数据库的重组织与重构造: 记录的增删改查会影响数据库的物理存储,降低数据库存储空间利用率,使得数据库性能下降<blockquote>
+<ul>
+<li>重组织: 按原设计要求重新安排存储位置,回收垃圾,减少指针链(这不会破坏数据库的逻辑结构和物理结构)</li>
+<li>重构造: 增加新的应用或实体,修改某些已有应用; 根据新环境调整数据库的模式和内模式<br>注意,重构造数据库的程度是有限的, 当应用需求变化太大或者软硬件发展太快导致重构数据库代价太大时,需要重新设计数据库应用系统了,原有数据库应用系统的生命周期已经结束</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h1 id="八、数据库编程"><a href="#八、数据库编程" class="headerlink" title="八、数据库编程"></a>八、数据库编程</h1><p>问题: 一些要求无法使用SQL语言表达</p>
+<p>突破SQL语言局限性的解决方案:</p>
+<ul>
+<li>利用高级语言的表达能力: 嵌入式SQL</li>
+<li>扩展SQL语言: 过程化SQL</li>
+<li>在一个更大的视野上将数据库看成是一类数据源: ODBC编程</li>
+</ul>
+<h2 id="8-1-嵌入式SQL"><a href="#8-1-嵌入式SQL" class="headerlink" title="8.1 嵌入式SQL"></a>8.1 嵌入式SQL</h2><h3 id="C语言中的SQL基本语法"><a href="#C语言中的SQL基本语法" class="headerlink" title="C语言中的SQL基本语法"></a>C语言中的SQL基本语法</h3><p>基本格式: <code>EXEC SQL &lt;语句块;&gt;</code></p>
+<p>主语言程序编译过程:</p>
+<blockquote>
+<ol>
+<li>编写含嵌入式SQL语句的主语言程序</li>
+<li>预编译程序,将嵌入式SQL变为函数调用(形式上消除SQL)</li>
+<li>正常编译主语言程序</li>
+</ol>
+</blockquote>
+<p>主语言访问数据库的基本步骤</p>
+<blockquote>
+<ol>
+<li>打开数据库</li>
+<li>定义必要的主变量和数据通信区</li>
+<li>用SQL访问数据库,并对返回结果进行处理</li>
+<li>关闭数据库</li>
+</ol>
+</blockquote>
+<h4 id="建立数据库连接"><a href="#建立数据库连接" class="headerlink" title="建立数据库连接"></a>建立数据库连接</h4><figure class="highlight"><table><tr><td class="code"><pre><span class="line">EXEC SQL CONNECT TO &lt;服务器名&gt; [AS &lt;连接名&gt;] [USER &lt;用户名&gt;];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>服务器名是要连接的数据库服务器的名字,可以是<blockquote>
+<ul>
+<li>服务器标识串,如<dbname>@<hostname>:<port></port></hostname></dbname></li>
+<li>包含服务器标识的SQL串常量</li>
+<li>DEFAULT</li>
+</ul>
+</blockquote>
+</li>
+<li>整个程序内只有一个连接时可以不指定连接名</li>
+<li>可以通过<code>EXEC SQL CONNECTION &lt;连接名&gt;|DEFAULT</code>来修改当前的连接</li>
+</ul>
+<h4 id="定义主变量与数据通讯区"><a href="#定义主变量与数据通讯区" class="headerlink" title="定义主变量与数据通讯区"></a>定义主变量与数据通讯区</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXEC SQL <span class="keyword">BEGIN</span> <span class="keyword">DECLARE</span> <span class="keyword">SECTION</span>; <span class="comment">/*主变量说明开始*/</span> </span><br><span class="line">    &lt;变量类型&gt; &lt;变量名&gt;;</span><br><span class="line">    &lt;类型&gt; &lt;名&gt;;...</span><br><span class="line">EXEC SQL <span class="keyword">END</span> <span class="keyword">DECLARE</span> <span class="keyword">SECTION</span>; <span class="comment">/*主变量说明结束*/</span></span><br><span class="line">long SQLCODE;</span><br><span class="line">EXEC SQL INCLUDE SQLCA; <span class="comment">/*定义SQL通信区*/</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>这些数据的定义一般在函数外定义</li>
+<li>后面SQL查询所INTO的变量需要在主变量说明中定义</li>
+</ul>
+<h4 id="执行相关SQL语句"><a href="#执行相关SQL语句" class="headerlink" title="执行相关SQL语句"></a>执行相关SQL语句</h4><p>所有SQL语句都可以通过执行,包括数据的定义控制更新查询</p>
+<p>查询:  </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXEC SQL <span class="keyword">SELECT</span> &lt;属性<span class="number">1</span>&gt; [,&lt;属性<span class="number">2</span>&gt;,...]</span><br><span class="line">    <span class="keyword">INTO</span>:&lt;主变量<span class="number">1</span>&gt; [,:&lt;主变量<span class="number">2</span>&gt;,...]</span><br><span class="line">    <span class="keyword">FROM</span> ...</span><br><span class="line">    <span class="keyword">WHERE</span> ...</span><br><span class="line">    ...;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>INTO子句用于保存查询结果</li>
+<li>前面带”:”标识的变量为主变量,即主语言的变量<blockquote>
+<ul>
+<li>INTO,WHERE,HAVING中都可以使用主变量</li>
+<li>返回的记录中某些列的值可能为NULL</li>
+<li>主变量只能存储一条记录,若返回多条记录则程序出错</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>增删改:</p>
+<ul>
+<li>增删改中的SET和WHERE子句中可以使用主变量</li>
+<li>使用SET时,需要在主程序中将相应的值赋给主变量</li>
+</ul>
+<h4 id="关闭数据库连接"><a href="#关闭数据库连接" class="headerlink" title="关闭数据库连接"></a>关闭数据库连接</h4><figure class="highlight"><table><tr><td class="code"><pre><span class="line">EXEC SQL DISCONNECT &lt;连接名&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="通信机制"><a href="#通信机制" class="headerlink" title="通信机制"></a>通信机制</h3><p>高级语言是一种过程性语言(执行命令),而SQL语言是描述性语言(描述集合)</p>
+<p>通信机制:</p>
+<ul>
+<li>状态信息传递: 利用SQL通信区,向主语言传递SQL语句的执行状态信息,使主语言能够控制程序流程</li>
+<li>参数传递: 利用主变量,让主语言向SQL语句提供参数</li>
+<li>结果传递: 使用主变量和游标,将SQL语句查询结果返回给主语言</li>
+</ul>
+<h4 id="SQL通信区SQLCA"><a href="#SQL通信区SQLCA" class="headerlink" title="SQL通信区SQLCA"></a>SQL通信区SQLCA</h4><p>用途:</p>
+<ul>
+<li>在执行完SQL语句后,DBMS将系统的当前工作状态和运行环境送到通信区返回给应用程序,应用程序根据这些信息决定接下来的动作</li>
+</ul>
+<p>SQLCA是一个数据结构(SQL Communication Area)</p>
+<p>使用方法:</p>
+<ul>
+<li>定义: <code>EXEC SQL INCLUDE SQLCA</code></li>
+<li>使用: SQL的返回代码会存储在SQLCODE中,SQLCODE为SUCCESS则表示语句成功,否则出错</li>
+</ul>
+<h4 id="主变量"><a href="#主变量" class="headerlink" title="主变量"></a>主变量</h4><p>主变量是在SQL语句中使用的主语言程序变量</p>
+<ul>
+<li>输入主变量: 由应用程序赋值,SQL语句引用</li>
+<li>输出主变量: 由SQL语句对其赋值或设置状态信息, 返回给应用程序</li>
+<li>指示变量: 整型变量,可以带在主变量后面; 用于指示输入或输出主变量的值是否为空值<blockquote>
+<p>例1: </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXEC SQL <span class="keyword">SELECT</span> Sno,Cno,Grade</span><br><span class="line">   <span class="keyword">INTO</span> :Hsno,:Hcno,:Hgrade:Gradeid  <span class="comment">/*指示变量Gradeid*/</span></span><br><span class="line">   <span class="keyword">FROM</span>  SC</span><br><span class="line">   <span class="keyword">WHERE</span> Sno=:givensno <span class="keyword">AND</span> Cno=:givencno </span><br></pre></td></tr></table></figure>
+<p>若Gradeid&lt;0,不论Hgrade为何值,Hgrade都为空  </p>
+<p>例2:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">gradeid=-1</span><br><span class="line"> EXEC SQL <span class="keyword">INSERT</span> </span><br><span class="line"> <span class="keyword">INTO</span> SC(Sno,Cno,Grade)                 <span class="keyword">VALUES</span>(:stdno,:couno,:gr:gradeid); </span><br></pre></td></tr></table></figure>
+<p>此时Grade插入的是空值</p>
+</blockquote>
+</li>
+</ul>
+<p>使用主变量和指示变量需要事先声明</p>
+<ul>
+<li>声明之后的主变量可以在主程序中或SQL中任何一个可以使用表达式的地方使用</li>
+<li>SQL中的主变量之前要加上’:’以示区别</li>
+<li>指示变量必须紧跟主变量之后使用,也需要加上’:’区别</li>
+<li>SQL之外的主变量正常使用即可</li>
+</ul>
+<h4 id="游标"><a href="#游标" class="headerlink" title="游标"></a>游标</h4><ul>
+<li>INTO主变量的方式只能得到一条查询结果</li>
+<li>游标是数据库系统为用户开设的数据缓冲区,用于存放SQL语句的执行结果,可以是多条查询结果(集合)</li>
+<li>每个游标区有一个名字,可以看成该缓冲区的指针</li>
+<li>可以用SQL语句逐一从游标中获取记录赋给主变量</li>
+</ul>
+<p>何时使用游标:</p>
+<ul>
+<li>查询结果为多条SELECT语句</li>
+<li>CURRENT形式的UPDATE和DELETE语句</li>
+</ul>
+<p>游标声明:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXEC SQL <span class="keyword">DECLARE</span> &lt;游标名&gt; <span class="keyword">CURSOR</span></span><br><span class="line">    <span class="keyword">FOR</span> &lt;<span class="keyword">SELECT</span>语句&gt;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>该语句是一条说明性语句并不执行SELECT语句,只是申请一个数据空间来存放未来的执行结果</li>
+</ul>
+<p>打开游标:</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">EXEC SQL OPEN &lt;游标名&gt;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>此时游标中定义的SELECT语句被执行,查询结果被放到缓冲区中</li>
+<li>此时游标处于活动状态,指针指向查询结果的第一条记录</li>
+</ul>
+<p>推进游标:</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">EXEC SQL FETCH &lt;游标名&gt;</span><br><span class="line">    INTO &lt;主变量1&gt;[, &lt;主变量2&gt;, ...];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>每执行一次该语句,指针将指向的记录赋给主变量,并将指针后移一位</li>
+</ul>
+<p>关闭游标:</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">EXEC SQL CLOSE &lt;游标名&gt;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>关闭游标,释放缓冲区以及占用的其他资源</li>
+<li>游标被关闭后,就不再和原来的结果集相联系; 但可以再次打开游标,重新生成并连接结果集</li>
+</ul>
+<p>CURRENT形式的UPDATE和DELETE语句:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span>|<span class="keyword">DELETE</span></span><br><span class="line">    &lt;删改语句&gt;</span><br><span class="line">    <span class="keyword">WHERE</span> <span class="keyword">CURRENT</span> <span class="keyword">OF</span> &lt;游标名&gt;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>此时游标应事先打开</li>
+<li>删除或修改的是游标指针目前指向的记录</li>
+<li>一般使用方法: 先用游标SELECT出所有满足条件的记录; 再推进游标,找到想要修改或删除的记录; 最后使用CURRENT语句删改该记录<blockquote>
+<p>注意: 当游标SELECT语句中带有UNION或ORDER BY等子句,删改操作无法转换成对基本表的删改,此时无法使用CURRENT形式的删改语句</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h3><p>有些SQL语句无法在编译阶段就确定下来,需要在程序执行时才能确定,称为动态嵌入式SQL</p>
+<ul>
+<li>它允许程序在运行过程中临时”组装”出SQL语句</li>
+<li>支持动态组装SQL语句和动态参数两种形式</li>
+</ul>
+<h4 id="SQL语句主变量"><a href="#SQL语句主变量" class="headerlink" title="SQL语句主变量"></a>SQL语句主变量</h4><p>语句主变量定义:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXEC SQL <span class="keyword">BEGIN</span> <span class="keyword">DECLARE</span> <span class="keyword">SECTION</span>;</span><br><span class="line">    const char *stmt="&lt;SQL语句字符串&gt;";</span><br><span class="line">EXEC SQL <span class="keyword">END</span> <span class="keyword">DECLARE</span> <span class="keyword">SECTION</span>;</span><br></pre></td></tr></table></figure>
+
+<p>执行动态SQL语句:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXEC SQL <span class="keyword">EXECUTE</span> <span class="keyword">IMMEDIATE</span> :stmt; <span class="comment">/*stmt为字符串常量指针名*/</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="动态参数"><a href="#动态参数" class="headerlink" title="动态参数"></a>动态参数</h4><p>动态参数是上面SQL语句主变量中的可变元素,使用参数符号’?’标识; 其输入是在程序执行过程中完成绑定</p>
+<p>声明SQL语句主变量例:</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">const char *stmt = "INSERT INTO table VALUES(?);";</span><br></pre></td></tr></table></figure>
+
+<p>准备SQL语句:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXEC SQL <span class="keyword">PREPARE</span> &lt;语句名&gt; <span class="keyword">FROM</span> &lt;<span class="keyword">SQL</span>语句主变量(:stmt)&gt;;</span><br></pre></td></tr></table></figure>
+
+<p>执行SQL语句:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXEC SQL <span class="keyword">EXECUTE</span> &lt;语句名&gt;</span><br><span class="line">    [<span class="keyword">INTO</span> &lt;主变量表&gt;]</span><br><span class="line">    [<span class="keyword">USING</span> &lt;主变量或常量&gt;];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>此时用INTO和USING后面的内容来与前面的(?)相绑定</li>
+</ul>
 ]]></content>
       <categories>
         <category>notes</category>
@@ -5072,7 +5659,7 @@ $$
 </ul>
 <h1 id="六、指令系统"><a href="#六、指令系统" class="headerlink" title="六、指令系统"></a>六、指令系统</h1><p>(原书第五章)</p>
 <h2 id="指令系统的发展"><a href="#指令系统的发展" class="headerlink" title="指令系统的发展"></a>指令系统的发展</h2><ul>
-<li>指令: 计算机执行某种操作的命令 </li>
+<li>指令: 计算机执行某种操作的命令 b</li>
 </ul>
 <hr>
 <p><em>待更新…</em></p>
