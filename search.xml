@@ -15,15 +15,14 @@
 
 <h1 id="六、关系数据理论"><a href="#六、关系数据理论" class="headerlink" title="六、关系数据理论"></a>六、关系数据理论</h1><h2 id="6-1-关系数据理论的提出"><a href="#6-1-关系数据理论的提出" class="headerlink" title="6.1 关系数据理论的提出"></a>6.1 关系数据理论的提出</h2><p>需要解决的问题:怎么根据具体问题构造出一个合适的数据模式;即,什么是一个好的数据库逻辑设计</p>
 <p>好的关系模式不会因为数据冗余而发生:</p>
+<blockquote>
 <ul>
 <li>存储空间浪费</li>
 <li>更新异常</li>
 <li>插入异常</li>
-<li>删除异常<blockquote>
-<p>因此,好的关系模式数据冗余应尽可能少(但较少的冗余度可能会降低增删改查时的效率)</p>
-</blockquote>
-</li>
+<li>删除异常<br>因此,好的关系模式数据冗余应尽可能少(但较少的冗余度可能会降低增删改查时的效率)</li>
 </ul>
+</blockquote>
 <p>问题的根源:数据依赖</p>
 <h3 id="数据依赖"><a href="#数据依赖" class="headerlink" title="数据依赖"></a>数据依赖</h3><p>数据库中,数据依赖是完整性约束的一种表现形式,是数据库模式设计的关键</p>
 <ul>
@@ -31,40 +30,44 @@
 <li>定义属性间的相互关联(一般以相等关系体现)</li>
 </ul>
 <p>现实生活中,数据依赖是</p>
+<blockquote>
 <ul>
 <li>现实世界属性间相互联系的抽象</li>
 <li>数据内在的性质</li>
 <li>语义的体现</li>
 </ul>
+</blockquote>
 <p>数据依赖的类型</p>
+<blockquote>
 <ul>
 <li>函数依赖FD</li>
 <li>多值依赖MVD</li>
 <li>连接依赖</li>
 <li>…</li>
 </ul>
+</blockquote>
 <p>不适合的数据依赖会造成插入、删除、更新异常和数据冗余问题</p>
 <h3 id="关系模式的简化表示"><a href="#关系模式的简化表示" class="headerlink" title="关系模式的简化表示"></a>关系模式的简化表示</h3><p>$R&lt;U,F&gt;$是一个简化表示的关系模式</p>
+<blockquote>
 <ul>
 <li>$U$:关系的属性集合</li>
-<li>$F$: 属性间数据依赖的关系集合<blockquote>
-<p>当且仅当$U$上的一个关系r满足$F$时,r为关系模式$R$的一个关系</p>
-</blockquote>
-</li>
+<li>$F$: 属性间数据依赖的关系集合<br>当且仅当$U$上的一个关系r满足$F$时,r为关系模式$R$的一个关系</li>
 </ul>
+</blockquote>
 <h2 id="6-2-规范化"><a href="#6-2-规范化" class="headerlink" title="6.2 规范化"></a>6.2 规范化</h2><h3 id="函数依赖"><a href="#函数依赖" class="headerlink" title="函数依赖"></a>函数依赖</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>设R(U)是一个属性集U上的关系模式，X和Y是U的子集.若对于R(U)的任意一个可能的关系r，r中不可能存在两个元组在X上的属性值相等， 而在Y上的属性值不等;则称“X函数确定Y”或“Y函数依赖于X”，记作X→Y。X称为这个函数依赖的决定属性组，也称为决定因素(Determinant)。</p>
+<blockquote>
 <ul>
 <li>Y依赖于X:X相等则Y相等</li>
 <li>X确定了那么Y也确定了</li>
 </ul>
+</blockquote>
 <p>注意: </p>
+<blockquote>
 <ul>
 <li>函数依赖是语义范畴的概念,只能根据数据的语义来确定函数依赖,而不能根据数据的具体形式来反推可能的函数依赖</li>
-<li>函数依赖确定后,所有的关系实例都要满足该约束条件<blockquote>
-<p>当然,数据库设计者可以对现实世界做强制的规定来使得某两个属性产生函数依赖;如:不允许有学生重名,则学生的其他信息可以依赖于学生姓名</p>
-</blockquote>
-</li>
+<li>函数依赖确定后,所有的关系实例都要满足该约束条件<br>当然,数据库设计者可以对现实世界做强制的规定来使得某两个属性产生函数依赖;如:不允许有学生重名,则学生的其他信息可以依赖于学生姓名</li>
 </ul>
+</blockquote>
 <h4 id="平凡函数依赖和非平凡函数依赖"><a href="#平凡函数依赖和非平凡函数依赖" class="headerlink" title="平凡函数依赖和非平凡函数依赖"></a>平凡函数依赖和非平凡函数依赖</h4><ul>
 <li>$X\to Y,Y\subseteq X,X\to Y$为非平凡函数依赖</li>
 <li>$X\to Y,Y\not \subseteq X,X\to Y$为平凡函数依赖</li>
@@ -83,18 +86,15 @@
 </blockquote>
 </li>
 </ul>
-<h3 id="多值依赖"><a href="#多值依赖" class="headerlink" title="*多值依赖"></a>*多值依赖</h3><p>函数依赖中X确定一个单值Y,但有时给定X的值x,它能确定多个Y的值;在插入x时,需要插入多条(x,y)元组才能符合这种依赖关系,而且这种依赖关系是隐式的,十分不方便.</p>
-<h3 id="码"><a href="#码" class="headerlink" title="码"></a>码</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><ul>
+<h3 id="多值依赖"><a href="#多值依赖" class="headerlink" title="多值依赖*"></a>多值依赖*</h3><p>函数依赖中X确定一个单值Y,但有时给定X的值x,它能确定多个Y的值;在插入x时,需要插入多条(x,y)元组才能符合这种依赖关系,而且这种依赖关系是隐式的,十分不方便.</p>
+<h3 id="码"><a href="#码" class="headerlink" title="码"></a>码</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><blockquote>
+<ul>
 <li>候选码: $R&lt;U,F&gt;$中,$K \subset U,K$-F-&gt;$U$,则K为R的一个(候选)码</li>
 <li>超码: 上述情况下$K$-P-&gt;$U$</li>
 <li>主码: 若R有多个候选码,则选定其中一个作为主码</li>
-<li>全码: 整个属性组都是码,称为全码(候选码为整个属性组)<blockquote>
-<ul>
-<li>候选码长度是超码长度的一个极小值,即候选码的任意一个真子集都不是候选码</li>
+<li>全码: 整个属性组都是码,称为全码(候选码为整个属性组)<br>候选码长度是超码长度的一个极小值,即候选码的任意一个真子集都不是候选码</li>
 </ul>
 </blockquote>
-</li>
-</ul>
 <h4 id="主属性和非主属性"><a href="#主属性和非主属性" class="headerlink" title="主属性和非主属性"></a>主属性和非主属性</h4><ul>
 <li>任意一个候选码中的任意一个属性都为主属性</li>
 <li>不包含在任何码中的属性为非主属性(非码属性)</li>
@@ -123,10 +123,12 @@
 <p>一个低一级范式的关系模式,通过模式分解可以转化成若干个高一级范式的关系模式的集合,这种过程叫做规范化</p>
 <p>关系数据库的规范化理论是数据库逻辑设计的工具</p>
 <h4 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h4><p>如果一个关系模式$R$的所有属性都是不可分的基本数据项,则$R\in 1NF$</p>
+<blockquote>
 <ul>
 <li>即,不能表中嵌表</li>
 <li>所有的关系数据库模式都满足第一范式,第一范式是对关系模式的最起码的要求;不满足第一范式的数据库模式不能称为关系数据模式</li>
 </ul>
+</blockquote>
 <p>然而,满足第一范式的关系模式不一定是一个好的关系模式</p>
 <h4 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h4><p>若关系模式$R \in 1NF$,且每一个非主属性都完全依赖于$R$的码,则$R \in 2NF$</p>
 <ul>
@@ -151,47 +153,56 @@
 <li>传递函数依赖的存在使得一些信息被”隐式”地存储在表中,需要将它们独立成另外的关系</li>
 </ul>
 <p>性质:</p>
+<blockquote>
 <ul>
 <li>第三范式关系中的每一个非主属性既不部分函数依赖于候选码也不传递函数依赖于候选码</li>
 <li>若R属于第三范式,那么R必定属于第二范式</li>
 <li>采用投影分解法能将一个第二范式关系分解成多个第三范式关系</li>
 </ul>
+</blockquote>
 <p>然而,第三范式还是不能完全消除关系模式中的各种异常情况和数据冗余,因为主属性之间也会存在依赖</p>
 <h4 id="修正的第三范式-BCNF"><a href="#修正的第三范式-BCNF" class="headerlink" title="修正的第三范式(BCNF)"></a>修正的第三范式(BCNF)</h4><p>若关系模式$R \in 1NF$,且对$R$中每个函数依赖$X\to Y 且 Y\not \in X时$,X必含有码,则$R \in 2NF$</p>
 <p>性质:</p>
+<blockquote>
 <ul>
 <li>所有非主属性对每一个码都是完全函数依赖</li>
 <li>所有主属性对每一个不包含它的码都是完全函数依赖</li>
 <li>没有任何属性完全函数依赖于一些非码属性(不存在传递函数依赖)</li>
-<li>符合BCNF的范式一定符合3NF,反之不然<blockquote>
-<p>BCNF在函数依赖范畴内已经实现了模式的彻底分解,达到了最高的规范化程度,消除了操作异常的诸多问题</p>
-</blockquote>
-</li>
+<li>符合BCNF的范式一定符合3NF,反之不然<br>BCNF在函数依赖范畴内已经实现了模式的彻底分解,达到了最高的规范化程度,消除了操作异常的诸多问题</li>
 </ul>
+</blockquote>
 <h2 id="6-3-数据依赖的公理系统"><a href="#6-3-数据依赖的公理系统" class="headerlink" title="6.3 数据依赖的公理系统"></a>6.3 数据依赖的公理系统</h2><p>数据依赖的公理系统式模式分解算法的理论基础</p>
 <p>Armstrong公理系统式函数依赖的一个有效而完备的公理系统</p>
 <h3 id="Armstrong公理系统"><a href="#Armstrong公理系统" class="headerlink" title="Armstrong公理系统"></a>Armstrong公理系统</h3><p>Armstrong公理系统是一套推理规则,用于回答某个函数依赖是否被某组函数依赖F蕴含</p>
+<blockquote>
 <ul>
 <li>有效性: 由F出发根据Armstrong公理推导出的每一个函数依赖一定在$F^+$中</li>
 <li>完备性: $F^+$中的每一个函数依赖必定可以由Armstrong公理推导出来</li>
 </ul>
+</blockquote>
 <h3 id="逻辑蕴涵的定义"><a href="#逻辑蕴涵的定义" class="headerlink" title="逻辑蕴涵的定义"></a>逻辑蕴涵的定义</h3><p>对于满足一组函数依赖F的关系模式$R(U,F)$,对符合它的任意关系r,若都有函数依赖$X\to Y$成立,则称F(逻辑)蕴涵$X\to Y$</p>
 <h3 id="几个导出的推理规则"><a href="#几个导出的推理规则" class="headerlink" title="几个导出的推理规则"></a>几个导出的推理规则</h3><p>设U为属性集总体, F是U上的一组函数依赖, 对关系$R&lt;U,F&gt;$ 来说, 有以下的推理规则: </p>
+<blockquote>
 <ul>
 <li>自反律: 若$Y \subseteq X \subseteq U$,则F蕴含$X\to Y$</li>
 <li>增广律: 若F蕴含$X\to Y$且$Z\subseteq U$,则F蕴含$XZ\to YZ$</li>
 <li>传递律: 若F蕴含$X\to Y和Y\to Z$,则F蕴含$X\to Z$</li>
 </ul>
+</blockquote>
 <p>上述三个推理规则可以进一步得到以下几个推理规则:</p>
+<blockquote>
 <ul>
 <li>合并规则: 由$X\to Y,X\to Z$,可以得到$X\to YZ$</li>
 <li>伪传递规则: 由$X\to Y,YW\to Z$,可以得到$XW\to Z$</li>
 <li>分解规则: 由$X\to Y,Z \subseteq Y$,可以得到$X\to Z$</li>
 </ul>
+</blockquote>
 <p>根据合并规则和分解规则可以得到下述重要引理:</p>
+<blockquote>
 <ul>
 <li>$X\to A_1A_2…A_n$成立的充要条件是$X\to A_i(i=1,2,…n)$</li>
 </ul>
+</blockquote>
 <h3 id="函数依赖闭包"><a href="#函数依赖闭包" class="headerlink" title="函数依赖闭包"></a>函数依赖闭包</h3><h4 id="定义和一些引理"><a href="#定义和一些引理" class="headerlink" title="定义和一些引理"></a>定义和一些引理</h4><ul>
 <li>在关系模式$R&lt;U,F&gt;$中被F所蕴含的函数依赖的全体称为F的闭包,记作$F^+$</li>
 <li>设F为属性集U上的一组函数依赖,$X\subseteq U$,$X_{F^+} = \lbrace A | X\to A能由F根据Armstrong公理导出 \rbrace$,称为属性集X关于函数依赖集F的闭包<blockquote>
@@ -224,14 +235,16 @@
 <li>函数依赖集的等价是指它们的闭包等价</li>
 </ul>
 <h4 id="最小-极小-依赖集"><a href="#最小-极小-依赖集" class="headerlink" title="最小(极小)依赖集"></a>最小(极小)依赖集</h4><p>满足下列条件的依赖集F称为一个最小依赖集</p>
+<blockquote>
 <ul>
 <li>F中任意一个函数依赖的右边只含有一个属性</li>
-<li>F中的每个函数依赖的左边均为最小属性集<blockquote>
-<p>若存在一个函数依赖$X\to A$,使得去掉这条依赖中X的部分属性,得到的函数依赖集F’与F等价,则原F不是最小依赖集</p>
-</blockquote>
+<li>F中的每个函数依赖的左边均为最小属性集<ul>
+<li>若存在一个函数依赖$X\to A$,使得去掉这条依赖中X的部分属性,得到的函数依赖集F’与F等价,则原F不是最小依赖集</li>
+</ul>
 </li>
 <li>F中的每个函数依赖均不能由F中其他的函数依赖导出</li>
 </ul>
+</blockquote>
 <h4 id="求最小依赖集的算法"><a href="#求最小依赖集的算法" class="headerlink" title="求最小依赖集的算法"></a>求最小依赖集的算法</h4><ol>
 <li>扫描F中的函数依赖,将所有依赖项的右边拆分成单属性</li>
 <li>扫描每个函数依赖的左边,去除左边冗余的属性</li>
@@ -251,17 +264,24 @@
 </ul>
 <p>模式分解主要涉及到投影和自然连接两个运算</p>
 <h3 id="模式分解的三个目标"><a href="#模式分解的三个目标" class="headerlink" title="模式分解的三个目标"></a>模式分解的三个目标</h3><p>一个模式有多种分解方法,符合一些要求的分解方法才有意义</p>
-<ul>
-<li><p>无损连接分解: 将分解后的多个模式进行自然连接,结果应和原模式一样</p>
-</li>
-<li><p>保持函数依赖: 分解前F的最小依赖集中的每个函数依赖都应该被投影到分解后的某个关系模式中去</p>
 <blockquote>
-<p>即:$F^+ = (F_1\cup … \cup F_n)^+$</p>
+<ul>
+<li>无损连接分解: 将分解后的多个模式进行自然连接,结果应和原模式一样</li>
+</ul>
 </blockquote>
-</li>
-<li><p>达到更高级范式: 分解得到的每个关系模式应该相比于分解前的关系模式达到更高级别的范式</p>
+<blockquote>
+<ul>
+<li>保持函数依赖: 分解前F的最小依赖集中的每个函数依赖都应该被投影到分解后的某个关系模式中去<ul>
+<li>即:$F^+ = (F_1\cup … \cup F_n)^+$</li>
+</ul>
 </li>
 </ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>达到更高级范式: 分解得到的每个关系模式应该相比于分解前的关系模式达到更高级别的范式</li>
+</ul>
+</blockquote>
 <h3 id="模式分解算法"><a href="#模式分解算法" class="headerlink" title="模式分解算法"></a>模式分解算法</h3><h4 id="达到BCNF并保持无损连接的算法"><a href="#达到BCNF并保持无损连接的算法" class="headerlink" title="达到BCNF并保持无损连接的算法"></a>达到BCNF并保持无损连接的算法</h4><ol>
 <li>令$\rho = \lbrace R&lt;U,F&gt; \rbrace$</li>
 <li>检查$\rho$中各关系模式是否属于BCNF,若是则返回结果</li>
@@ -291,11 +311,14 @@
 <li>狭义上,数据库设计就是设计数据库本身</li>
 </ul>
 <p>特点:</p>
+<blockquote>
 <ul>
 <li>数据库设计是三分技术,七分管理,十二分基础数据</li>
 <li>数据库设计是结构(数据)设计和行为(处理)设计的结合</li>
 </ul>
+</blockquote>
 <p>数据库设计方法:</p>
+<blockquote>
 <ul>
 <li>手工设计法</li>
 <li>规范设计法:如新奥尔良法</li>
@@ -304,6 +327,7 @@
 <li>ODL方法</li>
 <li>UML方法</li>
 </ul>
+</blockquote>
 <p>数据库设计工具: SYSBASE等</p>
 <p>数据库设计基本步骤:</p>
 <ol>
@@ -373,27 +397,33 @@
 </li>
 </ul>
 <p>E-R模型表示:</p>
+<blockquote>
 <ul>
 <li>实体型: 用矩形表示,矩形内写明实体名; 如学生</li>
 <li>属性: 用椭圆形表示,由无向边和实体型连接</li>
 <li>联系: 用菱形表示,框内标注联系名,用无向边与有关实体联系起来,同时在边上标明联系的类型(n:m); 联系也可以有自己的属性,由无向边连接</li>
 </ul>
+</blockquote>
 <h3 id="扩展的E-R模型"><a href="#扩展的E-R模型" class="headerlink" title="扩展的E-R模型"></a>扩展的E-R模型</h3><p>扩展的E-R模型用于丰富基本E-R模型的表达能力</p>
 <h4 id="ISA联系"><a href="#ISA联系" class="headerlink" title="ISA联系"></a>ISA联系</h4><ul>
 <li>ISA联系用三角形表示,表明某些实体是某个实体的子类型</li>
 <li>子类继承了父类的所有属性,同时也可以有自己的属性</li>
 </ul>
 <p>分类属性:</p>
+<blockquote>
 <ul>
 <li>分类属性是父实体型的一个属性</li>
 <li>分类属性的值把夫实体型中的实体分派到子实体型中</li>
 </ul>
+</blockquote>
 <p><img src="/2020/04/16/data-base1/ISA.jpg" alt="isa"></p>
 <p>约束:</p>
+<blockquote>
 <ul>
 <li>不相交约束: 表明父类某个实体最多只能属于一个子类实体集; 此时三角形中需要有一个叉号</li>
 <li>完备性约束: 表明父类中的某个实体必须是某一个子类中的实体,又称完全特化; 此时父类到子类之间的线用双线表示</li>
 </ul>
+</blockquote>
 <p><img src="/2020/04/16/data-base1/ISA1.jpg" alt="isa"></p>
 <h4 id="基数约束"><a href="#基数约束" class="headerlink" title="基数约束"></a>基数约束</h4><ul>
 <li>技术约束用于表明一个实体可以在联系中出现的次数上下限</li>
@@ -402,35 +432,38 @@
 </ul>
 <p><img src="/2020/04/16/data-base1/restrain0.jpg" alt="res"></p>
 <p>约束类型:</p>
+<blockquote>
 <ul>
 <li>强制参与约束: min=1,表明被施加约束的实体型中的每个实体都要参与联系</li>
 <li>非强制参与约束: min=0,表明被施加约束的实体型中的实体可以出现在联系中,也可以不出现在联系中</li>
 </ul>
+</blockquote>
 <h4 id="PART-OF联系"><a href="#PART-OF联系" class="headerlink" title="PART-OF联系"></a>PART-OF联系</h4><ul>
 <li>PART-OF联系用于描述某个实体型是另外一个实体型的一部分</li>
 </ul>
 <p>PART-OF联系的分类:</p>
+<blockquote>
 <ul>
 <li>非独占联系: 整体实体如果被破坏,部分实体仍可以独立存在</li>
-<li>独占联系: 整体实体如果被破坏,则部分实体不能存在<blockquote>
-<ul>
+<li>独占联系: 整体实体如果被破坏,则部分实体不能存在</li>
 <li>非独占联系可以用用非强制参与的一对多联系表示(0..1)</li>
 <li>独占联系需要用弱实体类型和识别联系表示</li>
 </ul>
 </blockquote>
-</li>
-</ul>
 <p>弱实体类型和识别联系:</p>
+<blockquote>
 <ul>
 <li>弱实体类型表明该实体型的存在依赖于其他实体型的存在(否则为强实体型); 弱实体型用双矩形表示</li>
 <li>独占联系用双菱形表示</li>
 </ul>
+</blockquote>
 <p><img src="/2020/04/16/data-base1/PO0.jpg" alt="partof"></p>
 <h3 id="UML"><a href="#UML" class="headerlink" title="UML"></a>UML</h3><ul>
 <li>UML为统一建模语言,是对象管理组织的一个标准</li>
 <li>UML中的类大致对应E-R图中的实体</li>
 </ul>
 <p>用UML的类图表示E-R图:</p>
+<blockquote>
 <ul>
 <li>实体型: 用类表示; 矩形框上部记录实体名,下部列出属性名</li>
 <li>实体的码: 在类图中的属性后面加上’PK’表示码</li>
@@ -438,18 +471,23 @@
 <li>基数约束: 和E-R图中的基数约束表示类似</li>
 <li>UML中的子类和E-R图中的ISA联系一致</li>
 </ul>
+</blockquote>
 <p><img src="/2020/04/16/data-base1/UML0.jpg" alt="UML"></p>
 <h3 id="概念结构设计方法"><a href="#概念结构设计方法" class="headerlink" title="概念结构设计方法"></a>概念结构设计方法</h3><h4 id="实体与属性的划分原则"><a href="#实体与属性的划分原则" class="headerlink" title="实体与属性的划分原则"></a>实体与属性的划分原则</h4><p>实体和属性的划分方法:</p>
+<blockquote>
 <ul>
 <li>对需求分析阶段收集到的数据进行分类,组织</li>
 <li>确定实体,实体的属性,实体之间的联系类型</li>
 </ul>
+</blockquote>
 <p>原则:</p>
+<blockquote>
 <ul>
 <li>现实世界的事物能以属性对待的,尽量以属性对待,这可以简化E-R图的处理</li>
 <li>作为属性,不能再具有需要描述的性质; 即它必须是不可分的数据项,不能包含其他属性</li>
 <li>属性不能与其他实体具有联系; 联系应当是实体之间的联系</li>
 </ul>
+</blockquote>
 <h4 id="分E-R图的设计"><a href="#分E-R图的设计" class="headerlink" title="分E-R图的设计"></a>分E-R图的设计</h4><ul>
 <li>先设计分E-R图的草图: 先写出框架</li>
 <li>对E-R图进行详细的设计和调整: 填入一些细节,加入一些具体的联系,填入如联系名等</li>
@@ -554,23 +592,24 @@
 <h2 id="7-5-物理结构设计"><a href="#7-5-物理结构设计" class="headerlink" title="7.5 物理结构设计"></a>7.5 物理结构设计</h2><p>物理设计: 为逻辑数据模型选取一个最适合应用要求的物理结构,包括物理设备上的存储结构和存取方法</p>
 <p><img src="/2020/04/16/data-base1/phys0.jpg" alt="phys"></p>
 <h3 id="物理设计的内容和方法"><a href="#物理设计的内容和方法" class="headerlink" title="物理设计的内容和方法"></a>物理设计的内容和方法</h3><p>内容:</p>
+<blockquote>
 <ul>
 <li>为关系模式选择存取方法(建立存取路径)</li>
 <li>为关系,索引,日志,备份等数据库文件选择物理存储结构</li>
 </ul>
+</blockquote>
 <p>设计原则:</p>
+<blockquote>
 <ul>
 <li>充分了解应用环境: 分析运行的事物,选择设计所需参数</li>
-<li>充分了解RDBMS内部特征: 了解系统提供的存取方法和存储结构,如索引等<blockquote>
-<p>物理数据库设计参数</p>
-<ul>
+<li>充分了解RDBMS内部特征: 了解系统提供的存取方法和存储结构,如索引等<br>物理数据库设计参数<ul>
 <li>数据库查询事务: 查询所涉及的关系,属性等</li>
 <li>数据更新事务: 被更新的关系,所设计的属性等</li>
 <li>每个事务在各关系上运行的频率和性能要求</li>
 </ul>
-</blockquote>
 </li>
 </ul>
+</blockquote>
 <h3 id="关系模式存取方法选择"><a href="#关系模式存取方法选择" class="headerlink" title="关系模式存取方法选择"></a>关系模式存取方法选择</h3><h4 id="索引方法"><a href="#索引方法" class="headerlink" title="索引方法"></a>索引方法</h4><p>建立索引可以提高存取效率,索引存取方法的选择需要根据应用要求确定</p>
 <blockquote>
 <ul>
@@ -585,33 +624,41 @@
 <li>RDBMS提供的索引方法: B-tree(缺省),hash,R-tree,Bitmap等</li>
 </ul>
 <p>在某属性(组)上选择索引存取方法的一般规则:</p>
+<blockquote>
 <ul>
 <li>某属性(组)经常在查询条件中</li>
 <li>一个属性(组)常作为聚集函数(最值)的参数</li>
 <li>一个属性(组)常在连接操作的条件中出现</li>
 </ul>
+</blockquote>
 <p>索引建立会带来维护,查找,存储索引的开销</p>
 <h4 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h4><p>B+树特点:</p>
+<blockquote>
 <ul>
 <li>多分平衡树,存取效率高</li>
 <li>能随机查找也能顺序查找</li>
 <li>增删改操作中能通过算法保持树平衡  </li>
 </ul>
-<p>B+树结构如下:<br><img src="/2020/04/16/data-base1/B0.jpg" alt="B"></p>
-<ul>
-<li>随机查找: 与每一层进行一次比较,若在叶节点中找到码值相等的记录,则根据指针取出相应记录<blockquote>
-<p>若B+树完全存储在文件中,则进行一次比较消耗一次IO操作;若找到相等的节点,最后取记录也消耗一次IO操作</p>
 </blockquote>
+<p>B+树结构如下:<br><img src="/2020/04/16/data-base1/B0.jpg" alt="B"></p>
+<blockquote>
+<ul>
+<li>随机查找: 与每一层进行一次比较,若在叶节点中找到码值相等的记录,则根据指针取出相应记录<ul>
+<li>若B+树完全存储在文件中,则进行一次比较消耗一次IO操作;若找到相等的节点,最后取记录也消耗一次IO操作</li>
+</ul>
 </li>
 <li>范围查找: 先找到起始记录(码值最小的记录),然后沿着叶节点链向后查找,直到码值超出范围</li>
 </ul>
+</blockquote>
 <h4 id="hash存取方法"><a href="#hash存取方法" class="headerlink" title="hash存取方法"></a>hash存取方法</h4><p>hash通过散列函数将key与record一一对应起来</p>
 <p>hash存取方法适用下列情况:</p>
+<blockquote>
 <ul>
 <li>一个关系属性主要出现在等值连接条件或等值比较选择条件中</li>
 <li>该关系大小可预知,且不变</li>
 <li>该关系大小动态改变,但所选用DBMS提供了动态hash存取方法</li>
 </ul>
+</blockquote>
 <h4 id="聚簇方法"><a href="#聚簇方法" class="headerlink" title="聚簇方法"></a>聚簇方法</h4><p>聚簇: 通过将属性(组)上具有相同值的元组集中存放在连续的物理块上,提高某个属性(组)的查询速度(减少IO操作)</p>
 <blockquote>
 <p>上述属性(组)称为聚簇码</p>
@@ -620,40 +667,46 @@
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> CLUSTER &lt;聚簇名&gt; (&lt;聚簇码&gt;) <span class="keyword">SIZE</span> (&lt;大小&gt;);</span><br></pre></td></tr></table></figure>
 
 <p>适用范围:</p>
+<blockquote>
 <ul>
 <li>对单个关系进行独立聚簇,也适用多个关系组合聚簇</li>
 <li>SQL语句中包含有与聚簇码有关的排序,聚集,集合交并操作时,使用聚簇可以省去或减少对结果集的排序操作</li>
 <li>很少对基表进行增删操作</li>
 <li>很少对其中的变长列进行修改操作</li>
 </ul>
+</blockquote>
 <p>局限性:</p>
+<blockquote>
 <ul>
 <li>一个基本表上最多只能建立一个聚簇索引</li>
 <li>聚簇只能提高某些特定应用的性能</li>
-<li>建立与维护聚簇开销相当大<blockquote>
-<ul>
+<li>建立与维护聚簇开销相当大<ul>
 <li>聚簇建立会导致关系中元组的物理存储位置移动,使关系上原有的索引失效,需要重建索引</li>
 <li>当一个元组聚簇码改变时,它的存储位置也要相应改变</li>
 </ul>
-</blockquote>
 </li>
 </ul>
+</blockquote>
 <h4 id="确定数据的存储结构"><a href="#确定数据的存储结构" class="headerlink" title="确定数据的存储结构"></a>确定数据的存储结构</h4><p>基本原则:</p>
+<blockquote>
 <ul>
 <li>易变部分和稳定部分分开存放</li>
 <li>经常存取的部分和存取频率较低的部分分开存放</li>
 <li>将日志和数据库对象分开存放</li>
 </ul>
+</blockquote>
 <h4 id="评价物理结构"><a href="#评价物理结构" class="headerlink" title="评价物理结构"></a>评价物理结构</h4><p>物理设计可以有多种方案,需要从中选择一个较优的方案进行实现</p>
 <p>方法:</p>
+<blockquote>
 <ul>
-<li>定量估算各种方案<blockquote>
-<p>存储空间,存取时间,维护代价等</p>
-</blockquote>
+<li>定量估算各种方案<ul>
+<li>存储空间,存取时间,维护代价等</li>
+</ul>
 </li>
 <li>对估算结构进行权衡比较,选择出一个较优的合理的物理结构</li>
 <li>返回用户,征求意见,修改设计</li>
 </ul>
+</blockquote>
 <h2 id="7-6-数据库的实施和维护"><a href="#7-6-数据库的实施和维护" class="headerlink" title="7.6 数据库的实施和维护"></a>7.6 数据库的实施和维护</h2><p>示意图:<br><img src="/2020/04/16/data-base1/act0.jpg" alt></p>
 <h3 id="数据的载入和应用程序的调试"><a href="#数据的载入和应用程序的调试" class="headerlink" title="数据的载入和应用程序的调试"></a>数据的载入和应用程序的调试</h3><ul>
 <li>定义数据库结构: 用DDL语言创建基本表,视图,索引等(产生目标模式,生成数据字典)</li>
@@ -706,17 +759,19 @@
 </ul>
 <h1 id="八、数据库编程"><a href="#八、数据库编程" class="headerlink" title="八、数据库编程"></a>八、数据库编程</h1><p>问题: 一些要求无法使用SQL语言表达</p>
 <p>突破SQL语言局限性的解决方案:</p>
+<blockquote>
 <ul>
 <li>利用高级语言的表达能力: 嵌入式SQL</li>
 <li>扩展SQL语言: 过程化SQL</li>
-<li>在一个更大的视野上将数据库看成是一类数据源: ODBC编程</li>
+<li>在一个更大的视野上将数据库看成是一类数据源: ODBC编程接口</li>
 </ul>
+</blockquote>
 <h2 id="8-1-嵌入式SQL"><a href="#8-1-嵌入式SQL" class="headerlink" title="8.1 嵌入式SQL"></a>8.1 嵌入式SQL</h2><h3 id="C语言中的SQL基本语法"><a href="#C语言中的SQL基本语法" class="headerlink" title="C语言中的SQL基本语法"></a>C语言中的SQL基本语法</h3><p>基本格式: <code>EXEC SQL &lt;语句块;&gt;</code></p>
 <p>主语言程序编译过程:</p>
 <blockquote>
 <ol>
 <li>编写含嵌入式SQL语句的主语言程序</li>
-<li>预编译程序,将嵌入式SQL变为函数调用(形式上消除SQL)</li>
+<li>预编译程序(预编译器由SQL厂商提供),将嵌入式SQL变为函数调用(形式上消除SQL)</li>
 <li>正常编译主语言程序</li>
 </ol>
 </blockquote>
@@ -744,8 +799,10 @@
 </ul>
 <h4 id="定义主变量与数据通讯区"><a href="#定义主变量与数据通讯区" class="headerlink" title="定义主变量与数据通讯区"></a>定义主变量与数据通讯区</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXEC SQL <span class="keyword">BEGIN</span> <span class="keyword">DECLARE</span> <span class="keyword">SECTION</span>; <span class="comment">/*主变量说明开始*/</span> </span><br><span class="line">    &lt;变量类型&gt; &lt;变量名&gt;;</span><br><span class="line">    &lt;类型&gt; &lt;名&gt;;...</span><br><span class="line">EXEC SQL <span class="keyword">END</span> <span class="keyword">DECLARE</span> <span class="keyword">SECTION</span>; <span class="comment">/*主变量说明结束*/</span></span><br><span class="line">long SQLCODE;</span><br><span class="line">EXEC SQL INCLUDE SQLCA; <span class="comment">/*定义SQL通信区*/</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>这些数据的定义一般在函数外定义</li>
+<li>这些数据的定义一般在函数外定义<ul>
 <li>后面SQL查询所INTO的变量需要在主变量说明中定义</li>
+</ul>
+</li>
 </ul>
 <h4 id="执行相关SQL语句"><a href="#执行相关SQL语句" class="headerlink" title="执行相关SQL语句"></a>执行相关SQL语句</h4><p>所有SQL语句都可以通过执行,包括数据的定义控制更新查询</p>
 <p>查询:  </p>
@@ -762,49 +819,55 @@
 </li>
 </ul>
 <p>增删改:</p>
+<blockquote>
 <ul>
 <li>增删改中的SET和WHERE子句中可以使用主变量</li>
 <li>使用SET时,需要在主程序中将相应的值赋给主变量</li>
 </ul>
+</blockquote>
 <h4 id="关闭数据库连接"><a href="#关闭数据库连接" class="headerlink" title="关闭数据库连接"></a>关闭数据库连接</h4><figure class="highlight"><table><tr><td class="code"><pre><span class="line">EXEC SQL DISCONNECT &lt;连接名&gt;</span><br></pre></td></tr></table></figure>
 <h3 id="通信机制"><a href="#通信机制" class="headerlink" title="通信机制"></a>通信机制</h3><p>高级语言是一种过程性语言(执行命令),而SQL语言是描述性语言(描述集合)</p>
 <p>通信机制:</p>
+<blockquote>
 <ul>
 <li>状态信息传递: 利用SQL通信区,向主语言传递SQL语句的执行状态信息,使主语言能够控制程序流程</li>
 <li>参数传递: 利用主变量,让主语言向SQL语句提供参数</li>
 <li>结果传递: 使用主变量和游标,将SQL语句查询结果返回给主语言</li>
 </ul>
+</blockquote>
 <h4 id="SQL通信区SQLCA"><a href="#SQL通信区SQLCA" class="headerlink" title="SQL通信区SQLCA"></a>SQL通信区SQLCA</h4><p>用途:</p>
 <ul>
 <li>在执行完SQL语句后,DBMS将系统的当前工作状态和运行环境送到通信区返回给应用程序,应用程序根据这些信息决定接下来的动作</li>
 </ul>
 <p>SQLCA是一个数据结构(SQL Communication Area)</p>
 <p>使用方法:</p>
+<blockquote>
 <ul>
 <li>定义: <code>EXEC SQL INCLUDE SQLCA</code></li>
 <li>使用: SQL的返回代码会存储在SQLCODE中,SQLCODE为SUCCESS则表示语句成功,否则出错</li>
 </ul>
+</blockquote>
 <h4 id="主变量"><a href="#主变量" class="headerlink" title="主变量"></a>主变量</h4><p>主变量是在SQL语句中使用的主语言程序变量</p>
+<blockquote>
 <ul>
 <li>输入主变量: 由应用程序赋值,SQL语句引用</li>
 <li>输出主变量: 由SQL语句对其赋值或设置状态信息, 返回给应用程序</li>
-<li>指示变量: 整型变量,可以带在主变量后面; 用于指示输入或输出主变量的值是否为空值<blockquote>
-<p>例1: </p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXEC SQL <span class="keyword">SELECT</span> Sno,Cno,Grade</span><br><span class="line">   <span class="keyword">INTO</span> :Hsno,:Hcno,:Hgrade:Gradeid  <span class="comment">/*指示变量Gradeid*/</span></span><br><span class="line">   <span class="keyword">FROM</span>  SC</span><br><span class="line">   <span class="keyword">WHERE</span> Sno=:givensno <span class="keyword">AND</span> Cno=:givencno </span><br></pre></td></tr></table></figure>
-<p>若Gradeid&lt;0,不论Hgrade为何值,Hgrade都为空  </p>
+<li>指示变量: 整型变量,可以带在主变量后面; 用于指示输入或输出主变量的值是否为空值<br>例1: <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXEC SQL <span class="keyword">SELECT</span> Sno,Cno,Grade</span><br><span class="line">   <span class="keyword">INTO</span> :Hsno,:Hcno,:Hgrade:Gradeid  <span class="comment">/*指示变量Gradeid*/</span></span><br><span class="line">   <span class="keyword">FROM</span>  SC</span><br><span class="line">   <span class="keyword">WHERE</span> Sno=:givensno <span class="keyword">AND</span> Cno=:givencno </span><br></pre></td></tr></table></figure>
+若Gradeid&lt;0,不论Hgrade为何值,Hgrade都为空  </li>
+</ul>
 <p>例2:</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">gradeid=-1</span><br><span class="line"> EXEC SQL <span class="keyword">INSERT</span> </span><br><span class="line"> <span class="keyword">INTO</span> SC(Sno,Cno,Grade)                 <span class="keyword">VALUES</span>(:stdno,:couno,:gr:gradeid); </span><br></pre></td></tr></table></figure>
 <p>此时Grade插入的是空值</p>
 </blockquote>
-</li>
-</ul>
 <p>使用主变量和指示变量需要事先声明</p>
+<blockquote>
 <ul>
 <li>声明之后的主变量可以在主程序中或SQL中任何一个可以使用表达式的地方使用</li>
 <li>SQL中的主变量之前要加上’:’以示区别</li>
 <li>指示变量必须紧跟主变量之后使用,也需要加上’:’区别</li>
 <li>SQL之外的主变量正常使用即可</li>
 </ul>
+</blockquote>
 <h4 id="游标"><a href="#游标" class="headerlink" title="游标"></a>游标</h4><ul>
 <li>INTO主变量的方式只能得到一条查询结果</li>
 <li>游标是数据库系统为用户开设的数据缓冲区,用于存放SQL语句的执行结果,可以是多条查询结果(集合)</li>
@@ -812,10 +875,12 @@
 <li>可以用SQL语句逐一从游标中获取记录赋给主变量</li>
 </ul>
 <p>何时使用游标:</p>
+<blockquote>
 <ul>
 <li>查询结果为多条SELECT语句</li>
 <li>CURRENT形式的UPDATE和DELETE语句</li>
 </ul>
+</blockquote>
 <p>游标声明:</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXEC SQL <span class="keyword">DECLARE</span> &lt;游标名&gt; <span class="keyword">CURSOR</span></span><br><span class="line">    <span class="keyword">FOR</span> &lt;<span class="keyword">SELECT</span>语句&gt;;</span><br></pre></td></tr></table></figure>
 <ul>
@@ -849,10 +914,12 @@
 </li>
 </ul>
 <h3 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h3><p>有些SQL语句无法在编译阶段就确定下来,需要在程序执行时才能确定,称为动态嵌入式SQL</p>
+<blockquote>
 <ul>
 <li>它允许程序在运行过程中临时”组装”出SQL语句</li>
 <li>支持动态组装SQL语句和动态参数两种形式</li>
 </ul>
+</blockquote>
 <h4 id="SQL语句主变量"><a href="#SQL语句主变量" class="headerlink" title="SQL语句主变量"></a>SQL语句主变量</h4><p>语句主变量定义:</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXEC SQL <span class="keyword">BEGIN</span> <span class="keyword">DECLARE</span> <span class="keyword">SECTION</span>;</span><br><span class="line">    const char *stmt="&lt;SQL语句字符串&gt;";</span><br><span class="line">EXEC SQL <span class="keyword">END</span> <span class="keyword">DECLARE</span> <span class="keyword">SECTION</span>;</span><br></pre></td></tr></table></figure>
 
@@ -870,6 +937,233 @@
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXEC SQL <span class="keyword">EXECUTE</span> &lt;语句名&gt;</span><br><span class="line">    [<span class="keyword">INTO</span> &lt;主变量表&gt;]</span><br><span class="line">    [<span class="keyword">USING</span> &lt;主变量或常量&gt;];</span><br></pre></td></tr></table></figure>
 <ul>
 <li>此时用INTO和USING后面的内容来与前面的(?)相绑定</li>
+</ul>
+<h2 id="8-2-过程化SQL"><a href="#8-2-过程化SQL" class="headerlink" title="8.2 过程化SQL"></a>8.2 过程化SQL</h2><p>目标: 扩展SQL语言本身的能力,加入过程控制的功能</p>
+<ul>
+<li>过程化SQL尽量减少系统之间的通讯和协同,使得这些功能能被数据库本身完成</li>
+</ul>
+<p>过程化SQL又称PL/SQL,是对SQL的扩展</p>
+<h3 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h3><p>PL/SQL中</p>
+<blockquote>
+<ul>
+<li>基本结构是块</li>
+<li>增加了变量常量的定义,变量的赋值和流程控制语句</li>
+</ul>
+</blockquote>
+<p>定义语句:</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span> </span><br><span class="line">    &lt;变量名&gt; &lt;数据类型&gt; [[<span class="keyword">NOT</span> <span class="literal">NULL</span>] [:=] &lt;初值表达式&gt;];</span><br><span class="line">    &lt;常量名&gt; &lt;数据类型&gt; CONSTANT := &lt;常量表达式&gt;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>定义的变量,常量生命周期为整个块</li>
+<li>常量定义后在作用域中不能再赋值</li>
+</ul>
+<p>执行语句:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line"></span><br><span class="line">    [<span class="keyword">SET</span>] &lt;变量名&gt; := &lt;表达式&gt;;</span><br><span class="line">    </span><br><span class="line">    IF &lt;条件&gt; THEN</span><br><span class="line">        &lt;语句&gt;;</span><br><span class="line">    [ELSE &lt;语句&gt;;]</span><br><span class="line">    <span class="keyword">END</span> <span class="keyword">IF</span>;</span><br><span class="line">    </span><br><span class="line">    [WHILE &lt;条件&gt;]|    </span><br><span class="line">    [FOR &lt;count&gt; IN [REVERSE] &lt;值1&gt;...&lt;值n&gt;]</span><br><span class="line">    LOOP</span><br><span class="line">        &lt;语句&gt; [EXIT|BREAK|LEAVE];</span><br><span class="line">    <span class="keyword">END</span> <span class="keyword">LOOP</span>;</span><br><span class="line">    </span><br><span class="line">EXCEPTION</span><br></pre></td></tr></table></figure>
+
+<h3 id="存储过程与函数"><a href="#存储过程与函数" class="headerlink" title="存储过程与函数"></a>存储过程与函数</h3><p>存储过程: 由过程化SQL书写的一段语句经编译和优化后命名并存储在数据库服务器中待使用时调用的过程</p>
+<blockquote>
+<p>优点</p>
+<ul>
+<li>运行效率高</li>
+<li>降低客户机和服务器之间的通讯量</li>
+<li>方便实施企业规划</li>
+</ul>
+</blockquote>
+<p>过程化SQL块类型:</p>
+<blockquote>
+<ul>
+<li>命名块: 编译后保存在数据库中供反复高效调用,过程和函数是命名块</li>
+<li>匿名块: 每次执行都要编译的块,不能被存储和调用</li>
+</ul>
+</blockquote>
+<h4 id="存储过程的用户接口"><a href="#存储过程的用户接口" class="headerlink" title="存储过程的用户接口"></a>存储过程的用户接口</h4><p>创建存储:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> &lt;过程名&gt; ([&lt;参数<span class="number">1</span>&gt;,&lt;参数<span class="number">2</span>&gt;,...]) <span class="keyword">AS</span> &lt;过程化<span class="keyword">SQL</span>块&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>参数列表: 调用时给出的参数值,需要指定值的数据类型; 参数可定义为输入参数(默认),输出参数和输入/输出参数</li>
+<li>过程块: 一个包括声明部分和可执行语句部分的块,过程块中可以调用其他存储过程</li>
+</ul>
+<p>执行存储过程:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CALL</span>|PREFORM <span class="keyword">PROCEDURE</span> &lt;过程名&gt; (&lt;参数列表&gt;);</span><br></pre></td></tr></table></figure>
+
+<p>修改存储过程:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">PROCEDURE</span> &lt;过程名&gt; <span class="keyword">RENAME</span> <span class="keyword">TO</span> &lt;新过程名&gt;;</span><br></pre></td></tr></table></figure>
+
+<p>删除存储过程:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">PROCEDURE</span> &lt;过程名&gt;();</span><br></pre></td></tr></table></figure>
+
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p>函数和存储过程都是持久性的存储过程,但函数必须执行返回值的类型</p>
+<p>函数定义:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">FUNCTION</span> &lt;函数名&gt; ([&lt;参数列表&gt;])</span><br><span class="line"><span class="keyword">RETURNS</span> &lt;返回值类型&gt; <span class="keyword">AS</span> &lt;过程化<span class="keyword">SQL</span>块&gt;;</span><br></pre></td></tr></table></figure>
+
+<p>函数执行:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CALL</span>|<span class="keyword">SELECT</span> &lt;函数名&gt; ([&lt;参数列表&gt;]);</span><br></pre></td></tr></table></figure>
+
+<p>修改函数:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">FUNCTION</span> &lt;过程名&gt; <span class="keyword">RENAME</span> <span class="keyword">TO</span> &lt;新过程名&gt;;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">FUNCTION</span> &lt;过程名&gt; COMPILE; //重新编译</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-3-ODBC编程"><a href="#8-3-ODBC编程" class="headerlink" title="8.3 ODBC编程"></a>8.3 ODBC编程</h2><p>DOBC提供了一组访问数据库的应用程序编程接口,为不同应用程序对不同数据库的访问提供了同一的接口</p>
+<p>ODBC约束力:</p>
+<blockquote>
+<ul>
+<li>规范应用开发</li>
+<li>规范关系数据库管理系统应用接口</li>
+</ul>
+</blockquote>
+<h3 id="原理概述"><a href="#原理概述" class="headerlink" title="原理概述"></a>原理概述</h3><p>ODBC体系接口:</p>
+<blockquote>
+<ul>
+<li>用户应用程序</li>
+<li>ODBC驱动程序管理器</li>
+<li>数据库驱动程序</li>
+<li>数据源</li>
+</ul>
+</blockquote>
+<ul>
+<li>ODBC应用程序:<blockquote>
+<ul>
+<li>请求连接数据库</li>
+<li>断开与数据源的连接</li>
+<li>操作数据库以及获取数据库的执行状态</li>
+</ul>
+</blockquote>
+</li>
+<li>驱动程序管理器: 用于管理各种驱动程序</li>
+<li>数据库驱动程序: 由厂商提供<blockquote>
+<p>类型:</p>
+<ul>
+<li>单束驱动程序: 数据源和应用程序在同一台</li>
+<li>多束驱动程序: 支持网络环境下的数据访问</li>
+</ul>
+</blockquote>
+</li>
+<li>　数据源: 最终用户需要访问的数据,包含了数据库位置和数据库类型等信息,是一种数据连接的抽象<blockquote>
+<p>数据源对最终用户是透明的</p>
+</blockquote>
+</li>
+</ul>
+<p>ODBC优点:</p>
+<blockquote>
+<ul>
+<li>应用程序移植性好</li>
+<li>能在同一个应用中同时访问不同的数据库</li>
+</ul>
+</blockquote>
+<h3 id="ODBC-API基础"><a href="#ODBC-API基础" class="headerlink" title="ODBC API基础"></a>ODBC API基础</h3><h4 id="函数概述"><a href="#函数概述" class="headerlink" title="函数概述"></a>函数概述</h4><ul>
+<li>环境句柄: 管理多个连接句柄,访问不同数据源</li>
+<li>连接句柄: 连接某一个数据源(同一个RDBMS下每个数据库可以创建一个数据源)</li>
+<li>语句句柄: 执行SQL语句</li>
+</ul>
+<p>函数接口(ODBC3.0):</p>
+<blockquote>
+<ul>
+<li>分配和释放环境,连接,语句句柄</li>
+<li>连接函数: SQLDriverconnect等</li>
+<li>与信息相关的函数: SQLGetinfo,SQLGetFunction等</li>
+<li>事务处理函数: SQLEndTran</li>
+<li>执行相关函数:SQLExecdirect,SQLExecute等</li>
+<li>编目函数(数据字典相关)</li>
+</ul>
+</blockquote>
+<h4 id="句柄及其属性"><a href="#句柄及其属性" class="headerlink" title="句柄及其属性"></a>句柄及其属性</h4><ul>
+<li>句柄是一个32位整数值,是一个指向程序的指针</li>
+<li>每一个ODBC应用程序需要建立一个ODBC环境,分配一个环境句柄,存储数据的全局性背景</li>
+<li>一个环境句柄可以建立多个连接句柄,每个连接句柄实现与一个数据源之间的连接</li>
+</ul>
+<blockquote>
+<p>ODBC应用程序-1:1-环境句柄-1:n-连接句柄</p>
+<p>连接句柄下可接一个数据源句柄和多个语句或描述符句柄</p>
+</blockquote>
+<h4 id="ODBC标准数据类型"><a href="#ODBC标准数据类型" class="headerlink" title="ODBC标准数据类型"></a>ODBC标准数据类型</h4><ul>
+<li>SQL数据类型: 用于数据源</li>
+<li>C数据类型: 用于应用程序的C代码</li>
+</ul>
+<p>相应数据映射关系参照<a href="https://msdn.microsoft.com/en-us/library/ms714556(v=vs.85).aspx" target="_blank" rel="noopener">https://msdn.microsoft.com/en-us/library/ms714556(v=vs.85).aspx</a></p>
+<p>SQLBindcol用于从SQL结果集列中返回结果到应用程序变量; SQLBindparameter用于从应用程序中传变量到语句参数</p>
+<h4 id="ODBC工作流程"><a href="#ODBC工作流程" class="headerlink" title="ODBC工作流程"></a>ODBC工作流程</h4><ol>
+<li>配置数据源</li>
+<li>初始化环境</li>
+<li>连接数据源</li>
+<li>分配语句句柄</li>
+<li>执行SQL语句</li>
+<li>(产生结果集)处理结果集</li>
+<li>结束</li>
+</ol>
+<p>配置数据源:</p>
+<blockquote>
+<p>在ODBC数据源管理器中添加数据源</p>
+</blockquote>
+<p>初始化环境:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SQLHENV henv; &#x2F;&#x2F;声明环境句柄变量</span><br><span class="line">SQLAllocHandle(SQL_HANDLE_ENV,SQL_NULL_HANDLE,&amp;henv); &#x2F;&#x2F;创建环境句柄变量</span><br><span class="line">SQLSetEnvAttr(henv, SQL_ATTR_ODBC_VERSION, (void*)SQL_OV_ODBC3, 0); &#x2F;&#x2F;初始化环境句柄变量</span><br></pre></td></tr></table></figure>
+
+<p>建立连接:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SQLHDBC hdbc; &#x2F;&#x2F;声明连接句柄变量</span><br><span class="line">SQLAllocHandle(SQL_HANDLE_DBC, henv, &amp;hdbc); &#x2F;&#x2F;创建连接句柄变量</span><br><span class="line">SQLConnect(hdbc, &lt;数据源名称&gt;,SQL_NTS, &lt;用户名字符串&gt;,SQL_NTS,&lt;密码字符串&gt;,SQL_NTS); &#x2F;&#x2F;初始化连接句柄变量,连接创建的数据源</span><br></pre></td></tr></table></figure>
+
+<p>分配语句句柄:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SQLHSTMT hstmt; &#x2F;&#x2F;声明语句句柄变量</span><br><span class="line">SQLAllocHandle(SQL_HANDLE_STMT, hdbc, &amp; hstmt); &#x2F;&#x2F;创建语句句柄变量</span><br><span class="line">SQLSetStmtAttr(hstmt,SQL_ATTR_ROW_BIND_TYPE,(S QLPOINTER)SQL_BIND_BY_COLUMN,SQL_IS_INTEGER ); &#x2F;&#x2F;初始化,设置语句句柄属性</span><br></pre></td></tr></table></figure>
+
+<p>执行SQL语句:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SQLExecDirect(hstmt,&lt;SQL语句字符串&gt;,SQL_NTS); &#x2F;&#x2F;直接执行</span><br><span class="line"></span><br><span class="line">SQLPrepare(hstmt,&lt;SQL语句字符串&gt;, SQL_NTS);</span><br><span class="line">SQLPrepare(hstmt,&lt;SQL语句字符串2&gt;, SQL_NTS);</span><br><span class="line">SQLExecute(hstmt); &#x2F;&#x2F;批量执行</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>SQLPrepar中的语句字符串可以带”?”参数,需要通过SQLBindParameter动态绑定</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def SQLRETURN SQLBindparameter(</span><br><span class="line">    &lt;SQL语句句柄&gt;,</span><br><span class="line">    &lt;变量参数位置(从1开始计数)&gt;,</span><br><span class="line">    &lt;指明输入&#x2F;输出标志&gt;, &#x2F;&#x2F;SQL_PARAM_INPUT|SQL_PARAM_OUTPUT|SQL_PARAM_INPUT_OUTPUT</span><br><span class="line">    &lt;用于和参数绑定的C语言的数据类型&gt;,</span><br><span class="line">    &lt;SQL数据类型&gt;,</span><br><span class="line">    &lt;接受数据的宽度(普通变量为0即可)&gt;,</span><br><span class="line">    &lt;SQL类型为NUMERIC或DECIMAL时指明小数点进度(否则为0)&gt;,</span><br><span class="line">    &lt;参数指针指向缓冲区的字节数大小(普通变量为0)&gt;,</span><br><span class="line">    &lt;输入数据字节数大小(普通变量为0)&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;例如:</span><br><span class="line"></span><br><span class="line">SQLBindParameter(hstmt, 1, SQL_PARAM_INPUT, SQL_C_CHAR,SQL_CHAR, SNO_LEN, 0, sSno, 0, &amp;SQL_NTS);</span><br></pre></td></tr></table></figure>
+
+<p>结果集处理(如果产生结果集):</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;例: </span><br><span class="line">&#x2F;&#x2F;将查询结果绑定到应用程序缓冲区</span><br><span class="line">SQLBindCol(hstmt, 1, SQL_C_CHAR,sSno,SNO_LEN, &amp;SQLINTEGER); </span><br><span class="line">SQLBindCol(hstmt, 2, SQL_C_CHAR, sName, NAME_LEN, &amp;SQLINTEGER); </span><br><span class="line">SQLBindCol(hstmt, 3, SQL_C_CHAR, sSex, SSEX_LEN, &amp;SQLINTEGER); </span><br><span class="line">SQLBindCol(hstmt, 4, SQL_C_LONG, &amp;sAge, 0, &amp;SQLINTEGER); </span><br><span class="line">SQLBindCol(hstmt, 5, SQL_C_CHAR, sDepart, DEPART_LEN, &amp;SQLINTEGER);</span><br><span class="line">&#x2F;&#x2F;移动游标获取结果集中的每一行数据</span><br><span class="line">while ((ret&#x3D;SQLFetch(hstmt)) !&#x3D;SQL_NO_DATA_FOUND)   </span><br><span class="line">    process(sSno, sName, sSex, sAge, sDepart);</span><br></pre></td></tr></table></figure>
+
+<p>终止处理: 释放语句句柄,释放数据库连接,断开数据库服务器,释放ODBC环境</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SQLFreeHandle(SQL_HANDLE_STMT, hstmt); </span><br><span class="line">SQLDisconnect(hdbc); </span><br><span class="line">SQLFreeHandle(SQL_HANDLE_DBC, hdbc); </span><br><span class="line">SQLFreeHandle(SQL_HANDLE_ENV, henv); </span><br><span class="line">SQLFreeHandle(SQL_HANDLE_ENV,serverhenv);</span><br></pre></td></tr></table></figure>
+
+<h1 id="九、关系查询处理"><a href="#九、关系查询处理" class="headerlink" title="九、关系查询处理"></a>九、关系查询处理</h1><h2 id="9-1-SQL语句的处理过程"><a href="#9-1-SQL语句的处理过程" class="headerlink" title="9.1 SQL语句的处理过程"></a>9.1 SQL语句的处理过程</h2><p>处理步骤:<br><img src="/2020/04/16/data-base1/query0.jpg" alt="query"></p>
+<h3 id="查询分析"><a href="#查询分析" class="headerlink" title="查询分析"></a>查询分析</h3><p>任务: 对查询语句进行扫描,词法分析和语法分析</p>
+<ul>
+<li>词法分析: 从查询语句中识别出正确的语言符号</li>
+<li>语法分析: 进行语法检查</li>
+</ul>
+<h3 id="查询检查"><a href="#查询检查" class="headerlink" title="查询检查"></a>查询检查</h3><ul>
+<li>有效性检查: 根据数据字典检查语句中的数据库对象是否存在和有效</li>
+<li>视图转换: 用视图消解法将对视图的操作转换成对基本表的操作</li>
+<li>安全性检查: 根据数据字典对用户权限进行检查</li>
+<li>完整性初步检查: 根据数据字典对完整性约束进行检查  </li>
+</ul>
+<p>检查通过后,SQL语句会被转换成内部表示,一般为语法分析树</p>
+<h3 id="查询优化"><a href="#查询优化" class="headerlink" title="查询优化"></a>查询优化</h3><p>任务: 选择一个高效执行的查询处理策略</p>
+<p>分类:</p>
+<blockquote>
+<ul>
+<li>代数/逻辑优化: 针对关系代数表达式进行优化</li>
+<li>物理优化: 对存取路径和底层操作算法进行选择优化</li>
+</ul>
+</blockquote>
+<p>查询优化的依据:</p>
+<blockquote>
+<ul>
+<li>基于规则</li>
+<li>基于代价</li>
+<li>基于语义</li>
+</ul>
+</blockquote>
+<h3 id="查询执行"><a href="#查询执行" class="headerlink" title="查询执行"></a>查询执行</h3><p>任务: 根据优化器得到的执行策略生成查询指向计划</p>
+<p>两种执行方法: 自顶向下; 自底向上</p>
+<h2 id="9-2-关系算子的实现"><a href="#9-2-关系算子的实现" class="headerlink" title="9.2 关系算子的实现"></a>9.2 关系算子的实现</h2><h3 id="选择操作的实现"><a href="#选择操作的实现" class="headerlink" title="选择操作的实现"></a>选择操作的实现</h3><h4 id="全表扫描法"><a href="#全表扫描法" class="headerlink" title="全表扫描法"></a>全表扫描法</h4><p>对查询的基本表顺序扫描,逐一检查每个元组是否满足选择条件,将符合条件的元组输出</p>
+<ul>
+<li>适合小表,不适合大表</li>
+</ul>
+<h4 id="索引扫描法"><a href="#索引扫描法" class="headerlink" title="索引扫描法"></a>索引扫描法</h4><p>通过索引先找出满足条件的元组主码或指针,通过指针直接在查询的基本表中找到元组</p>
+<ul>
+<li>适合选择条件中的属性上有索引(B+树索引或Hash索引)</li>
+</ul>
+<h3 id="连接操作的实现"><a href="#连接操作的实现" class="headerlink" title="连接操作的实现"></a>连接操作的实现</h3><h4 id="嵌套循环法"><a href="#嵌套循环法" class="headerlink" title="嵌套循环法"></a>嵌套循环法</h4><p>对外层循环的每一个元组,检查内层循环中的每一个元组是否和前面的元组满足连接条件,满足则输出</p>
+<h4 id="排序-合并算法"><a href="#排序-合并算法" class="headerlink" title="排序-合并算法"></a>排序-合并算法</h4><p>先对两表中的连接属性进行排序,取外层循环中的一个元组,将内层循环中第一个和它连接属性相同的元组a进行连接,当遇到一个不能连接的元组时就放弃,取下一个元组,从刚才的a继续往下连接</p>
+<ul>
+<li>此时连接应为等值连接</li>
+</ul>
+<h4 id="索引连接算法"><a href="#索引连接算法" class="headerlink" title="索引连接算法"></a>索引连接算法</h4><p>在内层表中对连接属性建立索引,在外层表中,通过索引找到对应的内层表元组进行连接</p>
+<ul>
+<li>此时连接应为等值连接</li>
+</ul>
+<h4 id="Hash-Join算法"><a href="#Hash-Join算法" class="headerlink" title="Hash Join算法"></a>Hash Join算法</h4><p>将连接属性作为hash码,将两表中的元组散列到hash表中;(划分阶段)对包含较少元组的表进行一遍处理,将它的元组散列到哈士表的桶中;(试探阶段)对另一个表也按同一个hash函数进行散列,将结果与桶中匹配的元组连接起来</p>
+<ul>
+<li>前提: 两个表中较小的表在划分阶段时可以完全放入内存的hash桶中</li>
 </ul>
 ]]></content>
       <categories>
@@ -2949,11 +3243,13 @@ $$
 </blockquote>
 <h3 id="数据库管理技术"><a href="#数据库管理技术" class="headerlink" title="数据库管理技术"></a>数据库管理技术</h3><p>数据管理: 对数据进行分类,组织,编码,存储,检索和维护<br>数据管理是数据处理和数据分析的中心问题</p>
 <p>发展: 人工管理-&gt;文件系统管理-&gt;数据库系统管理<br><img src="/2020/02/27/data-base0/diff0.png" alt="diff"></p>
+<blockquote>
 <ul>
 <li>人工管理阶段, 应用程序和数据集是一一对应的</li>
 <li>文件系统阶段, 存取方法是共享的, 但应用程序和数据集是一一对应的</li>
 <li>数据库系统阶段, 多个应用程序通过同一个数据库管理系统对同一个数据库进行操作</li>
 </ul>
+</blockquote>
 <h3 id="数据库系统的特点"><a href="#数据库系统的特点" class="headerlink" title="数据库系统的特点"></a>数据库系统的特点</h3><ul>
 <li>数据结构化</li>
 <li>数据的共享性高,冗余度低且易扩充</li>
@@ -2962,11 +3258,13 @@ $$
 </ul>
 <h2 id="1-2-数据模型"><a href="#1-2-数据模型" class="headerlink" title="1.2  数据模型"></a>1.2  数据模型</h2><p>数据模型是对现实世界数据特征的抽象,是对现实世界的模拟</p>
 <p>数据模型应满足三方面要求</p>
+<blockquote>
 <ul>
 <li>能比较真实地模拟现实世界</li>
 <li>容易为人所理解</li>
 <li>便于在计算机上实现  </li>
 </ul>
+</blockquote>
 <p>数据模型是数据库系统的核心和基础 </p>
 <h3 id="两类数据模型"><a href="#两类数据模型" class="headerlink" title="两类数据模型"></a>两类数据模型</h3><p>数据模型分为两类(两个不同层次):  </p>
 <ul>
@@ -2988,41 +3286,47 @@ $$
 <li>数据库设计人员和用户之间进行交流的语言 </li>
 </ul>
 <p>概念模型的特点:  </p>
+<blockquote>
 <ul>
 <li>较强的语义表达能力</li>
 <li>简单、清晰、易于用户理解 </li>
 </ul>
+</blockquote>
 <p>信息世界中的基本概念: </p>
+<blockquote>
 <ul>
 <li>实体（Entity）: 客观存在并可相互区别的事物称为实体。可以是具体的人、事、物或抽象的概念。</li>
 <li>属性（Attribute）: 实体所具有的某一特性称为属性。一个实体可以由若干个属性来刻画。</li>
 <li>码（Key）: 唯一标识实体的属性集称为码。</li>
 <li>实体型（Entity Type）: 用实体名及其属性名集合来抽象和刻画同类实体称为实体型(对象)</li>
 <li>实体集（Entity Set）: 同一类型实体的集合称为实体集 </li>
-<li>联系（Relationship）: 现实世界中事物内部以及事物之间的联系在信息世界中反映为实体（型）内部的联系和实体（型）之间的联系。<blockquote>
-<ul>
+<li>联系（Relationship）: 现实世界中事物内部以及事物之间的联系在信息世界中反映为实体（型）内部的联系和实体（型）之间的联系。<ul>
 <li>实体内部的联系: 是指组成实体的各属性之间的联系 </li>
 <li>实体之间的联系: 通常是指不同实体集之间的联系, 实体之间的联系有一对一（1:1）、一对多（1:n）和多对多（m:n）等多种类型 </li>
 </ul>
-</blockquote>
 </li>
 </ul>
+</blockquote>
 <p>实体-联系方法（Entity-Relationship Approach）是概念模型的一种表示方法:</p>
+<blockquote>
 <ul>
 <li>用E-R图来描述现实世界的概念模型 </li>
 <li>E-R方法也称为E-R模型<br><img src="/2020/02/27/data-base0/rela0.png" alt="relation">  </li>
 </ul>
+</blockquote>
 <p>(具体方法在数据库设计中会讲到)</p>
 <h3 id="数据模型的组成要素"><a href="#数据模型的组成要素" class="headerlink" title="数据模型的组成要素"></a>数据模型的组成要素</h3><p>数据模型是严格定义的一组概念的集合</p>
 <ul>
 <li>它精确地描述了系统的静态特性、动态特性和完整性约束条件 (Integrity Constraints)。</li>
 </ul>
 <p>数据模型由三部分组成</p>
+<blockquote>
 <ul>
 <li>数据结构–描述系统的静态特性 </li>
 <li>数据操作–描述系统的动态特性 </li>
 <li>完整性约束条件</li>
 </ul>
+</blockquote>
 <h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><ul>
 <li><p>数据结构是刻画数据模型性质的重要方面  </p>
 <blockquote>
@@ -3039,20 +3343,26 @@ $$
 <h4 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h4><p>数据操作是对数据库中各种对象的实例允许执行的操作的集合，包括操作的类型及有关的操作规则</p>
 <p>操作的类型: 增删改查</p>
 <p>数据操作语言: </p>
+<blockquote>
 <ul>
 <li>数据操作语言需要定义数据操作的确切含义、符号、优先级别</li>
 <li>数据操作语言需要实现查询语言(Query Language)和更新语言(Insert、Delete、Update) </li>
 </ul>
+</blockquote>
 <h4 id="数据完整性约束条件"><a href="#数据完整性约束条件" class="headerlink" title="数据完整性约束条件"></a>数据完整性约束条件</h4><p>数据完整性约束条件是一组完整性规则的集合</p>
+<blockquote>
 <ul>
 <li>完整性规则：给定的数据模型中数据及其联系所具有的制约和依存规则</li>
 <li>完整性规则可以限定符合数据模型的数据库状态以及状态的变化，以保证数 据的正确、有效和相容。</li>
 </ul>
+</blockquote>
 <p>数据模型对完整性约束条件的定义:</p>
+<blockquote>
 <ul>
 <li>反映和规定必须遵守的基本的通用的完整性约束条件</li>
 <li>提供定义完整性约束条件的机制，以反映具体应用所涉及的数据必须遵守的特定的语义约束条件。</li>
 </ul>
+</blockquote>
 <h3 id="常用的数据模型"><a href="#常用的数据模型" class="headerlink" title="常用的数据模型"></a>常用的数据模型</h3><ul>
 <li>格式化模型: 层次模型,网状模型 </li>
 <li>关系模型</li>
@@ -3062,19 +3372,24 @@ $$
 </ul>
 <h4 id="层次模型"><a href="#层次模型" class="headerlink" title="层次模型"></a>层次模型</h4><p>层次模型用树形结构来表示各类实体以及实体间的联系</p>
 <p>表示方法：</p>
+<blockquote>
 <ul>
 <li>实体型：用纪录类描述，每个节点表示一个记录类型</li>
 <li>属性：用字段描述，每个记录类型可包含若干个字段</li>
 <li>联系：用结点之间的连线表示记录类型（实体）之间的一对多的父子联系</li>
 </ul>
+</blockquote>
 <p>特点:</p>
+<blockquote>
 <ul>
 <li>结点的双亲是唯一的</li>
 <li>只能直接处理一对多的实体联系</li>
 <li>任何记录值只有按其路径查看</li>
 <li>没有一个子女记录值能够脱离双亲记录值而独立存在 </li>
 </ul>
+</blockquote>
 <p>优缺点:</p>
+<blockquote>
 <ul>
 <li>(优点)层次模型的数据结构比较简单清晰</li>
 <li>查询效率高，性能优于关系模型，不低于网状模型</li>
@@ -3084,16 +3399,20 @@ $$
 <li>查询子女结点必须通过双亲结点</li>
 <li>层次数据库的命令（语言）趋于程序化  </li>
 </ul>
+</blockquote>
 <h4 id="网状模型"><a href="#网状模型" class="headerlink" title="网状模型"></a>网状模型</h4><p>网状数据库系统采用网状结构来表示各类实体以及实体间的联系(有向图)</p>
 <p>网状模型表示方法和层次模型相同</p>
 <p>特点:</p>
+<blockquote>
 <ul>
 <li>允许多个结点没有双亲结点</li>
 <li>允许一个结点有多个双亲结点</li>
 <li>允许两个结点之间有多种联系</li>
 <li>要为每个联系命名并指出与该联系有关的双亲记录和子女记录 </li>
 </ul>
+</blockquote>
 <p>优缺点:</p>
+<blockquote>
 <ul>
 <li>(优点)能够更为直接地描述现实世界，如一个结点可以有多个双亲</li>
 <li>具有良好的性能，存取效率较高</li>
@@ -3101,8 +3420,10 @@ $$
 <li>DDL、DML语言复杂，用户不容易使用</li>
 <li>记录之间联系是通过存取路径实现的，应用程序必须选择存取路径，加重了程序员的负担</li>
 </ul>
+</blockquote>
 <h4 id="关系模型"><a href="#关系模型" class="headerlink" title="关系模型"></a>关系模型</h4><p>在用户观点下，关系模型中数据的逻辑结构是一张二维表,如下<br><img src="/2020/02/27/data-base0/table0.png" alt="relation">  </p>
 <p>其中:</p>
+<blockquote>
 <ul>
 <li>关系: 一个关系对应通常来说的一张表</li>
 <li>元组: 表中的一行即为一个元组</li>
@@ -3112,35 +3433,39 @@ $$
 <li>分量: 元组中的一个属性值</li>
 <li>关系模式: 对关系的描述</li>
 </ul>
+</blockquote>
 <p>注意: 关系模型中的关系必须是规范化的, 关系中的每一个分量必须是不可分的数据项, 即不允许表中套表(这个表应该是个纯粹的二维数组)</p>
 <p>优点:</p>
+<blockquote>
 <ul>
 <li>建立在严格的数学概念的基础上</li>
-<li>概念单一<blockquote>
-<ul>
+<li>概念单一<ul>
 <li>实体和各类联系都用关系来表示 </li>
 <li>对数据的检索结果也是关系 </li>
 </ul>
-</blockquote>
 </li>
-<li>关系模型的存取路径对用户透明(用户感受不到路径)<blockquote>
-<ul>
+<li>关系模型的存取路径对用户透明(用户感受不到路径)<ul>
 <li>具有更高的数据独立性，更好的安全保密性 </li>
 <li>简化了程序员的工作和数据库开发建立的工作 </li>
 </ul>
-</blockquote>
 </li>
 </ul>
+</blockquote>
 <p>缺点:</p>
+<blockquote>
 <ul>
 <li>存取路径对用户透明，查询效率往往不如格式化数据模型</li>
 <li>为提高性能，必须对用户的查询请求进行优化，增加了开发数据库管理系统的难度</li>
 </ul>
+</blockquote>
 <h2 id="1-3-数据库系统的结构"><a href="#1-3-数据库系统的结构" class="headerlink" title="1.3 数据库系统的结构"></a>1.3 数据库系统的结构</h2><p>从数据库应用开发人员角度看：</p>
+<blockquote>
 <ul>
 <li>数据库系统采用三级模式结构，是数据库系统内部的系统结构</li>
 </ul>
+</blockquote>
 <p>从数据库最终用户角度看，数据库系统的结构有：</p>
+<blockquote>
 <ul>
 <li>单用户结构</li>
 <li>主从式结构</li>
@@ -3148,100 +3473,123 @@ $$
 <li>客户-服务器</li>
 <li>浏览器-应用服务器／数据库服务器等</li>
 </ul>
+</blockquote>
 <h3 id="关于模式的一些概念"><a href="#关于模式的一些概念" class="headerlink" title="关于模式的一些概念"></a>关于模式的一些概念</h3><p>模式:</p>
+<blockquote>
 <ul>
 <li>是对数据库逻辑结构和特征的描述</li>
 <li>是型的描述,不涉及具体值</li>
 <li>模式是相对稳定的</li>
 </ul>
+</blockquote>
 <p>实例</p>
+<blockquote>
 <ul>
 <li>数据库某一时刻的状态: 模式的一个具体值</li>
 <li>同一个模式可以有很多实例</li>
 <li>实例随数据库中的数据的更新而变动</li>
 </ul>
+</blockquote>
 <h3 id="三级模式结构"><a href="#三级模式结构" class="headerlink" title="三级模式结构"></a>三级模式结构</h3><p><img src="/2020/02/27/data-base0/pattern0.png" alt="pattern"></p>
 <h4 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h4><p>模式(逻辑模式)</p>
+<blockquote>
 <ul>
 <li>是数据库中全体数据的逻辑结构和特征描述 </li>
-<li>是所有用户的公共数据视图<blockquote>
-<p>一般,某个应用的数据库有一个模式  </p>
-</blockquote>
-</li>
+<li>是所有用户的公共数据视图<br>一般,某个应用的数据库有一个模式  </li>
 </ul>
+</blockquote>
 <p>模式是数据库系统模式结构的中心:</p>
+<blockquote>
 <ul>
 <li>与数据的物理存储细节和硬件环境无关</li>
 <li>与具体的应用程序、开发工具及高级程序设计语言无关 </li>
 </ul>
+</blockquote>
 <p>定义模式</p>
+<blockquote>
 <ul>
 <li>DDL定义数据的逻辑结构，以某种数据模型为基础</li>
 <li>数据记录由哪些数据项构成，数据项的名字、类型、取值范围等</li>
 <li>定义数据之间的联系</li>
 <li>定义与数据有关的安全性、完整性要求</li>
 </ul>
+</blockquote>
 <h4 id="外模式"><a href="#外模式" class="headerlink" title="外模式"></a>外模式</h4><p>外模式（也称子模式或用户模式）</p>
+<blockquote>
 <ul>
 <li>数据库用户使用的局部数据的逻辑结构和特征的描述</li>
 <li>数据库用户的数据视图，是与某一应用有关的数据的逻辑表示 </li>
 </ul>
+</blockquote>
 <p>外模式与模式的关系</p>
+<blockquote>
 <ul>
 <li>外模式通常是模式的子集、一个模式可以有多个外模式</li>
 <li>反映了不同的用户的应用需求、看待数据的方式、对数据保密的要求</li>
 <li>对模式中某一数据，在不同的外模式中 结构、类型、长度、保密级别等都可以不同 </li>
 </ul>
+</blockquote>
 <p>外模式与应用的关系</p>
+<blockquote>
 <ul>
 <li>一个外模式可以为 多个应用系统所使用，一个应用程序只能使用一个外模式 </li>
 </ul>
+</blockquote>
 <p>外模式的用途</p>
+<blockquote>
 <ul>
 <li>每个用户只能看见和访问所对应的外模式中的数据，简化用户视图</li>
 <li>保证数据库安全性的一个有力措施</li>
 </ul>
+</blockquote>
 <h4 id="内模式"><a href="#内模式" class="headerlink" title="内模式"></a>内模式</h4><p>内模式（也称存储模式）</p>
-<ul>
-<li><p>是数据物理结构和存储方式的描述</p>
-</li>
-<li><p>是数据在数据库内部的表示方式</p>
 <blockquote>
 <ul>
+<li>是数据物理结构和存储方式的描述</li>
+<li>是数据在数据库内部的表示方式<ul>
 <li>记录的存储方式 （例如，顺序存储，堆存储，Cluste按hash方法存储等）</li>
 <li>索引的组织方式（B+树，Bitmap，Hash）</li>
 <li>数据是否压缩存储</li>
 <li>数据是否加密</li>
 <li>数据存储记录结构的规定—如定长/变长，记录是否可以跨页存放等 </li>
 </ul>
+</li>
+</ul>
 </blockquote>
-</li>
-<li><p>一个数据库只有一个内模式</p>
-</li>
+<ul>
+<li>一个数据库只有一个内模式</li>
 </ul>
 <h3 id="二级映像"><a href="#二级映像" class="headerlink" title="二级映像"></a>二级映像</h3><p>三级模式实际上是对数据的三个抽象级别</p>
 <p>数据库管理系统内部提供了二级映像</p>
+<blockquote>
 <ul>
 <li>外模式/模式映像</li>
 <li>模式/内模式映像</li>
 </ul>
+</blockquote>
 <h4 id="外模式-模式映像"><a href="#外模式-模式映像" class="headerlink" title="外模式/模式映像"></a>外模式/模式映像</h4><p>对每一个外模式,有一个外模式/模式映像</p>
+<blockquote>
 <ul>
 <li>它定义了外模式与模式之间的对应关系</li>
 <li>映像定义通常包含在各外模式的描述中</li>
 </ul>
+</blockquote>
 <p>这种映像可以保证数据(和程序)的逻辑独立性</p>
+<blockquote>
 <ul>
 <li>当模式改变时，数据库管理员对外模式／模式映像作相应改变，使外模式保持不变</li>
 <li>应用程序是依据数据的外模式编写的，应用程序不必修改，保证了数据 与程序的逻辑独立性，简称数据的逻辑独立性 </li>
 </ul>
+</blockquote>
 <h4 id="模式-内模式映像"><a href="#模式-内模式映像" class="headerlink" title="模式/内模式映像"></a>模式/内模式映像</h4><p>模式/内模式映像定义了全局数据逻辑结构与存储结构之间的对应关系(如，说明某个逻辑记录对应何种存储结构)</p>
 <p>数据库中模式/内模式映像是唯一的,该映像定义通常包含在模式的描述中</p>
 <p>这种映像能保证数据的物理独立性</p>
+<blockquote>
 <ul>
 <li>当数据库的存储结构改变了（例如选用了另一种存储结构），数据库管理员 修改模式／内模式映象，使模式保持不变。</li>
 <li>模式不变，则应用程序不变。保证了数据与程序的物理独立性，简称数据的 物理独立性。</li>
 </ul>
+</blockquote>
 <h4 id="二级映像的功能与数据独立性"><a href="#二级映像的功能与数据独立性" class="headerlink" title="二级映像的功能与数据独立性"></a>二级映像的功能与数据独立性</h4><ul>
 <li><p>保证了应用程序的稳定性</p>
 <blockquote>
@@ -3273,11 +3621,13 @@ $$
 <li>数据库管理员 </li>
 </ul>
 <h3 id="硬件平台及数据库"><a href="#硬件平台及数据库" class="headerlink" title="硬件平台及数据库"></a>硬件平台及数据库</h3><p>数据库对硬件资源的要求:</p>
+<blockquote>
 <ul>
 <li>足够大的内存</li>
 <li>足够大的磁盘(阵列)等外部设备</li>
 <li>较高的通讯能力</li>
 </ul>
+</blockquote>
 <h3 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h3><ul>
 <li>数据库管理系统</li>
 <li>支持数据库管理系统运行的操作系统</li>
@@ -3286,11 +3636,13 @@ $$
 <li>为特定应用环境开发的数据库应用系统</li>
 </ul>
 <h3 id="人员"><a href="#人员" class="headerlink" title="人员"></a>人员</h3><p>不同的人员涉及不同的数据抽象级别，具有不同的数据视图:</p>
+<blockquote>
 <ul>
 <li>用户:应用程序客户端</li>
 <li>应用程序员:外模式</li>
 <li>数据库管理员,系统分析员:数据库,内模式,模式,外模式</li>
 </ul>
+</blockquote>
 <h1 id="二、关系数据库"><a href="#二、关系数据库" class="headerlink" title="二、关系数据库"></a>二、关系数据库</h1><h2 id="2-1-关系模型"><a href="#2-1-关系模型" class="headerlink" title="2.1 关系模型"></a>2.1 关系模型</h2><h3 id="关系数据结构"><a href="#关系数据结构" class="headerlink" title="关系数据结构"></a>关系数据结构</h3><p>关系数据结构是单一的数据结构-关系</p>
 <p>关系数据结构示意图如下:<br><img src="/2020/02/27/data-base0/relation0.png" alt="rela"></p>
 <h4 id="域和笛卡尔积空间"><a href="#域和笛卡尔积空间" class="headerlink" title="域和笛卡尔积空间"></a>域和笛卡尔积空间</h4><ul>
@@ -3319,6 +3671,7 @@ $$
 </ul>
 <h4 id="关系模式"><a href="#关系模式" class="headerlink" title="关系模式"></a>关系模式</h4><p>关系模式是对关系的描述<br>关系模式主要有元组集合的结构和完整性约束条件两方面构成</p>
 <p>关系模式可以由一个五元组R(U,D,DOM,F)表示,其中:</p>
+<blockquote>
 <ul>
 <li>R:关系名</li>
 <li>U:属性名集合</li>
@@ -3326,6 +3679,7 @@ $$
 <li>DOM:属性向域的映像集合(映射关系,指明哪个属性的域是哪个)</li>
 <li>F:属性间数据依赖的关系集合</li>
 </ul>
+</blockquote>
 <h3 id="关系完整性约束"><a href="#关系完整性约束" class="headerlink" title="关系完整性约束"></a>关系完整性约束</h3><ul>
 <li><p>实体完整性和参照完整性: 关系模型必须满足的完整性约束条件称为关系的两个不变性，应该由关系系统自动支持</p>
 </li>
@@ -3337,17 +3691,20 @@ $$
 <li>关系的主属性不能取空值(码不能为空)</li>
 </ul>
 <p>说明: </p>
+<blockquote>
 <ul>
 <li>实体完整性规则是针对基本关系而言的。一个基本表通常对应现实世界的一个实体集。</li>
 <li>现实世界中的实体是可区分的，即它们具有某种唯一性标识。</li>
 <li>关系模型中以主码作为唯一性标识。</li>
 <li>主码中的属性即主属性不能取空值。主属性取空值，就说明存在某个不可标识的实体，即存在不可区分的实体，这与第（2）点相矛盾，因此这个规则称为实体完整性</li>
 </ul>
+</blockquote>
 <h4 id="参照完整性"><a href="#参照完整性" class="headerlink" title="参照完整性"></a>参照完整性</h4><ul>
 <li>关系中的某些属性的取值需要参考另外一个关系中的相关数据</li>
 </ul>
 <p>在关系模型中实体及实体间的联系都是用关系来描述的,自然存在着关系与关系间的引用,而这种引用应当是有意义的 </p>
 <p>若关系R中的属性F的取值需要参考关系S中的主码K,则:</p>
+<blockquote>
 <ul>
 <li>F为R的外码/外键,此时F不能是R的码</li>
 <li>R为参照关系</li>
@@ -3355,57 +3712,65 @@ $$
 <li>外码F只能为空或者是关系S中某个存在的元组的K属性(有意义)</li>
 <li>R和S可以是同一个关系</li>
 </ul>
+</blockquote>
 <h4 id="用户定义完整性"><a href="#用户定义完整性" class="headerlink" title="用户定义完整性"></a>用户定义完整性</h4><p>其他一些用户定义的完整性规则,可以是列级完整性约束也可以是表级完整性约束</p>
 <h2 id="2-2-关系代数"><a href="#2-2-关系代数" class="headerlink" title="2.2 关系代数"></a>2.2 关系代数</h2><p>关系数据库语言分类：</p>
+<blockquote>
 <ul>
 <li>关系代数语言: 用对关系的运算来表达查询要求</li>
 <li>关系演算语言：用谓词来表达查询要求</li>
 <li>具有关系代数和关系演算双重特点的语言(SQL)</li>
 </ul>
+</blockquote>
 <p>关系代数是一种抽象的查询语言，它用对关系的运算来表达查询,其以集合运算为数学基础</p>
+<blockquote>
 <ul>
 <li>关系代数运算对象是关系</li>
 <li>关系代数运算结果是关系</li>
 <li>关系代数运算符分为集合运算符和专门关系的运算符</li>
 </ul>
+</blockquote>
 <h3 id="传统集合操作"><a href="#传统集合操作" class="headerlink" title="传统集合操作"></a>传统集合操作</h3><p>一些记号的定义:</p>
+<blockquote>
 <ul>
-<li><p>$R(A_1,A_2,…,A_n)$表示n目的关系模式,$A_i$表示属性</p>
-</li>
-<li><p>$R$为符合上述关系模式的一个关系</p>
-</li>
-<li><p>$t\in R$是R中的一个元组</p>
-</li>
-<li><p>$t[A_i]$表示元组$t$中属性$A_i$的值</p>
-</li>
-<li><p>$A=\lbrace A_i,A_j,…,A_k \rbrace$表示属性列或属性组</p>
-</li>
-<li><p>$t[A]$可以表示$t$在上述属性组中诸分量的集合</p>
-</li>
-<li><p>$\overline A$表示$A$在全体属性中的补集</p>
-</li>
-<li><p>$\widehat {t_rt_s}$表示关系R和关系S中两个元组的连接</p>
-</li>
-<li><p>$Z_x$是象集,表示R中属性组$X$上值为$x$的所有元组在属性组$Z$上分量的集合,称为$x$在$R$中的象集</p>
-</li>
+<li>$R(A_1,A_2,…,A_n)$表示n目的关系模式,$A_i$表示属性</li>
+<li>$R$为符合上述关系模式的一个关系</li>
+<li>$t\in R$是R中的一个元组</li>
+<li>$t[A_i]$表示元组$t$中属性$A_i$的值</li>
+<li>$A=\lbrace A_i,A_j,…,A_k \rbrace$表示属性列或属性组</li>
+<li>$t[A]$可以表示$t$在上述属性组中诸分量的集合</li>
+<li>$\overline A$表示$A$在全体属性中的补集</li>
 </ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>$\widehat {t_rt_s}$表示关系R和关系S中两个元组的连接</li>
+<li>$Z_x$是象集,表示R中属性组$X$上值为$x$的所有元组在属性组$Z$上分量的集合,称为$x$在$R$中的象集</li>
+</ul>
+</blockquote>
 <h4 id="关系的并"><a href="#关系的并" class="headerlink" title="关系的并"></a>关系的并</h4><p>关系的并就是集合的并,运算要求如下:</p>
+<blockquote>
 <ul>
 <li>关系R和S目数相同,相应的属性属于同一个域</li>
 <li>R并S仍为n目关系,R$\cup$S是R和S上所有元组的集合</li>
 <li>并完之后要去重</li>
 </ul>
+</blockquote>
 <h4 id="关系的差"><a href="#关系的差" class="headerlink" title="关系的差"></a>关系的差</h4><p>关系的差就是集合的差,运算要求如下:</p>
+<blockquote>
 <ul>
 <li>关系R和S目数相同,相应的属性属于同一个域</li>
 <li>R并S仍为n目关系,R-S是属于R而不属于S的所有元组的集合</li>
 </ul>
+</blockquote>
 <h4 id="关系的交"><a href="#关系的交" class="headerlink" title="关系的交"></a>关系的交</h4><p>要求同上,运算结果是在R和S中都存在的元组的集合</p>
 <h4 id="笛卡尔积"><a href="#笛卡尔积" class="headerlink" title="笛卡尔积"></a>笛卡尔积</h4><p>关系的笛卡尔积中,$R\times S = \lbrace \widehat {t_rt_s} | t_r \in R \land t_s \in S \rbrace$</p>
+<blockquote>
 <ul>
 <li>行:运算后为$n_R+n_S$目关系</li>
 <li>列:运算后有$k_R*k_S$个元组</li>
 </ul>
+</blockquote>
 <h3 id="关系特有操作"><a href="#关系特有操作" class="headerlink" title="关系特有操作"></a>关系特有操作</h3><h4 id="选择-sigma"><a href="#选择-sigma" class="headerlink" title="选择$\sigma$"></a>选择$\sigma$</h4><ul>
 <li>选择运算又称为限制</li>
 <li>是在关系R中选择符合条件的元组组成集合</li>
@@ -3448,15 +3813,19 @@ $$
 <h2 id="2-3-关系演算"><a href="#2-3-关系演算" class="headerlink" title="2.3 关系演算"></a>2.3 关系演算</h2><p>关系演算是以谓词演算为数学基础</p>
 <p>按谓词变元不同,可分为元组关系演算(ALPHA语言)和域关系演算(QBE语言)</p>
 <h3 id="元组关系演算ALPHA"><a href="#元组关系演算ALPHA" class="headerlink" title="元组关系演算ALPHA"></a>元组关系演算ALPHA</h3><h4 id="基本格式"><a href="#基本格式" class="headerlink" title="基本格式"></a>基本格式</h4><p><code>GET [(定额)] &lt;工作空间&gt; (&lt;操作对象&gt;) [:条件] [DOWN|UP 排序方式]</code></p>
+<blockquote>
 <ul>
 <li>以相应排序方式返回符合条件的操作对象</li>
 <li>如果有定额则只返回前n个结果</li>
 </ul>
+</blockquote>
 <h4 id="用元组变量进行检索"><a href="#用元组变量进行检索" class="headerlink" title="用元组变量进行检索"></a>用元组变量进行检索</h4><p>元组变量是可以在某一关系上任意取值的变量</p>
+<blockquote>
 <ul>
 <li>可以用元组变量来代替较长的关系名</li>
 <li>如果条件中使用量词,其后只能接元组变量</li>
 </ul>
+</blockquote>
 <p>元组关系演算是以元组变量作为谓词变元的基本对象的关系演算</p>
 <p>定义方式:<code>RANGE &lt;关系名&gt; &lt;变量名&gt;</code></p>
 <h4 id="用存在量词的检索"><a href="#用存在量词的检索" class="headerlink" title="用存在量词的检索"></a>用存在量词的检索</h4><ul>
@@ -3473,6 +3842,7 @@ $$
 <p>表达式格式:A$\to$B</p>
 <p>当A成立时B一定成立,表达式为真</p>
 <h4 id="聚集函数"><a href="#聚集函数" class="headerlink" title="聚集函数"></a>聚集函数</h4><p>常用聚集函数(内部函数):</p>
+<blockquote>
 <ul>
 <li>COUNT: 对元组计数(计数时会自动排除重复值)</li>
 <li>TOTAL: 求值的总和</li>
@@ -3480,45 +3850,52 @@ $$
 <li>MIN: 求最小值</li>
 <li>AVG: 求平均值</li>
 </ul>
+</blockquote>
 <h3 id="域关系演算QBE"><a href="#域关系演算QBE" class="headerlink" title="域关系演算QBE"></a>域关系演算QBE</h3><p>域关系演算是以元组变量的分量即域变量作为谓词变元的基本对象的关系演算</p>
 <h1 id="三、关系数据库标准语言SQL"><a href="#三、关系数据库标准语言SQL" class="headerlink" title="三、关系数据库标准语言SQL"></a>三、关系数据库标准语言SQL</h1><p>SQL: 结构化查询语言,Structured Query Language</p>
 <p>目前,没有一个数据库系统能够支持SQL标准的所有概念和特性</p>
 <h2 id="3-1-SQL概述"><a href="#3-1-SQL概述" class="headerlink" title="3.1 SQL概述"></a>3.1 SQL概述</h2><p>SQL（Structured Query Language）结构化查询语言是关系数据库的标准语言</p>
 <h3 id="SQL特点"><a href="#SQL特点" class="headerlink" title="SQL特点"></a>SQL特点</h3><p>综合统一: </p>
+<blockquote>
 <ul>
 <li>集数据定义语言（DDL），数据操纵语言（DML），数据控制语言（DCL）功能于一体。 </li>
 <li>可以独立完成数据库生命周期中的全部活动  </li>
 </ul>
+</blockquote>
 <p>高度非过程化:</p>
+<blockquote>
 <ul>
 <li>非关系数据模型的数据操纵语言“面向过程”，必须指定存取路径。</li>
 <li>SQL只要提出“做什么”，无须了解存取路径。</li>
 <li>存取路径的选择以及SQL的操作过程由系统自动完成。</li>
 </ul>
+</blockquote>
 <p>面向集合的操作方式: </p>
+<blockquote>
 <ul>
 <li>非关系数据模型采用面向记录的操作方式，操作对象是一条记录</li>
 <li>SQL采用集合操作方式</li>
 <li>操作对象、查找结果可以是元组的集合</li>
 <li>一次插入、删除、更新操作的对象可以是元组的集合</li>
 </ul>
+</blockquote>
 <p>以同一种语法结构提供多种使用方式: </p>
+<blockquote>
 <ul>
 <li>SQL是独立的语言,能够独立地用于联机交互的使用方式</li>
 <li>SQL能够嵌入到高级语言（例如C，C++，Java）程序中，供程序员设计程序时使用</li>
 </ul>
+</blockquote>
 <p>语言简洁，易学易用: </p>
+<blockquote>
 <ul>
-<li>SQL功能极强，完成核心功能只用了9个动词。<blockquote>
-<ul>
+<li>SQL功能极强，完成核心功能只用了9个动词。</li>
 <li>数据定义:CREATE,DROP,ALTER</li>
 <li>数据操纵:INSERT,UPDATE,DELETE</li>
 <li>数据查询:SELECT</li>
 <li>权限控制:GRANT,REVOKE</li>
 </ul>
 </blockquote>
-</li>
-</ul>
 <h3 id="SQL基本概念"><a href="#SQL基本概念" class="headerlink" title="SQL基本概念"></a>SQL基本概念</h3><p>数据库三级模式在SQL数据库中的体现:<br><img src="/2020/02/27/data-base0/sql0.png" alt="sql"></p>
 <ul>
 <li><p>基本表(模式)</p>
@@ -5097,7 +5474,7 @@ $$
 <li>$M$: 尾数,有m位,和前面的$M_S$一同组成一个定点小数<blockquote>
 <ul>
 <li>规格化尾数:当R=2(二进制数)且尾数不为0时,其绝对值应大于或等于十进制的0.5(即最高位应当为1);对非规格化浮点数,需要将尾数左移或右移,并改变阶码使其满足规格化要求  <blockquote>
-<p>如:0.0011 —&gt; (0.11)*2^(0010)</p>
+<p>如:0.0011 -&gt; (0.11)*2^(0010)</p>
 </blockquote>
 </li>
 <li>机器零值:表示比机器数能表示的最小数还要小的值</li>
@@ -5658,9 +6035,647 @@ $$
 <li>用户状态：执行用户程序时所处的状态<br>为了防止因程序员编程出错而影响整个系统的工作，在机器中设置了一些特权指令(规定特权指令只有操作系统等系统程序才能使用，如在用户程序中出现特权指令)，则在执行到该指令时立即中止程序的执行并发出中断。</li>
 </ul>
 <h1 id="六、指令系统"><a href="#六、指令系统" class="headerlink" title="六、指令系统"></a>六、指令系统</h1><p>(原书第五章)</p>
-<h2 id="指令系统的发展"><a href="#指令系统的发展" class="headerlink" title="指令系统的发展"></a>指令系统的发展</h2><ul>
-<li>指令: 计算机执行某种操作的命令 b</li>
+<h2 id="6-1-指令系统的发展"><a href="#6-1-指令系统的发展" class="headerlink" title="6.1 指令系统的发展"></a>6.1 指令系统的发展</h2><h3 id="指令系统概念"><a href="#指令系统概念" class="headerlink" title="指令系统概念"></a>指令系统概念</h3><ul>
+<li>指令: 计算机执行某种操作的命令</li>
+<li>程序：程序是由一系列指令组成的</li>
 </ul>
+<p>指令分类:</p>
+<ul>
+<li>微指令: 微程序级的命令,属于硬件</li>
+<li>宏指令: 由若干条机器指令组成的软件指令, 它属于软件级别</li>
+<li>机器指令: 介于微指令和宏指令之间,每条指令可以完成一个独立的算数或逻辑运算</li>
+</ul>
+<p>指令系统: 一台计算机中所有机器指令的集合,指令系统是硬件和软件的分界面</p>
+<ul>
+<li>指令系统直接影响到机器的硬件结构</li>
+<li>指令系统直接影响到系统软件</li>
+<li>指令系统直接影响到机器的适用范围</li>
+</ul>
+<h3 id="指令系统的发展"><a href="#指令系统的发展" class="headerlink" title="指令系统的发展"></a>指令系统的发展</h3><ul>
+<li>电子管和晶体管时代: 指令系统只有定点加减,逻辑运算,数据传送转移等几十条指令</li>
+<li>晶体管和集成电路时代: 指令系统增加了乘除,浮点,十进制运算和字符串处理等指令; 寻址方式也趋于多样化<blockquote>
+<p>系列计算机: 基本指令系统相同,基本体系结构相同的一系列计算机,这使得各机器软件能够得到兼容</p>
+</blockquote>
+</li>
+<li>(大规模)集成电路计算机: 大多数计算机指令达到几百条,这时的计算机为复杂指令计算机CISC<blockquote>
+<ul>
+<li>复杂指令计算机指令系统负责庞大,指令数目多</li>
+<li>指令格式多,字长不固定,寻址方式多</li>
+<li>可访存指令不受限制</li>
+<li>各种指令执行时间相差很大</li>
+<li>采用微程序控制器</li>
+</ul>
+</blockquote>
+</li>
+<li>70年代后期: 精简指令系统计算机RISC<blockquote>
+<ul>
+<li>精简指令系统选取使用频率较高的简单指令</li>
+<li>指令长度固定,指令格式少,寻址方式种类少</li>
+<li>采用流水线技术</li>
+<li>使用较多的通用寄存器,减少访存</li>
+<li>控制器以组合逻辑控制为主</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="指令系统性能指标"><a href="#指令系统性能指标" class="headerlink" title="指令系统性能指标"></a>指令系统性能指标</h3><ul>
+<li>完备性: 用汇编语言编写各种程序时,指令系统丰富,功能齐全,编程方便</li>
+<li>有效性: 程序占用存储空间小,执行速度快</li>
+<li>规整性: 指令格式和数据格式一致; 能够同等对待寄存器和存储单元; 不同寻址方法和各种数据类型能被指令支持</li>
+<li>兼容性: 系列机之间具有相同的基本结构和共同的基本指令集,抵挡机上运行的软件也能在高档机上运行(向上兼容)</li>
+</ul>
+<h3 id="指令系统与硬件结构的关系"><a href="#指令系统与硬件结构的关系" class="headerlink" title="指令系统与硬件结构的关系"></a>指令系统与硬件结构的关系</h3><ul>
+<li>高级语言: 面向人类的语言,与具体机器的指令系统无关</li>
+<li>低级语言: 面向机器的语言,与具体机器的指令系统密切相关</li>
+</ul>
+<p>汇编语言:</p>
+<ul>
+<li>汇编语言通过指令助记符编写程序</li>
+<li>指令助记符与机器指令一一对应,常用3或4个英文缩写字母表示</li>
+</ul>
+<h2 id="6-2-指令格式"><a href="#6-2-指令格式" class="headerlink" title="6.2 指令格式"></a>6.2 指令格式</h2><h3 id="指令的格式"><a href="#指令的格式" class="headerlink" title="指令的格式"></a>指令的格式</h3><p>指令包含的信息:</p>
+<blockquote>
+<ul>
+<li>操作码: 一条操作码对应一个指令,计算机通过识别操作码来完成不同的操作</li>
+<li>操作数(地址): 指出参与操作的数据的有关信息(内容或地址)</li>
+<li>结果存放地址: 该地址存放操作完成后得到的结果</li>
+<li>后继指令地址: 下一条指令的地址; 顺序执行的程序指令地址由程序计数器PC指出,仅当改变程序的运行顺序时下一条指令地址才由指令给出</li>
+</ul>
+</blockquote>
+<p>可见,指令由一个操作码OP和若干个地址码A构成</p>
+<p>指令可按照操作数或地址数来分类</p>
+<blockquote>
+<p>例: 常规双操作数指令(四地址格式)<br><code>OP-A1-A2-A3-A4</code></p>
+<ul>
+<li>执行操作: (A1)OP(A2)=&gt;A3,后继地址为A4</li>
+<li>当然,现实情况中可能不需要显式地给出这么多地址<br>隐地址: 某地址在指令中以隐含的方式约定,指令中不给出该地址码; 这样可以减少存储空间与读取时间</li>
+</ul>
+</blockquote>
+<p>寄存器传送语言</p>
+<blockquote>
+<ul>
+<li>(A)表示地址码A中的内容,是数据</li>
+<li>(B)=&gt;A表示将地址码B中的内容存入地址码A所指向的寄存器或主存储器</li>
+</ul>
+</blockquote>
+<h4 id="零地址指令"><a href="#零地址指令" class="headerlink" title="零地址指令"></a>零地址指令</h4><p>格式:<code>OP</code></p>
+<blockquote>
+<p>执行操作: </p>
+<ul>
+<li>零操作数: OP,(PC)+1=&gt;PC</li>
+<li>但操作数: OP(AC)=&gt;AC,(PC)+1=&gt;PC<br>注: 该指令为零操作数时,可以为空操作(延时)指令或停机指令; 该指令也可以是对累加器AC的操作指令或是对堆栈栈顶单元中的数据进行操作</li>
+</ul>
+</blockquote>
+<h4 id="单地址指令"><a href="#单地址指令" class="headerlink" title="单地址指令"></a>单地址指令</h4><p>格式:<code>OP-A1</code></p>
+<blockquote>
+<p>执行操作: </p>
+<ul>
+<li>单操作数: OP(A1)=&gt;A1,(PC)+1=&gt;PC</li>
+<li>双操作数: (AC)OP(A)=&gt;AC,(PC)+1=&gt;PC<br>注: AC为CPU中的累加器,一般为隐含规定,此时OP可以是加减乘除等</li>
+</ul>
+</blockquote>
+<h4 id="二地址格式"><a href="#二地址格式" class="headerlink" title="二地址格式"></a>二地址格式</h4><p>格式:<code>OP-A1-A2</code></p>
+<blockquote>
+<p>执行操作(双操作数): (A1)OP(A2)=&gt;A1,(PC)+1=&gt;PC</p>
+</blockquote>
+<h4 id="三地址格式"><a href="#三地址格式" class="headerlink" title="三地址格式"></a>三地址格式</h4><p>格式:<code>OP-A1-A2-A3</code></p>
+<blockquote>
+<p>执行操作(双操作数): (A1)OP(A2)=&gt;A3,(PC)+1=&gt;PC<br>当然,某些性能较强的计算机中还有多地址指令</p>
+</blockquote>
+<h3 id="指令操作码的扩展技术"><a href="#指令操作码的扩展技术" class="headerlink" title="指令操作码的扩展技术"></a>指令操作码的扩展技术</h3><ul>
+<li>定长操作码: 指令操作码的位置和长度固定,其余部分全部用于地址码; 此操作可以简化硬件操作,减少译码时间</li>
+<li>扩展操作码: 指令操作码的位数和位置根据需要变化, 操作码的位数随地址数的减少而增加</li>
+</ul>
+<h4 id="15-15-15扩展法"><a href="#15-15-15扩展法" class="headerlink" title="15/15/15扩展法"></a>15/15/15扩展法</h4><p>机器字长16位,一条地址4位,可采用如下方法设计出15/15/15/16条三地址/双地址/单地址/零地址指令</p>
+<ul>
+<li>三地址指令: 0XXX-EXXX (X表示地址,变量)</li>
+<li>双地址指令: F0XX-FEXX</li>
+<li>单地址指令: FF0X-FFEX</li>
+<li>零地址指令: FFF0-FFFF<blockquote>
+<p>这里,前三位中的F为扩展标志,表示操作码已经被扩展到后面一个地址位中去</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="Huffman编码"><a href="#Huffman编码" class="headerlink" title="Huffman编码"></a>Huffman编码</h4><p>霍夫曼编码: 根据程序中指令出现的频率高低赋予不同长度的操作码</p>
+<h4 id="指令长度与数据字长"><a href="#指令长度与数据字长" class="headerlink" title="指令长度与数据字长"></a>指令长度与数据字长</h4><ul>
+<li>字节: 由多个(一般8个)二进制位组成</li>
+<li>字: 由多个字节组成</li>
+<li>数据字: 计算机中的字表示一个数</li>
+<li>指令字: 计算机中的字表示一条指令</li>
+<li>机器字长: 计算机能直接处理的二进制数据位数</li>
+<li>指令字长: 一个指令中的二进制位数<blockquote>
+<p>指令字长有单字长,半字长,多字长,长度分别等于一个,半个,两个机器字长</p>
+<ul>
+<li>等字长指令: 指令字长不变,通常采用扩展操作码技术</li>
+<li>变字长指令结构: 指令字长多为字节的整数倍,如单字节,双字节,三字节指令</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="6-3-寻址方式"><a href="#6-3-寻址方式" class="headerlink" title="6.3 寻址方式"></a>6.3 寻址方式</h2><p>寻址: 存取数据时,先给出地址码,再由硬件电路译码找到数据所在地址</p>
+<p>寻址方式: 确定本条指令的数据地址以及下一条要执行指令的地址方式</p>
+<h3 id="指令寻址"><a href="#指令寻址" class="headerlink" title="指令寻址"></a>指令寻址</h3><ul>
+<li>顺序寻址: 由程序计数器PC对地址计数</li>
+<li>跳跃寻址: 下一条指令地址由本条指令给出</li>
+</ul>
+<h3 id="操作数的寻址"><a href="#操作数的寻址" class="headerlink" title="操作数的寻址"></a>操作数的寻址</h3><p>操作数分类: 地址,数值,字符,逻辑数据</p>
+<p>常见操作数寻址方式:</p>
+<ul>
+<li><p>隐含寻址: 不显式地给出操作数地址</p>
+<blockquote>
+<p>例: DAA – 将AL的内容调整为两位组合型的二进制数</p>
+</blockquote>
+</li>
+<li><p>立即数寻址: 操作数直接包含在指令中,不需要访问存储器</p>
+<blockquote>
+<ul>
+<li>一般用于提供一个常数或给寄存器初始化</li>
+<li><code>MOV AL, 05H</code>: 05H为立即数</li>
+</ul>
+</blockquote>
+</li>
+<li><p>寄存器直接寻址: 提供的操作数存放在CPU内的寄存器中</p>
+<blockquote>
+<p><code>MOV AL, BL</code></p>
+<ul>
+<li>此时给出的地址是寄存器地址,不是主存储器地址</li>
+</ul>
+</blockquote>
+</li>
+<li><p>(寄存器)间接寻址: 操作数的地址存放在寄存器中</p>
+<blockquote>
+<p><code>MOV AL, [SI]</code>: SI中存放的是操作数在主存储器中的地址</p>
+</blockquote>
+</li>
+<li><p>(存储器)直接寻址</p>
+<blockquote>
+<ul>
+<li>直接给出操作数在主存储器中的地址</li>
+<li><code>MOV AL, [2000H]</code></li>
+</ul>
+</blockquote>
+</li>
+<li><p>(存储器)间接寻址</p>
+<blockquote>
+<ul>
+<li>主存储器中存放的是操作数的地址(指令中存的是地址的地址)</li>
+<li><code>MOV AL, [[1000H]]</code></li>
+</ul>
+</blockquote>
+</li>
+<li><p>相对寻址</p>
+<blockquote>
+<ul>
+<li>给出目标地址EA与当前执行指令地址(PC)的相对位移量Disp</li>
+<li>这能够实现一个程序的内部跳转, Disp通常为补码,可正可负</li>
+<li>EA = (PC) + Disp</li>
+<li><code>MOV AL, DISP[PC]</code>: CPU需要将寄存器PC加上寄存器DISP得到目标地址</li>
+</ul>
+</blockquote>
+</li>
+<li><p>基址寻址</p>
+<blockquote>
+<ul>
+<li>给出目标地址EA与基址BR的相对位移量A(Disp)</li>
+<li>基址寻址可用于操作系统内部的程序定位</li>
+<li>EA = (BR) + A</li>
+<li><code>MOV AL, DISP[BR]</code></li>
+</ul>
+</blockquote>
+</li>
+<li><p>变址寻址</p>
+<blockquote>
+<ul>
+<li>给出目标地址EA与变址DI的相对位移量A</li>
+<li>变址寻址可以用于访问数组等结构,将A固定,改变DI内容即可</li>
+<li>EA = (DI) + A</li>
+<li><code>MOV AL, DISP[DI]</code></li>
+</ul>
+</blockquote>
+</li>
+<li><p>堆栈寻址</p>
+<blockquote>
+<ul>
+<li>用于堆栈操作指令</li>
+</ul>
+</blockquote>
+</li>
+<li><p>复合寻址</p>
+<blockquote>
+<ul>
+<li>基址,变址,程序当前地址可以重复相加来寻址</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="6-4-指令类型"><a href="#6-4-指令类型" class="headerlink" title="6.4 指令类型"></a>6.4 指令类型</h2><h3 id="算术逻辑运算指令"><a href="#算术逻辑运算指令" class="headerlink" title="算术逻辑运算指令"></a>算术逻辑运算指令</h3><p>对定点数进行运算</p>
+<ul>
+<li>常有与,或,非,异或及按位操作指令</li>
+<li>运算结果有四个状态位: Z(零),N(结果为负),V(结果溢出),C(产生进位或借位)</li>
+</ul>
+<h3 id="移位操作指令"><a href="#移位操作指令" class="headerlink" title="移位操作指令"></a>移位操作指令</h3><p>类型:<br><img src="/2020/02/24/computer-composition0/move0.jpg" alt="move"></p>
+<ul>
+<li>移位指令可以实现较高速的乘除法运算</li>
+</ul>
+<h3 id="浮点数运算指令"><a href="#浮点数运算指令" class="headerlink" title="浮点数运算指令"></a>浮点数运算指令</h3><p>高级语言中的实数(real)运算通常是先转化为浮点数形式再进行处理</p>
+<blockquote>
+<ul>
+<li>某些机器的浮点数运算是用子程序实现的,速度较慢</li>
+<li>用于科学计算的计算机应设置浮点运算指令,能对32位单精度或64位双精度浮点数做处理</li>
+</ul>
+</blockquote>
+<h3 id="十进制运算指令"><a href="#十进制运算指令" class="headerlink" title="十进制运算指令"></a>十进制运算指令</h3><p>设置指令直接对十进制数进行运算,不再需要用程序转换成二进制数</p>
+<ul>
+<li>在人机交互频繁的计算机系统中设置十进制运算指令可以提高数据处理的速度</li>
+</ul>
+<h3 id="字符串处理指令"><a href="#字符串处理指令" class="headerlink" title="字符串处理指令"></a>字符串处理指令</h3><p>字符串处理指令是一种非数值处理指令,一般包括:</p>
+<blockquote>
+<ul>
+<li>字符串传送: 将数据块从主存储器的某区传送到另一区域</li>
+<li>字符串比较: 按位确定两字符串是否相等</li>
+<li>字符串查询: 查找字符串中是否含有某一字串或字符</li>
+<li>字符串转换: 从一种数据表达形式转换成另一种表达形式(编码转换)</li>
+</ul>
+</blockquote>
+<h3 id="数据传送指令"><a href="#数据传送指令" class="headerlink" title="数据传送指令"></a>数据传送指令</h3><p>用于寄存器,存储单元,存储器之间的数据传送</p>
+<ul>
+<li>包括数据读写,数据复制,数据交换(双向数据传送)等,一次可以传送一个或一批数据</li>
+</ul>
+<h3 id="转移类指令"><a href="#转移类指令" class="headerlink" title="转移类指令"></a>转移类指令</h3><p>用以改变程序的顺序执行,控制程序流的转移,分类:</p>
+<blockquote>
+<ul>
+<li>无条件转移: jump</li>
+<li>条件转移: branch</li>
+<li>过程的调用与返回: call, return</li>
+<li>陷阱指令: 用于处理计算机的程序错误或意外情况</li>
+</ul>
+</blockquote>
+<h3 id="堆栈及堆栈操作指令"><a href="#堆栈及堆栈操作指令" class="headerlink" title="堆栈及堆栈操作指令"></a>堆栈及堆栈操作指令</h3><p>堆栈是由若干个连续存储单元组成的FILO区域,栈底固定,存放最先送入栈中的数据(栈底地址大于栈顶地址)</p>
+<blockquote>
+<ul>
+<li>SP: 堆栈指针,表示栈顶的位置</li>
+<li>PUSH OPR: 压栈指令(压入单字节); (SP)-1=&gt;SP, OPR=&gt;SP</li>
+<li>POP OPR: 弹出指令; (SP)=&gt;OPR, (SP)+1=&gt;SP</li>
+</ul>
+</blockquote>
+<p>程序调用中的堆栈: A程序调用B程序</p>
+<blockquote>
+<p>(A中) call B</p>
+<ol>
+<li>将该指令的下一条指令(A1)及其他信息压入栈中</li>
+<li>执行B</li>
+<li>弹出A1作为返回地址,此时继续执行A程序</li>
+</ol>
+</blockquote>
+<p>子程序调用中的参数传递: 利用堆栈</p>
+<blockquote>
+<p>先将参数压入栈中,然后调用子程序</p>
+</blockquote>
+<h3 id="输入输出指令"><a href="#输入输出指令" class="headerlink" title="输入输出指令"></a>输入输出指令</h3><p>格式:<code>OP-REG-A</code></p>
+<ul>
+<li>OP: 操作码,表示IO指令</li>
+<li>REG: 寄存器名,用于和外部设备交换数据</li>
+<li>A: 外部设备寄存器地址或设备码(输入/输出数据寄存器,控制寄存器)</li>
+</ul>
+<p>IO指令除了传输数据,还可以用来发送和接收控制命令和回答信号,用于控制外部设备的工作</p>
+<p>在外部设备与存储器统一编址的计算机中,任何访问存储器的指令都可以访问外部设备,无需专设IO指令</p>
+<h3 id="特权指令"><a href="#特权指令" class="headerlink" title="特权指令"></a>特权指令</h3><p>只能提供给操作系统或系统软件使用的指令</p>
+<ul>
+<li>这些指令使用不当会破坏系统或其他用户信息,不能提供给用户使用</li>
+<li>主要为系统资源分配管理指令以及一些外部设备/输入输出管理指令</li>
+</ul>
+<h3 id="其他指令"><a href="#其他指令" class="headerlink" title="其他指令"></a>其他指令</h3><ul>
+<li>向量指令: 用于对向量或矩阵进行运算</li>
+<li>多处理机指令: 用于管理共享的公共资源和相互通信</li>
+<li>控制指令: 包括等待,停机,空操,开关中断,设置条件码指令等</li>
+</ul>
+<h2 id="6-5-RISC计算机和CISC计算机"><a href="#6-5-RISC计算机和CISC计算机" class="headerlink" title="6.5 RISC计算机和CISC计算机"></a>6.5 RISC计算机和CISC计算机</h2><h3 id="CISC指令集"><a href="#CISC指令集" class="headerlink" title="CISC指令集"></a>CISC指令集</h3><p>代表: DEC的VAX11/780,303条指令,18种寻址方式; Intel的80x86</p>
+<ul>
+<li>庞大的指令系统使计算机研制周期变长, 增加了调试和维护的难度, 有可能导致系统性能的下降</li>
+</ul>
+<h3 id="RISC指令集"><a href="#RISC指令集" class="headerlink" title="RISC指令集"></a>RISC指令集</h3><h4 id="RISC的产生和发展"><a href="#RISC的产生和发展" class="headerlink" title="RISC的产生和发展"></a>RISC的产生和发展</h4><p>1975年IBM公司开始研究指令系统的合理性问题,发现CISC中20%的指令在程序种出现的频率为80%</p>
+<p>复杂的指令系统</p>
+<blockquote>
+<ul>
+<li>增加了硬件实现的复杂性</li>
+<li>增加了研制时间和成本以及设计失误的可能性</li>
+<li>很难实现流水线操作</li>
+<li>降低了机器的速度</li>
+</ul>
+</blockquote>
+<p>1987年,RISC产品被推出,RISC不包含复杂指令</p>
+<h3 id="RISC特点"><a href="#RISC特点" class="headerlink" title="RISC特点"></a>RISC特点</h3><p>RISC希望通过简化指令使计算机结构更加简单合理,从而提高运算速度</p>
+<p>计算机执行程序所需时间P的计算方法:</p>
+<ul>
+<li>P = I<em>CPI</em>T<blockquote>
+<ul>
+<li>I: 高级语言程序编译后在机器上运行的指令数</li>
+<li>CPI: 指令执行的平均周期数</li>
+<li>T: 每个机器周期时间</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>RISC特点:</p>
+<blockquote>
+<ul>
+<li>优先选择使用频率高的一些简单指令于有用的指令,避免复杂指令</li>
+<li>指令长度固定,提供较少的指令格式和寻址方式; 在各指令间提供比较一致的字段划分和比较规整的字段功能</li>
+<li>仅有存取指令访问存储器,其余指令的操作都在寄存器之间进行</li>
+<li>CPU中寄存器数量相当多,算术逻辑运算的操作数都在通用寄存器中存取</li>
+<li>大部分指令在一个或小于一个机器周期内完成</li>
+<li>以硬布线控制逻辑为主,不用或少用微码控制</li>
+<li>特别重视编译优化工作,减少程序执行时间</li>
+</ul>
+</blockquote>
+<h2 id="6-6-指令系统举例"><a href="#6-6-指令系统举例" class="headerlink" title="6.6 指令系统举例"></a>6.6 指令系统举例</h2><h3 id="SPARC指令系统"><a href="#SPARC指令系统" class="headerlink" title="SPARC指令系统"></a>SPARC指令系统</h3><p>指令字长32位,3种指令格式,6种指令类型</p>
+<p>指令类型:</p>
+<blockquote>
+<ul>
+<li>31条算数/逻辑运算和移位指令</li>
+<li>22条LOAD/STORE指令</li>
+<li>5条控制转移指令</li>
+<li>8条读写专用寄存器指令</li>
+<li>浮点运算指令</li>
+<li>协处理器指令: SPARC为整数运算部件, 需要用协处理器或子程序实现浮点数运算</li>
+</ul>
+</blockquote>
+<p>指令格式:</p>
+<blockquote>
+<ul>
+<li>CALL指令: <code>OP(2位)-Disp(30位)</code></li>
+<li>SETHI指令和Branch指令: <code>OP(2)-rd(5)-OP2(2)-imm(22)</code>; <code>OP(2)-a(1)-Cond(4)-OP2(2)-disp(22)</code></li>
+<li>其他指令</li>
+</ul>
+</blockquote>
+<h3 id="Pentium微处理器指令系统"><a href="#Pentium微处理器指令系统" class="headerlink" title="Pentium微处理器指令系统"></a>Pentium微处理器指令系统</h3><p>程序员能见到的寄存器:</p>
+<blockquote>
+<ul>
+<li>32位数据寄存器: E(xtended)AX,EBX,ECX,EDX; 低位可以分为AX等16位寄存器; 每个16位可以分为如AL和AH等两个8位高低寄存器</li>
+<li>5个32位指针/变址寄存器: 堆栈指针ESP; 基址指针EBP; 源变址寄存器ESI; 目的变址寄存器EDI; 指令指针EIP(即PC)</li>
+<li>6个段寄存器(访问主存和外设IO端口): 取指令CS(CS:IP); (默认)读写数据DS; 堆栈操作指针SS; ES,FS,GS可任意使用</li>
+</ul>
+</blockquote>
+<p>指令系统:<code>OP-MOD/RM-SIB-Disp-Imm</code></p>
+<blockquote>
+<ul>
+<li>OP: 操作码,1或2个字节,可扩展</li>
+<li>MOD/RM: 指出操作数的位置,指出寻址方式,0或1个字节</li>
+<li>SIB: 配合前面指出寻址方式,0或1个字节</li>
+<li>Disp: 在特定寻址方式下指出地址偏移量,0、1、2或4个字节</li>
+<li>Imm: 立即数寻址,0、1、2或4个字节</li>
+</ul>
+</blockquote>
+<h2 id="6-7-机器语言-汇编语言和高级语言"><a href="#6-7-机器语言-汇编语言和高级语言" class="headerlink" title="6.7 机器语言,汇编语言和高级语言"></a>6.7 机器语言,汇编语言和高级语言</h2><ul>
+<li>机器语言: 由二进制代码组成的指令和数据, 在计算机硬件设计时产生</li>
+<li>汇编语言: 用助记符标注的机器语言, 易于阅读</li>
+<li>高级语言: 扩展功能,简化编程复杂度</li>
+</ul>
+<h1 id="七、中央处理器"><a href="#七、中央处理器" class="headerlink" title="七、中央处理器"></a>七、中央处理器</h1><p>（原书第六章）<br>CPU是计算机中最重要的部分, 对指令流和数据流在时间和空间上实施正确的布控</p>
+<blockquote>
+<ul>
+<li>指令控制</li>
+<li>操作控制</li>
+<li>时序控制</li>
+<li>数据加工处理</li>
+</ul>
+</blockquote>
+<p>组成部件:</p>
+<blockquote>
+<ul>
+<li>运算逻辑单元ALU</li>
+<li>寄存器</li>
+<li>中断系统</li>
+<li>控制部件</li>
+<li>(外部数据交换): 控制总线,数据总线,地址总线(单向,由CPU发出)</li>
+</ul>
+</blockquote>
+<h2 id="7-1-控制器的组成"><a href="#7-1-控制器的组成" class="headerlink" title="7.1 控制器的组成"></a>7.1 控制器的组成</h2><h3 id="控制器组成"><a href="#控制器组成" class="headerlink" title="控制器组成"></a>控制器组成</h3><p><img src="/2020/02/24/computer-composition0/control0.jpg" alt="control">  </p>
+<p>控制器组成:</p>
+<blockquote>
+<ul>
+<li>程序计数器PC: 用于存放当前或即将执行的指令地址, 形成顺序执行指令地址(PC+1)或转移类指令地址</li>
+<li>指令寄存器IR: 用于存放当前正在执行的指令</li>
+<li>地址寄存器AR: 存储当前CPU访问的内存单元的地址</li>
+<li>数据寄存器DR: 暂存由内存中读出或写入的指令/数据</li>
+<li>指令译码器: 对IR中的操作码进行分析解释,产生相应的控制信号或有一定时序关系的控制信号序列</li>
+<li>脉冲源CLK以及启停线路: CLK产生机器周期和工作脉冲的基准信号以及机器刚加点时的reset信号; 启停线路保证完整的时钟信号能够被可靠地送出或封锁,控制CLK的发生或停止,从而控制机器的启停</li>
+<li>时序控制信号形成部件: 在CLK作用下根据指令需要产生时序控制信号并根据被控制部件的反馈信号进行时序信号的调整</li>
+<li>程序状态寄存器PS(W)R: 保存程序状态字PSW</li>
+</ul>
+</blockquote>
+<p>组成控制器的基本电路是具有记忆功能的触发器以及没有记忆功能的门电路</p>
+<h3 id="控制器功能"><a href="#控制器功能" class="headerlink" title="控制器功能"></a>控制器功能</h3><p>控制器用于控制程序的执行,有如下功能:</p>
+<blockquote>
+<ul>
+<li>取指令: 发出指令地址及控制信号,从程序入口取出第一条指令,然后不断地取出指令</li>
+<li>分析指令: 对当前的指令进行分析, 根据指令要求产生相应的操作控制命令</li>
+<li>执行指令: 对上述产生的操作控制命令进行执行,实现每条指令的功能</li>
+<li>控制程序的数据输入与结果输出: 在适当的时候向输入输出设备发出一些命令来完成IO功能</li>
+<li>处理异常情况和某些请求</li>
+</ul>
+</blockquote>
+<p>指令执行过程</p>
+<blockquote>
+<ol>
+<li>取指令: (PC)=&gt;AR, (AR)=&gt;DR, (DR)=&gt;IR, (PC)+1=&gt;PC</li>
+<li>分析指令: 分析指令,计算操作数的有效地址</li>
+<li>执行指令: 根据一系列操作控制信号执行指令</li>
+</ol>
+</blockquote>
+<p>一些概念:</p>
+<blockquote>
+<ul>
+<li>指令周期: 取出并执行一条指令的时间,由若干个机器周期组成</li>
+<li>机器周期(CPU周期): 一般由从内存中读取一个指令字的最短时间规定CPU周期, 由若干个时钟周期组成</li>
+<li>时钟周期: 处理操作的最基本单位, 又称为节拍脉冲或T周期</li>
+</ul>
+</blockquote>
+<p>举例: ADD指令</p>
+<blockquote>
+<p>ADD指令的指令周期由3个CPU周期组成: </p>
+<ol>
+<li>取指与译码: 取指令,指令译码(得到操作性质和操作数)</li>
+<li>执行指令: 送操作数地址,地址译码(计算地址)</li>
+<li>执行指令: 取出操作数,执行操作</li>
+<li>取下一条指令…</li>
+</ol>
+</blockquote>
+<p>信息传输方向:</p>
+<blockquote>
+<ul>
+<li>指令: M-DR-DBUS-IR</li>
+<li>(指令)地址: PC-ABUS-AR-…</li>
+<li>寄存器-寄存器数据: 直接通过总线</li>
+<li>寄存器-存储器: R-DBUS-DR-M</li>
+<li>存储器-寄存器: M-DR-DBUS-R</li>
+</ul>
+</blockquote>
+<h3 id="时序产生和控制方式"><a href="#时序产生和控制方式" class="headerlink" title="时序产生和控制方式"></a>时序产生和控制方式</h3><p>操作控制器发出的各种控制信号都是时序信号和部件的函数</p>
+<p>时序产生控制器:</p>
+<blockquote>
+<ul>
+<li>硬布线控制器: 由组合逻辑实现,注状态周期-节拍电位-节拍脉冲</li>
+<li>微程序控制器: 节拍电位-节拍脉冲</li>
+</ul>
+</blockquote>
+<p>控制器控制方式:</p>
+<blockquote>
+<ul>
+<li>同步控制: 一条已定的指令在执行时所需的机器周期数和节拍数固定不变</li>
+<li>异步控制: 采用应答方式执行指令,每个微操作需要多少时间就占用多少时间</li>
+<li>混合控制方式: 结合两种控制方式, 大部分操安排在固定的机器周期中同步控制, 对时间难以确定的操作以问答方式控制</li>
+<li>人工控制: 用于调机和软件开放的需要,如reset键和单条指令执行切换开关</li>
+</ul>
+</blockquote>
+<h2 id="7-2-微程序控制的计算机"><a href="#7-2-微程序控制的计算机" class="headerlink" title="7.2 微程序控制的计算机"></a>7.2 微程序控制的计算机</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>微程序控制器利用软件方法(微程序控制技术)来设计硬件,将存储逻辑和程序技术引入CPU</p>
+<blockquote>
+<ul>
+<li>微命令: 控制部件向执行部件发出的控制命令</li>
+<li>微操作: 执行一条指令所进行的一系列基本操作,如取指令,计算地址等; 是执行部件接受微命令后进行的操作</li>
+<li>微指令: 实现一定操作功能的一组微命令</li>
+<li>微程序: 实现一条机器指令功能的微指令序列</li>
+</ul>
+</blockquote>
+<h3 id="微程序的实现原理"><a href="#微程序的实现原理" class="headerlink" title="微程序的实现原理"></a>微程序的实现原理</h3><p>控制存储器: 存放微程序的只读存储器,内部结构如下</p>
+<blockquote>
+<p>控制命令-下一条执行的微指令地址(下址)<br>控制命令-下一条执行的微指令地址<br>…</p>
+</blockquote>
+<p>微程序控制器执行流程:</p>
+<blockquote>
+<ul>
+<li>OP-&gt;编码器-&gt;(取指微程序入口)</li>
+<li>(取指微程序入口)=&gt;顺序控制逻辑=&gt;微地址寄存器=&gt;控制存储器=&gt;控制字段+下址</li>
+<li>控制字段=&gt;产生控制信号</li>
+<li>下址=&gt;顺序控制逻辑(转上面循环)</li>
+</ul>
+</blockquote>
+<p>微程序控制器特点: 规整,灵活,可维护</p>
+<p>确定微指令的结构</p>
+<blockquote>
+<ul>
+<li>缩短微指令的长度</li>
+<li>减少控制存储器的容量</li>
+<li>提高微程序的执行速度</li>
+<li>有利于对微指令的修改</li>
+<li>有利于提高微程序设计的灵活性</li>
+</ul>
+</blockquote>
+<p>微指令结构: 操作控制字段-顺序控制字段<br>微操作: 相容(能够在一个CPU周期内并行),相斥(不能并行)</p>
+<p>微指令编码: 对微指令中的操作控制字段采用的表示方法</p>
+<blockquote>
+<ul>
+<li>直接编码: 操作控制字段存储一组微命令,可以直接发出控制命令(一般每一位代表一个微命令); 这会导致微指令较长</li>
+<li>译码控制法: 操作控制字段被分为若干个字段,每个字段通过译码器翻译成一个互斥的微命令执行; 这可以缩短微指令,但会增加微程序的执行时间</li>
+<li>混合编码: 混合使用直接编码和译码编码, 综合两者特点</li>
+</ul>
+</blockquote>
+<p>下址(微地址)生成方式:</p>
+<blockquote>
+<ul>
+<li>计数器方式(增量方式): (uPC)+1=&gt;uPC</li>
+<li>断定方式: 根据当前微指令的判定条件BCF断定下条指令的微地址BAF,BAF=&gt;uPC</li>
+<li>增量和断定方式结合</li>
+</ul>
+</blockquote>
+<p>微指令执行过程: 取微指令,执行微指令中的各个操作</p>
+<blockquote>
+<p>执行一条微指令所需时间为微周期</p>
+<ul>
+<li>串行执行: 取微指令和执行微指令串行执行, 此时微周期为控制存储器的工作周期</li>
+<li>并行执行: 执行本条微指令和取下一条微指令操作同时进行; 取微指令执行时间和取指时间最长的作为微周期时间; 若遇到条件转移微指令,则延迟一个微周期再取指</li>
+</ul>
+</blockquote>
+<p>多路转移: 有些微指令存在多个转移分支,根据不同操作码产生不同下址</p>
+<blockquote>
+<ul>
+<li>实现电路: PROM/MAPROM, 输入指令操作码,输出下址; 该存储器容量略大于机器指令数,容量小速度快</li>
+<li>一般只需要2路或4路转移,涉及的微地址变化仅有1或2位,多路转移可以减少微程序的长度</li>
+</ul>
+</blockquote>
+<p>微中断: 终止当前执行的程序,转去执行微中断处理程序(已定义)</p>
+<blockquote>
+<ul>
+<li>微中断请求信号是由程序中断请求信号引起的</li>
+</ul>
+</blockquote>
+<p>毫微程序设计: 用于解释微程序的一种微程序; 毫微指令为解释微指令的微指令</p>
+<blockquote>
+<ul>
+<li>目的: 采用两级微程序设计方法,减少控制存储器的容量</li>
+<li>通常第一级采用垂直微程序,第二级采用水平微程序</li>
+</ul>
+</blockquote>
+<h3 id="微指令格式"><a href="#微指令格式" class="headerlink" title="微指令格式"></a>微指令格式</h3><ul>
+<li><p>水平型微指令: 一次能定义并执行多个并行微命令的微指令</p>
+<blockquote>
+<p>结构: <code>控制字段-判断测试字段-下址字段</code></p>
+<ul>
+<li>控制字段有全水平型译码,字段译码和混合译码法</li>
+</ul>
+</blockquote>
+</li>
+<li><p>垂直型微指令: 设有微操作码字段,不强调实现微指令的并行控制功能,一般能实现一到两个操作</p>
+<blockquote>
+<ul>
+<li>相比于水平型微指令,垂直型微指令指令字较短,组成的微程序较长,效率较低但容易掌握</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="机器周期的确定"><a href="#机器周期的确定" class="headerlink" title="机器周期的确定"></a>机器周期的确定</h3><ul>
+<li>所有的微操作都应当在一个机器周期内完成</li>
+<li>当使用ready信号(低电平)时,若其出现时间较晚,则CPU会延长一个或以上的节拍信号</li>
+</ul>
+<h3 id="微程序控制计算机给简单工作流程"><a href="#微程序控制计算机给简单工作流程" class="headerlink" title="微程序控制计算机给简单工作流程"></a>微程序控制计算机给简单工作流程</h3><ul>
+<li>机器加电,由reset信号在PC寄存器中置入第一条指令地址,在微指令寄存器中置入一条”取指”指令,同时初始化其他状态位和寄存器</li>
+<li>电压稳定后,启动机器工作,产生节拍电位和CP信号,检查第一个机器周期信号的完整性</li>
+<li>产生开机后第一个工作脉冲CP,开始工作</li>
+<li>遇到停机指令或外来停机命令</li>
+<li>待当前指令执行完或至少在这个机器周期结束时停机<blockquote>
+<ul>
+<li>停机: 停机时电压仍维持正常,寄存器和存储器的信息不变,重启后仍能从断点处继续执行下去</li>
+<li>停电: 寄存器和存储器内容丢失,加点后重新从reset信号开始运行; 某些机器有停电后自动再启动功能,依靠后备电源将主存和程序断点及状态信息调入外存中,恢复电源后从断点处继续工作</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="7-4-硬布线控制的计算机"><a href="#7-4-硬布线控制的计算机" class="headerlink" title="7.4 硬布线控制的计算机"></a>7.4 硬布线控制的计算机</h2><p>硬布线控制器将控制部件看成专门固定时序控制信号的逻辑电路,由逻辑电路直接连线产生<br><img src="/2020/02/24/computer-composition0/hard0.jpg" alt="hard"></p>
+<blockquote>
+<p>cy1-cy4表示4个机器周期</p>
+</blockquote>
+<ul>
+<li>设计目标: 使用最少的元件,取得最高的操作速度</li>
+<li>设计原理: 以指令功能要实现的微操作序列为依据</li>
+</ul>
+<p>硬布线控制器修改指令很复杂,但性能高</p>
+<h2 id="7-5-流水线工作原理"><a href="#7-5-流水线工作原理" class="headerlink" title="7.5 流水线工作原理"></a>7.5 流水线工作原理</h2><p>将两条或多条指令再时间上重叠起来运行,提高程序的执行速度</p>
+<p>特点:</p>
+<blockquote>
+<ul>
+<li>连续执行同类任务时效率最高</li>
+<li>每个流水线都要设置一个流水寄存器</li>
+<li>个流水段的时间应尽量相等</li>
+<li>需要有装入时间和排空时间</li>
+</ul>
+</blockquote>
+<p>执行N条K个机器周期的指令,流水线需要N+K-1个机器周期</p>
+<p>流水线的问题:</p>
+<ul>
+<li>结构上,不同指令会争用同一部件</li>
+<li>数据上,不同指令可能会因重叠操作改变读写访问顺序</li>
+<li>控制上,转移指令可能会使流水线停顿</li>
+</ul>
+<h2 id="7-6-CPU举例"><a href="#7-6-CPU举例" class="headerlink" title="7.6 CPU举例"></a>7.6 CPU举例</h2><p>RISC: SPARC处理器<br>CISC: Pentium微处理器</p>
+<h2 id="7-7-计算机的供电"><a href="#7-7-计算机的供电" class="headerlink" title="7.7 计算机的供电"></a>7.7 计算机的供电</h2><p>计算机的直流电源是由交流电源经过整流稳压而得到的</p>
+<blockquote>
+<ul>
+<li>一般逻辑电路需要+5V直流电</li>
+<li>为减少机器功耗,电源朝着降低电压值方向发展,出现3.5V和1.8V等</li>
+<li>还有-5V,+-12V等直流电源供磁盘存储器等电路的使用</li>
+</ul>
+</blockquote>
+<p>不间断电源UPS: 后备式,在线式</p>
 <hr>
 <p><em>待更新…</em></p>
 ]]></content>
