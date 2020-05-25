@@ -1,12 +1,549 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>sql使用</title>
+    <url>/2020/05/24/mysql0/</url>
+    <content><![CDATA[<p>mysql的使用大全可以参考<a href="http://c.biancheng.net/mysql/" target="_blank" rel="noopener">http://c.biancheng.net/mysql/</a></p>
+<p>本文主要根据笔记<a href="http://georgechen.top/2020/02/27/data-base0/" target="_blank" rel="noopener">http://georgechen.top/2020/02/27/data-base0/</a>精简整理,保留常用语句用法</p>
+<a id="more"></a>
+
+<h2 id="1-入手"><a href="#1-入手" class="headerlink" title="1. 入手"></a>1. 入手</h2><h3 id="建立用户账户及更改权限"><a href="#建立用户账户及更改权限" class="headerlink" title="建立用户账户及更改权限"></a>建立用户账户及更改权限</h3><p><code>GRANT ALL ON DataBaseA.* TO &#39;root&#39;@&#39;localhost&#39;;</code></p>
+<h3 id="登录数据库"><a href="#登录数据库" class="headerlink" title="登录数据库"></a>登录数据库</h3><p><code>&gt;cmd mysql -h hostname|hostlP -p port -u username -p DatabaseName -e &quot;SQL语句&quot;</code></p>
+<h3 id="创建数据库及表"><a href="#创建数据库及表" class="headerlink" title="创建数据库及表"></a>创建数据库及表</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysql&gt; create database school;</span><br><span class="line"></span><br><span class="line">mysql&gt; use school;</span><br></pre></td></tr></table></figure>
+
+<p>mysql数据存储位置:</p>
+<ul>
+<li>这个位置文件的路径在my.ini中datadir中可以找到  </li>
+<li>一般情况下,my.ini在mysql安装目录下(例如C:\ProgramData\MySQL\MySQL Server 8.0)</li>
+</ul>
+<h2 id="2-数据定义"><a href="#2-数据定义" class="headerlink" title="2. 数据定义"></a>2. 数据定义</h2><h3 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h3><p>为某人创建某名的模式</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">SCHEMA</span> &lt;模式名&gt; AUTHORIZATION &lt;用户名&gt;</span><br><span class="line">[&lt;表定义子句&gt;|&lt;视图定义子句&gt;|&lt;权限定义子句&gt;];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>若没有指定模式名,则模式名隐含为用户名</li>
+</ul>
+<p>删除某模式:<code>DROP SCHEMA &lt;模式名&gt; &lt;CASCADE|RESTRICT&gt;</code><br>删除选项:</p>
+<blockquote>
+<ul>
+<li>CASADE 级联: 删除模式同时将该模式下的所有数据库对象删除</li>
+<li>RESTRICT 限制: 仅当该模式中没有任何下属对象时才能执行, 如果这个模式下有表/视图等定义,则拒绝执行语句</li>
+</ul>
+</blockquote>
+<h3 id="基本表的定义"><a href="#基本表的定义" class="headerlink" title="基本表的定义"></a>基本表的定义</h3><h4 id="创建基本表"><a href="#创建基本表" class="headerlink" title="创建基本表"></a>创建基本表</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> &lt;表名&gt; <span class="comment">/* 基本表的名称 */</span> </span><br><span class="line">(&lt;列名&gt; &lt;数据类型&gt;[ &lt;列级完整性约束条件&gt; ] <span class="comment">/*组成该表的列*/</span> </span><br><span class="line">[,&lt;列名&gt; &lt;数据类型&gt;[ &lt;列级完整性约束条件&gt;] ] </span><br><span class="line">… </span><br><span class="line">[,&lt;表级完整性约束条件&gt; ] );</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>&lt;列级完整性约束条件&gt;: 涉及仅单个属性列的完整性约束条件 </p>
+</li>
+<li><p>&lt;表级完整性约束条件&gt;: 涉及一个或多个属性列的完整性约束条件 </p>
+</li>
+<li><p>&lt;表名&gt;:每一个基本表需属于某个模式,可以显式地在表名中给出,也可以在搜索路径中设置 </p>
+<blockquote>
+<p>设置搜索路径(默认模式):<code>SET search_path TO &lt;模式名&gt;,PUBLIC;</code></p>
+</blockquote>
+</li>
+<li><p>&lt;数据类型&gt;: 有如下数据类型</p>
+<table>
+<thead>
+<tr>
+<th align="left">数据类型</th>
+<th align="left">含义</th>
+<th align="left">数据类型</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">CHAR(n)</td>
+<td align="left">n位定长字符串</td>
+<td align="left">CHARACTER(n)</td>
+<td align="left">同CHAR(n)</td>
+</tr>
+<tr>
+<td align="left">VRCHAR(n)</td>
+<td align="left">最大长度为n的变长字符串</td>
+<td align="left">VRCHARACTER(n)</td>
+<td align="left">同VRCHAR(n)</td>
+</tr>
+<tr>
+<td align="left">CLOB</td>
+<td align="left">字符串大对象</td>
+<td align="left">BLOB</td>
+<td align="left">二进制大对象</td>
+</tr>
+<tr>
+<td align="left">INT</td>
+<td align="left">长整数(4字节)</td>
+<td align="left">INTEGER</td>
+<td align="left">同INT</td>
+</tr>
+<tr>
+<td align="left">BIGINT</td>
+<td align="left">大整数(8字节)</td>
+<td align="left">SMALLINT</td>
+<td align="left">短整数(2字节)</td>
+</tr>
+<tr>
+<td align="left">DEC(p,d)</td>
+<td align="left">精度为d的p位定点数</td>
+<td align="left">DECIMAL(p,d),NUMERIC(p,d)</td>
+<td align="left">同DEC(p,d)</td>
+</tr>
+<tr>
+<td align="left">REAL</td>
+<td align="left">单精度浮点数</td>
+<td align="left">DOUBLE PRECISION</td>
+<td align="left">双精度浮点数</td>
+</tr>
+<tr>
+<td align="left">FLOAT(n)</td>
+<td align="left">精度为n的浮点数</td>
+<td align="left">BOOLEAN</td>
+<td align="left">布尔值</td>
+</tr>
+<tr>
+<td align="left">DATE</td>
+<td align="left">格式为YYYY-MM-DD的日期</td>
+<td align="left">TIME</td>
+<td align="left">格式为HH:MM:SS的时间</td>
+</tr>
+<tr>
+<td align="left">TIMESTAP</td>
+<td align="left">时间戳类型</td>
+<td align="left">INTERVAL</td>
+<td align="left">时间间隔类型</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h4 id="修改基本表"><a href="#修改基本表" class="headerlink" title="修改基本表"></a>修改基本表</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;表名&gt;</span><br><span class="line">[<span class="keyword">ADD</span>[<span class="keyword">COLUMN</span>] &lt;新列名&gt; &lt;数据类型&gt; [ 完整性约束 ] ]</span><br><span class="line">[<span class="keyword">ADD</span> &lt;表级完整性约束&gt;] <span class="comment">/*完整性约束只能添加表级完整性约束*/</span></span><br><span class="line">[<span class="keyword">DROP</span> [ <span class="keyword">COLUMN</span> ] &lt;列名&gt; [<span class="keyword">CASCADE</span>| RESTRICT] ]</span><br><span class="line">[<span class="keyword">DROP</span> <span class="keyword">CONSTRAINT</span>&lt;完整性约束名&gt;[ RESTRICT | <span class="keyword">CASCADE</span> ] ]</span><br><span class="line">[<span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> &lt;列名&gt;&lt;数据类型&gt; ] ;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>ADD COLUMN: 增加列</li>
+<li>DROP COLUMN: 删除列<blockquote>
+<ul>
+<li>级联: 删除该列及引用该列的其他对象</li>
+<li>限制: 如果该列被其他对象引用,则拒绝删除</li>
+</ul>
+</blockquote>
+</li>
+<li>ALTER COLUMN:修改列,也可以用以下两种方法<blockquote>
+<ul>
+<li><code>MODIFY &lt;列名&gt; &lt;数据类型&gt;</code>:修改列的数据类型</li>
+<li><code>CHANGE &lt;列名&gt; &lt;新列名&gt; &lt;新数据类型&gt;</code>:修改列名</li>
+</ul>
+</blockquote>
+</li>
+<li>RENAME TO &lt;新表名&gt;:改个新表名</li>
+</ul>
+<h4 id="删除基本表"><a href="#删除基本表" class="headerlink" title="删除基本表"></a>删除基本表</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> &lt;表名&gt;［RESTRICT| <span class="keyword">CASCADE</span>］;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>级联:在删除基本表的同时，相关的依赖对象一起删除</li>
+<li>限制:如果存在依赖该表的对象(该表被其他表引用),则拒绝删除</li>
+</ul>
+<h3 id="索引的定义"><a href="#索引的定义" class="headerlink" title="索引的定义"></a>索引的定义</h3><p>建立索引目的: 加快查询速度</p>
+<ul>
+<li>常见索引:顺序索引,B+树索引,散列索引,位图索引</li>
+<li>索引由数据库管理员或建表者建立</li>
+<li>索引由关系数据库系统自动完成维护</li>
+</ul>
+<h4 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> [<span class="keyword">UNIQUE</span>] [CLUSTER] <span class="keyword">INDEX</span> &lt;索引名&gt;</span><br><span class="line"><span class="keyword">ON</span> &lt;表名&gt;(&lt;列名&gt;[&lt;次序&gt;][,&lt;列名&gt;[&lt;次序&gt;] ]…);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>&lt;表名&gt;：要建索引的基本表的名字  </li>
+<li>索引：可以建立在该表的一列或多列上，各列名之间用逗号分隔  </li>
+<li>&lt;次序&gt;：指定索引值的排列次序，升序：ASC，降序：DESC。缺省 值：ASC  </li>
+<li>UNIQUE：此索引的每一个索引值只对应唯一的数据记录  </li>
+<li>CLUSTER：表示要建立的索引是聚簇索引</li>
+</ul>
+<h4 id="修改索引"><a href="#修改索引" class="headerlink" title="修改索引"></a>修改索引</h4><p><code>ALTER INDEX &lt;旧索引名&gt; RENAME TO &lt;新索 引名&gt;;</code></p>
+<h4 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h4><p><code>DROP INDEX &lt;索引名&gt;;</code><br>删除索引时，系统会从数据字典中删去有关该索引的描述</p>
+<h3 id="聚簇方法"><a href="#聚簇方法" class="headerlink" title="聚簇方法"></a>聚簇方法</h3><p>聚簇: 通过将属性(组)上具有相同值的元组集中存放在连续的物理块上,提高某个属性(组)的查询速度(减少IO操作)</p>
+<blockquote>
+<p>上述属性(组)称为聚簇码</p>
+</blockquote>
+<p>聚簇建立:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> CLUSTER &lt;聚簇名&gt; (&lt;聚簇码&gt;) <span class="keyword">SIZE</span> (&lt;大小&gt;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-数据完整性约束"><a href="#3-数据完整性约束" class="headerlink" title="3. 数据完整性约束"></a>3. 数据完整性约束</h2><p>数据库的完整性包括以下两个方面:</p>
+<ul>
+<li>数据的正确性(实体完整性等)</li>
+<li>数据的相容性(参照完整性)</li>
+</ul>
+<p>在2.中定义和修改表时需要用到数据库完整性约束</p>
+<h3 id="实体完整性"><a href="#实体完整性" class="headerlink" title="实体完整性"></a>实体完整性</h3><h4 id="实体完整性定义"><a href="#实体完整性定义" class="headerlink" title="实体完整性定义"></a>实体完整性定义</h4><p>关系模型的实体完整性用主码PRIMARY KEY描述</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;列名&gt; ... PRIMARY KEY /* 列级完整性约束 */</span><br><span class="line">PRIMARY KEY(&lt;列名&gt;[,&lt;列名&gt;,...]) /* 表级完整性约束 */</span><br></pre></td></tr></table></figure>
+<ul>
+<li>列级完整性约束可以定义单属性构成的码</li>
+<li>表级完整性约束可以定义单个或多个属性构成的码</li>
+</ul>
+<p>违约处理:拒绝插入或更新</p>
+<h3 id="参照完整性"><a href="#参照完整性" class="headerlink" title="参照完整性"></a>参照完整性</h3><h4 id="参照完整性定义"><a href="#参照完整性定义" class="headerlink" title="参照完整性定义"></a>参照完整性定义</h4><ul>
+<li>定义表中的外码,以及被参照关系的主码<figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 列级完整性约束 */</span></span><br><span class="line">&lt;外码列名&gt; ... FOREIGN KEY REFERENCES DEPT(&lt;被参考关系主码&gt;) [ON DELETE|UPDATE CASCADE|NO ACTION|SET-NULL]</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 表级完整性约束 */</span></span><br><span class="line">FOREIGN KEY(&lt;外码列名&gt;) REFERENCES DEPT(&lt;被参考关系主码&gt;) [ON DELETE|UPDATE CASCADE|NO ACTION|SET-NULL]</span><br></pre></td></tr></table></figure></li>
+<li>对于参照表的元组插入或外码值修改,违约即拒绝执行</li>
+<li>对于被参照表的元组删除或主码值修改,有三种违约处理方式:<blockquote>
+<ul>
+<li>拒绝执行:不执行语句</li>
+<li>级联操作:将参照表中有关联的元组删除或进行外码修改</li>
+<li>设置空值:将参照表中有关联的元组外码置为空值,这可能会导致参照表中的元组违反实体完整性约束</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="用户定义完整性约束"><a href="#用户定义完整性约束" class="headerlink" title="用户定义完整性约束"></a>用户定义完整性约束</h3><h4 id="用户完整性约束定义"><a href="#用户完整性约束定义" class="headerlink" title="用户完整性约束定义"></a>用户完整性约束定义</h4><p>列级完整性约束定义(属性约束条件)</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;列名&gt; ... [UNIQUE] [NOT NULL] [CHECK(expr)]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>NOT NULL:列值非空</li>
+<li>UNIQUE:列值唯一(相当于主码)</li>
+<li>CHECK(expr):列值满足某表达式</li>
+</ul>
+<p>表级完整性约束定义(元组约束条件):用于设置不同属性之间的取值的相互约束条件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CHECK(expr)</span><br></pre></td></tr></table></figure>
+
+<p>违约处理:拒绝执行</p>
+<h3 id="完整性约束命名字句"><a href="#完整性约束命名字句" class="headerlink" title="完整性约束命名字句"></a>完整性约束命名字句</h3><h4 id="完整性约束命名子句定义"><a href="#完整性约束命名子句定义" class="headerlink" title="完整性约束命名子句定义"></a>完整性约束命名子句定义</h4><figure class="highlight"><table><tr><td class="code"><pre><span class="line">CONSTANT &lt;完整性约束条件名&gt; &lt;完整性约束条件&gt;</span><br></pre></td></tr></table></figure>
+<p>该子句可以作为列级完整性约束或表级完整性约束使用</p>
+<h4 id="完整性约束子句的删除和添加"><a href="#完整性约束子句的删除和添加" class="headerlink" title="完整性约束子句的删除和添加"></a>完整性约束子句的删除和添加</h4><p>用ALTER TABLE对约束条件进行删除和添加</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 删除 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;表名&gt;</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">CONSTANT</span> &lt;完整性约束条件名&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 添加 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;表名&gt;</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTANT</span> &lt;完整性约束条件名&gt; &lt;完整性约束条件&gt;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>实现完整性约束子句的修改时,需要先删除约束,再添加约束,如上所示</li>
+</ul>
+<h3 id="域中的完整性限制"><a href="#域中的完整性限制" class="headerlink" title="域中的完整性限制"></a>域中的完整性限制</h3><p>对于多个具有联系的表,表中的一些属性可能具有相同的域,可以通过建立域的完整性约束来使不同表中的相同的属性域也相同</p>
+<h4 id="域完整性约束定义"><a href="#域完整性约束定义" class="headerlink" title="域完整性约束定义"></a>域完整性约束定义</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 定义完整性约束 */</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DOMAIN</span> &lt;完整性约束条件名&gt; &lt;被约束列的值类型&gt; &lt;完整性约束子句&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 修改完整性约束中的限制条件 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">DOMAIN</span> &lt;完整性约束条件名&gt; &lt;完整性约束修改子句&gt;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>完整性约束修改子句包括完整性约束子句的删除和添加,需要指定完整性约束条件名</li>
+</ul>
+<h4 id="域完整性约束使用"><a href="#域完整性约束使用" class="headerlink" title="域完整性约束使用"></a>域完整性约束使用</h4><p>定义好域的完整性约束后,可以直接使用完整性约束条件名来作为同类型的属性的完整性约束条件</p>
+<h3 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h3><p>SQL中更一般的约束可以用断言来指定</p>
+<p>断言创建</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">ASSERTION</span> &lt;断言名&gt; &lt;<span class="keyword">CHECK</span>子句&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>CHECK子句和WHERE子句的表达类似</li>
+</ul>
+<p>断言删除</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">ASSERTION</span> &lt;断言名&gt;</span><br></pre></td></tr></table></figure>
+
+<p>违约处理:拒绝执行</p>
+<h3 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h3><p>触发器是用户定义在关系表上的一类由事件驱动的特殊过程, 任何用户对表的增删改操作均由服务器自动激活相应的触发器</p>
+<h4 id="定义触发器"><a href="#定义触发器" class="headerlink" title="定义触发器"></a>定义触发器</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> &lt;触发器名&gt;</span><br><span class="line">&#123;<span class="keyword">BEFORE</span>|<span class="keyword">AFTER</span>&#125; &lt;触发事件&gt; <span class="keyword">ON</span> &lt;表名&gt;</span><br><span class="line">[<span class="keyword">REFERENCING</span> </span><br><span class="line">    <span class="keyword">NEW</span>|<span class="keyword">OLD</span> <span class="keyword">ROW</span> <span class="keyword">AS</span> &lt;变量&gt;,</span><br><span class="line">    <span class="keyword">NEW</span>|<span class="keyword">OLD</span> <span class="keyword">ROW</span> <span class="keyword">AS</span> &lt;变量&gt;,...]</span><br><span class="line"><span class="keyword">FOR</span> <span class="keyword">EACH</span> &#123;<span class="keyword">ROW</span>|<span class="keyword">STATEMENT</span>&#125;</span><br><span class="line">[<span class="keyword">WHEN</span> &lt;触发条件&gt;] &lt;触发动作体&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>触发器只能由表的拥有者创建</li>
+<li>触发器只能定义在基本表上</li>
+<li>&lt;触发器名&gt;可以包含或不包含模式名,同一模式下触发器名必须是唯一的</li>
+<li>&lt;触发事件&gt;可以是对&lt;表名&gt;的INSERT,DELETE或UPDATE [OF &lt;触发列,…&gt;],触发器可在上述操作之后或者之前执行</li>
+<li>RECEFRENCING子句用于指出所引用的变量,在后面的行级触发器中可以用到</li>
+<li>FOR EACH子句可以定义触发器的类型:行级触发器或语句级触发器<blockquote>
+<ul>
+<li>行级触发器在对每一个元组进行相应的更改时激活(会多次激活触发器)</li>
+<li>语句级触发器在语句执行时进行激活(以所更改的行为对象一次性进行操作)</li>
+</ul>
+</blockquote>
+</li>
+<li>定义WHEN后,只有触发器在激活后满足&lt;触发条件&gt;,触发动作体才会执行</li>
+<li>&lt;触发动作体&gt;可以是一个匿名的SQL过程块,也可以是对已创建存储过程的调用;<blockquote>
+<ul>
+<li>行级触发器中用户可以在触发动作体中使用NEW和OLD引用实践之后的新之和事件之前的旧值</li>
+<li>如果触发器动作体执行失败,则激活触发器的事件会被拒绝执行</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h4 id="触发器的激活"><a href="#触发器的激活" class="headerlink" title="触发器的激活"></a>触发器的激活</h4><p>一个表上可以定义多个触发器,遵循如下顺序执行</p>
+<ul>
+<li>执行表上的BEFORE触发器</li>
+<li>执行SQL语句</li>
+<li>执行表上的AFTER触发器<blockquote>
+<p>有多个BEFORE或AFTER触发器时,一般上时间上先定义的触发器先执行</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="删除触发器"><a href="#删除触发器" class="headerlink" title="删除触发器"></a>删除触发器</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TRIGGER</span> &lt;触发器名&gt; <span class="keyword">ON</span> &lt;表名&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>只有具有相应权限的用户才能删除相应的触发器</li>
+</ul>
+<h2 id="4-数据查询"><a href="#4-数据查询" class="headerlink" title="4. 数据查询"></a>4. 数据查询</h2><h3 id="单表查询"><a href="#单表查询" class="headerlink" title="单表查询"></a>单表查询</h3><p>语句格式:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> [<span class="keyword">ALL</span>|<span class="keyword">DISTINCT</span>] &lt;目标列表达式&gt;[,&lt;目标列表达式&gt;] …</span><br><span class="line"><span class="keyword">FROM</span> &lt;表名或视图名&gt;[,&lt;表名或视图名&gt; ]…|(<span class="keyword">SELECT</span> 语句)</span><br><span class="line">[<span class="keyword">AS</span>]&lt;别名&gt;</span><br><span class="line">[ <span class="keyword">WHERE</span> &lt;条件表达式&gt; ]</span><br><span class="line">[ <span class="keyword">GROUP</span> <span class="keyword">BY</span> &lt;列名<span class="number">1</span>&gt; [ <span class="keyword">HAVING</span> &lt;条件表达式&gt; ] ]</span><br><span class="line">[ <span class="keyword">ORDER</span> <span class="keyword">BY</span> &lt;列名<span class="number">2</span>&gt; [ <span class="keyword">ASC</span>|<span class="keyword">DESC</span> ] ]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>SELECT:指定要显示的结果属性列,*表示所有列<blockquote>
+<ul>
+<li>目标列值可以为常量,即使它不在查询对象中</li>
+<li>LOWER(&lt;目标列&gt;)可以使目标列值小写输出</li>
+<li>目标列值可以用聚集函数表示</li>
+<li>可以用别名<code>&lt;目标列表达式&gt; &lt;目标列别名&gt;</code>改变查询结果的列标题</li>
+<li>ALL表示不去除重复的行(默认),DISTINCT表示去重</li>
+</ul>
+</blockquote>
+</li>
+<li>FROM:指定查询对象</li>
+<li>WHERE:查询条件<blockquote>
+<p>常用查询条件:</p>
+<ul>
+<li>基本比较运算符</li>
+<li>确定范围: [NOT] BETWEEN .. AND ..</li>
+<li>确定集合: [NOT] IN &lt;值表&gt; ; &lt;值表&gt;=(值1,值2,…)</li>
+<li>字符匹配: [NOT] LIKE &lt;匹配字符串&gt; [ESCAPE &lt;换码字符&gt;]  <blockquote>
+<p>匹配串中’%’表示任意长度通配,’_’表示单字符通配,’&#39;可以将通配符转义(需要ESCAPE’&#39;来表明转义字符)</p>
+</blockquote>
+</li>
+<li>空值:IS [NOT] NULL;其中IS不能用’=’代替</li>
+<li>连接运算符:NOT AND OR,优先级从高到低</li>
+</ul>
+</blockquote>
+</li>
+<li>GROUP BY:对查询结果按指定列的值分组,列值相等的元素归到一组;通常会在每组中使用聚集函数<blockquote>
+<p>常用聚集函数:</p>
+<ul>
+<li>COUNT([ALL|DISTINCT] &lt;列名&gt;): 列值计数</li>
+<li>SUM([ALL|DISTINCT] &lt;列名&gt;): 对数值型的列求总和</li>
+<li>AVG([ALL|DISTINCT] &lt;列名&gt;): 对数值型的列求均值</li>
+<li>MAX|MIN([ALL|DISTINCT] &lt;列名&gt;): 求列的最大|最小值  </li>
+</ul>
+<p>没有GROUP BY语句时,聚集函数将作用于整个查询结果,使用分组后函数将分别作用于每个组</p>
+</blockquote>
+</li>
+<li>HAVING:在分组时选择指定条件的组,可以使用聚集函数,不能用WHERE替代</li>
+<li>ORDER BY:对查询结果按指定值升序或降序排序,支持以不同优先级设置多个排序标准</li>
+</ul>
+<h3 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h3><p>SQL中的“连接”是用“连接条件”来表达的。  </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> &lt;表名&gt;.&lt;列名&gt;,...</span><br><span class="line"><span class="keyword">FROM</span> &lt;表<span class="number">1</span>&gt;,&lt;表<span class="number">2</span>&gt;,...</span><br><span class="line"><span class="keyword">WHERE</span> [&lt;表名<span class="number">1</span>&gt;.]&lt;列名<span class="number">1</span>&gt;  &lt;比较运算符&gt;  [&lt;表名<span class="number">2</span>&gt;.]&lt;列名<span class="number">2</span>&gt;</span><br><span class="line">      <span class="keyword">AND</span> &lt;其他条件&gt;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>WHERE子句中除了连接条件,还可以有选择条件,同时完成选择和连接查询</li>
+<li>对于表的自身连接,可以给同一个表取不同的别名来区分,来实现一些复杂的连接条件</li>
+<li>左右外连接:<blockquote>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ...</span><br><span class="line"><span class="keyword">FROM</span> &lt;表<span class="number">1</span>&gt; <span class="keyword">LEFT</span>|<span class="keyword">RIGHT</span> <span class="keyword">OUT</span> <span class="keyword">JOIN</span> &lt;表<span class="number">2</span>&gt; </span><br><span class="line"><span class="keyword">ON</span> &lt;连接条件&gt;; </span><br></pre></td></tr></table></figure></blockquote>
+</li>
+<li>FROM中也可以有多个表,进行多表连接</li>
+</ul>
+<h3 id="嵌套查询"><a href="#嵌套查询" class="headerlink" title="嵌套查询"></a>嵌套查询</h3><p>一个SELECT-FROM-WHERE语句称为一个查询块,将一个查询块嵌套在另一个查询块的WHERE子句或HAVING短语的条件中的查询称为嵌套查询</p>
+<h4 id="IN子查询"><a href="#IN子查询" class="headerlink" title="IN子查询"></a>IN子查询</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> ...</span><br><span class="line"><span class="keyword">WHERE</span> &lt;列名(值)&gt; <span class="keyword">IN</span></span><br><span class="line">    (</span><br><span class="line">        <span class="keyword">SELECT</span> &lt;列名&gt;</span><br><span class="line">        ...</span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
+
+<h4 id="ANY-ALL子查询"><a href="#ANY-ALL子查询" class="headerlink" title="ANY/ALL子查询"></a>ANY/ALL子查询</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> ...</span><br><span class="line"><span class="keyword">WHERE</span> &lt;列名&gt; &lt;比较运算符&gt; <span class="keyword">ANY</span>/<span class="keyword">ALL</span></span><br><span class="line">    (</span><br><span class="line">        <span class="keyword">SELECT</span> &lt;列名&gt;</span><br><span class="line">        ...</span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
+<ul>
+<li>当确定内层子查询返回结果是单个值时,可以省略ANY/ALL</li>
+<li>ANY/ALL的对象为某个查询结果,表示其中任意一个值或者全部值<blockquote>
+<p>有时ANY/ALL谓词表达式可以用子查询中的聚集函数代替,如<code>&lt; ANY (SELECT &lt;列名&gt;)</code>可以用<code>&lt; (SELECT MIN(&lt;列名&gt;))</code>实现</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="EXISTS子查询"><a href="#EXISTS子查询" class="headerlink" title="EXISTS子查询"></a>EXISTS子查询</h4><p>EXISTS是相关子查询,它依次取外层查询中表内的各元组,根据它与内层查询相关的属性值处理内层查询,若WHERE子句返回值为真,则取此元组放入结果表中</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> &lt;表<span class="number">1</span>&gt;</span><br><span class="line"><span class="keyword">WHERE</span> [<span class="keyword">NOT</span>] <span class="keyword">EXISTS</span></span><br><span class="line">    (</span><br><span class="line">        <span class="keyword">SELECT</span> *</span><br><span class="line">        <span class="keyword">FROM</span> &lt;表<span class="number">2</span>&gt;,...</span><br><span class="line">        <span class="keyword">WHERE</span> &lt;表<span class="number">1</span>&gt;...&lt;表<span class="number">2</span>&gt;...;</span><br><span class="line">    );</span><br><span class="line"><span class="comment">/* 表示查询结果中的每条记录都满足/不满足EXISTS子句 */</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>EXIST的对象也是某个查询结果，若查询结果非空则返回真<blockquote>
+<ul>
+<li>由EXISTS引出的子查询中一般都是SELECT *</li>
+<li>所有带IN谓词、比较运算符、ANY和ALL谓词的子查询都能用带EXISTS谓词的子查询等价替换</li>
+<li>SQL中的存在,任意,蕴含等谓词都需要用EXISTS手动实现</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h4 id="除法运算"><a href="#除法运算" class="headerlink" title="除法运算"></a>除法运算</h4><p>除法运算需要用EXIST子句实现</p>
+<p>原理:</p>
+<ol>
+<li>计算C(X)=A(X,Y)/B(Y,Z)</li>
+<li>根据上式,需要找出所有的c[X],使得对于所有的b[Y],都存在a[X,Y]使得a[X]=c[X],a[Y]=b[Y]</li>
+<li>SQL中没有全称量词,需要对上式进行转换:找出所有的c[X],使得不存在b[Y],不存在a[X,Y]使得a[X]=c[X],a[Y]=b[Y]</li>
+<li>对于 ‘不存在a[X,Y]使得a[X]=c[X],a[Y]=b[Y]’, 还可以使用集合差运算转化成 ‘全体a[X,Y] - 使得a[X]=c[X],a[Y]=b[Y]的a[X,Y]’</li>
+</ol>
+<p>3的实现代码如下:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> X </span><br><span class="line"><span class="keyword">FROM</span> A [<span class="keyword">AS</span>] R <span class="comment">/* 换名防止后面混淆 */</span></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>(</span><br><span class="line">    <span class="keyword">SELECT</span> * </span><br><span class="line">    <span class="keyword">FROM</span> B</span><br><span class="line">    <span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>(</span><br><span class="line">        <span class="keyword">SELECT</span> *</span><br><span class="line">        <span class="keyword">FROM</span> A</span><br><span class="line">        <span class="keyword">WHERE</span> &lt;X=R.X&gt;</span><br><span class="line">          <span class="keyword">AND</span> &lt;Y=B.Y&gt;</span><br><span class="line">    )</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>4的实现代码如下:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> X </span><br><span class="line"><span class="keyword">FROM</span> A [<span class="keyword">AS</span>] R <span class="comment">/* 换名防止后面混淆 */</span></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>(</span><br><span class="line">    (<span class="keyword">SELECT</span> *</span><br><span class="line">     <span class="keyword">FROM</span> A</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">EXCEPT</span> <span class="comment">/* 集合做差 */</span></span><br><span class="line">    (<span class="keyword">SELECT</span> X,Y </span><br><span class="line">     <span class="keyword">FROM</span> A,B</span><br><span class="line">     <span class="keyword">WHERE</span> &lt;A.X=R.X&gt;</span><br><span class="line">       <span class="keyword">AND</span> &lt;A.Y=B.Y&gt;</span><br><span class="line">    )</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h4 id="蕴含逻辑"><a href="#蕴含逻辑" class="headerlink" title="蕴含逻辑"></a>蕴含逻辑</h4><p>蕴含逻辑也需要用EXISTS子句实现</p>
+<ol>
+<li>给定逻辑:对于任意的a,都有B-&gt;C</li>
+<li>化简逻辑:不存在a,使得B或非C</li>
+<li>用NOT EXISTS实现上述语句;注意,非C也可以用NOT EXISTS实现</li>
+</ol>
+<h3 id="集合查询"><a href="#集合查询" class="headerlink" title="集合查询"></a>集合查询</h3><p>集合查询可以对两个查询结果进行集合运算</p>
+<ul>
+<li>UNION:并</li>
+<li>INTERSECT:交</li>
+<li>EXCEPT:差<br>注意:参加集合操作的各查询结果的列数必须相同;对应项的数据类型也必须相同 </li>
+</ul>
+<h2 id="5-数据更新"><a href="#5-数据更新" class="headerlink" title="5. 数据更新"></a>5. 数据更新</h2><h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><p>可以直接插入元组或者插入子查询结果(多个元组)</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> &lt;表名&gt;[属性列,...]</span><br><span class="line"><span class="keyword">VALUES</span> (属性值,);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> &lt;表名&gt;[属性列,...]</span><br><span class="line">&lt;子查询&gt;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>没有出现的属性列赋空值  </li>
+<li>没有定义属性列时默认为原表所有属性</li>
+<li>VALUES可以由子查询表示</li>
+<li>子查询结果或元组值需要与上面定义的属性列相匹配(子查询结果列的个数和列的类型都要匹配)</li>
+<li>除了属性匹配,数据库还会检查所插入元素是否会破坏表的完整性规则</li>
+</ul>
+<h3 id="修改数据"><a href="#修改数据" class="headerlink" title="修改数据"></a>修改数据</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span>  &lt;表名&gt;</span><br><span class="line"><span class="keyword">SET</span>  &lt;列名&gt;=&lt;表达式&gt;[,&lt;列名&gt;=&lt;表达式&gt;]…</span><br><span class="line">[<span class="keyword">WHERE</span> &lt;条件&gt;];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>语句将修改指定表中满足WHERE子句条件的元组</li>
+<li>SET子句给出&lt;表达式&gt;的值用于取代相应的属性列</li>
+<li>注意,如果省略WHERE子句,则会修改表中的所有元组 </li>
+<li>执行修改语句时,数据库会检查修改操作是否会破坏表的完整性规则</li>
+</ul>
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DELETE FROM &lt;表名&gt;</span><br><span class="line">WHERE &lt;条件&gt;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>语句将会删除指定表中满足WHERE子句条件的元组</li>
+<li>注意,如果省略WHERE子句,则会删除表中的所有元组</li>
+</ul>
+<h2 id="6-视图"><a href="#6-视图" class="headerlink" title="6. 视图"></a>6. 视图</h2><h3 id="视图定义"><a href="#视图定义" class="headerlink" title="视图定义"></a>视图定义</h3><h4 id="创建视图"><a href="#创建视图" class="headerlink" title="创建视图"></a>创建视图</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CREATE  VIEW </span><br><span class="line">    &lt;视图名&gt;  [(&lt;列名&gt;  [,&lt;列名&gt;]…)] </span><br><span class="line">   AS &lt;子查询&gt; </span><br><span class="line">   [WITH  CHECK  OPTION];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>列名缺省时由子查询中SELECT的列构成<blockquote>
+<p>一般出现以下情况,需要指定视图的列名:</p>
+<ul>
+<li>SELECT的某个列需要聚集函数或列表达式,即出现了一些新的列</li>
+<li>多表连接时选出了几个同名列作为视图的字段</li>
+<li>需要在视图中为某个列启用新的更合适的名字</li>
+</ul>
+</blockquote>
+</li>
+<li>WITH CHECK OPTION 可以保证通过该视图插入的数据符合该视图的定义,即插入成功的数据也会在视图中显示</li>
+</ul>
+<p>常见视图:</p>
+<ul>
+<li>行列子集视图:在保留单个基本表主码的情况下,去掉了这个表的某些行和列</li>
+<li>基于多个表的视图</li>
+<li>基于视图的视图</li>
+<li>带表达式的视图:SELECT的某个列为表达式</li>
+<li>分组视图:SELECT的某个列为聚集函数</li>
+</ul>
+<h4 id="删除视图"><a href="#删除视图" class="headerlink" title="删除视图"></a>删除视图</h4><p><code>DROP  VIEW  &lt;视图名&gt;[CASCADE];</code></p>
+<ul>
+<li>该语句从数据字典中删除指定的视图定义</li>
+<li>如果该视图上还导出了其他视图，需要使用CASCADE级联删除语句，把该视图和由它导出的所有视图一起删除,否则会拒绝删除</li>
+<li>删除基表时，由该基表导出的所有视图定义都必须显式地使用DROP VIEW语句删除</li>
+</ul>
+<h3 id="查询视图"><a href="#查询视图" class="headerlink" title="查询视图"></a>查询视图</h3><p>视图查询与上述基本表的查询相同</p>
+<p>原理:视图消解法</p>
+<ul>
+<li>对于数据库系统而言,先得将视图查询转换为对基本表的查询,再进行对基本表的查询</li>
+<li>转换时需要进行有效性检查和语句修正</li>
+</ul>
+<h3 id="更新视图-数据"><a href="#更新视图-数据" class="headerlink" title="更新视图(数据)"></a>更新视图(数据)</h3><p>视图的插入,删除,修改操作与基本表相同</p>
+<ul>
+<li>一些视图是不可更新的,因为 对这些视图的更新不能唯一地有意义地转换成对相应基本表的更新,如带聚集函数的视图<blockquote>
+<p>一般而言,行列子集视图是可以进行更新的  </p>
+<p>DB2对视图更新的限制:</p>
+<ul>
+<li>若视图是由两个以上基本表导出的，则此视图不允许更新。</li>
+<li>若视图的字段来自字段表达式或常数，则不允许对此视图执行INSERT 和UPDATE操作，但允许执行DELETE操作。  </li>
+<li>若视图的字段来自集函数，则此视图不允许更新。</li>
+<li>若视图定义中含有GROUP BY子句，则此视图不允许更新。</li>
+<li>若视图定义中含有DISTINCT短语，则此视图不允许更新。</li>
+<li>若视图定义中有嵌套查询，并且内层查询的FROM子句中涉及的表也是导出该视图的基本表，则此视图不允许更新</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="7-自主存取控制"><a href="#7-自主存取控制" class="headerlink" title="7. 自主存取控制"></a>7. 自主存取控制</h2><p>通过SQL的GRANT语句和REVOKE语句实现自主存取控制</p>
+<h3 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h3><h4 id="权限的授予"><a href="#权限的授予" class="headerlink" title="权限的授予"></a>权限的授予</h4><p>给某用户授予对某对象的某操作权限</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> &lt;权限&gt;[,&lt;权限&gt;]...</span><br><span class="line"><span class="keyword">ON</span> &lt;对象类型&gt; &lt;对象名&gt;[,&lt;对象类型&gt; &lt;对象名&gt;]...</span><br><span class="line"><span class="keyword">TO</span> &lt;用户&gt;[,&lt;用户&gt;]...</span><br><span class="line">[<span class="keyword">WITH</span> <span class="keyword">GRANT</span> <span class="keyword">OPTION</span>];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>权限有SELECT，INSERT，UPDATE，DELETE，REFERENCES几种; ALL PRIVILEGES表示所有操作权限<blockquote>
+<p>至于CREATE,ALTER等权限,是数据库管理员在创建用户时授予的</p>
+</blockquote>
+</li>
+<li>指定了ON的对象,表名这是一种实体权限的授予,而不是系统权限(对任意对象的操作)的授予</li>
+<li>TO用户可以时一个或多个具体用户,也可以是全体用户PUBLIC</li>
+<li>WITH GRANT OPTION表示授予的权限可以再由该用户向下转授<blockquote>
+<p>注意:权限不能循环授予,这样会导致回收权限时遇到无穷递归</p>
+</blockquote>
+</li>
+<li>GRANT语句的发出者可以是数据库管理员,数据库对象创建者或者拥有该权限的用户</li>
+</ul>
+<h4 id="权限的回收"><a href="#权限的回收" class="headerlink" title="权限的回收"></a>权限的回收</h4><p>收回本授权者对某用户的某对象某操作权限的授权</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> &lt;权限&gt;[,&lt;权限&gt;]...</span><br><span class="line"><span class="keyword">ON</span> &lt;对象类型&gt; &lt;对象名&gt;[,&lt;对象类型&gt;&lt;对象名&gt;]...</span><br><span class="line"><span class="keyword">FROM</span> &lt;用户&gt;[,&lt;用户&gt;]...</span><br><span class="line">[<span class="keyword">CASCADE</span> | RESTRICT];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>级联回收: 将用户和他传播的权限全部回收</li>
+<li>受限回收: 若用户传播过该权限并没有收回,则拒绝执行回收操作</li>
+<li>权限的回收可由管理员或授权者来执行</li>
+<li>回收只回收本用户直接或间接对目标用户授予的权限,若该用户还从其他地方获得了相同的权限,则他们仍具有此权限</li>
+</ul>
+<h3 id="用户-用户的创建"><a href="#用户-用户的创建" class="headerlink" title="用户:用户的创建"></a>用户:用户的创建</h3><p>CREATE USER不是SQL标准,不同数据库对用户创建的实现不一样</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span>  <span class="keyword">USER</span>  &lt;username&gt;</span><br><span class="line">[<span class="keyword">WITH</span>][DBA|<span class="keyword">RESOURCE</span>|<span class="keyword">CONNECT</span>];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>DBA:可以创建用户,模式,表以及登录数据库执行增删改查等操作</li>
+<li>RESOURCE:只能创建表并登录数据库执行增删改查等操作</li>
+<li>CONNECT: 能登陆数据库进行增删改查等操作,但必须获得相应权限</li>
+</ul>
+<h3 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h3><p>角色是权限的集合,能够通过为一组具有相同权限的用户创建一个角色来简化授权的过程</p>
+<h4 id="角色的创建"><a href="#角色的创建" class="headerlink" title="角色的创建"></a>角色的创建</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">ROLE</span> &lt;角色名&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="给角色添加权限"><a href="#给角色添加权限" class="headerlink" title="给角色添加权限"></a>给角色添加权限</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> &lt;权限&gt;[,&lt;权限&gt;]...</span><br><span class="line"><span class="keyword">ON</span> &lt;对象类型&gt; &lt;对象名&gt;[,&lt;对象类型&gt; &lt;对象名&gt;]...</span><br><span class="line"><span class="keyword">TO</span> &lt;角色&gt;[,&lt;角色&gt;]...</span><br></pre></td></tr></table></figure>
+
+<h4 id="回收角色的某权限"><a href="#回收角色的某权限" class="headerlink" title="回收角色的某权限"></a>回收角色的某权限</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> &lt;权限&gt;[,&lt;权限&gt;]...</span><br><span class="line"><span class="keyword">ON</span> &lt;对象类型&gt; &lt;对象名&gt;[,&lt;对象类型&gt;&lt;对象名&gt;]...</span><br><span class="line"><span class="keyword">FROM</span> &lt;角色&gt;[,&lt;角色&gt;]...</span><br></pre></td></tr></table></figure>
+<ul>
+<li>用户可以回收角色的权限，从而修改角色拥有的权限</li>
+<li>(不知道对不对)之前通过此角色授予出去的权限也会因为这个操作而被回收</li>
+<li>这个REVOKE的发起者是角色的创建者或者拥有该角色ADMIN OPTION的用户</li>
+</ul>
+<h4 id="把角色授予给某用户或角色"><a href="#把角色授予给某用户或角色" class="headerlink" title="把角色授予给某用户或角色"></a>把角色授予给某用户或角色</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GRANT</span>  &lt;角色<span class="number">1</span>&gt;[,&lt;角色<span class="number">2</span>&gt;]...</span><br><span class="line"><span class="keyword">TO</span>  &lt;角色<span class="number">3</span>&gt;[,&lt;用户<span class="number">1</span>&gt;]...</span><br><span class="line">[<span class="keyword">WITH</span> <span class="keyword">ADMIN</span> <span class="keyword">OPTION</span>]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>一个角色的权限是直接授予这个角色的全部权限加上其他角色授予这个角色的全部权限 </li>
+<li>把角色授给目标用户后,该用户获得这个角色的所有权限</li>
+<li>WITH ADMIN OPTION表示目标角色或用户还可以把这种角色权限授予其他的角色或用户,也有权力更改这个角色的权限</li>
+<li>这个GRANT的发起者是角色的创建者或者拥有该角色ADMIN OPTION的用户</li>
+</ul>
+<h4 id="通过角色收回赋予出去的权限"><a href="#通过角色收回赋予出去的权限" class="headerlink" title="通过角色收回赋予出去的权限"></a>通过角色收回赋予出去的权限</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> &lt;角色<span class="number">1</span>&gt;[,&lt;角色<span class="number">2</span>&gt;]...</span><br><span class="line"><span class="keyword">FROM</span> &lt;角色<span class="number">3</span>&gt;[,&lt;用户<span class="number">1</span>&gt;]...</span><br></pre></td></tr></table></figure>
+<ul>
+<li>目标用户或角色失去了原角色赋予给他的权限</li>
+</ul>
+<h2 id="8-过程化SQL"><a href="#8-过程化SQL" class="headerlink" title="8 过程化SQL"></a>8 过程化SQL</h2><p>目标: 扩展SQL语言本身的能力,加入过程控制的功能</p>
+<h3 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h3><p>定义语句:</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span> </span><br><span class="line">    &lt;变量名&gt; &lt;数据类型&gt; [[<span class="keyword">NOT</span> <span class="literal">NULL</span>] [:=] &lt;初值表达式&gt;];</span><br><span class="line">    &lt;常量名&gt; &lt;数据类型&gt; CONSTANT := &lt;常量表达式&gt;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>定义的变量,常量生命周期为整个块</li>
+<li>常量定义后在作用域中不能再赋值</li>
+</ul>
+<p>执行语句:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line"></span><br><span class="line">    [<span class="keyword">SET</span>] &lt;变量名&gt; := &lt;表达式&gt;;</span><br><span class="line">    </span><br><span class="line">    IF &lt;条件&gt; THEN</span><br><span class="line">        &lt;语句&gt;;</span><br><span class="line">    [ELSE &lt;语句&gt;;]</span><br><span class="line">    <span class="keyword">END</span> <span class="keyword">IF</span>;</span><br><span class="line">    </span><br><span class="line">    [WHILE &lt;条件&gt;]|    </span><br><span class="line">    [FOR &lt;count&gt; IN [REVERSE] &lt;值1&gt;...&lt;值n&gt;]</span><br><span class="line">    LOOP</span><br><span class="line">        &lt;语句&gt; [EXIT|BREAK|LEAVE];</span><br><span class="line">    <span class="keyword">END</span> <span class="keyword">LOOP</span>;</span><br><span class="line">    </span><br><span class="line">EXCEPTION</span><br></pre></td></tr></table></figure>
+
+<h3 id="存储过程与函数"><a href="#存储过程与函数" class="headerlink" title="存储过程与函数"></a>存储过程与函数</h3><p>存储过程: 由过程化SQL书写的一段语句经编译和优化后命名并存储在数据库服务器中待使用时调用的过程</p>
+<p>过程化SQL块类型:</p>
+<blockquote>
+<ul>
+<li>命名块: 编译后保存在数据库中供反复高效调用,过程和函数是命名块</li>
+<li>匿名块: 每次执行都要编译的块,不能被存储和调用</li>
+</ul>
+</blockquote>
+<h4 id="存储过程的用户接口"><a href="#存储过程的用户接口" class="headerlink" title="存储过程的用户接口"></a>存储过程的用户接口</h4><p>创建存储:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> &lt;过程名&gt; ([&lt;参数<span class="number">1</span>&gt;,&lt;参数<span class="number">2</span>&gt;,...]) <span class="keyword">AS</span> &lt;过程化<span class="keyword">SQL</span>块&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>参数列表: 调用时给出的参数值,需要指定值的数据类型; 参数可定义为输入参数(默认),输出参数和输入/输出参数</li>
+<li>过程块: 一个包括声明部分和可执行语句部分的块,过程块中可以调用其他存储过程</li>
+</ul>
+<p>执行存储过程:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CALL</span>|PREFORM <span class="keyword">PROCEDURE</span> &lt;过程名&gt; (&lt;参数列表&gt;);</span><br></pre></td></tr></table></figure>
+
+<p>修改存储过程:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">PROCEDURE</span> &lt;过程名&gt; <span class="keyword">RENAME</span> <span class="keyword">TO</span> &lt;新过程名&gt;;</span><br></pre></td></tr></table></figure>
+
+<p>删除存储过程:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">PROCEDURE</span> &lt;过程名&gt;();</span><br></pre></td></tr></table></figure>
+
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p>函数和存储过程都是持久性的存储过程,但函数必须执行返回值的类型</p>
+<p>函数定义:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">FUNCTION</span> &lt;函数名&gt; ([&lt;参数列表&gt;])</span><br><span class="line"><span class="keyword">RETURNS</span> &lt;返回值类型&gt; <span class="keyword">AS</span> &lt;过程化<span class="keyword">SQL</span>块&gt;;</span><br></pre></td></tr></table></figure>
+
+<p>函数执行:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CALL</span>|<span class="keyword">SELECT</span> &lt;函数名&gt; ([&lt;参数列表&gt;]);</span><br></pre></td></tr></table></figure>
+
+<p>修改函数:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">FUNCTION</span> &lt;过程名&gt; <span class="keyword">RENAME</span> <span class="keyword">TO</span> &lt;新过程名&gt;;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">FUNCTION</span> &lt;过程名&gt; COMPILE; //重新编译</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>博文创建时间: 2020-04-11 15:18:05</p>
+]]></content>
+      <categories>
+        <category>notes</category>
+        <category>学位课程</category>
+      </categories>
+      <tags>
+        <tag>learning</tag>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>数据库原理与设计(高级篇)</title>
-    <url>/2020/04/16/data-base1/</url>
-    <content><![CDATA[<p>未完结,持续更新</p>
+    <url>/2020/05/24/data-base1/</url>
+    <content><![CDATA[<p><del>未完结,持续更新</del> 完结</p>
 <hr>
 <p>任课教师: 赵朋朋<a href="http://web.suda.edu.cn/ppzhao/" target="_blank" rel="noopener">http://web.suda.edu.cn/ppzhao/</a></p>
-<p>网课资源: 慕课中国人民大学数据库系统概论<a href="https://www.icourse163.org/course/RUC-488001" target="_blank" rel="noopener">https://www.icourse163.org/course/RUC-488001</a></p>
+<p>网课资源: 慕课中国人民大学数据库系统概论<a href="https://www.icourse163.org/learn/RUC-1001655006" target="_blank" rel="noopener">https://www.icourse163.org/learn/RUC-1001655006</a></p>
 <p>参考教材: 高等教育出版社《数据库系统概论(第5版)》</p>
 <p>课程主要讲述关系型数据库的原理, 不着重于具体数据库的使用</p>
 <p>在高级篇中,从管理系统的角度来介绍DBMS系统,用使用和应用的角度来讲解数据库设计的方法</p>
@@ -416,7 +953,7 @@
 <li>分类属性的值把夫实体型中的实体分派到子实体型中</li>
 </ul>
 </blockquote>
-<p><img src="/2020/04/16/data-base1/ISA.jpg" alt="isa"></p>
+<p><img src="/2020/05/24/data-base1/ISA.jpg" alt="isa"></p>
 <p>约束:</p>
 <blockquote>
 <ul>
@@ -424,13 +961,13 @@
 <li>完备性约束: 表明父类中的某个实体必须是某一个子类中的实体,又称完全特化; 此时父类到子类之间的线用双线表示</li>
 </ul>
 </blockquote>
-<p><img src="/2020/04/16/data-base1/ISA1.jpg" alt="isa"></p>
+<p><img src="/2020/05/24/data-base1/ISA1.jpg" alt="isa"></p>
 <h4 id="基数约束"><a href="#基数约束" class="headerlink" title="基数约束"></a>基数约束</h4><ul>
 <li>技术约束用于表明一个实体可以在联系中出现的次数上下限</li>
 <li>这是一个一对一,一对多,多对多联系的细化</li>
 <li>约束用一个数对min..max表示,标注在联系和实体之间,max为’*‘时表示无穷大</li>
 </ul>
-<p><img src="/2020/04/16/data-base1/restrain0.jpg" alt="res"></p>
+<p><img src="/2020/05/24/data-base1/restrain0.jpg" alt="res"></p>
 <p>约束类型:</p>
 <blockquote>
 <ul>
@@ -457,7 +994,7 @@
 <li>独占联系用双菱形表示</li>
 </ul>
 </blockquote>
-<p><img src="/2020/04/16/data-base1/PO0.jpg" alt="partof"></p>
+<p><img src="/2020/05/24/data-base1/PO0.jpg" alt="partof"></p>
 <h3 id="UML"><a href="#UML" class="headerlink" title="UML"></a>UML</h3><ul>
 <li>UML为统一建模语言,是对象管理组织的一个标准</li>
 <li>UML中的类大致对应E-R图中的实体</li>
@@ -472,7 +1009,7 @@
 <li>UML中的子类和E-R图中的ISA联系一致</li>
 </ul>
 </blockquote>
-<p><img src="/2020/04/16/data-base1/UML0.jpg" alt="UML"></p>
+<p><img src="/2020/05/24/data-base1/UML0.jpg" alt="UML"></p>
 <h3 id="概念结构设计方法"><a href="#概念结构设计方法" class="headerlink" title="概念结构设计方法"></a>概念结构设计方法</h3><h4 id="实体与属性的划分原则"><a href="#实体与属性的划分原则" class="headerlink" title="实体与属性的划分原则"></a>实体与属性的划分原则</h4><p>实体和属性的划分方法:</p>
 <blockquote>
 <ul>
@@ -525,10 +1062,10 @@
 </blockquote>
 </li>
 </ul>
-<p>一个例子:<br><img src="/2020/04/16/data-base1/example0.jpg" alt="example"></p>
+<p>一个例子:<br><img src="/2020/05/24/data-base1/example0.jpg" alt="example"></p>
 <h2 id="7-4-逻辑结构设计"><a href="#7-4-逻辑结构设计" class="headerlink" title="7.4 逻辑结构设计"></a>7.4 逻辑结构设计</h2><p>任务: 将概念结构的E-R图转换为DBMS产品支持的逻辑结构</p>
 <ul>
-<li>就目前关系数据库而言,其逻辑结构为一组关系模式的集合<br><img src="/2020/04/16/data-base1/logic.jpg" alt="logic"><h3 id="E-R图向关系模型的转换"><a href="#E-R图向关系模型的转换" class="headerlink" title="E-R图向关系模型的转换"></a>E-R图向关系模型的转换</h3></li>
+<li>就目前关系数据库而言,其逻辑结构为一组关系模式的集合<br><img src="/2020/05/24/data-base1/logic.jpg" alt="logic"><h3 id="E-R图向关系模型的转换"><a href="#E-R图向关系模型的转换" class="headerlink" title="E-R图向关系模型的转换"></a>E-R图向关系模型的转换</h3></li>
 <li>实体型的转换: 一个实体型转换为一个关系模式<blockquote>
 <ul>
 <li>属性: 实体的各属性</li>
@@ -590,7 +1127,7 @@
 <li>简化用户对系统的使用</li>
 </ul>
 <h2 id="7-5-物理结构设计"><a href="#7-5-物理结构设计" class="headerlink" title="7.5 物理结构设计"></a>7.5 物理结构设计</h2><p>物理设计: 为逻辑数据模型选取一个最适合应用要求的物理结构,包括物理设备上的存储结构和存取方法</p>
-<p><img src="/2020/04/16/data-base1/phys0.jpg" alt="phys"></p>
+<p><img src="/2020/05/24/data-base1/phys0.jpg" alt="phys"></p>
 <h3 id="物理设计的内容和方法"><a href="#物理设计的内容和方法" class="headerlink" title="物理设计的内容和方法"></a>物理设计的内容和方法</h3><p>内容:</p>
 <blockquote>
 <ul>
@@ -640,7 +1177,7 @@
 <li>增删改操作中能通过算法保持树平衡  </li>
 </ul>
 </blockquote>
-<p>B+树结构如下:<br><img src="/2020/04/16/data-base1/B0.jpg" alt="B"></p>
+<p>B+树结构如下:<br><img src="/2020/05/24/data-base1/B0.jpg" alt="B"></p>
 <blockquote>
 <ul>
 <li>随机查找: 与每一层进行一次比较,若在叶节点中找到码值相等的记录,则根据指针取出相应记录<ul>
@@ -707,7 +1244,7 @@
 <li>返回用户,征求意见,修改设计</li>
 </ul>
 </blockquote>
-<h2 id="7-6-数据库的实施和维护"><a href="#7-6-数据库的实施和维护" class="headerlink" title="7.6 数据库的实施和维护"></a>7.6 数据库的实施和维护</h2><p>示意图:<br><img src="/2020/04/16/data-base1/act0.jpg" alt></p>
+<h2 id="7-6-数据库的实施和维护"><a href="#7-6-数据库的实施和维护" class="headerlink" title="7.6 数据库的实施和维护"></a>7.6 数据库的实施和维护</h2><p>示意图:<br><img src="/2020/05/24/data-base1/act0.jpg" alt></p>
 <h3 id="数据的载入和应用程序的调试"><a href="#数据的载入和应用程序的调试" class="headerlink" title="数据的载入和应用程序的调试"></a>数据的载入和应用程序的调试</h3><ul>
 <li>定义数据库结构: 用DDL语言创建基本表,视图,索引等(产生目标模式,生成数据字典)</li>
 <li>数据装载: 数据抽取,数据转换,数据载入(ETL)<blockquote>
@@ -1113,7 +1650,7 @@
 <p>终止处理: 释放语句句柄,释放数据库连接,断开数据库服务器,释放ODBC环境</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SQLFreeHandle(SQL_HANDLE_STMT, hstmt); </span><br><span class="line">SQLDisconnect(hdbc); </span><br><span class="line">SQLFreeHandle(SQL_HANDLE_DBC, hdbc); </span><br><span class="line">SQLFreeHandle(SQL_HANDLE_ENV, henv); </span><br><span class="line">SQLFreeHandle(SQL_HANDLE_ENV,serverhenv);</span><br></pre></td></tr></table></figure>
 
-<h1 id="九、关系查询处理"><a href="#九、关系查询处理" class="headerlink" title="九、关系查询处理"></a>九、关系查询处理</h1><h2 id="9-1-SQL语句的处理过程"><a href="#9-1-SQL语句的处理过程" class="headerlink" title="9.1 SQL语句的处理过程"></a>9.1 SQL语句的处理过程</h2><p>处理步骤:<br><img src="/2020/04/16/data-base1/query0.jpg" alt="query"></p>
+<h1 id="九、关系查询处理"><a href="#九、关系查询处理" class="headerlink" title="九、关系查询处理"></a>九、关系查询处理</h1><h2 id="9-1-SQL语句的处理过程"><a href="#9-1-SQL语句的处理过程" class="headerlink" title="9.1 SQL语句的处理过程"></a>9.1 SQL语句的处理过程</h2><p>处理步骤:<br><img src="/2020/05/24/data-base1/query0.jpg" alt="query"></p>
 <h3 id="查询分析"><a href="#查询分析" class="headerlink" title="查询分析"></a>查询分析</h3><p>任务: 对查询语句进行扫描,词法分析和语法分析</p>
 <ul>
 <li>词法分析: 从查询语句中识别出正确的语言符号</li>
@@ -1165,6 +1702,301 @@
 <ul>
 <li>前提: 两个表中较小的表在划分阶段时可以完全放入内存的hash桶中</li>
 </ul>
+<h1 id="十、数据库恢复技术"><a href="#十、数据库恢复技术" class="headerlink" title="十、数据库恢复技术"></a>十、数据库恢复技术</h1><h2 id="10-1-事务"><a href="#10-1-事务" class="headerlink" title="10.1 事务"></a>10.1 事务</h2><p>事务时用户定义的一个数据库操作序列,这组操作是一个不可分割的操作单位; 这些操作要么全做,要么全不做</p>
+<blockquote>
+<ul>
+<li>一个程序中可以包含多个事务</li>
+<li>一个事务可以是一条或者多条SQL语句</li>
+</ul>
+</blockquote>
+<p>事务时恢复和并发控制的基本单位</p>
+<h3 id="事务定义"><a href="#事务定义" class="headerlink" title="事务定义"></a>事务定义</h3><p>显式定义:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">BEGIN</span> TRANSACRION</span><br><span class="line">    <span class="keyword">SQL</span> &lt;语句<span class="number">1</span>&gt;</span><br><span class="line">    <span class="keyword">SQL</span> &lt;语句<span class="number">2</span>&gt;</span><br><span class="line"><span class="keyword">COMMIT</span>|<span class="keyword">ROLLBACK</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>COMMIT: 提交, 事务正常结束,提交事务的所有操作</li>
+<li>ROLLBACK: 主动回滚, 事务异常终止,撤销所有操作,数据库回滚到事务开始的状态</li>
+</ul>
+<p>隐式定义: 当用户没有显式定义事务时,DBMS按缺省规定自动划分事务</p>
+<h3 id="事务的性质"><a href="#事务的性质" class="headerlink" title="事务的性质"></a>事务的性质</h3><p>ACID性质:</p>
+<ul>
+<li>原子性: 事务是数据库的逻辑工作单位</li>
+<li>一致性: 事务执行的结构必须使数据库从一个一致性状态变为另一个一致性状态 (银行转账)<blockquote>
+<ul>
+<li>一致性状态: 数据库中只包含成功事务的提交结果</li>
+<li>不一致状态: 一些未完成事务对数据库所做的修改有一部分被写入物理数据库, 此时数据库处于一种不正确的状态  </li>
+</ul>
+</blockquote>
+</li>
+<li>隔离性: 一个事务的执行不能被其他事务干扰 (两个人抢同一张票)<blockquote>
+<ul>
+<li>一个事务内部的操作及使用的数据对其他并发事务是隔离的</li>
+<li>并发执行的各个事务之间不能相互干扰</li>
+</ul>
+</blockquote>
+</li>
+<li>持续性: 提交的事务对数据库的修改应该是永久性的<blockquote>
+<ul>
+<li>接下来的其他操作或故障不应该对该事务的执行结果有任何影响</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>保证事务ACID特性是事务处理的任务</p>
+<p>破坏事务ACID特性的因素:</p>
+<blockquote>
+<ul>
+<li>多个事务并行运行,不同事物的操作交叉执行</li>
+<li>事务在运行过程中被强行终止<br>数据库管理系统必须保证多个事务交叉运行不影响事务的隔离性; 必须保证被强行终止的事务对数据库和其他事务没有任何影响</li>
+</ul>
+</blockquote>
+<h2 id="10-2-数据库恢复技术"><a href="#10-2-数据库恢复技术" class="headerlink" title="10.2 数据库恢复技术"></a>10.2 数据库恢复技术</h2><p>故障是不可避免的,会影响数据库中数据的正确性,破坏数据库</p>
+<p>对策: DBMS必须具有把数据库从错误状态恢复到某一已知的正确状态的功能</p>
+<p>恢复子系统是DBMS的一个重要组成部分,恢复技术是衡量系统优劣性的重要指标</p>
+<h2 id="10-3-故障的种类"><a href="#10-3-故障的种类" class="headerlink" title="10.3 故障的种类"></a>10.3 故障的种类</h2><h3 id="事务内部的故障"><a href="#事务内部的故障" class="headerlink" title="事务内部的故障"></a>事务内部的故障</h3><ul>
+<li>可预期的: 该故障可以通过事务程序本身发现<blockquote>
+<p>可预期的故障一般可以通过添加ROLLBACK处理</p>
+</blockquote>
+</li>
+<li>非预期的: 不能由事务程序处理,一般事务故障指的是非预期故障<blockquote>
+<ul>
+<li>运算溢出</li>
+<li>并发事务发生死锁而被选中撤销该事务</li>
+<li>违反某些完整性限制而被终止</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>事务故障意味着事务没有被commit或者被显式的rollback,数据库可能处于不正常的状态</p>
+<p>事务故障的恢复: 事务撤销(UNDO)</p>
+<blockquote>
+<ul>
+<li>UNDO表示强行回滚该事务</li>
+<li>撤销事务已经做出的任何对数据库的修改,使得该事务像根本没有启动一样</li>
+</ul>
+</blockquote>
+<h3 id="系统故障"><a href="#系统故障" class="headerlink" title="系统故障"></a>系统故障</h3><p>系统故障指造成系统停止运转的任何事件(需要重启系统)</p>
+<blockquote>
+<ul>
+<li>特定类型的硬件错误</li>
+<li>操作系统故障</li>
+<li>DBMS代码错误</li>
+<li>系统断电</li>
+</ul>
+</blockquote>
+<p>系统故障的影响:</p>
+<blockquote>
+<ul>
+<li>系统的正常运行被突然破坏</li>
+<li>所有正在运行的事务被异常终止</li>
+<li>内存中数据库缓冲区的信息全部丢失</li>
+<li>不破坏数据库</li>
+</ul>
+</blockquote>
+<p>然而此时一些尚未完成的结果可能已经送入物理数据库,使得数据库可能处于不正常的状态</p>
+<blockquote>
+<p>恢复策略: 系统重启后,恢复程序让所有非正常终止的事务回滚,强行撤销所有未完成的事务</p>
+</blockquote>
+<p>此时有些已完成的事务可能还留在缓冲区没被写回物理磁盘上</p>
+<blockquote>
+<p>恢复策略: 撤销所有未完成的事务后,重做所有已提交的事务</p>
+</blockquote>
+<h3 id="介质故障"><a href="#介质故障" class="headerlink" title="介质故障"></a>介质故障</h3><p>介质故障又称硬故障,指外存故障</p>
+<ul>
+<li>介质故障破坏部分或整个数据库,并影响正在存取这部分数据 的所有事务</li>
+<li>介质故障发生的可能性较低,但破坏性很大</li>
+</ul>
+<p>恢复策略: 重装数据库备份文件</p>
+<h3 id="计算机病毒"><a href="#计算机病毒" class="headerlink" title="计算机病毒"></a>计算机病毒</h3><p>计算机病毒是一种人为的破坏,可以繁殖和传播,造成对计算机系统的危害</p>
+<p>数据库一旦被破坏仍要用恢复技术把数据库加以恢复 </p>
+<h3 id="恢复的要点"><a href="#恢复的要点" class="headerlink" title="恢复的要点"></a>恢复的要点</h3><p>恢复操作的基本原理: 冗余</p>
+<p>恢复的实现技术是复杂的,代码占数据库全部代码的10%以上</p>
+<h2 id="10-4-恢复的实现技术"><a href="#10-4-恢复的实现技术" class="headerlink" title="10.4 恢复的实现技术"></a>10.4 恢复的实现技术</h2><h3 id="数据转储"><a href="#数据转储" class="headerlink" title="数据转储"></a>数据转储</h3><p>转储: 数据库管理员定期地将整个数据库复制到磁带,磁盘或其他存储介质上保存起来的过程</p>
+<p>备用的数据文本称为后备副本backup或后援副本</p>
+<blockquote>
+<ul>
+<li>被破坏后,数据库可以将后备副本重新装入</li>
+<li>后备副本只能将数据库恢复到转储时的状态,后续还需要运行自转储后的所有更新事务</li>
+</ul>
+</blockquote>
+<h4 id="静态转储"><a href="#静态转储" class="headerlink" title="静态转储"></a>静态转储</h4><blockquote>
+<ul>
+<li>在系统中无运行事务时进行转储操作</li>
+<li>转储开始时数据库处于一致性状态</li>
+<li>转储期间不允许对数据库进行任何存取,修改活动</li>
+</ul>
+</blockquote>
+<p>优点: 简单,恢复速度较快</p>
+<p>缺点: 降低了数据库的可用性</p>
+<h4 id="动态转储"><a href="#动态转储" class="headerlink" title="动态转储"></a>动态转储</h4><blockquote>
+<ul>
+<li>转储操作与用户事务并发进行</li>
+<li>转储期间允许对数据库进行存取或修改</li>
+<li>动态转储得到的是数据库的一个中间状态,非一致性状态</li>
+</ul>
+</blockquote>
+<p>优点: 不用等待正在允许的用户事务结束; 不会影响新事务的运行</p>
+<p>缺点: 不能保证副本中的数据有效</p>
+<p>动态转储的故障恢复:</p>
+<blockquote>
+<ul>
+<li>动态转储时: 建立日志文件,对动态转储期间各事务对数据库的修改活动登记</li>
+<li>后备副本加上日志文件可以把数据库恢复到某一时刻的正确状态</li>
+</ul>
+</blockquote>
+<h4 id="海量转储"><a href="#海量转储" class="headerlink" title="海量转储"></a>海量转储</h4><p>每次转储全部数据库</p>
+<p>特点: 恢复更方便</p>
+<h4 id="增量转储"><a href="#增量转储" class="headerlink" title="增量转储"></a>增量转储</h4><p>只转储上次转储后更新过的数据</p>
+<p>特点: 适合庞大而且事务处理十分繁杂的数据库</p>
+<h3 id="登记日志文件"><a href="#登记日志文件" class="headerlink" title="登记日志文件"></a>登记日志文件</h3><p>日志文件是用来记录事务对数据库的更新操作的文件</p>
+<p>两种格式: 以记录为单位的日志和以数据块为单位的日志文件</p>
+<h4 id="以记录为单位的日志文件"><a href="#以记录为单位的日志文件" class="headerlink" title="以记录为单位的日志文件"></a>以记录为单位的日志文件</h4><p>一个日志记录应包含(T表示事务标志):</p>
+<blockquote>
+<ul>
+<li>各个事务的开始标记(T1 BEGIN TRANSACTION)</li>
+<li>各事务的结束标记(T1 COMMIT/T2 ROLLBACK)</li>
+<li>各事务的所有更新操作(包含事务标志,操作类型,操作对象,旧值和新值)</li>
+</ul>
+</blockquote>
+<h4 id="以数据块为单位的日志文件"><a href="#以数据块为单位的日志文件" class="headerlink" title="以数据块为单位的日志文件"></a>以数据块为单位的日志文件</h4><p>包含内容:</p>
+<blockquote>
+<ul>
+<li>事务标志</li>
+<li>被更新的数据块</li>
+</ul>
+</blockquote>
+<h4 id="日志文件作用"><a href="#日志文件作用" class="headerlink" title="日志文件作用"></a>日志文件作用</h4><p>用途:</p>
+<blockquote>
+<ul>
+<li>进行事务故障恢复</li>
+<li>进行系统故障恢复</li>
+<li>协助后备副本进行介质故障恢复</li>
+</ul>
+</blockquote>
+<p>静态转储中也可以建立日志文件,利用日志文件重做已完成的事务并撤销未完成的事务; 而不用重新运行事务程序</p>
+<p>日志文件登记原则:</p>
+<blockquote>
+<ul>
+<li>等级的次序严格按照并发事务执行的时间次序</li>
+<li>必须先写日志文件后写数据库(先记录修改操作后执行i修改)</li>
+</ul>
+</blockquote>
+<h2 id="10-5-恢复策略"><a href="#10-5-恢复策略" class="headerlink" title="10.5 恢复策略"></a>10.5 恢复策略</h2><p>以记录为单位的日志文件格式为例</p>
+<h3 id="事务故障的恢复"><a href="#事务故障的恢复" class="headerlink" title="事务故障的恢复"></a>事务故障的恢复</h3><p>事务故障: 事务在运行至正常终止点前被终止</p>
+<p>策略: 由恢复子系统利用日志文件撤销该事务对数据库进行的修改</p>
+<blockquote>
+<p>此恢复过程不需要用户干预</p>
+</blockquote>
+<p>步骤:</p>
+<blockquote>
+<ol>
+<li>反向扫描日志文件,查找该事务的更新操作</li>
+<li>对该事务的更新操作执行逆操作,将更新前的值写入数据库</li>
+<li>重复2.直到扫描到该事务的开始标记,事务故障恢复完成</li>
+</ol>
+</blockquote>
+<h3 id="系统故障的恢复"><a href="#系统故障的恢复" class="headerlink" title="系统故障的恢复"></a>系统故障的恢复</h3><p>系统故障对数据库的影响:</p>
+<blockquote>
+<ul>
+<li>未完成事务的更新操作已经写入数据库</li>
+<li>已完成事务的更新操作还留在缓冲区中未写入数据库</li>
+</ul>
+</blockquote>
+<p>策略: 撤销故障发生时未完成的事务,重做已完成的事务</p>
+<blockquote>
+<p>此恢复过程不需要用户干预</p>
+</blockquote>
+<p>步骤:</p>
+<blockquote>
+<ol>
+<li>正向扫描日志文件,生成已提交事务(有COMMIT记录)的重做队列和未完成事务(无COMMIT和ROLLBACK记录)的撤销队列</li>
+<li>对撤销队列中的事务进行撤销操作,即反向扫描队列对更新操作执行逆操作</li>
+<li>对重做队列中的事务进行重做操作,即正向扫描队列,将记录中更新后的值重新写入数据库</li>
+</ol>
+</blockquote>
+<h3 id="介质故障的恢复"><a href="#介质故障的恢复" class="headerlink" title="介质故障的恢复"></a>介质故障的恢复</h3><p>策略: 重新装载数据库,重做已完成的数据库</p>
+<p>步骤:</p>
+<blockquote>
+<ol>
+<li>装入最新的后备副本(装入转储时刻的日志文件副本),使得数据库恢复到最近一次转储时的一致性状态</li>
+<li>装入转储结束时刻的日志文件副本,重做到故障发生之前所有已完成的事务</li>
+</ol>
+</blockquote>
+<p>这需要数据库管理员介入,装载数据库副本和各日志文件副本,执行系统提供的恢复命令; 但具体的恢复操作仍由DBMS完成</p>
+<h2 id="10-6-具有检查点的恢复技术"><a href="#10-6-具有检查点的恢复技术" class="headerlink" title="10.6 具有检查点的恢复技术"></a>10.6 具有检查点的恢复技术</h2><p>用于更好地解决系统故障</p>
+<h3 id="问题的提出"><a href="#问题的提出" class="headerlink" title="问题的提出"></a>问题的提出</h3><ul>
+<li>系统故障恢复时,扫描整个日志文件将耗费大量时间</li>
+<li>重做事务时,会浪费大量时间</li>
+</ul>
+<p>具有检查点的恢复技术:</p>
+<blockquote>
+<ul>
+<li>在日志文件中增加检查点记录(checkpoint)</li>
+<li>增加重新开始文件</li>
+<li>恢复子系统在登录日志文件期间动态地维护日志</li>
+</ul>
+</blockquote>
+<p>使用检查点技术之后,恢复数据库时只需要从最近的检查点开始扫描日志并重做事务即可</p>
+<h3 id="检查点技术"><a href="#检查点技术" class="headerlink" title="检查点技术"></a>检查点技术</h3><ul>
+<li>检查点记录的内容<blockquote>
+<ul>
+<li>建立检查点时刻所有正在执行的事务清单</li>
+<li>这些事务最近一个日志记录的地址<br>这样,可以保证检查点之前的所有事务已经被提交并写入数据库,恢复时不需重做这些事务</li>
+</ul>
+</blockquote>
+</li>
+<li>重新开始文件的内容<blockquote>
+<p>记录各个检查点记录在日志文件中的地址</p>
+</blockquote>
+</li>
+<li>动态维护日志文件的方法: 周期性建立检查点,保存数据库的状态<blockquote>
+<ol>
+<li>将当前缓冲区内的日志记录写入到磁盘的日志文件上</li>
+<li>在日志文件中写入一个检查点记录</li>
+<li>将当前缓冲区内的所有数据记录写入四篇的数据库中</li>
+<li>把检查点记录在日志文件中的地址写入一个重新开始文件</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<p>检查点的建立可以是定期或不定期的</p>
+<h3 id="检查点的恢复策略"><a href="#检查点的恢复策略" class="headerlink" title="检查点的恢复策略"></a>检查点的恢复策略</h3><p>事务的T执行策略:</p>
+<blockquote>
+<ul>
+<li>无需操作: T在检查点之前完成</li>
+<li>重做: T在系统故障前完成,但在检查点建立时并未完成</li>
+<li>撤销: T在系统故障时未完成</li>
+</ul>
+</blockquote>
+<p>恢复步骤:</p>
+<blockquote>
+<ol>
+<li>通过重新开始文件找到最后一个检查点记录</li>
+<li>通过该检查点记录得到当前执行的事务清单ACTIVATE-LIST,并将它们全部放入撤销队列</li>
+<li>从检查点开始正向扫描日志文件,遇到事务开始则先将其放入撤销队列,遇到事务结束则将其从撤销队列移入重做队列,直到日志结束</li>
+<li>对重做队列中的每个事务执行重做操作,对撤销队列中的每个事务执行撤销操作</li>
+</ol>
+</blockquote>
+<h2 id="10-7-数据库镜像"><a href="#10-7-数据库镜像" class="headerlink" title="10.7 数据库镜像"></a>10.7 数据库镜像</h2><p>用于更好地解决介质故障</p>
+<p>问题: 介质故障恢复比较费时,DBA需要周期性地转储数据库</p>
+<p>解决策略: 数据库镜像(Mirror)</p>
+<p>数据库镜像:</p>
+<blockquote>
+<ul>
+<li>DBMS自动把整个数据库或其中的关键数据复制到另一个磁盘上</li>
+<li>DBMS自动保证镜像数据与主数据的一致性; DBMS自动将更新后的数据复制到镜像上</li>
+</ul>
+</blockquote>
+<p>用途:</p>
+<blockquote>
+<ul>
+<li>出现介质故障时可由镜像磁盘继续提供数据库服务,并对故障磁盘进行数据恢复,不需要关闭系统或重装数据库副本</li>
+<li>未出现故障时可由用于提高并发操作的效率</li>
+</ul>
+</blockquote>
+<p>问题: 频繁地复制数据会降低DBMS的运行效率,实际使用中往往只会对关键数据和日志文件进行镜像</p>
+<hr>
+<p>简明的数据库使用笔记可参考<a href="http://georgechen.top/2020/04/11/mysql0/" target="_blank" rel="noopener">http://georgechen.top/2020/04/11/mysql0/</a></p>
+<p>博文创建时间: 2020-04-16 14:06:44</p>
 ]]></content>
       <categories>
         <category>notes</category>
@@ -1176,209 +2008,760 @@
       </tags>
   </entry>
   <entry>
-    <title>Unithon 项目计划书模板</title>
-    <url>/2020/04/12/Unithon%20%E9%A1%B9%E7%9B%AE%E8%AE%A1%E5%88%92%E4%B9%A6%E6%A8%A1%E6%9D%BF/</url>
-    <content><![CDATA[<h2 id="一-团队信息"><a href="#一-团队信息" class="headerlink" title="一. 团队信息"></a>一. 团队信息</h2><ol>
-<li><p>团队名称：</p>
-<p>坐等全境封锁免费小队</p>
-</li>
-<li><p>成员信息：</p>
-<table>
-<thead>
-<tr>
-<th align="left">姓名</th>
-<th align="left">学校</th>
-<th align="left">专业</th>
-<th align="left">年级</th>
-<th align="left">邮箱</th>
-<th align="left">QQ号</th>
-<th align="left">项目分工</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">陈孜卓</td>
-<td align="left">苏州大学</td>
-<td align="left">计算机科学与技术</td>
-<td align="left">二年级</td>
-<td align="left"><a href="mailto:3528537606@qq.com">3528537606@qq.com</a></td>
-<td align="left">3528537606</td>
-<td align="left">构建、训练模型</td>
-</tr>
-<tr>
-<td align="left">王沛月</td>
-<td align="left">苏州大学</td>
-<td align="left">计算机科学与技术</td>
-<td align="left">二年级</td>
-<td align="left"><a href="mailto:1138411450@qq.com">1138411450@qq.com</a></td>
-<td align="left">1138411450</td>
-<td align="left">构建、训练模型</td>
-</tr>
-<tr>
-<td align="left">丁楚瑶</td>
-<td align="left">苏州大学</td>
-<td align="left">计算机科学与技术</td>
-<td align="left">二年级</td>
-<td align="left"><a href="mailto:1623030229@qq.com">1623030229@qq.com</a></td>
-<td align="left">1623030229</td>
-<td align="left">编写爬虫框架</td>
-</tr>
-<tr>
-<td align="left">徐镇宇</td>
-<td align="left">苏州大学</td>
-<td align="left">国际金融</td>
-<td align="left">三年级</td>
-<td align="left"><a href="mailto:andrew.xu@foxmail.com">andrew.xu@foxmail.com</a></td>
-<td align="left">565143480</td>
-<td align="left">编写web界面</td>
-</tr>
-<tr>
-<td align="left">张逸康</td>
-<td align="left">苏州大学</td>
-<td align="left">计算机科学与技术</td>
-<td align="left">二年级</td>
-<td align="left"><a href="mailto:zyk0126@126.com">zyk0126@126.com</a></td>
-<td align="left">1976497294</td>
-<td align="left">收集资料、统筹进度、评估软件</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>是否需要使用 Azure 虚拟机资源？</p>
-<ul>
-<li>是</li>
-</ul>
-<p>如果需要的话，更倾向于使用 Windows Server 还是 Linux Server ?</p>
-<ul>
-<li>Windows Server</li>
-</ul>
-</li>
-</ol>
-<h2 id="二-项目信息"><a href="#二-项目信息" class="headerlink" title="二. 项目信息"></a>二. 项目信息</h2><ol>
-<li><p>项目名称</p>
-<ul>
-<li>基于深度学习和信息提取的疫情热点分析平台</li>
-</ul>
-</li>
-<li><p>项目概要</p>
-<ul>
-<li>随着近一段时间复工复产的进行，大家普遍更加关心新冠疫情的发展。然而每天网络上产生的海量新闻数据，加上各种谣言的传播，使得人们需要花费大量的时间来筛选、综合信息，以对近期疫情发展有一个正确全面的认识。我们团队通过深度学习和信息提取的方式，对主流媒体的疫情报道进行分析、综合，以热点话题、热点人物事件关系网的方式将疫情态势展示给用户，使得用户能在短时间内高效地获取疫情新闻资讯，将更多的精力放在工作和事务上。</li>
-</ul>
-</li>
-<li><p>计划书</p>
-<ul>
-<li><p>项目构思</p>
-<ul>
-<li><p>项目想法产生的初衷;</p>
-<ul>
-<li>大家对疫情发展的认识主要来源于疫情新闻和疫情动态上。然而我们发现，即使花费很长的时间去不同的网站上获取新闻、阅读评论，能够获取的重要讯息通常也就只有那么几条；我们大部分的时间被浪费在了阅读重复的信息和鉴别信息的真假之上。因此，在疫情中，如何给大众高效地提供重要、准确的信息是非常重要的。</li>
-</ul>
-</li>
-<li><p>想解决什么样的问题;</p>
-<ol>
-<li>提供给大众整合过后的信息，促使大众能够高效地对于近期发生的疫情事件，对疫情热点人物有一个全面的、客观的了解。</li>
-<li>综合分析不同媒体对同一事件的报道，使得用户能够辨认出错误、片面的信息。</li>
-<li>提高信息的整合度，提高用户的新闻应用体验</li>
-</ol>
-</li>
-<li><p>项目的受益群体;</p>
-<ul>
-<li>关注疫情的群众。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>实施初步调研</p>
-<ul>
-<li><p>项目实施中可能存在哪些难点;</p>
-<ol>
-<li>相关新闻数据的获得</li>
-<li>文本的分析，包括新闻事件的关键词提取、聚类，事件主体、人物的识别，新闻情感取向的分析等</li>
-<li>数据的整理，包括根据主题进行新闻分类、根据人物和事件构建关系网络等</li>
-<li>分析结果的展示</li>
-</ol>
-<p>对于上述问题，我们的主要策略如下： </p>
-<ol>
-<li>对新闻数据的获得，我们选择通过爬虫定期对人民网、新华网等主流媒体以及国外媒体的疫情板块进行爬取，获得新闻数据</li>
-<li>对新闻文本的分析，我们的处理主要集中在以下几个方面：<ul>
-<li>文本关键词提取：使用TextRank对文本的关键词进行提取</li>
-<li>事件主体、人物的识别：使用深度学习对文本命名实体进行识别，我们选择使用BiLSTM+CRF模型来构建神经网络，使用开源的语料库来训练模型</li>
-<li>文本聚类：基于文本相似度计算对文本进行聚类</li>
-<li>文本情感取向分析：使用深度学习对文本的情感取向进行预测，我们选择使用BERT预训练模型来构建神经网络，使用开源的语料库来训练模型</li>
-</ul>
-</li>
-<li>对于数据的整理，我们根据文本关键词对新闻主题进行分类；结合命名实体识别结果和文本聚类结果来构建人物和事件关系网络  </li>
-<li>我们使用python语言来获取、分析、整理数据，使用JavaScript生成网页来展示分析结果<br>我们的网页应包括如下几个部分：  <ul>
-<li>按热度从高到低的次序向用户展示近期的疫情话题</li>
-<li>每个疫情话题中展示不同媒体对相关事件的新闻报道，并标注出各新闻的情感取向</li>
-<li>展示一个以近期重点人物和关键事件为中心的疫情关系网络  </li>
-</ul>
-</li>
-</ol>
-</li>
-<li><p>你会采用什么招数, 特别是独特的招数, 来解决用户的痛苦,  特别是和 AI 相关的手段; </p>
-<ul>
-<li>用户在阅读海量的新闻时，常会遇到以下两个问题：  </li>
-</ul>
-<ol>
-<li>用户获取的信息是松散的：新闻通常按时间顺序排序，上一篇阅读的新闻事件通常和下一篇阅读的新闻事件没有内在的联系；即使能够获取某一方面的新闻，也需要用户进入到专题板块或者通过搜索得到</li>
-<li>用户获取的信息是片面的：不同的新闻媒体，特别是国外的媒体，对于同一个事件报道的侧重点是不同的，导致用户有时很难在第一时间对整个事件有一个全面的了解</li>
-</ol>
-<ul>
-<li>我们使用深度学习技术结合关键词提取、文本聚类的方式，从话题、人物事件两个方面将一段时间内发生的新闻事件进行筛选、分类；同时使用深度学习技术对新闻的情感取向进行标注；使得用户一方面能在较短的时间内了解近期发生的重点事件，另一方面也能对某一个热点话题的内容进行多角度、全方面的了解</li>
-</ul>
-</li>
-<li><p>你会借鉴哪些数据或者工具去帮助你的项目的实施;</p>
-<ul>
-<li>语言及工具使用：</li>
-</ul>
-<ol>
-<li>python：用于编写数据获取、分析、整理的相关代码，使用包括keras，nltk，jieba等自然语言处理工具</li>
-<li>JavaScript：用于生成一个向用户展示数据的网页</li>
-</ol>
-<ul>
-<li>数据使用：</li>
-</ul>
-<ol>
-<li>人民网、新华网等主流媒体以及国外媒体的相关疫情报道数据</li>
-<li>BERT预训练模型以及nltk工具内的相关语料库资源</li>
-</ol>
-</li>
-</ul>
-</li>
-<li><p>项目交付</p>
-<ul>
-<li><p>项目最终以何种形式呈现;</p>
-<ul>
-<li>项目最终以可互动的web网页形式呈现</li>
-</ul>
-</li>
-<li><p>通过怎样的数据指标来衡量项目效果;</p>
-<ul>
-<li>项目的总体效果由各子模型在相应任务上的准确率、召回率与F1-Measure来综合衡量</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-]]></content>
-  </entry>
-  <entry>
-    <title>sql使用</title>
-    <url>/2020/04/11/mysql0/</url>
-    <content><![CDATA[<p>mysql的使用大全可以参考<a href="http://c.biancheng.net/view/2433.html" target="_blank" rel="noopener">http://c.biancheng.net/view/2433.html</a></p>
-<p>本文根据笔记<a href="http://georgechen.top/2020/02/27/data-base0/" target="_blank" rel="noopener">http://georgechen.top/2020/02/27/data-base0/</a>精简整理,保留常用语句用法</p>
+    <title>数据库原理与设计(基础篇)</title>
+    <url>/2020/05/24/data-base0/</url>
+    <content><![CDATA[<p><del>未完结,持续更新</del> 完结</p>
+<hr>
+<p>任课教师: 赵朋朋<a href="http://web.suda.edu.cn/ppzhao/" target="_blank" rel="noopener">http://web.suda.edu.cn/ppzhao/</a></p>
+<p>网课资源: 慕课中国人民大学数据库系统概论<a href="https://www.icourse163.org/course/RUC-488001" target="_blank" rel="noopener">https://www.icourse163.org/course/RUC-488001</a></p>
+<p>参考教材: 高等教育出版社《数据库系统概论(第5版)》</p>
+<p>课程主要讲述关系型数据库的原理, 不着重于具体数据库的使用</p>
+<p>简明的数据库使用笔记可参考<a href="http://georgechen.top/2020/04/11/mysql0/" target="_blank" rel="noopener">http://georgechen.top/2020/04/11/mysql0/</a></p>
+<p>后续见数据库原理与设计(高级篇)<a href="http://georgechen.top/2020/04/16/data-base1/" target="_blank" rel="noopener">http://georgechen.top/2020/04/16/data-base1/</a></p>
 <a id="more"></a>
 
-<h2 id="1-入手"><a href="#1-入手" class="headerlink" title="1. 入手"></a>1. 入手</h2><h3 id="建立用户账户及更改权限"><a href="#建立用户账户及更改权限" class="headerlink" title="建立用户账户及更改权限"></a>建立用户账户及更改权限</h3><p><code>GRANT ALL ON DataBaseA.* TO &#39;root&#39;@&#39;localhost&#39;;</code></p>
-<h3 id="创建数据库及表"><a href="#创建数据库及表" class="headerlink" title="创建数据库及表"></a>创建数据库及表</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysql&gt; create database school;</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; use school;</span><br><span class="line">Database changed</span><br></pre></td></tr></table></figure>
-
-<p>mysql数据存储位置:</p>
-<ul>
-<li>这个位置文件的路径在my.ini中datadir中可以找到  </li>
-<li>一般情况下,my.ini在mysql安装目录下(例如C:\ProgramData\MySQL\MySQL Server 8.0)</li>
+<h1 id="一、绪论"><a href="#一、绪论" class="headerlink" title="一、绪论"></a>一、绪论</h1><h2 id="1-1-数据库系统概述"><a href="#1-1-数据库系统概述" class="headerlink" title="1.1 数据库系统概述"></a>1.1 数据库系统概述</h2><h3 id="数据库中的基本概念"><a href="#数据库中的基本概念" class="headerlink" title="数据库中的基本概念"></a>数据库中的基本概念</h3><ul>
+<li>数据(data): 是数据库中存储的基本对象; 是描述事物的符号记录,包括数字、文字等不同种类 </li>
 </ul>
-<h2 id="2-数据定义"><a href="#2-数据定义" class="headerlink" title="2. 数据定义"></a>2. 数据定义</h2><h3 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h3><p>为某人创建某名的模式</p>
+<blockquote>
+<p>数据是有语义的:相同的数据形式可能有不同的含义,数据与语义是不可分的<br>数据是有结构的:记录是计算机存储数据的一种格式或方法</p>
+</blockquote>
+<ul>
+<li>数据库(database): 是长期存储在计算机内,有组织,可共享的大量数据的集合</li>
+</ul>
+<blockquote>
+<p>数据库能够收集并抽取应用的数据将其保存,用后续处理<br>数据库的基本特征:  </p>
+<ol>
+<li>数据按一定的数据模型组织,描述和存储</li>
+<li>可为各种用户共享,冗余度较小,易扩展</li>
+<li>数据独立性较高</li>
+</ol>
+</blockquote>
+<ul>
+<li>数据库管理系统(DBMS): 是位于用户应用与操作系统之间的一层数据管理软件,是一个大型复杂的软件系统</li>
+</ul>
+<blockquote>
+<p>用途: 能科学地组织和存储数据,高效的获取和维护数据<br>功能: </p>
+<ol>
+<li>数据定义功能:提供数据定义语言,定义数据库中的数据对象</li>
+<li>数据组织存储和管理功能</li>
+<li>数据操纵功能:提供数据操纵语言,实现对数据库增删改查</li>
+<li>数据库的事务和并发管理和运行管理功能:保证数据安全完整,故障恢复</li>
+<li>数据库建立和维护功能:提供实用程序和工具</li>
+<li>其它功能:通信,数据转换等</li>
+</ol>
+</blockquote>
+<ul>
+<li>数据库系统(DBS): 在计算机系统中引入数据库后的系统构成, 也可简称为数据库</li>
+</ul>
+<blockquote>
+<p>数据库系统构成: 数据库, 数据库管理系统(及其应用开发工具), 应用程序, 数据库管理员(DBA)</p>
+</blockquote>
+<h3 id="数据库管理技术"><a href="#数据库管理技术" class="headerlink" title="数据库管理技术"></a>数据库管理技术</h3><p>数据管理: 对数据进行分类,组织,编码,存储,检索和维护<br>数据管理是数据处理和数据分析的中心问题</p>
+<p>发展: 人工管理-&gt;文件系统管理-&gt;数据库系统管理<br><img src="/2020/05/24/data-base0/diff0.png" alt="diff"></p>
+<blockquote>
+<ul>
+<li>人工管理阶段, 应用程序和数据集是一一对应的</li>
+<li>文件系统阶段, 存取方法是共享的, 但应用程序和数据集是一一对应的</li>
+<li>数据库系统阶段, 多个应用程序通过同一个数据库管理系统对同一个数据库进行操作</li>
+</ul>
+</blockquote>
+<h3 id="数据库系统的特点"><a href="#数据库系统的特点" class="headerlink" title="数据库系统的特点"></a>数据库系统的特点</h3><ul>
+<li>数据结构化</li>
+<li>数据的共享性高,冗余度低且易扩充</li>
+<li>数据独立性高:有物理独立性和逻辑独立性</li>
+<li>数据由数据库管理系统统一管理和控制</li>
+</ul>
+<h2 id="1-2-数据模型"><a href="#1-2-数据模型" class="headerlink" title="1.2  数据模型"></a>1.2  数据模型</h2><p>数据模型是对现实世界数据特征的抽象,是对现实世界的模拟</p>
+<p>数据模型应满足三方面要求</p>
+<blockquote>
+<ul>
+<li>能比较真实地模拟现实世界</li>
+<li>容易为人所理解</li>
+<li>便于在计算机上实现  </li>
+</ul>
+</blockquote>
+<p>数据模型是数据库系统的核心和基础 </p>
+<h3 id="两类数据模型"><a href="#两类数据模型" class="headerlink" title="两类数据模型"></a>两类数据模型</h3><p>数据模型分为两类(两个不同层次):  </p>
+<ul>
+<li>概念模型，也称信息模型 : 它是按用户的观点来对数据和信息建模，用于数据库设计  </li>
+<li>逻辑模型和物理模型 <blockquote>
+<ul>
+<li>逻辑模型主要包括网状模型、层次模型、关系模型、面向对象数据模型、对象关系数据模型、半结构化数据模型等</li>
+<li>逻辑模型是按计算机系统的观点对数据建模，用于DBMS实现</li>
+<li>物理模型是对数据最底层的抽象, 是描述数据在系统内（磁盘上）的表示方式和存取方法</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>现实世界中客观对象的抽象过程:<br><img src="/2020/05/24/data-base0/proc0.png" alt="proc"></p>
+<h3 id="概念模型"><a href="#概念模型" class="headerlink" title="概念模型"></a>概念模型</h3><ul>
+<li>概念模型用于信息世界的建模 </li>
+<li>是现实世界到机器世界的一个中间层次</li>
+<li>是数据库设计的有力工具</li>
+<li>数据库设计人员和用户之间进行交流的语言 </li>
+</ul>
+<p>概念模型的特点:  </p>
+<blockquote>
+<ul>
+<li>较强的语义表达能力</li>
+<li>简单、清晰、易于用户理解 </li>
+</ul>
+</blockquote>
+<p>信息世界中的基本概念: </p>
+<blockquote>
+<ul>
+<li>实体（Entity）: 客观存在并可相互区别的事物称为实体。可以是具体的人、事、物或抽象的概念。</li>
+<li>属性（Attribute）: 实体所具有的某一特性称为属性。一个实体可以由若干个属性来刻画。</li>
+<li>码（Key）: 唯一标识实体的属性集称为码。</li>
+<li>实体型（Entity Type）: 用实体名及其属性名集合来抽象和刻画同类实体称为实体型(对象)</li>
+<li>实体集（Entity Set）: 同一类型实体的集合称为实体集 </li>
+<li>联系（Relationship）: 现实世界中事物内部以及事物之间的联系在信息世界中反映为实体（型）内部的联系和实体（型）之间的联系。<ul>
+<li>实体内部的联系: 是指组成实体的各属性之间的联系 </li>
+<li>实体之间的联系: 通常是指不同实体集之间的联系, 实体之间的联系有一对一（1:1）、一对多（1:n）和多对多（m:n）等多种类型 </li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>实体-联系方法（Entity-Relationship Approach）是概念模型的一种表示方法:</p>
+<blockquote>
+<ul>
+<li>用E-R图来描述现实世界的概念模型 </li>
+<li>E-R方法也称为E-R模型<br><img src="/2020/05/24/data-base0/rela0.png" alt="relation">  </li>
+</ul>
+</blockquote>
+<p>(具体方法在数据库设计中会讲到)</p>
+<h3 id="数据模型的组成要素"><a href="#数据模型的组成要素" class="headerlink" title="数据模型的组成要素"></a>数据模型的组成要素</h3><p>数据模型是严格定义的一组概念的集合</p>
+<ul>
+<li>它精确地描述了系统的静态特性、动态特性和完整性约束条件 (Integrity Constraints)。</li>
+</ul>
+<p>数据模型由三部分组成</p>
+<blockquote>
+<ul>
+<li>数据结构–描述系统的静态特性 </li>
+<li>数据操作–描述系统的动态特性 </li>
+<li>完整性约束条件</li>
+</ul>
+</blockquote>
+<h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><ul>
+<li><p>数据结构是刻画数据模型性质的重要方面  </p>
+<blockquote>
+<ul>
+<li>一般用数据结构的类型来命名数据模型,如: 层次结构-层次模型、网状结构–网状模型、关系结构—关系模型 </li>
+</ul>
+</blockquote>
+</li>
+<li><p>数据结构是用来描述数据库的组成对象–对象的类型、内容、性质</p>
+</li>
+<li><p>数据结构可以用来描述对象之间的联系 </p>
+</li>
+</ul>
+<h4 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h4><p>数据操作是对数据库中各种对象的实例允许执行的操作的集合，包括操作的类型及有关的操作规则</p>
+<p>操作的类型: 增删改查</p>
+<p>数据操作语言: </p>
+<blockquote>
+<ul>
+<li>数据操作语言需要定义数据操作的确切含义、符号、优先级别</li>
+<li>数据操作语言需要实现查询语言(Query Language)和更新语言(Insert、Delete、Update) </li>
+</ul>
+</blockquote>
+<h4 id="数据完整性约束条件"><a href="#数据完整性约束条件" class="headerlink" title="数据完整性约束条件"></a>数据完整性约束条件</h4><p>数据完整性约束条件是一组完整性规则的集合</p>
+<blockquote>
+<ul>
+<li>完整性规则：给定的数据模型中数据及其联系所具有的制约和依存规则</li>
+<li>完整性规则可以限定符合数据模型的数据库状态以及状态的变化，以保证数 据的正确、有效和相容。</li>
+</ul>
+</blockquote>
+<p>数据模型对完整性约束条件的定义:</p>
+<blockquote>
+<ul>
+<li>反映和规定必须遵守的基本的通用的完整性约束条件</li>
+<li>提供定义完整性约束条件的机制，以反映具体应用所涉及的数据必须遵守的特定的语义约束条件。</li>
+</ul>
+</blockquote>
+<h3 id="常用的数据模型"><a href="#常用的数据模型" class="headerlink" title="常用的数据模型"></a>常用的数据模型</h3><ul>
+<li>格式化模型: 层次模型,网状模型 </li>
+<li>关系模型</li>
+<li>对象模型: 面向对象数据模型,对象关系数据模型</li>
+<li>半结构化数据模型:XML,HTML</li>
+<li>非结构化数据模型,图模型,…</li>
+</ul>
+<h4 id="层次模型"><a href="#层次模型" class="headerlink" title="层次模型"></a>层次模型</h4><p>层次模型用树形结构来表示各类实体以及实体间的联系</p>
+<p>表示方法：</p>
+<blockquote>
+<ul>
+<li>实体型：用纪录类描述，每个节点表示一个记录类型</li>
+<li>属性：用字段描述，每个记录类型可包含若干个字段</li>
+<li>联系：用结点之间的连线表示记录类型（实体）之间的一对多的父子联系</li>
+</ul>
+</blockquote>
+<p>特点:</p>
+<blockquote>
+<ul>
+<li>结点的双亲是唯一的</li>
+<li>只能直接处理一对多的实体联系</li>
+<li>任何记录值只有按其路径查看</li>
+<li>没有一个子女记录值能够脱离双亲记录值而独立存在 </li>
+</ul>
+</blockquote>
+<p>优缺点:</p>
+<blockquote>
+<ul>
+<li>(优点)层次模型的数据结构比较简单清晰</li>
+<li>查询效率高，性能优于关系模型，不低于网状模型</li>
+<li>层次数据模型提供了良好的完整性支持</li>
+<li>(缺点)结点之间的多对多联系表示不自然</li>
+<li>对插入和删除操作的限制多，应用程序的编写比较复杂</li>
+<li>查询子女结点必须通过双亲结点</li>
+<li>层次数据库的命令（语言）趋于程序化  </li>
+</ul>
+</blockquote>
+<h4 id="网状模型"><a href="#网状模型" class="headerlink" title="网状模型"></a>网状模型</h4><p>网状数据库系统采用网状结构来表示各类实体以及实体间的联系(有向图)</p>
+<p>网状模型表示方法和层次模型相同</p>
+<p>特点:</p>
+<blockquote>
+<ul>
+<li>允许多个结点没有双亲结点</li>
+<li>允许一个结点有多个双亲结点</li>
+<li>允许两个结点之间有多种联系</li>
+<li>要为每个联系命名并指出与该联系有关的双亲记录和子女记录 </li>
+</ul>
+</blockquote>
+<p>优缺点:</p>
+<blockquote>
+<ul>
+<li>(优点)能够更为直接地描述现实世界，如一个结点可以有多个双亲</li>
+<li>具有良好的性能，存取效率较高</li>
+<li>(缺点)结构比较复杂，而且随着应用环境的扩大，数据库的结构就变得越来越复杂，不利于最终用户掌握</li>
+<li>DDL、DML语言复杂，用户不容易使用</li>
+<li>记录之间联系是通过存取路径实现的，应用程序必须选择存取路径，加重了程序员的负担</li>
+</ul>
+</blockquote>
+<h4 id="关系模型"><a href="#关系模型" class="headerlink" title="关系模型"></a>关系模型</h4><p>在用户观点下，关系模型中数据的逻辑结构是一张二维表,如下<br><img src="/2020/05/24/data-base0/table0.png" alt="relation">  </p>
+<p>其中:</p>
+<blockquote>
+<ul>
+<li>关系: 一个关系对应通常来说的一张表</li>
+<li>元组: 表中的一行即为一个元组</li>
+<li>属性: 表中的一列即为一个属性, 每一个属性都会有一个属性名</li>
+<li>主码(key): 也称码键, 是可以唯一确定一个元组的属性组</li>
+<li>域(domain): 是一组具有相同数据类型的值的集合, 是属性的取值范围</li>
+<li>分量: 元组中的一个属性值</li>
+<li>关系模式: 对关系的描述</li>
+</ul>
+</blockquote>
+<p>注意: 关系模型中的关系必须是规范化的, 关系中的每一个分量必须是不可分的数据项, 即不允许表中套表(这个表应该是个纯粹的二维数组)</p>
+<p>优点:</p>
+<blockquote>
+<ul>
+<li>建立在严格的数学概念的基础上</li>
+<li>概念单一<ul>
+<li>实体和各类联系都用关系来表示 </li>
+<li>对数据的检索结果也是关系 </li>
+</ul>
+</li>
+<li>关系模型的存取路径对用户透明(用户感受不到路径)<ul>
+<li>具有更高的数据独立性，更好的安全保密性 </li>
+<li>简化了程序员的工作和数据库开发建立的工作 </li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>缺点:</p>
+<blockquote>
+<ul>
+<li>存取路径对用户透明，查询效率往往不如格式化数据模型</li>
+<li>为提高性能，必须对用户的查询请求进行优化，增加了开发数据库管理系统的难度</li>
+</ul>
+</blockquote>
+<h2 id="1-3-数据库系统的结构"><a href="#1-3-数据库系统的结构" class="headerlink" title="1.3 数据库系统的结构"></a>1.3 数据库系统的结构</h2><p>从数据库应用开发人员角度看：</p>
+<blockquote>
+<ul>
+<li>数据库系统采用三级模式结构，是数据库系统内部的系统结构</li>
+</ul>
+</blockquote>
+<p>从数据库最终用户角度看，数据库系统的结构有：</p>
+<blockquote>
+<ul>
+<li>单用户结构</li>
+<li>主从式结构</li>
+<li>分布式结构</li>
+<li>客户-服务器</li>
+<li>浏览器-应用服务器／数据库服务器等</li>
+</ul>
+</blockquote>
+<h3 id="关于模式的一些概念"><a href="#关于模式的一些概念" class="headerlink" title="关于模式的一些概念"></a>关于模式的一些概念</h3><p>模式:</p>
+<blockquote>
+<ul>
+<li>是对数据库逻辑结构和特征的描述</li>
+<li>是型的描述,不涉及具体值</li>
+<li>模式是相对稳定的</li>
+</ul>
+</blockquote>
+<p>实例</p>
+<blockquote>
+<ul>
+<li>数据库某一时刻的状态: 模式的一个具体值</li>
+<li>同一个模式可以有很多实例</li>
+<li>实例随数据库中的数据的更新而变动</li>
+</ul>
+</blockquote>
+<h3 id="三级模式结构"><a href="#三级模式结构" class="headerlink" title="三级模式结构"></a>三级模式结构</h3><p><img src="/2020/05/24/data-base0/pattern0.png" alt="pattern"></p>
+<h4 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h4><p>模式(逻辑模式)</p>
+<blockquote>
+<ul>
+<li>是数据库中全体数据的逻辑结构和特征描述 </li>
+<li>是所有用户的公共数据视图<br>一般,某个应用的数据库有一个模式  </li>
+</ul>
+</blockquote>
+<p>模式是数据库系统模式结构的中心:</p>
+<blockquote>
+<ul>
+<li>与数据的物理存储细节和硬件环境无关</li>
+<li>与具体的应用程序、开发工具及高级程序设计语言无关 </li>
+</ul>
+</blockquote>
+<p>定义模式</p>
+<blockquote>
+<ul>
+<li>DDL定义数据的逻辑结构，以某种数据模型为基础</li>
+<li>数据记录由哪些数据项构成，数据项的名字、类型、取值范围等</li>
+<li>定义数据之间的联系</li>
+<li>定义与数据有关的安全性、完整性要求</li>
+</ul>
+</blockquote>
+<h4 id="外模式"><a href="#外模式" class="headerlink" title="外模式"></a>外模式</h4><p>外模式（也称子模式或用户模式）</p>
+<blockquote>
+<ul>
+<li>数据库用户使用的局部数据的逻辑结构和特征的描述</li>
+<li>数据库用户的数据视图，是与某一应用有关的数据的逻辑表示 </li>
+</ul>
+</blockquote>
+<p>外模式与模式的关系</p>
+<blockquote>
+<ul>
+<li>外模式通常是模式的子集、一个模式可以有多个外模式</li>
+<li>反映了不同的用户的应用需求、看待数据的方式、对数据保密的要求</li>
+<li>对模式中某一数据，在不同的外模式中 结构、类型、长度、保密级别等都可以不同 </li>
+</ul>
+</blockquote>
+<p>外模式与应用的关系</p>
+<blockquote>
+<ul>
+<li>一个外模式可以为 多个应用系统所使用，一个应用程序只能使用一个外模式 </li>
+</ul>
+</blockquote>
+<p>外模式的用途</p>
+<blockquote>
+<ul>
+<li>每个用户只能看见和访问所对应的外模式中的数据，简化用户视图</li>
+<li>保证数据库安全性的一个有力措施</li>
+</ul>
+</blockquote>
+<h4 id="内模式"><a href="#内模式" class="headerlink" title="内模式"></a>内模式</h4><p>内模式（也称存储模式）</p>
+<blockquote>
+<ul>
+<li>是数据物理结构和存储方式的描述</li>
+<li>是数据在数据库内部的表示方式<ul>
+<li>记录的存储方式 （例如，顺序存储，堆存储，Cluste按hash方法存储等）</li>
+<li>索引的组织方式（B+树，Bitmap，Hash）</li>
+<li>数据是否压缩存储</li>
+<li>数据是否加密</li>
+<li>数据存储记录结构的规定—如定长/变长，记录是否可以跨页存放等 </li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>一个数据库只有一个内模式</li>
+</ul>
+<h3 id="二级映像"><a href="#二级映像" class="headerlink" title="二级映像"></a>二级映像</h3><p>三级模式实际上是对数据的三个抽象级别</p>
+<p>数据库管理系统内部提供了二级映像</p>
+<blockquote>
+<ul>
+<li>外模式/模式映像</li>
+<li>模式/内模式映像</li>
+</ul>
+</blockquote>
+<h4 id="外模式-模式映像"><a href="#外模式-模式映像" class="headerlink" title="外模式/模式映像"></a>外模式/模式映像</h4><p>对每一个外模式,有一个外模式/模式映像</p>
+<blockquote>
+<ul>
+<li>它定义了外模式与模式之间的对应关系</li>
+<li>映像定义通常包含在各外模式的描述中</li>
+</ul>
+</blockquote>
+<p>这种映像可以保证数据(和程序)的逻辑独立性</p>
+<blockquote>
+<ul>
+<li>当模式改变时，数据库管理员对外模式／模式映像作相应改变，使外模式保持不变</li>
+<li>应用程序是依据数据的外模式编写的，应用程序不必修改，保证了数据 与程序的逻辑独立性，简称数据的逻辑独立性 </li>
+</ul>
+</blockquote>
+<h4 id="模式-内模式映像"><a href="#模式-内模式映像" class="headerlink" title="模式/内模式映像"></a>模式/内模式映像</h4><p>模式/内模式映像定义了全局数据逻辑结构与存储结构之间的对应关系(如，说明某个逻辑记录对应何种存储结构)</p>
+<p>数据库中模式/内模式映像是唯一的,该映像定义通常包含在模式的描述中</p>
+<p>这种映像能保证数据的物理独立性</p>
+<blockquote>
+<ul>
+<li>当数据库的存储结构改变了（例如选用了另一种存储结构），数据库管理员 修改模式／内模式映象，使模式保持不变。</li>
+<li>模式不变，则应用程序不变。保证了数据与程序的物理独立性，简称数据的 物理独立性。</li>
+</ul>
+</blockquote>
+<h4 id="二级映像的功能与数据独立性"><a href="#二级映像的功能与数据独立性" class="headerlink" title="二级映像的功能与数据独立性"></a>二级映像的功能与数据独立性</h4><ul>
+<li><p>保证了应用程序的稳定性</p>
+<blockquote>
+<ul>
+<li>除非应用需求本身发生变化，否则应用程序一般不需要修改。</li>
+</ul>
+</blockquote>
+</li>
+<li><p>从程序为中心——发展为 以数据为中心</p>
+<blockquote>
+<ul>
+<li>具有了数据与程序之间的独立性，使得数据的定义和描述可以从应用 程序中分离出去</li>
+</ul>
+</blockquote>
+</li>
+<li><p>数据的存取由数据库管理系统管理</p>
+<blockquote>
+<ul>
+<li>简化了应用程序的编制</li>
+<li>大大减少了应用程序的维护和修改  </li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="1-4-数据库系统的组成"><a href="#1-4-数据库系统的组成" class="headerlink" title="1.4 数据库系统的组成"></a>1.4 数据库系统的组成</h2><ul>
+<li>数据库</li>
+<li>数据库管理系统（及其开发工具）</li>
+<li>应用程序</li>
+<li>数据库管理员 </li>
+</ul>
+<h3 id="硬件平台及数据库"><a href="#硬件平台及数据库" class="headerlink" title="硬件平台及数据库"></a>硬件平台及数据库</h3><p>数据库对硬件资源的要求:</p>
+<blockquote>
+<ul>
+<li>足够大的内存</li>
+<li>足够大的磁盘(阵列)等外部设备</li>
+<li>较高的通讯能力</li>
+</ul>
+</blockquote>
+<h3 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h3><ul>
+<li>数据库管理系统</li>
+<li>支持数据库管理系统运行的操作系统</li>
+<li>与数据库接口的高级语言及其编译系统</li>
+<li>以数据库管理系统为核心的应用开发工具</li>
+<li>为特定应用环境开发的数据库应用系统</li>
+</ul>
+<h3 id="人员"><a href="#人员" class="headerlink" title="人员"></a>人员</h3><p>不同的人员涉及不同的数据抽象级别，具有不同的数据视图:</p>
+<blockquote>
+<ul>
+<li>用户:应用程序客户端</li>
+<li>应用程序员:外模式</li>
+<li>数据库管理员,系统分析员:数据库,内模式,模式,外模式</li>
+</ul>
+</blockquote>
+<h1 id="二、关系数据库"><a href="#二、关系数据库" class="headerlink" title="二、关系数据库"></a>二、关系数据库</h1><h2 id="2-1-关系模型"><a href="#2-1-关系模型" class="headerlink" title="2.1 关系模型"></a>2.1 关系模型</h2><h3 id="关系数据结构"><a href="#关系数据结构" class="headerlink" title="关系数据结构"></a>关系数据结构</h3><p>关系数据结构是单一的数据结构-关系</p>
+<p>关系数据结构示意图如下:<br><img src="/2020/05/24/data-base0/relation0.png" alt="rela"></p>
+<h4 id="域和笛卡尔积空间"><a href="#域和笛卡尔积空间" class="headerlink" title="域和笛卡尔积空间"></a>域和笛卡尔积空间</h4><ul>
+<li><p>域:域是一组具有相同数据类型的值的集合,是属性的取值范围</p>
+</li>
+<li><p>域的笛卡尔积空间是一组域的笛卡尔积,是属性值组合的集合</p>
+</li>
+<li><p>笛卡尔积的基数是参与笛卡尔积中元素的个数</p>
+</li>
+<li><p>笛卡尔积可以表示为一张二维表,行对应集合中的每个元素,列对应每个属性的域</p>
+</li>
+</ul>
+<h4 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h4><p>关系是在笛卡尔积上的子集  </p>
+<p>关系中的元素可以用元组表示,在二维表中由一行表示</p>
+<ul>
+<li>属性: 关系中不同列称为属性,每个属性有一个名字; n目关系有n个属性</li>
+<li>码: 码是能唯一标识一个元组的属性(组)<blockquote>
+<ul>
+<li>候选码:关系中能唯一地标识一个元组的最小属性组，则称该属性组为候选码 </li>
+<li>全码:关系模式的所有属性都是这个关系模式的候选码时,这个属性组称为全码（All-key）</li>
+<li>主码:若一个关系有多个候选码，则选定其中一个为主码（Primary key）</li>
+<li>主属性:候选码的诸属性称为主属性（Prime attribute）不包含在任何侯选码中的属性称为非主属性（Non-Prime attribute）或非码属性（Non-key attribute）  </li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h4 id="关系模式"><a href="#关系模式" class="headerlink" title="关系模式"></a>关系模式</h4><p>关系模式是对关系的描述<br>关系模式主要有元组集合的结构和完整性约束条件两方面构成</p>
+<p>关系模式可以由一个五元组R(U,D,DOM,F)表示,其中:</p>
+<blockquote>
+<ul>
+<li>R:关系名</li>
+<li>U:属性名集合</li>
+<li>D:各属性的域的集合</li>
+<li>DOM:属性向域的映像集合(映射关系,指明哪个属性的域是哪个)</li>
+<li>F:属性间数据依赖的关系集合</li>
+</ul>
+</blockquote>
+<h3 id="关系完整性约束"><a href="#关系完整性约束" class="headerlink" title="关系完整性约束"></a>关系完整性约束</h3><ul>
+<li><p>实体完整性和参照完整性: 关系模型必须满足的完整性约束条件称为关系的两个不变性，应该由关系系统自动支持</p>
+</li>
+<li><p>用户定义的完整性: 应用领域需要遵循的约束条件，体现了具体领域中的语义约束 </p>
+</li>
+</ul>
+<p>关系完整性约束能够使得一些不符合条件的元组不能进入数据库</p>
+<h4 id="实体完整性"><a href="#实体完整性" class="headerlink" title="实体完整性"></a>实体完整性</h4><ul>
+<li>关系的主属性不能取空值(码不能为空)</li>
+</ul>
+<p>说明: </p>
+<blockquote>
+<ul>
+<li>实体完整性规则是针对基本关系而言的。一个基本表通常对应现实世界的一个实体集。</li>
+<li>现实世界中的实体是可区分的，即它们具有某种唯一性标识。</li>
+<li>关系模型中以主码作为唯一性标识。</li>
+<li>主码中的属性即主属性不能取空值。主属性取空值，就说明存在某个不可标识的实体，即存在不可区分的实体，这与第（2）点相矛盾，因此这个规则称为实体完整性</li>
+</ul>
+</blockquote>
+<h4 id="参照完整性"><a href="#参照完整性" class="headerlink" title="参照完整性"></a>参照完整性</h4><ul>
+<li>关系中的某些属性的取值需要参考另外一个关系中的相关数据</li>
+</ul>
+<p>在关系模型中实体及实体间的联系都是用关系来描述的,自然存在着关系与关系间的引用,而这种引用应当是有意义的 </p>
+<p>若关系R中的属性F的取值需要参考关系S中的主码K,则:</p>
+<blockquote>
+<ul>
+<li>F为R的外码/外键,此时F不能是R的码</li>
+<li>R为参照关系</li>
+<li>S为被参照关系或目标关系</li>
+<li>外码F只能为空或者是关系S中某个存在的元组的K属性(有意义)</li>
+<li>R和S可以是同一个关系</li>
+</ul>
+</blockquote>
+<h4 id="用户定义完整性"><a href="#用户定义完整性" class="headerlink" title="用户定义完整性"></a>用户定义完整性</h4><p>其他一些用户定义的完整性规则,可以是列级完整性约束也可以是表级完整性约束</p>
+<h2 id="2-2-关系代数"><a href="#2-2-关系代数" class="headerlink" title="2.2 关系代数"></a>2.2 关系代数</h2><p>关系数据库语言分类：</p>
+<blockquote>
+<ul>
+<li>关系代数语言: 用对关系的运算来表达查询要求</li>
+<li>关系演算语言：用谓词来表达查询要求</li>
+<li>具有关系代数和关系演算双重特点的语言(SQL)</li>
+</ul>
+</blockquote>
+<p>关系代数是一种抽象的查询语言，它用对关系的运算来表达查询,其以集合运算为数学基础</p>
+<blockquote>
+<ul>
+<li>关系代数运算对象是关系</li>
+<li>关系代数运算结果是关系</li>
+<li>关系代数运算符分为集合运算符和专门关系的运算符</li>
+</ul>
+</blockquote>
+<h3 id="传统集合操作"><a href="#传统集合操作" class="headerlink" title="传统集合操作"></a>传统集合操作</h3><p>一些记号的定义:</p>
+<blockquote>
+<ul>
+<li>$R(A_1,A_2,…,A_n)$表示n目的关系模式,$A_i$表示属性</li>
+<li>$R$为符合上述关系模式的一个关系</li>
+<li>$t\in R$是R中的一个元组</li>
+<li>$t[A_i]$表示元组$t$中属性$A_i$的值</li>
+<li>$A=\lbrace A_i,A_j,…,A_k \rbrace$表示属性列或属性组</li>
+<li>$t[A]$可以表示$t$在上述属性组中诸分量的集合</li>
+<li>$\overline A$表示$A$在全体属性中的补集</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>$\widehat {t_rt_s}$表示关系R和关系S中两个元组的连接</li>
+<li>$Z_x$是象集,表示R中属性组$X$上值为$x$的所有元组在属性组$Z$上分量的集合,称为$x$在$R$中的象集</li>
+</ul>
+</blockquote>
+<h4 id="关系的并"><a href="#关系的并" class="headerlink" title="关系的并"></a>关系的并</h4><p>关系的并就是集合的并,运算要求如下:</p>
+<blockquote>
+<ul>
+<li>关系R和S目数相同,相应的属性属于同一个域</li>
+<li>R并S仍为n目关系,R$\cup$S是R和S上所有元组的集合</li>
+<li>并完之后要去重</li>
+</ul>
+</blockquote>
+<h4 id="关系的差"><a href="#关系的差" class="headerlink" title="关系的差"></a>关系的差</h4><p>关系的差就是集合的差,运算要求如下:</p>
+<blockquote>
+<ul>
+<li>关系R和S目数相同,相应的属性属于同一个域</li>
+<li>R并S仍为n目关系,R-S是属于R而不属于S的所有元组的集合</li>
+</ul>
+</blockquote>
+<h4 id="关系的交"><a href="#关系的交" class="headerlink" title="关系的交"></a>关系的交</h4><p>要求同上,运算结果是在R和S中都存在的元组的集合</p>
+<h4 id="笛卡尔积"><a href="#笛卡尔积" class="headerlink" title="笛卡尔积"></a>笛卡尔积</h4><p>关系的笛卡尔积中,$R\times S = \lbrace \widehat {t_rt_s} | t_r \in R \land t_s \in S \rbrace$</p>
+<blockquote>
+<ul>
+<li>行:运算后为$n_R+n_S$目关系</li>
+<li>列:运算后有$k_R*k_S$个元组</li>
+</ul>
+</blockquote>
+<h3 id="关系特有操作"><a href="#关系特有操作" class="headerlink" title="关系特有操作"></a>关系特有操作</h3><h4 id="选择-sigma"><a href="#选择-sigma" class="headerlink" title="选择$\sigma$"></a>选择$\sigma$</h4><ul>
+<li>选择运算又称为限制</li>
+<li>是在关系R中选择符合条件的元组组成集合</li>
+<li>条件是一个取值为真或假的逻辑表达式</li>
+</ul>
+<h4 id="投影-pi"><a href="#投影-pi" class="headerlink" title="投影$\pi$"></a>投影$\pi$</h4><ul>
+<li>从关系R中选择出若干属性列组成新的关系</li>
+<li>投影后形成的新的关系目数会减少</li>
+<li>需要去重</li>
+</ul>
+<h4 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h4><p>连接是从两个关系的笛卡尔积中选择属性满足一定条件A$\theta$B的元组组成的关系</p>
+<p>此时,参与连接的两个关系有一些度数相等且可以进行比较的属性组A和B</p>
+<ul>
+<li><p>等值连接: 两个元组能连接的条件是对应属性组的值相等,即$\theta$为’=’</p>
+</li>
+<li><p>自然连接: 一种特殊的等值连接,两个进行比较的属性组必须相同,且运算结束后这些重复的属性组将会被去掉,这是一种对行和列都进行操作的运算</p>
+</li>
+<li><p>两个关系R和S在做自然连接时，被舍弃的元组称为悬浮元组</p>
+</li>
+<li><p>外连接: 将悬浮元组也保留在结果关系中,附加的属性置为空</p>
+<blockquote>
+<ul>
+<li>左外连接:只保留左边关系R中的悬浮元组,悬浮元组中多出来的S分量全置为空</li>
+<li>右外连接:只保留右边关系S中的悬浮元组,多出来的R分量全置为空</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h4 id="除运算"><a href="#除运算" class="headerlink" title="除运算"></a>除运算</h4><ul>
+<li>给定关系R (X，Y) 和S (Y，Z)，其中X，Y，Z为属性组;Y一般为R和S中都有的属性组</li>
+<li>R/S的结果是R上的一个投影P(X)的子集</li>
+<li>R/S中的元组在X上分量值x的象集Yx包含S在Y上投影的集合<blockquote>
+<ul>
+<li>如果R是选课记录,S是全体课程,R/S就表示选了所有课程的学生</li>
+</ul>
+</blockquote>
+</li>
+<li>属性组Z没有参与到R/S的运算中</li>
+</ul>
+<h2 id="2-3-关系演算"><a href="#2-3-关系演算" class="headerlink" title="2.3 关系演算"></a>2.3 关系演算</h2><p>关系演算是以谓词演算为数学基础</p>
+<p>按谓词变元不同,可分为元组关系演算(ALPHA语言)和域关系演算(QBE语言)</p>
+<h3 id="元组关系演算ALPHA"><a href="#元组关系演算ALPHA" class="headerlink" title="元组关系演算ALPHA"></a>元组关系演算ALPHA</h3><h4 id="基本格式"><a href="#基本格式" class="headerlink" title="基本格式"></a>基本格式</h4><p><code>GET [(定额)] &lt;工作空间&gt; (&lt;操作对象&gt;) [:条件] [DOWN|UP 排序方式]</code></p>
+<blockquote>
+<ul>
+<li>以相应排序方式返回符合条件的操作对象</li>
+<li>如果有定额则只返回前n个结果</li>
+</ul>
+</blockquote>
+<h4 id="用元组变量进行检索"><a href="#用元组变量进行检索" class="headerlink" title="用元组变量进行检索"></a>用元组变量进行检索</h4><p>元组变量是可以在某一关系上任意取值的变量</p>
+<blockquote>
+<ul>
+<li>可以用元组变量来代替较长的关系名</li>
+<li>如果条件中使用量词,其后只能接元组变量</li>
+</ul>
+</blockquote>
+<p>元组关系演算是以元组变量作为谓词变元的基本对象的关系演算</p>
+<p>定义方式:<code>RANGE &lt;关系名&gt; &lt;变量名&gt;</code></p>
+<h4 id="用存在量词的检索"><a href="#用存在量词的检索" class="headerlink" title="用存在量词的检索"></a>用存在量词的检索</h4><ul>
+<li>使用量词时先得定义在关系上的元组变量</li>
+</ul>
+<p>条件语句格式: $\exists$ &lt;元组变量&gt; (&lt;关于元组变量和目标元组的表达式&gt;)</p>
+<p>对于需要判断的目标元组,只要存在一个元组变量的取值使得后面的表达式成立,这个目标元组就能够被选择</p>
+<h4 id="用全称量词检索"><a href="#用全称量词检索" class="headerlink" title="用全称量词检索"></a>用全称量词检索</h4><ul>
+<li>使用量词时先得定义在关系上的元组变量</li>
+</ul>
+<p>条件语句格式: $\forall$ &lt;元组变量&gt; (&lt;关于元组变量和目标元组的表达式&gt;)</p>
+<p>对于需要判断的目标元组,无论元组变量取什么值后面的表达式都成立,则这个目标元组能够被选择</p>
+<h4 id="用蕴含的检索"><a href="#用蕴含的检索" class="headerlink" title="用蕴含的检索"></a>用蕴含的检索</h4><p>在上述表达式中,可以使用蕴含条件</p>
+<p>表达式格式:A$\to$B</p>
+<p>当A成立时B一定成立,表达式为真</p>
+<h4 id="聚集函数"><a href="#聚集函数" class="headerlink" title="聚集函数"></a>聚集函数</h4><p>常用聚集函数(内部函数):</p>
+<blockquote>
+<ul>
+<li>COUNT: 对元组计数(计数时会自动排除重复值)</li>
+<li>TOTAL: 求值的总和</li>
+<li>MAX: 求最大值</li>
+<li>MIN: 求最小值</li>
+<li>AVG: 求平均值</li>
+</ul>
+</blockquote>
+<h3 id="域关系演算QBE"><a href="#域关系演算QBE" class="headerlink" title="域关系演算QBE"></a>域关系演算QBE</h3><p>域关系演算是以元组变量的分量即域变量作为谓词变元的基本对象的关系演算</p>
+<h1 id="三、关系数据库标准语言SQL"><a href="#三、关系数据库标准语言SQL" class="headerlink" title="三、关系数据库标准语言SQL"></a>三、关系数据库标准语言SQL</h1><p>SQL: 结构化查询语言,Structured Query Language</p>
+<p>目前,没有一个数据库系统能够支持SQL标准的所有概念和特性</p>
+<h2 id="3-1-SQL概述"><a href="#3-1-SQL概述" class="headerlink" title="3.1 SQL概述"></a>3.1 SQL概述</h2><p>SQL（Structured Query Language）结构化查询语言是关系数据库的标准语言</p>
+<h3 id="SQL特点"><a href="#SQL特点" class="headerlink" title="SQL特点"></a>SQL特点</h3><p>综合统一: </p>
+<blockquote>
+<ul>
+<li>集数据定义语言（DDL），数据操纵语言（DML），数据控制语言（DCL）功能于一体。 </li>
+<li>可以独立完成数据库生命周期中的全部活动  </li>
+</ul>
+</blockquote>
+<p>高度非过程化:</p>
+<blockquote>
+<ul>
+<li>非关系数据模型的数据操纵语言“面向过程”，必须指定存取路径。</li>
+<li>SQL只要提出“做什么”，无须了解存取路径。</li>
+<li>存取路径的选择以及SQL的操作过程由系统自动完成。</li>
+</ul>
+</blockquote>
+<p>面向集合的操作方式: </p>
+<blockquote>
+<ul>
+<li>非关系数据模型采用面向记录的操作方式，操作对象是一条记录</li>
+<li>SQL采用集合操作方式</li>
+<li>操作对象、查找结果可以是元组的集合</li>
+<li>一次插入、删除、更新操作的对象可以是元组的集合</li>
+</ul>
+</blockquote>
+<p>以同一种语法结构提供多种使用方式: </p>
+<blockquote>
+<ul>
+<li>SQL是独立的语言,能够独立地用于联机交互的使用方式</li>
+<li>SQL能够嵌入到高级语言（例如C，C++，Java）程序中，供程序员设计程序时使用</li>
+</ul>
+</blockquote>
+<p>语言简洁，易学易用: </p>
+<blockquote>
+<ul>
+<li>SQL功能极强，完成核心功能只用了9个动词。</li>
+<li>数据定义:CREATE,DROP,ALTER</li>
+<li>数据操纵:INSERT,UPDATE,DELETE</li>
+<li>数据查询:SELECT</li>
+<li>权限控制:GRANT,REVOKE</li>
+</ul>
+</blockquote>
+<h3 id="SQL基本概念"><a href="#SQL基本概念" class="headerlink" title="SQL基本概念"></a>SQL基本概念</h3><p>数据库三级模式在SQL数据库中的体现:<br><img src="/2020/05/24/data-base0/sql0.png" alt="sql"></p>
+<ul>
+<li><p>基本表(模式)</p>
+<blockquote>
+<ul>
+<li>本身独立存在的表</li>
+<li>SQL中一个关系就对应一个基本表</li>
+<li>一个（或多个）基本表对应一个存储文件</li>
+<li>一个表可以带若干索引</li>
+</ul>
+</blockquote>
+</li>
+<li><p>存储文件(内模式)</p>
+<blockquote>
+<ul>
+<li>存储文件以逻辑结构的方式组成了关系数据库的内模式</li>
+<li>而物理存储结构对用户是隐蔽的(透明)</li>
+</ul>
+</blockquote>
+</li>
+<li><p>视图(外模式)</p>
+<blockquote>
+<ul>
+<li>视图是由一个或几个基本表导出的表,是一个虚表</li>
+<li>视图不存储数据,数据库中只存放视图的定义</li>
+<li>视图上可以再定义视图</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-2-数据定义"><a href="#3-2-数据定义" class="headerlink" title="3.2 数据定义"></a>3.2 数据定义</h2><p>数据定义是定义各种数据库的对象</p>
+<blockquote>
+<p>数据定义包括模式(SCHEMA)定义,表(TABLE)定义,视图(VIEW)定义,索引(INDEX)定义  </p>
+<ul>
+<li>这里的模式通常指基本表的结构</li>
+<li>一个数据库中可以建立多个模式</li>
+<li>一个模式下可以建立多个表,视图,索引等数据库对象</li>
+</ul>
+</blockquote>
+<p>上述对象的定义存储在数据库系统的数据字典中</p>
+<ul>
+<li>数据字典: 数据字典是关系数据库管理系统内部的一组系统表，它记录了数据库中所有对象的定义等一些信息<blockquote>
+<ul>
+<li>除了模式,表,视图,索引的定义(包括完整性约束)外, 数据字典还会存储各类用户对数据库的操作权限和统计信息等</li>
+<li>关系数据库管理系统在执行SQL的数据定义语句时，实际上就是在更新数据字典表中的相应信息</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h3><p>为某人创建某名的模式</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">SCHEMA</span> &lt;模式名&gt; AUTHORIZATION &lt;用户名&gt;</span><br><span class="line">[&lt;表定义子句&gt;|&lt;视图定义子句&gt;|&lt;权限定义子句&gt;];</span><br></pre></td></tr></table></figure>
 <ul>
 <li>若没有指定模式名,则模式名隐含为用户名</li>
@@ -1514,56 +2897,7 @@
 </ul>
 <h4 id="修改索引"><a href="#修改索引" class="headerlink" title="修改索引"></a>修改索引</h4><p><code>ALTER INDEX &lt;旧索引名&gt; RENAME TO &lt;新索 引名&gt;;</code></p>
 <h4 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h4><p><code>DROP INDEX &lt;索引名&gt;;</code><br>删除索引时，系统会从数据字典中删去有关该索引的描述</p>
-<h2 id="3-数据完整性约束"><a href="#3-数据完整性约束" class="headerlink" title="3. 数据完整性约束"></a>3. 数据完整性约束</h2><p>数据库的完整性包括以下两个方面:</p>
-<ul>
-<li>数据的正确性(实体完整性等)</li>
-<li>数据的相容性(参照完整性)</li>
-</ul>
-<p>在2.中定义和修改表时需要用到数据库完整性约束</p>
-<h3 id="实体完整性"><a href="#实体完整性" class="headerlink" title="实体完整性"></a>实体完整性</h3><h4 id="实体完整性定义"><a href="#实体完整性定义" class="headerlink" title="实体完整性定义"></a>实体完整性定义</h4><p>关系模型的实体完整性用主码PRIMARY KEY描述</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;列名&gt; ... PRIMARY KEY /* 列级完整性约束 */</span><br><span class="line">PRIMARY KEY(&lt;列名&gt;[,&lt;列名&gt;,...]) /* 表级完整性约束 */</span><br></pre></td></tr></table></figure>
-<ul>
-<li>列级完整性约束可以定义单属性构成的码</li>
-<li>表级完整性约束可以定义单个或多个属性构成的码</li>
-</ul>
-<p>违约处理:拒绝插入或更新</p>
-<h3 id="参照完整性"><a href="#参照完整性" class="headerlink" title="参照完整性"></a>参照完整性</h3><h4 id="参照完整性定义"><a href="#参照完整性定义" class="headerlink" title="参照完整性定义"></a>参照完整性定义</h4><ul>
-<li>定义表中的外码,以及被参照关系的主码<figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 列级完整性约束 */</span></span><br><span class="line">&lt;外码列名&gt; ... FOREIGN KEY REFERENCES DEPT(&lt;被参考关系主码&gt;) [ON DELETE|UPDATE CASCADE|NO ACTION|SET-NULL]</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 表级完整性约束 */</span></span><br><span class="line">FOREIGN KEY(&lt;外码列名&gt;) REFERENCES DEPT(&lt;被参考关系主码&gt;) [ON DELETE|UPDATE CASCADE|NO ACTION|SET-NULL]</span><br></pre></td></tr></table></figure></li>
-<li>对于参照表的元组插入或外码值修改,违约即拒绝执行</li>
-<li>对于被参照表的元组删除或主码值修改,有三种违约处理方式:<blockquote>
-<ul>
-<li>拒绝执行:不执行语句</li>
-<li>级联操作:将参照表中有关联的元组删除或进行外码修改</li>
-<li>设置空值:将参照表中有关联的元组外码置为空值,这可能会导致参照表中的元组违反实体完整性约束</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<h3 id="用户定义完整性约束"><a href="#用户定义完整性约束" class="headerlink" title="用户定义完整性约束"></a>用户定义完整性约束</h3><h4 id="用户完整性约束定义"><a href="#用户完整性约束定义" class="headerlink" title="用户完整性约束定义"></a>用户完整性约束定义</h4><p>列级完整性约束定义(属性约束条件)</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;列名&gt; ... [UNIQUE] [NOT NULL] [CHECK(expr)]</span><br></pre></td></tr></table></figure>
-<ul>
-<li>NOT NULL:列值非空</li>
-<li>UNIQUE:列值唯一(相当于主码)</li>
-<li>CHECK(expr):列值满足某表达式</li>
-</ul>
-<p>表级完整性约束定义(元组约束条件):用于设置不同属性之间的取值的相互约束条件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CHECK(expr)</span><br></pre></td></tr></table></figure>
-
-<p>违约处理:拒绝执行</p>
-<h3 id="完整性约束命名字句"><a href="#完整性约束命名字句" class="headerlink" title="完整性约束命名字句"></a>完整性约束命名字句</h3><h4 id="完整性约束命名子句定义"><a href="#完整性约束命名子句定义" class="headerlink" title="完整性约束命名子句定义"></a>完整性约束命名子句定义</h4><figure class="highlight"><table><tr><td class="code"><pre><span class="line">CONSTANT &lt;完整性约束条件名&gt; &lt;完整性约束条件&gt;</span><br></pre></td></tr></table></figure>
-<p>该子句可以作为列级完整性约束或表级完整性约束使用</p>
-<h4 id="完整性约束子句的删除和添加"><a href="#完整性约束子句的删除和添加" class="headerlink" title="完整性约束子句的删除和添加"></a>完整性约束子句的删除和添加</h4><p>用ALTER TABLE对约束条件进行删除和添加</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 删除 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;表名&gt;</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">CONSTANT</span> &lt;完整性约束条件名&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 添加 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;表名&gt;</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTANT</span> &lt;完整性约束条件名&gt; &lt;完整性约束条件&gt;;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>实现完整性约束子句的修改时,需要先删除约束,再添加约束,如上所示</li>
-</ul>
-<h3 id="域中的完整性限制"><a href="#域中的完整性限制" class="headerlink" title="域中的完整性限制"></a>域中的完整性限制</h3><p>对于多个具有联系的表,表中的一些属性可能具有相同的域,可以通过建立域的完整性约束来使不同表中的相同的属性域也相同</p>
-<h4 id="域完整性约束定义"><a href="#域完整性约束定义" class="headerlink" title="域完整性约束定义"></a>域完整性约束定义</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 定义完整性约束 */</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DOMAIN</span> &lt;完整性约束条件名&gt; &lt;被约束列的值类型&gt; &lt;完整性约束子句&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 修改完整性约束中的限制条件 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">DOMAIN</span> &lt;完整性约束条件名&gt; &lt;完整性约束修改子句&gt;;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>完整性约束修改子句包括完整性约束子句的删除和添加,需要指定完整性约束条件名</li>
-</ul>
-<h4 id="域完整性约束使用"><a href="#域完整性约束使用" class="headerlink" title="域完整性约束使用"></a>域完整性约束使用</h4><p>定义好域的完整性约束后,可以直接使用完整性约束条件名来作为同类型的属性的完整性约束条件</p>
-<h2 id="4-数据查询"><a href="#4-数据查询" class="headerlink" title="4. 数据查询"></a>4. 数据查询</h2><h3 id="单表查询"><a href="#单表查询" class="headerlink" title="单表查询"></a>单表查询</h3><p>语句格式:</p>
+<h2 id="3-3-数据查询"><a href="#3-3-数据查询" class="headerlink" title="3.3 数据查询"></a>3.3 数据查询</h2><h3 id="单表查询"><a href="#单表查询" class="headerlink" title="单表查询"></a>单表查询</h3><p>语句格式:</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> [<span class="keyword">ALL</span>|<span class="keyword">DISTINCT</span>] &lt;目标列表达式&gt;[,&lt;目标列表达式&gt;] …</span><br><span class="line"><span class="keyword">FROM</span> &lt;表名或视图名&gt;[,&lt;表名或视图名&gt; ]…|(<span class="keyword">SELECT</span> 语句)</span><br><span class="line">[<span class="keyword">AS</span>]&lt;别名&gt;</span><br><span class="line">[ <span class="keyword">WHERE</span> &lt;条件表达式&gt; ]</span><br><span class="line">[ <span class="keyword">GROUP</span> <span class="keyword">BY</span> &lt;列名<span class="number">1</span>&gt; [ <span class="keyword">HAVING</span> &lt;条件表达式&gt; ] ]</span><br><span class="line">[ <span class="keyword">ORDER</span> <span class="keyword">BY</span> &lt;列名<span class="number">2</span>&gt; [ <span class="keyword">ASC</span>|<span class="keyword">DESC</span> ] ]</span><br></pre></td></tr></table></figure>
 <ul>
 <li>SELECT:指定要显示的结果属性列,*表示所有列<blockquote>
@@ -1606,7 +2940,7 @@
 <li>HAVING:在分组时选择指定条件的组,可以使用聚集函数,不能用WHERE替代</li>
 <li>ORDER BY:对查询结果按指定值升序或降序排序,支持以不同优先级设置多个排序标准</li>
 </ul>
-<h3 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h3><p>SQL中的“连接”是用“连接条件”来表达的。  </p>
+<h3 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h3><p>不像关系代数中“连接”是用一个特殊符号来表达的，在SQL中“连接”是用“连接条件”来表达的。  </p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> &lt;表名&gt;.&lt;列名&gt;,...</span><br><span class="line"><span class="keyword">FROM</span> &lt;表<span class="number">1</span>&gt;,&lt;表<span class="number">2</span>&gt;,...</span><br><span class="line"><span class="keyword">WHERE</span> [&lt;表名<span class="number">1</span>&gt;.]&lt;列名<span class="number">1</span>&gt;  &lt;比较运算符&gt;  [&lt;表名<span class="number">2</span>&gt;.]&lt;列名<span class="number">2</span>&gt;</span><br><span class="line">      <span class="keyword">AND</span> &lt;其他条件&gt;;</span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -1617,14 +2951,45 @@
 </li>
 <li>FROM中也可以有多个表,进行多表连接</li>
 </ul>
-<h3 id="嵌套查询"><a href="#嵌套查询" class="headerlink" title="嵌套查询"></a>嵌套查询</h3><p>一个SELECT-FROM-WHERE语句称为一个查询块,将一个查询块嵌套在另一个查询块的WHERE子句或HAVING短语的条件中的查询称为嵌套查询</p>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>循环嵌套法:</p>
+<blockquote>
+<p>每从表1中取出一个元组,扫描一遍表2,将表2中符合条件的元组与前面的元组拼接起来,重复直到表1中的元组都处理完毕</p>
+</blockquote>
+<p>排序合并法:(常用于等值连接)</p>
+<blockquote>
+<p>按连接属性对表1和2进行排序,然后设置两个指针分别从两个表头开始从前向后扫;如果扫描的两个指针可以连接,则拼接后两个指针同时向后移,否在值较小的指针向后移动(归并算法);重复直到某个指针走到了表尾</p>
+</blockquote>
+<p>索引连接:</p>
+<blockquote>
+<p>对表2按连接字段建立索引,对于表1中的每个元组,按索引结果进行连接(循环嵌套法的一个变种)</p>
+</blockquote>
+<h3 id="嵌套查询"><a href="#嵌套查询" class="headerlink" title="嵌套查询"></a>嵌套查询</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>一个SELECT-FROM-WHERE语句称为一个查询块,将一个查询块嵌套在另一个查询块的WHERE子句或HAVING短语的条件中的查询称为嵌套查询</p>
+<ul>
+<li>上层的查询块称为外层查询或父查询</li>
+<li>下层查询块称为内层查询或子查询</li>
+<li>SQL语言允许多层嵌套查询</li>
+<li>子查询不能使用ORDER BY子句</li>
+</ul>
+<p>嵌套查询类型:</p>
+<ul>
+<li><p>不相关子查询:子查询的查询条件不依赖于父查询,如IN,ANY/ALL子查询 </p>
+<blockquote>
+<p>原理:由里向外逐层处理</p>
+</blockquote>
+</li>
+<li><p>相关子查询:子查询的查询条件依赖于父查询,如EXISTS子查询</p>
+<blockquote>
+<p>原理:依次取外层查询中表内的各元组,根据它与内层查询相关的属性值处理内层查询,若WHERE子句返回值为真,则取此元组放入结果表中</p>
+</blockquote>
+</li>
+</ul>
 <h4 id="IN子查询"><a href="#IN子查询" class="headerlink" title="IN子查询"></a>IN子查询</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> ...</span><br><span class="line"><span class="keyword">WHERE</span> &lt;列名(值)&gt; <span class="keyword">IN</span></span><br><span class="line">    (</span><br><span class="line">        <span class="keyword">SELECT</span> &lt;列名&gt;</span><br><span class="line">        ...</span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
 
 <h4 id="ANY-ALL子查询"><a href="#ANY-ALL子查询" class="headerlink" title="ANY/ALL子查询"></a>ANY/ALL子查询</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> ...</span><br><span class="line"><span class="keyword">WHERE</span> &lt;列名&gt; &lt;比较运算符&gt; <span class="keyword">ANY</span>/<span class="keyword">ALL</span></span><br><span class="line">    (</span><br><span class="line">        <span class="keyword">SELECT</span> &lt;列名&gt;</span><br><span class="line">        ...</span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
 <ul>
 <li>当确定内层子查询返回结果是单个值时,可以省略ANY/ALL</li>
 <li>ANY/ALL的对象为某个查询结果,表示其中任意一个值或者全部值<blockquote>
-<p>有时ANY/ALL谓词表达式可以用子查询中的聚集函数代替,如<code>&lt; ANY (SELECT &lt;列名&gt;)</code>可以用<code>&lt; (SELECT MIN(&lt;列名&gt;))</code>实现</p>
+<p>有时ANY/ALL谓词表达式可以用子查询中的聚集函数代替,如<code>&lt;ANY (SELECT &lt;列名&gt;)</code>可以用<code>&lt; (SELECT MIN(&lt;列名&gt;))</code>实现</p>
 </blockquote>
 </li>
 </ul>
@@ -1667,7 +3032,7 @@
 <li>INTERSECT:交</li>
 <li>EXCEPT:差<br>注意:参加集合操作的各查询结果的列数必须相同;对应项的数据类型也必须相同 </li>
 </ul>
-<h2 id="5-数据更新"><a href="#5-数据更新" class="headerlink" title="5. 数据更新"></a>5. 数据更新</h2><h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><p>可以直接插入元组或者插入子查询结果(多个元组)</p>
+<h2 id="3-4-数据更新"><a href="#3-4-数据更新" class="headerlink" title="3.4 数据更新"></a>3.4 数据更新</h2><h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><p>可以直接插入元组或者插入子查询结果(多个元组)</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> &lt;表名&gt;[属性列,...]</span><br><span class="line"><span class="keyword">VALUES</span> (属性值,);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> &lt;表名&gt;[属性列,...]</span><br><span class="line">&lt;子查询&gt;;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>没有出现的属性列赋空值  </li>
@@ -1688,7 +3053,21 @@
 <li>语句将会删除指定表中满足WHERE子句条件的元组</li>
 <li>注意,如果省略WHERE子句,则会删除表中的所有元组</li>
 </ul>
-<h2 id="6-视图"><a href="#6-视图" class="headerlink" title="6. 视图"></a>6. 视图</h2><h3 id="视图定义"><a href="#视图定义" class="headerlink" title="视图定义"></a>视图定义</h3><h4 id="创建视图"><a href="#创建视图" class="headerlink" title="创建视图"></a>创建视图</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CREATE  VIEW </span><br><span class="line">    &lt;视图名&gt;  [(&lt;列名&gt;  [,&lt;列名&gt;]…)] </span><br><span class="line">   AS &lt;子查询&gt; </span><br><span class="line">   [WITH  CHECK  OPTION];</span><br></pre></td></tr></table></figure>
+<h2 id="3-5-空值处理"><a href="#3-5-空值处理" class="headerlink" title="3.5 空值处理"></a>3.5 空值处理</h2><p>空值一般可以表示不存在(无意义)的值,未知值,不便于显示的值</p>
+<p>空值一般用NULL表示,在关系运算中,需要对它进行特殊处理</p>
+<ul>
+<li>IS [NOT] NULL用来判断值是否为空</li>
+<li>空值与其他值进行算术运算的结果为空值</li>
+<li>空值与其他值(包括另一个空值)进行比较运算的结果为UNKNOWN</li>
+<li>UNKNOWN将传统的二值（TRUE，FALSE）逻辑扩展成了三值逻辑</li>
+<li>一般情况下UNKNOWN会被当成FALSE看待</li>
+</ul>
+<h2 id="3-6-视图"><a href="#3-6-视图" class="headerlink" title="3.6 视图"></a>3.6 视图</h2><ul>
+<li>视图是一种虚拟的表,是从基本表中导出的表</li>
+<li>视图只有定义,不存放数据</li>
+<li>基本表中的数据发生变化，从视图中查询出的数据也随之改变</li>
+</ul>
+<h3 id="视图定义"><a href="#视图定义" class="headerlink" title="视图定义"></a>视图定义</h3><h4 id="创建视图"><a href="#创建视图" class="headerlink" title="创建视图"></a>创建视图</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CREATE  VIEW </span><br><span class="line">    &lt;视图名&gt;  [(&lt;列名&gt;  [,&lt;列名&gt;]…)] </span><br><span class="line">   AS &lt;子查询&gt; </span><br><span class="line">   [WITH  CHECK  OPTION];</span><br></pre></td></tr></table></figure>
 <ul>
 <li>列名缺省时由子查询中SELECT的列构成<blockquote>
 <p>一般出现以下情况,需要指定视图的列名:</p>
@@ -1737,8 +3116,75 @@
 </blockquote>
 </li>
 </ul>
-<h2 id="7-自主存取控制"><a href="#7-自主存取控制" class="headerlink" title="7. 自主存取控制"></a>7. 自主存取控制</h2><p>通过SQL的GRANT语句和REVOKE语句实现自主存取控制</p>
-<h3 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h3><h4 id="权限的授予"><a href="#权限的授予" class="headerlink" title="权限的授予"></a>权限的授予</h4><p>给某用户授予对某对象的某操作权限</p>
+<h3 id="视图作用"><a href="#视图作用" class="headerlink" title="视图作用"></a>视图作用</h3><ul>
+<li>视图能够简化用户的操作</li>
+<li>视图使用户能以多种角度看待同一数据</li>
+<li>视图对重构数据库提供了一定程度的逻辑独立性</li>
+<li>视图能够对机密数据提供安全保护</li>
+<li>适当的利用视图可以更清晰的表达查询</li>
+</ul>
+<h1 id="四、数据库安全性"><a href="#四、数据库安全性" class="headerlink" title="四、数据库安全性"></a>四、数据库安全性</h1><p>数据库的一大特点就是数据可以共享,而这必然带来安全性问题,这种数据的共享不能是无条件的共享</p>
+<ul>
+<li>数据库的安全性是指保护数据库以防止不合法使用所造成的数据泄露、更改或破坏</li>
+<li>系统的安全保护措施是否有效是数据库系统主要的性能指标之一</li>
+</ul>
+<h2 id="4-1-概述"><a href="#4-1-概述" class="headerlink" title="4.1 概述"></a>4.1 概述</h2><h3 id="数据库不安全因素"><a href="#数据库不安全因素" class="headerlink" title="数据库不安全因素"></a>数据库不安全因素</h3><p>不安全的因素和主要对策</p>
+<ul>
+<li>非授权用户对数据库的恶意存取和破坏:用户身份鉴别,存取控制和视图技术</li>
+<li>数据库中重要或敏感数据被泄露:强制存取控制,数据存储加密和传输加密</li>
+<li>安全环境的脆弱性:建立可信计算机系统的标准</li>
+</ul>
+<h3 id="安全标准简介"><a href="#安全标准简介" class="headerlink" title="安全标准简介"></a>安全标准简介</h3><ul>
+<li>TCSEC标准-&gt;CC标准</li>
+</ul>
+<p>TCSEC/TDI标准从四个方面来考虑程序的安全性: 安全策略,责任,保证和文档</p>
+<p>TCSEC/TDI安全级别划分(由低到高):  </p>
+<ul>
+<li>D 最小保护: 一切不符合更高安全等级的系统,例如DOS</li>
+<li>C1 自主安全保护: 能够实现对用户和数据的分离，进行自主存取控制（ DAC），保护或限制用户权限的传播; 现有商业系统稍作改进即可满足 </li>
+<li>C2 受控的存取保护: 提供受控的存取保护，将C1级的DAC进一步细化，以个人身份注册负责，并实施审计和资源隔离; 如Windows2000</li>
+<li>B1 标记安全保护: 对系统的数据加以标记，对标记的主体和客体实施强制存取控制（MAC）、审计等安全机制; 是安全或可信的产品</li>
+<li>B2 结构化保护: 建立形式化的安全策略模型并对系统内的所有主体和 客体实施DAC和MAC </li>
+<li>B3 安全域: 该级的TCB必须满足访问监控器的要求，审计跟踪能 力更强，并提供系统恢复过程 </li>
+<li>A1 验证设计: 验证设计，即提供B3级保护的同时给出系统的形式化 设计说明和验证以确信各安全保护真正实现。</li>
+</ul>
+<p>CC评估保证级(EAL)划分:</p>
+<ul>
+<li>EAL1:功能测试（functionally tested）</li>
+<li>EAL2:结构测试（structurally tested）,相当于C1</li>
+<li>EAL3:系统地测试和检查（methodically tested and checked）,相当于C2 </li>
+<li>EAL4:系统地设计、测试和复查（methodically designed， tested， and reviewed）,相当于B1 </li>
+<li>EAL5:半形式化设计和测试（semiformally designed and tested）,相当于B2 </li>
+<li>EAL6:半形式化验证的设计和测试（semiformally verified design and tested）,相当于B3 </li>
+<li>EAL7:形式化验证的设计和测试（formally verified design and tested）,相当于A1 </li>
+</ul>
+<h2 id="4-2-数据库安全性控制"><a href="#4-2-数据库安全性控制" class="headerlink" title="4.2 数据库安全性控制"></a>4.2 数据库安全性控制</h2><p>计算机系统中,安全措施是一级一级层层设置的:<br>用户标识和鉴别(用户)&lt;-&gt;数据库安全保护(DBMS)&lt;-&gt;操作系统安全保护(OS)&lt;-&gt;数据密码存储(DB)</p>
+<p>数据库安全控制常用方法</p>
+<ul>
+<li>用户身份鉴别</li>
+<li>存取控制</li>
+<li>视图</li>
+<li>审计</li>
+<li>数据加密</li>
+</ul>
+<p><img src="/2020/05/24/data-base0/sec0.png" alt="security"></p>
+<h3 id="用户身份鉴别"><a href="#用户身份鉴别" class="headerlink" title="用户身份鉴别"></a>用户身份鉴别</h3><p>用户身份鉴别是系统提供的最外层安全保护措施</p>
+<ul>
+<li>用户标识：由用户名和用户标识号组成（用户标识号在系统整个生命周期内唯一） </li>
+<li>身份鉴别方法:静态口令识别,动态口令识别,智能卡识别,生物特征鉴别</li>
+</ul>
+<h3 id="存取控制"><a href="#存取控制" class="headerlink" title="存取控制"></a>存取控制</h3><ul>
+<li>定义用户对数据对象的操作权限,并将权限登记到数据字典中,称为安全规则或授权规则</li>
+<li>对每个用户发出的存取数据库的请求,DBMS都会查找数据字典进行合法权限检查</li>
+</ul>
+<p>用户权限定义和合法权检查机制一起组成了DBMS的存取控制子系统 </p>
+<h3 id="自主存取控制DAC"><a href="#自主存取控制DAC" class="headerlink" title="自主存取控制DAC"></a>自主存取控制DAC</h3><h4 id="自主存取控制方法概述"><a href="#自主存取控制方法概述" class="headerlink" title="自主存取控制方法概述"></a>自主存取控制方法概述</h4><ul>
+<li>用户对不同的数据对象有不同的存取权限</li>
+<li>不同的用户对同一对象也有不同的权限</li>
+<li>用户还可将其拥有的存取权限转授给其他用户</li>
+</ul>
+<p>通过SQL的GRANT语句和REVOKE语句实现</p>
+<h4 id="权限的授予"><a href="#权限的授予" class="headerlink" title="权限的授予"></a>权限的授予</h4><p>给某用户授予对某对象的某操作权限</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> &lt;权限&gt;[,&lt;权限&gt;]...</span><br><span class="line"><span class="keyword">ON</span> &lt;对象类型&gt; &lt;对象名&gt;[,&lt;对象类型&gt; &lt;对象名&gt;]...</span><br><span class="line"><span class="keyword">TO</span> &lt;用户&gt;[,&lt;用户&gt;]...</span><br><span class="line">[<span class="keyword">WITH</span> <span class="keyword">GRANT</span> <span class="keyword">OPTION</span>];</span><br></pre></td></tr></table></figure>
 <ul>
 <li>权限有SELECT，INSERT，UPDATE，DELETE，REFERENCES几种; ALL PRIVILEGES表示所有操作权限<blockquote>
@@ -1761,15 +3207,15 @@
 <li>权限的回收可由管理员或授权者来执行</li>
 <li>回收只回收本用户直接或间接对目标用户授予的权限,若该用户还从其他地方获得了相同的权限,则他们仍具有此权限</li>
 </ul>
-<h3 id="用户-用户的创建"><a href="#用户-用户的创建" class="headerlink" title="用户:用户的创建"></a>用户:用户的创建</h3><p>CREATE USER不是SQL标准,不同数据库对用户创建的实现不一样</p>
+<h4 id="用户的创建"><a href="#用户的创建" class="headerlink" title="用户的创建"></a>用户的创建</h4><p>CREATE USER不是SQL标准,不同数据库对用户创建的实现不一样</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span>  <span class="keyword">USER</span>  &lt;username&gt;</span><br><span class="line">[<span class="keyword">WITH</span>][DBA|<span class="keyword">RESOURCE</span>|<span class="keyword">CONNECT</span>];</span><br></pre></td></tr></table></figure>
 <ul>
 <li>DBA:可以创建用户,模式,表以及登录数据库执行增删改查等操作</li>
 <li>RESOURCE:只能创建表并登录数据库执行增删改查等操作</li>
 <li>CONNECT: 能登陆数据库进行增删改查等操作,但必须获得相应权限</li>
 </ul>
-<h3 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h3><p>角色是权限的集合,能够通过为一组具有相同权限的用户创建一个角色来简化授权的过程</p>
-<h4 id="角色的创建"><a href="#角色的创建" class="headerlink" title="角色的创建"></a>角色的创建</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">ROLE</span> &lt;角色名&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="数据库中的角色"><a href="#数据库中的角色" class="headerlink" title="数据库中的角色"></a>数据库中的角色</h3><p>角色是权限的集合,能够通过为一组具有相同权限的用户创建一个角色来简化授权的过程</p>
+<h4 id="创建角色"><a href="#创建角色" class="headerlink" title="创建角色"></a>创建角色</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">ROLE</span> &lt;角色名&gt;</span><br></pre></td></tr></table></figure>
 
 <h4 id="给角色添加权限"><a href="#给角色添加权限" class="headerlink" title="给角色添加权限"></a>给角色添加权限</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> &lt;权限&gt;[,&lt;权限&gt;]...</span><br><span class="line"><span class="keyword">ON</span> &lt;对象类型&gt; &lt;对象名&gt;[,&lt;对象类型&gt; &lt;对象名&gt;]...</span><br><span class="line"><span class="keyword">TO</span> &lt;角色&gt;[,&lt;角色&gt;]...</span><br></pre></td></tr></table></figure>
 
@@ -1790,6 +3236,232 @@
 <ul>
 <li>目标用户或角色失去了原角色赋予给他的权限</li>
 </ul>
+<h3 id="强制存取控制MAC"><a href="#强制存取控制MAC" class="headerlink" title="强制存取控制MAC"></a>强制存取控制MAC</h3><p>自主存取控制可能存在数据的“无意泄露”,因为自主存取控制仅仅通过对数据的存取权限来进行安全控制,而数据本身并无安全性标记 </p>
+<ul>
+<li>强制存取控制（MAC）保证更高程度的安全性,用户不能直接感知或进行控制</li>
+<li>强制存取控制适用于对数据有严格而固定密级分类的部门 </li>
+</ul>
+<h4 id="强制存取控制方法概述"><a href="#强制存取控制方法概述" class="headerlink" title="强制存取控制方法概述"></a>强制存取控制方法概述</h4><p>在强制存取控制中，数据库管理系统所管理的全部实体被分为两大类:</p>
+<ul>
+<li>主体:系统中的活动实体,即用户</li>
+<li>客体:系统中受主体操纵的被动实体,如文件、基本表、索引、视图等</li>
+</ul>
+<p>DBMS对每个主体和客体的实例指派了一个敏感度标记(从高到低):</p>
+<ul>
+<li>绝密: Top Secret, TS</li>
+<li>机密: Secret, S</li>
+<li>可信: Confidential, C</li>
+<li>公开: Public, P</li>
+</ul>
+<blockquote>
+<ul>
+<li>对主体的敏感度标记称为许可证(Clearance Level)</li>
+<li>对客体的敏感度标记称为密级(Classification Leve)</li>
+</ul>
+</blockquote>
+<h4 id="强制存取控制读写规则"><a href="#强制存取控制读写规则" class="headerlink" title="强制存取控制读写规则"></a>强制存取控制读写规则</h4><ul>
+<li>仅当主体的许可证级别大于或等于客体的密级时，该主体才能读取相应的客体<blockquote>
+<ul>
+<li>可以防止主体看到一些敏感性较高的数据</li>
+</ul>
+</blockquote>
+</li>
+<li>仅当主体的许可证级别小于或等于客体的密级时，该主体才能写相应的客体 <blockquote>
+<ul>
+<li>可以防止主体将高敏感性的数据向下透露(写)给低敏感性数据</li>
+<li>主体可以更改密级比它高的数据,但写完之后它自己不能读取到</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="DAC-MAC安全检查"><a href="#DAC-MAC安全检查" class="headerlink" title="DAC+MAC安全检查"></a>DAC+MAC安全检查</h3><p>实现强制存取控制MAC时要首先实现自主存取控制DAC,因为较高安全性级别提 供的安全保护要包含较低级别的所有保护  </p>
+<p>自主存取控制与强制存取控制共同构成数据库管理系统的安全机制</p>
+<p>检查过程: SQL语法分析、语义检查-&gt;DAC检查-&gt;MAC检查-&gt;继续语义检查</p>
+<h2 id="4-3-视图机制"><a href="#4-3-视图机制" class="headerlink" title="4.3 视图机制"></a>4.3 视图机制</h2><p>把要保密的数据对无权存取这些数据的用户通过视图隐藏起来，对数据提供一定程度的安全保护</p>
+<p>例如,允许用户对表的部分进行查询的权限,用GRANT语句就无法实现,需要用视图进行操作</p>
+<p>视图的相关操作可参见上面的3.6</p>
+<h2 id="4-4-审计"><a href="#4-4-审计" class="headerlink" title="4.4 审计"></a>4.4 审计</h2><ul>
+<li>用户身份鉴别,自主存取控制,强制存取控制,视图,数据加密是预防性措施</li>
+<li>审计是监控措施<br>C2以上安全级别的DBMS必须具有审计功能 </li>
+</ul>
+<h3 id="审计相关概述"><a href="#审计相关概述" class="headerlink" title="审计相关概述"></a>审计相关概述</h3><p>审计就是启用一个专用的审计日志（Audit Log）,将用户对数据库的所有操作记录在上面   </p>
+<p>审计员利用审计日志监控数据库中的各种行为,发现非法存取,发现潜在威胁  </p>
+<p>可以被审计的事件:</p>
+<ul>
+<li>服务器事件: 记录数据库服务器发生的相关事件</li>
+<li>系统权限: 记录对系统拥有的结构或模式对象进行的操作</li>
+<li>语句事件: 记录SQL(或者其他数据库)语言发生的事件</li>
+<li>模式对象事件: 记录对特定模式对象上进行的SELECT或DML操作</li>
+</ul>
+<p>审计日志管理:</p>
+<ul>
+<li>基本功能: 提供多种审计查阅方式</li>
+<li>在初始化时设定多套审计规则</li>
+<li>提供审计分析和报表功能</li>
+<li>审计日志文件管理: 包括防止误删、加密、完整性保护、查阅和转储权限的管理</li>
+<li>提供查询审计设置及审计记录信息的专门视图</li>
+</ul>
+<h3 id="审计功能的设置"><a href="#审计功能的设置" class="headerlink" title="审计功能的设置"></a>审计功能的设置</h3><p>由于审计很费时间和空间,可以选择使用或不使用审计功能</p>
+<ul>
+<li>系统级审计只能由数据库管理员设置,监测成功或失败的登录要求、监测授权和收回操作以及其他数据库级权限下的操作</li>
+<li>用户级审计是任何用户可设置的审计,主要是用户针对自己创建的数据库表和视图进行审计</li>
+</ul>
+<p>审计功能用AUDIT和NOAUDIT设置和取消</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 用户级审计定义 */</span></span><br><span class="line">AUDIT &lt;操作名&gt;</span><br><span class="line">ON &lt;表名&gt;; /* 可以对某表结构或数据的修改操作进行审计 */</span><br><span class="line"></span><br><span class="line">NOAUDIT &lt;操作名&gt;</span><br><span class="line">ON &lt;表名&gt;; /* 取消审计 */</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-5-数据加密"><a href="#4-5-数据加密" class="headerlink" title="4.5 数据加密"></a>4.5 数据加密</h2><p>数据加密是一种预防性措施,是防止数据库中数据在存储和传输中失密的有效手段</p>
+<p>有存储加密和传输加密两种</p>
+<h3 id="存储加密"><a href="#存储加密" class="headerlink" title="存储加密"></a>存储加密</h3><p>透明存储加密:性能较好，安全完备性较高</p>
+<ul>
+<li>内核级加密保护方式，对用户完全透明</li>
+<li>将数据在写到磁盘时对数据进行加密，授权用户读取数据时再对其进行解密</li>
+<li>数据库的应用程序不需要做任何修改，只需在创建表语句中说明需加密的字段即可</li>
+</ul>
+<p>非透明存储加密:</p>
+<ul>
+<li>通过多个加密函数实现的加密</li>
+</ul>
+<h3 id="传输加密"><a href="#传输加密" class="headerlink" title="传输加密"></a>传输加密</h3><p>链路加密:</p>
+<ul>
+<li>传输信息由报头和报文两部分组成;报头是路由选择信息,报文是要传送的数据信息</li>
+<li>报文和报头均加密</li>
+</ul>
+<p>端到端加密:</p>
+<ul>
+<li>在发送端加密，接收端解密</li>
+<li>只加密报文不加密报头</li>
+<li>所需密码设备数量相对较少，容易被非法监听者发现并从中获取敏感信息</li>
+</ul>
+<p>数据库系统可信传输示意图:<br><img src="/2020/05/24/data-base0/trust0.png" alt="trust"></p>
+<h2 id="4-6-其他安全性保护"><a href="#4-6-其他安全性保护" class="headerlink" title="4.6 其他安全性保护"></a>4.6 其他安全性保护</h2><h3 id="推理控制"><a href="#推理控制" class="headerlink" title="推理控制"></a>推理控制</h3><p>强制存取控制不能解决通过公开信息推理出机密信息的问题</p>
+<p>常用策略:基于函数依赖的推理控制,基于敏感关联的推理控制</p>
+<h3 id="隐蔽信道"><a href="#隐蔽信道" class="headerlink" title="隐蔽信道"></a>隐蔽信道</h3><p>强制存取控制不能解决高安全等级用户利用数据库特性,按事先约定的方式主动向低安全等级用户透露信息的问题</p>
+<p>隐蔽信道用于解决类似这种问题:例如,绝密用户向数据库插入了一条绝密数据,而此时一个公开用户向数据库插入相同数据时被拒绝,绝密用户便通过这种隐蔽的方式向公开用户透露了这条信息的存在</p>
+<h1 id="五、数据库完整性"><a href="#五、数据库完整性" class="headerlink" title="五、数据库完整性"></a>五、数据库完整性</h1><p>数据库安全性防范的是非法操作,而数据库完整性防范的是非法数据 </p>
+<p>数据库的完整性包括以下两个方面:</p>
+<ul>
+<li>数据的正确性(实体完整性等)</li>
+<li>数据的相容性(参照完整性)</li>
+</ul>
+<p>数据库提供的机制:</p>
+<ul>
+<li>提供定义完整性约束条件的机制</li>
+<li>提供完整性检查机制 </li>
+<li>违约处理 </li>
+</ul>
+<h2 id="5-1-实体完整性"><a href="#5-1-实体完整性" class="headerlink" title="5.1 实体完整性"></a>5.1 实体完整性</h2><p>关系的主属性(码)唯一且不能为空,详细定义见2.1关系完整性约束</p>
+<h3 id="实体完整性定义"><a href="#实体完整性定义" class="headerlink" title="实体完整性定义"></a>实体完整性定义</h3><p>关系模型的实体完整性用主码PRIMARY KEY描述</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;列名&gt; ... PRIMARY KEY /* 列级完整性约束 */</span><br><span class="line">PRIMARY KEY(&lt;列名&gt;[,&lt;列名&gt;,...]) /* 表级完整性约束 */</span><br></pre></td></tr></table></figure>
+<ul>
+<li>列级完整性约束可以定义单属性构成的码</li>
+<li>表级完整性约束可以定义单个或多个属性构成的码</li>
+</ul>
+<h3 id="实体完整性检查和违约处理"><a href="#实体完整性检查和违约处理" class="headerlink" title="实体完整性检查和违约处理"></a>实体完整性检查和违约处理</h3><p>实体完整性检查发生在插入或对主码列进行更新操作时</p>
+<p>检查方法:</p>
+<ul>
+<li>全表扫描(费时)</li>
+<li>建立索引搜索(这个一般由RDBMS核心自动完成,可以是B+索引树)</li>
+</ul>
+<p>违约处理:拒绝插入或更新</p>
+<h2 id="5-2-参照完整性"><a href="#5-2-参照完整性" class="headerlink" title="5.2 参照完整性"></a>5.2 参照完整性</h2><p>保证外码取值符合参照完整性约束,详细定义见2.1关系完整性约束</p>
+<h3 id="参照完整性定义"><a href="#参照完整性定义" class="headerlink" title="参照完整性定义"></a>参照完整性定义</h3><ul>
+<li>定义表中的外码,以及被参照关系的主码<figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 列级完整性约束 */</span></span><br><span class="line">&lt;外码列名&gt; ... FOREIGN KEY REFERENCES DEPT(&lt;被参考关系主码&gt;) [ON DELETE|UPDATE CASCADE|NO ACTION|SET-NULL]</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 表级完整性约束 */</span></span><br><span class="line">FOREIGN KEY(&lt;外码列名&gt;) REFERENCES DEPT(&lt;被参考关系主码&gt;) [ON DELETE|UPDATE CASCADE|NO ACTION|SET-NULL]</span><br></pre></td></tr></table></figure></li>
+<li>违约选项:见下文违约处理</li>
+</ul>
+<h3 id="参照完整性检查"><a href="#参照完整性检查" class="headerlink" title="参照完整性检查"></a>参照完整性检查</h3><p>参照完整性检查发生在对被参照表或参照表进行增删改操作时</p>
+<h3 id="违约处理"><a href="#违约处理" class="headerlink" title="违约处理"></a>违约处理</h3><p>对于参照表的元组插入或外码值修改,违约即拒绝执行</p>
+<p>对于被参照表的元组删除或主码值修改,有三种违约处理方式:</p>
+<ul>
+<li>拒绝执行:不执行语句</li>
+<li>级联操作:将参照表中有关联的元组删除或进行外码修改</li>
+<li>设置空值:将参照表中有关联的元组外码置为空值,这可能会导致参照表中的元组违反实体完整性约束</li>
+</ul>
+<h2 id="5-3-用户定义完整性约束"><a href="#5-3-用户定义完整性约束" class="headerlink" title="5.3 用户定义完整性约束"></a>5.3 用户定义完整性约束</h2><p>针对某一具体应用的数据必须满足的语义要求,需要用户定义完整性约束</p>
+<h3 id="用户完整性约束定义"><a href="#用户完整性约束定义" class="headerlink" title="用户完整性约束定义"></a>用户完整性约束定义</h3><p>列级完整性约束定义(属性约束条件)</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;列名&gt; ... [UNIQUE] [NOT NULL] [CHECK(expr)]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>NOT NULL:列值非空</li>
+<li>UNIQUE:列值唯一(相当于主码)</li>
+<li>CHECK(expr):列值满足某表达式</li>
+</ul>
+<p>表级完整性约束定义(元组约束条件):用于设置不同属性之间的取值的相互约束条件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CHECK(expr)</span><br></pre></td></tr></table></figure>
+
+<h3 id="用户定义完整性约束检查和违约处理"><a href="#用户定义完整性约束检查和违约处理" class="headerlink" title="用户定义完整性约束检查和违约处理"></a>用户定义完整性约束检查和违约处理</h3><p>用户定义约束条件检查发生在插入元组或修改属性的值时</p>
+<p>违约即拒绝执行</p>
+<h2 id="5-4-完整性约束命名字句"><a href="#5-4-完整性约束命名字句" class="headerlink" title="5.4 完整性约束命名字句"></a>5.4 完整性约束命名字句</h2><p>为完整性约束条件起个名字,方便后面对它进行修改和删除,否则无法操作</p>
+<h3 id="完整性约束命名子句定义"><a href="#完整性约束命名子句定义" class="headerlink" title="完整性约束命名子句定义"></a>完整性约束命名子句定义</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">CONSTANT &lt;完整性约束条件名&gt; &lt;完整性约束条件&gt;</span><br></pre></td></tr></table></figure>
+<p>该子句可以作为列级完整性约束或表级完整性约束使用</p>
+<h3 id="完整性约束子句的删除和添加"><a href="#完整性约束子句的删除和添加" class="headerlink" title="完整性约束子句的删除和添加"></a>完整性约束子句的删除和添加</h3><p>用ALTER TABLE对约束条件进行删除和添加</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 删除 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;表名&gt;</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">CONSTANT</span> &lt;完整性约束条件名&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 添加 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;表名&gt;</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTANT</span> &lt;完整性约束条件名&gt; &lt;完整性约束条件&gt;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>实现完整性约束子句的修改时,需要先删除约束,再添加约束,如上所示</li>
+</ul>
+<h2 id="5-5-域中的完整性限制"><a href="#5-5-域中的完整性限制" class="headerlink" title="5.5 域中的完整性限制"></a>5.5 域中的完整性限制</h2><p>对于多个具有联系的表,表中的一些属性可能具有相同的域,可以通过建立域的完整性约束来使不同表中的相同的属性域也相同</p>
+<h3 id="域完整性约束定义"><a href="#域完整性约束定义" class="headerlink" title="域完整性约束定义"></a>域完整性约束定义</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 定义完整性约束 */</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DOMAIN</span> &lt;完整性约束条件名&gt; &lt;被约束列的值类型&gt; &lt;完整性约束子句&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 修改完整性约束中的限制条件 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">DOMAIN</span> &lt;完整性约束条件名&gt; &lt;完整性约束修改子句&gt;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>完整性约束修改子句包括完整性约束子句的删除和添加,需要指定完整性约束条件名</li>
+</ul>
+<h3 id="域完整性约束使用"><a href="#域完整性约束使用" class="headerlink" title="域完整性约束使用"></a>域完整性约束使用</h3><p>定义好域的完整性约束后,可以直接使用完整性约束条件名来作为同类型的属性的完整性约束条件</p>
+<h2 id="5-6-断言"><a href="#5-6-断言" class="headerlink" title="5.6 断言"></a>5.6 断言</h2><p>SQL中更一般的约束可以用断言来指定</p>
+<ul>
+<li>涉及多个表或聚集操作比较复杂的完整性约束</li>
+<li>断言创建以后,任何对断言中所涉及的关系的操作都会触发检查</li>
+<li>断言不为真则拒绝执行</li>
+</ul>
+<p>断言创建</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">ASSERTION</span> &lt;断言名&gt; &lt;<span class="keyword">CHECK</span>子句&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>CHECK子句和WHERE子句的表达类似</li>
+</ul>
+<p>断言删除</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">ASSERTION</span> &lt;断言名&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-7-触发器"><a href="#5-7-触发器" class="headerlink" title="5.7 触发器"></a>5.7 触发器</h2><ul>
+<li>触发器是用户定义在关系表上的一类由事件驱动的特殊过程</li>
+<li>任何用户对表的增删改操作均由服务器自动激活相应的触发器</li>
+<li>触发器可以实施更为复杂的检查和操作(前面的完整性约束检查都是自动触发),具有更精细和更强大的数据控制能力</li>
+</ul>
+<p>触发器又叫做事件-条件-动作规则</p>
+<h3 id="定义触发器"><a href="#定义触发器" class="headerlink" title="定义触发器"></a>定义触发器</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> &lt;触发器名&gt;</span><br><span class="line">&#123;<span class="keyword">BEFORE</span>|<span class="keyword">AFTER</span>&#125; &lt;触发事件&gt; <span class="keyword">ON</span> &lt;表名&gt;</span><br><span class="line">[<span class="keyword">REFERENCING</span> </span><br><span class="line">    <span class="keyword">NEW</span>|<span class="keyword">OLD</span> <span class="keyword">ROW</span> <span class="keyword">AS</span> &lt;变量&gt;,</span><br><span class="line">    <span class="keyword">NEW</span>|<span class="keyword">OLD</span> <span class="keyword">ROW</span> <span class="keyword">AS</span> &lt;变量&gt;,...]</span><br><span class="line"><span class="keyword">FOR</span> <span class="keyword">EACH</span> &#123;<span class="keyword">ROW</span>|<span class="keyword">STATEMENT</span>&#125;</span><br><span class="line">[<span class="keyword">WHEN</span> &lt;触发条件&gt;] &lt;触发动作体&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>触发器只能由表的拥有者创建</li>
+<li>触发器只能定义在基本表上</li>
+<li>&lt;触发器名&gt;可以包含或不包含模式名,同一模式下触发器名必须是唯一的</li>
+<li>&lt;触发事件&gt;可以是对&lt;表名&gt;的INSERT,DELETE或UPDATE [OF &lt;触发列,…&gt;],触发器可在上述操作之后或者之前执行</li>
+<li>RECEFRENCING子句用于指出所引用的变量,在后面的行级触发器中可以用到</li>
+<li>FOR EACH子句可以定义触发器的类型:行级触发器或语句级触发器<blockquote>
+<ul>
+<li>行级触发器在对每一个元组进行相应的更改时激活(会多次激活触发器)</li>
+<li>语句级触发器在语句执行时进行激活(以所更改的行为对象一次性进行操作)</li>
+</ul>
+</blockquote>
+</li>
+<li>定义WHEN后,只有触发器在激活后满足&lt;触发条件&gt;,触发动作体才会执行</li>
+<li>&lt;触发动作体&gt;可以是一个匿名的SQL过程块,也可以是对已创建存储过程的调用;<blockquote>
+<ul>
+<li>行级触发器中用户可以在触发动作体中使用NEW和OLD引用实践之后的新之和事件之前的旧值</li>
+<li>如果触发器动作体执行失败,则激活触发器的事件会被拒绝执行</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="触发器的激活"><a href="#触发器的激活" class="headerlink" title="触发器的激活"></a>触发器的激活</h3><p>一个表上可以定义多个触发器,遵循如下顺序执行</p>
+<ul>
+<li>执行表上的BEFORE触发器</li>
+<li>执行SQL语句</li>
+<li>执行表上的AFTER触发器<blockquote>
+<p>有多个BEFORE或AFTER触发器时,一般上时间上先定义的触发器先执行</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="删除触发器"><a href="#删除触发器" class="headerlink" title="删除触发器"></a>删除触发器</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TRIGGER</span> &lt;触发器名&gt; <span class="keyword">ON</span> &lt;表名&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>只有具有相应权限的用户才能删除相应的触发器</li>
+</ul>
+<hr>
+<p>后续见数据库原理与设计(高级篇)<a href="http://georgechen.top/2020/04/16/data-base1/" target="_blank" rel="noopener">http://georgechen.top/2020/04/16/data-base1/</a></p>
+<p>博文创建时间: date: 2020-02-27 13:24:32</p>
 ]]></content>
       <categories>
         <category>notes</category>
@@ -1838,8 +3510,8 @@
       </categories>
       <tags>
         <tag>c#</tag>
-        <tag>python</tag>
         <tag>learning</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -3109,8 +4781,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>learning</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -3164,8 +4836,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>learning</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -3189,1470 +4861,6 @@ $$
       <tags>
         <tag>learning</tag>
         <tag>毛概</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数据库原理与设计(基础篇)</title>
-    <url>/2020/02/27/data-base0/</url>
-    <content><![CDATA[<p><del>未完结,持续更新</del> 完结</p>
-<hr>
-<p>任课教师: 赵朋朋<a href="http://web.suda.edu.cn/ppzhao/" target="_blank" rel="noopener">http://web.suda.edu.cn/ppzhao/</a></p>
-<p>网课资源: 慕课中国人民大学数据库系统概论<a href="https://www.icourse163.org/course/RUC-488001" target="_blank" rel="noopener">https://www.icourse163.org/course/RUC-488001</a></p>
-<p>参考教材: 高等教育出版社《数据库系统概论(第5版)》</p>
-<p>课程主要讲述关系型数据库的原理, 不着重于具体数据库的使用</p>
-<p>简明的数据库使用笔记可参考<a href="http://georgechen.top/2020/04/11/mysql0/" target="_blank" rel="noopener">http://georgechen.top/2020/04/11/mysql0/</a></p>
-<p>后续见数据库原理与设计(高级篇)<a href="http://georgechen.top/2020/04/16/data-base1/" target="_blank" rel="noopener">http://georgechen.top/2020/04/16/data-base1/</a></p>
-<a id="more"></a>
-
-<h1 id="一、绪论"><a href="#一、绪论" class="headerlink" title="一、绪论"></a>一、绪论</h1><h2 id="1-1-数据库系统概述"><a href="#1-1-数据库系统概述" class="headerlink" title="1.1 数据库系统概述"></a>1.1 数据库系统概述</h2><h3 id="数据库中的基本概念"><a href="#数据库中的基本概念" class="headerlink" title="数据库中的基本概念"></a>数据库中的基本概念</h3><ul>
-<li>数据(data): 是数据库中存储的基本对象; 是描述事物的符号记录,包括数字、文字等不同种类 </li>
-</ul>
-<blockquote>
-<p>数据是有语义的:相同的数据形式可能有不同的含义,数据与语义是不可分的<br>数据是有结构的:记录是计算机存储数据的一种格式或方法</p>
-</blockquote>
-<ul>
-<li>数据库(database): 是长期存储在计算机内,有组织,可共享的大量数据的集合</li>
-</ul>
-<blockquote>
-<p>数据库能够收集并抽取应用的数据将其保存,用后续处理<br>数据库的基本特征:  </p>
-<ol>
-<li>数据按一定的数据模型组织,描述和存储</li>
-<li>可为各种用户共享,冗余度较小,易扩展</li>
-<li>数据独立性较高</li>
-</ol>
-</blockquote>
-<ul>
-<li>数据库管理系统(DBMS): 是位于用户应用与操作系统之间的一层数据管理软件,是一个大型复杂的软件系统</li>
-</ul>
-<blockquote>
-<p>用途: 能科学地组织和存储数据,高效的获取和维护数据<br>功能: </p>
-<ol>
-<li>数据定义功能:提供数据定义语言,定义数据库中的数据对象</li>
-<li>数据组织存储和管理功能</li>
-<li>数据操纵功能:提供数据操纵语言,实现对数据库增删改查</li>
-<li>数据库的事务和并发管理和运行管理功能:保证数据安全完整,故障恢复</li>
-<li>数据库建立和维护功能:提供实用程序和工具</li>
-<li>其它功能:通信,数据转换等</li>
-</ol>
-</blockquote>
-<ul>
-<li>数据库系统(DBS): 在计算机系统中引入数据库后的系统构成, 也可简称为数据库</li>
-</ul>
-<blockquote>
-<p>数据库系统构成: 数据库, 数据库管理系统(及其应用开发工具), 应用程序, 数据库管理员(DBA)</p>
-</blockquote>
-<h3 id="数据库管理技术"><a href="#数据库管理技术" class="headerlink" title="数据库管理技术"></a>数据库管理技术</h3><p>数据管理: 对数据进行分类,组织,编码,存储,检索和维护<br>数据管理是数据处理和数据分析的中心问题</p>
-<p>发展: 人工管理-&gt;文件系统管理-&gt;数据库系统管理<br><img src="/2020/02/27/data-base0/diff0.png" alt="diff"></p>
-<blockquote>
-<ul>
-<li>人工管理阶段, 应用程序和数据集是一一对应的</li>
-<li>文件系统阶段, 存取方法是共享的, 但应用程序和数据集是一一对应的</li>
-<li>数据库系统阶段, 多个应用程序通过同一个数据库管理系统对同一个数据库进行操作</li>
-</ul>
-</blockquote>
-<h3 id="数据库系统的特点"><a href="#数据库系统的特点" class="headerlink" title="数据库系统的特点"></a>数据库系统的特点</h3><ul>
-<li>数据结构化</li>
-<li>数据的共享性高,冗余度低且易扩充</li>
-<li>数据独立性高:有物理独立性和逻辑独立性</li>
-<li>数据由数据库管理系统统一管理和控制</li>
-</ul>
-<h2 id="1-2-数据模型"><a href="#1-2-数据模型" class="headerlink" title="1.2  数据模型"></a>1.2  数据模型</h2><p>数据模型是对现实世界数据特征的抽象,是对现实世界的模拟</p>
-<p>数据模型应满足三方面要求</p>
-<blockquote>
-<ul>
-<li>能比较真实地模拟现实世界</li>
-<li>容易为人所理解</li>
-<li>便于在计算机上实现  </li>
-</ul>
-</blockquote>
-<p>数据模型是数据库系统的核心和基础 </p>
-<h3 id="两类数据模型"><a href="#两类数据模型" class="headerlink" title="两类数据模型"></a>两类数据模型</h3><p>数据模型分为两类(两个不同层次):  </p>
-<ul>
-<li>概念模型，也称信息模型 : 它是按用户的观点来对数据和信息建模，用于数据库设计  </li>
-<li>逻辑模型和物理模型 <blockquote>
-<ul>
-<li>逻辑模型主要包括网状模型、层次模型、关系模型、面向对象数据模型、对象关系数据模型、半结构化数据模型等</li>
-<li>逻辑模型是按计算机系统的观点对数据建模，用于DBMS实现</li>
-<li>物理模型是对数据最底层的抽象, 是描述数据在系统内（磁盘上）的表示方式和存取方法</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<p>现实世界中客观对象的抽象过程:<br><img src="/2020/02/27/data-base0/proc0.png" alt="proc"></p>
-<h3 id="概念模型"><a href="#概念模型" class="headerlink" title="概念模型"></a>概念模型</h3><ul>
-<li>概念模型用于信息世界的建模 </li>
-<li>是现实世界到机器世界的一个中间层次</li>
-<li>是数据库设计的有力工具</li>
-<li>数据库设计人员和用户之间进行交流的语言 </li>
-</ul>
-<p>概念模型的特点:  </p>
-<blockquote>
-<ul>
-<li>较强的语义表达能力</li>
-<li>简单、清晰、易于用户理解 </li>
-</ul>
-</blockquote>
-<p>信息世界中的基本概念: </p>
-<blockquote>
-<ul>
-<li>实体（Entity）: 客观存在并可相互区别的事物称为实体。可以是具体的人、事、物或抽象的概念。</li>
-<li>属性（Attribute）: 实体所具有的某一特性称为属性。一个实体可以由若干个属性来刻画。</li>
-<li>码（Key）: 唯一标识实体的属性集称为码。</li>
-<li>实体型（Entity Type）: 用实体名及其属性名集合来抽象和刻画同类实体称为实体型(对象)</li>
-<li>实体集（Entity Set）: 同一类型实体的集合称为实体集 </li>
-<li>联系（Relationship）: 现实世界中事物内部以及事物之间的联系在信息世界中反映为实体（型）内部的联系和实体（型）之间的联系。<ul>
-<li>实体内部的联系: 是指组成实体的各属性之间的联系 </li>
-<li>实体之间的联系: 通常是指不同实体集之间的联系, 实体之间的联系有一对一（1:1）、一对多（1:n）和多对多（m:n）等多种类型 </li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<p>实体-联系方法（Entity-Relationship Approach）是概念模型的一种表示方法:</p>
-<blockquote>
-<ul>
-<li>用E-R图来描述现实世界的概念模型 </li>
-<li>E-R方法也称为E-R模型<br><img src="/2020/02/27/data-base0/rela0.png" alt="relation">  </li>
-</ul>
-</blockquote>
-<p>(具体方法在数据库设计中会讲到)</p>
-<h3 id="数据模型的组成要素"><a href="#数据模型的组成要素" class="headerlink" title="数据模型的组成要素"></a>数据模型的组成要素</h3><p>数据模型是严格定义的一组概念的集合</p>
-<ul>
-<li>它精确地描述了系统的静态特性、动态特性和完整性约束条件 (Integrity Constraints)。</li>
-</ul>
-<p>数据模型由三部分组成</p>
-<blockquote>
-<ul>
-<li>数据结构–描述系统的静态特性 </li>
-<li>数据操作–描述系统的动态特性 </li>
-<li>完整性约束条件</li>
-</ul>
-</blockquote>
-<h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><ul>
-<li><p>数据结构是刻画数据模型性质的重要方面  </p>
-<blockquote>
-<ul>
-<li>一般用数据结构的类型来命名数据模型,如: 层次结构-层次模型、网状结构–网状模型、关系结构—关系模型 </li>
-</ul>
-</blockquote>
-</li>
-<li><p>数据结构是用来描述数据库的组成对象–对象的类型、内容、性质</p>
-</li>
-<li><p>数据结构可以用来描述对象之间的联系 </p>
-</li>
-</ul>
-<h4 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h4><p>数据操作是对数据库中各种对象的实例允许执行的操作的集合，包括操作的类型及有关的操作规则</p>
-<p>操作的类型: 增删改查</p>
-<p>数据操作语言: </p>
-<blockquote>
-<ul>
-<li>数据操作语言需要定义数据操作的确切含义、符号、优先级别</li>
-<li>数据操作语言需要实现查询语言(Query Language)和更新语言(Insert、Delete、Update) </li>
-</ul>
-</blockquote>
-<h4 id="数据完整性约束条件"><a href="#数据完整性约束条件" class="headerlink" title="数据完整性约束条件"></a>数据完整性约束条件</h4><p>数据完整性约束条件是一组完整性规则的集合</p>
-<blockquote>
-<ul>
-<li>完整性规则：给定的数据模型中数据及其联系所具有的制约和依存规则</li>
-<li>完整性规则可以限定符合数据模型的数据库状态以及状态的变化，以保证数 据的正确、有效和相容。</li>
-</ul>
-</blockquote>
-<p>数据模型对完整性约束条件的定义:</p>
-<blockquote>
-<ul>
-<li>反映和规定必须遵守的基本的通用的完整性约束条件</li>
-<li>提供定义完整性约束条件的机制，以反映具体应用所涉及的数据必须遵守的特定的语义约束条件。</li>
-</ul>
-</blockquote>
-<h3 id="常用的数据模型"><a href="#常用的数据模型" class="headerlink" title="常用的数据模型"></a>常用的数据模型</h3><ul>
-<li>格式化模型: 层次模型,网状模型 </li>
-<li>关系模型</li>
-<li>对象模型: 面向对象数据模型,对象关系数据模型</li>
-<li>半结构化数据模型:XML,HTML</li>
-<li>非结构化数据模型,图模型,…</li>
-</ul>
-<h4 id="层次模型"><a href="#层次模型" class="headerlink" title="层次模型"></a>层次模型</h4><p>层次模型用树形结构来表示各类实体以及实体间的联系</p>
-<p>表示方法：</p>
-<blockquote>
-<ul>
-<li>实体型：用纪录类描述，每个节点表示一个记录类型</li>
-<li>属性：用字段描述，每个记录类型可包含若干个字段</li>
-<li>联系：用结点之间的连线表示记录类型（实体）之间的一对多的父子联系</li>
-</ul>
-</blockquote>
-<p>特点:</p>
-<blockquote>
-<ul>
-<li>结点的双亲是唯一的</li>
-<li>只能直接处理一对多的实体联系</li>
-<li>任何记录值只有按其路径查看</li>
-<li>没有一个子女记录值能够脱离双亲记录值而独立存在 </li>
-</ul>
-</blockquote>
-<p>优缺点:</p>
-<blockquote>
-<ul>
-<li>(优点)层次模型的数据结构比较简单清晰</li>
-<li>查询效率高，性能优于关系模型，不低于网状模型</li>
-<li>层次数据模型提供了良好的完整性支持</li>
-<li>(缺点)结点之间的多对多联系表示不自然</li>
-<li>对插入和删除操作的限制多，应用程序的编写比较复杂</li>
-<li>查询子女结点必须通过双亲结点</li>
-<li>层次数据库的命令（语言）趋于程序化  </li>
-</ul>
-</blockquote>
-<h4 id="网状模型"><a href="#网状模型" class="headerlink" title="网状模型"></a>网状模型</h4><p>网状数据库系统采用网状结构来表示各类实体以及实体间的联系(有向图)</p>
-<p>网状模型表示方法和层次模型相同</p>
-<p>特点:</p>
-<blockquote>
-<ul>
-<li>允许多个结点没有双亲结点</li>
-<li>允许一个结点有多个双亲结点</li>
-<li>允许两个结点之间有多种联系</li>
-<li>要为每个联系命名并指出与该联系有关的双亲记录和子女记录 </li>
-</ul>
-</blockquote>
-<p>优缺点:</p>
-<blockquote>
-<ul>
-<li>(优点)能够更为直接地描述现实世界，如一个结点可以有多个双亲</li>
-<li>具有良好的性能，存取效率较高</li>
-<li>(缺点)结构比较复杂，而且随着应用环境的扩大，数据库的结构就变得越来越复杂，不利于最终用户掌握</li>
-<li>DDL、DML语言复杂，用户不容易使用</li>
-<li>记录之间联系是通过存取路径实现的，应用程序必须选择存取路径，加重了程序员的负担</li>
-</ul>
-</blockquote>
-<h4 id="关系模型"><a href="#关系模型" class="headerlink" title="关系模型"></a>关系模型</h4><p>在用户观点下，关系模型中数据的逻辑结构是一张二维表,如下<br><img src="/2020/02/27/data-base0/table0.png" alt="relation">  </p>
-<p>其中:</p>
-<blockquote>
-<ul>
-<li>关系: 一个关系对应通常来说的一张表</li>
-<li>元组: 表中的一行即为一个元组</li>
-<li>属性: 表中的一列即为一个属性, 每一个属性都会有一个属性名</li>
-<li>主码(key): 也称码键, 是可以唯一确定一个元组的属性组</li>
-<li>域(domain): 是一组具有相同数据类型的值的集合, 是属性的取值范围</li>
-<li>分量: 元组中的一个属性值</li>
-<li>关系模式: 对关系的描述</li>
-</ul>
-</blockquote>
-<p>注意: 关系模型中的关系必须是规范化的, 关系中的每一个分量必须是不可分的数据项, 即不允许表中套表(这个表应该是个纯粹的二维数组)</p>
-<p>优点:</p>
-<blockquote>
-<ul>
-<li>建立在严格的数学概念的基础上</li>
-<li>概念单一<ul>
-<li>实体和各类联系都用关系来表示 </li>
-<li>对数据的检索结果也是关系 </li>
-</ul>
-</li>
-<li>关系模型的存取路径对用户透明(用户感受不到路径)<ul>
-<li>具有更高的数据独立性，更好的安全保密性 </li>
-<li>简化了程序员的工作和数据库开发建立的工作 </li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<p>缺点:</p>
-<blockquote>
-<ul>
-<li>存取路径对用户透明，查询效率往往不如格式化数据模型</li>
-<li>为提高性能，必须对用户的查询请求进行优化，增加了开发数据库管理系统的难度</li>
-</ul>
-</blockquote>
-<h2 id="1-3-数据库系统的结构"><a href="#1-3-数据库系统的结构" class="headerlink" title="1.3 数据库系统的结构"></a>1.3 数据库系统的结构</h2><p>从数据库应用开发人员角度看：</p>
-<blockquote>
-<ul>
-<li>数据库系统采用三级模式结构，是数据库系统内部的系统结构</li>
-</ul>
-</blockquote>
-<p>从数据库最终用户角度看，数据库系统的结构有：</p>
-<blockquote>
-<ul>
-<li>单用户结构</li>
-<li>主从式结构</li>
-<li>分布式结构</li>
-<li>客户-服务器</li>
-<li>浏览器-应用服务器／数据库服务器等</li>
-</ul>
-</blockquote>
-<h3 id="关于模式的一些概念"><a href="#关于模式的一些概念" class="headerlink" title="关于模式的一些概念"></a>关于模式的一些概念</h3><p>模式:</p>
-<blockquote>
-<ul>
-<li>是对数据库逻辑结构和特征的描述</li>
-<li>是型的描述,不涉及具体值</li>
-<li>模式是相对稳定的</li>
-</ul>
-</blockquote>
-<p>实例</p>
-<blockquote>
-<ul>
-<li>数据库某一时刻的状态: 模式的一个具体值</li>
-<li>同一个模式可以有很多实例</li>
-<li>实例随数据库中的数据的更新而变动</li>
-</ul>
-</blockquote>
-<h3 id="三级模式结构"><a href="#三级模式结构" class="headerlink" title="三级模式结构"></a>三级模式结构</h3><p><img src="/2020/02/27/data-base0/pattern0.png" alt="pattern"></p>
-<h4 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h4><p>模式(逻辑模式)</p>
-<blockquote>
-<ul>
-<li>是数据库中全体数据的逻辑结构和特征描述 </li>
-<li>是所有用户的公共数据视图<br>一般,某个应用的数据库有一个模式  </li>
-</ul>
-</blockquote>
-<p>模式是数据库系统模式结构的中心:</p>
-<blockquote>
-<ul>
-<li>与数据的物理存储细节和硬件环境无关</li>
-<li>与具体的应用程序、开发工具及高级程序设计语言无关 </li>
-</ul>
-</blockquote>
-<p>定义模式</p>
-<blockquote>
-<ul>
-<li>DDL定义数据的逻辑结构，以某种数据模型为基础</li>
-<li>数据记录由哪些数据项构成，数据项的名字、类型、取值范围等</li>
-<li>定义数据之间的联系</li>
-<li>定义与数据有关的安全性、完整性要求</li>
-</ul>
-</blockquote>
-<h4 id="外模式"><a href="#外模式" class="headerlink" title="外模式"></a>外模式</h4><p>外模式（也称子模式或用户模式）</p>
-<blockquote>
-<ul>
-<li>数据库用户使用的局部数据的逻辑结构和特征的描述</li>
-<li>数据库用户的数据视图，是与某一应用有关的数据的逻辑表示 </li>
-</ul>
-</blockquote>
-<p>外模式与模式的关系</p>
-<blockquote>
-<ul>
-<li>外模式通常是模式的子集、一个模式可以有多个外模式</li>
-<li>反映了不同的用户的应用需求、看待数据的方式、对数据保密的要求</li>
-<li>对模式中某一数据，在不同的外模式中 结构、类型、长度、保密级别等都可以不同 </li>
-</ul>
-</blockquote>
-<p>外模式与应用的关系</p>
-<blockquote>
-<ul>
-<li>一个外模式可以为 多个应用系统所使用，一个应用程序只能使用一个外模式 </li>
-</ul>
-</blockquote>
-<p>外模式的用途</p>
-<blockquote>
-<ul>
-<li>每个用户只能看见和访问所对应的外模式中的数据，简化用户视图</li>
-<li>保证数据库安全性的一个有力措施</li>
-</ul>
-</blockquote>
-<h4 id="内模式"><a href="#内模式" class="headerlink" title="内模式"></a>内模式</h4><p>内模式（也称存储模式）</p>
-<blockquote>
-<ul>
-<li>是数据物理结构和存储方式的描述</li>
-<li>是数据在数据库内部的表示方式<ul>
-<li>记录的存储方式 （例如，顺序存储，堆存储，Cluste按hash方法存储等）</li>
-<li>索引的组织方式（B+树，Bitmap，Hash）</li>
-<li>数据是否压缩存储</li>
-<li>数据是否加密</li>
-<li>数据存储记录结构的规定—如定长/变长，记录是否可以跨页存放等 </li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<ul>
-<li>一个数据库只有一个内模式</li>
-</ul>
-<h3 id="二级映像"><a href="#二级映像" class="headerlink" title="二级映像"></a>二级映像</h3><p>三级模式实际上是对数据的三个抽象级别</p>
-<p>数据库管理系统内部提供了二级映像</p>
-<blockquote>
-<ul>
-<li>外模式/模式映像</li>
-<li>模式/内模式映像</li>
-</ul>
-</blockquote>
-<h4 id="外模式-模式映像"><a href="#外模式-模式映像" class="headerlink" title="外模式/模式映像"></a>外模式/模式映像</h4><p>对每一个外模式,有一个外模式/模式映像</p>
-<blockquote>
-<ul>
-<li>它定义了外模式与模式之间的对应关系</li>
-<li>映像定义通常包含在各外模式的描述中</li>
-</ul>
-</blockquote>
-<p>这种映像可以保证数据(和程序)的逻辑独立性</p>
-<blockquote>
-<ul>
-<li>当模式改变时，数据库管理员对外模式／模式映像作相应改变，使外模式保持不变</li>
-<li>应用程序是依据数据的外模式编写的，应用程序不必修改，保证了数据 与程序的逻辑独立性，简称数据的逻辑独立性 </li>
-</ul>
-</blockquote>
-<h4 id="模式-内模式映像"><a href="#模式-内模式映像" class="headerlink" title="模式/内模式映像"></a>模式/内模式映像</h4><p>模式/内模式映像定义了全局数据逻辑结构与存储结构之间的对应关系(如，说明某个逻辑记录对应何种存储结构)</p>
-<p>数据库中模式/内模式映像是唯一的,该映像定义通常包含在模式的描述中</p>
-<p>这种映像能保证数据的物理独立性</p>
-<blockquote>
-<ul>
-<li>当数据库的存储结构改变了（例如选用了另一种存储结构），数据库管理员 修改模式／内模式映象，使模式保持不变。</li>
-<li>模式不变，则应用程序不变。保证了数据与程序的物理独立性，简称数据的 物理独立性。</li>
-</ul>
-</blockquote>
-<h4 id="二级映像的功能与数据独立性"><a href="#二级映像的功能与数据独立性" class="headerlink" title="二级映像的功能与数据独立性"></a>二级映像的功能与数据独立性</h4><ul>
-<li><p>保证了应用程序的稳定性</p>
-<blockquote>
-<ul>
-<li>除非应用需求本身发生变化，否则应用程序一般不需要修改。</li>
-</ul>
-</blockquote>
-</li>
-<li><p>从程序为中心——发展为 以数据为中心</p>
-<blockquote>
-<ul>
-<li>具有了数据与程序之间的独立性，使得数据的定义和描述可以从应用 程序中分离出去</li>
-</ul>
-</blockquote>
-</li>
-<li><p>数据的存取由数据库管理系统管理</p>
-<blockquote>
-<ul>
-<li>简化了应用程序的编制</li>
-<li>大大减少了应用程序的维护和修改  </li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<h2 id="1-4-数据库系统的组成"><a href="#1-4-数据库系统的组成" class="headerlink" title="1.4 数据库系统的组成"></a>1.4 数据库系统的组成</h2><ul>
-<li>数据库</li>
-<li>数据库管理系统（及其开发工具）</li>
-<li>应用程序</li>
-<li>数据库管理员 </li>
-</ul>
-<h3 id="硬件平台及数据库"><a href="#硬件平台及数据库" class="headerlink" title="硬件平台及数据库"></a>硬件平台及数据库</h3><p>数据库对硬件资源的要求:</p>
-<blockquote>
-<ul>
-<li>足够大的内存</li>
-<li>足够大的磁盘(阵列)等外部设备</li>
-<li>较高的通讯能力</li>
-</ul>
-</blockquote>
-<h3 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h3><ul>
-<li>数据库管理系统</li>
-<li>支持数据库管理系统运行的操作系统</li>
-<li>与数据库接口的高级语言及其编译系统</li>
-<li>以数据库管理系统为核心的应用开发工具</li>
-<li>为特定应用环境开发的数据库应用系统</li>
-</ul>
-<h3 id="人员"><a href="#人员" class="headerlink" title="人员"></a>人员</h3><p>不同的人员涉及不同的数据抽象级别，具有不同的数据视图:</p>
-<blockquote>
-<ul>
-<li>用户:应用程序客户端</li>
-<li>应用程序员:外模式</li>
-<li>数据库管理员,系统分析员:数据库,内模式,模式,外模式</li>
-</ul>
-</blockquote>
-<h1 id="二、关系数据库"><a href="#二、关系数据库" class="headerlink" title="二、关系数据库"></a>二、关系数据库</h1><h2 id="2-1-关系模型"><a href="#2-1-关系模型" class="headerlink" title="2.1 关系模型"></a>2.1 关系模型</h2><h3 id="关系数据结构"><a href="#关系数据结构" class="headerlink" title="关系数据结构"></a>关系数据结构</h3><p>关系数据结构是单一的数据结构-关系</p>
-<p>关系数据结构示意图如下:<br><img src="/2020/02/27/data-base0/relation0.png" alt="rela"></p>
-<h4 id="域和笛卡尔积空间"><a href="#域和笛卡尔积空间" class="headerlink" title="域和笛卡尔积空间"></a>域和笛卡尔积空间</h4><ul>
-<li><p>域:域是一组具有相同数据类型的值的集合,是属性的取值范围</p>
-</li>
-<li><p>域的笛卡尔积空间是一组域的笛卡尔积,是属性值组合的集合</p>
-</li>
-<li><p>笛卡尔积的基数是参与笛卡尔积中元素的个数</p>
-</li>
-<li><p>笛卡尔积可以表示为一张二维表,行对应集合中的每个元素,列对应每个属性的域</p>
-</li>
-</ul>
-<h4 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h4><p>关系是在笛卡尔积上的子集  </p>
-<p>关系中的元素可以用元组表示,在二维表中由一行表示</p>
-<ul>
-<li>属性: 关系中不同列称为属性,每个属性有一个名字; n目关系有n个属性</li>
-<li>码: 码是能唯一标识一个元组的属性(组)<blockquote>
-<ul>
-<li>候选码:关系中能唯一地标识一个元组的最小属性组，则称该属性组为候选码 </li>
-<li>全码:关系模式的所有属性都是这个关系模式的候选码时,这个属性组称为全码（All-key）</li>
-<li>主码:若一个关系有多个候选码，则选定其中一个为主码（Primary key）</li>
-<li>主属性:候选码的诸属性称为主属性（Prime attribute）不包含在任何侯选码中的属性称为非主属性（Non-Prime attribute）或非码属性（Non-key attribute）  </li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<h4 id="关系模式"><a href="#关系模式" class="headerlink" title="关系模式"></a>关系模式</h4><p>关系模式是对关系的描述<br>关系模式主要有元组集合的结构和完整性约束条件两方面构成</p>
-<p>关系模式可以由一个五元组R(U,D,DOM,F)表示,其中:</p>
-<blockquote>
-<ul>
-<li>R:关系名</li>
-<li>U:属性名集合</li>
-<li>D:各属性的域的集合</li>
-<li>DOM:属性向域的映像集合(映射关系,指明哪个属性的域是哪个)</li>
-<li>F:属性间数据依赖的关系集合</li>
-</ul>
-</blockquote>
-<h3 id="关系完整性约束"><a href="#关系完整性约束" class="headerlink" title="关系完整性约束"></a>关系完整性约束</h3><ul>
-<li><p>实体完整性和参照完整性: 关系模型必须满足的完整性约束条件称为关系的两个不变性，应该由关系系统自动支持</p>
-</li>
-<li><p>用户定义的完整性: 应用领域需要遵循的约束条件，体现了具体领域中的语义约束 </p>
-</li>
-</ul>
-<p>关系完整性约束能够使得一些不符合条件的元组不能进入数据库</p>
-<h4 id="实体完整性"><a href="#实体完整性" class="headerlink" title="实体完整性"></a>实体完整性</h4><ul>
-<li>关系的主属性不能取空值(码不能为空)</li>
-</ul>
-<p>说明: </p>
-<blockquote>
-<ul>
-<li>实体完整性规则是针对基本关系而言的。一个基本表通常对应现实世界的一个实体集。</li>
-<li>现实世界中的实体是可区分的，即它们具有某种唯一性标识。</li>
-<li>关系模型中以主码作为唯一性标识。</li>
-<li>主码中的属性即主属性不能取空值。主属性取空值，就说明存在某个不可标识的实体，即存在不可区分的实体，这与第（2）点相矛盾，因此这个规则称为实体完整性</li>
-</ul>
-</blockquote>
-<h4 id="参照完整性"><a href="#参照完整性" class="headerlink" title="参照完整性"></a>参照完整性</h4><ul>
-<li>关系中的某些属性的取值需要参考另外一个关系中的相关数据</li>
-</ul>
-<p>在关系模型中实体及实体间的联系都是用关系来描述的,自然存在着关系与关系间的引用,而这种引用应当是有意义的 </p>
-<p>若关系R中的属性F的取值需要参考关系S中的主码K,则:</p>
-<blockquote>
-<ul>
-<li>F为R的外码/外键,此时F不能是R的码</li>
-<li>R为参照关系</li>
-<li>S为被参照关系或目标关系</li>
-<li>外码F只能为空或者是关系S中某个存在的元组的K属性(有意义)</li>
-<li>R和S可以是同一个关系</li>
-</ul>
-</blockquote>
-<h4 id="用户定义完整性"><a href="#用户定义完整性" class="headerlink" title="用户定义完整性"></a>用户定义完整性</h4><p>其他一些用户定义的完整性规则,可以是列级完整性约束也可以是表级完整性约束</p>
-<h2 id="2-2-关系代数"><a href="#2-2-关系代数" class="headerlink" title="2.2 关系代数"></a>2.2 关系代数</h2><p>关系数据库语言分类：</p>
-<blockquote>
-<ul>
-<li>关系代数语言: 用对关系的运算来表达查询要求</li>
-<li>关系演算语言：用谓词来表达查询要求</li>
-<li>具有关系代数和关系演算双重特点的语言(SQL)</li>
-</ul>
-</blockquote>
-<p>关系代数是一种抽象的查询语言，它用对关系的运算来表达查询,其以集合运算为数学基础</p>
-<blockquote>
-<ul>
-<li>关系代数运算对象是关系</li>
-<li>关系代数运算结果是关系</li>
-<li>关系代数运算符分为集合运算符和专门关系的运算符</li>
-</ul>
-</blockquote>
-<h3 id="传统集合操作"><a href="#传统集合操作" class="headerlink" title="传统集合操作"></a>传统集合操作</h3><p>一些记号的定义:</p>
-<blockquote>
-<ul>
-<li>$R(A_1,A_2,…,A_n)$表示n目的关系模式,$A_i$表示属性</li>
-<li>$R$为符合上述关系模式的一个关系</li>
-<li>$t\in R$是R中的一个元组</li>
-<li>$t[A_i]$表示元组$t$中属性$A_i$的值</li>
-<li>$A=\lbrace A_i,A_j,…,A_k \rbrace$表示属性列或属性组</li>
-<li>$t[A]$可以表示$t$在上述属性组中诸分量的集合</li>
-<li>$\overline A$表示$A$在全体属性中的补集</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>$\widehat {t_rt_s}$表示关系R和关系S中两个元组的连接</li>
-<li>$Z_x$是象集,表示R中属性组$X$上值为$x$的所有元组在属性组$Z$上分量的集合,称为$x$在$R$中的象集</li>
-</ul>
-</blockquote>
-<h4 id="关系的并"><a href="#关系的并" class="headerlink" title="关系的并"></a>关系的并</h4><p>关系的并就是集合的并,运算要求如下:</p>
-<blockquote>
-<ul>
-<li>关系R和S目数相同,相应的属性属于同一个域</li>
-<li>R并S仍为n目关系,R$\cup$S是R和S上所有元组的集合</li>
-<li>并完之后要去重</li>
-</ul>
-</blockquote>
-<h4 id="关系的差"><a href="#关系的差" class="headerlink" title="关系的差"></a>关系的差</h4><p>关系的差就是集合的差,运算要求如下:</p>
-<blockquote>
-<ul>
-<li>关系R和S目数相同,相应的属性属于同一个域</li>
-<li>R并S仍为n目关系,R-S是属于R而不属于S的所有元组的集合</li>
-</ul>
-</blockquote>
-<h4 id="关系的交"><a href="#关系的交" class="headerlink" title="关系的交"></a>关系的交</h4><p>要求同上,运算结果是在R和S中都存在的元组的集合</p>
-<h4 id="笛卡尔积"><a href="#笛卡尔积" class="headerlink" title="笛卡尔积"></a>笛卡尔积</h4><p>关系的笛卡尔积中,$R\times S = \lbrace \widehat {t_rt_s} | t_r \in R \land t_s \in S \rbrace$</p>
-<blockquote>
-<ul>
-<li>行:运算后为$n_R+n_S$目关系</li>
-<li>列:运算后有$k_R*k_S$个元组</li>
-</ul>
-</blockquote>
-<h3 id="关系特有操作"><a href="#关系特有操作" class="headerlink" title="关系特有操作"></a>关系特有操作</h3><h4 id="选择-sigma"><a href="#选择-sigma" class="headerlink" title="选择$\sigma$"></a>选择$\sigma$</h4><ul>
-<li>选择运算又称为限制</li>
-<li>是在关系R中选择符合条件的元组组成集合</li>
-<li>条件是一个取值为真或假的逻辑表达式</li>
-</ul>
-<h4 id="投影-pi"><a href="#投影-pi" class="headerlink" title="投影$\pi$"></a>投影$\pi$</h4><ul>
-<li>从关系R中选择出若干属性列组成新的关系</li>
-<li>投影后形成的新的关系目数会减少</li>
-<li>需要去重</li>
-</ul>
-<h4 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h4><p>连接是从两个关系的笛卡尔积中选择属性满足一定条件A$\theta$B的元组组成的关系</p>
-<p>此时,参与连接的两个关系有一些度数相等且可以进行比较的属性组A和B</p>
-<ul>
-<li><p>等值连接: 两个元组能连接的条件是对应属性组的值相等,即$\theta$为’=’</p>
-</li>
-<li><p>自然连接: 一种特殊的等值连接,两个进行比较的属性组必须相同,且运算结束后这些重复的属性组将会被去掉,这是一种对行和列都进行操作的运算</p>
-</li>
-<li><p>两个关系R和S在做自然连接时，被舍弃的元组称为悬浮元组</p>
-</li>
-<li><p>外连接: 将悬浮元组也保留在结果关系中,附加的属性置为空</p>
-<blockquote>
-<ul>
-<li>左外连接:只保留左边关系R中的悬浮元组,悬浮元组中多出来的S分量全置为空</li>
-<li>右外连接:只保留右边关系S中的悬浮元组,多出来的R分量全置为空</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<h4 id="除运算"><a href="#除运算" class="headerlink" title="除运算"></a>除运算</h4><ul>
-<li>给定关系R (X，Y) 和S (Y，Z)，其中X，Y，Z为属性组;Y一般为R和S中都有的属性组</li>
-<li>R/S的结果是R上的一个投影P(X)的子集</li>
-<li>R/S中的元组在X上分量值x的象集Yx包含S在Y上投影的集合<blockquote>
-<ul>
-<li>如果R是选课记录,S是全体课程,R/S就表示选了所有课程的学生</li>
-</ul>
-</blockquote>
-</li>
-<li>属性组Z没有参与到R/S的运算中</li>
-</ul>
-<h2 id="2-3-关系演算"><a href="#2-3-关系演算" class="headerlink" title="2.3 关系演算"></a>2.3 关系演算</h2><p>关系演算是以谓词演算为数学基础</p>
-<p>按谓词变元不同,可分为元组关系演算(ALPHA语言)和域关系演算(QBE语言)</p>
-<h3 id="元组关系演算ALPHA"><a href="#元组关系演算ALPHA" class="headerlink" title="元组关系演算ALPHA"></a>元组关系演算ALPHA</h3><h4 id="基本格式"><a href="#基本格式" class="headerlink" title="基本格式"></a>基本格式</h4><p><code>GET [(定额)] &lt;工作空间&gt; (&lt;操作对象&gt;) [:条件] [DOWN|UP 排序方式]</code></p>
-<blockquote>
-<ul>
-<li>以相应排序方式返回符合条件的操作对象</li>
-<li>如果有定额则只返回前n个结果</li>
-</ul>
-</blockquote>
-<h4 id="用元组变量进行检索"><a href="#用元组变量进行检索" class="headerlink" title="用元组变量进行检索"></a>用元组变量进行检索</h4><p>元组变量是可以在某一关系上任意取值的变量</p>
-<blockquote>
-<ul>
-<li>可以用元组变量来代替较长的关系名</li>
-<li>如果条件中使用量词,其后只能接元组变量</li>
-</ul>
-</blockquote>
-<p>元组关系演算是以元组变量作为谓词变元的基本对象的关系演算</p>
-<p>定义方式:<code>RANGE &lt;关系名&gt; &lt;变量名&gt;</code></p>
-<h4 id="用存在量词的检索"><a href="#用存在量词的检索" class="headerlink" title="用存在量词的检索"></a>用存在量词的检索</h4><ul>
-<li>使用量词时先得定义在关系上的元组变量</li>
-</ul>
-<p>条件语句格式: $\exists$ &lt;元组变量&gt; (&lt;关于元组变量和目标元组的表达式&gt;)</p>
-<p>对于需要判断的目标元组,只要存在一个元组变量的取值使得后面的表达式成立,这个目标元组就能够被选择</p>
-<h4 id="用全称量词检索"><a href="#用全称量词检索" class="headerlink" title="用全称量词检索"></a>用全称量词检索</h4><ul>
-<li>使用量词时先得定义在关系上的元组变量</li>
-</ul>
-<p>条件语句格式: $\forall$ &lt;元组变量&gt; (&lt;关于元组变量和目标元组的表达式&gt;)</p>
-<p>对于需要判断的目标元组,无论元组变量取什么值后面的表达式都成立,则这个目标元组能够被选择</p>
-<h4 id="用蕴含的检索"><a href="#用蕴含的检索" class="headerlink" title="用蕴含的检索"></a>用蕴含的检索</h4><p>在上述表达式中,可以使用蕴含条件</p>
-<p>表达式格式:A$\to$B</p>
-<p>当A成立时B一定成立,表达式为真</p>
-<h4 id="聚集函数"><a href="#聚集函数" class="headerlink" title="聚集函数"></a>聚集函数</h4><p>常用聚集函数(内部函数):</p>
-<blockquote>
-<ul>
-<li>COUNT: 对元组计数(计数时会自动排除重复值)</li>
-<li>TOTAL: 求值的总和</li>
-<li>MAX: 求最大值</li>
-<li>MIN: 求最小值</li>
-<li>AVG: 求平均值</li>
-</ul>
-</blockquote>
-<h3 id="域关系演算QBE"><a href="#域关系演算QBE" class="headerlink" title="域关系演算QBE"></a>域关系演算QBE</h3><p>域关系演算是以元组变量的分量即域变量作为谓词变元的基本对象的关系演算</p>
-<h1 id="三、关系数据库标准语言SQL"><a href="#三、关系数据库标准语言SQL" class="headerlink" title="三、关系数据库标准语言SQL"></a>三、关系数据库标准语言SQL</h1><p>SQL: 结构化查询语言,Structured Query Language</p>
-<p>目前,没有一个数据库系统能够支持SQL标准的所有概念和特性</p>
-<h2 id="3-1-SQL概述"><a href="#3-1-SQL概述" class="headerlink" title="3.1 SQL概述"></a>3.1 SQL概述</h2><p>SQL（Structured Query Language）结构化查询语言是关系数据库的标准语言</p>
-<h3 id="SQL特点"><a href="#SQL特点" class="headerlink" title="SQL特点"></a>SQL特点</h3><p>综合统一: </p>
-<blockquote>
-<ul>
-<li>集数据定义语言（DDL），数据操纵语言（DML），数据控制语言（DCL）功能于一体。 </li>
-<li>可以独立完成数据库生命周期中的全部活动  </li>
-</ul>
-</blockquote>
-<p>高度非过程化:</p>
-<blockquote>
-<ul>
-<li>非关系数据模型的数据操纵语言“面向过程”，必须指定存取路径。</li>
-<li>SQL只要提出“做什么”，无须了解存取路径。</li>
-<li>存取路径的选择以及SQL的操作过程由系统自动完成。</li>
-</ul>
-</blockquote>
-<p>面向集合的操作方式: </p>
-<blockquote>
-<ul>
-<li>非关系数据模型采用面向记录的操作方式，操作对象是一条记录</li>
-<li>SQL采用集合操作方式</li>
-<li>操作对象、查找结果可以是元组的集合</li>
-<li>一次插入、删除、更新操作的对象可以是元组的集合</li>
-</ul>
-</blockquote>
-<p>以同一种语法结构提供多种使用方式: </p>
-<blockquote>
-<ul>
-<li>SQL是独立的语言,能够独立地用于联机交互的使用方式</li>
-<li>SQL能够嵌入到高级语言（例如C，C++，Java）程序中，供程序员设计程序时使用</li>
-</ul>
-</blockquote>
-<p>语言简洁，易学易用: </p>
-<blockquote>
-<ul>
-<li>SQL功能极强，完成核心功能只用了9个动词。</li>
-<li>数据定义:CREATE,DROP,ALTER</li>
-<li>数据操纵:INSERT,UPDATE,DELETE</li>
-<li>数据查询:SELECT</li>
-<li>权限控制:GRANT,REVOKE</li>
-</ul>
-</blockquote>
-<h3 id="SQL基本概念"><a href="#SQL基本概念" class="headerlink" title="SQL基本概念"></a>SQL基本概念</h3><p>数据库三级模式在SQL数据库中的体现:<br><img src="/2020/02/27/data-base0/sql0.png" alt="sql"></p>
-<ul>
-<li><p>基本表(模式)</p>
-<blockquote>
-<ul>
-<li>本身独立存在的表</li>
-<li>SQL中一个关系就对应一个基本表</li>
-<li>一个（或多个）基本表对应一个存储文件</li>
-<li>一个表可以带若干索引</li>
-</ul>
-</blockquote>
-</li>
-<li><p>存储文件(内模式)</p>
-<blockquote>
-<ul>
-<li>存储文件以逻辑结构的方式组成了关系数据库的内模式</li>
-<li>而物理存储结构对用户是隐蔽的(透明)</li>
-</ul>
-</blockquote>
-</li>
-<li><p>视图(外模式)</p>
-<blockquote>
-<ul>
-<li>视图是由一个或几个基本表导出的表,是一个虚表</li>
-<li>视图不存储数据,数据库中只存放视图的定义</li>
-<li>视图上可以再定义视图</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<h2 id="3-2-数据定义"><a href="#3-2-数据定义" class="headerlink" title="3.2 数据定义"></a>3.2 数据定义</h2><p>数据定义是定义各种数据库的对象</p>
-<blockquote>
-<p>数据定义包括模式(SCHEMA)定义,表(TABLE)定义,视图(VIEW)定义,索引(INDEX)定义  </p>
-<ul>
-<li>这里的模式通常指基本表的结构</li>
-<li>一个数据库中可以建立多个模式</li>
-<li>一个模式下可以建立多个表,视图,索引等数据库对象</li>
-</ul>
-</blockquote>
-<p>上述对象的定义存储在数据库系统的数据字典中</p>
-<ul>
-<li>数据字典: 数据字典是关系数据库管理系统内部的一组系统表，它记录了数据库中所有对象的定义等一些信息<blockquote>
-<ul>
-<li>除了模式,表,视图,索引的定义(包括完整性约束)外, 数据字典还会存储各类用户对数据库的操作权限和统计信息等</li>
-<li>关系数据库管理系统在执行SQL的数据定义语句时，实际上就是在更新数据字典表中的相应信息</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<h3 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h3><p>为某人创建某名的模式</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">SCHEMA</span> &lt;模式名&gt; AUTHORIZATION &lt;用户名&gt;</span><br><span class="line">[&lt;表定义子句&gt;|&lt;视图定义子句&gt;|&lt;权限定义子句&gt;];</span><br></pre></td></tr></table></figure>
-<ul>
-<li>若没有指定模式名,则模式名隐含为用户名</li>
-</ul>
-<p>删除某模式:<code>DROP SCHEMA &lt;模式名&gt; &lt;CASCADE|RESTRICT&gt;</code><br>删除选项:</p>
-<blockquote>
-<ul>
-<li>CASADE 级联: 删除模式同时将该模式下的所有数据库对象删除</li>
-<li>RESTRICT 限制: 仅当该模式中没有任何下属对象时才能执行, 如果这个模式下有表/视图等定义,则拒绝执行语句</li>
-</ul>
-</blockquote>
-<h3 id="基本表的定义"><a href="#基本表的定义" class="headerlink" title="基本表的定义"></a>基本表的定义</h3><h4 id="创建基本表"><a href="#创建基本表" class="headerlink" title="创建基本表"></a>创建基本表</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> &lt;表名&gt; <span class="comment">/* 基本表的名称 */</span> </span><br><span class="line">(&lt;列名&gt; &lt;数据类型&gt;[ &lt;列级完整性约束条件&gt; ] <span class="comment">/*组成该表的列*/</span> </span><br><span class="line">[,&lt;列名&gt; &lt;数据类型&gt;[ &lt;列级完整性约束条件&gt;] ] </span><br><span class="line">… </span><br><span class="line">[,&lt;表级完整性约束条件&gt; ] );</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>&lt;列级完整性约束条件&gt;: 涉及仅单个属性列的完整性约束条件 </p>
-</li>
-<li><p>&lt;表级完整性约束条件&gt;: 涉及一个或多个属性列的完整性约束条件 </p>
-</li>
-<li><p>&lt;表名&gt;:每一个基本表需属于某个模式,可以显式地在表名中给出,也可以在搜索路径中设置 </p>
-<blockquote>
-<p>设置搜索路径(默认模式):<code>SET search_path TO &lt;模式名&gt;,PUBLIC;</code></p>
-</blockquote>
-</li>
-<li><p>&lt;数据类型&gt;: 有如下数据类型</p>
-<table>
-<thead>
-<tr>
-<th align="left">数据类型</th>
-<th align="left">含义</th>
-<th align="left">数据类型</th>
-<th align="left">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">CHAR(n)</td>
-<td align="left">n位定长字符串</td>
-<td align="left">CHARACTER(n)</td>
-<td align="left">同CHAR(n)</td>
-</tr>
-<tr>
-<td align="left">VRCHAR(n)</td>
-<td align="left">最大长度为n的变长字符串</td>
-<td align="left">VRCHARACTER(n)</td>
-<td align="left">同VRCHAR(n)</td>
-</tr>
-<tr>
-<td align="left">CLOB</td>
-<td align="left">字符串大对象</td>
-<td align="left">BLOB</td>
-<td align="left">二进制大对象</td>
-</tr>
-<tr>
-<td align="left">INT</td>
-<td align="left">长整数(4字节)</td>
-<td align="left">INTEGER</td>
-<td align="left">同INT</td>
-</tr>
-<tr>
-<td align="left">BIGINT</td>
-<td align="left">大整数(8字节)</td>
-<td align="left">SMALLINT</td>
-<td align="left">短整数(2字节)</td>
-</tr>
-<tr>
-<td align="left">DEC(p,d)</td>
-<td align="left">精度为d的p位定点数</td>
-<td align="left">DECIMAL(p,d),NUMERIC(p,d)</td>
-<td align="left">同DEC(p,d)</td>
-</tr>
-<tr>
-<td align="left">REAL</td>
-<td align="left">单精度浮点数</td>
-<td align="left">DOUBLE PRECISION</td>
-<td align="left">双精度浮点数</td>
-</tr>
-<tr>
-<td align="left">FLOAT(n)</td>
-<td align="left">精度为n的浮点数</td>
-<td align="left">BOOLEAN</td>
-<td align="left">布尔值</td>
-</tr>
-<tr>
-<td align="left">DATE</td>
-<td align="left">格式为YYYY-MM-DD的日期</td>
-<td align="left">TIME</td>
-<td align="left">格式为HH:MM:SS的时间</td>
-</tr>
-<tr>
-<td align="left">TIMESTAP</td>
-<td align="left">时间戳类型</td>
-<td align="left">INTERVAL</td>
-<td align="left">时间间隔类型</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-<h4 id="修改基本表"><a href="#修改基本表" class="headerlink" title="修改基本表"></a>修改基本表</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;表名&gt;</span><br><span class="line">[<span class="keyword">ADD</span>[<span class="keyword">COLUMN</span>] &lt;新列名&gt; &lt;数据类型&gt; [ 完整性约束 ] ]</span><br><span class="line">[<span class="keyword">ADD</span> &lt;表级完整性约束&gt;] <span class="comment">/*完整性约束只能添加表级完整性约束*/</span></span><br><span class="line">[<span class="keyword">DROP</span> [ <span class="keyword">COLUMN</span> ] &lt;列名&gt; [<span class="keyword">CASCADE</span>| RESTRICT] ]</span><br><span class="line">[<span class="keyword">DROP</span> <span class="keyword">CONSTRAINT</span>&lt;完整性约束名&gt;[ RESTRICT | <span class="keyword">CASCADE</span> ] ]</span><br><span class="line">[<span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> &lt;列名&gt;&lt;数据类型&gt; ] ;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>ADD COLUMN: 增加列</li>
-<li>DROP COLUMN: 删除列<blockquote>
-<ul>
-<li>级联: 删除该列及引用该列的其他对象</li>
-<li>限制: 如果该列被其他对象引用,则拒绝删除</li>
-</ul>
-</blockquote>
-</li>
-<li>ALTER COLUMN:修改列,也可以用以下两种方法<blockquote>
-<ul>
-<li><code>MODIFY &lt;列名&gt; &lt;数据类型&gt;</code>:修改列的数据类型</li>
-<li><code>CHANGE &lt;列名&gt; &lt;新列名&gt; &lt;新数据类型&gt;</code>:修改列名</li>
-</ul>
-</blockquote>
-</li>
-<li>RENAME TO &lt;新表名&gt;:改个新表名</li>
-</ul>
-<h4 id="删除基本表"><a href="#删除基本表" class="headerlink" title="删除基本表"></a>删除基本表</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> &lt;表名&gt;［RESTRICT| <span class="keyword">CASCADE</span>］;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>级联:在删除基本表的同时，相关的依赖对象一起删除</li>
-<li>限制:如果存在依赖该表的对象(该表被其他表引用),则拒绝删除</li>
-</ul>
-<h3 id="索引的定义"><a href="#索引的定义" class="headerlink" title="索引的定义"></a>索引的定义</h3><p>建立索引目的: 加快查询速度</p>
-<ul>
-<li>常见索引:顺序索引,B+树索引,散列索引,位图索引</li>
-<li>索引由数据库管理员或建表者建立</li>
-<li>索引由关系数据库系统自动完成维护</li>
-</ul>
-<h4 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> [<span class="keyword">UNIQUE</span>] [CLUSTER] <span class="keyword">INDEX</span> &lt;索引名&gt;</span><br><span class="line"><span class="keyword">ON</span> &lt;表名&gt;(&lt;列名&gt;[&lt;次序&gt;][,&lt;列名&gt;[&lt;次序&gt;] ]…);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>&lt;表名&gt;：要建索引的基本表的名字  </li>
-<li>索引：可以建立在该表的一列或多列上，各列名之间用逗号分隔  </li>
-<li>&lt;次序&gt;：指定索引值的排列次序，升序：ASC，降序：DESC。缺省 值：ASC  </li>
-<li>UNIQUE：此索引的每一个索引值只对应唯一的数据记录  </li>
-<li>CLUSTER：表示要建立的索引是聚簇索引</li>
-</ul>
-<h4 id="修改索引"><a href="#修改索引" class="headerlink" title="修改索引"></a>修改索引</h4><p><code>ALTER INDEX &lt;旧索引名&gt; RENAME TO &lt;新索 引名&gt;;</code></p>
-<h4 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h4><p><code>DROP INDEX &lt;索引名&gt;;</code><br>删除索引时，系统会从数据字典中删去有关该索引的描述</p>
-<h2 id="3-3-数据查询"><a href="#3-3-数据查询" class="headerlink" title="3.3 数据查询"></a>3.3 数据查询</h2><h3 id="单表查询"><a href="#单表查询" class="headerlink" title="单表查询"></a>单表查询</h3><p>语句格式:</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> [<span class="keyword">ALL</span>|<span class="keyword">DISTINCT</span>] &lt;目标列表达式&gt;[,&lt;目标列表达式&gt;] …</span><br><span class="line"><span class="keyword">FROM</span> &lt;表名或视图名&gt;[,&lt;表名或视图名&gt; ]…|(<span class="keyword">SELECT</span> 语句)</span><br><span class="line">[<span class="keyword">AS</span>]&lt;别名&gt;</span><br><span class="line">[ <span class="keyword">WHERE</span> &lt;条件表达式&gt; ]</span><br><span class="line">[ <span class="keyword">GROUP</span> <span class="keyword">BY</span> &lt;列名<span class="number">1</span>&gt; [ <span class="keyword">HAVING</span> &lt;条件表达式&gt; ] ]</span><br><span class="line">[ <span class="keyword">ORDER</span> <span class="keyword">BY</span> &lt;列名<span class="number">2</span>&gt; [ <span class="keyword">ASC</span>|<span class="keyword">DESC</span> ] ]</span><br></pre></td></tr></table></figure>
-<ul>
-<li>SELECT:指定要显示的结果属性列,*表示所有列<blockquote>
-<ul>
-<li>目标列值可以为常量,即使它不在查询对象中</li>
-<li>LOWER(&lt;目标列&gt;)可以使目标列值小写输出</li>
-<li>目标列值可以用聚集函数表示</li>
-<li>可以用别名<code>&lt;目标列表达式&gt; &lt;目标列别名&gt;</code>改变查询结果的列标题</li>
-<li>ALL表示不去除重复的行(默认),DISTINCT表示去重</li>
-</ul>
-</blockquote>
-</li>
-<li>FROM:指定查询对象</li>
-<li>WHERE:查询条件<blockquote>
-<p>常用查询条件:</p>
-<ul>
-<li>基本比较运算符</li>
-<li>确定范围: [NOT] BETWEEN .. AND ..</li>
-<li>确定集合: [NOT] IN &lt;值表&gt; ; &lt;值表&gt;=(值1,值2,…)</li>
-<li>字符匹配: [NOT] LIKE &lt;匹配字符串&gt; [ESCAPE &lt;换码字符&gt;]  <blockquote>
-<p>匹配串中’%’表示任意长度通配,’_’表示单字符通配,’&#39;可以将通配符转义(需要ESCAPE’&#39;来表明转义字符)</p>
-</blockquote>
-</li>
-<li>空值:IS [NOT] NULL;其中IS不能用’=’代替</li>
-<li>连接运算符:NOT AND OR,优先级从高到低</li>
-</ul>
-</blockquote>
-</li>
-<li>GROUP BY:对查询结果按指定列的值分组,列值相等的元素归到一组;通常会在每组中使用聚集函数<blockquote>
-<p>常用聚集函数:</p>
-<ul>
-<li>COUNT([ALL|DISTINCT] &lt;列名&gt;): 列值计数</li>
-<li>SUM([ALL|DISTINCT] &lt;列名&gt;): 对数值型的列求总和</li>
-<li>AVG([ALL|DISTINCT] &lt;列名&gt;): 对数值型的列求均值</li>
-<li>MAX|MIN([ALL|DISTINCT] &lt;列名&gt;): 求列的最大|最小值  </li>
-</ul>
-<p>没有GROUP BY语句时,聚集函数将作用于整个查询结果,使用分组后函数将分别作用于每个组</p>
-</blockquote>
-</li>
-<li>HAVING:在分组时选择指定条件的组,可以使用聚集函数,不能用WHERE替代</li>
-<li>ORDER BY:对查询结果按指定值升序或降序排序,支持以不同优先级设置多个排序标准</li>
-</ul>
-<h3 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h3><p>不像关系代数中“连接”是用一个特殊符号来表达的，在SQL中“连接”是用“连接条件”来表达的。  </p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> &lt;表名&gt;.&lt;列名&gt;,...</span><br><span class="line"><span class="keyword">FROM</span> &lt;表<span class="number">1</span>&gt;,&lt;表<span class="number">2</span>&gt;,...</span><br><span class="line"><span class="keyword">WHERE</span> [&lt;表名<span class="number">1</span>&gt;.]&lt;列名<span class="number">1</span>&gt;  &lt;比较运算符&gt;  [&lt;表名<span class="number">2</span>&gt;.]&lt;列名<span class="number">2</span>&gt;</span><br><span class="line">      <span class="keyword">AND</span> &lt;其他条件&gt;;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>WHERE子句中除了连接条件,还可以有选择条件,同时完成选择和连接查询</li>
-<li>对于表的自身连接,可以给同一个表取不同的别名来区分,来实现一些复杂的连接条件</li>
-<li>左右外连接:<blockquote>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ...</span><br><span class="line"><span class="keyword">FROM</span> &lt;表<span class="number">1</span>&gt; <span class="keyword">LEFT</span>|<span class="keyword">RIGHT</span> <span class="keyword">OUT</span> <span class="keyword">JOIN</span> &lt;表<span class="number">2</span>&gt; </span><br><span class="line"><span class="keyword">ON</span> &lt;连接条件&gt;; </span><br></pre></td></tr></table></figure></blockquote>
-</li>
-<li>FROM中也可以有多个表,进行多表连接</li>
-</ul>
-<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>循环嵌套法:</p>
-<blockquote>
-<p>每从表1中取出一个元组,扫描一遍表2,将表2中符合条件的元组与前面的元组拼接起来,重复直到表1中的元组都处理完毕</p>
-</blockquote>
-<p>排序合并法:(常用于等值连接)</p>
-<blockquote>
-<p>按连接属性对表1和2进行排序,然后设置两个指针分别从两个表头开始从前向后扫;如果扫描的两个指针可以连接,则拼接后两个指针同时向后移,否在值较小的指针向后移动(归并算法);重复直到某个指针走到了表尾</p>
-</blockquote>
-<p>索引连接:</p>
-<blockquote>
-<p>对表2按连接字段建立索引,对于表1中的每个元组,按索引结果进行连接(循环嵌套法的一个变种)</p>
-</blockquote>
-<h3 id="嵌套查询"><a href="#嵌套查询" class="headerlink" title="嵌套查询"></a>嵌套查询</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>一个SELECT-FROM-WHERE语句称为一个查询块,将一个查询块嵌套在另一个查询块的WHERE子句或HAVING短语的条件中的查询称为嵌套查询</p>
-<ul>
-<li>上层的查询块称为外层查询或父查询</li>
-<li>下层查询块称为内层查询或子查询</li>
-<li>SQL语言允许多层嵌套查询</li>
-<li>子查询不能使用ORDER BY子句</li>
-</ul>
-<p>嵌套查询类型:</p>
-<ul>
-<li><p>不相关子查询:子查询的查询条件不依赖于父查询,如IN,ANY/ALL子查询 </p>
-<blockquote>
-<p>原理:由里向外逐层处理</p>
-</blockquote>
-</li>
-<li><p>相关子查询:子查询的查询条件依赖于父查询,如EXISTS子查询</p>
-<blockquote>
-<p>原理:依次取外层查询中表内的各元组,根据它与内层查询相关的属性值处理内层查询,若WHERE子句返回值为真,则取此元组放入结果表中</p>
-</blockquote>
-</li>
-</ul>
-<h4 id="IN子查询"><a href="#IN子查询" class="headerlink" title="IN子查询"></a>IN子查询</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> ...</span><br><span class="line"><span class="keyword">WHERE</span> &lt;列名(值)&gt; <span class="keyword">IN</span></span><br><span class="line">    (</span><br><span class="line">        <span class="keyword">SELECT</span> &lt;列名&gt;</span><br><span class="line">        ...</span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
-
-<h4 id="ANY-ALL子查询"><a href="#ANY-ALL子查询" class="headerlink" title="ANY/ALL子查询"></a>ANY/ALL子查询</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> ...</span><br><span class="line"><span class="keyword">WHERE</span> &lt;列名&gt; &lt;比较运算符&gt; <span class="keyword">ANY</span>/<span class="keyword">ALL</span></span><br><span class="line">    (</span><br><span class="line">        <span class="keyword">SELECT</span> &lt;列名&gt;</span><br><span class="line">        ...</span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
-<ul>
-<li>当确定内层子查询返回结果是单个值时,可以省略ANY/ALL</li>
-<li>ANY/ALL的对象为某个查询结果,表示其中任意一个值或者全部值<blockquote>
-<p>有时ANY/ALL谓词表达式可以用子查询中的聚集函数代替,如<code>&lt;ANY (SELECT &lt;列名&gt;)</code>可以用<code>&lt; (SELECT MIN(&lt;列名&gt;))</code>实现</p>
-</blockquote>
-</li>
-</ul>
-<h4 id="EXISTS子查询"><a href="#EXISTS子查询" class="headerlink" title="EXISTS子查询"></a>EXISTS子查询</h4><p>EXISTS是相关子查询,它依次取外层查询中表内的各元组,根据它与内层查询相关的属性值处理内层查询,若WHERE子句返回值为真,则取此元组放入结果表中</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> &lt;表<span class="number">1</span>&gt;</span><br><span class="line"><span class="keyword">WHERE</span> [<span class="keyword">NOT</span>] <span class="keyword">EXISTS</span></span><br><span class="line">    (</span><br><span class="line">        <span class="keyword">SELECT</span> *</span><br><span class="line">        <span class="keyword">FROM</span> &lt;表<span class="number">2</span>&gt;,...</span><br><span class="line">        <span class="keyword">WHERE</span> &lt;表<span class="number">1</span>&gt;...&lt;表<span class="number">2</span>&gt;...;</span><br><span class="line">    );</span><br><span class="line"><span class="comment">/* 表示查询结果中的每条记录都满足/不满足EXISTS子句 */</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>EXIST的对象也是某个查询结果，若查询结果非空则返回真<blockquote>
-<ul>
-<li>由EXISTS引出的子查询中一般都是SELECT *</li>
-<li>所有带IN谓词、比较运算符、ANY和ALL谓词的子查询都能用带EXISTS谓词的子查询等价替换</li>
-<li>SQL中的存在,任意,蕴含等谓词都需要用EXISTS手动实现</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<h4 id="除法运算"><a href="#除法运算" class="headerlink" title="除法运算"></a>除法运算</h4><p>除法运算需要用EXIST子句实现</p>
-<p>原理:</p>
-<ol>
-<li>计算C(X)=A(X,Y)/B(Y,Z)</li>
-<li>根据上式,需要找出所有的c[X],使得对于所有的b[Y],都存在a[X,Y]使得a[X]=c[X],a[Y]=b[Y]</li>
-<li>SQL中没有全称量词,需要对上式进行转换:找出所有的c[X],使得不存在b[Y],不存在a[X,Y]使得a[X]=c[X],a[Y]=b[Y]</li>
-<li>对于 ‘不存在a[X,Y]使得a[X]=c[X],a[Y]=b[Y]’, 还可以使用集合差运算转化成 ‘全体a[X,Y] - 使得a[X]=c[X],a[Y]=b[Y]的a[X,Y]’</li>
-</ol>
-<p>3的实现代码如下:</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> X </span><br><span class="line"><span class="keyword">FROM</span> A [<span class="keyword">AS</span>] R <span class="comment">/* 换名防止后面混淆 */</span></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>(</span><br><span class="line">    <span class="keyword">SELECT</span> * </span><br><span class="line">    <span class="keyword">FROM</span> B</span><br><span class="line">    <span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>(</span><br><span class="line">        <span class="keyword">SELECT</span> *</span><br><span class="line">        <span class="keyword">FROM</span> A</span><br><span class="line">        <span class="keyword">WHERE</span> &lt;X=R.X&gt;</span><br><span class="line">          <span class="keyword">AND</span> &lt;Y=B.Y&gt;</span><br><span class="line">    )</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>4的实现代码如下:</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> X </span><br><span class="line"><span class="keyword">FROM</span> A [<span class="keyword">AS</span>] R <span class="comment">/* 换名防止后面混淆 */</span></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>(</span><br><span class="line">    (<span class="keyword">SELECT</span> *</span><br><span class="line">     <span class="keyword">FROM</span> A</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">EXCEPT</span> <span class="comment">/* 集合做差 */</span></span><br><span class="line">    (<span class="keyword">SELECT</span> X,Y </span><br><span class="line">     <span class="keyword">FROM</span> A,B</span><br><span class="line">     <span class="keyword">WHERE</span> &lt;A.X=R.X&gt;</span><br><span class="line">       <span class="keyword">AND</span> &lt;A.Y=B.Y&gt;</span><br><span class="line">    )</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<h4 id="蕴含逻辑"><a href="#蕴含逻辑" class="headerlink" title="蕴含逻辑"></a>蕴含逻辑</h4><p>蕴含逻辑也需要用EXISTS子句实现</p>
-<ol>
-<li>给定逻辑:对于任意的a,都有B-&gt;C</li>
-<li>化简逻辑:不存在a,使得B或非C</li>
-<li>用NOT EXISTS实现上述语句;注意,非C也可以用NOT EXISTS实现</li>
-</ol>
-<h3 id="集合查询"><a href="#集合查询" class="headerlink" title="集合查询"></a>集合查询</h3><p>集合查询可以对两个查询结果进行集合运算</p>
-<ul>
-<li>UNION:并</li>
-<li>INTERSECT:交</li>
-<li>EXCEPT:差<br>注意:参加集合操作的各查询结果的列数必须相同;对应项的数据类型也必须相同 </li>
-</ul>
-<h2 id="3-4-数据更新"><a href="#3-4-数据更新" class="headerlink" title="3.4 数据更新"></a>3.4 数据更新</h2><h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><p>可以直接插入元组或者插入子查询结果(多个元组)</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> &lt;表名&gt;[属性列,...]</span><br><span class="line"><span class="keyword">VALUES</span> (属性值,);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> &lt;表名&gt;[属性列,...]</span><br><span class="line">&lt;子查询&gt;;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>没有出现的属性列赋空值  </li>
-<li>没有定义属性列时默认为原表所有属性</li>
-<li>VALUES可以由子查询表示</li>
-<li>子查询结果或元组值需要与上面定义的属性列相匹配(子查询结果列的个数和列的类型都要匹配)</li>
-<li>除了属性匹配,数据库还会检查所插入元素是否会破坏表的完整性规则</li>
-</ul>
-<h3 id="修改数据"><a href="#修改数据" class="headerlink" title="修改数据"></a>修改数据</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span>  &lt;表名&gt;</span><br><span class="line"><span class="keyword">SET</span>  &lt;列名&gt;=&lt;表达式&gt;[,&lt;列名&gt;=&lt;表达式&gt;]…</span><br><span class="line">[<span class="keyword">WHERE</span> &lt;条件&gt;];</span><br></pre></td></tr></table></figure>
-<ul>
-<li>语句将修改指定表中满足WHERE子句条件的元组</li>
-<li>SET子句给出&lt;表达式&gt;的值用于取代相应的属性列</li>
-<li>注意,如果省略WHERE子句,则会修改表中的所有元组 </li>
-<li>执行修改语句时,数据库会检查修改操作是否会破坏表的完整性规则</li>
-</ul>
-<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DELETE FROM &lt;表名&gt;</span><br><span class="line">WHERE &lt;条件&gt;;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>语句将会删除指定表中满足WHERE子句条件的元组</li>
-<li>注意,如果省略WHERE子句,则会删除表中的所有元组</li>
-</ul>
-<h2 id="3-5-空值处理"><a href="#3-5-空值处理" class="headerlink" title="3.5 空值处理"></a>3.5 空值处理</h2><p>空值一般可以表示不存在(无意义)的值,未知值,不便于显示的值</p>
-<p>空值一般用NULL表示,在关系运算中,需要对它进行特殊处理</p>
-<ul>
-<li>IS [NOT] NULL用来判断值是否为空</li>
-<li>空值与其他值进行算术运算的结果为空值</li>
-<li>空值与其他值(包括另一个空值)进行比较运算的结果为UNKNOWN</li>
-<li>UNKNOWN将传统的二值（TRUE，FALSE）逻辑扩展成了三值逻辑</li>
-<li>一般情况下UNKNOWN会被当成FALSE看待</li>
-</ul>
-<h2 id="3-6-视图"><a href="#3-6-视图" class="headerlink" title="3.6 视图"></a>3.6 视图</h2><ul>
-<li>视图是一种虚拟的表,是从基本表中导出的表</li>
-<li>视图只有定义,不存放数据</li>
-<li>基本表中的数据发生变化，从视图中查询出的数据也随之改变</li>
-</ul>
-<h3 id="视图定义"><a href="#视图定义" class="headerlink" title="视图定义"></a>视图定义</h3><h4 id="创建视图"><a href="#创建视图" class="headerlink" title="创建视图"></a>创建视图</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CREATE  VIEW </span><br><span class="line">    &lt;视图名&gt;  [(&lt;列名&gt;  [,&lt;列名&gt;]…)] </span><br><span class="line">   AS &lt;子查询&gt; </span><br><span class="line">   [WITH  CHECK  OPTION];</span><br></pre></td></tr></table></figure>
-<ul>
-<li>列名缺省时由子查询中SELECT的列构成<blockquote>
-<p>一般出现以下情况,需要指定视图的列名:</p>
-<ul>
-<li>SELECT的某个列需要聚集函数或列表达式,即出现了一些新的列</li>
-<li>多表连接时选出了几个同名列作为视图的字段</li>
-<li>需要在视图中为某个列启用新的更合适的名字</li>
-</ul>
-</blockquote>
-</li>
-<li>WITH CHECK OPTION 可以保证通过该视图插入的数据符合该视图的定义,即插入成功的数据也会在视图中显示</li>
-</ul>
-<p>常见视图:</p>
-<ul>
-<li>行列子集视图:在保留单个基本表主码的情况下,去掉了这个表的某些行和列</li>
-<li>基于多个表的视图</li>
-<li>基于视图的视图</li>
-<li>带表达式的视图:SELECT的某个列为表达式</li>
-<li>分组视图:SELECT的某个列为聚集函数</li>
-</ul>
-<h4 id="删除视图"><a href="#删除视图" class="headerlink" title="删除视图"></a>删除视图</h4><p><code>DROP  VIEW  &lt;视图名&gt;[CASCADE];</code></p>
-<ul>
-<li>该语句从数据字典中删除指定的视图定义</li>
-<li>如果该视图上还导出了其他视图，需要使用CASCADE级联删除语句，把该视图和由它导出的所有视图一起删除,否则会拒绝删除</li>
-<li>删除基表时，由该基表导出的所有视图定义都必须显式地使用DROP VIEW语句删除</li>
-</ul>
-<h3 id="查询视图"><a href="#查询视图" class="headerlink" title="查询视图"></a>查询视图</h3><p>视图查询与上述基本表的查询相同</p>
-<p>原理:视图消解法</p>
-<ul>
-<li>对于数据库系统而言,先得将视图查询转换为对基本表的查询,再进行对基本表的查询</li>
-<li>转换时需要进行有效性检查和语句修正</li>
-</ul>
-<h3 id="更新视图-数据"><a href="#更新视图-数据" class="headerlink" title="更新视图(数据)"></a>更新视图(数据)</h3><p>视图的插入,删除,修改操作与基本表相同</p>
-<ul>
-<li>一些视图是不可更新的,因为 对这些视图的更新不能唯一地有意义地转换成对相应基本表的更新,如带聚集函数的视图<blockquote>
-<p>一般而言,行列子集视图是可以进行更新的  </p>
-<p>DB2对视图更新的限制:</p>
-<ul>
-<li>若视图是由两个以上基本表导出的，则此视图不允许更新。</li>
-<li>若视图的字段来自字段表达式或常数，则不允许对此视图执行INSERT 和UPDATE操作，但允许执行DELETE操作。  </li>
-<li>若视图的字段来自集函数，则此视图不允许更新。</li>
-<li>若视图定义中含有GROUP BY子句，则此视图不允许更新。</li>
-<li>若视图定义中含有DISTINCT短语，则此视图不允许更新。</li>
-<li>若视图定义中有嵌套查询，并且内层查询的FROM子句中涉及的表也是导出该视图的基本表，则此视图不允许更新</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<h3 id="视图作用"><a href="#视图作用" class="headerlink" title="视图作用"></a>视图作用</h3><ul>
-<li>视图能够简化用户的操作</li>
-<li>视图使用户能以多种角度看待同一数据</li>
-<li>视图对重构数据库提供了一定程度的逻辑独立性</li>
-<li>视图能够对机密数据提供安全保护</li>
-<li>适当的利用视图可以更清晰的表达查询</li>
-</ul>
-<h1 id="四、数据库安全性"><a href="#四、数据库安全性" class="headerlink" title="四、数据库安全性"></a>四、数据库安全性</h1><p>数据库的一大特点就是数据可以共享,而这必然带来安全性问题,这种数据的共享不能是无条件的共享</p>
-<ul>
-<li>数据库的安全性是指保护数据库以防止不合法使用所造成的数据泄露、更改或破坏</li>
-<li>系统的安全保护措施是否有效是数据库系统主要的性能指标之一</li>
-</ul>
-<h2 id="4-1-概述"><a href="#4-1-概述" class="headerlink" title="4.1 概述"></a>4.1 概述</h2><h3 id="数据库不安全因素"><a href="#数据库不安全因素" class="headerlink" title="数据库不安全因素"></a>数据库不安全因素</h3><p>不安全的因素和主要对策</p>
-<ul>
-<li>非授权用户对数据库的恶意存取和破坏:用户身份鉴别,存取控制和视图技术</li>
-<li>数据库中重要或敏感数据被泄露:强制存取控制,数据存储加密和传输加密</li>
-<li>安全环境的脆弱性:建立可信计算机系统的标准</li>
-</ul>
-<h3 id="安全标准简介"><a href="#安全标准简介" class="headerlink" title="安全标准简介"></a>安全标准简介</h3><ul>
-<li>TCSEC标准-&gt;CC标准</li>
-</ul>
-<p>TCSEC/TDI标准从四个方面来考虑程序的安全性: 安全策略,责任,保证和文档</p>
-<p>TCSEC/TDI安全级别划分(由低到高):  </p>
-<ul>
-<li>D 最小保护: 一切不符合更高安全等级的系统,例如DOS</li>
-<li>C1 自主安全保护: 能够实现对用户和数据的分离，进行自主存取控制（ DAC），保护或限制用户权限的传播; 现有商业系统稍作改进即可满足 </li>
-<li>C2 受控的存取保护: 提供受控的存取保护，将C1级的DAC进一步细化，以个人身份注册负责，并实施审计和资源隔离; 如Windows2000</li>
-<li>B1 标记安全保护: 对系统的数据加以标记，对标记的主体和客体实施强制存取控制（MAC）、审计等安全机制; 是安全或可信的产品</li>
-<li>B2 结构化保护: 建立形式化的安全策略模型并对系统内的所有主体和 客体实施DAC和MAC </li>
-<li>B3 安全域: 该级的TCB必须满足访问监控器的要求，审计跟踪能 力更强，并提供系统恢复过程 </li>
-<li>A1 验证设计: 验证设计，即提供B3级保护的同时给出系统的形式化 设计说明和验证以确信各安全保护真正实现。</li>
-</ul>
-<p>CC评估保证级(EAL)划分:</p>
-<ul>
-<li>EAL1:功能测试（functionally tested）</li>
-<li>EAL2:结构测试（structurally tested）,相当于C1</li>
-<li>EAL3:系统地测试和检查（methodically tested and checked）,相当于C2 </li>
-<li>EAL4:系统地设计、测试和复查（methodically designed， tested， and reviewed）,相当于B1 </li>
-<li>EAL5:半形式化设计和测试（semiformally designed and tested）,相当于B2 </li>
-<li>EAL6:半形式化验证的设计和测试（semiformally verified design and tested）,相当于B3 </li>
-<li>EAL7:形式化验证的设计和测试（formally verified design and tested）,相当于A1 </li>
-</ul>
-<h2 id="4-2-数据库安全性控制"><a href="#4-2-数据库安全性控制" class="headerlink" title="4.2 数据库安全性控制"></a>4.2 数据库安全性控制</h2><p>计算机系统中,安全措施是一级一级层层设置的:<br>用户标识和鉴别(用户)&lt;-&gt;数据库安全保护(DBMS)&lt;-&gt;操作系统安全保护(OS)&lt;-&gt;数据密码存储(DB)</p>
-<p>数据库安全控制常用方法</p>
-<ul>
-<li>用户身份鉴别</li>
-<li>存取控制</li>
-<li>视图</li>
-<li>审计</li>
-<li>数据加密</li>
-</ul>
-<p><img src="/2020/02/27/data-base0/sec0.png" alt="security"></p>
-<h3 id="用户身份鉴别"><a href="#用户身份鉴别" class="headerlink" title="用户身份鉴别"></a>用户身份鉴别</h3><p>用户身份鉴别是系统提供的最外层安全保护措施</p>
-<ul>
-<li>用户标识：由用户名和用户标识号组成（用户标识号在系统整个生命周期内唯一） </li>
-<li>身份鉴别方法:静态口令识别,动态口令识别,智能卡识别,生物特征鉴别</li>
-</ul>
-<h3 id="存取控制"><a href="#存取控制" class="headerlink" title="存取控制"></a>存取控制</h3><ul>
-<li>定义用户对数据对象的操作权限,并将权限登记到数据字典中,称为安全规则或授权规则</li>
-<li>对每个用户发出的存取数据库的请求,DBMS都会查找数据字典进行合法权限检查</li>
-</ul>
-<p>用户权限定义和合法权检查机制一起组成了DBMS的存取控制子系统 </p>
-<h3 id="自主存取控制DAC"><a href="#自主存取控制DAC" class="headerlink" title="自主存取控制DAC"></a>自主存取控制DAC</h3><h4 id="自主存取控制方法概述"><a href="#自主存取控制方法概述" class="headerlink" title="自主存取控制方法概述"></a>自主存取控制方法概述</h4><ul>
-<li>用户对不同的数据对象有不同的存取权限</li>
-<li>不同的用户对同一对象也有不同的权限</li>
-<li>用户还可将其拥有的存取权限转授给其他用户</li>
-</ul>
-<p>通过SQL的GRANT语句和REVOKE语句实现</p>
-<h4 id="权限的授予"><a href="#权限的授予" class="headerlink" title="权限的授予"></a>权限的授予</h4><p>给某用户授予对某对象的某操作权限</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> &lt;权限&gt;[,&lt;权限&gt;]...</span><br><span class="line"><span class="keyword">ON</span> &lt;对象类型&gt; &lt;对象名&gt;[,&lt;对象类型&gt; &lt;对象名&gt;]...</span><br><span class="line"><span class="keyword">TO</span> &lt;用户&gt;[,&lt;用户&gt;]...</span><br><span class="line">[<span class="keyword">WITH</span> <span class="keyword">GRANT</span> <span class="keyword">OPTION</span>];</span><br></pre></td></tr></table></figure>
-<ul>
-<li>权限有SELECT，INSERT，UPDATE，DELETE，REFERENCES几种; ALL PRIVILEGES表示所有操作权限<blockquote>
-<p>至于CREATE,ALTER等权限,是数据库管理员在创建用户时授予的</p>
-</blockquote>
-</li>
-<li>指定了ON的对象,表名这是一种实体权限的授予,而不是系统权限(对任意对象的操作)的授予</li>
-<li>TO用户可以时一个或多个具体用户,也可以是全体用户PUBLIC</li>
-<li>WITH GRANT OPTION表示授予的权限可以再由该用户向下转授<blockquote>
-<p>注意:权限不能循环授予,这样会导致回收权限时遇到无穷递归</p>
-</blockquote>
-</li>
-<li>GRANT语句的发出者可以是数据库管理员,数据库对象创建者或者拥有该权限的用户</li>
-</ul>
-<h4 id="权限的回收"><a href="#权限的回收" class="headerlink" title="权限的回收"></a>权限的回收</h4><p>收回本授权者对某用户的某对象某操作权限的授权</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> &lt;权限&gt;[,&lt;权限&gt;]...</span><br><span class="line"><span class="keyword">ON</span> &lt;对象类型&gt; &lt;对象名&gt;[,&lt;对象类型&gt;&lt;对象名&gt;]...</span><br><span class="line"><span class="keyword">FROM</span> &lt;用户&gt;[,&lt;用户&gt;]...</span><br><span class="line">[<span class="keyword">CASCADE</span> | RESTRICT];</span><br></pre></td></tr></table></figure>
-<ul>
-<li>级联回收: 将用户和他传播的权限全部回收</li>
-<li>受限回收: 若用户传播过该权限并没有收回,则拒绝执行回收操作</li>
-<li>权限的回收可由管理员或授权者来执行</li>
-<li>回收只回收本用户直接或间接对目标用户授予的权限,若该用户还从其他地方获得了相同的权限,则他们仍具有此权限</li>
-</ul>
-<h4 id="用户的创建"><a href="#用户的创建" class="headerlink" title="用户的创建"></a>用户的创建</h4><p>CREATE USER不是SQL标准,不同数据库对用户创建的实现不一样</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span>  <span class="keyword">USER</span>  &lt;username&gt;</span><br><span class="line">[<span class="keyword">WITH</span>][DBA|<span class="keyword">RESOURCE</span>|<span class="keyword">CONNECT</span>];</span><br></pre></td></tr></table></figure>
-<ul>
-<li>DBA:可以创建用户,模式,表以及登录数据库执行增删改查等操作</li>
-<li>RESOURCE:只能创建表并登录数据库执行增删改查等操作</li>
-<li>CONNECT: 能登陆数据库进行增删改查等操作,但必须获得相应权限</li>
-</ul>
-<h3 id="数据库中的角色"><a href="#数据库中的角色" class="headerlink" title="数据库中的角色"></a>数据库中的角色</h3><p>角色是权限的集合,能够通过为一组具有相同权限的用户创建一个角色来简化授权的过程</p>
-<h4 id="创建角色"><a href="#创建角色" class="headerlink" title="创建角色"></a>创建角色</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">ROLE</span> &lt;角色名&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="给角色添加权限"><a href="#给角色添加权限" class="headerlink" title="给角色添加权限"></a>给角色添加权限</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> &lt;权限&gt;[,&lt;权限&gt;]...</span><br><span class="line"><span class="keyword">ON</span> &lt;对象类型&gt; &lt;对象名&gt;[,&lt;对象类型&gt; &lt;对象名&gt;]...</span><br><span class="line"><span class="keyword">TO</span> &lt;角色&gt;[,&lt;角色&gt;]...</span><br></pre></td></tr></table></figure>
-
-<h4 id="回收角色的某权限"><a href="#回收角色的某权限" class="headerlink" title="回收角色的某权限"></a>回收角色的某权限</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> &lt;权限&gt;[,&lt;权限&gt;]...</span><br><span class="line"><span class="keyword">ON</span> &lt;对象类型&gt; &lt;对象名&gt;[,&lt;对象类型&gt;&lt;对象名&gt;]...</span><br><span class="line"><span class="keyword">FROM</span> &lt;角色&gt;[,&lt;角色&gt;]...</span><br></pre></td></tr></table></figure>
-<ul>
-<li>用户可以回收角色的权限，从而修改角色拥有的权限</li>
-<li>(不知道对不对)之前通过此角色授予出去的权限也会因为这个操作而被回收</li>
-<li>这个REVOKE的发起者是角色的创建者或者拥有该角色ADMIN OPTION的用户</li>
-</ul>
-<h4 id="把角色授予给某用户或角色"><a href="#把角色授予给某用户或角色" class="headerlink" title="把角色授予给某用户或角色"></a>把角色授予给某用户或角色</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GRANT</span>  &lt;角色<span class="number">1</span>&gt;[,&lt;角色<span class="number">2</span>&gt;]...</span><br><span class="line"><span class="keyword">TO</span>  &lt;角色<span class="number">3</span>&gt;[,&lt;用户<span class="number">1</span>&gt;]...</span><br><span class="line">[<span class="keyword">WITH</span> <span class="keyword">ADMIN</span> <span class="keyword">OPTION</span>]</span><br></pre></td></tr></table></figure>
-<ul>
-<li>一个角色的权限是直接授予这个角色的全部权限加上其他角色授予这个角色的全部权限 </li>
-<li>把角色授给目标用户后,该用户获得这个角色的所有权限</li>
-<li>WITH ADMIN OPTION表示目标角色或用户还可以把这种角色权限授予其他的角色或用户,也有权力更改这个角色的权限</li>
-<li>这个GRANT的发起者是角色的创建者或者拥有该角色ADMIN OPTION的用户</li>
-</ul>
-<h4 id="通过角色收回赋予出去的权限"><a href="#通过角色收回赋予出去的权限" class="headerlink" title="通过角色收回赋予出去的权限"></a>通过角色收回赋予出去的权限</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> &lt;角色<span class="number">1</span>&gt;[,&lt;角色<span class="number">2</span>&gt;]...</span><br><span class="line"><span class="keyword">FROM</span> &lt;角色<span class="number">3</span>&gt;[,&lt;用户<span class="number">1</span>&gt;]...</span><br></pre></td></tr></table></figure>
-<ul>
-<li>目标用户或角色失去了原角色赋予给他的权限</li>
-</ul>
-<h3 id="强制存取控制MAC"><a href="#强制存取控制MAC" class="headerlink" title="强制存取控制MAC"></a>强制存取控制MAC</h3><p>自主存取控制可能存在数据的“无意泄露”,因为自主存取控制仅仅通过对数据的存取权限来进行安全控制,而数据本身并无安全性标记 </p>
-<ul>
-<li>强制存取控制（MAC）保证更高程度的安全性,用户不能直接感知或进行控制</li>
-<li>强制存取控制适用于对数据有严格而固定密级分类的部门 </li>
-</ul>
-<h4 id="强制存取控制方法概述"><a href="#强制存取控制方法概述" class="headerlink" title="强制存取控制方法概述"></a>强制存取控制方法概述</h4><p>在强制存取控制中，数据库管理系统所管理的全部实体被分为两大类:</p>
-<ul>
-<li>主体:系统中的活动实体,即用户</li>
-<li>客体:系统中受主体操纵的被动实体,如文件、基本表、索引、视图等</li>
-</ul>
-<p>DBMS对每个主体和客体的实例指派了一个敏感度标记(从高到低):</p>
-<ul>
-<li>绝密: Top Secret, TS</li>
-<li>机密: Secret, S</li>
-<li>可信: Confidential, C</li>
-<li>公开: Public, P</li>
-</ul>
-<blockquote>
-<ul>
-<li>对主体的敏感度标记称为许可证(Clearance Level)</li>
-<li>对客体的敏感度标记称为密级(Classification Leve)</li>
-</ul>
-</blockquote>
-<h4 id="强制存取控制读写规则"><a href="#强制存取控制读写规则" class="headerlink" title="强制存取控制读写规则"></a>强制存取控制读写规则</h4><ul>
-<li>仅当主体的许可证级别大于或等于客体的密级时，该主体才能读取相应的客体<blockquote>
-<ul>
-<li>可以防止主体看到一些敏感性较高的数据</li>
-</ul>
-</blockquote>
-</li>
-<li>仅当主体的许可证级别小于或等于客体的密级时，该主体才能写相应的客体 <blockquote>
-<ul>
-<li>可以防止主体将高敏感性的数据向下透露(写)给低敏感性数据</li>
-<li>主体可以更改密级比它高的数据,但写完之后它自己不能读取到</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<h3 id="DAC-MAC安全检查"><a href="#DAC-MAC安全检查" class="headerlink" title="DAC+MAC安全检查"></a>DAC+MAC安全检查</h3><p>实现强制存取控制MAC时要首先实现自主存取控制DAC,因为较高安全性级别提 供的安全保护要包含较低级别的所有保护  </p>
-<p>自主存取控制与强制存取控制共同构成数据库管理系统的安全机制</p>
-<p>检查过程: SQL语法分析、语义检查-&gt;DAC检查-&gt;MAC检查-&gt;继续语义检查</p>
-<h2 id="4-3-视图机制"><a href="#4-3-视图机制" class="headerlink" title="4.3 视图机制"></a>4.3 视图机制</h2><p>把要保密的数据对无权存取这些数据的用户通过视图隐藏起来，对数据提供一定程度的安全保护</p>
-<p>例如,允许用户对表的部分进行查询的权限,用GRANT语句就无法实现,需要用视图进行操作</p>
-<p>视图的相关操作可参见上面的3.6</p>
-<h2 id="4-4-审计"><a href="#4-4-审计" class="headerlink" title="4.4 审计"></a>4.4 审计</h2><ul>
-<li>用户身份鉴别,自主存取控制,强制存取控制,视图,数据加密是预防性措施</li>
-<li>审计是监控措施<br>C2以上安全级别的DBMS必须具有审计功能 </li>
-</ul>
-<h3 id="审计相关概述"><a href="#审计相关概述" class="headerlink" title="审计相关概述"></a>审计相关概述</h3><p>审计就是启用一个专用的审计日志（Audit Log）,将用户对数据库的所有操作记录在上面   </p>
-<p>审计员利用审计日志监控数据库中的各种行为,发现非法存取,发现潜在威胁  </p>
-<p>可以被审计的事件:</p>
-<ul>
-<li>服务器事件: 记录数据库服务器发生的相关事件</li>
-<li>系统权限: 记录对系统拥有的结构或模式对象进行的操作</li>
-<li>语句事件: 记录SQL(或者其他数据库)语言发生的事件</li>
-<li>模式对象事件: 记录对特定模式对象上进行的SELECT或DML操作</li>
-</ul>
-<p>审计日志管理:</p>
-<ul>
-<li>基本功能: 提供多种审计查阅方式</li>
-<li>在初始化时设定多套审计规则</li>
-<li>提供审计分析和报表功能</li>
-<li>审计日志文件管理: 包括防止误删、加密、完整性保护、查阅和转储权限的管理</li>
-<li>提供查询审计设置及审计记录信息的专门视图</li>
-</ul>
-<h3 id="审计功能的设置"><a href="#审计功能的设置" class="headerlink" title="审计功能的设置"></a>审计功能的设置</h3><p>由于审计很费时间和空间,可以选择使用或不使用审计功能</p>
-<ul>
-<li>系统级审计只能由数据库管理员设置,监测成功或失败的登录要求、监测授权和收回操作以及其他数据库级权限下的操作</li>
-<li>用户级审计是任何用户可设置的审计,主要是用户针对自己创建的数据库表和视图进行审计</li>
-</ul>
-<p>审计功能用AUDIT和NOAUDIT设置和取消</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 用户级审计定义 */</span></span><br><span class="line">AUDIT &lt;操作名&gt;</span><br><span class="line">ON &lt;表名&gt;; /* 可以对某表结构或数据的修改操作进行审计 */</span><br><span class="line"></span><br><span class="line">NOAUDIT &lt;操作名&gt;</span><br><span class="line">ON &lt;表名&gt;; /* 取消审计 */</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-5-数据加密"><a href="#4-5-数据加密" class="headerlink" title="4.5 数据加密"></a>4.5 数据加密</h2><p>数据加密是一种预防性措施,是防止数据库中数据在存储和传输中失密的有效手段</p>
-<p>有存储加密和传输加密两种</p>
-<h3 id="存储加密"><a href="#存储加密" class="headerlink" title="存储加密"></a>存储加密</h3><p>透明存储加密:性能较好，安全完备性较高</p>
-<ul>
-<li>内核级加密保护方式，对用户完全透明</li>
-<li>将数据在写到磁盘时对数据进行加密，授权用户读取数据时再对其进行解密</li>
-<li>数据库的应用程序不需要做任何修改，只需在创建表语句中说明需加密的字段即可</li>
-</ul>
-<p>非透明存储加密:</p>
-<ul>
-<li>通过多个加密函数实现的加密</li>
-</ul>
-<h3 id="传输加密"><a href="#传输加密" class="headerlink" title="传输加密"></a>传输加密</h3><p>链路加密:</p>
-<ul>
-<li>传输信息由报头和报文两部分组成;报头是路由选择信息,报文是要传送的数据信息</li>
-<li>报文和报头均加密</li>
-</ul>
-<p>端到端加密:</p>
-<ul>
-<li>在发送端加密，接收端解密</li>
-<li>只加密报文不加密报头</li>
-<li>所需密码设备数量相对较少，容易被非法监听者发现并从中获取敏感信息</li>
-</ul>
-<p>数据库系统可信传输示意图:<br><img src="/2020/02/27/data-base0/trust0.png" alt="trust"></p>
-<h2 id="4-6-其他安全性保护"><a href="#4-6-其他安全性保护" class="headerlink" title="4.6 其他安全性保护"></a>4.6 其他安全性保护</h2><h3 id="推理控制"><a href="#推理控制" class="headerlink" title="推理控制"></a>推理控制</h3><p>强制存取控制不能解决通过公开信息推理出机密信息的问题</p>
-<p>常用策略:基于函数依赖的推理控制,基于敏感关联的推理控制</p>
-<h3 id="隐蔽信道"><a href="#隐蔽信道" class="headerlink" title="隐蔽信道"></a>隐蔽信道</h3><p>强制存取控制不能解决高安全等级用户利用数据库特性,按事先约定的方式主动向低安全等级用户透露信息的问题</p>
-<p>隐蔽信道用于解决类似这种问题:例如,绝密用户向数据库插入了一条绝密数据,而此时一个公开用户向数据库插入相同数据时被拒绝,绝密用户便通过这种隐蔽的方式向公开用户透露了这条信息的存在</p>
-<h1 id="五、数据库完整性"><a href="#五、数据库完整性" class="headerlink" title="五、数据库完整性"></a>五、数据库完整性</h1><p>数据库安全性防范的是非法操作,而数据库完整性防范的是非法数据 </p>
-<p>数据库的完整性包括以下两个方面:</p>
-<ul>
-<li>数据的正确性(实体完整性等)</li>
-<li>数据的相容性(参照完整性)</li>
-</ul>
-<p>数据库提供的机制:</p>
-<ul>
-<li>提供定义完整性约束条件的机制</li>
-<li>提供完整性检查机制 </li>
-<li>违约处理 </li>
-</ul>
-<h2 id="5-1-实体完整性"><a href="#5-1-实体完整性" class="headerlink" title="5.1 实体完整性"></a>5.1 实体完整性</h2><p>关系的主属性(码)唯一且不能为空,详细定义见2.1关系完整性约束</p>
-<h3 id="实体完整性定义"><a href="#实体完整性定义" class="headerlink" title="实体完整性定义"></a>实体完整性定义</h3><p>关系模型的实体完整性用主码PRIMARY KEY描述</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;列名&gt; ... PRIMARY KEY /* 列级完整性约束 */</span><br><span class="line">PRIMARY KEY(&lt;列名&gt;[,&lt;列名&gt;,...]) /* 表级完整性约束 */</span><br></pre></td></tr></table></figure>
-<ul>
-<li>列级完整性约束可以定义单属性构成的码</li>
-<li>表级完整性约束可以定义单个或多个属性构成的码</li>
-</ul>
-<h3 id="实体完整性检查和违约处理"><a href="#实体完整性检查和违约处理" class="headerlink" title="实体完整性检查和违约处理"></a>实体完整性检查和违约处理</h3><p>实体完整性检查发生在插入或对主码列进行更新操作时</p>
-<p>检查方法:</p>
-<ul>
-<li>全表扫描(费时)</li>
-<li>建立索引搜索(这个一般由RDBMS核心自动完成,可以是B+索引树)</li>
-</ul>
-<p>违约处理:拒绝插入或更新</p>
-<h2 id="5-2-参照完整性"><a href="#5-2-参照完整性" class="headerlink" title="5.2 参照完整性"></a>5.2 参照完整性</h2><p>保证外码取值符合参照完整性约束,详细定义见2.1关系完整性约束</p>
-<h3 id="参照完整性定义"><a href="#参照完整性定义" class="headerlink" title="参照完整性定义"></a>参照完整性定义</h3><ul>
-<li>定义表中的外码,以及被参照关系的主码<figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 列级完整性约束 */</span></span><br><span class="line">&lt;外码列名&gt; ... FOREIGN KEY REFERENCES DEPT(&lt;被参考关系主码&gt;) [ON DELETE|UPDATE CASCADE|NO ACTION|SET-NULL]</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 表级完整性约束 */</span></span><br><span class="line">FOREIGN KEY(&lt;外码列名&gt;) REFERENCES DEPT(&lt;被参考关系主码&gt;) [ON DELETE|UPDATE CASCADE|NO ACTION|SET-NULL]</span><br></pre></td></tr></table></figure></li>
-<li>违约选项:见下文违约处理</li>
-</ul>
-<h3 id="参照完整性检查"><a href="#参照完整性检查" class="headerlink" title="参照完整性检查"></a>参照完整性检查</h3><p>参照完整性检查发生在对被参照表或参照表进行增删改操作时</p>
-<h3 id="违约处理"><a href="#违约处理" class="headerlink" title="违约处理"></a>违约处理</h3><p>对于参照表的元组插入或外码值修改,违约即拒绝执行</p>
-<p>对于被参照表的元组删除或主码值修改,有三种违约处理方式:</p>
-<ul>
-<li>拒绝执行:不执行语句</li>
-<li>级联操作:将参照表中有关联的元组删除或进行外码修改</li>
-<li>设置空值:将参照表中有关联的元组外码置为空值,这可能会导致参照表中的元组违反实体完整性约束</li>
-</ul>
-<h2 id="5-3-用户定义完整性约束"><a href="#5-3-用户定义完整性约束" class="headerlink" title="5.3 用户定义完整性约束"></a>5.3 用户定义完整性约束</h2><p>针对某一具体应用的数据必须满足的语义要求,需要用户定义完整性约束</p>
-<h3 id="用户完整性约束定义"><a href="#用户完整性约束定义" class="headerlink" title="用户完整性约束定义"></a>用户完整性约束定义</h3><p>列级完整性约束定义(属性约束条件)</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;列名&gt; ... [UNIQUE] [NOT NULL] [CHECK(expr)]</span><br></pre></td></tr></table></figure>
-<ul>
-<li>NOT NULL:列值非空</li>
-<li>UNIQUE:列值唯一(相当于主码)</li>
-<li>CHECK(expr):列值满足某表达式</li>
-</ul>
-<p>表级完整性约束定义(元组约束条件):用于设置不同属性之间的取值的相互约束条件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CHECK(expr)</span><br></pre></td></tr></table></figure>
-
-<h3 id="用户定义完整性约束检查和违约处理"><a href="#用户定义完整性约束检查和违约处理" class="headerlink" title="用户定义完整性约束检查和违约处理"></a>用户定义完整性约束检查和违约处理</h3><p>用户定义约束条件检查发生在插入元组或修改属性的值时</p>
-<p>违约即拒绝执行</p>
-<h2 id="5-4-完整性约束命名字句"><a href="#5-4-完整性约束命名字句" class="headerlink" title="5.4 完整性约束命名字句"></a>5.4 完整性约束命名字句</h2><p>为完整性约束条件起个名字,方便后面对它进行修改和删除,否则无法操作</p>
-<h3 id="完整性约束命名子句定义"><a href="#完整性约束命名子句定义" class="headerlink" title="完整性约束命名子句定义"></a>完整性约束命名子句定义</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">CONSTANT &lt;完整性约束条件名&gt; &lt;完整性约束条件&gt;</span><br></pre></td></tr></table></figure>
-<p>该子句可以作为列级完整性约束或表级完整性约束使用</p>
-<h3 id="完整性约束子句的删除和添加"><a href="#完整性约束子句的删除和添加" class="headerlink" title="完整性约束子句的删除和添加"></a>完整性约束子句的删除和添加</h3><p>用ALTER TABLE对约束条件进行删除和添加</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 删除 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;表名&gt;</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">CONSTANT</span> &lt;完整性约束条件名&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 添加 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;表名&gt;</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTANT</span> &lt;完整性约束条件名&gt; &lt;完整性约束条件&gt;;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>实现完整性约束子句的修改时,需要先删除约束,再添加约束,如上所示</li>
-</ul>
-<h2 id="5-5-域中的完整性限制"><a href="#5-5-域中的完整性限制" class="headerlink" title="5.5 域中的完整性限制"></a>5.5 域中的完整性限制</h2><p>对于多个具有联系的表,表中的一些属性可能具有相同的域,可以通过建立域的完整性约束来使不同表中的相同的属性域也相同</p>
-<h3 id="域完整性约束定义"><a href="#域完整性约束定义" class="headerlink" title="域完整性约束定义"></a>域完整性约束定义</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 定义完整性约束 */</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DOMAIN</span> &lt;完整性约束条件名&gt; &lt;被约束列的值类型&gt; &lt;完整性约束子句&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 修改完整性约束中的限制条件 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">DOMAIN</span> &lt;完整性约束条件名&gt; &lt;完整性约束修改子句&gt;;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>完整性约束修改子句包括完整性约束子句的删除和添加,需要指定完整性约束条件名</li>
-</ul>
-<h3 id="域完整性约束使用"><a href="#域完整性约束使用" class="headerlink" title="域完整性约束使用"></a>域完整性约束使用</h3><p>定义好域的完整性约束后,可以直接使用完整性约束条件名来作为同类型的属性的完整性约束条件</p>
-<h2 id="5-6-断言"><a href="#5-6-断言" class="headerlink" title="5.6 断言"></a>5.6 断言</h2><p>SQL中更一般的约束可以用断言来指定</p>
-<ul>
-<li>涉及多个表或聚集操作比较复杂的完整性约束</li>
-<li>断言创建以后,任何对断言中所涉及的关系的操作都会触发检查</li>
-<li>断言不为真则拒绝执行</li>
-</ul>
-<p>断言创建</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">ASSERTION</span> &lt;断言名&gt; &lt;<span class="keyword">CHECK</span>子句&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>CHECK子句和WHERE子句的表达类似</li>
-</ul>
-<p>断言删除</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">ASSERTION</span> &lt;断言名&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-7-触发器"><a href="#5-7-触发器" class="headerlink" title="5.7 触发器"></a>5.7 触发器</h2><ul>
-<li>触发器是用户定义在关系表上的一类由事件驱动的特殊过程</li>
-<li>任何用户对表的增删改操作均由服务器自动激活相应的触发器</li>
-<li>触发器可以实施更为复杂的检查和操作(前面的完整性约束检查都是自动触发),具有更精细和更强大的数据控制能力</li>
-</ul>
-<p>触发器又叫做事件-条件-动作规则</p>
-<h3 id="定义触发器"><a href="#定义触发器" class="headerlink" title="定义触发器"></a>定义触发器</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> &lt;触发器名&gt;</span><br><span class="line">&#123;<span class="keyword">BEFORE</span>|<span class="keyword">AFTER</span>&#125; &lt;触发事件&gt; <span class="keyword">ON</span> &lt;表名&gt;</span><br><span class="line">[<span class="keyword">REFERENCING</span> </span><br><span class="line">    <span class="keyword">NEW</span>|<span class="keyword">OLD</span> <span class="keyword">ROW</span> <span class="keyword">AS</span> &lt;变量&gt;,</span><br><span class="line">    <span class="keyword">NEW</span>|<span class="keyword">OLD</span> <span class="keyword">ROW</span> <span class="keyword">AS</span> &lt;变量&gt;,...]</span><br><span class="line"><span class="keyword">FOR</span> <span class="keyword">EACH</span> &#123;<span class="keyword">ROW</span>|<span class="keyword">STATEMENT</span>&#125;</span><br><span class="line">[<span class="keyword">WHEN</span> &lt;触发条件&gt;] &lt;触发动作体&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>触发器只能由表的拥有者创建</li>
-<li>触发器只能定义在基本表上</li>
-<li>&lt;触发器名&gt;可以包含或不包含模式名,同一模式下触发器名必须是唯一的</li>
-<li>&lt;触发事件&gt;可以是对&lt;表名&gt;的INSERT,DELETE或UPDATE [OF &lt;触发列,…&gt;],触发器可在上述操作之后或者之前执行</li>
-<li>RECEFRENCING子句用于指出所引用的变量,在后面的行级触发器中可以用到</li>
-<li>FOR EACH子句可以定义触发器的类型:行级触发器或语句级触发器<blockquote>
-<ul>
-<li>行级触发器在对每一个元组进行相应的更改时激活(会多次激活触发器)</li>
-<li>语句级触发器在语句执行时进行激活(以所更改的行为对象一次性进行操作)</li>
-</ul>
-</blockquote>
-</li>
-<li>定义WHEN后,只有触发器在激活后满足&lt;触发条件&gt;,触发动作体才会执行</li>
-<li>&lt;触发动作体&gt;可以是一个匿名的SQL过程块,也可以是对已创建存储过程的调用;<blockquote>
-<ul>
-<li>行级触发器中用户可以在触发动作体中使用NEW和OLD引用实践之后的新之和事件之前的旧值</li>
-<li>如果触发器动作体执行失败,则激活触发器的事件会被拒绝执行</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<h3 id="触发器的激活"><a href="#触发器的激活" class="headerlink" title="触发器的激活"></a>触发器的激活</h3><p>一个表上可以定义多个触发器,遵循如下顺序执行</p>
-<ul>
-<li>执行表上的BEFORE触发器</li>
-<li>执行SQL语句</li>
-<li>执行表上的AFTER触发器<blockquote>
-<p>有多个BEFORE或AFTER触发器时,一般上时间上先定义的触发器先执行</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="删除触发器"><a href="#删除触发器" class="headerlink" title="删除触发器"></a>删除触发器</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TRIGGER</span> &lt;触发器名&gt; <span class="keyword">ON</span> &lt;表名&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>只有具有相应权限的用户才能删除相应的触发器</li>
-</ul>
-<hr>
-<p>后续见数据库原理与设计(高级篇)<a href="http://georgechen.top/2020/04/16/data-base1/" target="_blank" rel="noopener">http://georgechen.top/2020/04/16/data-base1/</a></p>
-]]></content>
-      <categories>
-        <category>notes</category>
-        <category>学位课程</category>
-      </categories>
-      <tags>
-        <tag>learning</tag>
-        <tag>数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -4833,9 +5041,9 @@ $$
         <category>notes</category>
       </categories>
       <tags>
+        <tag>搜索引擎</tag>
         <tag>c#</tag>
         <tag>learning</tag>
-        <tag>搜索引擎</tag>
       </tags>
   </entry>
   <entry>
@@ -6676,7 +6884,130 @@ $$
 </ul>
 </blockquote>
 <p>不间断电源UPS: 后备式,在线式</p>
-<hr>
+<h1 id="八、辅助存储器"><a href="#八、辅助存储器" class="headerlink" title="八、辅助存储器"></a>八、辅助存储器</h1><p>辅助存储器容量大而成本低,是非易失性存储器</p>
+<p>辅存主要由磁表面存储器和光存储器两大类</p>
+<blockquote>
+<ul>
+<li>磁表面存储器将磁性材料沉积再盘片(或带)的基体上形成磁记录介质,并用饶有线圈的磁头与介质的相对运动来写入或读出信息</li>
+<li>光存储器介质主要是光盘,它利用激光束在具有感光特性的表面上存储信息</li>
+</ul>
+</blockquote>
+<h2 id="8-1-磁表面存储器的种类与技术指标"><a href="#8-1-磁表面存储器的种类与技术指标" class="headerlink" title="8.1 磁表面存储器的种类与技术指标"></a>8.1 磁表面存储器的种类与技术指标</h2><h3 id="存储密度"><a href="#存储密度" class="headerlink" title="存储密度"></a>存储密度</h3><p>单位长度或面积磁层表面所存储的二进制信息量</p>
+<blockquote>
+<ul>
+<li>磁盘: 道密度和位密度或面密度</li>
+<li>磁带: 位密度<br>磁道: 存储在介质表面上信息的磁化轨迹</li>
+</ul>
+</blockquote>
+<p>磁盘存储器中:</p>
+<blockquote>
+<ul>
+<li>磁道: 磁盘表面上的同心圆</li>
+<li>扇区: 磁道组成的扇形表面</li>
+<li>柱面: 多个盘片在同一半径的磁道形成的整体</li>
+<li>道宽: 磁道宽度</li>
+<li>道距: 两磁道中心线距离,一般比道宽大</li>
+<li>道密度: 沿磁盘半径方向单位长度的磁道数(道/英寸 tpi)</li>
+<li>位密度(线密度): 单位长度磁道所能记录的二进制信息(位/英寸 bpi)</li>
+<li>面密度: 道密度*位密度</li>
+</ul>
+</blockquote>
+<p>磁带中,存储密度用位密度衡量</p>
+<h3 id="存储容量"><a href="#存储容量" class="headerlink" title="存储容量"></a>存储容量</h3><p>存储容量: 存储器能存的二进制信息总量,一般以字节位单位</p>
+<ul>
+<li>格式化容量: 按照某种记录格式所能存储的信息的总量,为用户可由使用的容量</li>
+<li>非格式化容量: 磁记录表面可以利用的磁化单元总量<blockquote>
+<ul>
+<li>低级格式化: 在盘片上建立扇区和磁道,并将每个扇区的开始和结束部分写入到盘片上</li>
+<li>高级格式化: 写入文件储存的结构,如将文件分配表写入扇区</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>格式化容量一般为非格式化容量的60%-70%</p>
+<h3 id="寻址时间"><a href="#寻址时间" class="headerlink" title="寻址时间"></a>寻址时间</h3><p>磁盘存储器采用直接存取方式:</p>
+<blockquote>
+<ul>
+<li>寻道时间$t_s$: 磁头寻找目标磁道所需的时间</li>
+<li>等待时间$t_w$: 磁头等待目标区域旋转到其下方所需的时间</li>
+</ul>
+</blockquote>
+<p>平均寻址时间$T_a = T_s+T_w = \overline t_s + \overline t_w$</p>
+<p>一般硬盘平均寻址时间在10ms左右,磁带平均寻址时间更长</p>
+<h3 id="数据传输速率"><a href="#数据传输速率" class="headerlink" title="数据传输速率"></a>数据传输速率</h3><ul>
+<li>数据传输速率$D_r$: 单位时间内存储器与主机之间传送数据的位数或字节数</li>
+<li>传输率与存储设备和主机接口逻辑有关</li>
+<li>从设备方面考虑，传输率等于记录密度D和记录介质的运动速度V的乘积。</li>
+<li>从主机接口逻辑考虑，应有足够快的传送速度接收／发送信息，以便主机与辅存之间的传输正确无误</li>
+</ul>
+<h3 id="误码率和价格"><a href="#误码率和价格" class="headerlink" title="误码率和价格"></a>误码率和价格</h3><p>误码率: 衡量磁表面存储器出错概率的参数; 它等于从辅存读出时，出错信息位数和读出的总信息位数之比。</p>
+<p>价格: 通常用位价格来比较各种存储器。位价格是设备价格除以容量，在所有存储设备中，磁表面存储器和光盘存储器的位价格是很低的。</p>
+<h2 id="8-2-磁记录原理与记录方式"><a href="#8-2-磁记录原理与记录方式" class="headerlink" title="8.2 磁记录原理与记录方式"></a>8.2 磁记录原理与记录方式</h2><ul>
+<li>磁记录原理: 磁表面存储器通过磁头和记录介质的相对运动完成写入和读出, 本质是电和磁之间的转换</li>
+<li>磁记录介质: 涂有薄层磁性材料的信息载体,又称为磁记录媒体; 可分为软性介质和硬性介质</li>
+<li>磁头: 一个电磁转换装置,可以将电脉冲表示的二进制代码和磁化信息相互转化</li>
+<li>磁记录方式: 按照某种规律将二进制数字信息变换成存储介质的磁化翻转方式<br><img src="/2020/02/24/computer-composition0/disc0.jpg" alt="disc"></li>
+</ul>
+<h2 id="8-3-磁盘存储器"><a href="#8-3-磁盘存储器" class="headerlink" title="8.3 磁盘存储器"></a>8.3 磁盘存储器</h2><p>种类:</p>
+<blockquote>
+<ul>
+<li>硬磁盘存储器：硬盘存储器和软盘存储器。</li>
+<li>根据磁头的工作方式分类：移动头磁盘存储器和固定头磁盘存储器</li>
+<li>根据磁盘可换与否分类：可换盘存储器和固定盘存储器两</li>
+</ul>
+</blockquote>
+<p>结构:</p>
+<blockquote>
+<ul>
+<li>驱动器HDD: 独立于主机之外的一个完整的磁盘驱动器装置</li>
+<li>控制器HDC: 在主机总线上的一个控制电路板</li>
+</ul>
+</blockquote>
+<p>磁盘阵列存储器: 廉价冗余磁盘阵列(Redundent Array Of Inexpensive Disk，简称RAID)是用多台磁盘存储器组成的大容量外存储子系统</p>
+<blockquote>
+<ul>
+<li>数据分块技术: 在多个磁盘上交错存放数据,使之可以并行存取</li>
+<li>数据冗余技术: 阵列中的一部分磁盘存有冗余信息</li>
+</ul>
+</blockquote>
+<p>RAID分类:</p>
+<blockquote>
+<ul>
+<li>RAID0: 无冗余无校验的数据分块; 磁盘利用率和IO性能最高,但可靠性最低</li>
+<li>RAID1: 镜像磁盘阵列; 安全性高,IO性能不变,利用率为50%</li>
+<li>RAID2: 纠错海明码和位交叉存取; 对数据的访问涉及磁盘阵列中的每一个盘,很少使用</li>
+<li>RAID3: 奇偶校验码和位交叉存取; 计算较为费时</li>
+<li>RAID4: 奇偶校验码和块交叉存取; 有专用校验盘,对少量数据(块)读写只涉及数据盘和校验盘两个盘</li>
+<li>RAID5: 奇偶校验码和块交叉存取; 无专用校验盘,校验信息分布到组内所有盘上,性能较号,普遍采用</li>
+<li>RAID6: 两种奇偶校验码和块交叉; 需要多两个盘的容量来存储校验信息,可靠性高</li>
+<li>RAID7: 独立接口的磁盘阵列; 主机可以独立地对每个磁盘驱动器进行访问</li>
+<li>RAID10: RAID0和RAID1的组合,性能好安全性高,但利用率低</li>
+</ul>
+</blockquote>
+<h2 id="8-4-磁带存储器"><a href="#8-4-磁带存储器" class="headerlink" title="8.4 磁带存储器"></a>8.4 磁带存储器</h2><p>读写工作原理基本上与磁盘存储器相同,区别如下</p>
+<blockquote>
+<ul>
+<li>磁带是顺序存取设备</li>
+<li>介质时涂上磁粉的薄塑料带</li>
+<li>读写某点信息需要进行快进或者倒转</li>
+<li>读写时磁头会直接接触磁带</li>
+<li>磁带移动速度较慢</li>
+</ul>
+</blockquote>
+<h2 id="8-5-光盘存储器"><a href="#8-5-光盘存储器" class="headerlink" title="8.5 光盘存储器"></a>8.5 光盘存储器</h2><p>光盘是使用光学方式进行读写信息的圆盘</p>
+<blockquote>
+<ul>
+<li>只读型光盘CD-ROM: 由厂商预先写入信息,只读不可写</li>
+<li>一次性写入型WORM: 用户只能一次写入,可以多次读出</li>
+<li>可擦写型: 可以重复读写; 其采用磁光可重写技术,即利用激光在磁记录介质上存储信息</li>
+</ul>
+</blockquote>
+<h2 id="8-6-固态盘"><a href="#8-6-固态盘" class="headerlink" title="8.6 固态盘"></a>8.6 固态盘</h2><ul>
+<li>固态盘是用半导体存储介质和传统磁盘接口构成的存储器</li>
+<li>存储器介质可以是DRAM或NVRAM,也有用NAND闪存为核心的SSD</li>
+<li>U盘,闪盘,存储卡等都是SSD</li>
+</ul>
+<h1 id="九、输入输出IO设备"><a href="#九、输入输出IO设备" class="headerlink" title="九、输入输出IO设备"></a>九、输入输出IO设备</h1><hr>
 <p><em>待更新…</em></p>
 ]]></content>
       <categories>
@@ -6933,8 +7264,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>learning</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>

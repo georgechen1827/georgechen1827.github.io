@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">20.6k words</span>
+            <span class="post-count">22.4k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">72 minutes</span>
+            <span class="post-count">78 minutes</span>
         </span>
     </span>
 </div>
@@ -1586,7 +1586,130 @@
 </ul>
 </blockquote>
 <p>不间断电源UPS: 后备式,在线式</p>
-<hr>
+<h1 id="八、辅助存储器"><a href="#八、辅助存储器" class="headerlink" title="八、辅助存储器"></a>八、辅助存储器</h1><p>辅助存储器容量大而成本低,是非易失性存储器</p>
+<p>辅存主要由磁表面存储器和光存储器两大类</p>
+<blockquote>
+<ul>
+<li>磁表面存储器将磁性材料沉积再盘片(或带)的基体上形成磁记录介质,并用饶有线圈的磁头与介质的相对运动来写入或读出信息</li>
+<li>光存储器介质主要是光盘,它利用激光束在具有感光特性的表面上存储信息</li>
+</ul>
+</blockquote>
+<h2 id="8-1-磁表面存储器的种类与技术指标"><a href="#8-1-磁表面存储器的种类与技术指标" class="headerlink" title="8.1 磁表面存储器的种类与技术指标"></a>8.1 磁表面存储器的种类与技术指标</h2><h3 id="存储密度"><a href="#存储密度" class="headerlink" title="存储密度"></a>存储密度</h3><p>单位长度或面积磁层表面所存储的二进制信息量</p>
+<blockquote>
+<ul>
+<li>磁盘: 道密度和位密度或面密度</li>
+<li>磁带: 位密度<br>磁道: 存储在介质表面上信息的磁化轨迹</li>
+</ul>
+</blockquote>
+<p>磁盘存储器中:</p>
+<blockquote>
+<ul>
+<li>磁道: 磁盘表面上的同心圆</li>
+<li>扇区: 磁道组成的扇形表面</li>
+<li>柱面: 多个盘片在同一半径的磁道形成的整体</li>
+<li>道宽: 磁道宽度</li>
+<li>道距: 两磁道中心线距离,一般比道宽大</li>
+<li>道密度: 沿磁盘半径方向单位长度的磁道数(道/英寸 tpi)</li>
+<li>位密度(线密度): 单位长度磁道所能记录的二进制信息(位/英寸 bpi)</li>
+<li>面密度: 道密度*位密度</li>
+</ul>
+</blockquote>
+<p>磁带中,存储密度用位密度衡量</p>
+<h3 id="存储容量"><a href="#存储容量" class="headerlink" title="存储容量"></a>存储容量</h3><p>存储容量: 存储器能存的二进制信息总量,一般以字节位单位</p>
+<ul>
+<li>格式化容量: 按照某种记录格式所能存储的信息的总量,为用户可由使用的容量</li>
+<li>非格式化容量: 磁记录表面可以利用的磁化单元总量<blockquote>
+<ul>
+<li>低级格式化: 在盘片上建立扇区和磁道,并将每个扇区的开始和结束部分写入到盘片上</li>
+<li>高级格式化: 写入文件储存的结构,如将文件分配表写入扇区</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>格式化容量一般为非格式化容量的60%-70%</p>
+<h3 id="寻址时间"><a href="#寻址时间" class="headerlink" title="寻址时间"></a>寻址时间</h3><p>磁盘存储器采用直接存取方式:</p>
+<blockquote>
+<ul>
+<li>寻道时间$t_s$: 磁头寻找目标磁道所需的时间</li>
+<li>等待时间$t_w$: 磁头等待目标区域旋转到其下方所需的时间</li>
+</ul>
+</blockquote>
+<p>平均寻址时间$T_a = T_s+T_w = \overline t_s + \overline t_w$</p>
+<p>一般硬盘平均寻址时间在10ms左右,磁带平均寻址时间更长</p>
+<h3 id="数据传输速率"><a href="#数据传输速率" class="headerlink" title="数据传输速率"></a>数据传输速率</h3><ul>
+<li>数据传输速率$D_r$: 单位时间内存储器与主机之间传送数据的位数或字节数</li>
+<li>传输率与存储设备和主机接口逻辑有关</li>
+<li>从设备方面考虑，传输率等于记录密度D和记录介质的运动速度V的乘积。</li>
+<li>从主机接口逻辑考虑，应有足够快的传送速度接收／发送信息，以便主机与辅存之间的传输正确无误</li>
+</ul>
+<h3 id="误码率和价格"><a href="#误码率和价格" class="headerlink" title="误码率和价格"></a>误码率和价格</h3><p>误码率: 衡量磁表面存储器出错概率的参数; 它等于从辅存读出时，出错信息位数和读出的总信息位数之比。</p>
+<p>价格: 通常用位价格来比较各种存储器。位价格是设备价格除以容量，在所有存储设备中，磁表面存储器和光盘存储器的位价格是很低的。</p>
+<h2 id="8-2-磁记录原理与记录方式"><a href="#8-2-磁记录原理与记录方式" class="headerlink" title="8.2 磁记录原理与记录方式"></a>8.2 磁记录原理与记录方式</h2><ul>
+<li>磁记录原理: 磁表面存储器通过磁头和记录介质的相对运动完成写入和读出, 本质是电和磁之间的转换</li>
+<li>磁记录介质: 涂有薄层磁性材料的信息载体,又称为磁记录媒体; 可分为软性介质和硬性介质</li>
+<li>磁头: 一个电磁转换装置,可以将电脉冲表示的二进制代码和磁化信息相互转化</li>
+<li>磁记录方式: 按照某种规律将二进制数字信息变换成存储介质的磁化翻转方式<br><img src="/2020/02/24/computer-composition0/disc0.jpg" alt="disc"></li>
+</ul>
+<h2 id="8-3-磁盘存储器"><a href="#8-3-磁盘存储器" class="headerlink" title="8.3 磁盘存储器"></a>8.3 磁盘存储器</h2><p>种类:</p>
+<blockquote>
+<ul>
+<li>硬磁盘存储器：硬盘存储器和软盘存储器。</li>
+<li>根据磁头的工作方式分类：移动头磁盘存储器和固定头磁盘存储器</li>
+<li>根据磁盘可换与否分类：可换盘存储器和固定盘存储器两</li>
+</ul>
+</blockquote>
+<p>结构:</p>
+<blockquote>
+<ul>
+<li>驱动器HDD: 独立于主机之外的一个完整的磁盘驱动器装置</li>
+<li>控制器HDC: 在主机总线上的一个控制电路板</li>
+</ul>
+</blockquote>
+<p>磁盘阵列存储器: 廉价冗余磁盘阵列(Redundent Array Of Inexpensive Disk，简称RAID)是用多台磁盘存储器组成的大容量外存储子系统</p>
+<blockquote>
+<ul>
+<li>数据分块技术: 在多个磁盘上交错存放数据,使之可以并行存取</li>
+<li>数据冗余技术: 阵列中的一部分磁盘存有冗余信息</li>
+</ul>
+</blockquote>
+<p>RAID分类:</p>
+<blockquote>
+<ul>
+<li>RAID0: 无冗余无校验的数据分块; 磁盘利用率和IO性能最高,但可靠性最低</li>
+<li>RAID1: 镜像磁盘阵列; 安全性高,IO性能不变,利用率为50%</li>
+<li>RAID2: 纠错海明码和位交叉存取; 对数据的访问涉及磁盘阵列中的每一个盘,很少使用</li>
+<li>RAID3: 奇偶校验码和位交叉存取; 计算较为费时</li>
+<li>RAID4: 奇偶校验码和块交叉存取; 有专用校验盘,对少量数据(块)读写只涉及数据盘和校验盘两个盘</li>
+<li>RAID5: 奇偶校验码和块交叉存取; 无专用校验盘,校验信息分布到组内所有盘上,性能较号,普遍采用</li>
+<li>RAID6: 两种奇偶校验码和块交叉; 需要多两个盘的容量来存储校验信息,可靠性高</li>
+<li>RAID7: 独立接口的磁盘阵列; 主机可以独立地对每个磁盘驱动器进行访问</li>
+<li>RAID10: RAID0和RAID1的组合,性能好安全性高,但利用率低</li>
+</ul>
+</blockquote>
+<h2 id="8-4-磁带存储器"><a href="#8-4-磁带存储器" class="headerlink" title="8.4 磁带存储器"></a>8.4 磁带存储器</h2><p>读写工作原理基本上与磁盘存储器相同,区别如下</p>
+<blockquote>
+<ul>
+<li>磁带是顺序存取设备</li>
+<li>介质时涂上磁粉的薄塑料带</li>
+<li>读写某点信息需要进行快进或者倒转</li>
+<li>读写时磁头会直接接触磁带</li>
+<li>磁带移动速度较慢</li>
+</ul>
+</blockquote>
+<h2 id="8-5-光盘存储器"><a href="#8-5-光盘存储器" class="headerlink" title="8.5 光盘存储器"></a>8.5 光盘存储器</h2><p>光盘是使用光学方式进行读写信息的圆盘</p>
+<blockquote>
+<ul>
+<li>只读型光盘CD-ROM: 由厂商预先写入信息,只读不可写</li>
+<li>一次性写入型WORM: 用户只能一次写入,可以多次读出</li>
+<li>可擦写型: 可以重复读写; 其采用磁光可重写技术,即利用激光在磁记录介质上存储信息</li>
+</ul>
+</blockquote>
+<h2 id="8-6-固态盘"><a href="#8-6-固态盘" class="headerlink" title="8.6 固态盘"></a>8.6 固态盘</h2><ul>
+<li>固态盘是用半导体存储介质和传统磁盘接口构成的存储器</li>
+<li>存储器介质可以是DRAM或NVRAM,也有用NAND闪存为核心的SSD</li>
+<li>U盘,闪盘,存储卡等都是SSD</li>
+</ul>
+<h1 id="九、输入输出IO设备"><a href="#九、输入输出IO设备" class="headerlink" title="九、输入输出IO设备"></a>九、输入输出IO设备</h1><hr>
 <p><em>待更新…</em></p>
 
       
@@ -1594,7 +1717,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/computer-composition0/" data-id="ckacj7yum003e2ovneerg5hb4"
+      <a data-url="http://georgechen1827.github.io/2020/02/24/computer-composition0/" data-id="ckamcth8r003gp0vn0an94mgj"
         class="article-share-link">share</a>
         
       
