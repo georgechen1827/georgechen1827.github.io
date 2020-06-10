@@ -42,6 +42,310 @@
     
     
     
+    <article id="post-markdown-formula-editor" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/04/markdown-formula-editor/"
+    >markdown中的公式编辑</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/04/markdown-formula-editor/" class="article-date">
+  <time datetime="2020-03-04T05:23:34.000Z" itemprop="datePublished">2020-03-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/instructions/">instructions</a> / <a class="article-category-link" href="/categories/instructions/notes/">notes</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><h3 id="行内公式"><a href="#行内公式" class="headerlink" title="行内公式"></a>行内公式</h3><p>正文(inline)中的LaTeX公式用<code>$...$</code>定义</p>
+<p>例如<code>$\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t$</code></p>
+<p>显示为$\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t$</p>
+<h3 id="行间公式"><a href="#行间公式" class="headerlink" title="行间公式"></a>行间公式</h3><p>单独显示(display)的LaTeX公式用<code>$$...$$</code>定义，此时公式居中并放大显示  </p>
+<p>例如<code>$$\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t$$</code>   </p>
+<p>显示为$$\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t$$ </p>
+      
+      <a class="article-more-link" href="/2020/03/04/markdown-formula-editor/">more...</a>
+      
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/03/04/markdown-formula-editor/" data-id="ckb9gazl9003oe4vn8oadbpu8"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/instructions/" rel="tag">instructions</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-python-multithreading" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/04/python-multithreading/"
+    >python多线程、多进程</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/04/python-multithreading/" class="article-date">
+  <time datetime="2020-03-04T03:36:58.000Z" itemprop="datePublished">2020-03-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>浅尝辄止,能用就行</p>
+<hr>
+<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line">lock = threading.Lock() <span class="comment"># 设置一个全局线程锁,某个线程在获得此锁之后其他线程不能再获得</span></span><br><span class="line"></span><br><span class="line">sem = threading.Semaphore(<span class="number">12</span>) <span class="comment"># 设置最大线程数量</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> sem:</span><br><span class="line">    t = threading.Thread(target=function,args=(a,b,c))  <span class="comment"># 用function(a,b,c)创建一个线程</span></span><br><span class="line">    t.setDaemon(<span class="literal">True</span>)   <span class="comment">#   设置t线程为主线程的守护线程,即主线程结束后会自动杀死子线程(默认为false)</span></span><br><span class="line">    t.start()   <span class="comment"># 启动线程</span></span><br><span class="line">    t.join(<span class="number">60</span>)  <span class="comment"># 线程同步，主线程任务结束之后，进入阻塞状态，一直等待其他的子线程执行结束之后，主线程再终止;如果超时主线程也会终止(默认为无)</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">#   若在function中执行lock.acquire(),则线程阻塞直到其他线程释放此锁</span></span><br><span class="line"><span class="comment">#   function中执行完lock.acquire()后必须进行lock.release(),否则其他线程将永远无法获得此锁</span></span><br></pre></td></tr></table></figure>
+      
+      <a class="article-more-link" href="/2020/03/04/python-multithreading/">more...</a>
+      
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/03/04/python-multithreading/" data-id="ckb9gazjw001we4vnb4fm25zd"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-python-spider" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/04/python-spider/"
+    >python spider</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/04/python-spider/" class="article-date">
+  <time datetime="2020-03-04T00:48:22.000Z" itemprop="datePublished">2020-03-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>烂尾中…</p>
+<hr>
+<p>资料主要来源于北理工的<a href="https://www.icourse163.org/learn/BIT-1001870001?tid=1206951268#" target="_blank" rel="noopener">爬虫课程</a><br>有requests库、beautifulsoup库、scrapy框架等</p>
+<h2 id="request库"><a href="#request库" class="headerlink" title="request库"></a>request库</h2><p><code>import requests</code></p>
+<h3 id="request"><a href="#request" class="headerlink" title="request."></a>request.</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.request()</span><br><span class="line">.get() 获取网页</span><br><span class="line">.head() 获取网页头</span><br><span class="line">.post() 提交post请求</span><br><span class="line">.put() 提交put请求</span><br><span class="line">.patch() 提交局部修改请求</span><br><span class="line">.delete() 提交删除请求</span><br></pre></td></tr></table></figure>
+      
+      <a class="article-more-link" href="/2020/03/04/python-spider/">more...</a>
+      
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/03/04/python-spider/" data-id="ckb9gazjv001se4vn3z8mas1o"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-mao-theory" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/03/mao-theory/"
+    >毛概相关</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/03/mao-theory/" class="article-date">
+  <time datetime="2020-03-03T07:25:05.000Z" itemprop="datePublished">2020-03-03</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a> / <a class="article-category-link" href="/categories/notes/%E5%AD%A6%E4%BD%8D%E8%AF%BE%E7%A8%8B/">学位课程</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>水课，佛系更新</p>
+<hr>
+<h2 id="第一章问题"><a href="#第一章问题" class="headerlink" title="第一章问题"></a>第一章问题</h2><ul>
+<li>如何理解毛泽东思想活的灵魂</li>
+</ul>
+<ol>
+<li>思想路线: 坚持实事求是，一切从实际出发，理论联系实际，坚持在实践中检验和发展真理</li>
+<li>根本工作路线: 群众路线;一切为了群众,一切依靠群众,从群众中来,到群众中去,把党的主张变为群众的自觉行动</li>
+<li>根本政治原则: 独立自主;坚持独立思考,走自己的路;坚定不移地维护民族独立,捍卫国家主权,把立足点放在依靠自己力量的基础之上;同时积极争取外援,开展国际经济文化交流,学习外国一切对我们有益的先进事物</li>
+</ol>
+      
+      <a class="article-more-link" href="/2020/03/03/mao-theory/">more...</a>
+      
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/03/03/mao-theory/" data-id="ckb9gazjp001ce4vngkjd33zm"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AF%9B%E6%A6%82/" rel="tag">毛概</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-featured-chinese-culture" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -92,7 +396,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/26/featured-chinese-culture/" data-id="ckamcth7o000ip0vnhfw928wp"
+      <a data-url="http://georgechen1827.github.io/2020/02/26/featured-chinese-culture/" data-id="ckb9gazjf000me4vncnntgdvb"
         class="article-share-link">share</a>
         
       
@@ -162,7 +466,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/25/chinese-garden/" data-id="ckamcth7f0008p0vn4wlxdoqp"
+      <a data-url="http://georgechen1827.github.io/2020/02/25/chinese-garden/" data-id="ckb9gazj40008e4vn2rs5b1fh"
         class="article-share-link">share</a>
         
       
@@ -236,90 +540,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/Lucence0/" data-id="ckamcth6x0000p0vn3gro0e3r"
+      <a data-url="http://georgechen1827.github.io/2020/02/24/Lucence0/" data-id="ckb9gazj10006e4vnh8qxezoj"
         class="article-share-link">share</a>
         
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/" rel="tag">c#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" rel="tag">搜索引擎</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-compilers0" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/24/compilers0/"
-    >编译原理相关知识</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/02/24/compilers0/" class="article-date">
-  <time datetime="2020-02-24T08:32:03.000Z" itemprop="datePublished">2020-02-24</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/notes/">notes</a> / <a class="article-category-link" href="/categories/notes/%E5%AD%A6%E4%BD%8D%E8%AF%BE%E7%A8%8B/">学位课程</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>未完结,持续更新</p>
-<hr>
-<p>课程内容:</p>
-<ul>
-<li>编译器构造的一般原理和基本实现方法</li>
-<li>理论知识: 形式语言和自动机理论,语法制导的定义和属性方法,程序分析原理</li>
-<li>强调形式描述技术和自动生成技术</li>
-<li>强调对编译原理和技术的宏观理解,不把注意力分散到枝节算法,不偏向于任何源语言或目标机器</li>
-</ul>
-      
-      <a class="article-more-link" href="/2020/02/24/compilers0/">more...</a>
-      
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/compilers0/" data-id="ckamcth7i000bp0vnc9wkd2za"
-        class="article-share-link">share</a>
-        
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="tag">编译原理</a></li></ul>
 
     </footer>
 
@@ -418,7 +643,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/computer-composition0/" data-id="ckamcth8r003gp0vn0an94mgj"
+      <a data-url="http://georgechen1827.github.io/2020/02/24/computer-composition0/" data-id="ckb9gazjy001ze4vnbmr5f7oh"
         class="article-share-link">share</a>
         
       
@@ -514,7 +739,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/java0/" data-id="ckamcth7w0012p0vngxyb8kbe"
+      <a data-url="http://georgechen1827.github.io/2020/02/24/java0/" data-id="ckb9gazjj000xe4vn19p10nbo"
         class="article-share-link">share</a>
         
       
@@ -583,237 +808,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/12/python-plot1/" data-id="ckamcth85001kp0vndlrb9nsy"
+      <a data-url="http://georgechen1827.github.io/2020/02/12/python-plot1/" data-id="ckb9gazjr001je4vn2io147cl"
         class="article-share-link">share</a>
         
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-matlab" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/09/matlab/"
-    >matlab常用语法</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/02/09/matlab/" class="article-date">
-  <time datetime="2020-02-09T09:10:30.000Z" itemprop="datePublished">2020-02-09</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/notes/">notes</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>仅作随笔用,不完善不严谨</p>
-<h3 id="变量-符号-数组-矩阵"><a href="#变量-符号-数组-矩阵" class="headerlink" title="变量 符号 数组 矩阵"></a>变量 符号 数组 矩阵</h3><h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;var&gt; = &lt;expression&gt;</span><br></pre></td></tr></table></figure>
-
-<p>预定义变量   </p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pi</span>  <span class="comment">% 圆周率</span></span><br><span class="line"><span class="built_in">inf</span> <span class="comment">% 又Inf,无穷大</span></span><br><span class="line"><span class="built_in">nan</span> <span class="comment">% 又NaN,不定值</span></span><br><span class="line"><span class="built_in">eps</span> <span class="comment">% 浮点数运算相对精度,无穷小</span></span><br><span class="line"><span class="built_in">i</span>   <span class="comment">% 又j,虚部单位</span></span><br><span class="line"><span class="built_in">ans</span> <span class="comment">% 上一次运算结果</span></span><br></pre></td></tr></table></figure>
-
-<p>变量存储 读取 清除  </p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">save [filename.mat] [var1] [var2] ...</span><br><span class="line">load &lt;filename.mat&gt; [var1] [var2] ...</span><br><span class="line">clear [var1] [var2]</span><br></pre></td></tr></table></figure>
-
-<p>相关命令</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">who <span class="comment">% 显示工作空间中的所有变量  </span></span><br><span class="line">whos    <span class="comment">% 查看工作空间中变量的详细属性 </span></span><br><span class="line"><span class="built_in">realmin</span> <span class="comment">% 最小可用正实数</span></span><br><span class="line"><span class="built_in">realmax</span> <span class="comment">% 最大可用正实数</span></span><br></pre></td></tr></table></figure>
-      
-      <a class="article-more-link" href="/2020/02/09/matlab/">more...</a>
-      
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/09/matlab/" data-id="ckamcth84001hp0vn2g0283me"
-        class="article-share-link">share</a>
-        
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/matlab/" rel="tag">matlab</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-making-rolls" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/08/making-rolls/"
-    >From Flour to Rolls</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/02/08/making-rolls/" class="article-date">
-  <time datetime="2020-02-08T15:25:34.000Z" itemprop="datePublished">2020-02-08</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/life/">life</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p><em>这是一次从面粉到面花卷过程</em>  </p>
-<hr>
-      
-      <a class="article-more-link" href="/2020/02/08/making-rolls/">more...</a>
-      
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/08/making-rolls/" data-id="ckamcth7x0016p0vnh9uyena7"
-        class="article-share-link">share</a>
-        
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/life/" rel="tag">life</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/playing/" rel="tag">playing</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-android-hexo-setting" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/07/android-hexo-setting/"
-    >使用termux在安卓系统下搭建hexo-github博客编写环境</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/02/07/android-hexo-setting/" class="article-date">
-  <time datetime="2020-02-07T06:46:16.000Z" itemprop="datePublished">2020-02-07</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/instructions/">instructions</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>在hexo已经部署到github的情况下，本文将记录如何把自己的移动设备(安卓手机、平板)变成可以编辑并上传博客的平台。  </p>
-<p>关于如何在github上搭建hexo，详见<a href="https://zhuanlan.zhihu.com/p/44213627" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/44213627</a><br>注意：使用多终端更新博客之前，请确保自己的博客系统在github上面同时有编译前、后两个分支，多终端更新方法可参考<a href="https://keyanbu.club/2020/02/05/guide/" target="_blank" rel="noopener">https://keyanbu.club/2020/02/05/guide/</a></p>
-<p>本博文使用matepad pro在安卓环境下编写完成。  </p>
-      
-      <a class="article-more-link" href="/2020/02/07/android-hexo-setting/">more...</a>
-      
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/07/android-hexo-setting/" data-id="ckamcth760002p0vn62mm4zop"
-        class="article-share-link">share</a>
-        
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/instructions/" rel="tag">instructions</a></li></ul>
 
     </footer>
 

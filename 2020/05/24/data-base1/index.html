@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">17.3k words</span>
+            <span class="post-count">20.1k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">62 minutes</span>
+            <span class="post-count">71 minutes</span>
         </span>
     </span>
 </div>
@@ -100,7 +100,7 @@
       
 
       
-      <p><del>未完结,持续更新</del> 完结</p>
+      <p>未完结,持续更新</p>
 <hr>
 <p>任课教师: 赵朋朋<a href="http://web.suda.edu.cn/ppzhao/" target="_blank" rel="noopener">http://web.suda.edu.cn/ppzhao/</a></p>
 <p>网课资源: 慕课中国人民大学数据库系统概论<a href="https://www.icourse163.org/learn/RUC-1001655006" target="_blank" rel="noopener">https://www.icourse163.org/learn/RUC-1001655006</a></p>
@@ -1554,6 +1554,269 @@
 </ul>
 </blockquote>
 <p>问题: 频繁地复制数据会降低DBMS的运行效率,实际使用中往往只会对关键数据和日志文件进行镜像</p>
+<h1 id="十一、并发控制"><a href="#十一、并发控制" class="headerlink" title="十一、并发控制"></a>十一、并发控制</h1><h2 id="11-1-概述"><a href="#11-1-概述" class="headerlink" title="11.1 概述"></a>11.1 概述</h2><p>数据库是多用户数据库系统,在同一时刻并发运行的事务数可达数百上千个</p>
+<ul>
+<li><p>多事务串行执行不能充分利用系统资源，发挥数据库共 享资源的特点</p>
+</li>
+<li><p>交叉并发:  事务的并行执行是这些并行事务的并行操作轮流交叉运行,这可以提高系统效率,但并不是真正的并行运行</p>
+</li>
+<li><p>同时并发: 多处理机系统中每个处理机可以运行一个事务,实现多个事务真正并行运行; 这是效率最高的并发方式,但复杂并受制于硬件环境</p>
+</li>
+</ul>
+<p>本章讨论的数据库系统并发控制技术是以单处理机系统为基础的 </p>
+<h3 id="并发带来的问题"><a href="#并发带来的问题" class="headerlink" title="并发带来的问题"></a>并发带来的问题</h3><blockquote>
+<ul>
+<li>多个事务同时存取同一时间</li>
+<li>这会导致存取和存储不正确的数据,破坏事务隔离性和数据库一致性</li>
+</ul>
+</blockquote>
+<p>数据库管理系统必须提供并发控制机制<br>并发控制机制是衡量一个数据库管理系统性能的重要标志之一 </p>
+<p>并发操作带来的数据不一致性:</p>
+<blockquote>
+<ul>
+<li>丢失修改: 当前修改被其他事务覆盖</li>
+<li>不可重复读: 读取数据后该数据被其他事务修改(删除,插入:幻影现象)</li>
+<li>读”脏”数据: 之前读取的(错误)数据被撤销</li>
+</ul>
+</blockquote>
+<p>对数据库的应用有时允许某些不一致性，可以降低对一致 性的要求以减少系统开销 </p>
+<h3 id="并发控制主要技术"><a href="#并发控制主要技术" class="headerlink" title="并发控制主要技术"></a>并发控制主要技术</h3><blockquote>
+<ul>
+<li>封锁</li>
+<li>时间戳</li>
+<li>乐观控制法</li>
+<li>多版本并发控制</li>
+</ul>
+</blockquote>
+<h2 id="11-2-封锁"><a href="#11-2-封锁" class="headerlink" title="11.2 封锁"></a>11.2 封锁</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>封锁: 事务T对某个数据对象操作之前,先向系统发出请求对其加锁,使该事务对此数据对象有了一定的控制; 在该锁被释放之前,其他事务不能更新此数据对象</p>
+<blockquote>
+<p>封锁是实现并发控制的一个重要的技术</p>
+</blockquote>
+<p>类型:</p>
+<blockquote>
+<ul>
+<li>排他锁(X锁)</li>
+<li>共享锁(S锁)</li>
+</ul>
+</blockquote>
+<h3 id="排他锁"><a href="#排他锁" class="headerlink" title="排他锁"></a>排他锁</h3><ul>
+<li><p>该事务可以读取和修改被加锁对象</p>
+</li>
+<li><p>直到该事务释放锁之前,其他任何事物都不能再对该对象加任何类型的锁</p>
+</li>
+</ul>
+<h3 id="共享锁"><a href="#共享锁" class="headerlink" title="共享锁"></a>共享锁</h3><ul>
+<li><p>该事务只能读取被加锁对象</p>
+</li>
+<li><p>其他事务只能再对该对象加共享锁而不能加排他锁,保证其他事务也能读取该对象</p>
+</li>
+</ul>
+<h3 id="锁的相容矩阵"><a href="#锁的相容矩阵" class="headerlink" title="锁的相容矩阵"></a>锁的相容矩阵</h3><table>
+<thead>
+<tr>
+<th align="center">T1\T2</th>
+<th align="center">X</th>
+<th align="center">S</th>
+<th align="center">-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">X</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="center">Y</td>
+</tr>
+<tr>
+<td align="center">S</td>
+<td align="center">N</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+</tr>
+<tr>
+<td align="center">-</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+</tr>
+</tbody></table>
+<h2 id="11-3-封锁协议"><a href="#11-3-封锁协议" class="headerlink" title="11.3 封锁协议"></a>11.3 封锁协议</h2><p>封锁协议: 运用锁对数据对象加锁时的一些规则</p>
+<blockquote>
+<ul>
+<li>何时申请X锁或S锁</li>
+<li>持锁时间</li>
+<li>何时释放</li>
+</ul>
+</blockquote>
+<p>不同封锁协议可以在不同程度上保证并发操作的正确调度</p>
+<h3 id="一级封锁协议"><a href="#一级封锁协议" class="headerlink" title="一级封锁协议"></a>一级封锁协议</h3><blockquote>
+<ul>
+<li>事务T在修改R数据前必须先对其加X锁,直到事务结束(提交或回滚)才释放</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>该协议可以防止修改丢失,保证T是可恢复的</p>
+</blockquote>
+<p>一级封锁协议无法保证读脏数据</p>
+<h3 id="二级封锁协议"><a href="#二级封锁协议" class="headerlink" title="二级封锁协议"></a>二级封锁协议</h3><blockquote>
+<ul>
+<li>事务T在修改R数据前必须先对其加X锁,直到事务结束(提交或回滚)才释放</li>
+<li>事务T在读取R数据之前必须先对其加S锁,读完之后即可释放S锁<br>该协议可以防止丢失修改和读脏数据</li>
+</ul>
+</blockquote>
+<p>二级封锁协议不能保证可重复读</p>
+<h3 id="三级封锁协议"><a href="#三级封锁协议" class="headerlink" title="三级封锁协议"></a>三级封锁协议</h3><blockquote>
+<ul>
+<li>事务T在修改R数据前必须先对其加X锁,直到事务结束(提交或回滚)才释放</li>
+<li>事务T在读取R数据之前必须先对其加S锁,直到事务结束才释放<br>三级封锁协议可防止丢失修改、读脏数据和不可重复读</li>
+</ul>
+</blockquote>
+<h2 id="11-4-活锁和死锁"><a href="#11-4-活锁和死锁" class="headerlink" title="11.4 活锁和死锁"></a>11.4 活锁和死锁</h2><p>封锁技术带来的问题: 活锁和死锁</p>
+<h3 id="活锁"><a href="#活锁" class="headerlink" title="活锁"></a>活锁</h3><p>系统先行批准后请求的(一批)事务对数据加锁,导致前面的事务无法获得封锁而一直处于等待状态</p>
+<p>解决策略: 采用先来先服务策略</p>
+<blockquote>
+<ul>
+<li>当多个事务请求封锁同一数据对象时</li>
+<li>按请求封锁的先后次序对这些事务进行排队</li>
+<li>该数据对象上的锁一旦被释放,首先批准队列中第一个事务获得该锁</li>
+</ul>
+</blockquote>
+<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p>两个或多个事务都已封锁一些数据对象未释放时,又请求访问被对方锁住的数据对象,导致这些事务同时进入无限等待的状态</p>
+<p>解决策略:</p>
+<ol>
+<li>预防死锁: 代价较高<blockquote>
+<p>一次封锁法: </p>
+<ul>
+<li>每个事务必须一次将所有要使用的数据全部加锁,否则不能执行</li>
+<li>这样过早加锁,降低系统并发度; 且实际情况下难以精确缺点封锁对象</li>
+</ul>
+<p>顺序封锁法:</p>
+<ul>
+<li>预先对数据对象规定一个封锁顺序,所有事物都按这个顺序实行封锁</li>
+<li>数据库中的对象多且动态变化,维护这样一个顺序成本很高; 实际情况下封锁请求可以随着事物的执行动态缺点,实现难度大</li>
+</ul>
+</blockquote>
+</li>
+<li>诊断和解除死锁:<blockquote>
+<p>超时法:</p>
+<ul>
+<li>如果一个事物等待时间超过了规定的时限,就认为发生了死锁</li>
+<li>实现简单,但有可能误判死锁,且需要等待长时间才能发现死锁<br>等待图法:</li>
+<li>若T2请求数据时发现它被T1锁住,则称T2等待T1,由节点T2画一条有向边指向T1</li>
+<li>并发控制子系统周期性地生成事务等待图,若发现整个有向图中出现了回路,则表示系统中出现了死锁</li>
+<li>解除死锁: 选择一个处理死锁代价最小的事务,将其撤销,释放其持有的锁</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<h2 id="11-5-并发调度的可串行性"><a href="#11-5-并发调度的可串行性" class="headerlink" title="11.5 并发调度的可串行性"></a>11.5 并发调度的可串行性</h2><p>DBMS对并发事务的不同的调度可能会产生不同的结果</p>
+<blockquote>
+<ul>
+<li>串行调度是正确的</li>
+<li>执行结果等价于串行调度也的调度是正确的,称为可串行化调度</li>
+</ul>
+</blockquote>
+<h3 id="可串行化调度"><a href="#可串行化调度" class="headerlink" title="可串行化调度"></a>可串行化调度</h3><p>多个事务并发执行是正确的,当且仅当其执行结果与按某一次序串行执行这些植物时的结果相同</p>
+<blockquote>
+<ul>
+<li>可串行性时并发事务正确调度的准则</li>
+<li>一个给定的并发调度,当且仅当它是可串行化的,才认为是正确的调度</li>
+</ul>
+</blockquote>
+<p>如何判断一个调度是可串行化调度是个问题</p>
+<h3 id="冲突可串行化的调度"><a href="#冲突可串行化的调度" class="headerlink" title="冲突可串行化的调度"></a>冲突可串行化的调度</h3><p>冲突可串行化比可串行化更严格,它是可串行化的充分条件</p>
+<p>冲突操作: 不同事务对同一数据的读写操作和写写操作; 即两个操作涉及同一个数据库元素,且至少有一个为写操作</p>
+<p>定义: 不能交换的动作</p>
+<blockquote>
+<ul>
+<li>同一事务的两个操作</li>
+<li>不同事务的冲突操作</li>
+</ul>
+</blockquote>
+<p>冲突可串行化的调度: 一个调度S在保证冲突操作次序不变的情况下,通过交换<strong>两个</strong>事务的不冲突操作的次序得到了一个串行调度S’,则S为冲突可串行化的调度</p>
+<h2 id="11-6-两段锁协议"><a href="#11-6-两段锁协议" class="headerlink" title="11.6 两段锁协议"></a>11.6 两段锁协议</h2><p>数据库管理系统普遍采用两段锁协议的方法实现并发调度的可串行性,从而保证调度的正确性</p>
+<p>两段锁协议: 所有事物必须分两个阶段对数据项加锁和解锁</p>
+<blockquote>
+<ul>
+<li>扩展阶段: 在对任何数据进行读写操作之前,事务首先要获得对该数据的封锁; 此时事务不能释放任何锁</li>
+<li>收缩阶段: 在释放一个封锁之后,事务不在申请和获得任何其他的封锁; 此时事务可以释放锁,但不能再获得任何锁</li>
+</ul>
+</blockquote>
+<p>若一组并发事务都遵守两段锁协议,则这些事务的任何并发调度策略都是可串行化的; 事务遵守两段锁协议是可串行化的充分条件</p>
+<p>注意: </p>
+<blockquote>
+<ul>
+<li>两段锁协议遵守三级封锁协议,反之不然</li>
+<li>一次封锁法遵守两段锁协议,但两者不同,两段锁协议不能防止事务死锁</li>
+</ul>
+</blockquote>
+<h2 id="11-7-封锁的粒度"><a href="#11-7-封锁的粒度" class="headerlink" title="11.7 封锁的粒度"></a>11.7 封锁的粒度</h2><p>封锁的对象可以是逻辑单元(属性组等)也可以是物理单元(数据页等),封锁对象的大小称为封锁粒度</p>
+<p>封锁粒度越大,系统开销越小,但并发度也越小; 反之亦然</p>
+<p>多粒度封锁: 在一个系统中同时支持多种封锁粒度供不同的事务选择 </p>
+<h3 id="多粒度封锁"><a href="#多粒度封锁" class="headerlink" title="多粒度封锁"></a>多粒度封锁</h3><p>多粒度树:</p>
+<blockquote>
+<ul>
+<li>以树形结构来表示多级封锁粒度</li>
+<li>根结点是整个数据库,表示最大的数据粒度</li>
+<li>叶节点表示最小的数据粒度<br><img src="/2020/05/24/data-base1/tree0.jpg" alt="tree"></li>
+</ul>
+</blockquote>
+<p>多粒度封锁协议允许多粒度树种每个节点被独立加锁</p>
+<blockquote>
+<ul>
+<li>对一个节点加锁意味着这个节点下的所有子节点也被加以同样的锁</li>
+<li>显式封锁: 直接加到数据对象上的锁</li>
+<li>隐式封锁: 该数据对象由于其上级节点被加锁而使得它本身也被加锁</li>
+<li>从效果上看,显式封锁和隐式封锁是一样的</li>
+</ul>
+</blockquote>
+<p>锁的冲突检查: 对某个数据对象加锁时,系统要检查</p>
+<blockquote>
+<ul>
+<li>该数据对象上有无显式封锁与之冲突</li>
+<li>该对象所有上级节点,有无上级节点的显式封锁造成的该对象的隐式封锁与之冲突</li>
+<li>该对象所有下级节点,有无下级节点的显示封锁与该对象封锁对其造成的隐式封锁冲突</li>
+</ul>
+</blockquote>
+<h3 id="意向锁"><a href="#意向锁" class="headerlink" title="意向锁"></a>意向锁</h3><p>意向锁的引入能提高对某个数据对象加锁时系统的检查效率</p>
+<blockquote>
+<ul>
+<li>如果一个节点被加意向锁,说明该节点的某个下层节点正在被加锁</li>
+<li>对任一节点加基本锁,必须先对它的上层节点加意向锁</li>
+</ul>
+</blockquote>
+<p>类型:</p>
+<blockquote>
+<ul>
+<li>意向共享(IS)锁</li>
+<li>意向排他(IX)锁</li>
+<li>共享意向排他锁(SIX)锁</li>
+</ul>
+<p>其中,SIX锁表示某一个事务要访问某一数据节点,并且更新它的后代节点; 该节点的上层节点被加IS和IX锁; 该节点被先加S锁后加IX锁(合在一起就是SIX锁); 该节点的某个后代节点被加X锁</p>
+</blockquote>
+<p>数据锁的相容矩阵:<br><img src="/2020/05/24/data-base1/matrix0.jpg" alt="matrix"></p>
+<p>锁的强度:  </p>
+<blockquote>
+<ul>
+<li>锁的强度是指它对其他锁的排斥程度</li>
+<li>一个事务再申请封锁时,以强锁代替弱锁是安全的,反之不然</li>
+</ul>
+</blockquote>
+<p><img src="/2020/05/24/data-base1/lock0.jpg" alt="lock"></p>
+<p>具有意向锁的多粒度封锁方法:</p>
+<blockquote>
+<ul>
+<li>申请封锁时应按照自上而下的次序进行</li>
+<li>释放封锁时应按照自下而上的次序进行</li>
+</ul>
+</blockquote>
+<p>优点:</p>
+<blockquote>
+<ul>
+<li>提高了系统的并发度</li>
+<li>减少了加锁和解锁的开销</li>
+<li>实际应用广泛</li>
+</ul>
+</blockquote>
 <hr>
 <p>简明的数据库使用笔记可参考<a href="http://georgechen.top/2020/04/11/mysql0/" target="_blank" rel="noopener">http://georgechen.top/2020/04/11/mysql0/</a></p>
 <p>博文创建时间: 2020-04-16 14:06:44</p>
@@ -1563,7 +1826,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/05/24/data-base1/" data-id="ckamcth7r000qp0vnbico1te8"
+      <a data-url="http://georgechen1827.github.io/2020/05/24/data-base1/" data-id="ckb9gazl6003ne4vnd31u16sm"
         class="article-share-link">share</a>
         
       

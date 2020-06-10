@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">22.4k words</span>
+            <span class="post-count">28.2k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">78 minutes</span>
+            <span class="post-count">98 minutes</span>
         </span>
     </span>
 </div>
@@ -1598,8 +1598,9 @@
 <blockquote>
 <ul>
 <li>磁盘: 道密度和位密度或面密度</li>
-<li>磁带: 位密度<br>磁道: 存储在介质表面上信息的磁化轨迹</li>
+<li>磁带: 位密度</li>
 </ul>
+<p>磁道: 存储在介质表面上信息的磁化轨迹</p>
 </blockquote>
 <p>磁盘存储器中:</p>
 <blockquote>
@@ -1610,7 +1611,7 @@
 <li>道宽: 磁道宽度</li>
 <li>道距: 两磁道中心线距离,一般比道宽大</li>
 <li>道密度: 沿磁盘半径方向单位长度的磁道数(道/英寸 tpi)</li>
-<li>位密度(线密度): 单位长度磁道所能记录的二进制信息(位/英寸 bpi)</li>
+<li>位密度(线密度): 单位长度磁道所能记录的二进制信息(位/英寸 bpi)；内圈位密度大于外圈位密度</li>
 <li>面密度: 道密度*位密度</li>
 </ul>
 </blockquote>
@@ -1709,15 +1710,433 @@
 <li>存储器介质可以是DRAM或NVRAM,也有用NAND闪存为核心的SSD</li>
 <li>U盘,闪盘,存储卡等都是SSD</li>
 </ul>
-<h1 id="九、输入输出IO设备"><a href="#九、输入输出IO设备" class="headerlink" title="九、输入输出IO设备"></a>九、输入输出IO设备</h1><hr>
-<p><em>待更新…</em></p>
+<h1 id="九、输入输出IO设备"><a href="#九、输入输出IO设备" class="headerlink" title="九、输入输出IO设备"></a>九、输入输出IO设备</h1><h2 id="9-1-外部设备概述"><a href="#9-1-外部设备概述" class="headerlink" title="9.1 外部设备概述"></a>9.1 外部设备概述</h2><p>中处理器和主存储器构成计算机主体，输入输出设备、外存储器、脱机输入输出设备构成外部设备</p>
+<ul>
+<li>IO设备由信息载体、设备及设备控制器组成<blockquote>
+<ul>
+<li>IO设备的工作速度比主机慢</li>
+<li>各IO设备的信息类型和结构均不同</li>
+<li>各IO设备的电气特性不同</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>结构：</p>
+<blockquote>
+<ul>
+<li>CPU和主存构成主机</li>
+<li>主机由总线与外部设备控制器相连</li>
+<li>外部设备控制器包括外存设备控制器、输入设备控制器、输出设备控制器、通信控制器和过程控制器等</li>
+<li>不同控制器和不同外设相连 </li>
+</ul>
+</blockquote>
+<p>信息交换代码格式：ASCII码 </p>
+<p>传送格式：串行传送、并行传送</p>
+<h2 id="9-2-输入设备"><a href="#9-2-输入设备" class="headerlink" title="9.2 输入设备"></a>9.2 输入设备</h2><h3 id="键盘"><a href="#键盘" class="headerlink" title="键盘"></a>键盘</h3><p>键盘是由一组排列成阵列形式的按键开关组成的</p>
+<p>ASCII码：</p>
+<blockquote>
+<ul>
+<li>ASCII码每一个字符都由7位二进制表示，正常情况下最高一位为0；奇偶校验时它也可以存放校验位</li>
+<li>ASCII是由128个字符组成的字符集<br>字符集中，0－31为控制字符，其余94个字符为可印刷字符</li>
+</ul>
+</blockquote>
+<h3 id="光笔、图形板和画笔（游动标）输入"><a href="#光笔、图形板和画笔（游动标）输入" class="headerlink" title="光笔、图形板和画笔（游动标）输入"></a>光笔、图形板和画笔（游动标）输入</h3><p>这些设备输入的是绝对坐标</p>
+<p>光笔：</p>
+<blockquote>
+<ul>
+<li>外形似钢笔，头部有一个透镜系统</li>
+<li>它可以拾取显示器屏幕上的坐标，和屏幕上的光标配合可以修改或画出图形</li>
+</ul>
+</blockquote>
+<p>图形板和画笔：</p>
+<blockquote>
+<ul>
+<li>图形板是一个二维的数字化板</li>
+<li>图形板 和画笔结合构成二维坐标输入系统，主要用于输入工程图等</li>
+</ul>
+</blockquote>
+<p>游动标：一种高精度的读图设备</p>
+<h3 id="鼠标器、跟踪球和操纵杆"><a href="#鼠标器、跟踪球和操纵杆" class="headerlink" title="鼠标器、跟踪球和操纵杆"></a>鼠标器、跟踪球和操纵杆</h3><p>鼠标器，跟踪球操纵杆输入的是相对坐标</p>
+<h3 id="触摸屏"><a href="#触摸屏" class="headerlink" title="触摸屏"></a>触摸屏</h3><p>触摸屏是一种透明的，安装在显示器屏幕的外表面的一种设备</p>
+<p>分类：电阻式、电容式、红外线式、表面声波技术和底坐式矢量压力测力技术</p>
+<h3 id="图像输入设备"><a href="#图像输入设备" class="headerlink" title="图像输入设备"></a>图像输入设备</h3><p>摄像机和摄像头，数字照相机</p>
+<h3 id="条形码"><a href="#条形码" class="headerlink" title="条形码"></a>条形码</h3><p>条码：由一组宽度和反射率不同的平行相邻的“条”和“空”，按照预先规定的编码规则组合起来，用以表示一组数据的符号。这组数据可以是数字、字母或某些符号。</p>
+<h3 id="光学字符识别（OCR）技术和语音文字输入系统"><a href="#光学字符识别（OCR）技术和语音文字输入系统" class="headerlink" title="光学字符识别（OCR）技术和语音文字输入系统"></a>光学字符识别（OCR）技术和语音文字输入系统</h3><p>NaN</p>
+<h2 id="9-3-显示器"><a href="#9-3-显示器" class="headerlink" title="9.3 显示器"></a>9.3 显示器</h2><h3 id="相关术语"><a href="#相关术语" class="headerlink" title="相关术语"></a>相关术语</h3><ul>
+<li>图形：最初指没有亮暗层次变化的线条图，早期的图形显示局限在二值化的范围</li>
+<li>图像最初指具有亮暗层次的图，经计算机处理后显示的图像称作数字图像</li>
+<li>分辨率：显示屏光点的多少</li>
+<li>灰度级：所显示像素点的亮暗差别</li>
+<li>亮度：单位为坎德拉每平方米</li>
+<li>对比度：显示器画面上最大亮度和最小亮度的比值</li>
+<li>刷新屏率（扫描频率）：显示器每秒刷新的次数 </li>
+<li>刷新存储器：用来存放一帧图像信息的存储器，其容量为分辨率*灰度</li>
+<li>帧存储器：为连续提供刷新图像的信号而用于存储图像的存储器（VRAM）；一般在适配器或显卡内，性能比一般DRAM好</li>
+<li>光栅扫描：一种电视中采用的扫描方法，一般为从上到下的逐行扫描或隔行扫描</li>
+</ul>
+<h3 id="显示器种类"><a href="#显示器种类" class="headerlink" title="显示器种类"></a>显示器种类</h3><ul>
+<li>阴极射线管：一个电真空器件，由电子枪、偏转装置和荧光屏构成</li>
+<li>液晶显示器</li>
+<li>彩色等离子体显示器</li>
+</ul>
+<h2 id="9-4-打印机"><a href="#9-4-打印机" class="headerlink" title="9.4 打印机"></a>9.4 打印机</h2><p>打印机是计算机系统最基本的输出形式</p>
+<p>分类：击打式、非击打式；串行打印机、行式打印机等</p>
+<h3 id="点阵式打印机"><a href="#点阵式打印机" class="headerlink" title="点阵式打印机"></a>点阵式打印机</h3><p>特点：结构简单，体积小，重量轻，价格低</p>
+<h3 id="激光打印机"><a href="#激光打印机" class="headerlink" title="激光打印机"></a>激光打印机</h3><p>速度快，打印质量高</p>
+<h3 id="喷墨打印机"><a href="#喷墨打印机" class="headerlink" title="喷墨打印机"></a>喷墨打印机</h3><p>有压电式喷墨技术和热电式喷墨技术</p>
+<h3 id="热转打印机"><a href="#热转打印机" class="headerlink" title="热转打印机"></a>热转打印机</h3><p>分为串式印字和行式印字</p>
+<h2 id="9-5-汉子处理技术"><a href="#9-5-汉子处理技术" class="headerlink" title="9.5 汉子处理技术"></a>9.5 汉子处理技术</h2><h3 id="汉子交换编码"><a href="#汉子交换编码" class="headerlink" title="汉子交换编码"></a>汉子交换编码</h3><p>国标码：GB2312－80，共计收录一级汉字3755个，二级汉子3008个，各种符号682个</p>
+<h3 id="汉字处理技术"><a href="#汉字处理技术" class="headerlink" title="汉字处理技术"></a>汉字处理技术</h3><p>汉字内码：用于汉字信息的存储、检索等操作的机内代码，一般由两个字节组成</p>
+<p>一般以国标码为基础进行编码，如将国标码最高位置1</p>
+<p>汉字点阵编码：用于汉字的输出显示</p>
+<p>汉字表示方法：字符代码化，输入码向机内码转换，处理机内码，机内码向字形码转换，显示/打印输出</p>
+<h1 id="十、输入输出IO系统"><a href="#十、输入输出IO系统" class="headerlink" title="十、输入输出IO系统"></a>十、输入输出IO系统</h1><h2 id="10-1-输入输出系统概述"><a href="#10-1-输入输出系统概述" class="headerlink" title="10.1 输入输出系统概述"></a>10.1 输入输出系统概述</h2><p>输入输出系统包括外部设备（辅存和输入输出设备）及其与主机之间的控制设备</p>
+<blockquote>
+<p>控制部件又称为设备控制器（设备适配器或接口）</p>
+<ul>
+<li>如磁盘控制器、打印机控制器等</li>
+<li>作用：控制并实现主机与外部设备之间的数据传送</li>
+<li>设备控制器与主机之间传送数据的协议：系统总线</li>
+</ul>
+</blockquote>
+<p>输入输出设备的编址</p>
+<blockquote>
+<ul>
+<li>设备号或设备代码：每台设备的一个地址码，为了CPU对IO设备进行寻址和选择</li>
+</ul>
+<p>两种寻址方式：</p>
+<ul>
+<li>专设IO指令：指令的地址码字段直接指出输入输出设备的设备代码</li>
+<li>利用访存指令完成IO功能：此时需要从主存地址空间中分出一部分地址码作为IO的设备代码，当IO指令访问到这些地址时表示对IO设备寄存器的访问</li>
+</ul>
+<p>IBM PC中有专门IO指令，设备编址可达512个；每台设备占用若干个地址码，分别表示相应的设备控制器中的寄存器地址</p>
+</blockquote>
+<p>设备控制器的基本功能：</p>
+<blockquote>
+<ul>
+<li>实现主机和外部设备之间的数据传送</li>
+<li>实现数据缓冲，使得主机和外部设备之间的速度相匹配</li>
+<li>接受主机的命令，提供设备接口的状态，并按照主机的命令控制设备</li>
+</ul>
+</blockquote>
+<p>输入输出接口类型：</p>
+<blockquote>
+<ul>
+<li>并行接口（按数据传送宽度分类）：设备和接口将一个字（节）的所有位同时传送</li>
+<li>串行接口：设备和接口之间数据是一位一位串行传送，然后接口完成数据格式的串并转换；接口和主机之间按字节或并行传送</li>
+<li>程序控制输入输出接口（按数据传送控制方式分类）</li>
+<li>程序中断输入输出接口</li>
+<li>直接存储器存取（DMA）接口</li>
+</ul>
+</blockquote>
+<p>IO设备数据传送控制方式：</p>
+<blockquote>
+<p>程序直接控制方式：</p>
+<ul>
+<li>完全通过程序控制主机和外设之间的信息传送；CPU和外设串行工作，效率较低</li>
+<li>策略：在用户程序中安排一段由IO指令和其他指令组成的程序段直接控制外围设备的工作</li>
+<li>工作流程：发出启动命令启动设备，重复用一条测试指令检测IO设备的工作状态，待检测到“完成“状态时，进行数据传送</li>
+</ul>
+<p>程序中断传送方式</p>
+<ul>
+<li>一定程度上实现了CPU和外设的并行工作；但对于一些工作频率较高的外设这么传送数据有可能造成信息丢失</li>
+<li>在程序中安排一条启动外围设备的指令，发出指令后原程序继续执行直到IO设备完成准备，此时IO设备向CPU发送中断请求INT信号</li>
+<li>接收到信号后CPU停止正在运行的程序，转去执行中断服务程序，完成数据传送工作后，返回继续执行原来的程序</li>
+</ul>
+<p>直接存储器存取（DMA）</p>
+<ul>
+<li>策略：在外围设备和主存之间开辟直接的数据传送通路；无需CPU频繁干预，但多个DMA的同时使用会引起访问主存的冲突增加</li>
+<li>正常工作时，所有工作周期用于执行CPU程序；当外围设备完成输入输出数据准备后，占用一个总线周期来和主存直接交换数据；然后CPU继续控制主线；如此重复直到所有数据传送完成</li>
+<li>数据交换这个工作由DMA控制器完成，它给出每次传送数据的主存地址，并统计确定传送是否结束</li>
+</ul>
+<p>IO通道控制方式：</p>
+<ul>
+<li>IO通道是一个专用的设备；通道能独立执行用通道命令编写的IO控制程序，产生相应的控制信号，完成复杂的输入输出过程</li>
+</ul>
+<p>外围处理机方式</p>
+<ul>
+<li>外围处理机结构更接近于计算机；它除了能完成IO通道所要完成的控制功能，还能完成码制变换、格式处理、纠错等功能</li>
+<li>它可以简化设备控制器，基本上能够独立于主机工作</li>
+</ul>
+</blockquote>
+<h2 id="10-2-程序中断输入输出方式"><a href="#10-2-程序中断输入输出方式" class="headerlink" title="10.2 程序中断输入输出方式"></a>10.2 程序中断输入输出方式</h2><h3 id="中断的作用"><a href="#中断的作用" class="headerlink" title="中断的作用"></a>中断的作用</h3><p>中断是由IO设备或其他非预期的急需处理的事件引起的，它需要CPU中断现在正在执行的程序，转而去处理中断程序；处理完之后再返回执行原程序</p>
+<p>作用：</p>
+<blockquote>
+<ul>
+<li>宏观上使得CPU和IO设备并行工作：处理中断的时间是很短的</li>
+<li>处理硬件故障</li>
+<li>实现人机联系：利用中断系统实现用户干预机器</li>
+<li>实现实时处理：通过要求计算机执行中断服务程序来实现实时处理</li>
+<li>多处理机系统之间的联系</li>
+</ul>
+</blockquote>
+<p>一些概念：</p>
+<blockquote>
+<ul>
+<li>中断源：引起中断的事件，即发出中断请求的来源<ul>
+<li>外中断：IO设备、定时钟等来自处理机外部设备的中断</li>
+<li>内中断：处理器硬件故障或程序引起的中断；外中断和内中断是随机发生的</li>
+<li>软中断：由“Trap”指令产生的中断，它在程序中是预先安排好的</li>
+<li>中断触发器：在设备控制器中断用于保存中断事件的触发器，当其为1时向CPU发出中断请求信号；多个中断触发器构成中断寄存器，用于存储中断码；CPU处理中断时，根据中断码确定中断源，转入执行相应的服务程序</li>
+</ul>
+</li>
+<li>中断的分级与优先权：按中断级确定中断的优先次序，然后同一级内再确定各个中断源的优先权</li>
+<li>禁止中断：请求中断后，CPU由于某种原因不能中止执行现在的程序；当禁止中断触发器为1时，不响应所有中断申请</li>
+<li>中断屏蔽：用程序方式封锁部分中断请求，其余部分中断仍会得到相应；有些中断是不可屏蔽的（如掉电中断），非屏蔽中断具有最高优先权</li>
+</ul>
+</blockquote>
+<h3 id="中断处理"><a href="#中断处理" class="headerlink" title="中断处理"></a>中断处理</h3><h4 id="中断处理过程"><a href="#中断处理过程" class="headerlink" title="中断处理过程"></a>中断处理过程</h4><blockquote>
+<ul>
+<li>关中断：进入不可再次响应中断的状态，由硬件自动实现</li>
+<li>保存断点和现场：用于恢复现场继续执行程序</li>
+<li>判别中断源，转入中断服务程序：判别中断源，相应优先级最高的中断</li>
+<li>开中断：此时允许更高级别的中断请求得到相应，实现中断嵌套</li>
+<li>执行中断服务程序，实现有效的中断处理</li>
+<li>退出中断：顺序执行关中断、恢复断点和现场、开中断、返回断点的操作，继续执行原程序</li>
+</ul>
+<p>关中断、保存断点等操作一般由硬件实现，这种指令不会出现在程序中，称为“中断隐指令”</p>
+</blockquote>
+<h4 id="判断中断源"><a href="#判断中断源" class="headerlink" title="判断中断源"></a>判断中断源</h4><p>有软件和硬件两种方式来确定中断源</p>
+<blockquote>
+<ul>
+<li>查询法：测试程序按一定优先级排队检查各个设备的中断触发器，当遇到第一个1时取出其对应设备码，进入进入中断服务程序</li>
+<li>串行排队链法：由硬件确定中断源</li>
+</ul>
+</blockquote>
+<p>转向中断程序入口方法</p>
+<blockquote>
+<ul>
+<li>在中断程序中设置一条专门接收终端设备码的指令，取到设备号后，通过主存的跳转表产生程序入口地址</li>
+<li>向量中断：为每个中断源设置一个中断向量，该向量包括程序入口地址，该向量可由被选中的设备直接产生或由主存中的中断跳转表产生</li>
+</ul>
+</blockquote>
+<p>多中断处理：</p>
+<blockquote>
+<ul>
+<li>多中断：在处理某中断的过程中又发生了新的中断请求，又称中断嵌套</li>
+<li>CPU能够相应更高级别的中断</li>
+</ul>
+</blockquote>
+<h2 id="10-3-DMA输入输出方式"><a href="#10-3-DMA输入输出方式" class="headerlink" title="10.3 DMA输入输出方式"></a>10.3 DMA输入输出方式</h2><blockquote>
+<ul>
+<li>DMA是I/O设备与主存储器之间由硬件组成的直接数据通路，用于高速I/O设备与主存之间的成组数据传送。</li>
+<li>数据传送是在DMA控制器控制下进行的，由DMA控制器给出当前正在传送的数据字的主存地址，并统计传送数据的个数以确定一组数据的传送是否已结束。</li>
+<li>需要在主存中要开辟连续地址的专用缓冲器，用来提供或接收传送的数据。</li>
+<li>在数据传送前和结束后要通过程序或中断方式对缓冲器和DMA控制器进行预处理和后处理。</li>
+</ul>
+</blockquote>
+<h3 id="DMA工作方式"><a href="#DMA工作方式" class="headerlink" title="DMA工作方式"></a>DMA工作方式</h3><ul>
+<li>CPU暂停方式：主机相应DMA请求后，让出存储总线，使DMA控制并使用内存，待一组数据传输完成后，DMA交还总线控制权</li>
+<li>CPU周期窃取方式：DMA控制器与主存储器之间一次传送一个数据，窃取一个CPU周期，然后CPU继续执行程序</li>
+<li>直接访问存储器：这是标准的DMA工作方式；如果传送数据时CPU不占用存储总线，则DMA对CPU不产生任何影响，若DMA和CPU需要同时访问存储总线，则DMA优先级高于CPU；在DMA传输数据时，不能占用或破坏CPU硬件资源或工作状态</li>
+</ul>
+<h3 id="DMA控制器组成"><a href="#DMA控制器组成" class="headerlink" title="DMA控制器组成"></a>DMA控制器组成</h3><p><img src="/2020/02/24/computer-composition0/DMA0.jpg" alt="DMA"></p>
+<ul>
+<li>设备寄存器：<blockquote>
+<ul>
+<li>主存地址寄存器MAR：主存缓冲区首地址，传送数据前由程序送入</li>
+<li>外围设备地址寄存器ADR：存放IO设备的设备码，或表示该设备存储器的寻址信息</li>
+<li>字数计数器WC：统计传送数据的总字数</li>
+<li>控制与状态寄存器CSR：存放控制字和状态字</li>
+<li>数据缓冲寄存器DBR：暂存IO设备与主存之间传送的数据</li>
+</ul>
+</blockquote>
+</li>
+<li>中断控制逻辑：负责申请CPU对DMA进行预处理和后处理</li>
+<li>DMA控制逻辑：负责在DMA取得总线控制权之后控制主存和设备之间的数据传输<blockquote>
+<ul>
+<li>设备码选择电路</li>
+<li>DMA优先排队电路</li>
+<li>DMA请求线路</li>
+</ul>
+</blockquote>
+</li>
+<li>DMA接口连接线：包括DMA接口与主机和IO设备两个方向的数据线、地址线和控制信号线以及有关的收发和驱动线路</li>
+</ul>
+<h3 id="DMA数据传送过程"><a href="#DMA数据传送过程" class="headerlink" title="DMA数据传送过程"></a>DMA数据传送过程</h3><p><img src="/2020/02/24/computer-composition0/DMA1.jpg" alt="DMA"></p>
+<blockquote>
+<ul>
+<li>DMA传送前预处理</li>
+<li>数据传送</li>
+<li>传送后处理<br>其中，预处理和后处理由CPU执行程序完成</li>
+</ul>
+</blockquote>
+<h2 id="10-4-IO通道控制方式"><a href="#10-4-IO通道控制方式" class="headerlink" title="10.4 IO通道控制方式"></a>10.4 IO通道控制方式</h2><p>IO通道是计算机系统中代替CPU管理控制外部设备的独立部件，是一种能执行有限条IO指令集合的IO处理机</p>
+<p>在通道控制方式下，一个主机可以连接多个通道，每个通道下面又可以连接多个不同的IO设备；这增强了主机与通道操作的并行能力以及增减外围设备的灵活性</p>
+<p>IO通道控制方式:</p>
+<blockquote>
+<ul>
+<li>四级连接方式: 主机-通道-设备控制器-IO设备</li>
+</ul>
+<ol>
+<li>CPU启动通道,通道自动地去内存中取出通道指令并执行,实施对IO系统的统一管理和控制</li>
+<li>数据交换过程结束,通道像CPU发出中断请求,进行通道结束处理工作<br>通道除了承担DMA的全部功能外,还承担了设备控制器的初始化工作,分担了计算机系统中全部或大部分IO功能,提高了计算机系统功能的分散化程度</li>
+</ol>
+</blockquote>
+<p>分类:<br><img src="/2020/02/24/computer-composition0/IO0.jpg" alt="io">  </p>
+<blockquote>
+<ul>
+<li>字节多路通道</li>
+<li>选择通道</li>
+<li>数组多路通道</li>
+</ul>
+</blockquote>
+<p>字节多路通道:</p>
+<blockquote>
+<ul>
+<li>以字节为单位轮流为多个中低速设备进行数据传输</li>
+<li>多个设备可以同时处于工作状态,能交叉进行数据传输</li>
+<li>数据传输率是各个外设传输率之和</li>
+</ul>
+</blockquote>
+<p>数组多路通道:</p>
+<blockquote>
+<ul>
+<li>将数据分成多个固定大小的数据块,以块为单位选择传输的外设</li>
+<li>多个设备可以同时处于工作状态,当一个设备传输一个数据块之后就换一台外部设备</li>
+<li>最大传输率为外设中传输率最大的一个</li>
+</ul>
+</blockquote>
+<p>选择通道:</p>
+<blockquote>
+<ul>
+<li>适合对高速设备进行数据传输,对多个不同外设进行控制,但一次只能有一台外设处于工作状态</li>
+<li>在连接多个块设备时，采用轮流选择设备的方法，一次选择一个外部设备，在完成所要求的数据传输之后，再选择另一个外部设备进行数据传输</li>
+<li>最大传输率应为所接外部设备传输率中最大的一个</li>
+</ul>
+</blockquote>
+<h2 id="10-5-总线结构"><a href="#10-5-总线结构" class="headerlink" title="10.5 总线结构"></a>10.5 总线结构</h2><p>计算机系统多采用模块结构,一个模块就是一个部件,如主机板等</p>
+<p>各模块之间传送信息的通路称为总线</p>
+<p>为便于不同厂家生产的模块能灵活构成系统，形成了总线标准</p>
+<h3 id="总线类型"><a href="#总线类型" class="headerlink" title="总线类型"></a>总线类型</h3><ul>
+<li>内总线: 连接计算机内部各模块的总线; 如连接CPU,存储器,IO接口的总线</li>
+<li>外总线: 系统之间或系统与外部设备之间的总线</li>
+<li>单总线: 所有模块都连接到单一总线上; 如地址线,数据线,控制线和电源(地)线</li>
+<li>多总线: 将速度较低的IO设备从总线上分出去,形成系统总线与IO总线的双总线结构,还有三总线结构等</li>
+</ul>
+<h3 id="总线组成"><a href="#总线组成" class="headerlink" title="总线组成"></a>总线组成</h3><p>总线是从两个或以上的源部件传送信息到一个或过高部件的一组数据传输线; 是一个源部件到多个目标部件的数据传输线不称为总线</p>
+<h4 id="总线判优控制"><a href="#总线判优控制" class="headerlink" title="总线判优控制"></a>总线判优控制</h4><p>多个模块连接到一条共用总线上,需经过选择判优来避免多个部件同时发送信息的矛盾</p>
+<blockquote>
+<ul>
+<li>同一个时间只能有一个申请者使用总线,总线判优机构按照申请者的优先权选择可以控制总线的设备或部件</li>
+<li>主控器或主设备: 可以控制总线并启动数据传送的设备,如CPU和IO设备等</li>
+<li>受控器或从设备: 能够响应总线主控器发出的总线命令的设备,如存储器和IO设备等</li>
+</ul>
+</blockquote>
+<p>分类:</p>
+<blockquote>
+<ul>
+<li>集中式控制: 总线控制逻辑基本上集中于一个设备(如CPU)</li>
+<li>分布式总线控制: 总线控制逻辑分散在连接总线的各个部件或设备中</li>
+</ul>
+</blockquote>
+<p>优先仲裁方式: 串行链接方式; 其优先次序是由“总线可用”线所接部件的位置决定的，离总线控制器越近的部件其优先权越高<br><img src="/2020/02/24/computer-composition0/BUS1.jpg" alt="bus"></p>
+<h4 id="总线通信"><a href="#总线通信" class="headerlink" title="总线通信"></a>总线通信</h4><ul>
+<li><p>同步通信</p>
+<blockquote>
+<ul>
+<li>通信双方由统一的时钟 控制数据的传送</li>
+<li>时钟通常由CPU发出,送到总线上的所有部件</li>
+<li>经过一段固定时间，本次总线传送周期结束，开始下一个新的总线传送周期</li>
+</ul>
+</blockquote>
+</li>
+<li><p>异步通信</p>
+<blockquote>
+<ul>
+<li>利用数据发送部件和接收部件之间的相互“握手”信号来实现总线数据传送</li>
+</ul>
+</blockquote>
+</li>
+<li><p>并行通信</p>
+<blockquote>
+<ul>
+<li>数据的多个位同时进行传送,相同频率下位数多则传输率高</li>
+<li>距离较短,限制在一个机柜内使用</li>
+</ul>
+</blockquote>
+</li>
+<li><p>串行通信</p>
+<blockquote>
+<ul>
+<li>数据一位一位地顺序传送</li>
+<li>通信线路简单,只需一对传输线即可双向通信,适合远距离通信</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h4 id="出错处理"><a href="#出错处理" class="headerlink" title="出错处理"></a>出错处理</h4><p>数据传送过程可能产生错误，有些接收部件有自动纠错能力，可以自动纠正错误；而有些部件无自动纠错能力但能发现错误，可发出“数据出错”信号，通常向 CPU 发出中断请求信号，CPU 响应中断后，转入出错处理程序。</p>
+<h4 id="总线驱动"><a href="#总线驱动" class="headerlink" title="总线驱动"></a>总线驱动</h4><p>总线上可连接多个部件，具有扩充灵活的优点，但总线的驱动能力总是有限制的，因此在扩充时要加以注意。通常一个模块或一个部件限制在1～2个负载以内。</p>
+<h3 id="微机总线"><a href="#微机总线" class="headerlink" title="微机总线"></a>微机总线</h3><h4 id="ISA总线和EISA总线"><a href="#ISA总线和EISA总线" class="headerlink" title="ISA总线和EISA总线"></a>ISA总线和EISA总线</h4><p>ISA总线:</p>
+<blockquote>
+<ul>
+<li>最初8根,80年代中期扩展成16根,时钟为8MHz</li>
+<li>CPU速度提高后,CPU与存储器之间交换数据不再通过ISA总线</li>
+<li>ISA总线用于连接外设,最大传输速率16.6MB/s</li>
+</ul>
+</blockquote>
+<p>EISA总线:</p>
+<blockquote>
+<ul>
+<li>32位,时钟为8MHz</li>
+<li>传输速率可达33MB/s</li>
+</ul>
+</blockquote>
+<h4 id="PCI总线"><a href="#PCI总线" class="headerlink" title="PCI总线"></a>PCI总线</h4><blockquote>
+<ul>
+<li>PC: 32位,时钟频率33MHz,传输率132MB/s</li>
+<li>服务器和中高端工作站：64位、33MHz(266MB/s)、66MHz(533MB/s)</li>
+<li>有即插即用功能</li>
+</ul>
+</blockquote>
+<p><img src="/2020/02/24/computer-composition0/PCI0.jpg" alt="pci"></p>
+<blockquote>
+<ul>
+<li>系统总线：连接一个或多个微处理器、cache和主存储器</li>
+<li>PCI设备：PCI总线连接的高速I/O设备</li>
+<li>主机桥：PCI总线控制器，含有集中式总线仲裁器</li>
+<li>PCI-PCI桥：PCI总线扩展，形成多层次PCI结构，减轻单个PCI总线的负载</li>
+<li>PCI-ISA桥：连接PCI总线和ISA总线，接入ISA设备</li>
+</ul>
+</blockquote>
+<h4 id="PCI-X"><a href="#PCI-X" class="headerlink" title="PCI-X"></a>PCI-X</h4><blockquote>
+<ul>
+<li>处理器和外部设备之间数据的传输速度与千兆以太网和光纤通道的要求相比差距很大</li>
+<li>PCI-X 2.0：频率提升到266MHz(传输率2.1GB/s)和533MHz(传输率4.3GB/s)</li>
+<li>PCI-X DDR（双倍数据速率）可在一个时钟周期中传输两次数据</li>
+</ul>
+</blockquote>
+<h4 id="PCI-Express"><a href="#PCI-Express" class="headerlink" title="PCI Express"></a>PCI Express</h4><blockquote>
+<ul>
+<li>采用点到点的串行连接技术: 每个设备有自己专用的连接，独享带宽，不必向共享总线请求带宽</li>
+<li>一个PCI Express连接可以包含多个信道(lane)</li>
+<li>采用串行传输技术，传输率比PCI高</li>
+<li>单个信道的PCI Express X1提供单向250MB/s带宽; 16个信道的PCI Express X16带宽4GB/s</li>
+</ul>
+</blockquote>
+<p><img src="/2020/02/24/computer-composition0/pcie0.jpg" alt="pcie"></p>
+<h2 id="10-6-外设接口"><a href="#10-6-外设接口" class="headerlink" title="10.6 外设接口"></a>10.6 外设接口</h2><p>ATA(IDE):</p>
+<blockquote>
+<ul>
+<li>并行ATA</li>
+<li>串行ATA(SATA)</li>
+</ul>
+</blockquote>
+<p>还有SCSI,SAS,光纤,USB串口等</p>
+<h2 id="网络存储"><a href="#网络存储" class="headerlink" title="网络存储"></a>网络存储</h2><ul>
+<li>DAS: 直接连接存储器</li>
+<li>SAN: 存储区域网络,建立在光纤通道技术上</li>
+<li>NAS: 网络附加存储,以文件为传输单位的存储网络,按照TCP/IP协议进行数据传输</li>
+</ul>
+<hr>
+<p>*待更新…</p>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/computer-composition0/" data-id="ckamcth8r003gp0vn0an94mgj"
+      <a data-url="http://georgechen1827.github.io/2020/02/24/computer-composition0/" data-id="ckb9gazjy001ze4vnbmr5f7oh"
         class="article-share-link">share</a>
         
       
@@ -1731,11 +2150,11 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/02/24/compilers0/" class="article-nav-link">
+      <a href="/2020/02/24/Lucence0/" class="article-nav-link">
         <strong class="article-nav-caption">Prev Post</strong>
         <div class="article-nav-title">
           
-            编译原理相关知识
+            Lucence相关
           
         </div>
       </a>
