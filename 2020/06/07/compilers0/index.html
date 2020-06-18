@@ -248,7 +248,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A -&gt; A x | y</span><br></pre></td></tr></table></figure>
 <p>这种公式在考虑FRONT(A)时会遇到无穷递归的问题</p>
 <p>改进公式:将左递归化为循环</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A -&gt; x R</span><br><span class="line">R -&gt; y R | e(空白符)</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A -&gt; y R</span><br><span class="line">R -&gt; x R | e(空白符)</span><br></pre></td></tr></table></figure>
 
 <p>效果如下:<br><img src="/2020/06/07/compilers0/recu0.png" alt="recursive"></p>
 <h2 id="2-3-语法制导翻译"><a href="#2-3-语法制导翻译" class="headerlink" title="2.3 语法制导翻译"></a>2.3 语法制导翻译</h2><p>语法制导翻译的两种方式:</p>
@@ -1040,7 +1040,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/06/07/compilers0/" data-id="ckbacqib8000nwovn4s5u9qts"
+      <a data-url="http://georgechen1827.github.io/2020/06/07/compilers0/" data-id="ckbkmv9aw000d84vn1vy69dpv"
         class="article-share-link">share</a>
         
       

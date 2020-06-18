@@ -151,7 +151,7 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">A -&gt; A x | y</span><br></pre></td></tr></table></figure>
 <p>这种公式在考虑FRONT(A)时会遇到无穷递归的问题</p>
 <p>改进公式:将左递归化为循环</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">A -&gt; x R</span><br><span class="line">R -&gt; y R | e(空白符)</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">A -&gt; y R</span><br><span class="line">R -&gt; x R | e(空白符)</span><br></pre></td></tr></table></figure>
 
 <p>效果如下:<br><img src="/2020/06/07/compilers0/recu0.png" alt="recursive"></p>
 <h2 id="2-3-语法制导翻译"><a href="#2-3-语法制导翻译" class="headerlink" title="2.3 语法制导翻译"></a>2.3 语法制导翻译</h2><p>语法制导翻译的两种方式:</p>
@@ -4791,8 +4791,8 @@
         <category>notes</category>
       </categories>
       <tags>
-        <tag>c#</tag>
         <tag>learning</tag>
+        <tag>c#</tag>
       </tags>
   </entry>
   <entry>
@@ -4819,9 +4819,9 @@
         <category>notes</category>
       </categories>
       <tags>
+        <tag>learning</tag>
         <tag>c#</tag>
         <tag>python</tag>
-        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -6091,8 +6091,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>learning</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -6146,8 +6146,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>learning</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -6351,8 +6351,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>c#</tag>
         <tag>learning</tag>
+        <tag>c#</tag>
         <tag>搜索引擎</tag>
       </tags>
   </entry>
@@ -8644,8 +8644,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>learning</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -8925,8 +8925,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>c#</tag>
         <tag>learning</tag>
+        <tag>c#</tag>
       </tags>
   </entry>
   <entry>
