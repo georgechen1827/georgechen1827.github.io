@@ -100,7 +100,7 @@
       
 
       
-      <p>未完结,持续更新</p>
+      <p><del>未完结,持续更新</del>完结</p>
 <hr>
 <p>课程内容:</p>
 <ul>
@@ -246,7 +246,7 @@
 <p>例如:<br><img src="/2020/06/07/compilers0/tree0.png" alt="tree"></p>
 <h3 id="左递归问题的消除"><a href="#左递归问题的消除" class="headerlink" title="左递归问题的消除"></a>左递归问题的消除</h3><p>原始公式:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A -&gt; A x | y</span><br></pre></td></tr></table></figure>
-<p>这种公式在考虑FRONT(A)时会遇到无穷递归的问题</p>
+<p>可以这样理解: 这种公式在考虑FIRST(A)时会遇到无穷递归的问题(实际上不是)</p>
 <p>改进公式:将左递归化为循环</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A -&gt; y R</span><br><span class="line">R -&gt; x R | e(空白符)</span><br></pre></td></tr></table></figure>
 
@@ -432,7 +432,7 @@
 </ul>
 <p>句型:</p>
 <ul>
-<li>从文法的开始符号推到含有非终结符的符号串$\alpha$,则$\alpha$是</li>
+<li>从文法的开始符号推到含有非终结符的符号串$\alpha$,则$\alpha$是句型</li>
 </ul>
 <p>生成语言:  </p>
 <ul>
@@ -457,7 +457,7 @@
 <h3 id="语法分析树-1"><a href="#语法分析树-1" class="headerlink" title="语法分析树"></a>语法分析树</h3><p>语法分析树是推导的图形表示,过滤掉了推导过程中对非终结符应用产生式的顺序</p>
 <ul>
 <li>语法分析树中每一个非叶节点表示一次直接推导</li>
-<li>每个语法树对应唯一的最左推导或最右推导\</li>
+<li>每个语法树对应唯一的最左推导或最右推导</li>
 </ul>
 <p><img src="/2020/06/07/compilers0/tree0.jpg" alt="tree"><br>性质:</p>
 <ul>
@@ -763,7 +763,7 @@
 </ol>
 </blockquote>
 <p><img src="/2020/06/07/compilers0/SLR2.jpg" alt="SLR"></p>
-<h3 id="可行前缀"><a href="#可行前缀" class="headerlink" title="可行前缀"></a>可行前缀</h3><p>一个可行前缀是一个最右句型的前缀,并且它没有越过该最右句型的最右句柄的右端(其他前缀出现在栈中之前就会被归约掉)</p>
+<h3 id="可行前缀"><a href="#可行前缀" class="headerlink" title="可行前缀"></a>可行前缀</h3><p>一个可行前缀是一个最右句型的前缀,并且它没有越过该最右句型的最左句柄的右端(其他前缀出现在栈中之前就会被归约掉)</p>
 <p>LR语法分析中,栈中的符号总是形成一个可行前缀,LR语法分析的本质就是通过构建一个识别可行前缀的DFA(实际上是一个DFA和栈形成的PDA )</p>
 <h2 id="4-6-更强大的LR语法分析器"><a href="#4-6-更强大的LR语法分析器" class="headerlink" title="4.6 更强大的LR语法分析器"></a>4.6 更强大的LR语法分析器</h2><p>SLR语法分析的问题: 用FOLLOW集合来判断归约条件会产生一些无效的归约</p>
 <p>根源: SLR（1）语法分析表基于LR（0）项，没有考虑到下一个可能的输入符号</p>
@@ -994,7 +994,7 @@
 <blockquote>
 <ul>
 <li>产生式体中某符号b的继承属性计算紧跟在b的左边,有多个属性则按照求值顺序先后排列(先定义属性,再出现符号)</li>
-<li>产生式头A的继承属性计算放在产生式尾部(最右端)</li>
+<li>产生式头A的综合属性计算放在产生式尾部(最右端)</li>
 </ul>
 <p>动作的执行: 当一个动作左边的所有符号都被处理后,该动作立刻执行</p>
 </blockquote>
@@ -1007,7 +1007,7 @@
 <li>按照下列策略计算各符号的属性值<br><img src="/2020/06/07/compilers0/stack0.jpg" alt="stack"></li>
 </ol>
 </blockquote>
-<p>一个栈操作代码的语法制导定义<br><img src="/2020/06/07/compilers0/stack0.jpg" alt="stack"></p>
+<p>一个栈操作代码的语法制导定义<br><img src="/2020/06/07/compilers0/stack1.jpg" alt="stack"></p>
 <h3 id="L属性的自上而下计算"><a href="#L属性的自上而下计算" class="headerlink" title="L属性的自上而下计算"></a>L属性的自上而下计算</h3><p>L属性SDD需要用自顶向下的方式进行语法分析</p>
 <p>从SDT中消除左递归:</p>
 <blockquote>
@@ -1032,7 +1032,6 @@
 </ul>
 </blockquote>
 <hr>
-<p><em>待更新…</em></p>
 <p>博文创建时间:  2020-02-24 16:32:03</p>
 
       
@@ -1040,7 +1039,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/06/07/compilers0/" data-id="ckbkmv9aw000d84vn1vy69dpv"
+      <a data-url="http://georgechen1827.github.io/2020/06/07/compilers0/" data-id="ckbvhvr8g000atkvnclajdtrq"
         class="article-share-link">share</a>
         
       
@@ -1053,6 +1052,15 @@
   
   
   <nav class="article-nav">
+    
+      <a href="/2020/06/21/object-oriented0/" class="article-nav-link">
+        <strong class="article-nav-caption">Prev Post</strong>
+        <div class="article-nav-title">
+          
+            面向对象分析与设计
+          
+        </div>
+      </a>
     
     
       <a href="/2020/06/01/computer-composition1/" class="article-nav-link">

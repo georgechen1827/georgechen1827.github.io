@@ -245,7 +245,7 @@
 <li>解决上述问题的方法: 投影分解法,消除部分依赖,使得关系符合第二范式</li>
 </ul>
 <p>但是,第二范式并不能完全消除关系模式中异常情况和修改复杂、数据冗余情况,因为有传递函数依赖的存在</p>
-<h4 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h4><p>若关系模式$R \in 1NF$,且不存在这样的码$X$、属性<strong>组</strong>$Y$以及非主属性$Z(Z\not \subset Y)$,使得$X\to Y,Y \to Z,Y \not \to X$成立($Z$不传递依赖于X),则$R \in 2NF$</p>
+<h4 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h4><p>若关系模式$R \in 1NF$,且不存在这样的码$X$、属性<strong>组</strong>$Y$以及非主属性$Z(Z\not \subset Y)$,使得$X\to Y,Y \to Z,Y \not \to X$成立($Z$不传递依赖于X),则$R \in 3NF$</p>
 <ul>
 <li>传递函数依赖的存在使得一些信息被”隐式”地存储在表中,需要将它们独立成另外的关系</li>
 </ul>
@@ -258,7 +258,7 @@
 </ul>
 </blockquote>
 <p>然而,第三范式还是不能完全消除关系模式中的各种异常情况和数据冗余,因为主属性之间也会存在依赖</p>
-<h4 id="修正的第三范式-BCNF"><a href="#修正的第三范式-BCNF" class="headerlink" title="修正的第三范式(BCNF)"></a>修正的第三范式(BCNF)</h4><p>若关系模式$R \in 1NF$,且对$R$中每个函数依赖$X\to Y 且 Y\not \in X时$,X必含有码,则$R \in 2NF$</p>
+<h4 id="修正的第三范式-BCNF"><a href="#修正的第三范式-BCNF" class="headerlink" title="修正的第三范式(BCNF)"></a>修正的第三范式(BCNF)</h4><p>若关系模式$R \in 1NF$,且对$R$中每个函数依赖$X\to Y 且 Y\not \in X时$,X必含有码,则$R \in BCNF$</p>
 <p>性质:</p>
 <blockquote>
 <ul>
@@ -603,7 +603,7 @@
 <ul>
 <li>同一对象在不同应用中有不同的抽象,需要统一(全是实体或全是属性)</li>
 <li>同一实体在不同子系统的E-R图中的属性个数和次序不同; 需要取各系统属性的并集,再适当调整次序</li>
-<li>实体间的联系再不同E-R图中有不同的类型; 需要根据语义进行调整</li>
+<li>实体间的联系在不同E-R图中有不同的类型; 需要根据语义进行调整</li>
 </ul>
 </blockquote>
 </li>
@@ -1826,7 +1826,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/05/24/data-base1/" data-id="ckbkmv9cf003b84vn3hl7el1c"
+      <a data-url="http://georgechen1827.github.io/2020/05/24/data-base1/" data-id="ckbvhvraq002ttkvnceaacmd6"
         class="article-share-link">share</a>
         
       
