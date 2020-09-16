@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="this is George Chen&#39;s blog!" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    操作系统原理概论 |  George
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-operating-system0" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  操作系统原理概论
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/09/08/operating-system0/" class="article-date">
+  <time datetime="2020-09-08T00:55:17.000Z" itemprop="datePublished">2020-09-08</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a> / <a class="article-category-link" href="/categories/notes/%E5%AD%A6%E4%BD%8D%E8%AF%BE%E7%A8%8B/">学位课程</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> about </span>
+            <span class="post-count">2.8k words</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> costs </span>
+            <span class="post-count">9 minutes</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>李培峰：<a href="mailto:pfli_suda@126.com">pfli_suda@126.com</a>; 13606216291</p>
+<p>课程内容和要求：</p>
+<blockquote>
+<ul>
+<li>掌握操作系统的基本原理和组成结构</li>
+<li>掌握基本概念和相关新概念、名词及术语</li>
+<li>理解各组成部分之间的关系、结构和综合工作原理</li>
+<li>分析、修改和设计操作系统的功能</li>
+<li>使用基本的操作系统</li>
+<li>学习内容：导论、进程管理、内存管理、存储管理；会穿插案例研究内容</li>
+</ul>
+</blockquote>
+<p>广义上，操作系统是数据结构的衍生，涵盖数据结构、算法和编程</p>
+<blockquote>
+<ul>
+<li>先修课程：汇编语言程序设计、c和java、计算机组成、数据结构、面向对象程序设计</li>
+</ul>
+</blockquote>
+<p>参考书目：《现代操作系统Andrew.S》（偏向实例）、《操作系统精髓与设计原理》（更偏向实例系统）</p>
+<p>一个视频<a href="https://vo.youku.com/v_show/id_XMTAwNTg5MzA0.html" target="_blank" rel="noopener">https://vo.youku.com/v_show/id_XMTAwNTg5MzA0.html</a></p>
+<p>平时成绩20%、期中考试20%、期末考试60%</p>
+<h2 id="主流操作系统介绍"><a href="#主流操作系统介绍" class="headerlink" title="主流操作系统介绍"></a>主流操作系统介绍</h2><p>主流PC操作系统：</p>
+<blockquote>
+<ul>
+<li>1969 UNIX：C和汇编语言编写，世界上用途最广泛的操作系统</li>
+<li>1974 CP/M：第一个微机操作系统</li>
+<li>1981 MS－DOS：为用户上机操作和应用软件开发提供良好的用户外部环境</li>
+<li>1984 MAC OS：第一款成功的含有图形化用户界面的操作系统</li>
+<li>1985 Windows：最成功的个人微机操作系统</li>
+<li>1991 LINUX：未来最有前途的操作系统之一</li>
+</ul>
+</blockquote>
+<p>主流手机操作系统：</p>
+<blockquote>
+<ul>
+<li>1999 SYMBIAN：实时的，多任务的纯32位操作系统；智能手机开创者</li>
+<li>2007.11.5 ANDROID: 开放的操作系统</li>
+<li>2007 IOS：优秀的封闭的操作系统</li>
+<li>2008 BLACKBERRY：加密性更强，更安全；融入了办公商务功能</li>
+<li>Windows Phone：从Pocket PC到Windows Mobile到Windows Phone;和Windows兼容性好</li>
+</ul>
+</blockquote>
+<h1 id="一、导论"><a href="#一、导论" class="headerlink" title="一、导论"></a>一、导论</h1><h2 id="1-1-什么是操作系统"><a href="#1-1-什么是操作系统" class="headerlink" title="1.1 什么是操作系统"></a>1.1 什么是操作系统</h2><h3 id="操作系统的目标"><a href="#操作系统的目标" class="headerlink" title="操作系统的目标"></a>操作系统的目标</h3><p>操作系统是沟通计算机硬件和系统程序与应用程序的桥梁</p>
+<p>操作系统的目标：</p>
+<blockquote>
+<ul>
+<li>核心目标：运行用户程序</li>
+<li>面相用户：更方便使用计算机（方便性）</li>
+<li>面相系统：更高效使用计算机（高效性）</li>
+</ul>
+</blockquote>
+<h3 id="操作系统的定义"><a href="#操作系统的定义" class="headerlink" title="操作系统的定义"></a>操作系统的定义</h3><p>操作系统没有一个清晰的定义</p>
+<blockquote>
+<ul>
+<li>极大化：当你预定一个操作系统时零售商所装的所有东西</li>
+<li>极小化：内核是操作系统（一直运行在计算机上的程序）</li>
+</ul>
+</blockquote>
+<p>内核Kernel：</p>
+<blockquote>
+<ul>
+<li>内核是一个一直运行在计算机上的程序</li>
+<li>内核是计算机运行必不可少的组成部分</li>
+</ul>
+</blockquote>
+<h3 id="操作系统的硬件结构"><a href="#操作系统的硬件结构" class="headerlink" title="操作系统的硬件结构"></a>操作系统的硬件结构</h3><blockquote>
+<ul>
+<li>一个或多个CPU和内存</li>
+<li>若干通过总线相连的设备控制器及其设备</li>
+<li>总线</li>
+<li>CPU和设备控制器可并行工作，并竞争内存</li>
+</ul>
+</blockquote>
+<h2 id="1-2-多道程序设计和分时"><a href="#1-2-多道程序设计和分时" class="headerlink" title="1.2 多道程序设计和分时"></a>1.2 多道程序设计和分时</h2><h3 id="简单批处理系统"><a href="#简单批处理系统" class="headerlink" title="简单批处理系统"></a>简单批处理系统</h3><p>从无操作系统（EANIC）到简单批处理系统</p>
+<blockquote>
+<ul>
+<li>批处理：一批无需人机交互的作业批量运行</li>
+<li>简单批处理系统的核心是一个常驻监控程序，以作业为单位自动调度程序执行</li>
+</ul>
+</blockquote>
+<p>过程：</p>
+<blockquote>
+<ul>
+<li>程序员在小型机上编程</li>
+<li>操作员将程序装入大型机运行</li>
+<li>操作员将结果取出</li>
+<li>程序员将结果在小型机上打印出来</li>
+</ul>
+</blockquote>
+<p>简单批处理系统大大提高了计算机运行的效率，但没有充分利用cpu的IO并行性</p>
+<h3 id="多道程序系统"><a href="#多道程序系统" class="headerlink" title="多道程序系统"></a>多道程序系统</h3><blockquote>
+<ul>
+<li>单用户同城不能总使得CPU和设备在所有时间内都忙碌</li>
+<li>多道程序在内存中同时存在多道作业，在管理程序控制下相互穿插运行</li>
+</ul>
+</blockquote>
+<p>策略：</p>
+<blockquote>
+<ul>
+<li>通过作业调度(Job Scheduling)选中一个作业并运行</li>
+<li>当该作业必须等待时 (如等待I/O), 切换到另一个作业运行</li>
+</ul>
+</blockquote>
+<p>目的：提高CPU利用率，充分发挥计算机系统部件的并行性</p>
+<p>并行和并发：</p>
+<blockquote>
+<ul>
+<li>并行：两个或多个作业在同一时刻运行</li>
+<li>并发：两个或多个作业在同一时间间隔内依次运行，同一时间点只有一个作业在处理机上运行</li>
+</ul>
+<blockquote>
+<ul>
+<li>并发在微观上相当于串行，在宏观上相当于并行</li>
+<li>随着多核处理器的出现，并行和并发两个概念并不严格区分</li>
+</ul>
+</blockquote>
+</blockquote>
+<h3 id="分时系统"><a href="#分时系统" class="headerlink" title="分时系统"></a>分时系统</h3><p>分时系统(或多任务)是多道程序设计的延伸</p>
+<p>作业分类：</p>
+<blockquote>
+<ul>
+<li>批处理作业：不需要人为干预</li>
+<li>交互作业：需要人为干预；交互作业要求较高的响应时间，需要使用多道程序设计技术</li>
+<li>响应时间：用户提交操作到操作系统执行操作之间的时间</li>
+</ul>
+</blockquote>
+<p>时间片：</p>
+<blockquote>
+<ul>
+<li>把一段CPU时间按照固定单位进行分割，每个分割得到的时间段称为一个时间片</li>
+<li>每个任务依次轮流使用时间片</li>
+</ul>
+</blockquote>
+<p>分时系统是一种联机的多用户交互式操作系统：</p>
+<blockquote>
+<ul>
+<li>一般采用时间片轮转的方式使一台计算机为多个用户服务；在单位时间内，每个用户获得一个时间片运行</li>
+<li>若某个作业在分配的时间片用完之前计算还未完成，该作业就暂时中断，等待下一轮；此时，处理机让给另一个作业使用。</li>
+<li>这样能保证用于获得足够小的响应时间，并提供交互能力；此时，每个用户好像独占一台计算机</li>
+</ul>
+</blockquote>
+<p>分时系统开销较大，需要一定的资源来管理和切换用户程序；一般来说，（时间）开销应当小于时间片的1/10</p>
+<h2 id="1-3-操作系统的类型"><a href="#1-3-操作系统的类型" class="headerlink" title="1.3 操作系统的类型"></a>1.3 操作系统的类型</h2><blockquote>
+<ul>
+<li>大型机系统：前面所述的简单批处理系统、多道程序系统以及分时系统最早都应用于大型机上</li>
+<li>桌面系统：应用于个人计算机PC上</li>
+<li>手持（移动）系统：资源有限、具有导航等扩展功能</li>
+<li>嵌入式系统：完全潜入受控器件内部；内核较小、专用性强、系统精简、高实时性</li>
+<li>分布式系统：松耦合系统，通过网络操作系统；较难实现，目前多为数据分布式系统</li>
+<li>多处理器系统：紧耦合系统，有多个紧密通信的处理器的系统，处理器之间共享内存</li>
+<li>多核处理器系统：一个芯片多个核，现在一般不与多处理器系统区分<blockquote>
+<ul>
+<li>对称多处理器SMP：桌面PC处理器</li>
+<li>非对称多处理器系统ASMP：高通骁龙</li>
+</ul>
+</blockquote>
+</li>
+<li>集群系统：面相超级计算，通过专用网络连接一群计算机，将它们虚拟化为一台有超强能力的计算机给用户使用</li>
+<li>实时系统：实时性很高的系统（5G网络设备）</li>
+</ul>
+</blockquote>
+<h2 id="1-4-操作系统的操作和功能"><a href="#1-4-操作系统的操作和功能" class="headerlink" title="1.4 操作系统的操作和功能"></a>1.4 操作系统的操作和功能</h2><h3 id="双模式"><a href="#双模式" class="headerlink" title="双模式"></a>双模式</h3><p>目的：防止程序崩溃或死循环造成整个操作系统崩溃</p>
+<p>解决方式：双模式，即用户模式和内核模式</p>
+<blockquote>
+<ul>
+<li>双模式需要CPU硬件支持</li>
+<li>允许系统保护自身和其他系统部件</li>
+<li>设置特权指令，这些指令只能在内核模式下运行；这些指令通常可能会造成系统崩溃</li>
+<li>当用户程序需要使用特权指令特权指令时，可以进行系统调用（一种软件中断）</li>
+</ul>
+</blockquote>
+<p>系统调用过程：</p>
+<blockquote>
+<ul>
+<li>用户程序挂起，申请系统调用</li>
+<li>CPU从用户模式切换到内核模式，执行特权指令</li>
+<li>CPU从内核模式切换成用户模式，用户程序继续执行</li>
+</ul>
+</blockquote>
+<h3 id="保护"><a href="#保护" class="headerlink" title="保护"></a>保护</h3><p>保护有I/O操作保护和内存保护</p>
+<blockquote>
+<ul>
+<li>I/O保护防止用户程序执行非法I/O；内存保护防止内存的非法访问</li>
+<li>IO保护策略：所有IO指令都是特权指令</li>
+<li>内存保护策略：建立存储保护机制（硬件支持）</li>
+</ul>
+</blockquote>
+<h3 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h3><p>目的：使得操作系统能够随时获得CPU控制权，从而对系统进行管理</p>
+<blockquote>
+<ul>
+<li>用户程序死循环会造成CPU控制权不能回到操作系统手中</li>
+<li>用户程序不调用系统调用也会造成操作系统不能获得CPU控制器</li>
+</ul>
+</blockquote>
+<p>解决方法：定时器</p>
+<blockquote>
+<ul>
+<li>在用户程序运行一段时间后发生中断，CPU控制权返回到操作系统手中</li>
+<li>定时器利用时钟和计数器实现，有固定时间和可变时间定时器</li>
+</ul>
+</blockquote>
+<h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3><p>操作系统的核心目标：运行程序<br>进程：运行中的程序<br>CPU/进程管理：对CPU进行管理<br>具体内容<br>创建和删除用户和系统进程<br>暂停和恢复进程<br>提供进程同步机制<br>提供进程通信机制<br>提供死锁处理机制</p>
+<h3 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h3><p>程序运行必须的存储设备<br>CPU只能直接访问寄存器、高速缓存和内存<br>处理前和处理后的所有数据都在内存<br>执行的指令都在内存<br>内存管理：提供内存的分配、回收、地址转换、共享和保护等功能<br>提高内存利用率<br>提高内存访问速度<br>从而提高计算机运行效率</p>
+<h3 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h3><p>解决信息在计算机中存储问题<br>以文件为单位，以目录为组织方式构建文件系统<br>内容<br>文件逻辑结构<br>文件物理结构<br>目录<br>文件检索方法<br>文件操作<br>空闲空间管理<br>存储设备管理</p>
+<h3 id="I-O设备管理"><a href="#I-O设备管理" class="headerlink" title="I/O设备管理"></a>I/O设备管理</h3><p>管理种类繁多的各种I/O设备，解决计算机中信息的输入和输出问题<br>关键：设备无关性(独立性)<br>所有物理设备按照物理特性抽象为逻辑设备<br>应用程序针对逻辑设备编程<br>应用程序和物理设备无关<br>内容<br>设备管理<br>设备驱动</p>
+<h1 id="二、操作系统结构"><a href="#二、操作系统结构" class="headerlink" title="二、操作系统结构"></a>二、操作系统结构</h1><h2 id="2-1-操作系统的服务和接口"><a href="#2-1-操作系统的服务和接口" class="headerlink" title="2.1 操作系统的服务和接口"></a>2.1 操作系统的服务和接口</h2><h3 id="操作系统服务"><a href="#操作系统服务" class="headerlink" title="操作系统服务"></a>操作系统服务</h3><p>操作系统以服务的形式向程序和用户提供环境执行程序</p>
+<blockquote>
+<ul>
+<li>基本服务：如用户界面、程序执行、I/O操作等</li>
+<li>增值服务：资源分配、统计、保护和安全等</li>
+</ul>
+</blockquote>
+<p>操作系统服务形式：</p>
+<blockquote>
+<ul>
+<li>系统调用</li>
+<li>用户接口</li>
+<li>系统程序</li>
+</ul>
+</blockquote>
+<h3 id="操作系统程序接口：系统调用"><a href="#操作系统程序接口：系统调用" class="headerlink" title="操作系统程序接口：系统调用"></a>操作系统程序接口：系统调用</h3><p>系统调用是操作系统服务面相程序的接口</p>
+<blockquote>
+<ul>
+<li>它们通常由高级语言编写</li>
+<li>程序通过应用程序接口API访问</li>
+</ul>
+</blockquote>
+<p>常见APIs：</p>
+<blockquote>
+<ul>
+<li>Windows中的Win32 API</li>
+<li>POSIX系统中断POSIX API</li>
+<li>Java虚拟机JVM的Java API</li>
+</ul>
+</blockquote>
+<h3 id="操作系统用户界面"><a href="#操作系统用户界面" class="headerlink" title="操作系统用户界面"></a>操作系统用户界面</h3><p>命令行接口CLI：</p>
+<blockquote>
+<ul>
+<li>字符模式</li>
+</ul>
+</blockquote>
+<p>图形化接口GUI：</p>
+<blockquote>
+<ul>
+<li>用户界面友好的桌面接口</li>
+<li>现在还有触摸屏GUI</li>
+</ul>
+</blockquote>
+<p>未来人机接口：</p>
+<blockquote>
+<ul>
+<li>语音操控</li>
+<li>体感操控</li>
+<li>…</li>
+</ul>
+</blockquote>
+<h3 id="系统程序"><a href="#系统程序" class="headerlink" title="系统程序"></a>系统程序</h3>
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/09/08/operating-system0/" data-id="ckf5ehrck0024p0vn2dwve89o"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/09/08/algorithm0/" class="article-nav-link">
+        <strong class="article-nav-caption">Prev Post</strong>
+        <div class="article-nav-title">
+          
+            算法设计与分析基础知识
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/09/06/computer-network0/" class="article-nav-link">
+        <strong class="article-nav-caption">Next Post</strong>
+        <div class="article-nav-title">计算机网络</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        notify: false,
+        verify: '',
+        app_id: 'ze0YzGUMUrLXgdRQpKyDCEEm-gzGzoHsz',
+        app_key: 'NnhAiNVNGXwbCD1sMGNRjA8B',
+        path: window.location.pathname,
+        avatar: 'mp',
+        placeholder: 'Leave your comments here ~',
+        recordIP: true,
+        lang: 'en'
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2019-2020
+        George Chen
+      </li>
+      <li>
+        
+          Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+      </li>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+    <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+      <aside class="sidebar">
+        <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="George"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">HOME</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives/">ARCHIVE</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/">CATE.</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/">TAGS</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="https://github.com/georgechen1827/" target="_blank" rel="noopener">about me</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/coming_soon.html" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+      </aside>
+      <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+      
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer:'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
+
+
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+
+<script src="/js/ayer.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+  </div>
+</body>
+
+</html>

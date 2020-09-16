@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="this is George Chen&#39;s blog!" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    算法设计与分析基础知识 |  George
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-algorithm0" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  算法设计与分析基础知识
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/09/08/algorithm0/" class="article-date">
+  <time datetime="2020-09-08T00:55:36.000Z" itemprop="datePublished">2020-09-08</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%BD%8D%E8%AF%BE%E7%A8%8B/">学位课程</a> / <a class="article-category-link" href="/categories/%E5%AD%A6%E4%BD%8D%E8%AF%BE%E7%A8%8B/notes/">notes</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> about </span>
+            <span class="post-count">2.8k words</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> costs </span>
+            <span class="post-count">10 minutes</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>权丽君：<a href="mailto:ljquan@suda.edu.cn">ljquan@suda.edu.cn</a></p>
+<p>为什么要学习算法：</p>
+<blockquote>
+<ul>
+<li>算法是计算机科学的基石，是改造世界的有力工具</li>
+<li>学习算方法可以开发人们的分析能力</li>
+<li>算法进步是计算机技术进步的关键</li>
+<li>算法应用无处不在</li>
+<li>算法是计算机软件的灵魂：软件=数据结构+算法</li>
+<li>即使计算机的速度和存储空间都是无限的，算法的研究仍然是必要的</li>
+</ul>
+</blockquote>
+<p>数据结构着重于算法的实现；算法导论着重于算法设计的指导思想</p>
+<p>课程目的：</p>
+<blockquote>
+<ul>
+<li>偏向理论，掌握算法设计与分析的基本理论和方法，培养算法设计和分析的能力</li>
+<li>培养实践能力、独立思考和创新能力</li>
+<li>教学内容：基础知识、排序和顺序统计学、高级数据结构、算法设计策略</li>
+</ul>
+</blockquote>
+<p>期末考试70%闭卷，论文汇报10%，作业考勤20%</p>
+<h1 id="一、算法在计算机中的应用"><a href="#一、算法在计算机中的应用" class="headerlink" title="一、算法在计算机中的应用"></a>一、算法在计算机中的应用</h1><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>算法是：</p>
+<blockquote>
+<ul>
+<li>将输入转换成输出的计算步骤的一个序列（非形式化定义）</li>
+<li>问题的程序化解决方案，是一个在时间和空间上的有穷的规则</li>
+</ul>
+</blockquote>
+<p>算法的形式：包括算术、逻辑、全息、赋值、过程调用等运算形式</p>
+<h3 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h3><p>算法的特征<strong>重要</strong>：</p>
+<blockquote>
+<ul>
+<li>具有输入，输出</li>
+<li>具有（步骤）的确定性</li>
+<li>有限性：算法必须是步骤有限的，这是算法和计算过程的本质区别</li>
+<li>正确性：算法对问题每一个输入实例，都能产生正确的输出并停止</li>
+<li>通用性</li>
+</ul>
+</blockquote>
+<p>算法的正确性：</p>
+<blockquote>
+<ul>
+<li>不正确的算法可能不会停止，或者在停止时给出的不是预期的结果</li>
+<li>如果算法的错误率可以控制，也是有用的</li>
+</ul>
+</blockquote>
+<h3 id="一些其他概念"><a href="#一些其他概念" class="headerlink" title="一些其他概念"></a>一些其他概念</h3><p>问题和问题实例的区别：</p>
+<blockquote>
+<ul>
+<li>问题规定了输入和输出之间的关系，可以用通用语言来描述</li>
+<li>某一个问题的实例包含了求解该问题所需的输入</li>
+<li>问题的规模：算法输入的实际大小</li>
+</ul>
+</blockquote>
+<p>算法和策略：</p>
+<blockquote>
+<ul>
+<li>算法（规则）的设计可以总结出设计策略</li>
+<li>设计策略可以指导规则的设计</li>
+</ul>
+</blockquote>
+<h1 id="二、算法基础"><a href="#二、算法基础" class="headerlink" title="二、算法基础"></a>二、算法基础</h1><h2 id="2-1-概述"><a href="#2-1-概述" class="headerlink" title="2.1 概述"></a>2.1 概述</h2><h3 id="问题求解基础"><a href="#问题求解基础" class="headerlink" title="问题求解基础"></a>问题求解基础</h3><blockquote>
+<ul>
+<li>理解问题</li>
+<li>决定计算方法、精确或近似解法、数据结构、算法设计技术</li>
+<li>设计算法（并修改）</li>
+<li>正确性证明（并修改）</li>
+<li>分析算法（时间分析、空间分析；并修改）</li>
+<li>根据算法编写代码</li>
+</ul>
+</blockquote>
+<h3 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h3><p>算法描述方法：伪代码</p>
+<blockquote>
+<ul>
+<li>块结构用缩进表示</li>
+<li>判断、循环、赋值语句及数组访问、注释等遵循C++风格</li>
+<li>一般不设全局变量</li>
+<li>复合数据用对象表示，对象赋值为指针赋值（浅拷贝）</li>
+<li>参数按值传递（对象则传递指针）</li>
+<li>return语句可以返回多个值</li>
+<li>逻辑运算符是短路的</li>
+<li>NIL表示空；error表示报错（无需异常处理）</li>
+</ul>
+</blockquote>
+<h3 id="循环不变式证明算法正确性"><a href="#循环不变式证明算法正确性" class="headerlink" title="循环不变式证明算法正确性"></a>循环不变式证明算法正确性</h3><p><strong>重要</strong></p>
+<p>循环不变式是在循环体每次执行前后都为真的谓词，它体现了循环程序中循环变量的变化规律</p>
+<p>通常，算法所需要达到的目标在循环过程中是部分成立的，这与循环不变式密切相关</p>
+<p>循环不变式性质：</p>
+<blockquote>
+<ul>
+<li>初始化：循环不变式在循环开始之前为真</li>
+<li>保持：若循环某次迭代之前它为真，这下次循环之前它仍然为真</li>
+<li>终止：循环终止时，不变式为我们提供了一个有助于证明算法正确性的性质</li>
+</ul>
+</blockquote>
+<h2 id="2-2-算法分析"><a href="#2-2-算法分析" class="headerlink" title="2.2 算法分析"></a>2.2 算法分析</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>算法分析通常是对时间和空间都预测</p>
+<p>目的：预测算法需要资源的程度</p>
+<blockquote>
+<ul>
+<li>有助于算法选择和算法优化</li>
+</ul>
+</blockquote>
+<p>算法分析基于的假设：RAM模型</p>
+<blockquote>
+<ul>
+<li>指令逐条执行，没有并发</li>
+<li>包含常用指令，每条指令执行时间为常量</li>
+<li>数据类型有整数类型和浮点数类型</li>
+<li>不对存储层次进行建模</li>
+</ul>
+</blockquote>
+<p>实例：插入排序P9－P11</p>
+<blockquote>
+<ul>
+<li>插入排序的思想、性质和排序过程</li>
+<li>插入排序的时间复杂度计算，且能用渐进记号表示</li>
+</ul>
+</blockquote>
+<h3 id="执行时间"><a href="#执行时间" class="headerlink" title="执行时间"></a>执行时间</h3><p>算法的执行时间是算法中所有运算执行时间的总和</p>
+<p>运算的分类：</p>
+<blockquote>
+<ul>
+<li>时间囿界于常数的运算：运算的执行时间与操作数无关，每次执行时间是一个常数</li>
+<li>时间非囿界于常数的运算：运算的执行时间与输入有关</li>
+</ul>
+</blockquote>
+<p>算法的执行时间与输入数据有关：</p>
+<blockquote>
+<ul>
+<li>与输入数据规模有关，一般规模越大，执行时间越长</li>
+<li>与输入数据的配置有关，可分最好、最坏和平均情况等讨论；一般情况下，我们更关心算法的最坏情况执行时间</li>
+</ul>
+</blockquote>
+<p>运行时间的增长量级：</p>
+<blockquote>
+<ul>
+<li>运行时间的增长量级是对算法执行时间的抽象</li>
+<li>此时，我们只考虑公式中最重要的项，并且忽略该项的常系数和其他项</li>
+<li>此概念在后续会进行具体的描述</li>
+</ul>
+</blockquote>
+<h3 id="算法正确性的证明"><a href="#算法正确性的证明" class="headerlink" title="算法正确性的证明"></a>算法正确性的证明</h3><p>分析结论的证明方法：</p>
+<blockquote>
+<ul>
+<li>直接推导法</li>
+<li>数学归纳法</li>
+<li>反证法</li>
+<li>反例法</li>
+</ul>
+</blockquote>
+<h2 id="2-3-算法分析设计实例：分治法"><a href="#2-3-算法分析设计实例：分治法" class="headerlink" title="2.3 算法分析设计实例：分治法"></a>2.3 算法分析设计实例：分治法</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><blockquote>
+<ul>
+<li>核心思想：分而治之，各个击破</li>
+<li>递归结构：为解决一个给定的问题，算法一次或多次地调用自身</li>
+<li>分治策略：将原问题划分为n个规模较小而结构相似的子问题进行求解</li>
+<li>步骤：分解、解决、合并</li>
+</ul>
+</blockquote>
+<h3 id="分治法分析"><a href="#分治法分析" class="headerlink" title="分治法分析"></a>分治法分析</h3><p>归并排序中MERGE操作的正确性：P19</p>
+<p>时间复杂度分析：</p>
+<blockquote>
+<p>当一个算法含有对其自身的递归调用时，其运行时间可以用如下一个递归方程来表示：<br>$$<br>T(n)=<br>\begin{cases}<br>\Theta(1) , &amp;n \le c \<br>aT(n/b) + D(n) + C(n) , &amp;other\ casese<br>\end{cases}<br>$$<br>其中：</p>
+<ul>
+<li>$T(n)$是规模为n的一个问题的运行时间</li>
+<li>$D(n)$是将问题分解（Divide）成子问题所需的时间</li>
+<li>$C(n)$是将子问题合并成原问题所需的时间</li>
+<li>此时，算法将这个规模为n的问题分解成$a$个规模为$1/b$的子问题进行递归求解，所以运行时间为$aT(n/b)$</li>
+<li>注意，有时当规模$n \le c$时，算法无需递归，直接求解只需常量时间，记为$\Theta(1)$</li>
+</ul>
+</blockquote>
+<p>在归并排序中，上述$a=b=2$;分解问题为常量时间$\Theta(1)$；合并问题需要一个n的线性函数时间$\Theta(n)$<br>即：<br>$$<br>T(n)=<br>\begin{cases}<br>c , &amp;n = 1 \<br>2T(n/2) + cn , &amp;n &gt; 1<br>\end{cases}<br>$$</p>
+<p>求解这个递归式时，我们需要画出它的递归树进行分析，此时我们发现，树的每一层执行时间都为cn，树高为lgn<br>所以：<br>$$T(n) = cnlgn+cn = \Theta(nlgn)$$</p>
+<h1 id="三、函数的增长"><a href="#三、函数的增长" class="headerlink" title="三、函数的增长"></a>三、函数的增长</h1><h2 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h2><p>对于足够大的输入规模，算法精确运行时间中的倍增常量和低阶项被输入规模本身刚到影响所支配</p>
+<blockquote>
+<p>此时，我们要研究算法的渐进效率；即在极限中，算法的运行时间如何随着输入规模的变大而增加</p>
+</blockquote>
+<h2 id="3-1-渐进记号"><a href="#3-1-渐进记号" class="headerlink" title="3.1 渐进记号"></a>3.1 渐进记号</h2><h3 id="渐近上界记号-O"><a href="#渐近上界记号-O" class="headerlink" title="渐近上界记号$O$"></a>渐近上界记号$O$</h3><p>定义：对于给定函数$g(n)$，$\Theta(g(n))$定义如下：<br>$$O(g(n))=\lbrace f(n) | \exists c,n_0 &gt; 0 \ 对 \ \forall n \ge n_0 \ 有 \ 0 \le f(n) \le cg(n) \rbrace$$</p>
+<blockquote>
+<ul>
+<li>此时，$f(n) \in O(g(n))$也可以表示成$f(n) = O(g(n))$</li>
+<li>此时，我们称$g(n)$是$f(n)$的一个渐近上界</li>
+<li>渐进上界用于描述算法最坏情况下的运行时间</li>
+<li>紧确上界：最小的渐近上界</li>
+</ul>
+<p>渐近上界具有自反性、传递性,且满足加法法则和乘法法则</p>
+</blockquote>
+<p>非渐近紧确上界$o$:渐近上界除去紧确上界，定义如下<br>$$o(g(n))=\lbrace f(n) | \exists c,n_0 &gt; 0 \ 对 \ \forall n \ge n_0 \ 有 \ 0 \le f(n) &lt; cg(n) \rbrace$$</p>
+<blockquote>
+<ul>
+<li>此时可称$f(n)$渐近小于$g(n)$，当n足够大时，$f(n)$相比于$g(n)$来说变得微不足道，可以这样来证明：<br>$$\lim_{n \to \infty} \cfrac {f(n)}{g(n)} = 0$$</li>
+<li>非渐近紧确上界具有传递性</li>
+</ul>
+</blockquote>
+<h3 id="渐近下界记号-Omega"><a href="#渐近下界记号-Omega" class="headerlink" title="渐近下界记号$\Omega$"></a>渐近下界记号$\Omega$</h3><p>定义：对于给定函数$g(n)$，$\Omega(g(n))$定义如下：<br>$$\Omega(g(n))=\lbrace f(n) | \exists c,n_0 &gt; 0 \ 对 \ \forall n \ge n_0 \ 有 \ 0 \le cg(n) \le f(n) \rbrace$$</p>
+<blockquote>
+<ul>
+<li>此时，$f(n) \in \Omega(g(n))$也可以表示成$f(n) = \Omega(g(n))$</li>
+<li>此时，我们称$g(n)$是$f(n)$的一个渐近下界</li>
+<li>渐进下界用于描述算法最好情况下的运行时间</li>
+<li>紧确下界：最大的渐近下界</li>
+</ul>
+<p>渐近下界具有自反性、传递性</p>
+</blockquote>
+<p>非渐近紧确下界$\omega$：渐近下界除去紧确下界，定义如下<br>$$\omega(g(n))=\lbrace f(n) | \exists c,n_0 &gt; 0 \ 对 \ \forall n \ge n_0 \ 有 \ 0 \le cg(n) &lt; f(n) \rbrace$$</p>
+<blockquote>
+<ul>
+<li>此时可称$f(n)$渐近大于$g(n)$，当n足够大时，$g(n)$相比于$f(n)$来说变得微不足道</li>
+<li>非渐近紧确下界具有传递性</li>
+</ul>
+</blockquote>
+<p>由定义可知，$O,\Omega$、$o,\omega$具有转置对称性（互为逆运算）</p>
+<h3 id="渐近紧确界记号-Theta"><a href="#渐近紧确界记号-Theta" class="headerlink" title="渐近紧确界记号$\Theta$"></a>渐近紧确界记号$\Theta$</h3><p>定义：对于给定函数$g(n)$，$\Theta(g(n))$定义如下：<br>$$\Theta(g(n))=\lbrace f(n) | \exists c_1,c_2,n_0 &gt; 0 \ 对 \ \forall n \ge n_0 \ 有 \ 0 \le c_1g(n) \le f(n) \le c_2g(n) \rbrace$$</p>
+<blockquote>
+<ul>
+<li>此时，$f(n) \in \Theta(g(n))$也可以表示成$f(n) = \Theta(g(n))$</li>
+<li>此时，我们称$g(n)$是$f(n)$的一个渐近紧确界</li>
+<li>$g(n)$是$f(n)$的一个渐近紧确界 等价于 $g(n)$是$f(n)$的一个渐近上界（紧确上界）且$g(n)$是$f(n)$的一个渐近下界（紧确下界）</li>
+</ul>
+<p>渐近紧确具有自反、传递、对称性</p>
+</blockquote>
+<h3 id="一些性质"><a href="#一些性质" class="headerlink" title="一些性质"></a>一些性质</h3><blockquote>
+<ul>
+<li>算法实际执行时间$f(n)$与执行世纪情况有关</li>
+<li>分析所得限界函数$g(n)$是一个与机器无关的函数</li>
+<li>一般地，对于任意多项式$p(n) = \sum_{i=0}^da_in^i,a_d &gt; 0$有$p(n)=\Theta(n^d)$</li>
+<li>并非所有函数之间都是渐近可比较的，如$n$和$n^{1+sin(n)}$</li>
+</ul>
+</blockquote>
+<p>当等式或不等式中出现渐近记号</p>
+<blockquote>
+<ul>
+<li>等式中的渐近记号表示另一边的函数属于某一个函数集合</li>
+<li>渐近记号可以替代公式中的一些无关紧要的细节，我们将其解释为匿名函数</li>
+</ul>
+</blockquote>
+<h2 id="3-2-算法时间复杂度分类"><a href="#3-2-算法时间复杂度分类" class="headerlink" title="3.2 算法时间复杂度分类"></a>3.2 算法时间复杂度分类</h2><h1 id="四、分治策略"><a href="#四、分治策略" class="headerlink" title="四、分治策略"></a>四、分治策略</h1><h2 id="概述-3"><a href="#概述-3" class="headerlink" title="概述"></a>概述</h2><h3 id="递归式求解方法"><a href="#递归式求解方法" class="headerlink" title="递归式求解方法"></a>递归式求解方法</h3><blockquote>
+<ul>
+<li>代入法</li>
+<li>递归树法</li>
+<li>主方法</li>
+</ul>
+</blockquote>
+<h2 id="4-1-最大子数组问题"><a href="#4-1-最大子数组问题" class="headerlink" title="4.1 最大子数组问题"></a>4.1 最大子数组问题</h2><p>炒股问题：最大子数组问题</p>
+<blockquote>
+<ul>
+<li>即，已知数组A，需要寻找A的和最大的非空连续子数组</li>
+</ul>
+</blockquote>
+<p>跨界问题</p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/09/08/algorithm0/" data-id="ckf5ehrba0008p0vndbs39pj3"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/09/09/numeric-analysis0/" class="article-nav-link">
+        <strong class="article-nav-caption">Prev Post</strong>
+        <div class="article-nav-title">
+          
+            数值分析
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/09/08/operating-system0/" class="article-nav-link">
+        <strong class="article-nav-caption">Next Post</strong>
+        <div class="article-nav-title">操作系统原理概论</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        notify: false,
+        verify: '',
+        app_id: 'ze0YzGUMUrLXgdRQpKyDCEEm-gzGzoHsz',
+        app_key: 'NnhAiNVNGXwbCD1sMGNRjA8B',
+        path: window.location.pathname,
+        avatar: 'mp',
+        placeholder: 'Leave your comments here ~',
+        recordIP: true,
+        lang: 'en'
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2019-2020
+        George Chen
+      </li>
+      <li>
+        
+          Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+      </li>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+    <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+      <aside class="sidebar">
+        <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="George"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">HOME</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives/">ARCHIVE</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/">CATE.</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/">TAGS</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="https://github.com/georgechen1827/" target="_blank" rel="noopener">about me</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/coming_soon.html" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+      </aside>
+      <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+      
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer:'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
+
+
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+
+<script src="/js/ayer.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+  </div>
+</body>
+
+</html>

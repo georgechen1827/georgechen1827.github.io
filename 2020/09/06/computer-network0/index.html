@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="this is George Chen&#39;s blog!" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    计算机网络 |  George
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-computer-network0" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  计算机网络
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/09/06/computer-network0/" class="article-date">
+  <time datetime="2020-09-06T14:33:43.000Z" itemprop="datePublished">2020-09-06</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a> / <a class="article-category-link" href="/categories/notes/%E5%AD%A6%E4%BD%8D%E8%AF%BE%E7%A8%8B/">学位课程</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> about </span>
+            <span class="post-count">2k words</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> costs </span>
+            <span class="post-count">6 minutes</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>钱龙华：<a href="mailto:qianglonghua@suda.edu.cn">qianglonghua@suda.edu.cn</a></p>
+<p><a href="http://nlp.suda.edu.cn/˜qianlonghua" target="_blank" rel="noopener">http://nlp.suda.edu.cn/˜qianlonghua</a></p>
+<p>课程目标：理解网络工作的原理以及实现</p>
+<p>没有多少理论，但课程课程的实践性很强</p>
+<p>参考教材：《数据通信与网络》、《计算机网络技术Andrew S.》、《计算机网络自顶向下方法（从宏观到微观的设计）》</p>
+<h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><h2 id="1-1-计算机网络的发展过程"><a href="#1-1-计算机网络的发展过程" class="headerlink" title="1.1 计算机网络的发展过程"></a>1.1 计算机网络的发展过程</h2><h3 id="发展过程"><a href="#发展过程" class="headerlink" title="发展过程"></a>发展过程</h3><p>ENAIC - TSS分时系统 - 计算机网络</p>
+<p>从以主机为中心到以分组交换网为中心</p>
+<p>萌芽：1969第一个分组交换网络ARPANET</p>
+<blockquote>
+<ul>
+<li>路径选择（路由）</li>
+<li>信息的发送和接收：通讯协议NCP（网络通讯协议）</li>
+<li>基本思想：分组交换</li>
+<li>原理：将报文分组进行传送</li>
+<li>目的：提高传输效率和减小延迟</li>
+</ul>
+</blockquote>
+<p>从NCP到TCP/IP：</p>
+<blockquote>
+<ul>
+<li>1974年TCP/IP参考模型，1983年TCP/IP模型</li>
+</ul>
+</blockquote>
+<p>LAN（局域网）的兴起</p>
+<p>发展：公共网络的繁衍</p>
+<blockquote>
+<ul>
+<li>从军事网络到民用科研网络</li>
+<li>1986年，ARPANET改名为Internet</li>
+</ul>
+</blockquote>
+<p>繁荣：网络商业化</p>
+<blockquote>
+<ul>
+<li>通讯公司开始投入构建主干网络ISP</li>
+<li>网络应用发展和推广（www、即时通讯、邮件、MOBA游戏）</li>
+</ul>
+<p>关于计算模式的演变：HOST模式（主机模式）；C/S模式（主机客户端模式）；P2P模式（双端计算任务平等）；网格计算模式-云计算模式</p>
+</blockquote>
+<h3 id="因特网的标准化工作"><a href="#因特网的标准化工作" class="headerlink" title="因特网的标准化工作"></a>因特网的标准化工作</h3><p>互联网工程部IETF、互联网研究部IRTF</p>
+<p>互联网标准的形式：RFC文档</p>
+<p>互联网正式标准的制定：</p>
+<blockquote>
+<ul>
+<li>互联网草案</li>
+<li>建议标准</li>
+<li>互联网标准</li>
+</ul>
+</blockquote>
+<h2 id="1-2-计算机网络的分类"><a href="#1-2-计算机网络的分类" class="headerlink" title="1.2 计算机网络的分类"></a>1.2 计算机网络的分类</h2><h3 id="计算机网络的不同定义"><a href="#计算机网络的不同定义" class="headerlink" title="计算机网络的不同定义"></a>计算机网络的不同定义</h3><blockquote>
+<ul>
+<li>具有独立功能的计算机、终端、设备用通信线路连接起来，按一定方式进行通信并实现资源共享的系统</li>
+<li>简单定义：一些相互连接、自治的计算机的集合</li>
+<li>因特网是“网络的网络”</li>
+</ul>
+</blockquote>
+<h3 id="信息的交换"><a href="#信息的交换" class="headerlink" title="信息的交换"></a>信息的交换</h3><p>电路交换：从人工控制到程序交换</p>
+<blockquote>
+<ul>
+<li>这种连接是一条专用的物理通路</li>
+<li>步骤：建立连接（占用通信资源）、通话（一直占用资源）、释放连接（归还通信资源）</li>
+</ul>
+</blockquote>
+<p>报文交换：存储转发技术</p>
+<blockquote>
+<ul>
+<li>过程：报文整体通过结点的转发达到目标主机</li>
+<li>延迟较长</li>
+</ul>
+</blockquote>
+<p>分组交换：将报文整体切割传输</p>
+<blockquote>
+<ul>
+<li>步骤：报文进行切割并发传输，到目标主机再进行组合</li>
+<li>主机发送的数据不是独占的，一个用户可以并发的发送或接受数据</li>
+<li>可靠性好，网络中结点的损坏对整个网络影响很小</li>
+</ul>
+</blockquote>
+<h3 id="其他分类"><a href="#其他分类" class="headerlink" title="其他分类"></a>其他分类</h3><p>网络的覆盖范围：</p>
+<blockquote>
+<ul>
+<li>局域网LAN</li>
+<li>城域网MAN：有线电视网络</li>
+<li>广域网WAN</li>
+</ul>
+</blockquote>
+<p>网络的使用者</p>
+<blockquote>
+<ul>
+<li>公用网</li>
+<li>专用网</li>
+</ul>
+</blockquote>
+<p>传输技术</p>
+<blockquote>
+<ul>
+<li>点对点网络</li>
+<li>广播网络：涉及寻址、冲突问题</li>
+</ul>
+</blockquote>
+<h2 id="1-3-计算机网络主要性能指标"><a href="#1-3-计算机网络主要性能指标" class="headerlink" title="1.3 计算机网络主要性能指标"></a>1.3 计算机网络主要性能指标</h2><h3 id="带宽和速率"><a href="#带宽和速率" class="headerlink" title="带宽和速率"></a>带宽和速率</h3><p>带宽：原指信号具有的频带宽度（差值）；在数字信号中，带宽是最高数据传输速率，单位是比特每秒</p>
+<p>速率：数据的传送速率</p>
+<h3 id="时延"><a href="#时延" class="headerlink" title="时延"></a>时延</h3><p>发送时延（传输时延）：主机或路由器发送数据帧所需要的时间</p>
+<blockquote>
+<ul>
+<li>发送时延 = 数据快长度/带宽</li>
+</ul>
+</blockquote>
+<p>传播时延：电磁波在信道中传播一定的距离需要花费的时间</p>
+<blockquote>
+<ul>
+<li>传播时延 = 信道长度/信号在信道上的传播速率</li>
+</ul>
+</blockquote>
+<p>四种时延产生的地方：</p>
+<blockquote>
+<ul>
+<li>发送结点中的处理时延和排队时延</li>
+<li>数据的发送时延和传播时延</li>
+</ul>
+</blockquote>
+<p>往返时延RTT：从发送端发送数据开始，到发送端收到来自接收端的确认信息，总经历的时延</p>
+<p>时延带宽积：表示管道中能同时容纳的数据量</p>
+<blockquote>
+<ul>
+<li>时延带宽积 = 传播时延*带宽</li>
+</ul>
+</blockquote>
+<h3 id="利用率"><a href="#利用率" class="headerlink" title="利用率"></a>利用率</h3><p>信道利用率：某信道在某段时间内有百分之几的时间是被利用的（有数据通过）</p>
+<p>网络利用率：全网络的信道利用率的加权平均值</p>
+<p>信道或网络利用率过高会产生非常大的时延，且随着利用率的升高时延</p>
+<h2 id="1-4-计算机网络的体系结构"><a href="#1-4-计算机网络的体系结构" class="headerlink" title="1.4 计算机网络的体系结构"></a>1.4 计算机网络的体系结构</h2><h3 id="网络通信的分层"><a href="#网络通信的分层" class="headerlink" title="网络通信的分层"></a>网络通信的分层</h3><p>网络通信过程十分复杂：</p>
+<blockquote>
+<ul>
+<li>需要简化网络设计</li>
+<li>采用结构化的设计方法</li>
+<li>使用层次化的分而治之的策略</li>
+</ul>
+<p>需要提高网络互联的标准化程度</p>
+</blockquote>
+<p>原理：</p>
+<blockquote>
+<ul>
+<li>网络按功能分成一系列层次，每一层完成一个特定的功能</li>
+<li>相邻层中较高层直接使用较低层的服务实现本层功能，然后向更高层提供服务</li>
+<li>层之间的通信用接口实现</li>
+</ul>
+</blockquote>
+<p>服务、接口和协议：</p>
+<blockquote>
+<ul>
+<li>实体：一个特定的网络模块、软件</li>
+<li>对等实体：不同计算机上同一层的实体</li>
+<li>协议：为进行计算机网络中的数据交换而建立的规则、标准或约定的集合</li>
+<li>接口：相邻两层之间的边界；规定了下层向上层提供的服务</li>
+<li>服务：某一层向上层提供的功能</li>
+<li>网络体系结构：计算机网络各层级及其协议的集合</li>
+<li>协议栈：网络各层协议按照层次顺序排列而形成的协议序列</li>
+</ul>
+</blockquote>
+<p>多层通信的实质：</p>
+<blockquote>
+<ul>
+<li>发送段将数据一层一层向下封装（直到实体通信层）</li>
+<li>接收端将数据一层一层向上解封</li>
+<li>这样，对等实体层之间形成虚拟通信</li>
+</ul>
+</blockquote>
+<h3 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h3><p>网络协议的三个要素：</p>
+<blockquote>
+<ul>
+<li>语义：设计需要发出何种控制信息，以及如何回应的规范</li>
+<li>语法：设计数据与控制信息的结构与格式</li>
+<li>时序：设计速度匹配与事件顺序</li>
+</ul>
+</blockquote>
+<p>协议的困惑：无法设计一个100%可靠的协议（山头进攻问题）</p>
+<h3 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h3><p>面相连接的服务：面向连接服务具有连接建立、数据传输和连接释放三个阶段</p>
+<p>无连接服务：两个实体之间通信不需要先建立好连接</p>
+<h3 id="网络参考模型"><a href="#网络参考模型" class="headerlink" title="网络参考模型"></a>网络参考模型</h3><p>OSI参考模型：开放系统互联模型</p>
+<blockquote>
+<ul>
+<li><p>从下到上分为物理层、数据链路层、网络层、运输层、会话层、表示层、应用层</p>
+</li>
+<li><p>前三层为网络支持层，解决数据如何传输的问题</p>
+</li>
+<li><p>第四层解决可靠性问题</p>
+</li>
+<li><p>后三层为用户子网络，决定传输什么数据</p>
+</li>
+<li><p>物理层：在<strong>物理媒体</strong>上传输原始数据的<strong>比特流</strong></p>
+</li>
+<li><p>数据链路层：在<strong>相邻节点</strong>间无差错地传输一<strong>帧</strong>数据</p>
+</li>
+<li><p>网络层：将<strong>分组</strong>穿过<strong>通信子网</strong>从信源传输到信宿，包括路由选择等；这一层的通讯不一定可靠</p>
+</li>
+<li><p>传输层：提供端到端的数据传输服务，强调可靠性，往往采用面相连接的传输服务，进行差错控制（开始面相用户）</p>
+</li>
+<li><p>会话层：在两个互相通信的进程之间建立、组织和同步会话以及会话管理和控制</p>
+</li>
+<li><p>表示层：提供数据或信息语法的表示变换，以确保不同表示方法（加密算法等）之间的计算机能够相互通讯</p>
+</li>
+<li><p>应用层：直接面相用户（或应用进程，如DNS）提供服务</p>
+</li>
+</ul>
+</blockquote>
+<p>缺点：层次过多传送少量数据时效率极其低下</p>
+<p>TCP/IP参考模型：</p>
+<blockquote>
+<ul>
+<li>从下到上分为网络接口层、网络互联层（网际层）、传输层、应用层</li>
+<li>网络接口层：负责传输数据帧，类似物理层和数据链路层</li>
+<li>网际层（IP）：相当于网络层</li>
+<li>传输层（TCP或UDP）：相当于OSI中的传输层</li>
+<li>应用层：各种应用服务，相当于会话层、表示层和应用层</li>
+</ul>
+</blockquote>
+<p>IP体系的沙漏模型：核心是IP网际层</p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/09/06/computer-network0/" data-id="ckf5ehrbq000op0vn7fzabxmf"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/09/08/operating-system0/" class="article-nav-link">
+        <strong class="article-nav-caption">Prev Post</strong>
+        <div class="article-nav-title">
+          
+            操作系统原理概论
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/06/21/object-oriented0/" class="article-nav-link">
+        <strong class="article-nav-caption">Next Post</strong>
+        <div class="article-nav-title">面向对象分析与设计</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        notify: false,
+        verify: '',
+        app_id: 'ze0YzGUMUrLXgdRQpKyDCEEm-gzGzoHsz',
+        app_key: 'NnhAiNVNGXwbCD1sMGNRjA8B',
+        path: window.location.pathname,
+        avatar: 'mp',
+        placeholder: 'Leave your comments here ~',
+        recordIP: true,
+        lang: 'en'
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2019-2020
+        George Chen
+      </li>
+      <li>
+        
+          Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+      </li>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+    <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+      <aside class="sidebar">
+        <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="George"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">HOME</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives/">ARCHIVE</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/">CATE.</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/">TAGS</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="https://github.com/georgechen1827/" target="_blank" rel="noopener">about me</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/coming_soon.html" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+      </aside>
+      <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+      
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer:'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
+
+
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+
+<script src="/js/ayer.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+  </div>
+</body>
+
+</html>

@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">0 words</span>
+            <span class="post-count">5.4k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">1 minutes</span>
+            <span class="post-count">18 minutes</span>
         </span>
     </span>
 </div>
@@ -85,6 +85,8 @@
 
     
     
+    <div class="tocbot"></div>
+
 
 
 
@@ -98,13 +100,669 @@
       
 
       
-      
+      <p>课程定义:</p>
+<blockquote>
+<ul>
+<li>面向对象分析与设计是一种思维方式</li>
+<li>面向对象分析与设计是一种思考如何用面向对象方法去思考的课程</li>
+</ul>
+</blockquote>
+<p>关于思维方式: 思维方式有无数种,而本课程要学习面向对象思维方式;并利用它去思考实际问题</p>
+<p>前导知识:</p>
+<blockquote>
+<ul>
+<li>UML统一建模语言</li>
+<li>面向对象的编程语言</li>
+<li>设计模式: 用于解决实际问题的一些框架</li>
+<li>分析系统</li>
+</ul>
+</blockquote>
+<p>思考的问题:</p>
+<blockquote>
+<ul>
+<li>为何要设计,什么是好的设计,什么是面向对象设计,它有何优势,如何去设计</li>
+</ul>
+</blockquote>
+<p>要细致分析问题: 先有问题后有解决方案</p>
+<h1 id="1-面向对象"><a href="#1-面向对象" class="headerlink" title="1 面向对象"></a>1 面向对象</h1><h2 id="1-1-面向对象思想的起源"><a href="#1-1-面向对象思想的起源" class="headerlink" title="1.1 面向对象思想的起源"></a>1.1 面向对象思想的起源</h2><ul>
+<li>Alan.Kay: 所有对事物的认识都始源于我们不愿盲目地接受(相信)这个世界<blockquote>
+<ul>
+<li>Smalltalk: 第一个面向对象编程语言,1971年<br>在Smalltalk中,相互独立的个体通过发送讯息彼此交流; 每一条讯息都包含了数据,发送者地址,接收者地址,以及有关接收者如何对数据实施操作的指令</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>将数据和过程捆绑到一起发送为面向对象设计打下了基础</p>
+<p>生物学启发:</p>
+<blockquote>
+<ul>
+<li>每个细胞都有一些共同的基本行为</li>
+<li>每个细胞都能独立运作,它们之间能通过化学信号进行通信</li>
+<li>细胞会分化</li>
+</ul>
+</blockquote>
+<p>Alan Kay的思考:</p>
+<blockquote>
+<ul>
+<li>关注消息机制和模块间的松耦合和交互,而非模块内部的对象组成</li>
+<li>好的系统应设计好模块之间如何通讯,而不是模块应具有什么样的内部属性和行为方法</li>
+</ul>
+</blockquote>
+<p>面向对象举例:打车去机场</p>
+<blockquote>
+<ul>
+<li>面向对象: 去机场</li>
+<li>面向过程: 直走,左拐,过桥,靠边…</li>
+</ul>
+</blockquote>
+<h2 id="1-2-面向对象基本概念"><a href="#1-2-面向对象基本概念" class="headerlink" title="1.2 面向对象基本概念"></a>1.2 面向对象基本概念</h2><ul>
+<li>类</li>
+<li>对象</li>
+</ul>
+<p>在面向对象思维中:</p>
+<blockquote>
+<ul>
+<li>每一样东西都是对象</li>
+<li>一个程序就是一大群对象,通过消息要求对方做点事情</li>
+<li>每个对象都有自己的内存空间,里面存放了许多其他对象</li>
+<li>每个对象都是一个类的实例</li>
+<li>某一类型的所有对象都能接受相同的消息</li>
+</ul>
+</blockquote>
+<h2 id="1-3-什么是面向对象的思考方式"><a href="#1-3-什么是面向对象的思考方式" class="headerlink" title="1.3 什么是面向对象的思考方式"></a>1.3 什么是面向对象的思考方式</h2><ul>
+<li>软件工程是与人打交道的,是为人提供服务的<blockquote>
+<ul>
+<li>问题是什么</li>
+<li>谁遇到了问题</li>
+<li>本质是什么</li>
+<li>问题该如何解决</li>
+</ul>
+<p>将单一的思维模式转换成多重的思维模式</p>
+</blockquote>
+</li>
+</ul>
+<p>定义: 在对世界/系统进行观察/建模的时候,将它们看成一系列相互交流 互相影响的对象集合</p>
+<blockquote>
+<ul>
+<li>世界是由相互作用的对象组成的</li>
+<li>面向对象描述与构建由对象组成系统</li>
+</ul>
+</blockquote>
+<p>面向对象与面向过程:</p>
+<blockquote>
+<ul>
+<li>面向对象适合解决不确定的事件和创新性的事件</li>
+<li>面向过程适合处理已知的事实,重要条件都已知的场景</li>
+</ul>
+</blockquote>
+<h2 id="1-4-面向对象核心特征"><a href="#1-4-面向对象核心特征" class="headerlink" title="1.4 面向对象核心特征"></a>1.4 面向对象核心特征</h2><h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><blockquote>
+<ul>
+<li>封装隐藏了对象的实现细节</li>
+<li>内部状态不能被访问</li>
+<li>对象数据只能通过接口进行访问</li>
+</ul>
+</blockquote>
+<p>封装可以</p>
+<blockquote>
+<ul>
+<li>保护隐私和数据安全</li>
+<li>隔离复杂度</li>
+</ul>
+</blockquote>
+<p>封装的内容:</p>
+<blockquote>
+<ul>
+<li>内部信息</li>
+<li>类的属性</li>
+<li>类的方法</li>
+</ul>
+</blockquote>
+<p>封装的可见性</p>
+<blockquote>
+<ul>
+<li>Public</li>
+<li>Private</li>
+<li>Protected</li>
+<li>Package</li>
+</ul>
+</blockquote>
+<p>封装原则:</p>
+<blockquote>
+<ul>
+<li>非必要信息都进行封装</li>
+<li>只提供必要的接口</li>
+</ul>
+</blockquote>
+<h3 id="继承Inheritance"><a href="#继承Inheritance" class="headerlink" title="继承Inheritance"></a>继承Inheritance</h3><p>子类继承父类所有的属性和方法,并添加了自己的属性和方法</p>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><p>子类对父类的同一个方法有不同的表达方式</p>
+<h3 id="聚合Aggregation-组合Composition"><a href="#聚合Aggregation-组合Composition" class="headerlink" title="聚合Aggregation,组合Composition"></a>聚合Aggregation,组合Composition</h3><p>聚合是一种描述整体和部分的关系(包含关系)</p>
+<blockquote>
+<ul>
+<li>继承是一种”is a”关系,聚合是一种”has a”关系(学校与学生)</li>
+<li>聚合是传递的</li>
+<li>聚合是不对称的</li>
+</ul>
+</blockquote>
+<p>组合是一种特殊的聚合,它强调整体对部分的控制</p>
+<blockquote>
+<ul>
+<li>部分对象只能存在于整体对象之中,整体对象控制着部分对象的生命周期</li>
+<li>如果整体消失,那么部分也将不复存在(手掌与手指的关系)</li>
+<li>在某些时候,聚合与组合关系不是很明确,此时多用聚合</li>
+</ul>
+</blockquote>
+<h3 id="接口Interface-实现Implementation"><a href="#接口Interface-实现Implementation" class="headerlink" title="接口Interface,实现Implementation"></a>接口Interface,实现Implementation</h3><p>接口用于描述一个类的用户如何与这个类交互</p>
+<blockquote>
+<ul>
+<li>接口只定义功能,不具有功能,不提供实现</li>
+</ul>
+</blockquote>
+<p>接口对于软件系统的意义:</p>
+<blockquote>
+<ul>
+<li>软件系统中有大量互相关联的类互相通信</li>
+<li>接口能够使得对某一个类的局部修改不会影响其他类</li>
+</ul>
+</blockquote>
+<p>实现是完成接口所定义的功能的一种操作</p>
+<blockquote>
+<ul>
+<li>如: 电视机是用户,插座是接口,发电厂是实现</li>
+</ul>
+</blockquote>
+<h3 id="抽象Abstraction"><a href="#抽象Abstraction" class="headerlink" title="抽象Abstraction"></a>抽象Abstraction</h3><p>抽象表示一个对象与其他所有对象区别的基本特征</p>
+<blockquote>
+<ul>
+<li>类是具体对象的抽象,父类是对其子类的抽象</li>
+<li>继承的强大之处就在于它的抽象和组织技术</li>
+</ul>
+</blockquote>
+<h1 id="2-UML"><a href="#2-UML" class="headerlink" title="2 UML"></a>2 UML</h1><h2 id="2-1-建模工具UML"><a href="#2-1-建模工具UML" class="headerlink" title="2.1 建模工具UML"></a>2.1 建模工具UML</h2><h3 id="建模"><a href="#建模" class="headerlink" title="建模"></a>建模</h3><p>建模: 将未知事物与一些类似的已知事物进行比较来理解这些未知事物的过程</p>
+<blockquote>
+<ul>
+<li>重要的研发成果常常产自类比</li>
+<li>模型: 建模产生的结果,它是对现实世界的简化,是对事物的一种抽象</li>
+<li>在模型中剔除一些与问题无关的事物,简化模型,可以帮助人们更好地了解事物本质,抓住问题的要害</li>
+</ul>
+</blockquote>
+<p>建模的意义:</p>
+<blockquote>
+<ul>
+<li>完整地理解一个复杂系统是困难的,建模可以最系统进行更好地理解</li>
+<li>将目标系统可视化</li>
+<li>提供详细描述系统的结构和行为的思路</li>
+<li>给出指导我们构造系统的一个模板</li>
+<li>对我们所做出的决策进行模板化</li>
+</ul>
+</blockquote>
+<p>建模的基本原理</p>
+<blockquote>
+<ol>
+<li>要选择建立什么模型: 同一事物可以用不同的模型来描述,对解决问题的帮助也是不一样的</li>
+<li>模型的精度: 同一模型可以在不同的精度级别上表示(纸飞机和飞机模型)</li>
+<li>模型与现实的关联性: 好的模型应当是与现实相关联的,可简化但不能掩盖掉任何重要的细节</li>
+<li>可选择多个模型来描述同一系统: 单个模型通常是不充分的,对每一个重要的系统最好用一组几乎独立的模型去处理(盲人摸象,三视图)</li>
+</ol>
+</blockquote>
+<h3 id="统一建模语言UML"><a href="#统一建模语言UML" class="headerlink" title="统一建模语言UML"></a>统一建模语言UML</h3><p>UML:Unified Modeling Language</p>
+<blockquote>
+<ul>
+<li>UML是软件分析师,设计师的工具包; 是用于建模的工具</li>
+<li>UML由事物,关系,图三个部分构成<br><img src="/2020/06/21/object-oriented0/UML0.jpg" alt="UML"></li>
+</ul>
+</blockquote>
+<p>UML中的常用符号<br><img src="/2020/06/21/object-oriented0/UML1.jpg" alt="UML"></p>
+<h2 id="2-2-用例模型"><a href="#2-2-用例模型" class="headerlink" title="2.2 用例模型"></a>2.2 用例模型</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>用例模型包含系统边界,参与者,用例,用例图,用例描述</p>
+<p>用例模型是系统分析的结果,是系统设计的输入,是开发部门与顾客之间的合同,是软件设计部门和软件工程师之间的合同</p>
+<p>用例模型是非直接开发人员,了解系统的主要信息来源</p>
+<h3 id="参与者"><a href="#参与者" class="headerlink" title="参与者"></a>参与者</h3><p>参与者(执行者)Actor: 是位于系统之外和系统进行交互的一类事物(人,物或其他软件子系统)</p>
+<blockquote>
+<ul>
+<li>通过参与者可以对软件系统与外界发生的交互进行分析和描述</li>
+<li>通过参与者可以了解客户希望的软件系统所具有的功能</li>
+</ul>
+<p>参与者用小人图(参与者为人)或构造型方框图(参与者为系统)表示</p>
+</blockquote>
+<p>系统参与者的寻找方式:</p>
+<blockquote>
+<ul>
+<li>系统使用者</li>
+<li>系统安装,维护者</li>
+<li>系统启功,关闭者</li>
+<li>系统获取的信息来源,系统提供信息的去向</li>
+<li>系统交互中的角色扮演者</li>
+<li>其他相关联系统</li>
+<li>内/外部定时器(于特定时间发生的事件)</li>
+</ul>
+<p>对每一类参与者要有简短的描述</p>
+</blockquote>
+<p>找出系统中所有的参与者,并与其交流,得到他们所希望的系统具有的功能,并进行整合</p>
+<h3 id="用例和用例图"><a href="#用例和用例图" class="headerlink" title="用例和用例图"></a>用例和用例图</h3><p>用例(用况)Usecase: 系统为响应参与者引发的事件而执行的一系列能够为其(参与者)产生有价值的结果的处理/动作</p>
+<blockquote>
+<ul>
+<li>这些动作不但应包含正常情况的动作序列,还应包含对非正常状况时的动作描述</li>
+</ul>
+</blockquote>
+<p>用例图是由边界,参与者,用例和关系组成<br><img src="/2020/06/21/object-oriented0/Usercase0.jpg" alt="Usercase0.jpg"></p>
+<p>用例图中的关系:</p>
+<blockquote>
+<p><img src="/2020/06/21/object-oriented0/Usercase1.jpg" alt="Usercase1.jpg"></p>
+<ul>
+<li>参与者与用例之间: 关联关系,实线</li>
+<li>参与者与参与者之间的关系: 可以为泛化关系,实线+空心箭头</li>
+<li>用例之间的关系: 泛化,包含(include)或扩展(extend)关系</li>
+</ul>
+</blockquote>
+<p>用例的寻找:</p>
+<blockquote>
+<ul>
+<li>参与者希望系统提供什么功能</li>
+<li>系统是否存储和检索信息</li>
+<li>当系统状态改变时是否通知参与者</li>
+<li>是否存在影响系统的外部事件,这些事件由哪些参与者通知系统</li>
+<li>哪个参与者触发了活动</li>
+</ul>
+</blockquote>
+<p>用例的名称</p>
+<blockquote>
+<ul>
+<li>每个用例都有一个名称</li>
+<li>名称不需要太长,可用短小精悍的动名词</li>
+</ul>
+</blockquote>
+<h3 id="用例描述"><a href="#用例描述" class="headerlink" title="用例描述"></a>用例描述</h3><p>用例描述(Usecase Description)是对用例的一种详尽的文字描述<br><img src="/2020/06/21/object-oriented0/UseDes0.jpg" alt="UseDes"></p>
+<p>用例描述格式:</p>
+<blockquote>
+<ul>
+<li>总括</li>
+<li>参与者列表</li>
+<li>先决条件描述</li>
+<li>用例执行描述</li>
+<li>后置条件描述(用例执行完之后系统应当处于什么状态)</li>
+<li>异常描述</li>
+</ul>
+</blockquote>
+<h2 id="2-3-活动图"><a href="#2-3-活动图" class="headerlink" title="2.3 活动图"></a>2.3 活动图</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><p>活动图描述了在一个过程中,顺序/并行的活动及其之间的关系</p>
+<blockquote>
+<ul>
+<li>其应用于商业过程,工作流(业务过程),复杂算法的建模</li>
+<li>从形式上看,活动图是顶点和弧的集合</li>
+</ul>
+</blockquote>
+<h3 id="活动基本元素"><a href="#活动基本元素" class="headerlink" title="活动基本元素"></a>活动基本元素</h3><p><img src="/2020/06/21/object-oriented0/Action0.jpg" alt="Action"></p>
+<ul>
+<li>活动图的开始,结束,对象</li>
+</ul>
+<p><img src="/2020/06/21/object-oriented0/Action1.jpg" alt="Action"></p>
+<ul>
+<li>活动节点: 一个活动是一个过程的非原子的执行单元,活动的执行最终延伸为一些独立动作(Action)的执行</li>
+</ul>
+<p><img src="/2020/06/21/object-oriented0/Action2.jpg" alt="Action"></p>
+<ul>
+<li>活动分支: 一个进入流,多个离去流; 每个分支都有唯一的条件; 多个控制路径可以无条件合并</li>
+</ul>
+<p><img src="/2020/06/21/object-oriented0/Action3.jpg" alt="Action"></p>
+<ul>
+<li><p>分岔和汇合(同步棒):表示多个动作可同时进行</p>
+</li>
+<li><p>泳道: 将活动按实际需要分组,每个组完成一些特定的活动,用竖线隔开</p>
+<blockquote>
+<ul>
+<li>每个活动只属于一个组,但同步棒可以跨过泳道</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-4-类图"><a href="#2-4-类图" class="headerlink" title="2.4 类图"></a>2.4 类图</h2><h3 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h3><p>类图将软件设计中与类相关的元素以图的方式展现出来</p>
+<blockquote>
+<ul>
+<li>类图是一种静态视图,是软件设计强有力的武器</li>
+</ul>
+</blockquote>
+<p>类图能够表示的信息(创建类图需要思考的问题):</p>
+<blockquote>
+<ul>
+<li>有多少个类</li>
+<li>每个类需要定义多少个属性</li>
+<li>每个类需要多少个方法</li>
+<li>类之间的关系</li>
+<li>类之间的信息交互及功能的完成</li>
+</ul>
+</blockquote>
+<h3 id="类图中的常用UML元素"><a href="#类图中的常用UML元素" class="headerlink" title="类图中的常用UML元素"></a>类图中的常用UML元素</h3><p><img src="/2020/06/21/object-oriented0/Class0.jpg" alt="Class"></p>
+<h3 id="类元素的命名"><a href="#类元素的命名" class="headerlink" title="类元素的命名"></a>类元素的命名</h3><blockquote>
+<ul>
+<li>类名中每个词的第一个字母通常大写</li>
+<li>操作和属性名命名遵循驼峰法则</li>
+</ul>
+</blockquote>
+<h3 id="关联关系的修饰"><a href="#关联关系的修饰" class="headerlink" title="关联关系的修饰"></a>关联关系的修饰</h3><p><img src="/2020/06/21/object-oriented0/Association0.jpg" alt></p>
+<p><img src="/2020/06/21/object-oriented0/Association1.jpg" alt></p>
+<p><img src="/2020/06/21/object-oriented0/Association2.jpg" alt></p>
+<p><img src="/2020/06/21/object-oriented0/Association3.jpg" alt></p>
+<h2 id="2-5-顺序图"><a href="#2-5-顺序图" class="headerlink" title="2.5 顺序图"></a>2.5 顺序图</h2><h3 id="概述-3"><a href="#概述-3" class="headerlink" title="概述"></a>概述</h3><p>顺序图从时间方面反映程序运行时不同对象之间的交互情况</p>
+<blockquote>
+<ul>
+<li>顺序图是一种动态视图,是软件设计强有力的武器</li>
+<li>顺序图可以动态验证类模型的可行性</li>
+<li>顺序验证的某一功能应当属于某个用例描述的功能中的一部分(顺序图又称用例实现)</li>
+<li>顺序图从上到下反映了对象间相互协作的时间顺序</li>
+</ul>
+</blockquote>
+<h3 id="顺序图的元素"><a href="#顺序图的元素" class="headerlink" title="顺序图的元素"></a>顺序图的元素</h3><p>概念:</p>
+<blockquote>
+<ul>
+<li>交互: 对象之间为实现某一功能而实施的协作过程</li>
+<li>消息: 对象之间的协作和交流表现为一个对象以某种方式启动另一个对象(一个对象调用另外一个对象的方法)</li>
+</ul>
+</blockquote>
+<p>建模元素:</p>
+<blockquote>
+<ul>
+<li>对象(角色)</li>
+<li>参与者</li>
+<li>消息</li>
+</ul>
+<p>顺序图是一种交互图(通信图也是),是用于描述交互的过程</p>
+</blockquote>
+<h3 id="消息-交互的基本概念"><a href="#消息-交互的基本概念" class="headerlink" title="消息: 交互的基本概念"></a>消息: 交互的基本概念</h3><p>同步消息: 源对象直接发送消息给目标对象并阻塞,待接到目标对象的回应后继续执行</p>
+<p>异步消息: 源对象将消息发到目标对象的消息接收队列中,然后继续执行,并定时检查自己的消息接收队列是否接到目标对象的回复</p>
+<h3 id="顺序图"><a href="#顺序图" class="headerlink" title="顺序图"></a>顺序图</h3><p><img src="/2020/06/21/object-oriented0/Order0.jpg" alt></p>
+<blockquote>
+<ul>
+<li>纵向是时间线,横向是对象列表</li>
+<li>对象生存线用虚线表示</li>
+<li>控制焦点用长矩形表示(控制焦点可以嵌套)</li>
+<li>方法调用以箭头表示</li>
+<li>可以对消息进行消息序号的标注</li>
+</ul>
+</blockquote>
+<p>顺序图的流程控制:<br><img src="/2020/06/21/object-oriented0/Order1.jpg" alt></p>
+<blockquote>
+<ul>
+<li>可选执行(if): opt</li>
+<li>条件执行(switch): alt</li>
+<li>并行执行: par</li>
+<li>循环执行: loop</li>
+</ul>
+</blockquote>
+<h2 id="2-6-通信图"><a href="#2-6-通信图" class="headerlink" title="2.6 通信图"></a>2.6 通信图</h2><h3 id="概述-4"><a href="#概述-4" class="headerlink" title="概述"></a>概述</h3><p>通信图从对象之间的结构关系反映程序运行时不同对象之间的交互情况</p>
+<blockquote>
+<ul>
+<li>通信图与顺序图本质上是一样的,只是建模角度不同</li>
+</ul>
+</blockquote>
+<h3 id="通信图"><a href="#通信图" class="headerlink" title="通信图"></a>通信图</h3><p>通信图由对象,链接,在链接上传递的消息构成<br><img src="/2020/06/21/object-oriented0/Message0.jpg" alt></p>
+<blockquote>
+<ul>
+<li>对象之间的关联关系用链接线(实线)表示</li>
+<li>通过链接线上加标签来显示对象间的交互情况</li>
+</ul>
+</blockquote>
+<h2 id="2-7-状态图"><a href="#2-7-状态图" class="headerlink" title="2.7 状态图"></a>2.7 状态图</h2><h3 id="概述-5"><a href="#概述-5" class="headerlink" title="概述"></a>概述</h3><p>状态图用于描述单个对象的动态行为</p>
+<blockquote>
+<ul>
+<li>单个对象可以是系统,模块或构件</li>
+<li>这个对象应该是系统中的核心,需要进行详细分析</li>
+<li>选择对象应作为一个整体考察</li>
+</ul>
+</blockquote>
+<h3 id="状态和状态机"><a href="#状态和状态机" class="headerlink" title="状态和状态机"></a>状态和状态机</h3><p>状态是对象生命周期中的一个条件或状况</p>
+<blockquote>
+<ul>
+<li>在此期间,对象可以响应事件,执行活动等</li>
+</ul>
+</blockquote>
+<p>状态的组成部分:</p>
+<blockquote>
+<ul>
+<li>名称</li>
+<li>进入/退出动作</li>
+<li>内部迁移(内部迁移不改变整体的状态)</li>
+<li>子状态</li>
+<li>延迟事件</li>
+</ul>
+</blockquote>
+<p>状态机:</p>
+<blockquote>
+<ul>
+<li>状态机是一种对象行为</li>
+<li>状态机反映对象在生命周期中所经历的状态序列以及对每个接收事件的响应情况</li>
+</ul>
+</blockquote>
+<p>状态图用于将状态机可视化,它强调从状态到其他状态的控制流</p>
+<h3 id="事件和迁移"><a href="#事件和迁移" class="headerlink" title="事件和迁移"></a>事件和迁移</h3><p>事件是一个在时间和空间上对对象有意义的事情的描述</p>
+<blockquote>
+<ul>
+<li>在状态机中,一个事件能够触发一个状态迁移</li>
+</ul>
+</blockquote>
+<p>UML对以下事件进行建模:</p>
+<blockquote>
+<ul>
+<li>参量变化: 内部事件导致参数的变化</li>
+<li>信号(异步)</li>
+<li>调用(同步)</li>
+<li>时间事件</li>
+</ul>
+</blockquote>
+<p>迁移是指对象在事件发生时状态的转移,由如下几个部分组成</p>
+<blockquote>
+<ul>
+<li>源状态</li>
+<li>事件触发器(触发器名称)</li>
+<li>触发条件</li>
+<li>效应(迁移过程中的动作)</li>
+<li>目标状态</li>
+</ul>
+</blockquote>
+<p>一些特殊迁移:</p>
+<blockquote>
+<ul>
+<li>自身迁移: 从状态A迁移到状态A</li>
+<li>内部迁移: 在状态A内部进行一些行为</li>
+</ul>
+</blockquote>
+<h3 id="状态图元素"><a href="#状态图元素" class="headerlink" title="状态图元素"></a>状态图元素</h3><p><img src="/2020/06/21/object-oriented0/State0.jpg" alt></p>
+<h3 id="状态图建模"><a href="#状态图建模" class="headerlink" title="状态图建模"></a>状态图建模</h3><blockquote>
+<ol>
+<li>选择对象及视点: 可以是类的实例,也可以是构件或系统</li>
+<li>定义对象在生命期内可能存在的状态: 状态要有意义,要有一定的持续时间</li>
+<li>定义在每种状态下可以接收的事件以及将要转去的新的状态</li>
+</ol>
+</blockquote>
+<p>注意:</p>
+<blockquote>
+<ul>
+<li>不能有孤立状态存在</li>
+<li>除了终结状态,不能有只进不出的状态(黑洞状态)</li>
+<li>除了初始状态,不能有只出不进的状态(奇迹状态)</li>
+<li>不允许无条件状态转移</li>
+</ul>
+</blockquote>
+<h1 id="3-面向对象分析与设计"><a href="#3-面向对象分析与设计" class="headerlink" title="3 面向对象分析与设计"></a>3 面向对象分析与设计</h1><h2 id="3-1-概览"><a href="#3-1-概览" class="headerlink" title="3.1 概览"></a>3.1 概览</h2><h3 id="什么是良好的对象设计"><a href="#什么是良好的对象设计" class="headerlink" title="什么是良好的对象设计"></a>什么是良好的对象设计</h3><p>良好的对象设计是构建高质量软件系统的基本要求:</p>
+<blockquote>
+<ul>
+<li>架构性的内聚</li>
+<li>可重用性</li>
+<li>可维护性</li>
+<li>可扩展性</li>
+<li>灵活性</li>
+</ul>
+</blockquote>
+<h3 id="系统设计中的关键问题"><a href="#系统设计中的关键问题" class="headerlink" title="系统设计中的关键问题"></a>系统设计中的关键问题</h3><p>这是面向对象设计课程的要点:</p>
+<blockquote>
+<ul>
+<li>如何为对象类分配职责: 职责驱动的设计,在设计的过程中完成职责分配(使用GRASP原则)</li>
+<li>对象之间应当如何协作</li>
+<li>什么样的类应当做什么样的事情</li>
+<li>如何使用某些经验法则(解决方案)或自创方案来解决问题</li>
+</ul>
+</blockquote>
+<p>软件开发过程模型: 指示软件开发的步骤</p>
+<blockquote>
+<ul>
+<li>瀑布模型</li>
+<li>螺旋模型</li>
+<li>增量模型</li>
+<li>迭代模型(本课程使用)</li>
+<li>喷泉模型</li>
+<li>敏捷模型</li>
+<li>SMF,RUP等</li>
+</ul>
+</blockquote>
+<h3 id="分析-设计-实现-部署"><a href="#分析-设计-实现-部署" class="headerlink" title="分析,设计,实现,部署"></a>分析,设计,实现,部署</h3><blockquote>
+<ul>
+<li>分析analysis: 对问题和要求进行分析,而不是直接给出解决方案</li>
+<li>设计design: 设计一个概念性的,满足需求的解决方案</li>
+<li>实现implement: 将方案进行代码层面的解释</li>
+<li>部署deployment: 将软件安装在宿主环境中</li>
+</ul>
+</blockquote>
+<p>分析:做正确的事情; 设计:正确地做事情</p>
+<h3 id="面向对象分析和设计"><a href="#面向对象分析和设计" class="headerlink" title="面向对象分析和设计"></a>面向对象分析和设计</h3><blockquote>
+<ul>
+<li>面向对象分析: 发现并描述问题领域里的对象或概念(概念类)</li>
+<li>面向对象设计: 定义软件对象以及它们之间如何协作完成功能(设计类)</li>
+</ul>
+</blockquote>
+<p>分析设计过程:</p>
+<blockquote>
+<ol>
+<li>定义用例</li>
+<li>定义领域模型(概念模型): 领域模型是面向对象分析的结果,是问题领域的概念类以及真实对象的可视化表示</li>
+<li>定义交互图</li>
+<li>定义设计类图</li>
+</ol>
+</blockquote>
+<h2 id="3-2-面向对象分析-名称法"><a href="#3-2-面向对象分析-名称法" class="headerlink" title="3.2 面向对象分析:名称法"></a>3.2 面向对象分析:名称法</h2><h3 id="概述-6"><a href="#概述-6" class="headerlink" title="概述"></a>概述</h3><p>软件工程中,分析是一种奖用户需求转化为系统需求的过程</p>
+<p>复杂系统的分析方法:</p>
+<blockquote>
+<ul>
+<li>面向功能分析</li>
+<li>面向对象分析</li>
+</ul>
+<p>通常软件系统中,在抽象层面面向功能分析,划分模块;每个模块内部面向对象分析</p>
+</blockquote>
+<p>面向对象分析主要步骤:</p>
+<blockquote>
+<ol>
+<li>识别对象</li>
+<li>组织对象</li>
+<li>定义对象之间的关系</li>
+<li>定义对象的操作: 这一步主要在设计阶段完成</li>
+<li>定义对象的内部细节</li>
+</ol>
+<p>这几步是一个不断反复的过程</p>
+</blockquote>
+<p>面向对象分析的几种方法:</p>
+<blockquote>
+<ul>
+<li>概念模型(名词法)</li>
+<li>分析模型</li>
+<li>CRC法:类/职责/协作法</li>
+</ul>
+<p>一个好的分析不应当局限于上述几种方法,需要灵活应用; 目标只有一个,即发现对象和定义对象之间的管线</p>
+</blockquote>
+<p>概念模型在UML中表示为没有操作的类图</p>
+<h3 id="名词法定义概念类"><a href="#名词法定义概念类" class="headerlink" title="名词法定义概念类"></a>名词法定义概念类</h3><p>策略:</p>
+<blockquote>
+<ul>
+<li>重用或修改已有模型</li>
+<li>参考行业,公司内部的”概念类列表”(checklist)</li>
+<li>在需求描述中寻找名词(短语)</li>
+</ul>
+</blockquote>
+<p>具体方法:</p>
+<blockquote>
+<ul>
+<li>在问题领域的文本描述中,标识出名词(短语),将它们作为候选的概念类或属性</li>
+<li>对发现的名称(短语)进行分析,辨别概念是否能合并</li>
+<li>定义概念类之间的关系</li>
+<li>定义概念类的属性</li>
+</ul>
+</blockquote>
+<p>注意:</p>
+<blockquote>
+<ul>
+<li>不能机械地将名称直接转换成概念类</li>
+<li>对自然语言描述的歧义,重复要仔细分析</li>
+</ul>
+</blockquote>
+<h2 id="3-3-分析模型法"><a href="#3-3-分析模型法" class="headerlink" title="3.3 分析模型法"></a>3.3 分析模型法</h2><h3 id="概述-7"><a href="#概述-7" class="headerlink" title="概述"></a>概述</h3><p>分析模型法用于描述系统规格的说明;从系统的信息,行为,输入输出的方面入手分析问题</p>
+<blockquote>
+<ul>
+<li>一个健壮,稳定的模型必须与实现环境无关</li>
+<li>实现环境的任何变化,不会影响到系统的逻辑结构</li>
+<li>分析模型能够关注到系统的信息,行为,展示(输入输出)等特性</li>
+</ul>
+</blockquote>
+<h3 id="分析模型的表示符号"><a href="#分析模型的表示符号" class="headerlink" title="分析模型的表示符号"></a>分析模型的表示符号</h3><p><img src="/2020/06/21/object-oriented0/analysis0.jpg" alt>  </p>
+<blockquote>
+<ul>
+<li>实体类: 圆下一切线;主要表示系统内的信息</li>
+<li>边界类: 圆外一边界;主要表示系统的展示</li>
+<li>控制类: 圆上一箭头;主要表示系统的行为</li>
+</ul>
+</blockquote>
+<h3 id="分析模型类的标识和类间关系识别"><a href="#分析模型类的标识和类间关系识别" class="headerlink" title="分析模型类的标识和类间关系识别"></a>分析模型类的标识和类间关系识别</h3><p>关注三个维度: 系统信息,系统接口(展示),系统行为(控制)</p>
+<blockquote>
+<ul>
+<li>识别系统内部实体对象: 实体类</li>
+<li>识别和接口相关的对象: 边界类</li>
+<li>识别调度相关的对象: 控制类</li>
+</ul>
+</blockquote>
+<p>类间关系的表示:<br><img src="/2020/06/21/object-oriented0/analysis1.jpg" alt></p>
+<h2 id="3-4-面向对象设计-初步"><a href="#3-4-面向对象设计-初步" class="headerlink" title="3.4 面向对象设计(初步)"></a>3.4 面向对象设计(初步)</h2><p>面向对象设计是在概念模型的基础上进行设计</p>
+<h3 id="一般原则"><a href="#一般原则" class="headerlink" title="一般原则"></a>一般原则</h3><blockquote>
+<ul>
+<li>一个面向对象系统是由相互发送消息的对象组成的</li>
+<li>一个软件系统的质量如何取决于各对象是否能够各司其职</li>
+</ul>
+</blockquote>
+<h3 id="职责驱动的设计"><a href="#职责驱动的设计" class="headerlink" title="职责驱动的设计"></a>职责驱动的设计</h3><p>职责: 职责是一个对象的行为,而其他对象依赖这种行为</p>
+<blockquote>
+<ul>
+<li>职责是外界对该对象的一种期待</li>
+<li>该对象不履行职责将会对其他对象产生(负面)影响</li>
+</ul>
+</blockquote>
+<p>对象职责的分类(老师和同学的关系):</p>
+<blockquote>
+<ul>
+<li>认知职责: <blockquote>
+<ul>
+<li>该对象的私有信息: 老师的个人信息</li>
+<li>该对象和其他对象相关的一些信息: 老师有学生名单</li>
+<li>能通过该对象已知信息推导出来的信息</li>
+</ul>
+</blockquote>
+</li>
+<li>行为职责<blockquote>
+<ul>
+<li>该对象自己的行为: 老师讲课</li>
+<li>该对象初始化其他的对象行为: 老师让同学回答问题 </li>
+<li>该对象控制协调其他对象的行为: 老师让同学们小组合作</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p>策略: 考虑每个类的职责</p>
+<blockquote>
+<ul>
+<li>设计时考虑对象做什么或知道什么</li>
+<li>设计时考虑一个对象对其他对象承担的义务或合约</li>
+</ul>
+</blockquote>
+
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/06/21/object-oriented0/" data-id="ckbvhvrak0028tkvncb5vbgyk"
+      <a data-url="http://georgechen1827.github.io/2020/06/21/object-oriented0/" data-id="ckf5ehrch001yp0vn3hmog65c"
         class="article-share-link">share</a>
         
       
@@ -117,6 +775,15 @@
   
   
   <nav class="article-nav">
+    
+      <a href="/2020/09/06/computer-network0/" class="article-nav-link">
+        <strong class="article-nav-caption">Prev Post</strong>
+        <div class="article-nav-title">
+          
+            计算机网络
+          
+        </div>
+      </a>
     
     
       <a href="/2020/06/07/compilers0/" class="article-nav-link">
