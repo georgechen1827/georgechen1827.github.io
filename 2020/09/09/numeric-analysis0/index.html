@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">1.1k words</span>
+            <span class="post-count">1.5k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">4 minutes</span>
+            <span class="post-count">5 minutes</span>
         </span>
     </span>
 </div>
@@ -141,6 +141,8 @@
 <li>并行性</li>
 </ul>
 </blockquote>
+<a id="more"></a>
+
 <h2 id="1-2-计算格式的相容性与稳定性"><a href="#1-2-计算格式的相容性与稳定性" class="headerlink" title="1.2 计算格式的相容性与稳定性"></a>1.2 计算格式的相容性与稳定性</h2><h3 id="相容性"><a href="#相容性" class="headerlink" title="相容性"></a>相容性</h3><p>如果一个计算格式在取某种极限后可还原成某种数学模型，那么这个计算格式和此数学模型相容</p>
 <h3 id="稳定性"><a href="#稳定性" class="headerlink" title="稳定性"></a>稳定性</h3><p>如果在用某一计算格式进行数值计算（迭代）的过程中，舍入误差不会严重积累（扩大），从而能够保证最终解满足所要求的精度，则称该计算格式数值稳定</p>
 <blockquote>
@@ -189,13 +191,57 @@
 <li>一般地，当$\epsilon=10^{-m},\ 则 \ k=[\frac{lg(b-a)+m}{lg2}]$</li>
 </ul>
 </blockquote>
-<h3 id="二分法评述"><a href="#二分法评述" class="headerlink" title="二分法评述"></a>二分法评述</h3>
+<h3 id="二分法评述"><a href="#二分法评述" class="headerlink" title="二分法评述"></a>二分法评述</h3><blockquote>
+<ul>
+<li>算法简单</li>
+<li>收敛速度不高</li>
+<li>无法求复数根，偶数个重根不能求</li>
+</ul>
+</blockquote>
+<h2 id="2-2-一般迭代法"><a href="#2-2-一般迭代法" class="headerlink" title="2.2 一般迭代法"></a>2.2 一般迭代法</h2><h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h3><blockquote>
+<ul>
+<li>$f(x)=0 \to x=g(x)$</li>
+<li>建立迭代格式$x_{k+1}=g(x_k),\ k-0,1…$</li>
+<li>选取$x_0$，进行迭代$x_0 \to x_1 \to…$<br>若无说明，$x_0$具有任意性</li>
+</ul>
+</blockquote>
+<p>此时：</p>
+<blockquote>
+<ul>
+<li>若${ x_k }$收敛，即$\lim_{k \to \infty} x^k = x^<em>$，此时$f(x^</em>)=0$</li>
+<li>若${ x_k }$不收敛，迭代失败</li>
+</ul>
+</blockquote>
+<h3 id="迭代算法的收敛性"><a href="#迭代算法的收敛性" class="headerlink" title="迭代算法的收敛性"></a>迭代算法的收敛性</h3><p>一个定义：<br>$$在区间\Delta内,g(x)满足下列李普希兹条件：\<br>|g(x)-g(y)| \le L|x-y| 对 \forall x,y \in \delta, 常数0&lt;L&lt;1成立 \<br>则称g(x) 在 \Delta 内李普希兹连续$$</p>
+<p>可以知道：<br>$$若g’(x)在闭区间\Delta内连续且|g’(x)|\le L&lt;1对\forall x \in \Delta连续 \<br>则g(x)在\Delta内李普希兹连续$$</p>
+<p>此时，得到如下定理：<br>$$在方程x^<em>=g(x^</em>)中，若\<br>g(x)在闭区间\Delta内李普希兹连续，则\<br>对\forall x_0 \in \Delta，由迭代格式x_{k+1}=g(x_k)计算得到的解序列{x_k}收敛于x^<em>\<br>此时称迭代格式x_{k+1}=g(x_k)在x^</em>的邻域\Delta上局部收敛$$</p>
+<blockquote>
+<ul>
+<li>此时，$|x^*-x_k| \le \frac L{1-L}|x_k-x_{k-1}|$（误差估计）</li>
+<li>$g(x)$在$\Delta$内李普希兹连续保证了$x^*为f(x)=0在\Delta内的唯一根$</li>
+</ul>
+</blockquote>
+<p>实际判断方法：</p>
+<blockquote>
+<ul>
+<li>设$x_0$是$x^*$的一个近似</li>
+<li>若$|g’(x_0)|&lt;1$，则判断收敛；反之不收敛</li>
+</ul>
+</blockquote>
+<h3 id="收敛情况下的误差估计"><a href="#收敛情况下的误差估计" class="headerlink" title="收敛情况下的误差估计"></a>收敛情况下的误差估计</h3><blockquote>
+<ul>
+<li>事前估计法（常量估计）：$|x_k-x^*|&lt;\epsilon_1$</li>
+<li>事前估计法（差值估计）：$|x_k-x_{k-1}|&lt;\epsilon_2$</li>
+<li>事后估计法：$|f(x_k)|&lt;\epsilon_3$</li>
+</ul>
+</blockquote>
+
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/09/numeric-analysis0/" data-id="ckf5ehrci0020p0vn94a62urd"
+      <a data-url="http://georgechen1827.github.io/2020/09/09/numeric-analysis0/" data-id="ckffegrqh001uaovnfezqfxn4"
         class="article-share-link">share</a>
         
       

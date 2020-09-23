@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">2k words</span>
+            <span class="post-count">2.7k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">6 minutes</span>
+            <span class="post-count">9 minutes</span>
         </span>
     </span>
 </div>
@@ -105,6 +105,8 @@
 <p>课程目标：理解网络工作的原理以及实现</p>
 <p>没有多少理论，但课程课程的实践性很强</p>
 <p>参考教材：《数据通信与网络》、《计算机网络技术Andrew S.》、《计算机网络自顶向下方法（从宏观到微观的设计）》</p>
+<a id="more"></a>
+
 <h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><h2 id="1-1-计算机网络的发展过程"><a href="#1-1-计算机网络的发展过程" class="headerlink" title="1.1 计算机网络的发展过程"></a>1.1 计算机网络的发展过程</h2><h3 id="发展过程"><a href="#发展过程" class="headerlink" title="发展过程"></a>发展过程</h3><p>ENAIC - TSS分时系统 - 计算机网络</p>
 <p>从以主机为中心到以分组交换网为中心</p>
 <p>萌芽：1969第一个分组交换网络ARPANET</p>
@@ -318,13 +320,106 @@
 </ul>
 </blockquote>
 <p>IP体系的沙漏模型：核心是IP网际层</p>
+<p>每层的协议</p>
+<blockquote>
+<ul>
+<li>应用层：HTTP</li>
+<li>运输层：TCP/UDP</li>
+<li>网际层：IP</li>
+<li>网络接口层：ETHERNET（以太网）</li>
+</ul>
+</blockquote>
+<h1 id="二、物理层"><a href="#二、物理层" class="headerlink" title="二、物理层"></a>二、物理层</h1><h2 id="2-1-基本概念"><a href="#2-1-基本概念" class="headerlink" title="2.1 基本概念"></a>2.1 基本概念</h2><blockquote>
+<ul>
+<li>功能：在物理媒体上传输原始的数据比特流</li>
+<li>任务：确定与传输媒体的接口的一些特性</li>
+</ul>
+</blockquote>
+<h2 id="2-2-数据通信的基础知识"><a href="#2-2-数据通信的基础知识" class="headerlink" title="2.2 数据通信的基础知识"></a>2.2 数据通信的基础知识</h2><p>几个术语：</p>
+<blockquote>
+<ul>
+<li>数据：运送信息的实体</li>
+<li>信号：数据的电气或电磁的表现</li>
+<li>模拟的：连续变化的</li>
+<li>数字的：取值是离散数值</li>
+<li>调制：将数字信号转换为模拟信号的过程</li>
+<li>解调：将模拟信号转换成数字信号的过程</li>
+</ul>
+</blockquote>
+<p>有关信号的几个基本概念：</p>
+<blockquote>
+<ul>
+<li>单向通信（单工通信）：只能有一个方向的通信而没有反方向的交互。</li>
+<li>双向交替通信（半双工通信）：通信的双方都可以发送信息，但不能双方同时发送(当然也就不能同时接收)。</li>
+<li>双向同时通信（全双工通信）：通信的双方可以同时发送和接收信息。</li>
+</ul>
+</blockquote>
+<p>基带信号和宽带信号：</p>
+<blockquote>
+<ul>
+<li>基带信号就是将数字信号1或0直接用两种不同的电压来表示，然后送到线路上去传输。 </li>
+<li>宽带信号则是将基带信号进行调制后形成的频分复用模拟信号</li>
+</ul>
+</blockquote>
+<p>码和波特率：</p>
+<blockquote>
+<ul>
+<li>码元：时间轴上的一个信号编码单位</li>
+<li>波特率：每秒钟发送的码元数（每秒钟电压变化的次数）</li>
+<li>比特率：比特率C=波特率B*log2(N)；N为一个码元中的状态数</li>
+<li>奈氏准则：理想低通信道最高码元传输速率为两倍的波特率</li>
+</ul>
+</blockquote>
+<p>信道的极限信息传输速率：</p>
+<blockquote>
+<ul>
+<li>C = Wlog2(1+S/N) b/s</li>
+<li>W为信道带宽(Hz)</li>
+<li>S为信道内所传信号的平均功率</li>
+<li>N为信道内部的高斯噪声功率</li>
+</ul>
+</blockquote>
+<h2 id="2-3-物理层的传输媒体"><a href="#2-3-物理层的传输媒体" class="headerlink" title="2.3 物理层的传输媒体"></a>2.3 物理层的传输媒体</h2><p>导向传输介质：</p>
+<blockquote>
+<ul>
+<li>双绞线：双绞线既可以传输数字信号，又可以传输模拟信号</li>
+<li>同轴电缆</li>
+<li>光纤：抗干扰，不容易腐蚀；多模光纤（短距离小容量传输）；单模光纤（大容量长距离传输）</li>
+</ul>
+</blockquote>
+<p>非导向传输媒体：</p>
+<blockquote>
+<ul>
+<li>视线介质：微波、红外线和激光</li>
+<li>无线电传输</li>
+<li>地球同步卫星</li>
+<li>低轨系统</li>
+</ul>
+</blockquote>
+<h2 id="2-4-模拟传输与数字传输"><a href="#2-4-模拟传输与数字传输" class="headerlink" title="2.4 模拟传输与数字传输"></a>2.4 模拟传输与数字传输</h2><h3 id="模拟传输系统"><a href="#模拟传输系统" class="headerlink" title="模拟传输系统"></a>模拟传输系统</h3><p>连续波数字调制方法：</p>
+<blockquote>
+<ul>
+<li>ASK(AM)：调幅</li>
+<li>FSK：调频</li>
+<li>PSK：调相;4-PSK;16-APSK(QAM)</li>
+<li>QAM能将4K带宽的电话线传输64Kbps的数字信号</li>
+</ul>
+</blockquote>
+<h3 id="数字传输系统"><a href="#数字传输系统" class="headerlink" title="数字传输系统"></a>数字传输系统</h3><p>数字数据的数字信号编码：</p>
+<blockquote>
+<ul>
+<li>NRZ：正负电平表示0和1；要求收发双方时钟严格同步</li>
+<li>Manchester：电平从正到负、从负到正的变化表示0和1；解决时钟同步问题</li>
+<li>差分Manchester：两个时钟信号之间电平变化表示0，不变表示1</li>
+</ul>
+</blockquote>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/06/computer-network0/" data-id="ckf5ehrbq000op0vn7fzabxmf"
+      <a data-url="http://georgechen1827.github.io/2020/09/06/computer-network0/" data-id="ckffegrq1000qaovnbjwaekae"
         class="article-share-link">share</a>
         
       

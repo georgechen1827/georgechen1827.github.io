@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">2.8k words</span>
+            <span class="post-count">2.9k words</span>
         </span>
     </span>
 
@@ -122,6 +122,8 @@
 </ul>
 </blockquote>
 <p>期末考试70%闭卷，论文汇报10%，作业考勤20%</p>
+<a id="more"></a>
+
 <h1 id="一、算法在计算机中的应用"><a href="#一、算法在计算机中的应用" class="headerlink" title="一、算法在计算机中的应用"></a>一、算法在计算机中的应用</h1><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>算法是：</p>
 <blockquote>
 <ul>
@@ -251,15 +253,7 @@
 <li>反例法</li>
 </ul>
 </blockquote>
-<h2 id="2-3-算法分析设计实例：分治法"><a href="#2-3-算法分析设计实例：分治法" class="headerlink" title="2.3 算法分析设计实例：分治法"></a>2.3 算法分析设计实例：分治法</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><blockquote>
-<ul>
-<li>核心思想：分而治之，各个击破</li>
-<li>递归结构：为解决一个给定的问题，算法一次或多次地调用自身</li>
-<li>分治策略：将原问题划分为n个规模较小而结构相似的子问题进行求解</li>
-<li>步骤：分解、解决、合并</li>
-</ul>
-</blockquote>
-<h3 id="分治法分析"><a href="#分治法分析" class="headerlink" title="分治法分析"></a>分治法分析</h3><p>归并排序中MERGE操作的正确性：P19</p>
+<h2 id="2-3-算法分析设计实例：分治法"><a href="#2-3-算法分析设计实例：分治法" class="headerlink" title="2.3 算法分析设计实例：分治法"></a>2.3 算法分析设计实例：分治法</h2><h3 id="分治法分析"><a href="#分治法分析" class="headerlink" title="分治法分析"></a>分治法分析</h3><p>归并排序中MERGE操作的正确性：P19</p>
 <p>时间复杂度分析：</p>
 <blockquote>
 <p>当一个算法含有对其自身的递归调用时，其运行时间可以用如下一个递归方程来表示：<br>$$<br>T(n)=<br>\begin{cases}<br>\Theta(1) , &amp;n \le c \<br>aT(n/b) + D(n) + C(n) , &amp;other\ casese<br>\end{cases}<br>$$<br>其中：</p>
@@ -273,7 +267,7 @@
 </blockquote>
 <p>在归并排序中，上述$a=b=2$;分解问题为常量时间$\Theta(1)$；合并问题需要一个n的线性函数时间$\Theta(n)$<br>即：<br>$$<br>T(n)=<br>\begin{cases}<br>c , &amp;n = 1 \<br>2T(n/2) + cn , &amp;n &gt; 1<br>\end{cases}<br>$$</p>
 <p>求解这个递归式时，我们需要画出它的递归树进行分析，此时我们发现，树的每一层执行时间都为cn，树高为lgn<br>所以：<br>$$T(n) = cnlgn+cn = \Theta(nlgn)$$</p>
-<h1 id="三、函数的增长"><a href="#三、函数的增长" class="headerlink" title="三、函数的增长"></a>三、函数的增长</h1><h2 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h2><p>对于足够大的输入规模，算法精确运行时间中的倍增常量和低阶项被输入规模本身刚到影响所支配</p>
+<h1 id="三、函数的增长"><a href="#三、函数的增长" class="headerlink" title="三、函数的增长"></a>三、函数的增长</h1><h2 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h2><p>对于足够大的输入规模，算法精确运行时间中的倍增常量和低阶项被输入规模本身刚到影响所支配</p>
 <blockquote>
 <p>此时，我们要研究算法的渐进效率；即在极限中，算法的运行时间如何随着输入规模的变大而增加</p>
 </blockquote>
@@ -336,27 +330,48 @@
 <li>渐近记号可以替代公式中的一些无关紧要的细节，我们将其解释为匿名函数</li>
 </ul>
 </blockquote>
-<h2 id="3-2-算法时间复杂度分类"><a href="#3-2-算法时间复杂度分类" class="headerlink" title="3.2 算法时间复杂度分类"></a>3.2 算法时间复杂度分类</h2><h1 id="四、分治策略"><a href="#四、分治策略" class="headerlink" title="四、分治策略"></a>四、分治策略</h1><h2 id="概述-3"><a href="#概述-3" class="headerlink" title="概述"></a>概述</h2><h3 id="递归式求解方法"><a href="#递归式求解方法" class="headerlink" title="递归式求解方法"></a>递归式求解方法</h3><blockquote>
+<h2 id="3-2-算法时间复杂度分类"><a href="#3-2-算法时间复杂度分类" class="headerlink" title="3.2 算法时间复杂度分类"></a>3.2 算法时间复杂度分类</h2><h1 id="四、分治策略"><a href="#四、分治策略" class="headerlink" title="四、分治策略"></a>四、分治策略</h1><h2 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h2><h3 id="分治策略"><a href="#分治策略" class="headerlink" title="分治策略"></a>分治策略</h3><blockquote>
 <ul>
-<li>代入法</li>
-<li>递归树法</li>
-<li>主方法</li>
+<li>核心思想：分而治之，各个击破</li>
+<li>递归结构：为解决一个给定的问题，算法一次或多次地调用自身</li>
+<li>分治策略：将原问题划分为n个规模较小而结构相似的子问题进行求解</li>
+<li>步骤：分解、解决、合并</li>
 </ul>
 </blockquote>
+<h3 id="递归式求解方法"><a href="#递归式求解方法" class="headerlink" title="递归式求解方法"></a>递归式求解方法</h3><ul>
+<li>代入法<blockquote>
+<ul>
+<li>猜测解的形式：换元、放缩等等，避免陷阱</li>
+<li>用数学归纳法证明</li>
+</ul>
+</blockquote>
+</li>
+<li>递归树法（用于猜想递归式的解）<blockquote>
+<ul>
+<li>树中每一个节点都代表递归函数调用集合中一个子问题的代价；将树中每一层内的代价相加，再层层叠加得到总代价</li>
+<li>考虑树的深度、每层节点数、（合并）节点的代价</li>
+</ul>
+</blockquote>
+</li>
+<li>主方法</li>
+</ul>
 <h2 id="4-1-最大子数组问题"><a href="#4-1-最大子数组问题" class="headerlink" title="4.1 最大子数组问题"></a>4.1 最大子数组问题</h2><p>炒股问题：最大子数组问题</p>
 <blockquote>
 <ul>
 <li>即，已知数组A，需要寻找A的和最大的非空连续子数组</li>
 </ul>
 </blockquote>
-<p>跨界问题</p>
+<p>P38 － 42</p>
+<h2 id="4-2-矩阵乘法的Straseen算法"><a href="#4-2-矩阵乘法的Straseen算法" class="headerlink" title="4.2 矩阵乘法的Straseen算法"></a>4.2 矩阵乘法的Straseen算法</h2><p>朴素矩阵乘法：nˆ3</p>
+<h1 id="五、概率分析和随机算法"><a href="#五、概率分析和随机算法" class="headerlink" title="五、概率分析和随机算法"></a>五、概率分析和随机算法</h1><h2 id="5-1-雇佣问题"><a href="#5-1-雇佣问题" class="headerlink" title="5.1 雇佣问题"></a>5.1 雇佣问题</h2><p>随机算法：</p>
+<p>期望的和等于和的期望</p>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/08/algorithm0/" data-id="ckf5ehrba0008p0vndbs39pj3"
+      <a data-url="http://georgechen1827.github.io/2020/09/08/algorithm0/" data-id="ckffegrpi0002aovn8ihn0op8"
         class="article-share-link">share</a>
         
       

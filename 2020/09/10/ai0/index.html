@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">370 words</span>
+            <span class="post-count">1.2k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">1 minutes</span>
+            <span class="post-count">3 minutes</span>
         </span>
     </span>
 </div>
@@ -110,6 +110,8 @@
 </ul>
 </blockquote>
 <p>考核：平时30%（上课问答10%、实验20%），考试70%（填空选择和简答）</p>
+<a id="more"></a>
+
 <h1 id="一、绪论"><a href="#一、绪论" class="headerlink" title="一、绪论"></a>一、绪论</h1><h2 id="1-1-人工智能的定义与发展"><a href="#1-1-人工智能的定义与发展" class="headerlink" title="1.1 人工智能的定义与发展"></a>1.1 人工智能的定义与发展</h2><p>定义：</p>
 <blockquote>
 <ul>
@@ -137,13 +139,132 @@
 <li>行为主义</li>
 </ul>
 </blockquote>
+<h1 id="二、知识表示"><a href="#二、知识表示" class="headerlink" title="二、知识表示"></a>二、知识表示</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>知识表示需要：</p>
+<blockquote>
+<ul>
+<li>定义符号结构和必要操作</li>
+<li>在搜索过程开始前，先用某（几）种方法的混合来表示问题</li>
+</ul>
+</blockquote>
+<p>知识到特点：</p>
+<blockquote>
+<ul>
+<li>相对正确性</li>
+<li>不确定性</li>
+<li>可表示性</li>
+<li>可利用性</li>
+</ul>
+</blockquote>
+<p>知识到分类：</p>
+<blockquote>
+<ul>
+<li>知识的作用范围：常识和领域知识</li>
+<li>知识的作用及表示：事实性知识（属性、概念知识）和规则知识（因果关系知识）</li>
+<li>知识到确定性：确定和不确定</li>
+<li>逻辑性</li>
+</ul>
+</blockquote>
+<h2 id="2-1-状态空间法"><a href="#2-1-状态空间法" class="headerlink" title="2.1 状态空间法"></a>2.1 状态空间法</h2><p>元素：</p>
+<blockquote>
+<ul>
+<li>状态：用于描述同类事物的不同实例而引入的一组最少的分量组成的有序的集合</li>
+<li>算符/操作符：使问题从一种状态变化为另一种状态的手段</li>
+<li>问题的状态空间：表示问题的全部可能状态及其关系的图</li>
+</ul>
+</blockquote>
+<p>状态空间可以表示为三元组(S,F,G)</p>
+<blockquote>
+<ul>
+<li>S：初始状态集合</li>
+<li>F：算符集合</li>
+<li>G：目标状态集合</li>
+</ul>
+</blockquote>
+<p>状态空间表示问题的步骤：</p>
+<blockquote>
+<ul>
+<li>定义状态的描述形式</li>
+<li>表示出所有状态，并确定初始状态集合和目标状态集合</li>
+<li>定义一组算符</li>
+</ul>
+</blockquote>
+<p>问题的解：从问题的初始状态出发到目标状态所经过的所有算符构成的序列</p>
+<h2 id="2-2-产生式表示法"><a href="#2-2-产生式表示法" class="headerlink" title="2.2 产生式表示法"></a>2.2 产生式表示法</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><p>产生式表示：基于规则的表示方法，主要应用于专家系统中</p>
+<p>特点：</p>
+<blockquote>
+<ul>
+<li>清晰</li>
+<li>模块性</li>
+<li>自然性</li>
+</ul>
+</blockquote>
+<p>产生式可表示的知识种类：</p>
+<blockquote>
+<ul>
+<li>事实性知识</li>
+<li>规则知识</li>
+</ul>
+</blockquote>
+<p>产生式表示方法（可用元组表示）：</p>
+<blockquote>
+<ul>
+<li>确定性事实：if P then Q</li>
+<li>不确定性事实：if P then Q (置信度)</li>
+</ul>
+</blockquote>
+<p>产生式系统的组成：一组产生式的相互配合，互相推理来得到结果的系统</p>
+<blockquote>
+<ul>
+<li>规则库</li>
+<li>综合数据库</li>
+<li>推理机</li>
+</ul>
+</blockquote>
+<h3 id="规则库"><a href="#规则库" class="headerlink" title="规则库"></a>规则库</h3><blockquote>
+<ul>
+<li>规则库是用于描述某个领域内知识到产生式集合，是某个领域知识到存储器</li>
+<li>规则库包含将问题从初始状态转换成目标状态的转换规则</li>
+<li>规则库是系统的核心，知识到完整性、一致性、准确性和灵活性都对知识的性能和运行效率产生直接的影响</li>
+</ul>
+</blockquote>
+<h3 id="综合数据库"><a href="#综合数据库" class="headerlink" title="综合数据库"></a>综合数据库</h3><blockquote>
+<ul>
+<li>综合数据库用于存放输入的事实，它们可从规则推理得到</li>
+<li>综合数据库是不断改变的</li>
+</ul>
+</blockquote>
+<h3 id="推理机"><a href="#推理机" class="headerlink" title="推理机"></a>推理机</h3><p>推理机的动作：</p>
+<blockquote>
+<ul>
+<li>匹配：将数据库中的知识和规则中的条件相比较</li>
+<li>冲突解决：有多种规则匹配数据库的同一条信息时，需要进行排序取舍，确定执行策略</li>
+<li>操作：修改数据库</li>
+</ul>
+</blockquote>
+<p>推理机的推理方式</p>
+<blockquote>
+<ul>
+<li>正向推理</li>
+<li>反向推理</li>
+<li>双向推理</li>
+</ul>
+</blockquote>
+<h2 id="2-3-命题和谓词逻辑"><a href="#2-3-命题和谓词逻辑" class="headerlink" title="2.3 命题和谓词逻辑"></a>2.3 命题和谓词逻辑</h2><p>P25-P33</p>
+<p>用谓词公式表示知识到步骤：</p>
+<blockquote>
+<ul>
+<li>定义谓词及个体</li>
+<li>将谓词公式中的变量替换为个体实例得到逻辑表达式</li>
+<li>根据语义将上述表达式连接起来</li>
+</ul>
+</blockquote>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/10/ai0/" data-id="ckf5ehrb80006p0vndn3uexgl"
+      <a data-url="http://georgechen1827.github.io/2020/09/10/ai0/" data-id="ckffegrpb0000aovn03yuhn6r"
         class="article-share-link">share</a>
         
       

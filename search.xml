@@ -12,6 +12,16 @@
 </ul>
 </blockquote>
 <p>图形学和图像处理两个研究方向是相反的</p>
+<p>内容：</p>
+<blockquote>
+<ul>
+<li>基础：绪论、图形系统、图形几何变换</li>
+<li>建模：三维造型</li>
+<li>绘制：二维基本图形光栅化与裁剪、真实感图形技术</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+
 <h1 id="一、绪论"><a href="#一、绪论" class="headerlink" title="一、绪论"></a>一、绪论</h1><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>图形学的定义：</p>
 <blockquote>
 <ul>
@@ -27,8 +37,41 @@
 <li>3D电影、动漫、游戏</li>
 </ul>
 </blockquote>
-<h3 id="图形和图像的区别"><a href="#图形和图像的区别" class="headerlink" title="图形和图像的区别"></a>图形和图像的区别</h3><p>图形是由不同属性的点、线、面等几何元素组合构成的图画，用来表示主客观世界中各物体的几何信息</p>
-<p>图像则是对自然界事物的客观反映</p>
+<h3 id="图形和图像的区别"><a href="#图形和图像的区别" class="headerlink" title="图形和图像的区别"></a>图形和图像的区别</h3><table>
+<thead>
+<tr>
+<th align="center">比较内容</th>
+<th align="center">图形</th>
+<th align="center">图像</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">基本元素</td>
+<td align="center">点、线、面等几何元素</td>
+<td align="center">像素</td>
+</tr>
+<tr>
+<td align="center">存储数据</td>
+<td align="center">各个矢量的参数（属性）</td>
+<td align="center">各个像素的灰度或颜色分量</td>
+</tr>
+<tr>
+<td align="center">处理方式</td>
+<td align="center">旋转、扭曲、拉伸等</td>
+<td align="center">对比度增强、边缘检测等</td>
+</tr>
+<tr>
+<td align="center">缩放效果</td>
+<td align="center">不会失真，可以适应不同分辨率</td>
+<td align="center">放大时会失真，可看到颗粒状像素</td>
+</tr>
+</tbody></table>
+<blockquote>
+<ul>
+<li>图形是由不同属性的点、线、面等几何元素组合构成的图画，用来表示主客观世界中各物体的几何信息</li>
+<li>图像则是对自然界事物的客观反映</li>
+</ul>
+</blockquote>
 <h3 id="图形的处理"><a href="#图形的处理" class="headerlink" title="图形的处理"></a>图形的处理</h3><p>图形的处理有表示和显示两个方面：</p>
 <blockquote>
 <ul>
@@ -68,6 +111,12 @@
 <li>实现高度真实的动态仿真</li>
 </ul>
 </blockquote>
+<h1 id="二、图形系统"><a href="#二、图形系统" class="headerlink" title="二、图形系统"></a>二、图形系统</h1><h2 id="2-1-显示设备"><a href="#2-1-显示设备" class="headerlink" title="2.1 显示设备"></a>2.1 显示设备</h2><blockquote>
+<ul>
+<li>阴极射线管</li>
+<li>液晶显示器</li>
+</ul>
+</blockquote>
 ]]></content>
       <categories>
         <category>notes</category>
@@ -90,6 +139,8 @@
 </ul>
 </blockquote>
 <p>考核：平时30%（上课问答10%、实验20%），考试70%（填空选择和简答）</p>
+<a id="more"></a>
+
 <h1 id="一、绪论"><a href="#一、绪论" class="headerlink" title="一、绪论"></a>一、绪论</h1><h2 id="1-1-人工智能的定义与发展"><a href="#1-1-人工智能的定义与发展" class="headerlink" title="1.1 人工智能的定义与发展"></a>1.1 人工智能的定义与发展</h2><p>定义：</p>
 <blockquote>
 <ul>
@@ -117,14 +168,133 @@
 <li>行为主义</li>
 </ul>
 </blockquote>
+<h1 id="二、知识表示"><a href="#二、知识表示" class="headerlink" title="二、知识表示"></a>二、知识表示</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>知识表示需要：</p>
+<blockquote>
+<ul>
+<li>定义符号结构和必要操作</li>
+<li>在搜索过程开始前，先用某（几）种方法的混合来表示问题</li>
+</ul>
+</blockquote>
+<p>知识到特点：</p>
+<blockquote>
+<ul>
+<li>相对正确性</li>
+<li>不确定性</li>
+<li>可表示性</li>
+<li>可利用性</li>
+</ul>
+</blockquote>
+<p>知识到分类：</p>
+<blockquote>
+<ul>
+<li>知识的作用范围：常识和领域知识</li>
+<li>知识的作用及表示：事实性知识（属性、概念知识）和规则知识（因果关系知识）</li>
+<li>知识到确定性：确定和不确定</li>
+<li>逻辑性</li>
+</ul>
+</blockquote>
+<h2 id="2-1-状态空间法"><a href="#2-1-状态空间法" class="headerlink" title="2.1 状态空间法"></a>2.1 状态空间法</h2><p>元素：</p>
+<blockquote>
+<ul>
+<li>状态：用于描述同类事物的不同实例而引入的一组最少的分量组成的有序的集合</li>
+<li>算符/操作符：使问题从一种状态变化为另一种状态的手段</li>
+<li>问题的状态空间：表示问题的全部可能状态及其关系的图</li>
+</ul>
+</blockquote>
+<p>状态空间可以表示为三元组(S,F,G)</p>
+<blockquote>
+<ul>
+<li>S：初始状态集合</li>
+<li>F：算符集合</li>
+<li>G：目标状态集合</li>
+</ul>
+</blockquote>
+<p>状态空间表示问题的步骤：</p>
+<blockquote>
+<ul>
+<li>定义状态的描述形式</li>
+<li>表示出所有状态，并确定初始状态集合和目标状态集合</li>
+<li>定义一组算符</li>
+</ul>
+</blockquote>
+<p>问题的解：从问题的初始状态出发到目标状态所经过的所有算符构成的序列</p>
+<h2 id="2-2-产生式表示法"><a href="#2-2-产生式表示法" class="headerlink" title="2.2 产生式表示法"></a>2.2 产生式表示法</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><p>产生式表示：基于规则的表示方法，主要应用于专家系统中</p>
+<p>特点：</p>
+<blockquote>
+<ul>
+<li>清晰</li>
+<li>模块性</li>
+<li>自然性</li>
+</ul>
+</blockquote>
+<p>产生式可表示的知识种类：</p>
+<blockquote>
+<ul>
+<li>事实性知识</li>
+<li>规则知识</li>
+</ul>
+</blockquote>
+<p>产生式表示方法（可用元组表示）：</p>
+<blockquote>
+<ul>
+<li>确定性事实：if P then Q</li>
+<li>不确定性事实：if P then Q (置信度)</li>
+</ul>
+</blockquote>
+<p>产生式系统的组成：一组产生式的相互配合，互相推理来得到结果的系统</p>
+<blockquote>
+<ul>
+<li>规则库</li>
+<li>综合数据库</li>
+<li>推理机</li>
+</ul>
+</blockquote>
+<h3 id="规则库"><a href="#规则库" class="headerlink" title="规则库"></a>规则库</h3><blockquote>
+<ul>
+<li>规则库是用于描述某个领域内知识到产生式集合，是某个领域知识到存储器</li>
+<li>规则库包含将问题从初始状态转换成目标状态的转换规则</li>
+<li>规则库是系统的核心，知识到完整性、一致性、准确性和灵活性都对知识的性能和运行效率产生直接的影响</li>
+</ul>
+</blockquote>
+<h3 id="综合数据库"><a href="#综合数据库" class="headerlink" title="综合数据库"></a>综合数据库</h3><blockquote>
+<ul>
+<li>综合数据库用于存放输入的事实，它们可从规则推理得到</li>
+<li>综合数据库是不断改变的</li>
+</ul>
+</blockquote>
+<h3 id="推理机"><a href="#推理机" class="headerlink" title="推理机"></a>推理机</h3><p>推理机的动作：</p>
+<blockquote>
+<ul>
+<li>匹配：将数据库中的知识和规则中的条件相比较</li>
+<li>冲突解决：有多种规则匹配数据库的同一条信息时，需要进行排序取舍，确定执行策略</li>
+<li>操作：修改数据库</li>
+</ul>
+</blockquote>
+<p>推理机的推理方式</p>
+<blockquote>
+<ul>
+<li>正向推理</li>
+<li>反向推理</li>
+<li>双向推理</li>
+</ul>
+</blockquote>
+<h2 id="2-3-命题和谓词逻辑"><a href="#2-3-命题和谓词逻辑" class="headerlink" title="2.3 命题和谓词逻辑"></a>2.3 命题和谓词逻辑</h2><p>P25-P33</p>
+<p>用谓词公式表示知识到步骤：</p>
+<blockquote>
+<ul>
+<li>定义谓词及个体</li>
+<li>将谓词公式中的变量替换为个体实例得到逻辑表达式</li>
+<li>根据语义将上述表达式连接起来</li>
+</ul>
+</blockquote>
 ]]></content>
       <categories>
         <category>notes</category>
         <category>专业选修</category>
       </categories>
       <tags>
-        <tag>learning</tag>
         <tag>人工智能</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -171,6 +341,8 @@
 <li>并行性</li>
 </ul>
 </blockquote>
+<a id="more"></a>
+
 <h2 id="1-2-计算格式的相容性与稳定性"><a href="#1-2-计算格式的相容性与稳定性" class="headerlink" title="1.2 计算格式的相容性与稳定性"></a>1.2 计算格式的相容性与稳定性</h2><h3 id="相容性"><a href="#相容性" class="headerlink" title="相容性"></a>相容性</h3><p>如果一个计算格式在取某种极限后可还原成某种数学模型，那么这个计算格式和此数学模型相容</p>
 <h3 id="稳定性"><a href="#稳定性" class="headerlink" title="稳定性"></a>稳定性</h3><p>如果在用某一计算格式进行数值计算（迭代）的过程中，舍入误差不会严重积累（扩大），从而能够保证最终解满足所要求的精度，则称该计算格式数值稳定</p>
 <blockquote>
@@ -219,7 +391,51 @@
 <li>一般地，当$\epsilon=10^{-m},\ 则 \ k=[\frac{lg(b-a)+m}{lg2}]$</li>
 </ul>
 </blockquote>
-<h3 id="二分法评述"><a href="#二分法评述" class="headerlink" title="二分法评述"></a>二分法评述</h3>]]></content>
+<h3 id="二分法评述"><a href="#二分法评述" class="headerlink" title="二分法评述"></a>二分法评述</h3><blockquote>
+<ul>
+<li>算法简单</li>
+<li>收敛速度不高</li>
+<li>无法求复数根，偶数个重根不能求</li>
+</ul>
+</blockquote>
+<h2 id="2-2-一般迭代法"><a href="#2-2-一般迭代法" class="headerlink" title="2.2 一般迭代法"></a>2.2 一般迭代法</h2><h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h3><blockquote>
+<ul>
+<li>$f(x)=0 \to x=g(x)$</li>
+<li>建立迭代格式$x_{k+1}=g(x_k),\ k-0,1…$</li>
+<li>选取$x_0$，进行迭代$x_0 \to x_1 \to…$<br>若无说明，$x_0$具有任意性</li>
+</ul>
+</blockquote>
+<p>此时：</p>
+<blockquote>
+<ul>
+<li>若${ x_k }$收敛，即$\lim_{k \to \infty} x^k = x^<em>$，此时$f(x^</em>)=0$</li>
+<li>若${ x_k }$不收敛，迭代失败</li>
+</ul>
+</blockquote>
+<h3 id="迭代算法的收敛性"><a href="#迭代算法的收敛性" class="headerlink" title="迭代算法的收敛性"></a>迭代算法的收敛性</h3><p>一个定义：<br>$$在区间\Delta内,g(x)满足下列李普希兹条件：\<br>|g(x)-g(y)| \le L|x-y| 对 \forall x,y \in \delta, 常数0&lt;L&lt;1成立 \<br>则称g(x) 在 \Delta 内李普希兹连续$$</p>
+<p>可以知道：<br>$$若g’(x)在闭区间\Delta内连续且|g’(x)|\le L&lt;1对\forall x \in \Delta连续 \<br>则g(x)在\Delta内李普希兹连续$$</p>
+<p>此时，得到如下定理：<br>$$在方程x^<em>=g(x^</em>)中，若\<br>g(x)在闭区间\Delta内李普希兹连续，则\<br>对\forall x_0 \in \Delta，由迭代格式x_{k+1}=g(x_k)计算得到的解序列{x_k}收敛于x^<em>\<br>此时称迭代格式x_{k+1}=g(x_k)在x^</em>的邻域\Delta上局部收敛$$</p>
+<blockquote>
+<ul>
+<li>此时，$|x^*-x_k| \le \frac L{1-L}|x_k-x_{k-1}|$（误差估计）</li>
+<li>$g(x)$在$\Delta$内李普希兹连续保证了$x^*为f(x)=0在\Delta内的唯一根$</li>
+</ul>
+</blockquote>
+<p>实际判断方法：</p>
+<blockquote>
+<ul>
+<li>设$x_0$是$x^*$的一个近似</li>
+<li>若$|g’(x_0)|&lt;1$，则判断收敛；反之不收敛</li>
+</ul>
+</blockquote>
+<h3 id="收敛情况下的误差估计"><a href="#收敛情况下的误差估计" class="headerlink" title="收敛情况下的误差估计"></a>收敛情况下的误差估计</h3><blockquote>
+<ul>
+<li>事前估计法（常量估计）：$|x_k-x^*|&lt;\epsilon_1$</li>
+<li>事前估计法（差值估计）：$|x_k-x_{k-1}|&lt;\epsilon_2$</li>
+<li>事后估计法：$|f(x_k)|&lt;\epsilon_3$</li>
+</ul>
+</blockquote>
+]]></content>
       <categories>
         <category>notes</category>
         <category>专业选修</category>
@@ -254,6 +470,8 @@
 </ul>
 </blockquote>
 <p>期末考试70%闭卷，论文汇报10%，作业考勤20%</p>
+<a id="more"></a>
+
 <h1 id="一、算法在计算机中的应用"><a href="#一、算法在计算机中的应用" class="headerlink" title="一、算法在计算机中的应用"></a>一、算法在计算机中的应用</h1><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>算法是：</p>
 <blockquote>
 <ul>
@@ -383,15 +601,7 @@
 <li>反例法</li>
 </ul>
 </blockquote>
-<h2 id="2-3-算法分析设计实例：分治法"><a href="#2-3-算法分析设计实例：分治法" class="headerlink" title="2.3 算法分析设计实例：分治法"></a>2.3 算法分析设计实例：分治法</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><blockquote>
-<ul>
-<li>核心思想：分而治之，各个击破</li>
-<li>递归结构：为解决一个给定的问题，算法一次或多次地调用自身</li>
-<li>分治策略：将原问题划分为n个规模较小而结构相似的子问题进行求解</li>
-<li>步骤：分解、解决、合并</li>
-</ul>
-</blockquote>
-<h3 id="分治法分析"><a href="#分治法分析" class="headerlink" title="分治法分析"></a>分治法分析</h3><p>归并排序中MERGE操作的正确性：P19</p>
+<h2 id="2-3-算法分析设计实例：分治法"><a href="#2-3-算法分析设计实例：分治法" class="headerlink" title="2.3 算法分析设计实例：分治法"></a>2.3 算法分析设计实例：分治法</h2><h3 id="分治法分析"><a href="#分治法分析" class="headerlink" title="分治法分析"></a>分治法分析</h3><p>归并排序中MERGE操作的正确性：P19</p>
 <p>时间复杂度分析：</p>
 <blockquote>
 <p>当一个算法含有对其自身的递归调用时，其运行时间可以用如下一个递归方程来表示：<br>$$<br>T(n)=<br>\begin{cases}<br>\Theta(1) , &amp;n \le c \<br>aT(n/b) + D(n) + C(n) , &amp;other\ casese<br>\end{cases}<br>$$<br>其中：</p>
@@ -405,7 +615,7 @@
 </blockquote>
 <p>在归并排序中，上述$a=b=2$;分解问题为常量时间$\Theta(1)$；合并问题需要一个n的线性函数时间$\Theta(n)$<br>即：<br>$$<br>T(n)=<br>\begin{cases}<br>c , &amp;n = 1 \<br>2T(n/2) + cn , &amp;n &gt; 1<br>\end{cases}<br>$$</p>
 <p>求解这个递归式时，我们需要画出它的递归树进行分析，此时我们发现，树的每一层执行时间都为cn，树高为lgn<br>所以：<br>$$T(n) = cnlgn+cn = \Theta(nlgn)$$</p>
-<h1 id="三、函数的增长"><a href="#三、函数的增长" class="headerlink" title="三、函数的增长"></a>三、函数的增长</h1><h2 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h2><p>对于足够大的输入规模，算法精确运行时间中的倍增常量和低阶项被输入规模本身刚到影响所支配</p>
+<h1 id="三、函数的增长"><a href="#三、函数的增长" class="headerlink" title="三、函数的增长"></a>三、函数的增长</h1><h2 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h2><p>对于足够大的输入规模，算法精确运行时间中的倍增常量和低阶项被输入规模本身刚到影响所支配</p>
 <blockquote>
 <p>此时，我们要研究算法的渐进效率；即在极限中，算法的运行时间如何随着输入规模的变大而增加</p>
 </blockquote>
@@ -468,20 +678,41 @@
 <li>渐近记号可以替代公式中的一些无关紧要的细节，我们将其解释为匿名函数</li>
 </ul>
 </blockquote>
-<h2 id="3-2-算法时间复杂度分类"><a href="#3-2-算法时间复杂度分类" class="headerlink" title="3.2 算法时间复杂度分类"></a>3.2 算法时间复杂度分类</h2><h1 id="四、分治策略"><a href="#四、分治策略" class="headerlink" title="四、分治策略"></a>四、分治策略</h1><h2 id="概述-3"><a href="#概述-3" class="headerlink" title="概述"></a>概述</h2><h3 id="递归式求解方法"><a href="#递归式求解方法" class="headerlink" title="递归式求解方法"></a>递归式求解方法</h3><blockquote>
+<h2 id="3-2-算法时间复杂度分类"><a href="#3-2-算法时间复杂度分类" class="headerlink" title="3.2 算法时间复杂度分类"></a>3.2 算法时间复杂度分类</h2><h1 id="四、分治策略"><a href="#四、分治策略" class="headerlink" title="四、分治策略"></a>四、分治策略</h1><h2 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h2><h3 id="分治策略"><a href="#分治策略" class="headerlink" title="分治策略"></a>分治策略</h3><blockquote>
 <ul>
-<li>代入法</li>
-<li>递归树法</li>
-<li>主方法</li>
+<li>核心思想：分而治之，各个击破</li>
+<li>递归结构：为解决一个给定的问题，算法一次或多次地调用自身</li>
+<li>分治策略：将原问题划分为n个规模较小而结构相似的子问题进行求解</li>
+<li>步骤：分解、解决、合并</li>
 </ul>
 </blockquote>
+<h3 id="递归式求解方法"><a href="#递归式求解方法" class="headerlink" title="递归式求解方法"></a>递归式求解方法</h3><ul>
+<li>代入法<blockquote>
+<ul>
+<li>猜测解的形式：换元、放缩等等，避免陷阱</li>
+<li>用数学归纳法证明</li>
+</ul>
+</blockquote>
+</li>
+<li>递归树法（用于猜想递归式的解）<blockquote>
+<ul>
+<li>树中每一个节点都代表递归函数调用集合中一个子问题的代价；将树中每一层内的代价相加，再层层叠加得到总代价</li>
+<li>考虑树的深度、每层节点数、（合并）节点的代价</li>
+</ul>
+</blockquote>
+</li>
+<li>主方法</li>
+</ul>
 <h2 id="4-1-最大子数组问题"><a href="#4-1-最大子数组问题" class="headerlink" title="4.1 最大子数组问题"></a>4.1 最大子数组问题</h2><p>炒股问题：最大子数组问题</p>
 <blockquote>
 <ul>
 <li>即，已知数组A，需要寻找A的和最大的非空连续子数组</li>
 </ul>
 </blockquote>
-<p>跨界问题</p>
+<p>P38 － 42</p>
+<h2 id="4-2-矩阵乘法的Straseen算法"><a href="#4-2-矩阵乘法的Straseen算法" class="headerlink" title="4.2 矩阵乘法的Straseen算法"></a>4.2 矩阵乘法的Straseen算法</h2><p>朴素矩阵乘法：nˆ3</p>
+<h1 id="五、概率分析和随机算法"><a href="#五、概率分析和随机算法" class="headerlink" title="五、概率分析和随机算法"></a>五、概率分析和随机算法</h1><h2 id="5-1-雇佣问题"><a href="#5-1-雇佣问题" class="headerlink" title="5.1 雇佣问题"></a>5.1 雇佣问题</h2><p>随机算法：</p>
+<p>期望的和等于和的期望</p>
 ]]></content>
       <categories>
         <category>学位课程</category>
@@ -516,6 +747,8 @@
 <p>参考书目：《现代操作系统Andrew.S》（偏向实例）、《操作系统精髓与设计原理》（更偏向实例系统）</p>
 <p>一个视频<a href="https://vo.youku.com/v_show/id_XMTAwNTg5MzA0.html" target="_blank" rel="noopener">https://vo.youku.com/v_show/id_XMTAwNTg5MzA0.html</a></p>
 <p>平时成绩20%、期中考试20%、期末考试60%</p>
+<a id="more"></a>
+
 <h2 id="主流操作系统介绍"><a href="#主流操作系统介绍" class="headerlink" title="主流操作系统介绍"></a>主流操作系统介绍</h2><p>主流PC操作系统：</p>
 <blockquote>
 <ul>
@@ -696,10 +929,59 @@
 <li>定时器利用时钟和计数器实现，有固定时间和可变时间定时器</li>
 </ul>
 </blockquote>
-<h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3><p>操作系统的核心目标：运行程序<br>进程：运行中的程序<br>CPU/进程管理：对CPU进行管理<br>具体内容<br>创建和删除用户和系统进程<br>暂停和恢复进程<br>提供进程同步机制<br>提供进程通信机制<br>提供死锁处理机制</p>
-<h3 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h3><p>程序运行必须的存储设备<br>CPU只能直接访问寄存器、高速缓存和内存<br>处理前和处理后的所有数据都在内存<br>执行的指令都在内存<br>内存管理：提供内存的分配、回收、地址转换、共享和保护等功能<br>提高内存利用率<br>提高内存访问速度<br>从而提高计算机运行效率</p>
-<h3 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h3><p>解决信息在计算机中存储问题<br>以文件为单位，以目录为组织方式构建文件系统<br>内容<br>文件逻辑结构<br>文件物理结构<br>目录<br>文件检索方法<br>文件操作<br>空闲空间管理<br>存储设备管理</p>
-<h3 id="I-O设备管理"><a href="#I-O设备管理" class="headerlink" title="I/O设备管理"></a>I/O设备管理</h3><p>管理种类繁多的各种I/O设备，解决计算机中信息的输入和输出问题<br>关键：设备无关性(独立性)<br>所有物理设备按照物理特性抽象为逻辑设备<br>应用程序针对逻辑设备编程<br>应用程序和物理设备无关<br>内容<br>设备管理<br>设备驱动</p>
+<h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3><p>进程：运行中的程序</p>
+<p>操作系统的核心目标：运行程序</p>
+<p>CPU/进程管理：对CPU进行管理</p>
+<blockquote>
+<ul>
+<li>创建和删除用户和系统进程</li>
+<li>暂停和恢复进程</li>
+<li>提供进程同步机制</li>
+<li>提供进程通信机制</li>
+<li>提供死锁处理机制</li>
+</ul>
+</blockquote>
+<h3 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h3><p>内存管理：提供内存的分配、回收、地址转换、共享和保护等功能，从而提高计算机运行效率</p>
+<blockquote>
+<ul>
+<li>提高内存利用率</li>
+<li>提高内存访问速度</li>
+</ul>
+</blockquote>
+<h3 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h3><p>解决信息在计算机中存储问题</p>
+<p>以文件为单位，以目录为组织方式构建文件系统</p>
+<p>对文件内容管理：</p>
+<blockquote>
+<ul>
+<li>文件逻辑结构</li>
+<li>文件物理结构</li>
+</ul>
+</blockquote>
+<p>对文件目录管理：</p>
+<blockquote>
+<ul>
+<li>文件检索方法</li>
+<li>文件操作</li>
+<li>空闲空间管理</li>
+<li>存储设备管理</li>
+</ul>
+</blockquote>
+<h3 id="I-O设备管理"><a href="#I-O设备管理" class="headerlink" title="I/O设备管理"></a>I/O设备管理</h3><p>管理种类繁多的各种I/O设备，解决计算机中信息的输入和输出问题</p>
+<p>关键：设备无关性(独立性)</p>
+<blockquote>
+<ul>
+<li>所有物理设备按照物理特性抽象为逻辑设备</li>
+<li>应用程序针对逻辑设备编程</li>
+<li>应用程序和物理设备无关</li>
+</ul>
+</blockquote>
+<p>内容</p>
+<blockquote>
+<ul>
+<li>设备管理</li>
+<li>设备驱动</li>
+</ul>
+</blockquote>
 <h1 id="二、操作系统结构"><a href="#二、操作系统结构" class="headerlink" title="二、操作系统结构"></a>二、操作系统结构</h1><h2 id="2-1-操作系统的服务和接口"><a href="#2-1-操作系统的服务和接口" class="headerlink" title="2.1 操作系统的服务和接口"></a>2.1 操作系统的服务和接口</h2><h3 id="操作系统服务"><a href="#操作系统服务" class="headerlink" title="操作系统服务"></a>操作系统服务</h3><p>操作系统以服务的形式向程序和用户提供环境执行程序</p>
 <blockquote>
 <ul>
@@ -722,6 +1004,7 @@
 <li>程序通过应用程序接口API访问</li>
 </ul>
 </blockquote>
+<p>系统调用的参数传递：通过寄存器传递</p>
 <p>常见APIs：</p>
 <blockquote>
 <ul>
@@ -751,7 +1034,204 @@
 <li>…</li>
 </ul>
 </blockquote>
-<h3 id="系统程序"><a href="#系统程序" class="headerlink" title="系统程序"></a>系统程序</h3>]]></content>
+<h3 id="系统程序"><a href="#系统程序" class="headerlink" title="系统程序"></a>系统程序</h3><p>用于管理、维护操作系统</p>
+<p>为用户使用操作系统服务</p>
+<p>功能：</p>
+<blockquote>
+<ul>
+<li>文件管理</li>
+<li>状态信息</li>
+<li>文件处理</li>
+<li>程序语言支持</li>
+<li>程序装入和执行</li>
+<li>通信</li>
+</ul>
+</blockquote>
+<h2 id="2-2-操作系统的结构"><a href="#2-2-操作系统的结构" class="headerlink" title="2.2 操作系统的结构"></a>2.2 操作系统的结构</h2><h3 id="简单结构（无结构）"><a href="#简单结构（无结构）" class="headerlink" title="简单结构（无结构）"></a>简单结构（无结构）</h3><blockquote>
+<ul>
+<li>规模小、简单、功能有限</li>
+<li>混乱、不易维护和更新、不适合大规模开发</li>
+</ul>
+</blockquote>
+<p>MS-DOS：不划分模块</p>
+<p>早期UNIX：分为系统程序和内核</p>
+<h3 id="层次结构"><a href="#层次结构" class="headerlink" title="层次结构"></a>层次结构</h3><p>操作系统划分为若干层</p>
+<blockquote>
+<ul>
+<li>在低层上构建高层</li>
+<li>底层（0层）为硬件</li>
+<li>最高层（N层）为用户层</li>
+<li>每层只使用低层次的功能和服务</li>
+</ul>
+</blockquote>
+<p>优点：</p>
+<blockquote>
+<p>简化系统设计和实现，便于调试和升级系统</p>
+</blockquote>
+<p>缺点：</p>
+<blockquote>
+<ul>
+<li>层定义困难</li>
+<li>效率差</li>
+</ul>
+</blockquote>
+<p>例子：WindowsNT，iOS</p>
+<h3 id="微内核"><a href="#微内核" class="headerlink" title="微内核"></a>微内核</h3><p>问题：内核越来越大，越来越难管理</p>
+<p>内核微型化：核内移出尽可能多功能到用户空间</p>
+<p>好处:</p>
+<blockquote>
+<ul>
+<li>便于扩充微内核</li>
+<li>便于移植操作系统到新架构系统上</li>
+<li>更稳定 (更少的代码运行在核心态)</li>
+<li>更安全</li>
+</ul>
+</blockquote>
+<p>坏处:</p>
+<blockquote>
+<ul>
+<li>用户空间和内核空间通信的系统开销增加</li>
+<li>解决方法：提出消息传递机制</li>
+</ul>
+</blockquote>
+<h3 id="模块结构"><a href="#模块结构" class="headerlink" title="模块结构"></a>模块结构</h3><p>大部分现代操作系统采用模块结构</p>
+<blockquote>
+<ul>
+<li>使用面向对象方法</li>
+<li>每个核心部件分开</li>
+<li>每个与其他模块的会话被称为接口</li>
+<li>每个模块在需要时被加载到内核</li>
+</ul>
+</blockquote>
+<p>总体而言，类似于分层方法，但更灵活</p>
+<blockquote>
+<ul>
+<li>任两个模块之间都能相互调用</li>
+<li>层次结构只能相邻两层之间调用</li>
+</ul>
+</blockquote>
+<p>当然，现代操作系统不是单一结构的，它会采取多种混合结构来获取性能、安全、使用等方面的需求（Mac OS X）</p>
+<h2 id="2-3-虚拟机"><a href="#2-3-虚拟机" class="headerlink" title="2.3 虚拟机"></a>2.3 虚拟机</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>虚拟机：一种通过软件模拟实现，具有完整硬件系统功能，并运行在一个完全隔离环境中的完整计算机系统</p>
+<blockquote>
+<ul>
+<li>物理计算机资源共享以创建虚拟机</li>
+<li>每个虚拟机同其他虚拟机隔离</li>
+<li>由于需要对物理机器进行精确复制，虚拟机实现困难</li>
+<li>上个世纪60年代，虚拟机用于大型机（IBM VM系统）</li>
+</ul>
+</blockquote>
+<p>分类：</p>
+<blockquote>
+<ul>
+<li>高级语言虚拟机</li>
+<li>工作站虚拟机</li>
+<li>服务器虚拟机</li>
+</ul>
+</blockquote>
+<h3 id="JAVA虚拟机"><a href="#JAVA虚拟机" class="headerlink" title="JAVA虚拟机"></a>JAVA虚拟机</h3><p>JVM：JAVA语言的解释器</p>
+<blockquote>
+<ul>
+<li>可运行Java代码的假想计算机</li>
+<li>只要根据JVM规格将解释器移植到特定的操作系统上，就能运行经过编译的任何Java代码</li>
+<li>特点：平台无关性，是运行在操作系统上的虚拟机</li>
+</ul>
+</blockquote>
+<h3 id="工作站虚拟机"><a href="#工作站虚拟机" class="headerlink" title="工作站虚拟机"></a>工作站虚拟机</h3><p>工作站虚拟机：操作系统上的虚拟机</p>
+<blockquote>
+<ul>
+<li>宿主操作系统（Host OS）：安装在硬件上的OS</li>
+<li>客户操作系统（Guest OS）安装在操作系统上的操作系统</li>
+<li>工作站虚拟机安装在宿主操作系统上，在工作站虚拟机中可以安装客户操作系统</li>
+</ul>
+</blockquote>
+<p>好处：</p>
+<blockquote>
+<ul>
+<li>同时在一个计算机上使用多个操作系统</li>
+<li>一个宿主操作系统，若干个客户操作系统</li>
+</ul>
+</blockquote>
+<h3 id="服务器虚拟机"><a href="#服务器虚拟机" class="headerlink" title="服务器虚拟机"></a>服务器虚拟机</h3><p>服务器虚拟化：将服务器物理资源抽象成逻辑资源，让一台服务器变成几台甚至上百台相互隔离的虚拟服务器</p>
+<p>常用模式：</p>
+<blockquote>
+<ul>
+<li>一虚多：一台服务器虚拟成多台服务器虚拟机</li>
+<li>多虚一：多个独立物理服务器虚拟为一个服务器虚拟机</li>
+</ul>
+</blockquote>
+<p>优点：</p>
+<blockquote>
+<ul>
+<li>安全性好</li>
+<li>资源共享</li>
+<li>可扩展性好</li>
+<li>便于隔离</li>
+</ul>
+</blockquote>
+<p>和工作站虚拟机区别：没有宿主操作系统</p>
+<h3 id="连接模式"><a href="#连接模式" class="headerlink" title="连接模式"></a>连接模式</h3><blockquote>
+<ul>
+<li>软件模式：远程桌面、ssh等</li>
+<li>硬件模式：虚拟机终端（硬件）等</li>
+</ul>
+</blockquote>
+<h1 id="三、进程"><a href="#三、进程" class="headerlink" title="三、进程"></a>三、进程</h1><h2 id="3-1-进程概念"><a href="#3-1-进程概念" class="headerlink" title="3.1 进程概念"></a>3.1 进程概念</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>进程：</p>
+<blockquote>
+<ul>
+<li>执行中的程序；进程的执行必须以顺序方式执行</li>
+<li>一个程序在一个数据集上的一次运行</li>
+</ul>
+</blockquote>
+<p>进程、作业和任务：</p>
+<blockquote>
+<ul>
+<li>作业：狭义上认为是被组装成一个整体运行的一组计算步骤</li>
+<li>任务：狭义上认为进程或线程</li>
+</ul>
+</blockquote>
+<h3 id="内存中的进程"><a href="#内存中的进程" class="headerlink" title="内存中的进程"></a>内存中的进程</h3><p>进程的组成部分：</p>
+<blockquote>
+<ul>
+<li>程序代码</li>
+<li>当前活动（以下举例）</li>
+<li>程序计数器</li>
+<li>堆栈：存放函数参数、临时变量等</li>
+<li>数据：全局变量</li>
+<li>堆：动态内存分配</li>
+</ul>
+</blockquote>
+<h3 id="进程和程序到关系"><a href="#进程和程序到关系" class="headerlink" title="进程和程序到关系"></a>进程和程序到关系</h3><blockquote>
+<ul>
+<li>进程是程序的一个实例，是程序的一次执行</li>
+<li>一个程序可对应一个或多个进程，同样一个进 程可对应一个或多个程序</li>
+<li>程序是进程的代码部分</li>
+<li>进程是活动实体，程序静止（被动）实体</li>
+<li>进程在内存，程序在外存</li>
+</ul>
+</blockquote>
+<h3 id="进程的状态"><a href="#进程的状态" class="headerlink" title="进程的状态"></a>进程的状态</h3><p>进程执行时，有如下几个状态：</p>
+<blockquote>
+<ul>
+<li>新建态：在创建进程 </li>
+<li>运行态：指令在执行</li>
+<li>等待态：进程等待某些事件发生 </li>
+<li>就绪：进程等待分配处理器 </li>
+<li>终止：进程执行完毕</li>
+</ul>
+</blockquote>
+<h3 id="进程控制快PCB"><a href="#进程控制快PCB" class="headerlink" title="进程控制快PCB"></a>进程控制快PCB</h3><p>PCB包含同进程有关的信息，包括：</p>
+<blockquote>
+<ul>
+<li>进程状态</li>
+<li>程序计数器</li>
+<li>CPU寄存器</li>
+<li>CPU调度信息</li>
+<li>内存管理信息</li>
+<li>计账信息</li>
+<li>I/O状态信息</li>
+</ul>
+</blockquote>
+<h3 id="CPU在进程之间切换"><a href="#CPU在进程之间切换" class="headerlink" title="CPU在进程之间切换"></a>CPU在进程之间切换</h3>]]></content>
       <categories>
         <category>notes</category>
         <category>学位课程</category>
@@ -769,6 +1249,8 @@
 <p>课程目标：理解网络工作的原理以及实现</p>
 <p>没有多少理论，但课程课程的实践性很强</p>
 <p>参考教材：《数据通信与网络》、《计算机网络技术Andrew S.》、《计算机网络自顶向下方法（从宏观到微观的设计）》</p>
+<a id="more"></a>
+
 <h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><h2 id="1-1-计算机网络的发展过程"><a href="#1-1-计算机网络的发展过程" class="headerlink" title="1.1 计算机网络的发展过程"></a>1.1 计算机网络的发展过程</h2><h3 id="发展过程"><a href="#发展过程" class="headerlink" title="发展过程"></a>发展过程</h3><p>ENAIC - TSS分时系统 - 计算机网络</p>
 <p>从以主机为中心到以分组交换网为中心</p>
 <p>萌芽：1969第一个分组交换网络ARPANET</p>
@@ -982,6 +1464,99 @@
 </ul>
 </blockquote>
 <p>IP体系的沙漏模型：核心是IP网际层</p>
+<p>每层的协议</p>
+<blockquote>
+<ul>
+<li>应用层：HTTP</li>
+<li>运输层：TCP/UDP</li>
+<li>网际层：IP</li>
+<li>网络接口层：ETHERNET（以太网）</li>
+</ul>
+</blockquote>
+<h1 id="二、物理层"><a href="#二、物理层" class="headerlink" title="二、物理层"></a>二、物理层</h1><h2 id="2-1-基本概念"><a href="#2-1-基本概念" class="headerlink" title="2.1 基本概念"></a>2.1 基本概念</h2><blockquote>
+<ul>
+<li>功能：在物理媒体上传输原始的数据比特流</li>
+<li>任务：确定与传输媒体的接口的一些特性</li>
+</ul>
+</blockquote>
+<h2 id="2-2-数据通信的基础知识"><a href="#2-2-数据通信的基础知识" class="headerlink" title="2.2 数据通信的基础知识"></a>2.2 数据通信的基础知识</h2><p>几个术语：</p>
+<blockquote>
+<ul>
+<li>数据：运送信息的实体</li>
+<li>信号：数据的电气或电磁的表现</li>
+<li>模拟的：连续变化的</li>
+<li>数字的：取值是离散数值</li>
+<li>调制：将数字信号转换为模拟信号的过程</li>
+<li>解调：将模拟信号转换成数字信号的过程</li>
+</ul>
+</blockquote>
+<p>有关信号的几个基本概念：</p>
+<blockquote>
+<ul>
+<li>单向通信（单工通信）：只能有一个方向的通信而没有反方向的交互。</li>
+<li>双向交替通信（半双工通信）：通信的双方都可以发送信息，但不能双方同时发送(当然也就不能同时接收)。</li>
+<li>双向同时通信（全双工通信）：通信的双方可以同时发送和接收信息。</li>
+</ul>
+</blockquote>
+<p>基带信号和宽带信号：</p>
+<blockquote>
+<ul>
+<li>基带信号就是将数字信号1或0直接用两种不同的电压来表示，然后送到线路上去传输。 </li>
+<li>宽带信号则是将基带信号进行调制后形成的频分复用模拟信号</li>
+</ul>
+</blockquote>
+<p>码和波特率：</p>
+<blockquote>
+<ul>
+<li>码元：时间轴上的一个信号编码单位</li>
+<li>波特率：每秒钟发送的码元数（每秒钟电压变化的次数）</li>
+<li>比特率：比特率C=波特率B*log2(N)；N为一个码元中的状态数</li>
+<li>奈氏准则：理想低通信道最高码元传输速率为两倍的波特率</li>
+</ul>
+</blockquote>
+<p>信道的极限信息传输速率：</p>
+<blockquote>
+<ul>
+<li>C = Wlog2(1+S/N) b/s</li>
+<li>W为信道带宽(Hz)</li>
+<li>S为信道内所传信号的平均功率</li>
+<li>N为信道内部的高斯噪声功率</li>
+</ul>
+</blockquote>
+<h2 id="2-3-物理层的传输媒体"><a href="#2-3-物理层的传输媒体" class="headerlink" title="2.3 物理层的传输媒体"></a>2.3 物理层的传输媒体</h2><p>导向传输介质：</p>
+<blockquote>
+<ul>
+<li>双绞线：双绞线既可以传输数字信号，又可以传输模拟信号</li>
+<li>同轴电缆</li>
+<li>光纤：抗干扰，不容易腐蚀；多模光纤（短距离小容量传输）；单模光纤（大容量长距离传输）</li>
+</ul>
+</blockquote>
+<p>非导向传输媒体：</p>
+<blockquote>
+<ul>
+<li>视线介质：微波、红外线和激光</li>
+<li>无线电传输</li>
+<li>地球同步卫星</li>
+<li>低轨系统</li>
+</ul>
+</blockquote>
+<h2 id="2-4-模拟传输与数字传输"><a href="#2-4-模拟传输与数字传输" class="headerlink" title="2.4 模拟传输与数字传输"></a>2.4 模拟传输与数字传输</h2><h3 id="模拟传输系统"><a href="#模拟传输系统" class="headerlink" title="模拟传输系统"></a>模拟传输系统</h3><p>连续波数字调制方法：</p>
+<blockquote>
+<ul>
+<li>ASK(AM)：调幅</li>
+<li>FSK：调频</li>
+<li>PSK：调相;4-PSK;16-APSK(QAM)</li>
+<li>QAM能将4K带宽的电话线传输64Kbps的数字信号</li>
+</ul>
+</blockquote>
+<h3 id="数字传输系统"><a href="#数字传输系统" class="headerlink" title="数字传输系统"></a>数字传输系统</h3><p>数字数据的数字信号编码：</p>
+<blockquote>
+<ul>
+<li>NRZ：正负电平表示0和1；要求收发双方时钟严格同步</li>
+<li>Manchester：电平从正到负、从负到正的变化表示0和1；解决时钟同步问题</li>
+<li>差分Manchester：两个时钟信号之间电平变化表示0，不变表示1</li>
+</ul>
+</blockquote>
 ]]></content>
       <categories>
         <category>notes</category>
@@ -1019,6 +1594,8 @@
 </ul>
 </blockquote>
 <p>要细致分析问题: 先有问题后有解决方案</p>
+<a id="more"></a>
+
 <h1 id="1-面向对象"><a href="#1-面向对象" class="headerlink" title="1 面向对象"></a>1 面向对象</h1><h2 id="1-1-面向对象思想的起源"><a href="#1-1-面向对象思想的起源" class="headerlink" title="1.1 面向对象思想的起源"></a>1.1 面向对象思想的起源</h2><ul>
 <li>Alan.Kay: 所有对事物的认识都始源于我们不愿盲目地接受(相信)这个世界<blockquote>
 <ul>
@@ -6449,8 +7026,8 @@
         <category>notes</category>
       </categories>
       <tags>
-        <tag>c#</tag>
         <tag>learning</tag>
+        <tag>c#</tag>
       </tags>
   </entry>
   <entry>
@@ -6477,9 +7054,9 @@
         <category>notes</category>
       </categories>
       <tags>
+        <tag>learning</tag>
         <tag>c#</tag>
         <tag>python</tag>
-        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -7749,8 +8326,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>learning</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -7804,8 +8381,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>learning</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -8009,8 +8586,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>c#</tag>
         <tag>learning</tag>
+        <tag>c#</tag>
         <tag>搜索引擎</tag>
       </tags>
   </entry>
@@ -10302,8 +10879,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>learning</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -10583,8 +11160,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>c#</tag>
         <tag>learning</tag>
+        <tag>c#</tag>
       </tags>
   </entry>
   <entry>

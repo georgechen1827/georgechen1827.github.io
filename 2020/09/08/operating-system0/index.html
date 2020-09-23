@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">2.8k words</span>
+            <span class="post-count">4.1k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">9 minutes</span>
+            <span class="post-count">13 minutes</span>
         </span>
     </span>
 </div>
@@ -121,6 +121,8 @@
 <p>参考书目：《现代操作系统Andrew.S》（偏向实例）、《操作系统精髓与设计原理》（更偏向实例系统）</p>
 <p>一个视频<a href="https://vo.youku.com/v_show/id_XMTAwNTg5MzA0.html" target="_blank" rel="noopener">https://vo.youku.com/v_show/id_XMTAwNTg5MzA0.html</a></p>
 <p>平时成绩20%、期中考试20%、期末考试60%</p>
+<a id="more"></a>
+
 <h2 id="主流操作系统介绍"><a href="#主流操作系统介绍" class="headerlink" title="主流操作系统介绍"></a>主流操作系统介绍</h2><p>主流PC操作系统：</p>
 <blockquote>
 <ul>
@@ -301,10 +303,59 @@
 <li>定时器利用时钟和计数器实现，有固定时间和可变时间定时器</li>
 </ul>
 </blockquote>
-<h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3><p>操作系统的核心目标：运行程序<br>进程：运行中的程序<br>CPU/进程管理：对CPU进行管理<br>具体内容<br>创建和删除用户和系统进程<br>暂停和恢复进程<br>提供进程同步机制<br>提供进程通信机制<br>提供死锁处理机制</p>
-<h3 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h3><p>程序运行必须的存储设备<br>CPU只能直接访问寄存器、高速缓存和内存<br>处理前和处理后的所有数据都在内存<br>执行的指令都在内存<br>内存管理：提供内存的分配、回收、地址转换、共享和保护等功能<br>提高内存利用率<br>提高内存访问速度<br>从而提高计算机运行效率</p>
-<h3 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h3><p>解决信息在计算机中存储问题<br>以文件为单位，以目录为组织方式构建文件系统<br>内容<br>文件逻辑结构<br>文件物理结构<br>目录<br>文件检索方法<br>文件操作<br>空闲空间管理<br>存储设备管理</p>
-<h3 id="I-O设备管理"><a href="#I-O设备管理" class="headerlink" title="I/O设备管理"></a>I/O设备管理</h3><p>管理种类繁多的各种I/O设备，解决计算机中信息的输入和输出问题<br>关键：设备无关性(独立性)<br>所有物理设备按照物理特性抽象为逻辑设备<br>应用程序针对逻辑设备编程<br>应用程序和物理设备无关<br>内容<br>设备管理<br>设备驱动</p>
+<h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3><p>进程：运行中的程序</p>
+<p>操作系统的核心目标：运行程序</p>
+<p>CPU/进程管理：对CPU进行管理</p>
+<blockquote>
+<ul>
+<li>创建和删除用户和系统进程</li>
+<li>暂停和恢复进程</li>
+<li>提供进程同步机制</li>
+<li>提供进程通信机制</li>
+<li>提供死锁处理机制</li>
+</ul>
+</blockquote>
+<h3 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h3><p>内存管理：提供内存的分配、回收、地址转换、共享和保护等功能，从而提高计算机运行效率</p>
+<blockquote>
+<ul>
+<li>提高内存利用率</li>
+<li>提高内存访问速度</li>
+</ul>
+</blockquote>
+<h3 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h3><p>解决信息在计算机中存储问题</p>
+<p>以文件为单位，以目录为组织方式构建文件系统</p>
+<p>对文件内容管理：</p>
+<blockquote>
+<ul>
+<li>文件逻辑结构</li>
+<li>文件物理结构</li>
+</ul>
+</blockquote>
+<p>对文件目录管理：</p>
+<blockquote>
+<ul>
+<li>文件检索方法</li>
+<li>文件操作</li>
+<li>空闲空间管理</li>
+<li>存储设备管理</li>
+</ul>
+</blockquote>
+<h3 id="I-O设备管理"><a href="#I-O设备管理" class="headerlink" title="I/O设备管理"></a>I/O设备管理</h3><p>管理种类繁多的各种I/O设备，解决计算机中信息的输入和输出问题</p>
+<p>关键：设备无关性(独立性)</p>
+<blockquote>
+<ul>
+<li>所有物理设备按照物理特性抽象为逻辑设备</li>
+<li>应用程序针对逻辑设备编程</li>
+<li>应用程序和物理设备无关</li>
+</ul>
+</blockquote>
+<p>内容</p>
+<blockquote>
+<ul>
+<li>设备管理</li>
+<li>设备驱动</li>
+</ul>
+</blockquote>
 <h1 id="二、操作系统结构"><a href="#二、操作系统结构" class="headerlink" title="二、操作系统结构"></a>二、操作系统结构</h1><h2 id="2-1-操作系统的服务和接口"><a href="#2-1-操作系统的服务和接口" class="headerlink" title="2.1 操作系统的服务和接口"></a>2.1 操作系统的服务和接口</h2><h3 id="操作系统服务"><a href="#操作系统服务" class="headerlink" title="操作系统服务"></a>操作系统服务</h3><p>操作系统以服务的形式向程序和用户提供环境执行程序</p>
 <blockquote>
 <ul>
@@ -327,6 +378,7 @@
 <li>程序通过应用程序接口API访问</li>
 </ul>
 </blockquote>
+<p>系统调用的参数传递：通过寄存器传递</p>
 <p>常见APIs：</p>
 <blockquote>
 <ul>
@@ -356,13 +408,210 @@
 <li>…</li>
 </ul>
 </blockquote>
-<h3 id="系统程序"><a href="#系统程序" class="headerlink" title="系统程序"></a>系统程序</h3>
+<h3 id="系统程序"><a href="#系统程序" class="headerlink" title="系统程序"></a>系统程序</h3><p>用于管理、维护操作系统</p>
+<p>为用户使用操作系统服务</p>
+<p>功能：</p>
+<blockquote>
+<ul>
+<li>文件管理</li>
+<li>状态信息</li>
+<li>文件处理</li>
+<li>程序语言支持</li>
+<li>程序装入和执行</li>
+<li>通信</li>
+</ul>
+</blockquote>
+<h2 id="2-2-操作系统的结构"><a href="#2-2-操作系统的结构" class="headerlink" title="2.2 操作系统的结构"></a>2.2 操作系统的结构</h2><h3 id="简单结构（无结构）"><a href="#简单结构（无结构）" class="headerlink" title="简单结构（无结构）"></a>简单结构（无结构）</h3><blockquote>
+<ul>
+<li>规模小、简单、功能有限</li>
+<li>混乱、不易维护和更新、不适合大规模开发</li>
+</ul>
+</blockquote>
+<p>MS-DOS：不划分模块</p>
+<p>早期UNIX：分为系统程序和内核</p>
+<h3 id="层次结构"><a href="#层次结构" class="headerlink" title="层次结构"></a>层次结构</h3><p>操作系统划分为若干层</p>
+<blockquote>
+<ul>
+<li>在低层上构建高层</li>
+<li>底层（0层）为硬件</li>
+<li>最高层（N层）为用户层</li>
+<li>每层只使用低层次的功能和服务</li>
+</ul>
+</blockquote>
+<p>优点：</p>
+<blockquote>
+<p>简化系统设计和实现，便于调试和升级系统</p>
+</blockquote>
+<p>缺点：</p>
+<blockquote>
+<ul>
+<li>层定义困难</li>
+<li>效率差</li>
+</ul>
+</blockquote>
+<p>例子：WindowsNT，iOS</p>
+<h3 id="微内核"><a href="#微内核" class="headerlink" title="微内核"></a>微内核</h3><p>问题：内核越来越大，越来越难管理</p>
+<p>内核微型化：核内移出尽可能多功能到用户空间</p>
+<p>好处:</p>
+<blockquote>
+<ul>
+<li>便于扩充微内核</li>
+<li>便于移植操作系统到新架构系统上</li>
+<li>更稳定 (更少的代码运行在核心态)</li>
+<li>更安全</li>
+</ul>
+</blockquote>
+<p>坏处:</p>
+<blockquote>
+<ul>
+<li>用户空间和内核空间通信的系统开销增加</li>
+<li>解决方法：提出消息传递机制</li>
+</ul>
+</blockquote>
+<h3 id="模块结构"><a href="#模块结构" class="headerlink" title="模块结构"></a>模块结构</h3><p>大部分现代操作系统采用模块结构</p>
+<blockquote>
+<ul>
+<li>使用面向对象方法</li>
+<li>每个核心部件分开</li>
+<li>每个与其他模块的会话被称为接口</li>
+<li>每个模块在需要时被加载到内核</li>
+</ul>
+</blockquote>
+<p>总体而言，类似于分层方法，但更灵活</p>
+<blockquote>
+<ul>
+<li>任两个模块之间都能相互调用</li>
+<li>层次结构只能相邻两层之间调用</li>
+</ul>
+</blockquote>
+<p>当然，现代操作系统不是单一结构的，它会采取多种混合结构来获取性能、安全、使用等方面的需求（Mac OS X）</p>
+<h2 id="2-3-虚拟机"><a href="#2-3-虚拟机" class="headerlink" title="2.3 虚拟机"></a>2.3 虚拟机</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>虚拟机：一种通过软件模拟实现，具有完整硬件系统功能，并运行在一个完全隔离环境中的完整计算机系统</p>
+<blockquote>
+<ul>
+<li>物理计算机资源共享以创建虚拟机</li>
+<li>每个虚拟机同其他虚拟机隔离</li>
+<li>由于需要对物理机器进行精确复制，虚拟机实现困难</li>
+<li>上个世纪60年代，虚拟机用于大型机（IBM VM系统）</li>
+</ul>
+</blockquote>
+<p>分类：</p>
+<blockquote>
+<ul>
+<li>高级语言虚拟机</li>
+<li>工作站虚拟机</li>
+<li>服务器虚拟机</li>
+</ul>
+</blockquote>
+<h3 id="JAVA虚拟机"><a href="#JAVA虚拟机" class="headerlink" title="JAVA虚拟机"></a>JAVA虚拟机</h3><p>JVM：JAVA语言的解释器</p>
+<blockquote>
+<ul>
+<li>可运行Java代码的假想计算机</li>
+<li>只要根据JVM规格将解释器移植到特定的操作系统上，就能运行经过编译的任何Java代码</li>
+<li>特点：平台无关性，是运行在操作系统上的虚拟机</li>
+</ul>
+</blockquote>
+<h3 id="工作站虚拟机"><a href="#工作站虚拟机" class="headerlink" title="工作站虚拟机"></a>工作站虚拟机</h3><p>工作站虚拟机：操作系统上的虚拟机</p>
+<blockquote>
+<ul>
+<li>宿主操作系统（Host OS）：安装在硬件上的OS</li>
+<li>客户操作系统（Guest OS）安装在操作系统上的操作系统</li>
+<li>工作站虚拟机安装在宿主操作系统上，在工作站虚拟机中可以安装客户操作系统</li>
+</ul>
+</blockquote>
+<p>好处：</p>
+<blockquote>
+<ul>
+<li>同时在一个计算机上使用多个操作系统</li>
+<li>一个宿主操作系统，若干个客户操作系统</li>
+</ul>
+</blockquote>
+<h3 id="服务器虚拟机"><a href="#服务器虚拟机" class="headerlink" title="服务器虚拟机"></a>服务器虚拟机</h3><p>服务器虚拟化：将服务器物理资源抽象成逻辑资源，让一台服务器变成几台甚至上百台相互隔离的虚拟服务器</p>
+<p>常用模式：</p>
+<blockquote>
+<ul>
+<li>一虚多：一台服务器虚拟成多台服务器虚拟机</li>
+<li>多虚一：多个独立物理服务器虚拟为一个服务器虚拟机</li>
+</ul>
+</blockquote>
+<p>优点：</p>
+<blockquote>
+<ul>
+<li>安全性好</li>
+<li>资源共享</li>
+<li>可扩展性好</li>
+<li>便于隔离</li>
+</ul>
+</blockquote>
+<p>和工作站虚拟机区别：没有宿主操作系统</p>
+<h3 id="连接模式"><a href="#连接模式" class="headerlink" title="连接模式"></a>连接模式</h3><blockquote>
+<ul>
+<li>软件模式：远程桌面、ssh等</li>
+<li>硬件模式：虚拟机终端（硬件）等</li>
+</ul>
+</blockquote>
+<h1 id="三、进程"><a href="#三、进程" class="headerlink" title="三、进程"></a>三、进程</h1><h2 id="3-1-进程概念"><a href="#3-1-进程概念" class="headerlink" title="3.1 进程概念"></a>3.1 进程概念</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>进程：</p>
+<blockquote>
+<ul>
+<li>执行中的程序；进程的执行必须以顺序方式执行</li>
+<li>一个程序在一个数据集上的一次运行</li>
+</ul>
+</blockquote>
+<p>进程、作业和任务：</p>
+<blockquote>
+<ul>
+<li>作业：狭义上认为是被组装成一个整体运行的一组计算步骤</li>
+<li>任务：狭义上认为进程或线程</li>
+</ul>
+</blockquote>
+<h3 id="内存中的进程"><a href="#内存中的进程" class="headerlink" title="内存中的进程"></a>内存中的进程</h3><p>进程的组成部分：</p>
+<blockquote>
+<ul>
+<li>程序代码</li>
+<li>当前活动（以下举例）</li>
+<li>程序计数器</li>
+<li>堆栈：存放函数参数、临时变量等</li>
+<li>数据：全局变量</li>
+<li>堆：动态内存分配</li>
+</ul>
+</blockquote>
+<h3 id="进程和程序到关系"><a href="#进程和程序到关系" class="headerlink" title="进程和程序到关系"></a>进程和程序到关系</h3><blockquote>
+<ul>
+<li>进程是程序的一个实例，是程序的一次执行</li>
+<li>一个程序可对应一个或多个进程，同样一个进 程可对应一个或多个程序</li>
+<li>程序是进程的代码部分</li>
+<li>进程是活动实体，程序静止（被动）实体</li>
+<li>进程在内存，程序在外存</li>
+</ul>
+</blockquote>
+<h3 id="进程的状态"><a href="#进程的状态" class="headerlink" title="进程的状态"></a>进程的状态</h3><p>进程执行时，有如下几个状态：</p>
+<blockquote>
+<ul>
+<li>新建态：在创建进程 </li>
+<li>运行态：指令在执行</li>
+<li>等待态：进程等待某些事件发生 </li>
+<li>就绪：进程等待分配处理器 </li>
+<li>终止：进程执行完毕</li>
+</ul>
+</blockquote>
+<h3 id="进程控制快PCB"><a href="#进程控制快PCB" class="headerlink" title="进程控制快PCB"></a>进程控制快PCB</h3><p>PCB包含同进程有关的信息，包括：</p>
+<blockquote>
+<ul>
+<li>进程状态</li>
+<li>程序计数器</li>
+<li>CPU寄存器</li>
+<li>CPU调度信息</li>
+<li>内存管理信息</li>
+<li>计账信息</li>
+<li>I/O状态信息</li>
+</ul>
+</blockquote>
+<h3 id="CPU在进程之间切换"><a href="#CPU在进程之间切换" class="headerlink" title="CPU在进程之间切换"></a>CPU在进程之间切换</h3>
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/08/operating-system0/" data-id="ckf5ehrck0024p0vn2dwve89o"
+      <a data-url="http://georgechen1827.github.io/2020/09/08/operating-system0/" data-id="ckffegrqm002aaovneuzqdjv7"
         class="article-share-link">share</a>
         
       
