@@ -204,7 +204,7 @@
 <li>考虑第每一位进位ci的产生条件:<br>$X_i,Y_i$均为1,或$X_i,Y_i$有一个为1且$C_{i-1}$为1,即<br>$C_i=X_iY_i+(X_i+Y_i)C_{i-1}$</li>
 <li>由$C_1=X_1Y_1+(X_1+Y_1)C_0$不停对$C_i$进行迭代化简,得到:<br>$$C_i=X_iY_i+\sum_{n=i-1}^1(X_nY_n\prod_{k=i}^{n}(X_k+Y_k))+C_0\prod_{k=i}^{1}(X_k+Y_k)$$<br>如:$C_4=X_4Y_4+(X_4+Y_4)X_3Y_3+(X_4+Y_4)(X_3+Y_3)X_2Y_2+…+..C_0$</li>
 <li>定义进位传递函数$P_i=X_i+Y_i$,表明$X_i,Y_i$有一个为1时,将前一位进位传给下一位,达到一种进位传递的效果<br>定义进位产生函数$G_i=X_iY_i$,表明$X_i,Y_i$都为1时,无论$P_i$如何必定向高位产生进位<br>如,此时$C_3=G_3+P_3G_2+P_3P_2G_1+P_3P_2P_1C_0$</li>
-<li>将各进位改成与非式,画出电路图,如下<br><img src="/2020/02/24/computer-composition0/compo5.jpg" alt="composition"></li>
+<li>将各进位改成与非式,画出电路图,如下<br> <img src="/2020/02/24/computer-composition0/compo5.jpg" alt="composition"></li>
 </ol>
 <h4 id="ALU算数逻辑单元"><a href="#ALU算数逻辑单元" class="headerlink" title="ALU算数逻辑单元"></a>ALU算数逻辑单元</h4><p>考虑到超前进位电路的复杂程度是随着位数呈指数增加,一般可以将4位超前进位电路封装成算数逻辑单元,然后再通过组间的串行或超前进位组成16位的ALU</p>
 <p>16位快速ALU:组间快速进位<br><img src="/2020/02/24/computer-composition0/compo6.jpg" alt="composition"></p>
@@ -383,11 +383,13 @@
 <li>$E$: 阶码,有n+1位,一般为整数,第一位为符号位</li>
 <li>$M$: 尾数,有m位,和前面的$M_S$一同组成一个定点小数<blockquote>
 <ul>
-<li>规格化尾数:当R=2(二进制数)且尾数不为0时,其绝对值应大于或等于十进制的0.5(即最高位应当为1);对非规格化浮点数,需要将尾数左移或右移,并改变阶码使其满足规格化要求  <blockquote>
+<li><p>规格化尾数:当R=2(二进制数)且尾数不为0时,其绝对值应大于或等于十进制的0.5(即最高位应当为1);对非规格化浮点数,需要将尾数左移或右移,并改变阶码使其满足规格化要求  </p>
+<blockquote>
 <p>如:0.0011 -&gt; (0.11)*2^(0010)</p>
 </blockquote>
 </li>
-<li>机器零值:表示比机器数能表示的最小数还要小的值</li>
+<li><p>机器零值:表示比机器数能表示的最小数还要小的值</p>
+</li>
 </ul>
 </blockquote>
 </li>
@@ -2136,7 +2138,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/computer-composition0/" data-id="ckffegrqr002iaovn7olj38y3"
+      <a data-url="http://georgechen1827.github.io/2020/02/24/computer-composition0/" data-id="ckh1rlcb00055kovnd14ncg9n"
         class="article-share-link">share</a>
         
       

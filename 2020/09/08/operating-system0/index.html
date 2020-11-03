@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">4.1k words</span>
+            <span class="post-count">9.3k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">13 minutes</span>
+            <span class="post-count">32 minutes</span>
         </span>
     </span>
 </div>
@@ -577,7 +577,7 @@
 <h3 id="进程和程序到关系"><a href="#进程和程序到关系" class="headerlink" title="进程和程序到关系"></a>进程和程序到关系</h3><blockquote>
 <ul>
 <li>进程是程序的一个实例，是程序的一次执行</li>
-<li>一个程序可对应一个或多个进程，同样一个进 程可对应一个或多个程序</li>
+<li>一个程序可对应一个或多个进程，同样一个进程可对应一个或多个程序</li>
 <li>程序是进程的代码部分</li>
 <li>进程是活动实体，程序静止（被动）实体</li>
 <li>进程在内存，程序在外存</li>
@@ -593,6 +593,16 @@
 <li>终止：进程执行完毕</li>
 </ul>
 </blockquote>
+<p>进程状态的转换：<br><img src="/2020/09/08/operating-system0/process0.jpg" alt="Process"></p>
+<blockquote>
+<ul>
+<li>新建-就绪：操作系统能够同时执行的进程是有限的，新进程需要被允许才能就绪</li>
+<li>就绪-运行：通过调度程序控制</li>
+<li>运行-就绪：中断发生，如分时系统中切换任务；而多道程序中这个状态转换通常是程序自愿发生的</li>
+<li>运行-等待：进程需要等待某个操作（如按下任意键继续）才能继续执行</li>
+<li>等待-就绪：事件发生，进程可以（在调度程序的控制下）继续执行了（就绪）<br>注意区分等待和就绪两种状态</li>
+</ul>
+</blockquote>
 <h3 id="进程控制快PCB"><a href="#进程控制快PCB" class="headerlink" title="进程控制快PCB"></a>进程控制快PCB</h3><p>PCB包含同进程有关的信息，包括：</p>
 <blockquote>
 <ul>
@@ -605,13 +615,658 @@
 <li>I/O状态信息</li>
 </ul>
 </blockquote>
-<h3 id="CPU在进程之间切换"><a href="#CPU在进程之间切换" class="headerlink" title="CPU在进程之间切换"></a>CPU在进程之间切换</h3>
+<h3 id="CPU在进程之间切换"><a href="#CPU在进程之间切换" class="headerlink" title="CPU在进程之间切换"></a>CPU在进程之间切换</h3><p>进程的并发执行需要PCB保存和恢复现场</p>
+<h2 id="3-2-进程操作"><a href="#3-2-进程操作" class="headerlink" title="3.2 进程操作"></a>3.2 进程操作</h2><h3 id="进程创建"><a href="#进程创建" class="headerlink" title="进程创建"></a>进程创建</h3><p>父进程创建子进程，如此轮流创建进程下去，构成一棵进程树</p>
+<p>父子进程之间的关系：</p>
+<ul>
+<li><p>资源共享：</p>
+<blockquote>
+<ul>
+<li>父进程子进程共享所有的资源：并行计算</li>
+<li>子进程共享父进程资源的子集（部分共享）：windows创建的进程</li>
+<li>父进程和子进程无资源共享</li>
+</ul>
+</blockquote>
+</li>
+<li><p>执行：</p>
+<blockquote>
+<ul>
+<li>父进程和子进程并发执行，两者不相干（操作系统默认模式）</li>
+<li>父进程等待，直到子进程终止（需要程序员控制）</li>
+</ul>
+</blockquote>
+</li>
+<li><p>地址空间：</p>
+<blockquote>
+<ul>
+<li>子女复制双亲</li>
+<li>子女执行一个外部程序</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>进程的创建是一个原子操作：</p>
+<blockquote>
+<ul>
+<li>执行这种原子操作的语句也被称为原语</li>
+<li>这是一个不会被打断的操作</li>
+<li>一旦开始就一直运行到结束，中间不会有任何上下文切换</li>
+<li>该特性需要硬件支持：总线加锁（x86）</li>
+</ul>
+</blockquote>
+<h3 id="进程终止"><a href="#进程终止" class="headerlink" title="进程终止"></a>进程终止</h3><ul>
+<li><p>进程执行最后一项并退出</p>
+<blockquote>
+<ul>
+<li>子进程通过wait向父进程输出数据，处于终止状态</li>
+<li>父进程处理子进程的终止状态（区分需要回收的资源等）</li>
+<li>操作系统回收进程的资源</li>
+</ul>
+</blockquote>
+</li>
+<li><p>父进程终止子进程执行</p>
+<blockquote>
+<ul>
+<li>子进程超量分配资源</li>
+<li>赋予子进程的任务不再需要</li>
+<li>父进程结束导致的级联操作；当然，父进程结束后子进程也可以链到更上级进程下面</li>
+<li>父进程可以通过wait()系统调用等待子进程结束</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="进程调用举例"><a href="#进程调用举例" class="headerlink" title="进程调用举例"></a>进程调用举例</h3><h4 id="Linux的fork"><a href="#Linux的fork" class="headerlink" title="Linux的fork()"></a>Linux的fork()</h4><p>策略：</p>
+<blockquote>
+<ul>
+<li>fork()的子进程和父进程几乎一模一样</li>
+<li>进程创建时两者代码和数据空间一样，但pid不一样</li>
+<li>当子进程修改数据空间时，将该空间拷贝并进行修改（写时复制策略）</li>
+</ul>
+</blockquote>
+<p>区分父子进程：</p>
+<blockquote>
+<ul>
+<li>父进程调用fork()的返回值是子进程的ID（并创建子进程）</li>
+<li>子进程调用fork()的返回值是-1（不会创建其他进程）</li>
+<li>可以在同一个代码中插入fork()值的判断来使父子进程运行不同的代码</li>
+</ul>
+</blockquote>
+<h4 id="exec"><a href="#exec" class="headerlink" title="exec()"></a>exec()</h4><p>exec用于执行其他程序，子进程和父进程不共享任何资源</p>
+<h4 id="创建进程的模式"><a href="#创建进程的模式" class="headerlink" title="创建进程的模式"></a>创建进程的模式</h4><blockquote>
+<ul>
+<li>先用fork创建一个镜像</li>
+<li>执行exec覆盖这个镜像</li>
+</ul>
+</blockquote>
+<h2 id="3-3-进程间的通信"><a href="#3-3-进程间的通信" class="headerlink" title="3.3 进程间的通信"></a>3.3 进程间的通信</h2><h3 id="进程间的关系"><a href="#进程间的关系" class="headerlink" title="进程间的关系"></a>进程间的关系</h3><p>独立进程：进程之间的执行不会互相影响<br>协同进程：进程间的执行可能会相互影响</p>
+<p>目前，大多数进程都是协同进程</p>
+<p>协同进程优点：</p>
+<blockquote>
+<ul>
+<li>信息共享</li>
+<li>加速运算</li>
+<li>模块化</li>
+<li>方便：单个用户也可以执行多个任务</li>
+</ul>
+</blockquote>
+<p>进程间的通信方式：</p>
+<blockquote>
+<ul>
+<li>共享内存</li>
+<li>消息传递</li>
+</ul>
+</blockquote>
+<h3 id="共享内存"><a href="#共享内存" class="headerlink" title="共享内存"></a>共享内存</h3><p>生产者-消费者模型：</p>
+<blockquote>
+<ul>
+<li>生产者进程生产供消费者消费的信息</li>
+<li>无界缓冲(Unbounded-buffer)没有对缓冲区大小的限制</li>
+<li>有界缓冲(Bounded-buffer)对缓冲区大小作了限定</li>
+</ul>
+</blockquote>
+<h3 id="消息传递"><a href="#消息传递" class="headerlink" title="消息传递"></a>消息传递</h3><p>消息传递是通信模式中的常用机制</p>
+<blockquote>
+<ul>
+<li>适合用于传递少量的信息</li>
+<li>远程通信无法采用共享内存</li>
+</ul>
+</blockquote>
+<p>直接通信：两个进程之间建立一个直接通信的链路</p>
+<blockquote>
+<ul>
+<li>每个链路只有两个进程相关</li>
+<li>信息发送必须明确指定接收者</li>
+<li>共享内存实际上也是一种直接通信</li>
+</ul>
+</blockquote>
+<p>间接通信：消息被导向至信箱并从信箱接受</p>
+<blockquote>
+<ul>
+<li>每个信箱有一个唯一的id</li>
+<li>仅当共享一个信箱时进程才能通信</li>
+<li>信息的发送者可以无需指定接收者（广播）</li>
+<li>其他有第三方参与（如剪贴板）的通信也是一种简介通信</li>
+</ul>
+</blockquote>
+<p>消息传递的同步性：</p>
+<blockquote>
+<ul>
+<li>阻塞发送</li>
+<li>阻塞接收</li>
+<li>非阻塞发送</li>
+<li>非阻塞接收：接收者收到一个有效消息或无效消息</li>
+<li>一般默认非阻塞发送和阻塞接收</li>
+</ul>
+</blockquote>
+<h3 id="进程间通信"><a href="#进程间通信" class="headerlink" title="进程间通信"></a>进程间通信</h3><h4 id="Windows进程通信"><a href="#Windows进程通信" class="headerlink" title="Windows进程通信"></a>Windows进程通信</h4><ul>
+<li>网络通信：命名管道等</li>
+<li>本地通信：剪贴板等</li>
+</ul>
+<p>Windows消息传递的主体是窗口</p>
+<h4 id="Linux进程通信"><a href="#Linux进程通信" class="headerlink" title="Linux进程通信"></a>Linux进程通信</h4><ul>
+<li>管道</li>
+<li>信号</li>
+<li>消息</li>
+<li>…</li>
+</ul>
+<h1 id="四、线程"><a href="#四、线程" class="headerlink" title="四、线程"></a>四、线程</h1><h2 id="4-1-概述"><a href="#4-1-概述" class="headerlink" title="4.1 概述"></a>4.1 概述</h2><p>线程的合理性：</p>
+<blockquote>
+<ul>
+<li>性能要求：进程是重量级的，进程操作开销大</li>
+<li>应用要求：进程内也有代码并行执行的需求</li>
+<li>硬件要求：多核处理器已经是主流硬件，能加速进程的运行</li>
+</ul>
+</blockquote>
+<p>线程：</p>
+<blockquote>
+<ul>
+<li>线程是一个轻量级的进程，切换代价小</li>
+<li>进程内的一个代码片段可以被创建为一个线程</li>
+<li>线程状态：就绪、运行、等待等</li>
+<li>进程依旧是资源分配的基本单位；线程撤销不会影响进程，但进程撤销会导致所有线程的撤销</li>
+<li>线程自己不拥有完整的系统资源，需要通过进程来申请资源</li>
+</ul>
+</blockquote>
+<h2 id="4-2-线程结构"><a href="#4-2-线程结构" class="headerlink" title="4.2 线程结构"></a>4.2 线程结构</h2><p>线程控制块TCB</p>
+<blockquote>
+<ul>
+<li>线程ID</li>
+<li>线程计数器PC</li>
+<li>寄存器集合</li>
+<li>栈空间</li>
+</ul>
+</blockquote>
+<h2 id="4-3-单线程和多线程"><a href="#4-3-单线程和多线程" class="headerlink" title="4.3 单线程和多线程"></a>4.3 单线程和多线程</h2><p>单线程：</p>
+<blockquote>
+<ul>
+<li>单线程：一个进程只有一个线程</li>
+<li>多线程：一个进程可以有多个线程</li>
+</ul>
+</blockquote>
+<p>线程优点：</p>
+<blockquote>
+<ul>
+<li>创建、上下文切换开销小，速度快</li>
+<li>资源共享</li>
+<li>充分利用硬件资源</li>
+</ul>
+</blockquote>
+<h2 id="4-4-多线程模型"><a href="#4-4-多线程模型" class="headerlink" title="4.4 多线程模型"></a>4.4 多线程模型</h2><p>用户线程：</p>
+<blockquote>
+<ul>
+<li>用户线程为用户自己管理的线程</li>
+<li>用户线程的创建和调度在用户空间中，无需内核干预</li>
+<li>应用于只支持进程的操作系统</li>
+</ul>
+</blockquote>
+<p>内核线程</p>
+<blockquote>
+<ul>
+<li>内核线程为由内核管理的线程</li>
+<li>由内核完成线程调度、创建和撤销</li>
+</ul>
+</blockquote>
+<h4 id="多对一模型"><a href="#多对一模型" class="headerlink" title="多对一模型"></a>多对一模型</h4><p>映射多个用户线程到一个内核线程：</p>
+<blockquote>
+<ul>
+<li>内核中实际上只有进程，内核能够看到的只有一个进程</li>
+<li>此时多线程不能运行在多个处理器上（因此该模型目前不常使用）</li>
+<li>用户线程由进程自己管理</li>
+</ul>
+</blockquote>
+<h4 id="一对一模型"><a href="#一对一模型" class="headerlink" title="一对一模型"></a>一对一模型</h4><p>每个用户线程都映射到内核线程中：</p>
+<blockquote>
+<ul>
+<li>用于支持线程的操作系统</li>
+<li>操作系统来管理这些线程</li>
+<li>可以并行运行在多个处理器上，并发性好</li>
+<li>内核开销大</li>
+</ul>
+</blockquote>
+<h4 id="多对多模型"><a href="#多对多模型" class="headerlink" title="多对多模型"></a>多对多模型</h4><p>多个用户线程映射为相等或更小数码的内核线程：</p>
+<blockquote>
+<ul>
+<li>兼顾并发性和效率（实际上多对多指的是多个用户线程运行在多个核上）</li>
+<li>用户线程和内核线程之间需要添加一个映射层，增加了系统复杂度（该模型不常使用）</li>
+</ul>
+</blockquote>
+<p>两级模型：将多对一模型和一对一模型混合使用</p>
+<h3 id="4-4-线程库"><a href="#4-4-线程库" class="headerlink" title="4.4 线程库"></a>4.4 线程库</h3><p>用户库和内核库</p>
+<p>线程库：为程序员提供创建和管理线程的API</p>
+<blockquote>
+<ul>
+<li>无内和支持线程库：java线程库</li>
+<li>内核支持线程库：Windows线程库</li>
+</ul>
+</blockquote>
+<h3 id="4-5-隐式多线程"><a href="#4-5-隐式多线程" class="headerlink" title="4.5 隐式多线程"></a>4.5 隐式多线程</h3><p>线程池：</p>
+<blockquote>
+<ul>
+<li>从池中创建一批线程，任务来临时，从线程池中取出线程进行处理，处理完后在将线程放回池中</li>
+<li>若池中没有可以使用等线程，则任务进入等待状态</li>
+</ul>
+</blockquote>
+<h3 id="Linux多线程"><a href="#Linux多线程" class="headerlink" title="Linux多线程"></a>Linux多线程</h3><p>利用Pthreads线程库（第三方线程库）一种用户线程库</p>
+<p>Pthreads：</p>
+<blockquote>
+<ul>
+<li>pthread_exit()结束线程运行</li>
+<li>pthread_cancel(thread)利用消息终止其他线程</li>
+</ul>
+</blockquote>
+<h1 id="五、进程调度"><a href="#五、进程调度" class="headerlink" title="五、进程调度"></a>五、进程调度</h1><h2 id="5-1-概述"><a href="#5-1-概述" class="headerlink" title="5.1 概述"></a>5.1 概述</h2><p>调度分类：</p>
+<blockquote>
+<ul>
+<li>长程调度（作业/高级调度）：道（内存中可以同时运行的最大进程数）不够时，选择哪些进程可以新建进入等待状态</li>
+<li>中程调度：严格来说属于内存管理，负责将内存中长时间不运行的进程调出到外存中（内存交换）</li>
+<li>短程调度（CPU/低级调度）：CPU空闲时，从就绪队列中选择一个进程让其运行</li>
+</ul>
+</blockquote>
+<p>区别：</p>
+<blockquote>
+<ul>
+<li>长程调度在每个进程的生命周期中只出现一次，频率低、速度慢；有些操作系统没有长程调度</li>
+<li>短程调度可能出现成千上万次，开销小；操作系统必须有短程调度，一般进程调度指短程调度</li>
+</ul>
+</blockquote>
+<p>进程调度队列：</p>
+<blockquote>
+<ul>
+<li>作业队列：系统中所有进程的队列集合</li>
+<li>就绪队列：在主内存中就绪请等待执行的所有进程的队列集合</li>
+<li>设备队列：等待某一IO设备的进程队列集合</li>
+</ul>
+</blockquote>
+<p>调度过程：</p>
+<blockquote>
+<ul>
+<li>调度程序：选择进程来执行</li>
+<li>分派程序：做进程的上下文切换</li>
+</ul>
+</blockquote>
+<p>调度方式：</p>
+<blockquote>
+<ul>
+<li>非抢占式调度：系统不能抢占已分配进程的CPU（批处理）</li>
+<li>抢占式调度：调度程序可以根据某种原则暂停某个正在执行的进程</li>
+</ul>
+</blockquote>
+<p>调度时机：</p>
+<blockquote>
+<ul>
+<li>进程等待（非抢占）</li>
+<li>进程就绪（抢占）</li>
+<li>进程终止运行（非抢占）</li>
+</ul>
+</blockquote>
+<h2 id="5-2-调度准则"><a href="#5-2-调度准则" class="headerlink" title="5.2 调度准则"></a>5.2 调度准则</h2><p>基本指标：</p>
+<blockquote>
+<ul>
+<li>CPU利用率：固定时间CPU运行时间的比例</li>
+<li>吞吐量：单位时间运行完的进程数</li>
+<li>周转时间：进程从提交到运行结束需要的全部时间；</li>
+<li>等待时间：进程等待调度（不在运行）的时间片总和</li>
+<li>响应时间：从进程提出请求到第一次响应（运行）的时间</li>
+<li>周转时间=运行时间+等待时间；带权周转时间=周转时间/运行时间</li>
+</ul>
+</blockquote>
+<h2 id="5-3-调度算法"><a href="#5-3-调度算法" class="headerlink" title="5.3 调度算法"></a>5.3 调度算法</h2><h3 id="FCFS先来先服务"><a href="#FCFS先来先服务" class="headerlink" title="FCFS先来先服务"></a>FCFS先来先服务</h3><p>First-Come First-Served：非抢占式</p>
+<blockquote>
+<ul>
+<li>策略：按照进程请求CPU的先后顺序来使用CPU</li>
+<li>依据：进入就绪队列的时间</li>
+<li>方法：选取队头进程执行</li>
+</ul>
+</blockquote>
+<p>优点：策略简单，理解容易</p>
+<p>缺点：平均等待时间往往很长</p>
+<h3 id="SJF短作业优先"><a href="#SJF短作业优先" class="headerlink" title="SJF短作业优先"></a>SJF短作业优先</h3><p>Shortest-Job-First：</p>
+<blockquote>
+<ul>
+<li>策略：关联到每个进程下次运行的CPU脉冲长度，调度最短的进程</li>
+<li>依据：每个进程下次运行的CPU脉冲长度</li>
+<li>方法：选择最短的进程运行</li>
+</ul>
+</blockquote>
+<p>SJF有抢占式调度和非抢占式调度两种：新来的进程比当前执行的进程短</p>
+<p>抢占式SJF适合交互式系统，切换开销较大，但会出现饥饿现象</p>
+<blockquote>
+<p>饥饿：长作业一直得不到运行</p>
+</blockquote>
+<p>问题：无法准确得到程序将要运行的时间，算法难以实现</p>
+<blockquote>
+<ul>
+<li>使用过往CPU运行时间的指数平均来预测下一次CPU运行时间</li>
+</ul>
+</blockquote>
+<h3 id="PS优先级调度"><a href="#PS优先级调度" class="headerlink" title="PS优先级调度"></a>PS优先级调度</h3><p>优先级高的进程先运行</p>
+<p>PS有抢占式调度和非抢占式调度</p>
+<p>抢占式PS会出现饥饿问题</p>
+<blockquote>
+<p>解决方案：老化，即逐渐增加等待时间长的进程优先级</p>
+</blockquote>
+<p>优先级可以自定义</p>
+<h3 id="RR时间片轮转算法"><a href="#RR时间片轮转算法" class="headerlink" title="RR时间片轮转算法"></a>RR时间片轮转算法</h3><p>Rount-Robin：</p>
+<blockquote>
+<ul>
+<li>原理：将一段时间分割成若干个小时间片，每个需要运行的进程获得一个碎片执行</li>
+<li>策略：每个进程获得不超过p的时间来运行，执行完或时间用完时切换下一个进程</li>
+<li>若进程在时间片结束之前运行完，立刻运行下一个进程</li>
+</ul>
+</blockquote>
+<h3 id="MLQ多级队列调度"><a href="#MLQ多级队列调度" class="headerlink" title="MLQ多级队列调度"></a>MLQ多级队列调度</h3><p>对于不同类型的进程需要不同的调度策略：</p>
+<blockquote>
+<ul>
+<li>交互进程需要短的响应时间</li>
+<li>批处理进程需要短的等待时间</li>
+</ul>
+</blockquote>
+<p>多级队列调度：系统中存在多个就绪队列，每个队列有自己的调度算法</p>
+<blockquote>
+<ul>
+<li>队列个数</li>
+<li>各队列的调度算法</li>
+<li>决定新进程进入哪个队列</li>
+</ul>
+</blockquote>
+<p>例子：前台RR，后台FCFS</p>
+<p>优先调度哪个队列中的进程：</p>
+<blockquote>
+<ul>
+<li>固定优先级：前台运行完再运行后台，有可能产生饥饿</li>
+<li>给定时间片</li>
+</ul>
+</blockquote>
+<h3 id="MLFQ多级反馈队列调度"><a href="#MLFQ多级反馈队列调度" class="headerlink" title="MLFQ多级反馈队列调度"></a>MLFQ多级反馈队列调度</h3><p>多级反馈队列：进程能在不同队列中移动</p>
+<blockquote>
+<ul>
+<li>多级队列调度算法</li>
+<li>进程升级的方法</li>
+<li>进程降级的方法</li>
+</ul>
+</blockquote>
+<h2 id="5-4-多处理器调度"><a href="#5-4-多处理器调度" class="headerlink" title="5.4 多处理器调度"></a>5.4 多处理器调度</h2><blockquote>
+<ul>
+<li>SMP：每个处理器决定自己的调度方案</li>
+<li>ASMP：仅一个处理器能处理系统数据结</li>
+</ul>
+</blockquote>
+<p>多处理器调度算法和单处理器相似</p>
+<blockquote>
+<ul>
+<li>负载平衡：将任务平均分配给各个处理器</li>
+<li>亲和性：进程在某个CPU上运行尽量长的时间而不被迁移</li>
+</ul>
+</blockquote>
+<h3 id="SQMP单队列多核调度算法"><a href="#SQMP单队列多核调度算法" class="headerlink" title="SQMP单队列多核调度算法"></a>SQMP单队列多核调度算法</h3><p>系统有一个就绪队列，当任意一个CPU空闲时，就从就绪队列中选择一个进程到该CPU上运行</p>
+<blockquote>
+<ul>
+<li>实现简单，负载均衡</li>
+<li>不具有亲和性</li>
+<li>加锁问题</li>
+</ul>
+</blockquote>
+<h4 id="MQMP多队列调度方法"><a href="#MQMP多队列调度方法" class="headerlink" title="MQMP多队列调度方法"></a>MQMP多队列调度方法</h4><p>系统有多个就绪队列，一般每个CPU一个。每个就绪队列相对独立，有自己的调度算法</p>
+<blockquote>
+<ul>
+<li>亲和性好，不需要加锁</li>
+<li>负载不均衡，策略是偷进程</li>
+</ul>
+</blockquote>
+<h1 id="六、同步"><a href="#六、同步" class="headerlink" title="六、同步"></a>六、同步</h1><h2 id="竞争条件和临界区"><a href="#竞争条件和临界区" class="headerlink" title="竞争条件和临界区"></a>竞争条件和临界区</h2><p>多个进程并发或并行执行会导致数据不一致：</p>
+<blockquote>
+<ul>
+<li>不可再现性：同一进程在同一批数据上多次运行结果不一样</li>
+<li>原因：进程的并发或并行执行（并且之间有协作）</li>
+<li>解决方案：同步（互斥）机制</li>
+</ul>
+</blockquote>
+<p>原子操作：</p>
+<blockquote>
+<p>一个在执行期间不能被中断的操作</p>
+</blockquote>
+<p>竞争条件：</p>
+<blockquote>
+<ul>
+<li>多个进程并发访问同一共享数据</li>
+<li>共享数据的最终结果取决于最后操作的进程（写覆盖）</li>
+</ul>
+</blockquote>
+<h3 id="同步和互斥"><a href="#同步和互斥" class="headerlink" title="同步和互斥"></a>同步和互斥</h3><p>同步：</p>
+<blockquote>
+<ul>
+<li>协调进程的执行次序，使并发进程间能有效地共享资源和相互合作，保证数据一致性</li>
+<li>同步用于协调执行次序</li>
+</ul>
+</blockquote>
+<p>互斥：</p>
+<blockquote>
+<ul>
+<li>进程排他性地运行某段代码，任何时候只有一个进程能够运行</li>
+<li>互斥可以访问独占资源</li>
+</ul>
+</blockquote>
+<p>互斥是同步的一种特例</p>
+<h3 id="临界资源"><a href="#临界资源" class="headerlink" title="临界资源"></a>临界资源</h3><p>临界资源是一次只允许一个进程使用的资源</p>
+<blockquote>
+<ul>
+<li>又称互斥资源、独占资源或共享变量</li>
+<li>反义词：共享资源，一次允许多个进程使用等资源</li>
+</ul>
+</blockquote>
+<p>例子：输入机、打印机、磁带机等</p>
+<h3 id="临界区"><a href="#临界区" class="headerlink" title="临界区"></a>临界区</h3><p>临界区是涉及临界资源的代码段</p>
+<blockquote>
+<ul>
+<li>临界区是代码片段，是进程内的代码</li>
+<li>每个进程有一个或多个临界区</li>
+<li>临界区的设置方法由程序员来确定</li>
+</ul>
+</blockquote>
+<p>对临界资源的互斥访问可以保证进程互斥地进入关联到临界区</p>
+<p>临界区使用准则：</p>
+<blockquote>
+<ul>
+<li>互斥：有相同临界资源的临界区需要互斥；无相同临界资源的临界区不需要互斥</li>
+<li>有空让进：临界区内无进程执行时，不能无限期延长下一个要进入临界区进程的等待时间</li>
+<li>有限等待：每个进程进入临界区前的等待时间必须有限</li>
+</ul>
+</blockquote>
+<p>访问临界区的过程：</p>
+<blockquote>
+<ul>
+<li>进入区：互斥准则</li>
+<li>临界区：有限等待准则（临界区不能过大）</li>
+<li>退出区：有空让进准则</li>
+<li>其他区</li>
+</ul>
+</blockquote>
+<h2 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h2><p>早期同步和互斥采用硬件解决方案，设计起来十分复杂</p>
+<p>信号量是同步和互斥的一种软件解决方案</p>
+<blockquote>
+<ul>
+<li>保证两个或多个代码段不被并发调用</li>
+<li>在进入关键代码段前，进程必须获取一个信号量，否则不能运行</li>
+<li>执行完该关键代码段，必须释放信号量</li>
+<li>信号量有值，为正说明它空闲，为负说明其忙碌</li>
+</ul>
+</blockquote>
+<h3 id="整型信号量"><a href="#整型信号量" class="headerlink" title="整型信号量"></a>整型信号量</h3><p>信号量S是一个整型变量，它有两个原子操作</p>
+<blockquote>
+<ul>
+<li>wait(S)：P(S)，通过while等待S大于等于0，然后令S–</li>
+<li>signal(S)：V(S)，S++</li>
+<li>会出现wait忙等问题</li>
+</ul>
+</blockquote>
+<p>改进：记录型信号量，使用原子操作将等待进程加入队列</p>
+<blockquote>
+<ul>
+<li>记录型信号量可以为负数，绝对值表示等待信号量的进程个数</li>
+<li>执行原子操作本身其实也有忙等待问题</li>
+</ul>
+</blockquote>
+<h3 id="信号量类型"><a href="#信号量类型" class="headerlink" title="信号量类型"></a>信号量类型</h3><p>计数信号量：</p>
+<blockquote>
+<ul>
+<li>没有限制的整型值</li>
+<li>计数信号量为同步信号量</li>
+</ul>
+</blockquote>
+<p>二值信号:</p>
+<blockquote>
+<ul>
+<li>变化范围为0和1（整型）</li>
+<li>二值信号量为互斥信号量</li>
+<li>记录型二进制信号量可以为负</li>
+</ul>
+</blockquote>
+<p>信号量S的使用：</p>
+<blockquote>
+<ul>
+<li>S仅且只能设置一次初始值</li>
+<li>S的初始值不能为负数</li>
+<li>除了初始化，只能通过PV操作来访问S</li>
+</ul>
+</blockquote>
+<h3 id="信号量使用"><a href="#信号量使用" class="headerlink" title="信号量使用"></a>信号量使用</h3><p>互斥信号量的使用:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Semaphore *S; &#x2F;&#x2F;S&#x3D;1</span><br><span class="line">wait(S);</span><br><span class="line">CriticalSection();</span><br><span class="line">signal(S);</span><br></pre></td></tr></table></figure>
+
+<p>同步信号量的使用:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Semaphore S &#x3D; 0;</span><br><span class="line">P1: &#x2F;&#x2F; process 1</span><br><span class="line">	C1;</span><br><span class="line">    signal(S);</span><br><span class="line">P2: &#x2F;&#x2F; process 2</span><br><span class="line">    wait(S);</span><br><span class="line">    C2;</span><br></pre></td></tr></table></figure>
+
+<h2 id="生产者消费者问题"><a href="#生产者消费者问题" class="headerlink" title="生产者消费者问题"></a>生产者消费者问题</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>本质：协同进程共享有限缓冲区</p>
+<blockquote>
+<ul>
+<li>M个生产产品放入固定大小的缓冲区</li>
+<li>N个消费者从缓冲区中取出产品进行消费</li>
+</ul>
+</blockquote>
+<p>两个指针：in和out；in&gt;out</p>
+<p>一个计数值：count，用于记录缓冲区中点产品个数</p>
+<h3 id="互斥分析"><a href="#互斥分析" class="headerlink" title="互斥分析"></a>互斥分析</h3><p>临界资源：</p>
+<blockquote>
+<ul>
+<li>所有生产者对in指正互斥</li>
+<li>所有消费者对out指正互斥</li>
+<li>生产者和消费者多count互斥</li>
+</ul>
+</blockquote>
+<p>临界区：</p>
+<blockquote>
+<ul>
+<li>将产品放入缓冲区</li>
+<li>从缓冲区中取出产品</li>
+</ul>
+</blockquote>
+<p>互斥机制：此时可以只设置一个信号量，比较简单，但稍微拉长了临界区</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Semaphore *buffer &#x3D; new Semaphore(1); &#x2F;&#x2F; 互斥信号量</span><br><span class="line"></span><br><span class="line">Producer&#123;</span><br><span class="line">	producing;</span><br><span class="line">    </span><br><span class="line">    wait(buffer);</span><br><span class="line">    putting production;</span><br><span class="line">    signal(buffer);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Consumer&#123;</span><br><span class="line">	wait(buffer);</span><br><span class="line">    feching production;</span><br><span class="line">    signal(buffer);</span><br><span class="line">    </span><br><span class="line">    consuming production;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="同步问题"><a href="#同步问题" class="headerlink" title="同步问题"></a>同步问题</h3><p>查找需要按次序运行的代码和其执行顺序</p>
+<blockquote>
+<ul>
+<li>缓冲区为空，消费者进行消费，此时消费者阻塞直到生产者生产</li>
+<li>缓冲区为满，生产者进行生产，此时生产者阻塞直到消费者消费</li>
+</ul>
+</blockquote>
+<p>同步机制：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Semaphore *buffer &#x3D; new Semaphore(1);</span><br><span class="line">Semaphore *full &#x3D; new Semaphore(0); &#x2F;&#x2F; 有0个已填充</span><br><span class="line">Semaphore *empty &#x3D; new Semaphore(N); &#x2F;&#x2F; 有N个空位</span><br><span class="line"></span><br><span class="line">Producer&#123;</span><br><span class="line">	producing;</span><br><span class="line">    </span><br><span class="line">    wait(empty); &#x2F;&#x2F; 等待空位</span><br><span class="line">    wait(buffer);</span><br><span class="line">    puting production;</span><br><span class="line">    signal(buffer);</span><br><span class="line">    signal(full); &#x2F;&#x2F; 进行填充</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Consumer&#123;</span><br><span class="line">	wait(full); &#x2F;&#x2F; 等待填充</span><br><span class="line">    wait(buffer);</span><br><span class="line">    feching production;</span><br><span class="line">    signal(buffer);</span><br><span class="line">    signal(empty); &#x2F;&#x2F;给出空位</span><br><span class="line">    </span><br><span class="line">    consuming production;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="读者-写者问题"><a href="#读者-写者问题" class="headerlink" title="读者-写者问题"></a>读者-写者问题</h2><h3 id="问题描述-1"><a href="#问题描述-1" class="headerlink" title="问题描述"></a>问题描述</h3><p>读者和写者共享一组数据区进行读写：</p>
+<blockquote>
+<ul>
+<li>允许多个读者同时读</li>
+<li>不允许读者和写者同时读写</li>
+<li>不允许多个写者同时写</li>
+</ul>
+</blockquote>
+<h3 id="读者优先模式"><a href="#读者优先模式" class="headerlink" title="读者优先模式"></a>读者优先模式</h3><p>极端情况：设置一个互斥锁：</p>
+<blockquote>
+<p>违背了读者共享读的功能</p>
+</blockquote>
+<p>进行修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Semaphore M&#x3D;1；</span><br><span class="line">Semaphore W&#x3D;1;</span><br><span class="line">int rc&#x3D;0;</span><br><span class="line"></span><br><span class="line">Readers&#123;</span><br><span class="line">	P(M);</span><br><span class="line">    rc++;</span><br><span class="line">    if(rc&#x3D;&#x3D;1) P(W);</span><br><span class="line">    V(M);</span><br><span class="line">    reading;</span><br><span class="line">    P(M);</span><br><span class="line">    rc--;</span><br><span class="line">    if(rc&#x3D;&#x3D;0) V(W);</span><br><span class="line">    V(M);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Writers&#123;</span><br><span class="line">	P(W);</span><br><span class="line">    writing;</span><br><span class="line">    V(W);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>问题：一直有读者进行读的话，写者可能会长期饥饿</p>
+<h2 id="哲学家就餐问题"><a href="#哲学家就餐问题" class="headerlink" title="哲学家就餐问题"></a>哲学家就餐问题</h2><h3 id="问题描述-2"><a href="#问题描述-2" class="headerlink" title="问题描述"></a>问题描述</h3><p>共享资源竞争问题：</p>
+<blockquote>
+<ul>
+<li>5根筷子和5个哲学家间隔排成环</li>
+<li>每个哲学家左右各有一根筷子</li>
+<li>每个哲学家只有拿起左右两个筷子才能吃饭</li>
+</ul>
+</blockquote>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>为每个筷子设置一个互斥信号量：死锁问题</p>
+<p>防止死锁发生：</p>
+<blockquote>
+<ul>
+<li>最多允许4个哲学家同时坐在桌子周围</li>
+<li>一次封锁法：当且仅当哲学家左右两边筷子都可用时，才允许拿筷子（较好）</li>
+<li>顺序封锁法：给哲学家编号，奇数号哲学家必须首先拿左边筷子，偶数号反之</li>
+</ul>
+</blockquote>
+<h3 id="最多4个哲学家入座"><a href="#最多4个哲学家入座" class="headerlink" title="最多4个哲学家入座"></a>最多4个哲学家入座</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Semaphore *chopstick[5]</span><br></pre></td></tr></table></figure>
+
+<h2 id="管程"><a href="#管程" class="headerlink" title="管程"></a>管程</h2><p>信号量灵活，但维护困难，容易出错</p>
+<p>管程：</p>
+<blockquote>
+<ul>
+<li>管程定义了一个数据结构和一组能在该数据结构上并发执行的一组操作</li>
+<li>该操作能同步进程和改变管程中点数据</li>
+</ul>
+</blockquote>
+<p>管程功能：</p>
+<blockquote>
+<ul>
+<li>（互斥）管程中的变量只能被管程中的操作访问</li>
+<li>任何时候只有一个进程在管程中操作</li>
+<li>类似临界区</li>
+<li>由编译器完成</li>
+<li>（同步）条件变量</li>
+<li>唤醒和阻塞操作</li>
+</ul>
+</blockquote>
+<h2 id="Linux同步机制"><a href="#Linux同步机制" class="headerlink" title="Linux同步机制"></a>Linux同步机制</h2><ul>
+<li>短临界区：禁止中断</li>
+<li>自旋锁</li>
+<li>互斥锁</li>
+<li>条件变量</li>
+<li>信号量</li>
+</ul>
+<h2 id="Windows同步机制"><a href="#Windows同步机制" class="headerlink" title="Windows同步机制"></a>Windows同步机制</h2><ul>
+<li>事件</li>
+<li>临界区</li>
+<li>互斥锁</li>
+<li>自旋锁</li>
+<li>信号量</li>
+</ul>
+
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/08/operating-system0/" data-id="ckffegrqm002aaovneuzqdjv7"
+      <a data-url="http://georgechen1827.github.io/2020/09/08/operating-system0/" data-id="ckh1rlca1001vkovn91fi6nzv"
         class="article-share-link">share</a>
         
       

@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">646 words</span>
+            <span class="post-count">1.8k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">2 minutes</span>
+            <span class="post-count">6 minutes</span>
         </span>
     </span>
 </div>
@@ -214,13 +214,153 @@
 <li>液晶显示器</li>
 </ul>
 </blockquote>
+<h2 id="2-2-图形系统体系结构"><a href="#2-2-图形系统体系结构" class="headerlink" title="2.2 图形系统体系结构"></a>2.2 图形系统体系结构</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><p>图形系统是一个增加了图形输入、输出和显示设备、并配备了相应的图形软件的计算机系统</p>
+<p>图形系统的核心结构：图形流水线，其分为三个阶段：</p>
+<blockquote>
+<ul>
+<li>应用程序阶段：生成图元</li>
+<li>几何处理阶段：生成二维屏幕坐标（顶点）</li>
+<li>像素处理阶段：光栅阶段</li>
+</ul>
+</blockquote>
+<h3 id="应用程序阶段"><a href="#应用程序阶段" class="headerlink" title="应用程序阶段"></a>应用程序阶段</h3><p>将待生成的图形通过应用程序以图元的形式提供给图形硬件，其通过软件实现</p>
+<h3 id="几何处理阶段"><a href="#几何处理阶段" class="headerlink" title="几何处理阶段"></a>几何处理阶段</h3><p>几何处理阶段是以每个顶点坐标为基础对几何图元进行处理，并从三维坐标变换为二维屏幕坐标的过程</p>
+<p>处理过程举例：</p>
+<blockquote>
+<ul>
+<li>模型与视点变换</li>
+<li>光照</li>
+<li>投影</li>
+<li>裁剪</li>
+<li>屏幕映射</li>
+</ul>
+</blockquote>
+<h3 id="光栅阶段"><a href="#光栅阶段" class="headerlink" title="光栅阶段"></a>光栅阶段</h3><p>像素处理阶段，屏幕对象首先被传送到像素处理器进行光栅化，并对每个像素进行着色，然后再输出到帧缓冲器中，最后输出到显示器</p>
+<h1 id="三、二维图形生成"><a href="#三、二维图形生成" class="headerlink" title="三、二维图形生成"></a>三、二维图形生成</h1><h2 id="图元的概念"><a href="#图元的概念" class="headerlink" title="图元的概念"></a>图元的概念</h2><p>图元：二维平面内基本的图形元素</p>
+<blockquote>
+<ul>
+<li>点</li>
+<li>直线</li>
+<li>圆弧</li>
+<li>多边形</li>
+<li>字体符号和位图</li>
+</ul>
+</blockquote>
+<p>图元通常是指不可再分的独立的图形实体。一个图元中的所有像素点、直线、顶点等是作为一个整体存在的，不再细分为独立的图元。</p>
+<p>图元是连续的</p>
+<h2 id="直线光栅化"><a href="#直线光栅化" class="headerlink" title="直线光栅化"></a>直线光栅化</h2><p>直线光栅化：输入起点和终点，输出光栅化后的像素点</p>
+<blockquote>
+<ul>
+<li>直接法</li>
+<li>数值微分法</li>
+<li>中点线算法</li>
+<li>Bresenham算法</li>
+</ul>
+</blockquote>
+<p>策略：增量计算，规避浮点数</p>
+<h3 id="数值微分法DDA"><a href="#数值微分法DDA" class="headerlink" title="数值微分法DDA"></a>数值微分法DDA</h3><p>假设斜率0&lt;k&lt;1</p>
+<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">LineDDA(x_0,y_0,x_n,y_n)</span><br><span class="line">	k=(y_n-y_0)/(x_n-x_0)</span><br><span class="line">    y=y_0</span><br><span class="line">    <span class="keyword">for</span> x=x_0 <span class="keyword">to</span> x_n:</span><br><span class="line">    	Pixel(x,int(y+<span class="number">0.5</span>))</span><br><span class="line">        y=y+k</span><br></pre></td></tr></table></figure>
+
+<h3 id="中点画线法"><a href="#中点画线法" class="headerlink" title="中点画线法"></a>中点画线法</h3><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">LineMidpoint(x_0,y_0,x_n,y_n)</span><br><span class="line">	a = y_n-y_0</span><br><span class="line">    b = x_n-x_0</span><br><span class="line">    d1 = a+b</span><br><span class="line">    d2 = a</span><br><span class="line">    d = <span class="number">2</span>a+b <span class="comment">//a+0.5b</span></span><br><span class="line">    x=x_0</span><br><span class="line">    y=y_0</span><br><span class="line">    <span class="keyword">while</span> x &lt;= x_n <span class="keyword">do</span> </span><br><span class="line">    	Pixel(x,y)</span><br><span class="line">    	<span class="keyword">if</span> d&lt;<span class="number">0</span></span><br><span class="line">        	x++;y++</span><br><span class="line">            d+=a+b</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        	x++</span><br><span class="line">            d+=a</span><br></pre></td></tr></table></figure>
+
+<h2 id="整圆光栅化"><a href="#整圆光栅化" class="headerlink" title="整圆光栅化"></a>整圆光栅化</h2><p>中点画圆法：</p>
+<p>方程：F(X,Y)=X^2+Y^2-R^2从90-45度</p>
+<blockquote>
+<ul>
+<li>若某d大于0，下一步选择右下方点</li>
+<li>若某d小于0，下一步选择右边的点</li>
+</ul>
+</blockquote>
+<h2 id="区域填充"><a href="#区域填充" class="headerlink" title="区域填充"></a>区域填充</h2><p>输入：多边形顶点坐标以及连接关系</p>
+<p>输出：组成多边形的像素集合</p>
+<h3 id="逐点填充法"><a href="#逐点填充法" class="headerlink" title="逐点填充法"></a>逐点填充法</h3><p>判断每个像素是否在多边形内部</p>
+<p>判断方法：</p>
+<blockquote>
+<ul>
+<li>射线法</li>
+<li>弧长法</li>
+</ul>
+</blockquote>
+<p>射线法：</p>
+<blockquote>
+<ul>
+<li>从判别点v出发发出射线</li>
+<li>求射线与多边形交点个数（经过极值点时算两个交点）</li>
+<li>交点个数为奇数，则点在内部；偶数，则点在外部</li>
+</ul>
+</blockquote>
+<p>弧长法：</p>
+<blockquote>
+<ul>
+<li>给多边形的边定义一个首尾相接的方向</li>
+<li>将每条有向边投影到以判别点（非顶点）为圆心的单位圆上</li>
+<li>计算弧长总和，若为2pi则点在多边形内</li>
+</ul>
+</blockquote>
+<h3 id="扫描线填充法"><a href="#扫描线填充法" class="headerlink" title="扫描线填充法"></a>扫描线填充法</h3><p>求水平扫描线与多边形的交点，形成区间并填充</p>
+<p>步骤：</p>
+<blockquote>
+<ul>
+<li>求交点</li>
+<li>交点排序</li>
+<li>配对</li>
+<li>填充颜色</li>
+</ul>
+</blockquote>
+<h3 id="活动边表填充法"><a href="#活动边表填充法" class="headerlink" title="活动边表填充法"></a>活动边表填充法</h3><p>ET表是一个链表数组，链表元素为[ymax,xmin,1/m]</p>
+<blockquote>
+<ul>
+<li>数组的每个元素表示扫描线</li>
+<li>链表元素表示活动边</li>
+<li>ymax为该活动边最大的y值</li>
+<li>xmin为当前扫描线和该活动边相交的x值</li>
+<li>1/m为该活动边斜率倒数（x值的增量）</li>
+</ul>
+</blockquote>
+<p>AET表是一个数组，表示当前扫描线</p>
+<p>方法：</p>
+<blockquote>
+<ol>
+<li>构建ET表（初始化）：每个桶中存储由该扫描线激活的边</li>
+<li>构建AET表（空表），y从ET表中第一个非空桶开始迭代</li>
+<li>将ET表中相应桶的所有活动边移动到AET表中，并按xmin值排序</li>
+<li>配对填充像素值</li>
+<li>删除AET表中y&gt;ymax的项（边失去激活）</li>
+<li>更新AET表中所有节点的x值：x = x + 1/m</li>
+<li>AET表按xmin排序</li>
+<li>y+=1 回到3. 直到AET表为空</li>
+</ol>
+</blockquote>
+<p>排序开销较大，适合软件实现，不适合硬件实现</p>
+<h3 id="种子填充算法"><a href="#种子填充算法" class="headerlink" title="种子填充算法"></a>种子填充算法</h3><p>输入：区域，区域内一点</p>
+<p>输出：填充图形</p>
+<p>使用递归法（栈）来填充</p>
+<h2 id="字符"><a href="#字符" class="headerlink" title="字符"></a>字符</h2><p>字符分类：</p>
+<blockquote>
+<ul>
+<li>矢量字符</li>
+<li>点阵字符</li>
+</ul>
+</blockquote>
+<h2 id="裁剪"><a href="#裁剪" class="headerlink" title="裁剪"></a>裁剪</h2><p>输入：矩形窗口、对象</p>
+<h3 id="点的裁剪"><a href="#点的裁剪" class="headerlink" title="点的裁剪"></a>点的裁剪</h3><p>判断点是否在窗口内</p>
+<h3 id="直线裁剪"><a href="#直线裁剪" class="headerlink" title="直线裁剪"></a>直线裁剪</h3><p>直线段和裁剪窗口的可能关系：</p>
+<blockquote>
+<ul>
+<li>完全落在窗口内</li>
+<li>完全落在窗口外</li>
+<li>与窗口边界相交</li>
+</ul>
+</blockquote>
+<p>Cohen-Sutherland算法</p>
+<h1 id="四、图形几何变化"><a href="#四、图形几何变化" class="headerlink" title="四、图形几何变化"></a>四、图形几何变化</h1><p>平移、旋转、缩放、反射、错切、复合变换</p>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/10/computer-graphics0/" data-id="ckffegrpx000iaovn8ricdxst"
+      <a data-url="http://georgechen1827.github.io/2020/09/10/computer-graphics0/" data-id="ckh1rlc9e000ikovncuvc5tdi"
         class="article-share-link">share</a>
         
       
@@ -233,6 +373,15 @@
   
   
   <nav class="article-nav">
+    
+      <a href="/2020/10/18/microeconomics/" class="article-nav-link">
+        <strong class="article-nav-caption">Prev Post</strong>
+        <div class="article-nav-title">
+          
+            微观经济学
+          
+        </div>
+      </a>
     
     
       <a href="/2020/09/10/ai0/" class="article-nav-link">

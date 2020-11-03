@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">2.7k words</span>
+            <span class="post-count">5.1k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">9 minutes</span>
+            <span class="post-count">17 minutes</span>
         </span>
     </span>
 </div>
@@ -366,13 +366,14 @@
 <ul>
 <li>码元：时间轴上的一个信号编码单位</li>
 <li>波特率：每秒钟发送的码元数（每秒钟电压变化的次数）</li>
-<li>比特率：比特率C=波特率B*log2(N)；N为一个码元中的状态数</li>
+<li>比特率：比特率S=波特率B*log2(N)；N为一个码元中的状态数</li>
 <li>奈氏准则：理想低通信道最高码元传输速率为两倍的波特率</li>
 </ul>
 </blockquote>
 <p>信道的极限信息传输速率：</p>
 <blockquote>
 <ul>
+<li>信道：向某一个方向传送信息的媒体</li>
 <li>C = Wlog2(1+S/N) b/s</li>
 <li>W为信道带宽(Hz)</li>
 <li>S为信道内所传信号的平均功率</li>
@@ -413,13 +414,241 @@
 <li>差分Manchester：两个时钟信号之间电平变化表示0，不变表示1</li>
 </ul>
 </blockquote>
+<p>同步光纤网SONET：各级时钟都来自于一个非常精确的主时钟</p>
+<h3 id="PCM"><a href="#PCM" class="headerlink" title="PCM"></a>PCM</h3><blockquote>
+<ul>
+<li>模拟信号-PAM-采样模拟数据（水平采样频率是最高频率的两倍即可）</li>
+<li>采样模拟数据-量化-量化数据</li>
+<li>量化数据-二进制编码-二进制数据</li>
+<li>二进制数据-线性编码-数字信号</li>
+</ul>
+</blockquote>
+<h3 id="信道复用技术"><a href="#信道复用技术" class="headerlink" title="信道复用技术"></a>信道复用技术</h3><p>信道复用：多个信息源共享一个公共信道</p>
+<blockquote>
+<ul>
+<li>频分复用FDM：不同频率叠加然后恢复（传统电话、有线电视）</li>
+<li>同步时分复用TDM：不同终端严格分时使用信道（有可能造成线路利用率降低）</li>
+<li>统计时分复用TDM：分时使用信道，每个数据包前加头地址文件来区分（ATM，但使用复杂，现已弃用）</li>
+<li>波分复用WDM：光的频分复用；DWDM，高密度波分复用</li>
+<li>码分复用CDMA：各用户经过特殊挑选的不同码型，彼此之间不会干扰（抗干扰能力强，频谱类似白噪声）；每个码片序列必须正交</li>
+</ul>
+</blockquote>
+<p>T1信道：</p>
+<blockquote>
+<ul>
+<li>每秒8000次采样；24路信号，每路8位，每帧有1位同步比特</li>
+<li>数据速率：1.544Mbps</li>
+</ul>
+</blockquote>
+<p>E1信道：</p>
+<blockquote>
+<ul>
+<li>32路信号（2路同步信号）</li>
+<li>数据速率：2.048Mbps</li>
+</ul>
+</blockquote>
+<h3 id="宽带接入技术"><a href="#宽带接入技术" class="headerlink" title="宽带接入技术"></a>宽带接入技术</h3><blockquote>
+<ul>
+<li>ADSL：非对称数字用户线</li>
+<li>HFC：光纤同轴混合网</li>
+<li>FTTx：光纤到x（终端）</li>
+</ul>
+</blockquote>
+<h1 id="三、数据链路层"><a href="#三、数据链路层" class="headerlink" title="三、数据链路层"></a>三、数据链路层</h1><h2 id="3-1-基本概念"><a href="#3-1-基本概念" class="headerlink" title="3.1 基本概念"></a>3.1 基本概念</h2><p>链路：一条无源的点到点的物理线路段，中间没有任何其他的交换节点</p>
+<blockquote>
+<p>一条链路只是一条通路的一个组成部分</p>
+</blockquote>
+<p>数据链路：链路和通信协议与软件的组合</p>
+<p>数据链路传送的数据单位：帧</p>
+<p>主要功能：</p>
+<blockquote>
+<ul>
+<li>链路管理</li>
+<li>帧定界：如何确定帧的开始和结束</li>
+<li>流量控制：保证发送的速度不会超过接收端的最大接收速度</li>
+<li>差错控制</li>
+</ul>
+</blockquote>
+<h2 id="3-2-帧定界"><a href="#3-2-帧定界" class="headerlink" title="3.2 帧定界"></a>3.2 帧定界</h2><ul>
+<li>字节计数法：帧同步-帧长度-帧内容-校验位；若帧长度出错则整个帧丢失</li>
+<li>字符填充法：面相字符的通信协议，STX-帧内容-ETX；兼容性差，发送文本中不能出现STX和ETX（通过插入转义符DLE来进行区分）</li>
+<li>使用比特填充的首尾标记法：连续6个二进制1来界定帧的开始和结束（需要解决通明性）</li>
+<li>编码违例法：利用违反编码规律的策略来标志帧的边界；无需填充，需要物理层支持</li>
+</ul>
+<h2 id="3-3-差错控制"><a href="#3-3-差错控制" class="headerlink" title="3.3 差错控制"></a>3.3 差错控制</h2><p>附加监督位：通过在数据快中加入一些冗余信息来验证关联关系是否存在</p>
+<ul>
+<li>奇偶校验码：效率不高</li>
+<li>校验和：数据按比特位加和取补形成校验位发送；验证时校验位和前面加和，结果应为补码0</li>
+<li>循环冗余校验码CRC：利用除法计算（异或）；可检测出几乎所有错误，除非差错和除数变化规律相同；易于硬件实现</li>
+</ul>
+<p>差错控制策略：</p>
+<blockquote>
+<ul>
+<li>ARQ自动重发请求：发送方发送完一帧后一段时间没有收到应答，便进行重发</li>
+<li>前向纠错：发送端使用纠错码，接收端检出错误并纠正错误；纠错机制复杂，适合用于没有应答的单工通信中</li>
+</ul>
+</blockquote>
+<h2 id="3-4-PPP点对点协议"><a href="#3-4-PPP点对点协议" class="headerlink" title="3.4 PPP点对点协议"></a>3.4 PPP点对点协议</h2><p>组成部分：</p>
+<blockquote>
+<ul>
+<li>将IP数据报封装成串行链路的方法</li>
+<li>链路控制协议LCP</li>
+<li>网络控制协议NCP</li>
+</ul>
+</blockquote>
+<p>协议帧格式：F(1)-A(1)-C(1)-协议(2)-IP数据报(不超过1500字节)-FCS(2)-F(1)</p>
+<blockquote>
+<ul>
+<li>由01111110，7E来界定开始和结束</li>
+<li>A为地址，全1表示广播（不启用）；C为差错控制（不启用）</li>
+<li>通明传输问题：同步时进行比特填充；异步时进行字符填充</li>
+<li>FCS：检错位，帧检验序列</li>
+</ul>
+</blockquote>
+<p>特点：</p>
+<blockquote>
+<ul>
+<li>透明性，支持多个网络协议</li>
+<li>提供检错而非纠错机制，也没有ARQ超时重发机制</li>
+</ul>
+</blockquote>
+<h2 id="使用广播信道的数据链路层"><a href="#使用广播信道的数据链路层" class="headerlink" title="使用广播信道的数据链路层"></a>使用广播信道的数据链路层</h2><p>拓扑结构：</p>
+<blockquote>
+<ul>
+<li>总线结构：一根电缆连接所有节点</li>
+<li>环形结构：所有设备一个输入，一个输出</li>
+</ul>
+</blockquote>
+<p>信道分配策略：</p>
+<blockquote>
+<ul>
+<li>静态分配：站点少且固定；数据量大</li>
+<li>动态分配：抢占、分时或预约</li>
+</ul>
+</blockquote>
+<p>HLOHA NET：第一个局域网（无线）</p>
+<blockquote>
+<ul>
+<li>争用协议：想说就说</li>
+<li>边说边听</li>
+<li>随机重发</li>
+<li>时隙ALOHA：分时间片进行发送</li>
+</ul>
+</blockquote>
+<p>CSMA：监听多点接入局域网</p>
+<blockquote>
+<ul>
+<li>先听后说：先进行监听，信道空闲时进行发送</li>
+<li>坚持CSMA：一直监听信道，空闲即立马发送</li>
+<li>P坚持CSMA：监听信道，空闲之后隔概率发送</li>
+</ul>
+</blockquote>
+<p>CSMA/CD：载波监听多点接入/碰撞检测</p>
+<blockquote>
+<ul>
+<li>边发送边检测，2t之后没有发现冲突，便认为成功发送；否则发生冲突、停止发送（截断的二进制指数退避算法）</li>
+<li>发送后的一小段时间内存在着遭遇碰撞的不确定性</li>
+<li>半双工通信</li>
+<li>整个以太网平均通信速率远小于网络最大通信速率</li>
+</ul>
+</blockquote>
+<p>传统以太网：</p>
+<blockquote>
+<ul>
+<li>DIX Ethernet和IEEE 802协议（分为LLC帧和MAC帧）</li>
+<li>连接方法：铜缆、铜线（双绞线）、光缆</li>
+<li>10BASE-1、10BASE-2：同轴线、总线结构</li>
+<li>10BASE-T双绞线连接、物理上星型结构（逻辑上总线结构）</li>
+</ul>
+</blockquote>
+<h2 id="以太网的MAC层"><a href="#以太网的MAC层" class="headerlink" title="以太网的MAC层"></a>以太网的MAC层</h2><p>以太网V2 MAC帧：</p>
+<blockquote>
+<ul>
+<li>目的地址（6）</li>
+<li>源地址（6）</li>
+<li>类型（2）</li>
+<li>数据（46-1500）：IP数据报，46字节长度保证整个MAC帧不能少于64字节，保证2t的冲突检测时间</li>
+<li>FCS（4）</li>
+</ul>
+</blockquote>
+<p>EUI-48地址：16位</p>
+<blockquote>
+<ul>
+<li>网卡从网络上每收到一个MAC帧，首先用硬件检查目的地址</li>
+<li>如果是发往本站的帧则收下并进行处理，否则将帧丢弃</li>
+</ul>
+</blockquote>
+<h2 id="扩展的局域网"><a href="#扩展的局域网" class="headerlink" title="扩展的局域网"></a>扩展的局域网</h2><p>物理层的扩展：中继器Repeater</p>
+<ul>
+<li>用于双向信号复原放大、延长网络距离</li>
+<li>不能无限制扩展网络长度（有时延）</li>
+<li>处理单位是数据比特，不能识别链路层或网络层的协议，不提供网段之间的隔离</li>
+<li>集线器：多端口中继器；用多个集线器可以链接成更大的局域网；扩大了碰撞域</li>
+</ul>
+<p>数据链路层的扩展：网桥Bridge</p>
+<ul>
+<li>能够扩大网络地址范围，进行数据帧的过滤（同侧过滤）和转发（异侧转发）</li>
+<li>网桥内部有地址端口映射表，可以检测某个地址在网桥哪一侧的端口上</li>
+<li>优点：没有扩大碰撞域；扩大了网络的物理范围、提高了可靠性</li>
+<li>缺点：存储转发增加了时延（但不会对CSMA/CD产生影响）；隔离了冲突域但不能隔离广播域（过大的广播域会造成广播风暴）</li>
+<li>透明网桥的逆向学习法：<ul>
+<li>透明网桥是一种即插即用设备，刚接入时其不知道所发送的帧经过哪些网桥</li>
+<li>逆向学习法：有设备发送数据包时，网桥可以将其地址和所在端口进行绑定，学习到设备的地址</li>
+</ul>
+</li>
+<li>透明网桥的支撑树算法：避免两个局域网中存在多个网桥而造成的帧回路转发问题</li>
+</ul>
+<p>多端口网桥：以太网交换机</p>
+<blockquote>
+<ul>
+<li>交换机是一种快速多端口网桥</li>
+<li>其利用一个电子开关高速背板作为总线交换部件，可以进行硬件级别的数据并行传输</li>
+</ul>
+<p>转发方式：</p>
+<ul>
+<li>存储转发：将整个帧接受后进行差错校验然后进行转发；交换延迟较大</li>
+<li>穿通转发：接收到帧的前6个地址字节就进行转发；交换延迟小；但无法进行差错校验</li>
+<li>无碎片穿通：检查帧的前64字节（帧不满64字节表明其为冲突碎片，需要丢弃）然后直接进行转发；交换延迟相对较小；但无法检测长度大于64字节的错误帧</li>
+</ul>
+</blockquote>
+<p>虚拟局域网技术VLAN：解决广播风暴问题</p>
+<blockquote>
+<ul>
+<li>分割广播域</li>
+<li>原理：扩展交换机功能（两层交换机），在MAC帧中插入一个4字节的VLAN标记，用于在交换机之间进行传输（对于终端而言帧格式不变）</li>
+<li>不同虚拟局域网（子网）之间通信需要经过路由器；当然也有集成了路由功能的交换机（三层交换机）</li>
+</ul>
+</blockquote>
+<h2 id="3-5-高速以太网"><a href="#3-5-高速以太网" class="headerlink" title="3.5 高速以太网"></a>3.5 高速以太网</h2><p>100BASE-T为快速以太网</p>
+<p>在高速以太网中仍可使用CSMA/CD模式：</p>
+<blockquote>
+<ul>
+<li>帧时间间隔从9.6us减少为0.96us</li>
+</ul>
+</blockquote>
+<p>100BASE-T的物理层标准：</p>
+<blockquote>
+<ul>
+<li>100BASE-TX：2对UTP5类线，4B/5B编码，全双工通信</li>
+<li>100BASE-FX：2对光纤</li>
+<li>100BASE-T4：4对UTP3类线，8B/6T-NRZ编码，3对发送，只能半双工通信</li>
+</ul>
+</blockquote>
+<p>吉比特（千兆）以太网：</p>
+<blockquote>
+<ul>
+<li>半双工下使用CSMA/CD协议，全双工不需使用CSMA/CD</li>
+<li>半双工下的CSMA/CD需要增大逻辑帧的最小长度，需要进行载波延伸，争用时间增加为512字节，但保持最小帧长为64字节（分组突发，可以使用一次同时发多个帧的方式来延长检测时间）</li>
+</ul>
+</blockquote>
+<p>10吉比特以太网：使用光纤，无需CSMA/CD</p>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/06/computer-network0/" data-id="ckffegrq1000qaovnbjwaekae"
+      <a data-url="http://georgechen1827.github.io/2020/09/06/computer-network0/" data-id="ckh1rlc9h000nkovn0gpbf766"
         class="article-share-link">share</a>
         
       

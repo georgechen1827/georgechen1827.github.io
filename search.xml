@@ -1,6 +1,870 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>会计学</title>
+    <url>/2020/10/24/accountancy/</url>
+    <content><![CDATA[<blockquote>
+<ul>
+<li>财务会计：基础（初级）、中级、高级会计</li>
+<li>管理会计</li>
+<li>成本会计</li>
+</ul>
+</blockquote>
+<h1 id="二、会计要素和会计等式"><a href="#二、会计要素和会计等式" class="headerlink" title="二、会计要素和会计等式"></a>二、会计要素和会计等式</h1><h2 id="会计对象"><a href="#会计对象" class="headerlink" title="会计对象"></a>会计对象</h2><p>会计对象：</p>
+<blockquote>
+<ul>
+<li>是会计所反映和监督的内容</li>
+<li>是社会再生产过程中（企业）的资金运动</li>
+</ul>
+</blockquote>
+<p>资金运动过程：<br>..</p>
+<h2 id="会计要素"><a href="#会计要素" class="headerlink" title="会计要素"></a>会计要素</h2><p>会计要素定义：</p>
+<blockquote>
+<ul>
+<li>对会计对象内容（资金运动）的基本分类，是会计对象的实例化</li>
+<li>是反映会计主体财务状况和经营成果的基本单位</li>
+<li>分类：静态会计要素和动态会计要素</li>
+</ul>
+</blockquote>
+<p>会计要素</p>
+<blockquote>
+<ul>
+<li>资产</li>
+<li>负债</li>
+<li>所有者权益（资产负债表）</li>
+<li>收入</li>
+<li>费用</li>
+<li>利润</li>
+</ul>
+</blockquote>
+<p>划分会计要素的意义：</p>
+<blockquote>
+<ul>
+<li>是实现会计反映职能，分类、系统反映会计对象的需要</li>
+<li>是设置会计科目和会计账户的基本依据</li>
+<li>会计要素是构成会计报表的基本框架</li>
+</ul>
+</blockquote>
+<h2 id="资产"><a href="#资产" class="headerlink" title="资产"></a>资产</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>定义：资产是一种满足如下三个条件的资源</p>
+<blockquote>
+<ul>
+<li>由过去的交易或者事项形成的资源</li>
+<li>由企业拥有或控制的资源</li>
+<li>预期会给企业带来经济利益的资源</li>
+</ul>
+</blockquote>
+<p>由过去交易或事项形成的资源：</p>
+<blockquote>
+<ul>
+<li>交易：企业主体和另外一个主体发生的价值交换，如购买</li>
+<li>事项：企业内部的价值转移形成的资源，如生产</li>
+<li>资产是过去事实形成的现实权利，注意，预期在未来产生的结果不属于现在的资产</li>
+</ul>
+</blockquote>
+<p>由企业拥有或控制的资源：</p>
+<blockquote>
+<ul>
+<li>拥有：企业享有某项资源的所有权</li>
+<li>控制：企业享有某项资源的（排他性）使用权，如借入款项、融资租入（经营租赁现在也算）设备等</li>
+</ul>
+</blockquote>
+<p>预期会给企业带来经济利益：资产要素最本质的特征</p>
+<blockquote>
+<ul>
+<li>直接或间接导致现金和现金等价物流入企业的潜力</li>
+<li>不具备该特征的资源不能再确认为企业资产，如报废的设备等</li>
+</ul>
+</blockquote>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>资产分类：</p>
+<blockquote>
+<ul>
+<li>流动资产：企业能够在1年或一个营业周期内变现或耗用的资产；营业周期：企业根据其经营活动的特点而划分的经营期间</li>
+<li>非流动资产：不能在1年货一个营业周期内变现或耗用的资产</li>
+</ul>
+</blockquote>
+<p>流动资产：</p>
+<blockquote>
+<ul>
+<li>库存现金：存于财务处库房中</li>
+<li>银行存款：存放在银行中的资金</li>
+<li>应收及预付款：（非长期）应收账款、应收票据、预付账款等；此时，该资产对对方企业来说是负债</li>
+<li>存货：原材料、生产成本（在产半成品）、库存商品（产成品）等</li>
+</ul>
+</blockquote>
+<p>非流动资产：</p>
+<blockquote>
+<ul>
+<li>长期股权投资：持有时间超过1年，不变现或不准备变现或收回的股权投资；目的是为了获得稳定的投资收益、对被投资企业实施控制或影响</li>
+<li>固定资产：为生产产品、提供劳务、出租或经营管理而持有，使用寿命超过一个会计年度的资产；如房屋、机器设备等</li>
+<li>无形资产：企业拥有或控制的没有实物形态 的可辨认非货币资产；如专利权、商标权等</li>
+<li>投资性房产：企业为赚取租金或资本增值，或两者兼有而持有的房地产（非自用，否则为固定资产）</li>
+<li>生物资产：企业拥有的具有生命的动物和植物；如畜牧、农作物、森林等</li>
+<li>其他资产：除以上资产以外的各项资产；如长期待摊费用（如企业开办时发生的筹建费等）（区别于待摊费用）</li>
+</ul>
+</blockquote>
+<h2 id="负债"><a href="#负债" class="headerlink" title="负债"></a>负债</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>定义：负债是一种满足如下两个条件的现实义务</p>
+<blockquote>
+<ul>
+<li>企业过去的交易、事项所形成的现实义务</li>
+<li>预期会导致经济利益流出企业的现时义务</li>
+</ul>
+</blockquote>
+<p>过去交易或事项所形成的现时义务：</p>
+<blockquote>
+<p>企业现行条件下（过去已签订借款合同或收到应付款账单）已承担的义务</p>
+</blockquote>
+<p>预期会导致经济利益流出企业：</p>
+<blockquote>
+<p>履行现时义务（偿还债务）时会直接或间接导致现金或等价物流出企业</p>
+</blockquote>
+<h3 id="分类-1"><a href="#分类-1" class="headerlink" title="分类"></a>分类</h3><p>分类：</p>
+<blockquote>
+<ul>
+<li>流动负债：偿还期不超过1年</li>
+<li>非流动负债：偿还期超过1年</li>
+</ul>
+</blockquote>
+<p>流动负债：</p>
+<blockquote>
+<ul>
+<li>短期借款：还款期一年以内，临时周转需要</li>
+<li>应付及预收款项：应付账款、预收账款、应交税费等</li>
+<li>应付利息</li>
+</ul>
+</blockquote>
+<p>注意：有时在资产负债表上只有应收和预付两项，注意区分资产和负债</p>
+<p>非流动负债：</p>
+<blockquote>
+<ul>
+<li>长期借款：还款期在1年以上，如工程项目建设</li>
+<li>应付债券：企业发行的债券到期后应付给购买者的本金和利息</li>
+<li>长期应付款：需要在1年以上偿还期内偿还的应付款项；如长期租赁</li>
+</ul>
+</blockquote>
+<h2 id="所有者权益"><a href="#所有者权益" class="headerlink" title="所有者权益"></a>所有者权益</h2><h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><p>定义：所有者权益是企业资产扣除负债后由所有者享有的剩余权益，是投资者对企业净资产的所有权</p>
+<blockquote>
+<ul>
+<li>所有者：投资者、即企业资本的提供者；在股份企业中指股东</li>
+<li>权益：权利</li>
+<li>剩余权益：资产扣除负债后由所有者享有的权利</li>
+</ul>
+</blockquote>
+<h3 id="组成内容"><a href="#组成内容" class="headerlink" title="组成内容"></a>组成内容</h3><p>所有者权益组成：</p>
+<blockquote>
+<ul>
+<li>投入资本：包括实收资本（股本）和资本公积（溢价）</li>
+<li>利得和损失：非日常活动形成的经济利益的流入和流出</li>
+<li>留存收益：盈余公积和未分配利润</li>
+</ul>
+</blockquote>
+<h3 id="所有者权益和负债的区别"><a href="#所有者权益和负债的区别" class="headerlink" title="所有者权益和负债的区别"></a>所有者权益和负债的区别</h3><blockquote>
+<ul>
+<li>是否需要偿还：所有者权益一般不需归还；负债必须偿还</li>
+<li>享有权益内容：所有者权益具有参与利润分配和企业经营管理的权利；负债只有按期收回本息权</li>
+<li>企业清算时求偿权的区别：所有者权益没有优先求偿权；负债拥有优先求偿权（第一权益）</li>
+</ul>
+</blockquote>
+<h2 id="收入"><a href="#收入" class="headerlink" title="收入"></a>收入</h2><h3 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h3><p>定义：收入是一种符合如下三种经济利益的总流入</p>
+<blockquote>
+<ul>
+<li>企业在日常活动中形成的</li>
+<li>导致所有者权益增加</li>
+<li>与所有者投入资本无关</li>
+</ul>
+</blockquote>
+<p>日常活动：</p>
+<blockquote>
+<ul>
+<li>企业所进行的主要的、基本的业务活动</li>
+<li>企业在日常活动中产生的经济利益的流入</li>
+<li>严格区分于非日常活动产生的利得（固定资产盘盈（指数值增加）等）</li>
+</ul>
+</blockquote>
+<p>导致所有者权益增加：</p>
+<blockquote>
+<ul>
+<li>是由收入、费用及利润与所有者权益之间的关系所决定的</li>
+<li>如：预收款不是收入；第三方代收款项不是收入</li>
+</ul>
+</blockquote>
+<p>收入与收入与所有者投资无关：</p>
+<blockquote>
+<ul>
+<li>所有者投资属于企业的筹资业务，不属于日常活动收入</li>
+</ul>
+</blockquote>
+<h3 id="收入组成内容"><a href="#收入组成内容" class="headerlink" title="收入组成内容"></a>收入组成内容</h3><p>组成：企业日常活动产生的经济利益流入</p>
+<blockquote>
+<ul>
+<li>主营业务收入</li>
+<li>其他业务收入（和主营业务收入合称营业收入）</li>
+<li>投资收益：如购买其他企业的股票、债券所获得的收入</li>
+<li>营业外收入：广义的收入组成内容；如处置报废固定资产、对员工的罚款等</li>
+</ul>
+</blockquote>
+<h2 id="费用"><a href="#费用" class="headerlink" title="费用"></a>费用</h2><h3 id="定义-4"><a href="#定义-4" class="headerlink" title="定义"></a>定义</h3><p>费用：满足下列三条件的经济利益的总流出</p>
+<blockquote>
+<ul>
+<li>日常活动中发生的</li>
+<li>导致所有者权益减少的</li>
+<li>与向所有者分配利益无关的</li>
+</ul>
+</blockquote>
+<p>成本和费用的区别：广义上一致，狭义上成本和生产产品直接相关</p>
+<p>企业在日常活动中产生的经济利益流出：</p>
+<blockquote>
+<ul>
+<li>导致现金或等价物流出企业</li>
+<li>严格区别于非日常活动发生的损失，如处置损毁、报废固定资产发生的净损失</li>
+</ul>
+</blockquote>
+<h3 id="分类-2"><a href="#分类-2" class="headerlink" title="分类"></a>分类</h3><blockquote>
+<ul>
+<li>主营业务成本</li>
+<li>其他业务成本</li>
+<li>税金及附加：除增值税、所得税之外的其他税费</li>
+<li>投资损失：投资活动发生的损失</li>
+<li>期间费用：销售费用（广告）、管理费用（高管工资）、财务费用（借贷款利息等）</li>
+<li>资产减值损失：应收账款坏账、固定资产减值损失和存货跌价损失等</li>
+<li>所得税费用</li>
+<li>营业外支出：罚款支出、捐赠支出等</li>
+</ul>
+</blockquote>
+<h2 id="利润"><a href="#利润" class="headerlink" title="利润"></a>利润</h2><h3 id="定义-5"><a href="#定义-5" class="headerlink" title="定义"></a>定义</h3><p>利润是指企业在一定会计期间（月、季度、半年或年度）的经营成果</p>
+<p>利润的特征：狭义收入-狭义费用+营业外收入-营业外支出</p>
+<h2 id="会计等式"><a href="#会计等式" class="headerlink" title="会计等式"></a>会计等式</h2><p>会计等式（会计平衡公式）是描述会计要素之间的基本关系的恒等式：</p>
+<blockquote>
+<ul>
+<li>资产=负债+所有者权益</li>
+<li>收入-费用=利润</li>
+<li>资产=负债+(去年)所有者权益+(收入-费用)（未分配利润）</li>
+</ul>
+</blockquote>
+<h3 id="第一会计等式"><a href="#第一会计等式" class="headerlink" title="第一会计等式"></a>第一会计等式</h3><p>…</p>
+<h3 id="经济业务对基本会计等式的影响"><a href="#经济业务对基本会计等式的影响" class="headerlink" title="经济业务对基本会计等式的影响"></a>经济业务对基本会计等式的影响</h3><p>P24</p>
+<p>资产=负债+所有者权益</p>
+<blockquote>
+<ul>
+<li>资产项目此增彼减，总额不变</li>
+<li>负债项目此增彼减，总额不变：借新债还旧债</li>
+<li>所有者权益此增彼减，总额不变：股份回购</li>
+<li>负债增加，所有者权益减少</li>
+<li>所有者权益增加，负债项目减少：债转股</li>
+<li>资产增加，负债增加：贷款购买设备</li>
+<li>资产增加，所有者权益增加</li>
+<li>资产减少，负债减少</li>
+<li>资产减少，所有者权益减少：撤资</li>
+</ul>
+</blockquote>
+<h1 id="三、会计核算基础"><a href="#三、会计核算基础" class="headerlink" title="三、会计核算基础"></a>三、会计核算基础</h1><h2 id="会计假设"><a href="#会计假设" class="headerlink" title="会计假设"></a>会计假设</h2><p>会计假设是会计核算的基本前提，是为了保证会计工作正常进行和会计信息的质量，而对会计核算所处的空间范围、时间范围、基本程序和计量方法所做的合理设定。</p>
+<h3 id="会计主体假设"><a href="#会计主体假设" class="headerlink" title="会计主体假设"></a>会计主体假设</h3><p>定义：企业应当对其本身发生的交易或者事项进行会计确认、计量和报告。</p>
+<p>意义：</p>
+<blockquote>
+<ul>
+<li>明确了会计工作的空间范围，解决了核算谁的经济业务、为谁记账的问题。</li>
+</ul>
+</blockquote>
+<p>会计所服务的特定单位或组织：</p>
+<blockquote>
+<ul>
+<li>法人主体是一个会计主体，会计主体则不一定是法律主体（如企业集团）</li>
+</ul>
+</blockquote>
+<h3 id="持续经营假设"><a href="#持续经营假设" class="headerlink" title="持续经营假设"></a>持续经营假设</h3><p>定义：企业会计确认、计量和报告应当以持续经营为前提</p>
+<p>意义：</p>
+<blockquote>
+<ul>
+<li>明确了会计工作的时间范围——企业正常经营期间所发生的交易或事项。</li>
+<li>是合理选择会计程序及方法的基础。如跨期费用摊销、固定资产折旧的计提等。</li>
+<li>是“会计分期”假设等建立的基础。</li>
+</ul>
+</blockquote>
+<h3 id="会计分期假设"><a href="#会计分期假设" class="headerlink" title="会计分期假设"></a>会计分期假设</h3><p>定义：企业应当划分会计期间，分期结算账目和编制财务会计报告</p>
+<p>意义：</p>
+<blockquote>
+<ul>
+<li>明确了会计核算的基本程序，明确了何时记账、算账和报账问题</li>
+<li>界定了本期、前期和后期等概念，可以准确提供各期财务状况、经营成果资料，<br>也便于进行各期会计信息的对比。</li>
+</ul>
+</blockquote>
+<h3 id="货币计量假设"><a href="#货币计量假设" class="headerlink" title="货币计量假设"></a>货币计量假设</h3><p>定义：企业会计应当以货币计量</p>
+<blockquote>
+<ul>
+<li>以货币为主要计量单位记录和报告企业的经营情况</li>
+<li>采用币值稳定的货币为前提</li>
+</ul>
+</blockquote>
+<h2 id="会计信息质量特征"><a href="#会计信息质量特征" class="headerlink" title="会计信息质量特征"></a>会计信息质量特征</h2><ul>
+<li>可靠性：所有会计的确认计量和报告必须真实可靠</li>
+<li>相关性（有用性）：企业提供的会计信息应当与财务会计报告使用者的经济决策需要相关；有助于使用者对企业过去、现在或将来的情况做出评价或预测</li>
+<li>可理解性（明晰性）：企业提供的信息应当清晰明了，便于财务会计报告使用者理解和运用</li>
+<li>可比性：企业提供的会计信息应当具有可比性；同一企业在不同时间纵向可比，不同企业同一期间横向可比</li>
+<li>实质重于形式：企业应当按照交易或者事项的经济实质进行会计确认、计量和报告，不应仅以交易或者事项的法律形式作为依据。</li>
+<li>重要性：企业提供的会计信息应当反映与企业财务状况、经营成果和现金流量有关的所有重要交易或者事项。</li>
+<li>谨慎性（稳健性、保守性）：企业对交易或者事项进行会计确认、计量和报告应当保持应有的谨慎，不应高估资产或者收益、不应低估负债或费用。计预期损失而不计预期收入</li>
+<li>及时性：企业对于已经发生的交易或者事项，应当及时进行会计确认、计量和报告，不得提提前或者延后。</li>
+</ul>
+<h2 id="会计要素确认、计量及要求"><a href="#会计要素确认、计量及要求" class="headerlink" title="会计要素确认、计量及要求"></a>会计要素确认、计量及要求</h2><p>会计确认：将发生的交易或事项与一定会计要素联系起来加以认定的过程</p>
+<p>会计计量：对交易或事项引起的会计要素增减变动的金额加以认定的过程</p>
+<ul>
+<li>计量单位：以货币做主要计量单位</li>
+<li>计量属性：<blockquote>
+<ul>
+<li>历史成本：购置时的金额</li>
+<li>重置成本：按现实购买的金额</li>
+<li>可变现净值：按现时销售的金额</li>
+<li>现值：按照将来的金额折现</li>
+<li>公允价值：有序交易中出售资产能收到的价格</li>
+</ul>
+<p>计量属性选择原则：计量必须可靠，一般企业采用历史成本</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="收付实现制与权责发生制"><a href="#收付实现制与权责发生制" class="headerlink" title="收付实现制与权责发生制"></a>收付实现制与权责发生制</h2><p>。。。</p>
+<h1 id="四、账户与复式记账"><a href="#四、账户与复式记账" class="headerlink" title="四、账户与复式记账"></a>四、账户与复式记账</h1><h2 id="账户与会计科目"><a href="#账户与会计科目" class="headerlink" title="账户与会计科目"></a>账户与会计科目</h2><p>账户：账户是根据会计科目设置的，具有专门<strong>格式</strong>，用以分类、连续的记录经济业务对工具；具有一定的格式的会计科目是称为会计账户</p>
+<p>账户记录内容：</p>
+<blockquote>
+<ul>
+<li>业务发生时间</li>
+<li>记录依据</li>
+<li>业务内容</li>
+<li>增减金额</li>
+<li>余额方向</li>
+<li>余额</li>
+</ul>
+</blockquote>
+<p>会计科目的分类：</p>
+<blockquote>
+<ul>
+<li>总分类科目：严格按照会计准则规范设置</li>
+<li>二级分类科目</li>
+<li>明细科目：根据核算和管理管理的需要设置</li>
+</ul>
+</blockquote>
+<h2 id="复式记账原理"><a href="#复式记账原理" class="headerlink" title="复式记账原理"></a>复式记账原理</h2><p>基本含义：对任何一项经济业务（交易或事项）都以相等的金额在<strong>两个或两个以上</strong>有关账户中相互联系的进行登记，借以反映会计对象具体内容增减变化的一种记账方法</p>
+<p>例：企业用银行存款3000元购买原材料</p>
+<blockquote>
+<ul>
+<li>原材料账户增加3000</li>
+<li>银行存款减少3000</li>
+</ul>
+</blockquote>
+<p>复式记账能够更加全面系统地反映经济业务对实质</p>
+<p>复式记账的理论依据：第一会计等式的存在</p>
+<p>基本原则：</p>
+<blockquote>
+<ul>
+<li>以反映资金运动的内在规律的会计等式为记账基础</li>
+<li>对每项业务必须在两个或两个以上相互联系的账户中等额记录</li>
+<li>必须按经济业务对会计等式的类型（四种）记录</li>
+<li>定期汇总的全部账户记录必须平衡</li>
+</ul>
+</blockquote>
+<h2 id="借贷记账法"><a href="#借贷记账法" class="headerlink" title="借贷记账法"></a>借贷记账法</h2><ul>
+<li>对于资产、费用而言：借，增加；贷，减少；余额=借-贷</li>
+<li>对于负债、所有者权益、收入和利润而言：借，减少；贷，增加；余额=贷-借</li>
+</ul>
+<p>记账规则：有借必有贷，借贷必相等</p>
+<p>例：公司收到投资者8000，存入银行</p>
+<blockquote>
+<ul>
+<li>银行存款（资产）：借，8000</li>
+<li>实收资本（所有者权益）：贷，8000</li>
+</ul>
+</blockquote>
+<p>例：公司用银行存款偿还银行账户1000元</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">借：短期贷款 1000</span><br><span class="line">	贷：银行存款 1000</span><br></pre></td></tr></table></figure>
+
+<p>会计分录：会计的初始确认，会计信息的入口</p>
+<blockquote>
+<ul>
+<li>讲经济业务登记账户前预先确定的应记账户的名称、方向和金额的记录形式</li>
+<li>在实物中，会计分录的载体是记账凭证</li>
+</ul>
+</blockquote>
+<h1 id="五、企业主要经济业务的核算"><a href="#五、企业主要经济业务的核算" class="headerlink" title="五、企业主要经济业务的核算"></a>五、企业主要经济业务的核算</h1><h2 id="企业主要经济业务概述"><a href="#企业主要经济业务概述" class="headerlink" title="企业主要经济业务概述"></a>企业主要经济业务概述</h2><p>企业是以产品生产和销售或劳务提供为主要内容的经济组织，主要业务如下</p>
+<blockquote>
+<ul>
+<li>资金筹集业务</li>
+<li>供应过程业务</li>
+<li>生产过程业务</li>
+<li>销售过程业务</li>
+<li>财务成果形成与分配业务等</li>
+</ul>
+</blockquote>
+<h2 id="资金筹集的业务"><a href="#资金筹集的业务" class="headerlink" title="资金筹集的业务"></a>资金筹集的业务</h2><p>实收资本业务核算</p>
+<p>实收资本分类：</p>
+<blockquote>
+<ul>
+<li>国家资本金</li>
+<li>法人资本金</li>
+<li>个人资本金</li>
+<li>外商资本金</li>
+<li>货币资金投资</li>
+<li>非货币资产投资</li>
+</ul>
+</blockquote>
+<p>资本公积业务核算</p>
+<p>资本公积来源：</p>
+<blockquote>
+<ul>
+<li>有投资者投入企业的在金额上超过其法定注册资本的部分</li>
+<li>直接计入资本公积的利得和损失</li>
+</ul>
+</blockquote>
+<p>负债资金筹集业务核算:</p>
+<p>短期借款本金及利息的确认与计量:</p>
+<blockquote>
+<ul>
+<li>本金的确认与计量</li>
+<li>利息的确认与计量</li>
+<li>借款利息＝借款本金×利率×时间（按月、日）</li>
+</ul>
+</blockquote>
+]]></content>
+      <categories>
+        <category>notes</category>
+        <category>辅修</category>
+      </categories>
+      <tags>
+        <tag>会计</tag>
+        <tag>learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>微观经济学</title>
+    <url>/2020/10/18/microeconomics/</url>
+    <content><![CDATA[<h1 id="一、导言"><a href="#一、导言" class="headerlink" title="一、导言"></a>一、导言</h1><p>效率-经济学的灵魂</p>
+<p>自然科学-文学-哲学-美学-玄学</p>
+<p>人生艺术化？</p>
+<h2 id="1-经济学：关于稀缺性与选择的学问"><a href="#1-经济学：关于稀缺性与选择的学问" class="headerlink" title="1 经济学：关于稀缺性与选择的学问"></a>1 经济学：关于稀缺性与选择的学问</h2><p>经济学：研究稀缺性的资源在竞争者中如何分配的学科</p>
+<p>稀缺是经济学的显著现象，因此选择是必要的</p>
+<blockquote>
+<ul>
+<li>在各种可能的选择（机会集合）之间进行权衡（tradeof）f作出取舍，以尽可能地有效利用资源。 </li>
+<li>必须作出选择不仅是针对个人而言，而且是针对整个经济而言。</li>
+<li>个人和社会的选择决定了各种资源是如何被利用，以及利用效率低高低</li>
+</ul>
+</blockquote>
+<h2 id="2-经济学的基本问题"><a href="#2-经济学的基本问题" class="headerlink" title="2 经济学的基本问题"></a>2 经济学的基本问题</h2><p>如何进行选择，何种选择造成何种影响？</p>
+<blockquote>
+<ul>
+<li>生产什么，产量多大</li>
+<li>如何生产</li>
+<li>为谁生产</li>
+<li>谁做决策</li>
+</ul>
+</blockquote>
+<p>衍生问题：</p>
+<blockquote>
+<ul>
+<li>这种经济效率高吗</li>
+<li>是否可以在不减少一种物品同时增加另一种物品</li>
+<li>是否可以在不损害一部分人的情况下使另一部分人生活更好</li>
+</ul>
+</blockquote>
+<h3 id="生产多少什么商品"><a href="#生产多少什么商品" class="headerlink" title="生产多少什么商品"></a>生产多少什么商品</h3><p>供给问题</p>
+<p>市场经济条件下：</p>
+<blockquote>
+<ul>
+<li>供给主要决定于厂商和消费者之间的相互作用</li>
+<li>政府也起一定作用</li>
+</ul>
+</blockquote>
+<p>价格因素是决定产量的关键</p>
+<h3 id="产品如何生产"><a href="#产品如何生产" class="headerlink" title="产品如何生产"></a>产品如何生产</h3><p>市场经济条件下：</p>
+<blockquote>
+<ul>
+<li>生产方式由厂商决定</li>
+<li>有政府参与制定条文规范和执行法规</li>
+</ul>
+</blockquote>
+<h3 id="产品为谁生产"><a href="#产品为谁生产" class="headerlink" title="产品为谁生产"></a>产品为谁生产</h3><p>分配问题：高收入者消费更多产品</p>
+<p>收入问题：</p>
+<blockquote>
+<ul>
+<li>收入是指要素的收入：将要素投入到具有价值增值特点的生产过程中所获得的回报</li>
+<li>要素的占有量直接影响收入高低</li>
+<li>一般情况下，收入主要取决于家庭和厂商之间的相互作用</li>
+<li>劳动力市场的供需求状况影响不同职业的收入差别</li>
+<li>政府用税收和收入重新分配进行参与</li>
+</ul>
+</blockquote>
+<h3 id="谁做决策"><a href="#谁做决策" class="headerlink" title="谁做决策"></a>谁做决策</h3><p>一个社会的经济体制决定社会如何进行生产、消费和分配</p>
+<p>两个极端：</p>
+<blockquote>
+<ul>
+<li>完全的计划经济体制</li>
+<li>完全的市场经济体制</li>
+<li>混合经济：公众（政府）决策和私人决策混合在一起</li>
+</ul>
+</blockquote>
+<h2 id="3-市场经济中市场与政府的作用"><a href="#3-市场经济中市场与政府的作用" class="headerlink" title="3 市场经济中市场与政府的作用"></a>3 市场经济中市场与政府的作用</h2><h3 id="市场及其作用"><a href="#市场及其作用" class="headerlink" title="市场及其作用"></a>市场及其作用</h3><p>市场：</p>
+<blockquote>
+<ul>
+<li>交易发生的场合</li>
+<li>市场包括各类交易及其过程</li>
+</ul>
+</blockquote>
+<p>在市场中：</p>
+<blockquote>
+<ul>
+<li>个人做出的决策反映他们的愿望</li>
+<li>厂商的决策则是以追求最大限度的利润为目的</li>
+</ul>
+</blockquote>
+<p>因此：</p>
+<blockquote>
+<ul>
+<li>厂商应当生产消费者需要的产品</li>
+<li>消费者在厂商竞争中在产品种类和价格上获得好处</li>
+</ul>
+</blockquote>
+<p>市场经济对经济学问题的回答：</p>
+<blockquote>
+<ul>
+<li>资源的配置和使用因厂商之间激烈的竞争而变得更有效率。</li>
+<li>为了在竞争中处于领先地位或不致被淘汰出局，企业必须不间断地进行产品创新、技术革新、管理创新、制度创新和组织创新。</li>
+<li>市场把产品分配给那些愿意并且能够付出最高价格的人，但人们愿意并且能够付出多少取决于他们的收入高低。</li>
+</ul>
+</blockquote>
+<h3 id="政府的作用"><a href="#政府的作用" class="headerlink" title="政府的作用"></a>政府的作用</h3><p>政府不可替代的作用：</p>
+<blockquote>
+<ul>
+<li>是政府建立了一种法律体系使私有厂商和个人能在此体系下运作</li>
+<li>政府制定法律、法规并保证其得到公正地执行，是经济活动得以有秩序地进行的前提条件。</li>
+<li>政府负责提供公共产品和服务，如教育、国防、消防、道路等。</li>
+<li>政府通过各种福利计划来构建一个安全网</li>
+</ul>
+</blockquote>
+<h3 id="四个主要市场"><a href="#四个主要市场" class="headerlink" title="四个主要市场"></a>四个主要市场</h3><blockquote>
+<ul>
+<li>产品市场</li>
+<li>劳动市场</li>
+<li>资本市场</li>
+<li>土地市场</li>
+</ul>
+</blockquote>
+<h2 id="4-经济学的分支"><a href="#4-经济学的分支" class="headerlink" title="4 经济学的分支"></a>4 经济学的分支</h2><p>宏观经济学与微观经济学：</p>
+<blockquote>
+<ul>
+<li>两种视点：整体与个体</li>
+<li>两种视角：自上而下和自下而上</li>
+</ul>
+</blockquote>
+<h2 id="5-经济学方法论"><a href="#5-经济学方法论" class="headerlink" title="5 经济学方法论"></a>5 经济学方法论</h2><h3 id="经济学的研究方式"><a href="#经济学的研究方式" class="headerlink" title="经济学的研究方式"></a>经济学的研究方式</h3><p>研究方式：混合推理</p>
+<blockquote>
+<ul>
+<li>考察资料</li>
+<li>分析推理</li>
+<li>形成假说</li>
+<li>检验假说</li>
+</ul>
+</blockquote>
+<h3 id="理论和模型"><a href="#理论和模型" class="headerlink" title="理论和模型"></a>理论和模型</h3><p>理论：描述了一种因果关系，是对现实世界的抽象，是逻辑的演练</p>
+<p>经济模型：用文字、图解或方程来描述的经济特性</p>
+<p>模型是一种理论框架，我们可以在这个框架中进行相关的推演，从而得到一些符合假设情况的结论</p>
+<p>经济学模型中的变量：</p>
+<blockquote>
+<ul>
+<li>常用变量：价格、利润、收益、成本、国民收入、消费、投资、进口、出口…</li>
+<li>内生变量：该变量的值由该模型内部因素决定</li>
+<li>外生变量：由该模型外部因素决定的变量</li>
+</ul>
+</blockquote>
+<p>经济学模型中的方程：</p>
+<blockquote>
+<ul>
+<li>定义方程：同一个概念的不同表达式（恒等式、定义式）</li>
+<li>行为方程：在一定假设情况下，某几个变量之间的变化关系</li>
+<li>均衡条件：用于描述模型中某一均衡能够得到实现所满足的方程条件</li>
+</ul>
+</blockquote>
+<h2 id="6-经济思维"><a href="#6-经济思维" class="headerlink" title="6 经济思维"></a>6 经济思维</h2><blockquote>
+<ul>
+<li>理性行为</li>
+<li>机会集合</li>
+<li>成本与收益的权衡</li>
+<li>假设前提的重要性</li>
+<li>决策的风险：环境的改变、相关关系和因果关系的判断、合成谬误需要被注意</li>
+</ul>
+</blockquote>
+<p>理性人假定：假定人是自私的，其自觉程度不高</p>
+<blockquote>
+<ul>
+<li>在道德底限上行事</li>
+<li>在局限下争取最大的个人利益</li>
+<li>简而言之：利己但不损人</li>
+</ul>
+</blockquote>
+<p>斯密悖论：个人利益和社会利益能否一致（看不见的手）（一般均衡轮）</p>
+<blockquote>
+<p>无法证明一般均衡轮的唯一性和稳定性</p>
+</blockquote>
+<p>决策：成本和收益的权衡</p>
+<blockquote>
+<ul>
+<li>机会成本：使用资源的代价，该资源不能被用于其他用途</li>
+<li>沉没成本：该资源使用后无法被收回，此时，理性的人应当忽视沉没成本</li>
+<li>边际成本</li>
+</ul>
+</blockquote>
+<p>理性选择的步骤：</p>
+<blockquote>
+<ul>
+<li>明确机会集合</li>
+<li>确定替换</li>
+<li>正确计算机会成本、沉没成本和边际成本</li>
+</ul>
+</blockquote>
+<h1 id="二、需求供给和均衡价格"><a href="#二、需求供给和均衡价格" class="headerlink" title="二、需求供给和均衡价格"></a>二、需求供给和均衡价格</h1><p>微观经济学的核心：价格理论</p>
+<h2 id="1-需求"><a href="#1-需求" class="headerlink" title="1 需求"></a>1 需求</h2><h3 id="需求的概念"><a href="#需求的概念" class="headerlink" title="需求的概念"></a>需求的概念</h3><p>需求量：在某一特定时间内，对应某一商品的各种价格，人们愿意且能够购买的数量</p>
+<p>需求的分类：</p>
+<blockquote>
+<ul>
+<li>个人需求：单个消费者或家庭对某种商品的需求</li>
+<li>市场需求：某一商品的所有个人需求的总和</li>
+</ul>
+</blockquote>
+<p>需求的影响（条件）：</p>
+<blockquote>
+<ul>
+<li>收入</li>
+<li>偏好</li>
+<li>商品价格</li>
+<li>同类商品的价格</li>
+<li>对商品未来的价格预期</li>
+</ul>
+</blockquote>
+<p>需求、消费和购买是有区别的：</p>
+<blockquote>
+<ul>
+<li>如，购买者不一定是消费者</li>
+<li>但，经济学中将这三种等同</li>
+</ul>
+</blockquote>
+<h3 id="需求规律"><a href="#需求规律" class="headerlink" title="需求规律"></a>需求规律</h3><p>Law of Demand：其他条件不变的情况下，商品需求量与其价格存在着反向的依存关系</p>
+<blockquote>
+<ul>
+<li>前提：其他条件不变（重要）</li>
+<li>结论：当商品价格上升时需求量下降，当价格下降时需求量上升，需求曲线是向下倾斜的。</li>
+</ul>
+</blockquote>
+<p>需求规律存在的合理性：消费者是理性人</p>
+<p>需求函数：$P=a-bQ$</p>
+<blockquote>
+<ul>
+<li>$P$：价格</li>
+<li>$Q$：需求量</li>
+<li>注意，这里面价格是因变量</li>
+</ul>
+</blockquote>
+<p>需求曲线：</p>
+<blockquote>
+<ul>
+<li>纵坐标：价格</li>
+<li>横坐标：需求量</li>
+<li>曲线走势：向下倾斜</li>
+</ul>
+</blockquote>
+<h3 id="需求曲线的移动"><a href="#需求曲线的移动" class="headerlink" title="需求曲线的移动"></a>需求曲线的移动</h3><p>当其他条件变化导致前提条件改变时，需求曲线会发生移动</p>
+<blockquote>
+<ul>
+<li>收入：收入增加，同等价格需求量更高；需求曲线向右移动</li>
+<li>替代品：替代品价格升高，同等价格该商品需求量更高；需求曲线向右移动</li>
+<li>互补品：互补品价格升高，同等价格商品需求量更少；需求曲线向左移动</li>
+<li>替代效应SE和收入效应IE</li>
+</ul>
+</blockquote>
+<p>需求和需求量：</p>
+<blockquote>
+<ul>
+<li>需求（曲线）变动：$P(Q)=f(I,T,E,P_i,…)$；$(I,T,E,P_i,…)$表示收入，偏好，其他商品价格…</li>
+<li>需求量变动：$P=a-bQ$</li>
+<li>需求变动是需求曲线的移动，而需求量的变动是需求量在曲线上的移动</li>
+</ul>
+</blockquote>
+<h2 id="2-供给"><a href="#2-供给" class="headerlink" title="2 供给"></a>2 供给</h2><h3 id="供给的概念"><a href="#供给的概念" class="headerlink" title="供给的概念"></a>供给的概念</h3><p>供给量：厂商在一定时期一定价格水平下愿意而且提供某种商品的数量</p>
+<p>供给量分类：</p>
+<blockquote>
+<ul>
+<li>个别供给</li>
+<li>市场供给</li>
+</ul>
+</blockquote>
+<p>供给的影响因素：</p>
+<blockquote>
+<ul>
+<li>生产成本</li>
+<li>厂商能够生产的其他产品</li>
+<li>未来价格低预期</li>
+</ul>
+</blockquote>
+<h3 id="供给规律"><a href="#供给规律" class="headerlink" title="供给规律"></a>供给规律</h3><p>Law of Sypply:在影响供给的其他因素既定的条件下，商品的供给量与价格之间存在着正向的依存关系</p>
+<blockquote>
+<ul>
+<li>前提条件：影响供给的其他因素确定</li>
+<li>结论：价格上升，供给量增加；价格下降，供给量减少</li>
+</ul>
+</blockquote>
+<p>供给函数：$P=c+dQ_s$</p>
+<blockquote>
+<ul>
+<li>$P$：商品价格</li>
+<li>$Q_s$：供给量</li>
+<li>注意，这里面价格是因变量</li>
+</ul>
+</blockquote>
+<p>供给曲线：</p>
+<blockquote>
+<ul>
+<li>纵坐标：价格</li>
+<li>横坐标：供给量</li>
+<li>曲线走势：向上倾斜</li>
+</ul>
+</blockquote>
+<h3 id="供给曲线的移动"><a href="#供给曲线的移动" class="headerlink" title="供给曲线的移动"></a>供给曲线的移动</h3><p>供给曲线的移动：相同价格下供给量减少，供给曲线向左移动</p>
+<blockquote>
+<ul>
+<li>生产成本上升，同价格供给减少</li>
+<li>厂商能够生产的其他产品价格上升，同价格供给减少</li>
+<li>未来价格将会上涨，当前情况下同价格供给量减少</li>
+</ul>
+</blockquote>
+<p>供给曲线与供给量的变动与需求曲线类似：</p>
+<blockquote>
+<ul>
+<li>供给变动：影响供给的其他因素变动导致整条供给曲线的变动</li>
+<li>供给量变动：价格变化导致供给量眼供给曲线的移动</li>
+</ul>
+</blockquote>
+<h2 id="3-均衡价格"><a href="#3-均衡价格" class="headerlink" title="3 均衡价格"></a>3 均衡价格</h2><h3 id="均衡价格的形成"><a href="#均衡价格的形成" class="headerlink" title="均衡价格的形成"></a>均衡价格的形成</h3><p>需求曲线和供给曲线确定的情况下，某一商品达到均衡价格的过程：</p>
+<blockquote>
+<ul>
+<li>$P&gt;P_E$时，将导致$Q_S&gt;Q_D$，市场处于surplus过剩状态，此时卖方竞争，$P-$，$Q_D+$，$Q_S-$，最终$Q_D=Q_S$</li>
+<li>$P&lt;P_E$时，将导致$Q_S&lt;Q_D$，，市场处于shortage短缺状态，此时买方竞争，$P+$，$Q_D-$，$Q_S+$，最终$Q_D=Q_S$</li>
+</ul>
+</blockquote>
+<p>达到均衡价格时，市场处于Market Clearing出清状态</p>
+<h3 id="供求规律"><a href="#供求规律" class="headerlink" title="供求规律"></a>供求规律</h3><p>供给（曲线）和需求（曲线）发生变动时，均衡价格会发生变化：</p>
+<blockquote>
+<ul>
+<li>均衡价格和均衡产量与需求（曲线）同方向变动</li>
+<li>均衡价格与供给（曲线）反方向变动；均衡产量与供给（价格）同方向变动</li>
+</ul>
+</blockquote>
+<h3 id="价格粘性"><a href="#价格粘性" class="headerlink" title="价格粘性"></a>价格粘性</h3><p>价格粘性用于描述价格对需求曲线和供给曲线的变化的反应速度</p>
+<blockquote>
+<ul>
+<li>如，股票市场价格不具有粘性，住房市场价格具有粘性</li>
+<li>价格具有粘性时，均衡分析仍然是有用的</li>
+</ul>
+</blockquote>
+<h3 id="对供求规律的干预"><a href="#对供求规律的干预" class="headerlink" title="对供求规律的干预"></a>对供求规律的干预</h3><p>干预方式：</p>
+<blockquote>
+<ul>
+<li>设立支持价格（最低限价）：此时均衡价格在支持价格之下</li>
+<li>设立限制价格（最高限价）：此时均衡价格在限制价格之上</li>
+<li>税收</li>
+</ul>
+</blockquote>
+<p>税收对均衡价格的影响：</p>
+<blockquote>
+<ul>
+<li>从量税：对企业征收，提高企业生产成本；供给曲线左移</li>
+<li>从价税：对消费者征收，降低消费者的收入；需求曲线向左移动</li>
+</ul>
+</blockquote>
+<h2 id="4-需求与供给的弹性理论"><a href="#4-需求与供给的弹性理论" class="headerlink" title="4 需求与供给的弹性理论"></a>4 需求与供给的弹性理论</h2><p>弹性理论能够预测供求在价格影响下变化的量值</p>
+<h3 id="需求弹性"><a href="#需求弹性" class="headerlink" title="需求弹性"></a>需求弹性</h3><p>商品对价格变化的敏感度反映在需求曲线上：</p>
+<blockquote>
+<ul>
+<li>需求曲线平缓：对价格变换反应敏感，富有弹性</li>
+<li>需求曲线陡峭：价格变化对需求量变化产生很小的影响，缺乏弹性</li>
+</ul>
+</blockquote>
+<h4 id="需求的价格弹性"><a href="#需求的价格弹性" class="headerlink" title="需求的价格弹性"></a>需求的价格弹性</h4><p>价格弹性定义：需求量变化百分比除以价格变化百分比</p>
+<p>$$ E_D = - \frac{\Delta Q}Q *\frac{P}{\Delta P} $$</p>
+<p>弧弹性：两点之间的平均弹性</p>
+<p>点弹性：曲线斜率倒数作为$\Delta$</p>
+<p>中点单位弹性：弹性为1，此时PQ=c</p>
+<p>需求弹性与总收益的关系：</p>
+<blockquote>
+<ul>
+<li>价格变化1%时，收益变化百分比为1-需求弹性</li>
+</ul>
+</blockquote>
+<h4 id="需求的收入弹性"><a href="#需求的收入弹性" class="headerlink" title="需求的收入弹性"></a>需求的收入弹性</h4><p>定义：需求量变化百分比除以消费者收入变化百分比</p>
+<p>$$ E_M = \frac{\Delta Q}Q *\frac{I}{\Delta I} $$</p>
+<p>正常品与劣等品：</p>
+<blockquote>
+<ul>
+<li>E&gt;0,正常品</li>
+<li>E&lt;0,劣等品</li>
+<li>E&gt;1，奢侈品</li>
+</ul>
+</blockquote>
+<h4 id="需求的交叉弹性"><a href="#需求的交叉弹性" class="headerlink" title="需求的交叉弹性"></a>需求的交叉弹性</h4><p>定义：需求的交叉价格弹性，指一种商品的需求量对另一种商品价格变动的反应程度</p>
+<p>$$ E_{1,2} = - \frac{\Delta Q_1}Q_1 *\frac{P_2}{\Delta P_2} $$</p>
+<p>互补品和替代品</p>
+<blockquote>
+<ul>
+<li>E&gt;0，替代品</li>
+<li>E&lt;0，互补品</li>
+<li>E=0，无相关性</li>
+</ul>
+</blockquote>
+<h3 id="供给弹性"><a href="#供给弹性" class="headerlink" title="供给弹性"></a>供给弹性</h3><p>$$ E_S = - \frac{\Delta Q_S}Q_S *\frac{P}{\Delta P} $$</p>
+<h1 id="三、消费者行为理论"><a href="#三、消费者行为理论" class="headerlink" title="三、消费者行为理论"></a>三、消费者行为理论</h1><p>理性行为：产生最优化决定的行为</p>
+<blockquote>
+<p>对于消费者来说，最优化就是在预算约束条件下可达到的最大效用</p>
+</blockquote>
+<h2 id="1-预算约束"><a href="#1-预算约束" class="headerlink" title="1 预算约束"></a>1 预算约束</h2><p>预算集：消费者机会集合，由一个预算约束定义</p>
+<blockquote>
+<p>消费者的购买受到可支配收入和价格的制约</p>
+</blockquote>
+<p>预算约束：预算线</p>
+<blockquote>
+<ul>
+<li>在消费者收入和商品价格一定的条件下，消费者所能购买的两种不同商品的组合</li>
+<li>预算线上的点表示个人偏好</li>
+<li>以两种商品的购买量为xy轴，预算线为一个斜率为负的直线</li>
+</ul>
+</blockquote>
+<p>预算线的移动：</p>
+<blockquote>
+<ul>
+<li>收入变动而相对价格不变：预算线向内或向外平移</li>
+<li>相对价格变动二收入不变：预算线向内或向外旋转</li>
+</ul>
+</blockquote>
+<h2 id="2-偏好与效用"><a href="#2-偏好与效用" class="headerlink" title="2 偏好与效用"></a>2 偏好与效用</h2><p>消费者偏好的一些公理：</p>
+<blockquote>
+<ul>
+<li>完备性：任何两个消费组合都是可比的</li>
+<li>传递性：商品比较具有传递性</li>
+<li>连续性：偏好不会发生突发性的逆转</li>
+<li>非饱和性：多多益善</li>
+</ul>
+</blockquote>
+<p>无差异曲线：其指出了可以给一个人相同（效用）的不同商品的组合</p>
+<blockquote>
+<ul>
+<li>两种商品的购买量为xy轴</li>
+<li>无差异曲线类似于一条第一象限的双曲线</li>
+</ul>
+</blockquote>
+]]></content>
+      <categories>
+        <category>notes</category>
+        <category>辅修</category>
+      </categories>
+      <tags>
+        <tag>learning</tag>
+        <tag>经济</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>计算机图形学</title>
     <url>/2020/09/10/computer-graphics0/</url>
     <content><![CDATA[<p>姜小峰</p>
@@ -117,6 +981,146 @@
 <li>液晶显示器</li>
 </ul>
 </blockquote>
+<h2 id="2-2-图形系统体系结构"><a href="#2-2-图形系统体系结构" class="headerlink" title="2.2 图形系统体系结构"></a>2.2 图形系统体系结构</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><p>图形系统是一个增加了图形输入、输出和显示设备、并配备了相应的图形软件的计算机系统</p>
+<p>图形系统的核心结构：图形流水线，其分为三个阶段：</p>
+<blockquote>
+<ul>
+<li>应用程序阶段：生成图元</li>
+<li>几何处理阶段：生成二维屏幕坐标（顶点）</li>
+<li>像素处理阶段：光栅阶段</li>
+</ul>
+</blockquote>
+<h3 id="应用程序阶段"><a href="#应用程序阶段" class="headerlink" title="应用程序阶段"></a>应用程序阶段</h3><p>将待生成的图形通过应用程序以图元的形式提供给图形硬件，其通过软件实现</p>
+<h3 id="几何处理阶段"><a href="#几何处理阶段" class="headerlink" title="几何处理阶段"></a>几何处理阶段</h3><p>几何处理阶段是以每个顶点坐标为基础对几何图元进行处理，并从三维坐标变换为二维屏幕坐标的过程</p>
+<p>处理过程举例：</p>
+<blockquote>
+<ul>
+<li>模型与视点变换</li>
+<li>光照</li>
+<li>投影</li>
+<li>裁剪</li>
+<li>屏幕映射</li>
+</ul>
+</blockquote>
+<h3 id="光栅阶段"><a href="#光栅阶段" class="headerlink" title="光栅阶段"></a>光栅阶段</h3><p>像素处理阶段，屏幕对象首先被传送到像素处理器进行光栅化，并对每个像素进行着色，然后再输出到帧缓冲器中，最后输出到显示器</p>
+<h1 id="三、二维图形生成"><a href="#三、二维图形生成" class="headerlink" title="三、二维图形生成"></a>三、二维图形生成</h1><h2 id="图元的概念"><a href="#图元的概念" class="headerlink" title="图元的概念"></a>图元的概念</h2><p>图元：二维平面内基本的图形元素</p>
+<blockquote>
+<ul>
+<li>点</li>
+<li>直线</li>
+<li>圆弧</li>
+<li>多边形</li>
+<li>字体符号和位图</li>
+</ul>
+</blockquote>
+<p>图元通常是指不可再分的独立的图形实体。一个图元中的所有像素点、直线、顶点等是作为一个整体存在的，不再细分为独立的图元。</p>
+<p>图元是连续的</p>
+<h2 id="直线光栅化"><a href="#直线光栅化" class="headerlink" title="直线光栅化"></a>直线光栅化</h2><p>直线光栅化：输入起点和终点，输出光栅化后的像素点</p>
+<blockquote>
+<ul>
+<li>直接法</li>
+<li>数值微分法</li>
+<li>中点线算法</li>
+<li>Bresenham算法</li>
+</ul>
+</blockquote>
+<p>策略：增量计算，规避浮点数</p>
+<h3 id="数值微分法DDA"><a href="#数值微分法DDA" class="headerlink" title="数值微分法DDA"></a>数值微分法DDA</h3><p>假设斜率0&lt;k&lt;1</p>
+<figure class="highlight pascal"><table><tr><td class="code"><pre><span class="line">LineDDA(x_0,y_0,x_n,y_n)</span><br><span class="line">	k=(y_n-y_0)/(x_n-x_0)</span><br><span class="line">    y=y_0</span><br><span class="line">    <span class="keyword">for</span> x=x_0 <span class="keyword">to</span> x_n:</span><br><span class="line">    	Pixel(x,int(y+<span class="number">0.5</span>))</span><br><span class="line">        y=y+k</span><br></pre></td></tr></table></figure>
+
+<h3 id="中点画线法"><a href="#中点画线法" class="headerlink" title="中点画线法"></a>中点画线法</h3><figure class="highlight pascal"><table><tr><td class="code"><pre><span class="line">LineMidpoint(x_0,y_0,x_n,y_n)</span><br><span class="line">	a = y_n-y_0</span><br><span class="line">    b = x_n-x_0</span><br><span class="line">    d1 = a+b</span><br><span class="line">    d2 = a</span><br><span class="line">    d = <span class="number">2</span>a+b <span class="comment">//a+0.5b</span></span><br><span class="line">    x=x_0</span><br><span class="line">    y=y_0</span><br><span class="line">    <span class="keyword">while</span> x &lt;= x_n <span class="keyword">do</span> </span><br><span class="line">    	Pixel(x,y)</span><br><span class="line">    	<span class="keyword">if</span> d&lt;<span class="number">0</span></span><br><span class="line">        	x++;y++</span><br><span class="line">            d+=a+b</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        	x++</span><br><span class="line">            d+=a</span><br></pre></td></tr></table></figure>
+
+<h2 id="整圆光栅化"><a href="#整圆光栅化" class="headerlink" title="整圆光栅化"></a>整圆光栅化</h2><p>中点画圆法：</p>
+<p>方程：F(X,Y)=X^2+Y^2-R^2从90-45度</p>
+<blockquote>
+<ul>
+<li>若某d大于0，下一步选择右下方点</li>
+<li>若某d小于0，下一步选择右边的点</li>
+</ul>
+</blockquote>
+<h2 id="区域填充"><a href="#区域填充" class="headerlink" title="区域填充"></a>区域填充</h2><p>输入：多边形顶点坐标以及连接关系</p>
+<p>输出：组成多边形的像素集合</p>
+<h3 id="逐点填充法"><a href="#逐点填充法" class="headerlink" title="逐点填充法"></a>逐点填充法</h3><p>判断每个像素是否在多边形内部</p>
+<p>判断方法：</p>
+<blockquote>
+<ul>
+<li>射线法</li>
+<li>弧长法</li>
+</ul>
+</blockquote>
+<p>射线法：</p>
+<blockquote>
+<ul>
+<li>从判别点v出发发出射线</li>
+<li>求射线与多边形交点个数（经过极值点时算两个交点）</li>
+<li>交点个数为奇数，则点在内部；偶数，则点在外部</li>
+</ul>
+</blockquote>
+<p>弧长法：</p>
+<blockquote>
+<ul>
+<li>给多边形的边定义一个首尾相接的方向</li>
+<li>将每条有向边投影到以判别点（非顶点）为圆心的单位圆上</li>
+<li>计算弧长总和，若为2pi则点在多边形内</li>
+</ul>
+</blockquote>
+<h3 id="扫描线填充法"><a href="#扫描线填充法" class="headerlink" title="扫描线填充法"></a>扫描线填充法</h3><p>求水平扫描线与多边形的交点，形成区间并填充</p>
+<p>步骤：</p>
+<blockquote>
+<ul>
+<li>求交点</li>
+<li>交点排序</li>
+<li>配对</li>
+<li>填充颜色</li>
+</ul>
+</blockquote>
+<h3 id="活动边表填充法"><a href="#活动边表填充法" class="headerlink" title="活动边表填充法"></a>活动边表填充法</h3><p>ET表是一个链表数组，链表元素为[ymax,xmin,1/m]</p>
+<blockquote>
+<ul>
+<li>数组的每个元素表示扫描线</li>
+<li>链表元素表示活动边</li>
+<li>ymax为该活动边最大的y值</li>
+<li>xmin为当前扫描线和该活动边相交的x值</li>
+<li>1/m为该活动边斜率倒数（x值的增量）</li>
+</ul>
+</blockquote>
+<p>AET表是一个数组，表示当前扫描线</p>
+<p>方法：</p>
+<blockquote>
+<ol>
+<li>构建ET表（初始化）：每个桶中存储由该扫描线激活的边</li>
+<li>构建AET表（空表），y从ET表中第一个非空桶开始迭代</li>
+<li>将ET表中相应桶的所有活动边移动到AET表中，并按xmin值排序</li>
+<li>配对填充像素值</li>
+<li>删除AET表中y&gt;ymax的项（边失去激活）</li>
+<li>更新AET表中所有节点的x值：x = x + 1/m</li>
+<li>AET表按xmin排序</li>
+<li>y+=1 回到3. 直到AET表为空</li>
+</ol>
+</blockquote>
+<p>排序开销较大，适合软件实现，不适合硬件实现</p>
+<h3 id="种子填充算法"><a href="#种子填充算法" class="headerlink" title="种子填充算法"></a>种子填充算法</h3><p>输入：区域，区域内一点</p>
+<p>输出：填充图形</p>
+<p>使用递归法（栈）来填充</p>
+<h2 id="字符"><a href="#字符" class="headerlink" title="字符"></a>字符</h2><p>字符分类：</p>
+<blockquote>
+<ul>
+<li>矢量字符</li>
+<li>点阵字符</li>
+</ul>
+</blockquote>
+<h2 id="裁剪"><a href="#裁剪" class="headerlink" title="裁剪"></a>裁剪</h2><p>输入：矩形窗口、对象</p>
+<h3 id="点的裁剪"><a href="#点的裁剪" class="headerlink" title="点的裁剪"></a>点的裁剪</h3><p>判断点是否在窗口内</p>
+<h3 id="直线裁剪"><a href="#直线裁剪" class="headerlink" title="直线裁剪"></a>直线裁剪</h3><p>直线段和裁剪窗口的可能关系：</p>
+<blockquote>
+<ul>
+<li>完全落在窗口内</li>
+<li>完全落在窗口外</li>
+<li>与窗口边界相交</li>
+</ul>
+</blockquote>
+<p>Cohen-Sutherland算法</p>
+<h1 id="四、图形几何变化"><a href="#四、图形几何变化" class="headerlink" title="四、图形几何变化"></a>四、图形几何变化</h1><p>平移、旋转、缩放、反射、错切、复合变换</p>
 ]]></content>
       <categories>
         <category>notes</category>
@@ -201,7 +1205,7 @@
 <li>问题的状态空间：表示问题的全部可能状态及其关系的图</li>
 </ul>
 </blockquote>
-<p>状态空间可以表示为三元组(S,F,G)</p>
+<p>状态空间可以表示为三元组(S,F,G)21</p>
 <blockquote>
 <ul>
 <li>S：初始状态集合</li>
@@ -287,14 +1291,322 @@
 <li>根据语义将上述表达式连接起来</li>
 </ul>
 </blockquote>
-]]></content>
+<h2 id="2-4-语义网络法"><a href="#2-4-语义网络法" class="headerlink" title="2.4 语义网络法"></a>2.4 语义网络法</h2><h3 id="语义网络"><a href="#语义网络" class="headerlink" title="语义网络"></a>语义网络</h3><p>语义网络是知识表示的一种结构化图解表示，它由节点和弧线或连接线表示</p>
+<blockquote>
+<ul>
+<li>节点：实体、概念或情况，每个节点可以有若干个属性（来区分不同对象）</li>
+<li>弧线：节点间的语义关系</li>
+</ul>
+</blockquote>
+<p>语义网络可由三元组（节点1，弧，节点2）表示</p>
+<blockquote>
+<p>也可以表示成谓词关系：P（节点1，节点2）；P表示弧的含义</p>
+</blockquote>
+<h3 id="语义网络表示知识到方法"><a href="#语义网络表示知识到方法" class="headerlink" title="语义网络表示知识到方法"></a>语义网络表示知识到方法</h3><p>步骤：</p>
+<blockquote>
+<ul>
+<li>确定问题中的所有对象以及各个对象的属性</li>
+<li>确定所讨论对象的关系</li>
+<li>整理同一类对象的共同属性，将它们抽象</li>
+<li>将各对象标注成节点，并用弧线表示它们之间的关系</li>
+</ul>
+</blockquote>
+<p>事实知识的表示：</p>
+<blockquote>
+<ul>
+<li>可以用节点和有向边表示</li>
+<li>事实知识是有关领域内的概念、定义等事实性知识</li>
+</ul>
+</blockquote>
+<p>规则性知识表示方法：</p>
+<blockquote>
+<ul>
+<li>弧线上的标注用“如果…那么…”表示</li>
+</ul>
+</blockquote>
+<h3 id="语义网络常见关系"><a href="#语义网络常见关系" class="headerlink" title="语义网络常见关系"></a>语义网络常见关系</h3><blockquote>
+<ul>
+<li>ISA/AKO关系：ISA偏向于一种类和实例的关系、AKO偏向于子类和父类的关系</li>
+<li>Part-of关系：用于表示部分和整体的关系，部分不一定具有整体的所有属性</li>
+<li>IS关系：用于表示一个节点是另一个节点的属性</li>
+<li>If-then关系：表示因果关系</li>
+<li>Composed-of关系：表示组合关系，与Part-of有区别</li>
+<li>Have关系</li>
+<li>Located关系</li>
+</ul>
+</blockquote>
+<h3 id="语义网络的推理过程"><a href="#语义网络的推理过程" class="headerlink" title="语义网络的推理过程"></a>语义网络的推理过程</h3><blockquote>
+<ul>
+<li>根据提出的待求解问题，构造一个局部网络或网络片段</li>
+<li>根据局部网络到知识库中去寻找语义网络，匹配并得到结果</li>
+</ul>
+</blockquote>
+<h2 id="2-5-框架表示法"><a href="#2-5-框架表示法" class="headerlink" title="2.5 框架表示法"></a>2.5 框架表示法</h2><h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><p>框架是一种所论对象属性的数据结构。该对象可以是一个事物、一个事件或者一个概念</p>
+<blockquote>
+<ul>
+<li>框架由若干个槽（slot）组成，用于描述对象某一方面的属性</li>
+<li>每个槽可以划分成若干个赦免（facet），用于描述相应属性的一个方面</li>
+<li>槽和侧面所具有的属性值分别称为槽值和属性值</li>
+</ul>
+</blockquote>
+<h3 id="框架表示法基本步骤"><a href="#框架表示法基本步骤" class="headerlink" title="框架表示法基本步骤"></a>框架表示法基本步骤</h3><blockquote>
+<ul>
+<li>分析待表达知识中的对象及其属性，对框架中的槽进行定义</li>
+<li>分析各对象之间的关系</li>
+<li>定义槽中的侧面和各侧面的属性值</li>
+</ul>
+</blockquote>
+<h3 id="框架法的推理过程"><a href="#框架法的推理过程" class="headerlink" title="框架法的推理过程"></a>框架法的推理过程</h3><blockquote>
+<ul>
+<li>将求解问题用一个框架表示出来</li>
+<li>将该框架与知识库中已有框架进行匹配</li>
+<li>合并冲突</li>
+<li>将待解决问题框架中需要求解的属性进行补充</li>
+</ul>
+</blockquote>
+<h1 id="三、确定性推理方法"><a href="#三、确定性推理方法" class="headerlink" title="三、确定性推理方法"></a>三、确定性推理方法</h1><h2 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h2><p>知识和推理共同构成智能</p>
+<p>推理：</p>
+<blockquote>
+<ul>
+<li>确定性推理（经典逻辑推理）</li>
+<li>不确定性推理</li>
+</ul>
+</blockquote>
+<h2 id="3-1-推理的基本概念"><a href="#3-1-推理的基本概念" class="headerlink" title="3.1 推理的基本概念"></a>3.1 推理的基本概念</h2><h3 id="推理的方式和分类"><a href="#推理的方式和分类" class="headerlink" title="推理的方式和分类"></a>推理的方式和分类</h3><p>推理是依据已知事实和某种策略来得出结论的过程</p>
+<p>推理方式及其分类：</p>
+<blockquote>
+<ul>
+<li>演绎推理：三段论</li>
+<li>归纳推理：完全归纳法（数学归纳法），不完全归纳法（抽样调查）</li>
+<li>默认推理：在知识不完全的情况下假设某些条件已经具备所进行的推理（有时不成立）</li>
+<li>确定性推理：推理时所用到的知识和证据都是确定的，推出的结论也是确定的</li>
+<li>不确定性推理：</li>
+<li>单调推理：推理所得出的结论越来越接近最终目标</li>
+<li>非单调推理：对真理的一种螺旋式认识，有时会否定之前的结论</li>
+<li>启发性推理：运用能加快推理、提高搜索效率的知识（启发式知识）进行推理</li>
+<li>非启发性推理</li>
+</ul>
+</blockquote>
+<h3 id="推理的方向"><a href="#推理的方向" class="headerlink" title="推理的方向"></a>推理的方向</h3><ul>
+<li><p>正向推理：P53</p>
+<blockquote>
+<ul>
+<li>确定匹配方法</li>
+<li>按什么策略搜索知识库</li>
+<li>冲突消解策略</li>
+<li>简单、易实现，但目的性不强，效率低</li>
+</ul>
+</blockquote>
+</li>
+<li><p>逆向推理</p>
+<blockquote>
+<ul>
+<li>目的性强，有利于向用户提供解释；但选择初始目标具有盲目性</li>
+</ul>
+</blockquote>
+</li>
+<li><p>混合推理</p>
+</li>
+<li><p>双向推理</p>
+</li>
+</ul>
+<h3 id="冲突消解策略"><a href="#冲突消解策略" class="headerlink" title="冲突消解策略"></a>冲突消解策略</h3><p>已知事实与知识的匹配情况：</p>
+<blockquote>
+<ul>
+<li>一对一匹配</li>
+<li>不能匹配</li>
+<li>一对多或多对多的匹配</li>
+</ul>
+</blockquote>
+<p>消解策略：</p>
+<blockquote>
+<ul>
+<li>按针对性排序</li>
+<li>按事实新鲜性（时间）排序</li>
+<li>按匹配度排序</li>
+<li>…</li>
+</ul>
+</blockquote>
+<h2 id="3-2-自然演绎推理"><a href="#3-2-自然演绎推理" class="headerlink" title="3.2 自然演绎推理"></a>3.2 自然演绎推理</h2><p>从已知为真的事实运用经典逻辑推理规则推出结论</p>
+<blockquote>
+<ul>
+<li>P规则：给出的结论</li>
+<li>T规则：综合推导出的结论</li>
+<li>假言推理：$P, \ P \to Q \Rightarrow Q$</li>
+<li>拒取式推理：$P \to Q, \lnot Q \Rightarrow \lnot P$</li>
+</ul>
+</blockquote>
+<h2 id="3-3-为此公式化为子句集的方法"><a href="#3-3-为此公式化为子句集的方法" class="headerlink" title="3.3 为此公式化为子句集的方法"></a>3.3 为此公式化为子句集的方法</h2><p>子句是谓词公式及其否定的析取式</p>
+<blockquote>
+<ul>
+<li>不包含任何谓词公式的子句为空子句</li>
+<li>空子句永假</li>
+</ul>
+</blockquote>
+<p>子句集是子句的集合，子句间的关系是合取</p>
+<p>谓词公式化为子句集：</p>
+<blockquote>
+<ul>
+<li>消去公式中的等价和蕴含箭头</li>
+<li>展开带否定符号的公式</li>
+<li>量词代还、变量标准化</li>
+<li>消去存在量词：无全称管辖的存在量词常量化，有全称管辖的量词skolem化，即$P(x,y) \Rightarrow P(x,f(x))$</li>
+<li>化为前束范式：量词提前</li>
+<li>主公式化为子句和取形式</li>
+<li>略去全称量词</li>
+<li>消去和取词，形成子句集</li>
+<li>子句变量标准化：即替换变量使得不同子句中的变量不同，因为子句之间是和取关系</li>
+</ul>
+</blockquote>
+<h2 id="3-4-鲁滨逊归结原理"><a href="#3-4-鲁滨逊归结原理" class="headerlink" title="3.4 鲁滨逊归结原理"></a>3.4 鲁滨逊归结原理</h2><p>鲁滨逊归结原理（消解原理）用于谓词公式的不可满足性分析</p>
+<p>思想：子句集中子句之间是合区关系，只要有一个子句不可满足，则子句集就不可满足</p>
+<blockquote>
+<ul>
+<li>检查子句集S中是否包含空子句，若有则S不可满足</li>
+<li>从子句集中寻找合适的子句进行归结，若结果得到空子句，则S不可满足</li>
+<li>若没有归结出空子句，则不能下任何结论</li>
+</ul>
+</blockquote>
+<p>归结过程：</p>
+<blockquote>
+<ul>
+<li>C1和C2是两个子句</li>
+<li>取出两个子句中互补的文字（原子公式）并消去</li>
+<li>余下部分析取，得到C12</li>
+<li>此时，C1和C2为C12的亲本子句</li>
+</ul>
+</blockquote>
+<p>在归结过程中消去带变元的谓词互补时，需要用到置换与合一的概念：<a href="https://blog.csdn.net/tianranhe/article/details/8287534" target="_blank" rel="noopener">https://blog.csdn.net/tianranhe/article/details/8287534</a></p>
+<blockquote>
+<ul>
+<li>合一置换之后，变元相同，直接消去即可</li>
+</ul>
+</blockquote>
+<p>定理：</p>
+<blockquote>
+<ul>
+<li>归结式C12是亲本子句C1和C2的逻辑结论。</li>
+<li>使用C12替换C1和C2，得到归结后的子句集S1的不可满足性和原子句集S等价</li>
+</ul>
+</blockquote>
+<h2 id="3-5-归结反演"><a href="#3-5-归结反演" class="headerlink" title="3.5 归结反演"></a>3.5 归结反演</h2><p>P68</p>
+<h2 id="3-6-归结原理的应用"><a href="#3-6-归结原理的应用" class="headerlink" title="3.6 归结原理的应用"></a>3.6 归结原理的应用</h2><p>P70</p>
+<h1 id="四、不确定性推理方法"><a href="#四、不确定性推理方法" class="headerlink" title="四、不确定性推理方法"></a>四、不确定性推理方法</h1><h2 id="概述-3"><a href="#概述-3" class="headerlink" title="概述"></a>概述</h2><p>现实世界客观存在随机性和模糊性，需要进行不确定性的表示和推理</p>
+<p>基于概率论的不确定性的推理方法</p>
+<p>不确定性推理：</p>
+<blockquote>
+<p>从不确定的初始证据出发，通过运用不确性的知识，最终推理出一定程度的不确定性但是合理或近乎合理的结论的思维过程</p>
+</blockquote>
+<p>不确定性的表示与度量：</p>
+<blockquote>
+<ul>
+<li>知识到不确定性的表示：一般由专家系统中的专家给出；是一种数值形式的静态强度</li>
+<li>证据的不确定性的表示：用户在求解问题时提供的初始证据；是一种动态强度</li>
+<li>不确定性的量度：确定一个客观的不确定性的量度</li>
+</ul>
+</blockquote>
+<p>要点：</p>
+<blockquote>
+<ul>
+<li>不确定性的匹配算法和阈值</li>
+<li>组合证据的不确定性算法</li>
+<li>不确定性传递算法</li>
+<li>结论的不确定性合成</li>
+</ul>
+</blockquote>
+<h2 id="4-2-可信度方法"><a href="#4-2-可信度方法" class="headerlink" title="4.2 可信度方法"></a>4.2 可信度方法</h2><p>可信度：根据经验对一个事物或现象为真的相信程度，其具有较大的主观性和经验性</p>
+<p>C-F模型</p>
+<p>知识的不确定性表示：IF E THEN H (CF(H,E))</p>
+<blockquote>
+<ul>
+<li>C-F：可信度因子，反映前提条件与结论的联系强度（主观参数）</li>
+<li>CF也可以理解成：E为真时对H的影响程度</li>
+<li>CF$\in$[-1,1]: 可信度从假到真；0为不相关</li>
+</ul>
+</blockquote>
+<p>证据不确定性的表示：CF(E)</p>
+<blockquote>
+<ul>
+<li>此时CF是一个动态的强度，表示E为真的可能性</li>
+</ul>
+</blockquote>
+<p>组合证据的不确定性：</p>
+<blockquote>
+<ul>
+<li>证据和取：CF(E) = min{CF(E1),CF(E2)…}</li>
+<li>证据析取：CF(E) = max{CF(E1),CF(E2)…}</li>
+</ul>
+</blockquote>
+<p>不确定性的传递算法：CF(H)=CF(H,E)*max{0,CF(E)}</p>
+<p>不确定性的合成算法：P82</p>
+<p>算证据的可信度：</p>
+<blockquote>
+<ul>
+<li>算出每一条知识的结论的可信度</li>
+<li>合成结论的可信度得到结果的可信度</li>
+</ul>
+</blockquote>
+<h2 id="4-3-证据理论"><a href="#4-3-证据理论" class="headerlink" title="4.3 证据理论"></a>4.3 证据理论</h2><h3 id="概率分配函数"><a href="#概率分配函数" class="headerlink" title="概率分配函数"></a>概率分配函数</h3><p>设D是样本x的样本空间；则在证据理论中，D的任何一个子集A都可以对应x的一个命题“x的值在A中”</p>
+<p>概率分配函数M定义如下：<br>$$M: 2^{|D|} \to [0,1] 且 \<br>M(\empty)=0\<br>\sum_{A\in D}M(A)=1<br>$$</p>
+<p>P85</p>
+<h3 id="基于证据理论的不确定性推理"><a href="#基于证据理论的不确定性推理" class="headerlink" title="基于证据理论的不确定性推理"></a>基于证据理论的不确定性推理</h3><p>步骤：</p>
+<blockquote>
+<ul>
+<li>建立问题的样本空间</li>
+<li>由经验给出各概率分配函数</li>
+</ul>
+</blockquote>
+<p>…P87</p>
+<h2 id="4-4-模糊推理方法"><a href="#4-4-模糊推理方法" class="headerlink" title="4.4 模糊推理方法"></a>4.4 模糊推理方法</h2><p>模糊集合的定义（元素有限）：$A = {(x,u_A(x)),x\in X}$</p>
+<blockquote>
+<ul>
+<li>$X$：全集</li>
+<li>$x$：对象</li>
+<li>$A$：集合</li>
+<li>$u_A(x)$：隶属度函数，可以是正态分布等</li>
+</ul>
+</blockquote>
+<p>P91-92</p>
+<h1 id="五、搜索推理技术"><a href="#五、搜索推理技术" class="headerlink" title="五、搜索推理技术"></a>五、搜索推理技术</h1><h2 id="搜索的概念和种类"><a href="#搜索的概念和种类" class="headerlink" title="搜索的概念和种类"></a>搜索的概念和种类</h2><p>概念：根据问题实际情况，按照一定的策略或规则，从知识库中寻找可利用的知识，从而构造出一条使问题获得解决的推理路线的过程</p>
+<p>种类：</p>
+<blockquote>
+<ul>
+<li>盲目搜索：按既定策略搜索，无任何中间信息来改变控制策略</li>
+<li>启发式搜索：有信息搜索，效率相对而言更高</li>
+</ul>
+</blockquote>
+<h2 id="图搜索策略"><a href="#图搜索策略" class="headerlink" title="图搜索策略"></a>图搜索策略</h2><p>P106</p>
+<h2 id="盲目搜索"><a href="#盲目搜索" class="headerlink" title="盲目搜索"></a>盲目搜索</h2><p>深度优先、广度优先搜索</p>
+<h2 id="启发式搜索"><a href="#启发式搜索" class="headerlink" title="启发式搜索"></a>启发式搜索</h2><h1 id="专题、信息检索"><a href="#专题、信息检索" class="headerlink" title="专题、信息检索"></a>专题、信息检索</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>信息检索：给定需求，从非结构化数据信息库中找出与之最匹配的信息（相似度匹配）</p>
+<p>信息的获取、存储、组织和访问</p>
+<p>应用：</p>
+<blockquote>
+<ul>
+<li>舆情分析</li>
+<li>情报处理</li>
+<li>内容安全</li>
+<li>搜索引擎</li>
+<li>推荐系统</li>
+<li>信息挖掘</li>
+</ul>
+</blockquote>
+<p>信息规模</p>
+<blockquote>
+<ul>
+<li>个人搜索</li>
+<li>企业级搜索</li>
+<li>web搜索</li>
+</ul>
+</blockquote>
+<h2 id="倒排索引与布尔查询"><a href="#倒排索引与布尔查询" class="headerlink" title="倒排索引与布尔查询"></a>倒排索引与布尔查询</h2><h2 id="搜索过程"><a href="#搜索过程" class="headerlink" title="搜索过程"></a>搜索过程</h2><p>需要注意搜索过程中是否对需求进行了转义</p>
+<h2 id="效率的评价"><a href="#效率的评价" class="headerlink" title="效率的评价"></a>效率的评价</h2>]]></content>
       <categories>
         <category>notes</category>
         <category>专业选修</category>
       </categories>
       <tags>
-        <tag>人工智能</tag>
         <tag>learning</tag>
+        <tag>人工智能</tag>
       </tags>
   </entry>
   <entry>
@@ -376,8 +1688,9 @@
 <ol>
 <li>输入$a,b,\epsilon$</li>
 <li>令$[a_0,b_0]=[a,b],\ 且对 k=0,1,2…,\ x_k=\frac12(a_k+b_k)$，检验如果$|b_k-a_k|&lt;\epsilon$，则令$\overline x=x_k$,停止运算  </li>
-<li>做如下判断，并令$k=k+1$，返回2.：$$<br>f(a_k)f(x_k)=\begin{cases}<br>0\ then\ let\ [a_{k+1},b_{k+1}]=[x_{k+1},b_k]\<br>&lt;0\ then\ let\ [a_{k+1},b_{k+1}]=[a_k,x_{k+1}]\<br>=0\ then\ end\<br>\end{cases}<br>$$</li>
+<li>做如下判断，并令$k=k+1$，返回2.：</li>
 </ol>
+<p>$$f(a_k)f(x_k)=\begin{cases}<br>0 &amp;then\ let\ [a_{k+1},b_{k+1}]=[x_{k+1},b_k] \<br>&lt;0 &amp;then\ let\ [a_{k+1},b_{k+1}]=[a_k,x_{k+1}] \<br>=0 &amp;then\ end \<br>\end{cases}$$</p>
 </blockquote>
 <h3 id="二分法的收敛性与事前误差估计"><a href="#二分法的收敛性与事前误差估计" class="headerlink" title="二分法的收敛性与事前误差估计"></a>二分法的收敛性与事前误差估计</h3><p>收敛性：二分法总是收敛的，因为</p>
 <blockquote>
@@ -412,9 +1725,7 @@
 <li>若${ x_k }$不收敛，迭代失败</li>
 </ul>
 </blockquote>
-<h3 id="迭代算法的收敛性"><a href="#迭代算法的收敛性" class="headerlink" title="迭代算法的收敛性"></a>迭代算法的收敛性</h3><p>一个定义：<br>$$在区间\Delta内,g(x)满足下列李普希兹条件：\<br>|g(x)-g(y)| \le L|x-y| 对 \forall x,y \in \delta, 常数0&lt;L&lt;1成立 \<br>则称g(x) 在 \Delta 内李普希兹连续$$</p>
-<p>可以知道：<br>$$若g’(x)在闭区间\Delta内连续且|g’(x)|\le L&lt;1对\forall x \in \Delta连续 \<br>则g(x)在\Delta内李普希兹连续$$</p>
-<p>此时，得到如下定理：<br>$$在方程x^<em>=g(x^</em>)中，若\<br>g(x)在闭区间\Delta内李普希兹连续，则\<br>对\forall x_0 \in \Delta，由迭代格式x_{k+1}=g(x_k)计算得到的解序列{x_k}收敛于x^<em>\<br>此时称迭代格式x_{k+1}=g(x_k)在x^</em>的邻域\Delta上局部收敛$$</p>
+<h3 id="迭代算法的收敛性"><a href="#迭代算法的收敛性" class="headerlink" title="迭代算法的收敛性"></a>迭代算法的收敛性</h3><p>一个定义：<br>$$<br>在区间\Delta内,g(x)满足下列李普希兹条件：\<br>|g(x)-g(y)| \le L|x-y| 对 \forall x,y \in \delta, 常数0&lt;L&lt;1成立 \<br>则称g(x) 在 \Delta 内李普希兹连续<br>$$<br>可以知道：<br>$$<br>若g’(x)在闭区间\Delta内连续且|g’(x)|\le L&lt;1对\forall x \in \Delta连续 \<br>则g(x)在\Delta内李普希兹连续<br>$$<br>此时，得到如下定理：<br>$$<br>在方程x^<em>=g(x^</em>)中，若\<br>g(x)在闭区间\Delta内李普希兹连续，则\<br>对\forall x_0 \in \Delta，由迭代格式x_{k+1}=g(x_k)计算得到的解序列{x_k}收敛于x^<em>\<br>此时称迭代格式x_{k+1}=g(x_k)在x^</em>的邻域\Delta上局部收敛<br>$$</p>
 <blockquote>
 <ul>
 <li>此时，$|x^*-x_k| \le \frac L{1-L}|x_k-x_{k-1}|$（误差估计）</li>
@@ -435,6 +1746,148 @@
 <li>事后估计法：$|f(x_k)|&lt;\epsilon_3$</li>
 </ul>
 </blockquote>
+<p>一般迭代法需要构造的$g(x)$没有固定的格式，这在计算机上几乎无法实现</p>
+<h2 id="2-3-牛顿迭代法"><a href="#2-3-牛顿迭代法" class="headerlink" title="2.3 牛顿迭代法"></a>2.3 牛顿迭代法</h2><h3 id="算法思想-1"><a href="#算法思想-1" class="headerlink" title="算法思想"></a>算法思想</h3><p>设$f(x)$在$x^<em>$附近连续可微，记$x_k$为$x^</em>$的第k个近似值，则：<br>$$<br>f(x)=f(x_k)+f’(x_k)(x-x_k)+O((x-x_k)^2) \ \approx<br>f(x_k)+f’(x_k)(x-x_k) = P_1(x)<br>$$<br>实际上，$P_1(x)=0$就是$f(x)$在点$(x_k,f(x_k))$的切线方程</p>
+<p>取$P_1(x)=0$的根作为$x^*$的第$k+1$次近似值$x_{k+1}$,解得如下迭代格式：<br>$$<br>x_{k+1}=x_k-\frac{f(x_k)}{f’(x)}<br>$$</p>
+<h3 id="牛顿迭代法收敛性和收敛速度"><a href="#牛顿迭代法收敛性和收敛速度" class="headerlink" title="牛顿迭代法收敛性和收敛速度"></a>牛顿迭代法收敛性和收敛速度</h3><p>$$<br>设 {x_k} 收敛于x^* \<br>如果 e_k=|x_k-x^*| 在 k \to \infty 时满足：\<br>\frac{e_{k-1}}{e_k^P} \to C \ (C为常数且不为零) ，则：<br>$$</p>
+<blockquote>
+<ul>
+<li>P=1时：序列为线性收敛</li>
+<li>P=2时：序列为平方收敛</li>
+<li>1&lt;P&lt;2时：序列为超线性收敛</li>
+</ul>
+</blockquote>
+<p>定理：<br>$$<br>若 F(x) 在x^<em>附近二阶连续，且x^</em>为f(x)=0的单根，\<br>则牛顿迭代法在x^*附近至少是平方收敛的<br>$$</p>
+<blockquote>
+<ul>
+<li>牛顿迭代法需要求出$f(x)$的导函数，这对于计算机来说不好处理</li>
+<li>牛顿迭代法收敛速度快，但对初值要求比较高，可以和二分法结合使用</li>
+</ul>
+</blockquote>
+<h2 id="2-4-弦截法"><a href="#2-4-弦截法" class="headerlink" title="2.4 弦截法"></a>2.4 弦截法</h2><h3 id="算法思想-2"><a href="#算法思想-2" class="headerlink" title="算法思想"></a>算法思想</h3><p>要点：在牛顿迭代法的基础上以差商代替微商，即<br>$$<br>以\frac{f(x_k)-f(x_{k-1})}{x_k-x_{k-1}}代替f’(x_k)<br>$$<br>有：<br>$$<br>f(x) \approx f(x_k) + \frac{f(x_k)}{f(x_k)－f(x_{k-1})}(x_k-x_{k-1})<br>$$<br>实际上，该弦线为点$P(x_k,f(x_k))$和$Q(x_{k-1},f(x_{k-1}))$的连线；用其与$x$轴的交点作为$x^*$的近似值$x_{k+1}$</p>
+<p>解得弦截法的迭代格式：<br>$$<br>x_{k+1} = x_k - \frac{f(x_k)}{f(x_k)-f(x_{k-1})}(x_k-x_{k-1})<br>$$</p>
+<blockquote>
+<p>此迭代格式为多步迭代，需要$x_0,x_1$两个初始值</p>
+</blockquote>
+<h3 id="弦截法的收敛性"><a href="#弦截法的收敛性" class="headerlink" title="弦截法的收敛性"></a>弦截法的收敛性</h3><p>$$<br>设f(x)在其零点x^<em>的领域 \Delta=[x^</em>-\delta,x^*+\delta] 内二阶连续，且 \<br>对\forall x \in \Delta有f’(x) \neq 0,则 \<br>对\forall x_0,x_{-1} \in \Delta，弦截法是p \approx 1.618(超线性)收敛的<br>$$</p>
+<h1 id="三、线性代数方程组的数值解法"><a href="#三、线性代数方程组的数值解法" class="headerlink" title="三、线性代数方程组的数值解法"></a>三、线性代数方程组的数值解法</h1><h2 id="3-1-概述"><a href="#3-1-概述" class="headerlink" title="3.1 概述"></a>3.1 概述</h2><p>线性方程组的形式如下：<br>$$<br>\mathbf {Ax} = b \<br>\mathbf A = [a_{ij}]; x = [a_{1k}]<br>$$</p>
+<p>解法策略：</p>
+<blockquote>
+<ul>
+<li>直接法：消元法，矩阵分解法</li>
+<li>迭代法：$ \mathbf {Ax} =b \to \mathbf x^{k+1} = \mathbf {Mx}^k + f $</li>
+</ul>
+</blockquote>
+<h2 id="3-2-消元法"><a href="#3-2-消元法" class="headerlink" title="3.2 消元法"></a>3.2 消元法</h2><h3 id="高斯消去法"><a href="#高斯消去法" class="headerlink" title="高斯消去法"></a>高斯消去法</h3><p>基本原理：使用初等行变化将增广矩阵左部$\mathbf A$化为上三角矩阵$\mathbf U$<br>$$ [\mathbf A|b] \to [\mathbf U|\overline b]$$</p>
+<p>初等行变换：这里不包括行交换</p>
+<blockquote>
+<ul>
+<li>倍乘</li>
+<li>倍加</li>
+</ul>
+</blockquote>
+<p>过程：归一，消元，回代</p>
+<blockquote>
+<ol>
+<li>$i=1$</li>
+<li>将第$i$行的第$i$个未知数系数化为1</li>
+<li>将第$i$行倍乘加到第$i+1,…n$行中，将各行的第$i$个未知数系数化为0</li>
+<li>若$i \neq n-1$,$i = i+1$，返回2.</li>
+<li>回代，解得结果</li>
+</ol>
+</blockquote>
+<p>运算量：$\frac{n^3}3$</p>
+<h3 id="高斯-若当消去法"><a href="#高斯-若当消去法" class="headerlink" title="高斯-若当消去法"></a>高斯-若当消去法</h3><p>基本原理：使用初等行变化将增广矩阵左部$\mathbf A$化为单位矩阵$\mathbf I$<br>$$ [\mathbf A|b] \to [\mathbf I|\overline b]$$</p>
+<p>过程：</p>
+<blockquote>
+<ol>
+<li>$i=1$</li>
+<li>将第$i$行的第$i$个未知数系数化为1</li>
+<li>将第$i$行倍乘加到第$1,…i-1,i+1…n$行中，将各行的第$i$个未知数系数化为0</li>
+<li>若$i \neq n$,$i = i+1$，返回2.</li>
+<li>得到结果$x = [b]^T$</li>
+</ol>
+</blockquote>
+<p>运算量：$\frac{n^3}2$</p>
+<h3 id="消去法的可行性条件"><a href="#消去法的可行性条件" class="headerlink" title="消去法的可行性条件"></a>消去法的可行性条件</h3><p>线性代数中，方程组有解的条件</p>
+<blockquote>
+<ul>
+<li>阶不为0，有解</li>
+<li>阶等于秩，解唯一</li>
+<li>本质：行列式不为零</li>
+</ul>
+</blockquote>
+<p>若$\mathbf A$的各阶顺序主子式均不为零，则消去法可行</p>
+<blockquote>
+<ul>
+<li>$n$阶子式：任选$n$行和$n$列交叉点元素构成的行列式</li>
+<li>主子式：子式元素依对角线对称</li>
+<li>$n$阶顺序主子式：选取的$n$行和$n$列必须为$1,…n$</li>
+</ul>
+</blockquote>
+<p>推论：若$\mathbf A$严格对角占优，则消去法可行，此即：<br>$$ |a_{ii}|&gt;\sum_{j=1 \ j\neq i}^n|a_{ij}|,(i = 1,2,…n) $$</p>
+<h3 id="列主元高斯消去法（常用）"><a href="#列主元高斯消去法（常用）" class="headerlink" title="列主元高斯消去法（常用）"></a>列主元高斯消去法（常用）</h3><p>基本原理：通过选择主元，进行行变换来防止主元为零（此时之前的消去法不可行）或主元很小（会导致小数除法造成较大的误差累积）的情形</p>
+<p>过程</p>
+<blockquote>
+<ol>
+<li>k=1</li>
+<li>在第k列主对角线及以下的元素中选取绝对值最大的元素为主元$A[i]<a href="i>=k;j>=k;i>=j">j</a>$</li>
+<li>交换i，j两行，将主元调到主对角线上</li>
+<li>进行一次归一消元，此时消去的是第j列元素</li>
+<li>k+=1，返回2.，直到k=n</li>
+<li>回代得到解</li>
+</ol>
+</blockquote>
+<h3 id="全主元高斯-若当消去法"><a href="#全主元高斯-若当消去法" class="headerlink" title="全主元高斯-若当消去法"></a>全主元高斯-若当消去法</h3><p>原理：进行行列变换来选择主元</p>
+<p>过程：</p>
+<blockquote>
+<ol>
+<li>开始循环</li>
+<li>划去前面主元所在的行列后，在余下的元素中选择主元$A[i]<a href="i>=k;j>=k">j</a>$</li>
+<li>交换i，j两行，将主元调到主对角线上</li>
+<li>进行一次归一消元，此时消去的是第j列元素</li>
+<li>划去该主元所在的行和列</li>
+<li>循环上述操作n次</li>
+<li>直接得到结果</li>
+</ol>
+</blockquote>
+<h2 id="3-3-矩阵分解法"><a href="#3-3-矩阵分解法" class="headerlink" title="3.3 矩阵分解法"></a>3.3 矩阵分解法</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><p>思想：对$\mathbf Ax=b$进行变换，得<br>$$<br>\mathbf A = \mathbf {LU}，其中\mathbf L为下三角矩阵；\mathbf U为上三角矩阵，得 \<br>(\mathbf{LU})x = b，即 \<br>\mathbf Ly = b ；\mathbf Ux =y<br>$$</p>
+<blockquote>
+<ul>
+<li>分解后，只需要两次简单回代就可以解的y和x，得到最终结果</li>
+<li>注意：$\mathbf {LU}$并非唯一存在</li>
+</ul>
+</blockquote>
+<p>为使得$\mathbf {LU}$分解唯一存在，可以如下规定：</p>
+<blockquote>
+<ul>
+<li>克洛特(Crout)分解：$\mathbf U$为单位上三角矩阵</li>
+<li>杜利特尔(Doolittle)分解：$\mathbf L$为单位下三角矩阵</li>
+</ul>
+</blockquote>
+<p>矩阵分解法的计算量、稳定性和消去法大致相等；但对于相同的系数矩阵的一批方程组，矩阵分解法处理效率较高</p>
+<h3 id="克洛特分解"><a href="#克洛特分解" class="headerlink" title="克洛特分解"></a>克洛特分解</h3><p>思想：$\mathbf U$为单位上三角矩阵，有<br>$$\begin{align}<br>a_{ij} &amp;= l_{ij} + \sum_{k=1}^{j-1}l_{ik}u_{kj} ;i \le j\<br>a_{ij} &amp;= l_{ii}u_{ij} + \sum_{k=1}^{i-1}l_{ik}u_{kj} ;i&gt;j<br>\end{align}$$<br>得到：<br>$$\begin{align}<br>l_{ij} &amp;= a_{ij} - \sum_{k=1}^{j-1}l_{ik}u_{kj} \<br>u_{ij} &amp;=\frac{a_{ij}-\sum_{k=1}^{i-1}l_{ik}u_{kj}}{l_{ii}}<br>\end{align}$$</p>
+<p>计算顺序如下：$\mathbf L$第一列，$\mathbf U$第一行，$\mathbf L$第二列，$\mathbf U$第二行，….</p>
+<h2 id="3-4-迭代法"><a href="#3-4-迭代法" class="headerlink" title="3.4 迭代法"></a>3.4 迭代法</h2><h3 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h3><p>思想：将$\mathbf Ax=b$化为如下格式<br>$$<br>x = \mathbf Mx+f<br>$$</p>
+<p>则迭代格式如下（雅可比迭代）：<br>$$<br>x^{(k+1)}=\mathbf Mx^{(k)}+f<br>$$</p>
+<h3 id="矩阵的分解"><a href="#矩阵的分解" class="headerlink" title="矩阵的分解"></a>矩阵的分解</h3><p>矩阵分解用于迭代格式收敛的分析</p>
+<p>将$\mathbf A$进行如下分解<br>$$<br>\mathbf A = \mathbf D - \mathbf L - \mathbf U<br>$$</p>
+<blockquote>
+<ul>
+<li>$\mathbf D$为原矩阵的对角线部分（可逆）</li>
+<li>$-\mathbf L$和$-\mathbf U$为元矩阵以对角线为界的下三角和上三角部分（对角线为0）</li>
+</ul>
+</blockquote>
+<p>则雅可比迭代法迭代格式如下：（同步迭代）<br>$$\begin{align}<br>x^{(k+1)} &amp;= \mathbf M_Jx^{(k)}+f_J \<br>\mathbf M_J &amp;= \mathbf D^{-1}(\mathbf L + \mathbf U) \<br>f_J &amp;= \mathbf D^{-1}b<br>\end{align}$$</p>
+<blockquote>
+<p>$\mathbf M_J$为雅可比的迭代矩阵，用于做收敛分析</p>
+</blockquote>
+<p>高斯-塞德尔迭代法迭代格式如下：（异步迭代）<br>$$<br>x^{(k+1)} = \mathbf D^{-1}(b + \mathbf Lx^{(k+1)} + \mathbf Ux^{(k)})<br>$$<br>即：<br>$$\begin{align}<br>x^{(k+1)} &amp;= \mathbf M_Gx^{(k)}+f_G \<br>\mathbf M_G &amp;= (\mathbf D - \mathbf L)^{-1} \mathbf U \<br>f_G &amp;= (\mathbf D - \mathbf L)^{-1}b<br>\end{align}$$</p>
+<blockquote>
+<p>$M_G$为高斯-塞德尔的迭代矩阵</p>
+</blockquote>
+<p>高斯-塞德尔迭代法有助于提高收敛速度</p>
+<h3 id="迭代法对收敛性"><a href="#迭代法对收敛性" class="headerlink" title="迭代法对收敛性"></a>迭代法对收敛性</h3><p>若：<br>$$<br>\lim_{k\to \infty} \max_{1\le i \le n}|x_i</p>
 ]]></content>
       <categories>
         <category>notes</category>
@@ -604,7 +2057,8 @@
 <h2 id="2-3-算法分析设计实例：分治法"><a href="#2-3-算法分析设计实例：分治法" class="headerlink" title="2.3 算法分析设计实例：分治法"></a>2.3 算法分析设计实例：分治法</h2><h3 id="分治法分析"><a href="#分治法分析" class="headerlink" title="分治法分析"></a>分治法分析</h3><p>归并排序中MERGE操作的正确性：P19</p>
 <p>时间复杂度分析：</p>
 <blockquote>
-<p>当一个算法含有对其自身的递归调用时，其运行时间可以用如下一个递归方程来表示：<br>$$<br>T(n)=<br>\begin{cases}<br>\Theta(1) , &amp;n \le c \<br>aT(n/b) + D(n) + C(n) , &amp;other\ casese<br>\end{cases}<br>$$<br>其中：</p>
+<p>当一个算法含有对其自身的递归调用时，其运行时间可以用如下一个递归方程来表示：<br>$$<br>T(n)=<br>\begin{cases}<br>\Theta(1) , &amp;n \le c \<br>aT(n/b) + D(n) + C(n) , &amp;other\ casese<br>\end{cases}<br>$$</p>
+<p>其中：</p>
 <ul>
 <li>$T(n)$是规模为n的一个问题的运行时间</li>
 <li>$D(n)$是将问题分解（Divide）成子问题所需的时间</li>
@@ -614,12 +2068,13 @@
 </ul>
 </blockquote>
 <p>在归并排序中，上述$a=b=2$;分解问题为常量时间$\Theta(1)$；合并问题需要一个n的线性函数时间$\Theta(n)$<br>即：<br>$$<br>T(n)=<br>\begin{cases}<br>c , &amp;n = 1 \<br>2T(n/2) + cn , &amp;n &gt; 1<br>\end{cases}<br>$$</p>
-<p>求解这个递归式时，我们需要画出它的递归树进行分析，此时我们发现，树的每一层执行时间都为cn，树高为lgn<br>所以：<br>$$T(n) = cnlgn+cn = \Theta(nlgn)$$</p>
+<p>求解这个递归式时，我们需要画出它的递归树进行分析，此时我们发现，树的每一层执行时间都为cn，树高为lgn  </p>
+<p>所以：<br>$$<br>T(n) = cnlgn+cn = \Theta(nlgn)<br>$$</p>
 <h1 id="三、函数的增长"><a href="#三、函数的增长" class="headerlink" title="三、函数的增长"></a>三、函数的增长</h1><h2 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h2><p>对于足够大的输入规模，算法精确运行时间中的倍增常量和低阶项被输入规模本身刚到影响所支配</p>
 <blockquote>
 <p>此时，我们要研究算法的渐进效率；即在极限中，算法的运行时间如何随着输入规模的变大而增加</p>
 </blockquote>
-<h2 id="3-1-渐进记号"><a href="#3-1-渐进记号" class="headerlink" title="3.1 渐进记号"></a>3.1 渐进记号</h2><h3 id="渐近上界记号-O"><a href="#渐近上界记号-O" class="headerlink" title="渐近上界记号$O$"></a>渐近上界记号$O$</h3><p>定义：对于给定函数$g(n)$，$\Theta(g(n))$定义如下：<br>$$O(g(n))=\lbrace f(n) | \exists c,n_0 &gt; 0 \ 对 \ \forall n \ge n_0 \ 有 \ 0 \le f(n) \le cg(n) \rbrace$$</p>
+<h2 id="3-1-渐进记号"><a href="#3-1-渐进记号" class="headerlink" title="3.1 渐进记号"></a>3.1 渐进记号</h2><h3 id="渐近上界记号-O"><a href="#渐近上界记号-O" class="headerlink" title="渐近上界记号$O$"></a>渐近上界记号$O$</h3><p>定义：对于给定函数$g(n)$，$\Theta(g(n))$定义如下：<br>$$<br>O(g(n))=\lbrace f(n) | \exists c,n_0 &gt; 0 \ 对 \ \forall n \ge n_0 \ 有 \ 0 \le f(n) \le cg(n) \rbrace<br>$$</p>
 <blockquote>
 <ul>
 <li>此时，$f(n) \in O(g(n))$也可以表示成$f(n) = O(g(n))$</li>
@@ -636,7 +2091,7 @@
 <li>非渐近紧确上界具有传递性</li>
 </ul>
 </blockquote>
-<h3 id="渐近下界记号-Omega"><a href="#渐近下界记号-Omega" class="headerlink" title="渐近下界记号$\Omega$"></a>渐近下界记号$\Omega$</h3><p>定义：对于给定函数$g(n)$，$\Omega(g(n))$定义如下：<br>$$\Omega(g(n))=\lbrace f(n) | \exists c,n_0 &gt; 0 \ 对 \ \forall n \ge n_0 \ 有 \ 0 \le cg(n) \le f(n) \rbrace$$</p>
+<h3 id="渐近下界记号-Omega"><a href="#渐近下界记号-Omega" class="headerlink" title="渐近下界记号$\Omega$"></a>渐近下界记号$\Omega$</h3><p>定义：对于给定函数$g(n)$，$\Omega(g(n))$定义如下：<br>$$<br>\Omega(g(n))=\lbrace f(n) | \exists c,n_0 &gt; 0 \ 对 \ \forall n \ge n_0 \ 有 \ 0 \le cg(n) \le f(n) \rbrace<br>$$</p>
 <blockquote>
 <ul>
 <li>此时，$f(n) \in \Omega(g(n))$也可以表示成$f(n) = \Omega(g(n))$</li>
@@ -646,7 +2101,7 @@
 </ul>
 <p>渐近下界具有自反性、传递性</p>
 </blockquote>
-<p>非渐近紧确下界$\omega$：渐近下界除去紧确下界，定义如下<br>$$\omega(g(n))=\lbrace f(n) | \exists c,n_0 &gt; 0 \ 对 \ \forall n \ge n_0 \ 有 \ 0 \le cg(n) &lt; f(n) \rbrace$$</p>
+<p>非渐近紧确下界$\omega$：渐近下界除去紧确下界，定义如下<br>$$<br>\omega(g(n))=\lbrace f(n) | \exists c,n_0 &gt; 0 \ 对 \ \forall n \ge n_0 \ 有 \ 0 \le cg(n) &lt; f(n) \rbrace<br>$$</p>
 <blockquote>
 <ul>
 <li>此时可称$f(n)$渐近大于$g(n)$，当n足够大时，$g(n)$相比于$f(n)$来说变得微不足道</li>
@@ -654,7 +2109,7 @@
 </ul>
 </blockquote>
 <p>由定义可知，$O,\Omega$、$o,\omega$具有转置对称性（互为逆运算）</p>
-<h3 id="渐近紧确界记号-Theta"><a href="#渐近紧确界记号-Theta" class="headerlink" title="渐近紧确界记号$\Theta$"></a>渐近紧确界记号$\Theta$</h3><p>定义：对于给定函数$g(n)$，$\Theta(g(n))$定义如下：<br>$$\Theta(g(n))=\lbrace f(n) | \exists c_1,c_2,n_0 &gt; 0 \ 对 \ \forall n \ge n_0 \ 有 \ 0 \le c_1g(n) \le f(n) \le c_2g(n) \rbrace$$</p>
+<h3 id="渐近紧确界记号-Theta"><a href="#渐近紧确界记号-Theta" class="headerlink" title="渐近紧确界记号$\Theta$"></a>渐近紧确界记号$\Theta$</h3><p>定义：对于给定函数$g(n)$，$\Theta(g(n))$定义如下：<br>$$<br>\Theta(g(n))=\lbrace f(n) | \exists c_1,c_2,n_0 &gt; 0 \ 对 \ \forall n \ge n_0 \ 有 \ 0 \le c_1g(n) \le f(n) \le c_2g(n) \rbrace<br>$$</p>
 <blockquote>
 <ul>
 <li>此时，$f(n) \in \Theta(g(n))$也可以表示成$f(n) = \Theta(g(n))$</li>
@@ -678,7 +2133,7 @@
 <li>渐近记号可以替代公式中的一些无关紧要的细节，我们将其解释为匿名函数</li>
 </ul>
 </blockquote>
-<h2 id="3-2-算法时间复杂度分类"><a href="#3-2-算法时间复杂度分类" class="headerlink" title="3.2 算法时间复杂度分类"></a>3.2 算法时间复杂度分类</h2><h1 id="四、分治策略"><a href="#四、分治策略" class="headerlink" title="四、分治策略"></a>四、分治策略</h1><h2 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h2><h3 id="分治策略"><a href="#分治策略" class="headerlink" title="分治策略"></a>分治策略</h3><blockquote>
+<h1 id="四、分治策略"><a href="#四、分治策略" class="headerlink" title="四、分治策略"></a>四、分治策略</h1><h2 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h2><h3 id="分治策略"><a href="#分治策略" class="headerlink" title="分治策略"></a>分治策略</h3><blockquote>
 <ul>
 <li>核心思想：分而治之，各个击破</li>
 <li>递归结构：为解决一个给定的问题，算法一次或多次地调用自身</li>
@@ -689,7 +2144,7 @@
 <h3 id="递归式求解方法"><a href="#递归式求解方法" class="headerlink" title="递归式求解方法"></a>递归式求解方法</h3><ul>
 <li>代入法<blockquote>
 <ul>
-<li>猜测解的形式：换元、放缩等等，避免陷阱</li>
+<li>猜测解的形式：换元、放缩等等，注意避免陷阱</li>
 <li>用数学归纳法证明</li>
 </ul>
 </blockquote>
@@ -703,17 +2158,178 @@
 </li>
 <li>主方法</li>
 </ul>
+<blockquote>
+<p>主定理:考虑递归式$T(n)=aT(n/b)+f(n) ;\ (a\ge1,b&gt;1)$,有如下规则:</p>
+<ol>
+<li>若存在正常数$\epsilon&gt;0$有$f(n)=O(n^{log_b^{a-\epsilon}})$,则$T(n)=\Theta(n^{log_b^a})$</li>
+<li>若$f(n)=\Theta(n^{log_b^a})$,则$T(n)=\Theta(n^{log_b^a}lgn)$</li>
+<li>若存在正常数$\epsilon&gt;0$有$f(n)=\Omega(n^{log_b^{a+\epsilon}})$,且存在$c&lt;1$对任意足够大的$n$有$af(n/b)\le cf(n)$,则$T(n)=\Theta(f(n))$</li>
+</ol>
+</blockquote>
 <h2 id="4-1-最大子数组问题"><a href="#4-1-最大子数组问题" class="headerlink" title="4.1 最大子数组问题"></a>4.1 最大子数组问题</h2><p>炒股问题：最大子数组问题</p>
 <blockquote>
+<p>即，已知数组A，需要寻找A的和最大的非空连续子数组</p>
+</blockquote>
+<p>策略：</p>
+<blockquote>
+<ol>
+<li>递归寻找子数组A[low…high]的最大子数组</li>
+<li>递归寻找子数组A[low…mid]和A[mid…high]的最大子数组</li>
+<li>寻找跨越中点mid的最大子数组(线性时间)</li>
+<li>比较最大子数组的大小,返回最大子数组</li>
+</ol>
+</blockquote>
+<h2 id="4-2-矩阵乘法的Straseen算法"><a href="#4-2-矩阵乘法的Straseen算法" class="headerlink" title="4.2 矩阵乘法的Straseen算法"></a>4.2 矩阵乘法的Straseen算法</h2><p>朴素矩阵乘法(分治算法)：$T(n) = O(nˆ3)$</p>
+<p>Strassen算法:$T(n) = O(n^{lg7})$</p>
+<h3 id="算法策略"><a href="#算法策略" class="headerlink" title="算法策略"></a>算法策略</h3><blockquote>
+<ol>
+<li>递归计算A,B矩阵的乘积</li>
+<li>若阶等于1,直接返回A,B的数值乘积</li>
+<li>将A,B两个矩阵分块为$A_{11}…A_{22},B_{11}…B_{22}$几个 $\frac n2$阶矩阵</li>
+<li>创建$S_1,…S_{10}$10个$\frac n2$阶矩阵,每个矩阵都为上述分块矩阵的和差($O(n^2)$)</li>
+<li>创建$P_1,…P_7$7个$\frac n2$阶矩阵,每个矩阵都为上述3.4.中两矩阵的乘积; 递归计算这些矩阵</li>
+<li>创建$C_{11}…C_{22}$4个$\frac n2$阶分块矩阵,每个矩阵都为上述P矩阵的和差($O(n^2)$)</li>
+<li>返回结果矩阵C</li>
+</ol>
+</blockquote>
+<h3 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h3><p>Strassen算法通过加减,减少了一次矩阵乘法的运算,减少了算法运行的时间复杂度  </p>
+<p>Strassen算法运行时间的递归式<br>$$<br>T(n)=<br>\begin{cases}<br>\Theta(1) , &amp;n = 1 \<br>7T(n/2) + \Theta(n^2) , &amp;n &gt; 1<br>\end{cases}<br>$$</p>
+<h1 id="五、概率分析和随机算法"><a href="#五、概率分析和随机算法" class="headerlink" title="五、概率分析和随机算法"></a>五、概率分析和随机算法</h1><h2 id="5-1-雇佣问题"><a href="#5-1-雇佣问题" class="headerlink" title="5.1 雇佣问题"></a>5.1 雇佣问题</h2><p>雇佣问题：P65</p>
+<blockquote>
 <ul>
-<li>即，已知数组A，需要寻找A的和最大的非空连续子数组</li>
+<li>输入：应聘者的水平数组</li>
+<li>输出：雇佣/辞退助理的总费用</li>
 </ul>
 </blockquote>
-<p>P38 － 42</p>
-<h2 id="4-2-矩阵乘法的Straseen算法"><a href="#4-2-矩阵乘法的Straseen算法" class="headerlink" title="4.2 矩阵乘法的Straseen算法"></a>4.2 矩阵乘法的Straseen算法</h2><p>朴素矩阵乘法：nˆ3</p>
-<h1 id="五、概率分析和随机算法"><a href="#五、概率分析和随机算法" class="headerlink" title="五、概率分析和随机算法"></a>五、概率分析和随机算法</h1><h2 id="5-1-雇佣问题"><a href="#5-1-雇佣问题" class="headerlink" title="5.1 雇佣问题"></a>5.1 雇佣问题</h2><p>随机算法：</p>
-<p>期望的和等于和的期望</p>
-]]></content>
+<h2 id="概率分析"><a href="#概率分析" class="headerlink" title="概率分析"></a>概率分析</h2><p>概率分析：可用于时间分析或其他量的分析</p>
+<blockquote>
+<ul>
+<li>需要已知或假定输入的概率分布，求得算法的运行时间（或其他的量）</li>
+<li>此时求得的结果即期望</li>
+<li>无法描述输入的分布情况时</li>
+</ul>
+</blockquote>
+<h2 id="指示器随机变量"><a href="#指示器随机变量" class="headerlink" title="指示器随机变量"></a>指示器随机变量</h2><p>作用：建立概率和期望之间的联系</p>
+<p>定义：$I(A) = 1 if A occurs else 0$</p>
+<p>定理：期望的和等于和的期望</p>
+<h2 id="随机算法"><a href="#随机算法" class="headerlink" title="随机算法"></a>随机算法</h2><p>RANDOM(a,b)函数能产生一个a到b之间的随机整数</p>
+<ul>
+<li><p>为每个元素赋予一个随机的优先级，然后根据优先级对数组进行排序</p>
+</li>
+<li><p>从前往后扫描数组，将该元素与后面的一个随机元素交换</p>
+</li>
+</ul>
+<p>区别：</p>
+<blockquote>
+<ul>
+<li>假设输入随机，概率分析求得平均运行时间</li>
+<li>套上随机算法，概率分析求得运行时间期望</li>
+</ul>
+</blockquote>
+<h1 id="六七八、排序算法"><a href="#六七八、排序算法" class="headerlink" title="六七八、排序算法"></a>六七八、排序算法</h1><h2 id="概述-3"><a href="#概述-3" class="headerlink" title="概述"></a>概述</h2><blockquote>
+<ul>
+<li>输入：n个数的序列</li>
+<li>输出：序列的一个有序排列</li>
+</ul>
+</blockquote>
+<p>稳定和不稳定：</p>
+<blockquote>
+<ul>
+<li>稳定排序：关键字相同的记录按原顺序输出</li>
+<li>不稳定排序：关键字记录的相对次序发生变化</li>
+</ul>
+</blockquote>
+<p>排序算法比较：</p>
+<blockquote>
+<ul>
+<li>规模较小：简单排序，插入、选择等</li>
+<li>数组初态基本有序：简单排序，插入、冒泡等</li>
+<li>规模较大：速度快点排序算法，快排等</li>
+</ul>
+</blockquote>
+<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><p>操作：</p>
+<blockquote>
+<ul>
+<li>MAX-HEAPIFY：维护堆，O(lgn)</li>
+<li>BUILD-MAX-HEAP：构造堆，O(n)</li>
+<li>HEAPSORT：堆排序，O(nlgn)</li>
+</ul>
+</blockquote>
+<p>应用：优先级队列</p>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>原址排序，分而治之</p>
+<p>分析：</p>
+<blockquote>
+<ul>
+<li>最佳情况：$\Theta(nlogn)$</li>
+<li>最坏情况：$\Theta(n^2)$</li>
+<li>平均情况：$\Theta(n^2)$</li>
+</ul>
+</blockquote>
+<p>引入随机化，避免最坏情况发生：</p>
+<blockquote>
+<ul>
+<li>对输入序列进行随机排列</li>
+<li>对PARTITION元素随机取样</li>
+</ul>
+</blockquote>
+<h2 id="线性时间排序"><a href="#线性时间排序" class="headerlink" title="线性时间排序"></a>线性时间排序</h2><h3 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h3><p>要求：所有待排序元素均为整数，介于1到k之间（元素有重复）</p>
+<blockquote>
+<ul>
+<li>时间复杂度$O(n+k)$</li>
+<li>排序算法稳定，为基数排序做铺垫</li>
+</ul>
+</blockquote>
+<p>C数组：长度为k，临时存储</p>
+<blockquote>
+<ul>
+<li>每一次迭代时，C[i]表示余下数组中小于值i的元素的个数</li>
+<li>该轮迭代遇到的值为i时，将其放在C[i]位，然后C[i]–</li>
+</ul>
+</blockquote>
+<figure class="highlight pascal"><table><tr><td class="code"><pre><span class="line">INPUT: A[<span class="number">1</span>,..n]; A[i] <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">2</span>,..k)</span><br><span class="line">OUTPUT: B[<span class="number">1</span>,..n]</span><br><span class="line">COUNTING-SORT(A,B,k)</span><br><span class="line">	let C[<span class="number">0</span>,..k] be a new <span class="keyword">array</span></span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">0</span> <span class="keyword">to</span> k <span class="comment">// 初始化数组（数组长度为k+1）</span></span><br><span class="line">    	C[i] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span> <span class="keyword">to</span> A.length <span class="comment">// 统计每个数值的个数</span></span><br><span class="line">    	C[A[i]] += <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span> <span class="keyword">to</span> k <span class="comment">// 统计小于等于该数值的元素个数</span></span><br><span class="line">    	C[i] = C[i] + C[i-<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">for</span> i = A.length <span class="keyword">downto</span> <span class="number">1</span> <span class="comment">// 元素归位排序（从后往前扫描，稳定排序）</span></span><br><span class="line">    	B[C[A[i]]] = A[i]</span><br><span class="line">        C[A[i]] --</span><br></pre></td></tr></table></figure>
+
+<h3 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h3><p>要求：待排序元素均为整数，至多d位</p>
+<blockquote>
+<ul>
+<li>时间复杂度：$\Theta(d(n+k))$</li>
+</ul>
+</blockquote>
+<p>过程：按有效位从低到高进行计数排序</p>
+<h3 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h3><p>要求：元素均匀分布在某个区间内</p>
+<blockquote>
+<ul>
+<li>最差情况：$O(n^2)$</li>
+<li>平均情况：$O(n)$</li>
+</ul>
+</blockquote>
+<p>过程：</p>
+<blockquote>
+<ul>
+<li>将区间划分成n个相同大小的子区间（桶）</li>
+<li>将n个输入数分布到各个桶中去</li>
+<li>对各桶中点元素进行排序，再依次将桶中元素列出</li>
+</ul>
+</blockquote>
+<pre><code class="pascal">BUCKET-SORT(A)
+    n = A.length
+    <span class="keyword">for</span> i = <span class="number">1</span> <span class="keyword">to</span> n
+        insert A[i] into B[floor(nA(i))]
+    <span class="keyword">for</span> i = <span class="number">0</span> <span class="keyword">to</span> n-<span class="number">1</span>
+        sort linklist B[i]
+    concatenate the list B together <span class="keyword">in</span> order</code></pre>
+<h1 id="九、中位数和顺序统计量"><a href="#九、中位数和顺序统计量" class="headerlink" title="九、中位数和顺序统计量"></a>九、中位数和顺序统计量</h1><p>最小值和最大值</p>
+<p>期望为线性时间的选择算法</p>
+<p>最坏情况为线性时间的选择算法</p>
+<h1 id="十一、散列表"><a href="#十一、散列表" class="headerlink" title="十一、散列表"></a>十一、散列表</h1><p>何时用散列表</p>
+<p>散列函数</p>
+<p>冲突解决</p>
+<blockquote>
+<ul>
+<li>链表法</li>
+<li>开放寻址法</li>
+</ul>
+</blockquote>
+<h1 id="十二、二叉搜索树"><a href="#十二、二叉搜索树" class="headerlink" title="十二、二叉搜索树"></a>十二、二叉搜索树</h1>]]></content>
       <categories>
         <category>学位课程</category>
         <category>notes</category>
@@ -1203,7 +2819,7 @@
 <h3 id="进程和程序到关系"><a href="#进程和程序到关系" class="headerlink" title="进程和程序到关系"></a>进程和程序到关系</h3><blockquote>
 <ul>
 <li>进程是程序的一个实例，是程序的一次执行</li>
-<li>一个程序可对应一个或多个进程，同样一个进 程可对应一个或多个程序</li>
+<li>一个程序可对应一个或多个进程，同样一个进程可对应一个或多个程序</li>
 <li>程序是进程的代码部分</li>
 <li>进程是活动实体，程序静止（被动）实体</li>
 <li>进程在内存，程序在外存</li>
@@ -1219,6 +2835,16 @@
 <li>终止：进程执行完毕</li>
 </ul>
 </blockquote>
+<p>进程状态的转换：<br><img src="/2020/09/08/operating-system0/process0.jpg" alt="Process"></p>
+<blockquote>
+<ul>
+<li>新建-就绪：操作系统能够同时执行的进程是有限的，新进程需要被允许才能就绪</li>
+<li>就绪-运行：通过调度程序控制</li>
+<li>运行-就绪：中断发生，如分时系统中切换任务；而多道程序中这个状态转换通常是程序自愿发生的</li>
+<li>运行-等待：进程需要等待某个操作（如按下任意键继续）才能继续执行</li>
+<li>等待-就绪：事件发生，进程可以（在调度程序的控制下）继续执行了（就绪）<br>注意区分等待和就绪两种状态</li>
+</ul>
+</blockquote>
 <h3 id="进程控制快PCB"><a href="#进程控制快PCB" class="headerlink" title="进程控制快PCB"></a>进程控制快PCB</h3><p>PCB包含同进程有关的信息，包括：</p>
 <blockquote>
 <ul>
@@ -1231,7 +2857,652 @@
 <li>I/O状态信息</li>
 </ul>
 </blockquote>
-<h3 id="CPU在进程之间切换"><a href="#CPU在进程之间切换" class="headerlink" title="CPU在进程之间切换"></a>CPU在进程之间切换</h3>]]></content>
+<h3 id="CPU在进程之间切换"><a href="#CPU在进程之间切换" class="headerlink" title="CPU在进程之间切换"></a>CPU在进程之间切换</h3><p>进程的并发执行需要PCB保存和恢复现场</p>
+<h2 id="3-2-进程操作"><a href="#3-2-进程操作" class="headerlink" title="3.2 进程操作"></a>3.2 进程操作</h2><h3 id="进程创建"><a href="#进程创建" class="headerlink" title="进程创建"></a>进程创建</h3><p>父进程创建子进程，如此轮流创建进程下去，构成一棵进程树</p>
+<p>父子进程之间的关系：</p>
+<ul>
+<li><p>资源共享：</p>
+<blockquote>
+<ul>
+<li>父进程子进程共享所有的资源：并行计算</li>
+<li>子进程共享父进程资源的子集（部分共享）：windows创建的进程</li>
+<li>父进程和子进程无资源共享</li>
+</ul>
+</blockquote>
+</li>
+<li><p>执行：</p>
+<blockquote>
+<ul>
+<li>父进程和子进程并发执行，两者不相干（操作系统默认模式）</li>
+<li>父进程等待，直到子进程终止（需要程序员控制）</li>
+</ul>
+</blockquote>
+</li>
+<li><p>地址空间：</p>
+<blockquote>
+<ul>
+<li>子女复制双亲</li>
+<li>子女执行一个外部程序</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>进程的创建是一个原子操作：</p>
+<blockquote>
+<ul>
+<li>执行这种原子操作的语句也被称为原语</li>
+<li>这是一个不会被打断的操作</li>
+<li>一旦开始就一直运行到结束，中间不会有任何上下文切换</li>
+<li>该特性需要硬件支持：总线加锁（x86）</li>
+</ul>
+</blockquote>
+<h3 id="进程终止"><a href="#进程终止" class="headerlink" title="进程终止"></a>进程终止</h3><ul>
+<li><p>进程执行最后一项并退出</p>
+<blockquote>
+<ul>
+<li>子进程通过wait向父进程输出数据，处于终止状态</li>
+<li>父进程处理子进程的终止状态（区分需要回收的资源等）</li>
+<li>操作系统回收进程的资源</li>
+</ul>
+</blockquote>
+</li>
+<li><p>父进程终止子进程执行</p>
+<blockquote>
+<ul>
+<li>子进程超量分配资源</li>
+<li>赋予子进程的任务不再需要</li>
+<li>父进程结束导致的级联操作；当然，父进程结束后子进程也可以链到更上级进程下面</li>
+<li>父进程可以通过wait()系统调用等待子进程结束</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="进程调用举例"><a href="#进程调用举例" class="headerlink" title="进程调用举例"></a>进程调用举例</h3><h4 id="Linux的fork"><a href="#Linux的fork" class="headerlink" title="Linux的fork()"></a>Linux的fork()</h4><p>策略：</p>
+<blockquote>
+<ul>
+<li>fork()的子进程和父进程几乎一模一样</li>
+<li>进程创建时两者代码和数据空间一样，但pid不一样</li>
+<li>当子进程修改数据空间时，将该空间拷贝并进行修改（写时复制策略）</li>
+</ul>
+</blockquote>
+<p>区分父子进程：</p>
+<blockquote>
+<ul>
+<li>父进程调用fork()的返回值是子进程的ID（并创建子进程）</li>
+<li>子进程调用fork()的返回值是-1（不会创建其他进程）</li>
+<li>可以在同一个代码中插入fork()值的判断来使父子进程运行不同的代码</li>
+</ul>
+</blockquote>
+<h4 id="exec"><a href="#exec" class="headerlink" title="exec()"></a>exec()</h4><p>exec用于执行其他程序，子进程和父进程不共享任何资源</p>
+<h4 id="创建进程的模式"><a href="#创建进程的模式" class="headerlink" title="创建进程的模式"></a>创建进程的模式</h4><blockquote>
+<ul>
+<li>先用fork创建一个镜像</li>
+<li>执行exec覆盖这个镜像</li>
+</ul>
+</blockquote>
+<h2 id="3-3-进程间的通信"><a href="#3-3-进程间的通信" class="headerlink" title="3.3 进程间的通信"></a>3.3 进程间的通信</h2><h3 id="进程间的关系"><a href="#进程间的关系" class="headerlink" title="进程间的关系"></a>进程间的关系</h3><p>独立进程：进程之间的执行不会互相影响<br>协同进程：进程间的执行可能会相互影响</p>
+<p>目前，大多数进程都是协同进程</p>
+<p>协同进程优点：</p>
+<blockquote>
+<ul>
+<li>信息共享</li>
+<li>加速运算</li>
+<li>模块化</li>
+<li>方便：单个用户也可以执行多个任务</li>
+</ul>
+</blockquote>
+<p>进程间的通信方式：</p>
+<blockquote>
+<ul>
+<li>共享内存</li>
+<li>消息传递</li>
+</ul>
+</blockquote>
+<h3 id="共享内存"><a href="#共享内存" class="headerlink" title="共享内存"></a>共享内存</h3><p>生产者-消费者模型：</p>
+<blockquote>
+<ul>
+<li>生产者进程生产供消费者消费的信息</li>
+<li>无界缓冲(Unbounded-buffer)没有对缓冲区大小的限制</li>
+<li>有界缓冲(Bounded-buffer)对缓冲区大小作了限定</li>
+</ul>
+</blockquote>
+<h3 id="消息传递"><a href="#消息传递" class="headerlink" title="消息传递"></a>消息传递</h3><p>消息传递是通信模式中的常用机制</p>
+<blockquote>
+<ul>
+<li>适合用于传递少量的信息</li>
+<li>远程通信无法采用共享内存</li>
+</ul>
+</blockquote>
+<p>直接通信：两个进程之间建立一个直接通信的链路</p>
+<blockquote>
+<ul>
+<li>每个链路只有两个进程相关</li>
+<li>信息发送必须明确指定接收者</li>
+<li>共享内存实际上也是一种直接通信</li>
+</ul>
+</blockquote>
+<p>间接通信：消息被导向至信箱并从信箱接受</p>
+<blockquote>
+<ul>
+<li>每个信箱有一个唯一的id</li>
+<li>仅当共享一个信箱时进程才能通信</li>
+<li>信息的发送者可以无需指定接收者（广播）</li>
+<li>其他有第三方参与（如剪贴板）的通信也是一种简介通信</li>
+</ul>
+</blockquote>
+<p>消息传递的同步性：</p>
+<blockquote>
+<ul>
+<li>阻塞发送</li>
+<li>阻塞接收</li>
+<li>非阻塞发送</li>
+<li>非阻塞接收：接收者收到一个有效消息或无效消息</li>
+<li>一般默认非阻塞发送和阻塞接收</li>
+</ul>
+</blockquote>
+<h3 id="进程间通信"><a href="#进程间通信" class="headerlink" title="进程间通信"></a>进程间通信</h3><h4 id="Windows进程通信"><a href="#Windows进程通信" class="headerlink" title="Windows进程通信"></a>Windows进程通信</h4><ul>
+<li>网络通信：命名管道等</li>
+<li>本地通信：剪贴板等</li>
+</ul>
+<p>Windows消息传递的主体是窗口</p>
+<h4 id="Linux进程通信"><a href="#Linux进程通信" class="headerlink" title="Linux进程通信"></a>Linux进程通信</h4><ul>
+<li>管道</li>
+<li>信号</li>
+<li>消息</li>
+<li>…</li>
+</ul>
+<h1 id="四、线程"><a href="#四、线程" class="headerlink" title="四、线程"></a>四、线程</h1><h2 id="4-1-概述"><a href="#4-1-概述" class="headerlink" title="4.1 概述"></a>4.1 概述</h2><p>线程的合理性：</p>
+<blockquote>
+<ul>
+<li>性能要求：进程是重量级的，进程操作开销大</li>
+<li>应用要求：进程内也有代码并行执行的需求</li>
+<li>硬件要求：多核处理器已经是主流硬件，能加速进程的运行</li>
+</ul>
+</blockquote>
+<p>线程：</p>
+<blockquote>
+<ul>
+<li>线程是一个轻量级的进程，切换代价小</li>
+<li>进程内的一个代码片段可以被创建为一个线程</li>
+<li>线程状态：就绪、运行、等待等</li>
+<li>进程依旧是资源分配的基本单位；线程撤销不会影响进程，但进程撤销会导致所有线程的撤销</li>
+<li>线程自己不拥有完整的系统资源，需要通过进程来申请资源</li>
+</ul>
+</blockquote>
+<h2 id="4-2-线程结构"><a href="#4-2-线程结构" class="headerlink" title="4.2 线程结构"></a>4.2 线程结构</h2><p>线程控制块TCB</p>
+<blockquote>
+<ul>
+<li>线程ID</li>
+<li>线程计数器PC</li>
+<li>寄存器集合</li>
+<li>栈空间</li>
+</ul>
+</blockquote>
+<h2 id="4-3-单线程和多线程"><a href="#4-3-单线程和多线程" class="headerlink" title="4.3 单线程和多线程"></a>4.3 单线程和多线程</h2><p>单线程：</p>
+<blockquote>
+<ul>
+<li>单线程：一个进程只有一个线程</li>
+<li>多线程：一个进程可以有多个线程</li>
+</ul>
+</blockquote>
+<p>线程优点：</p>
+<blockquote>
+<ul>
+<li>创建、上下文切换开销小，速度快</li>
+<li>资源共享</li>
+<li>充分利用硬件资源</li>
+</ul>
+</blockquote>
+<h2 id="4-4-多线程模型"><a href="#4-4-多线程模型" class="headerlink" title="4.4 多线程模型"></a>4.4 多线程模型</h2><p>用户线程：</p>
+<blockquote>
+<ul>
+<li>用户线程为用户自己管理的线程</li>
+<li>用户线程的创建和调度在用户空间中，无需内核干预</li>
+<li>应用于只支持进程的操作系统</li>
+</ul>
+</blockquote>
+<p>内核线程</p>
+<blockquote>
+<ul>
+<li>内核线程为由内核管理的线程</li>
+<li>由内核完成线程调度、创建和撤销</li>
+</ul>
+</blockquote>
+<h4 id="多对一模型"><a href="#多对一模型" class="headerlink" title="多对一模型"></a>多对一模型</h4><p>映射多个用户线程到一个内核线程：</p>
+<blockquote>
+<ul>
+<li>内核中实际上只有进程，内核能够看到的只有一个进程</li>
+<li>此时多线程不能运行在多个处理器上（因此该模型目前不常使用）</li>
+<li>用户线程由进程自己管理</li>
+</ul>
+</blockquote>
+<h4 id="一对一模型"><a href="#一对一模型" class="headerlink" title="一对一模型"></a>一对一模型</h4><p>每个用户线程都映射到内核线程中：</p>
+<blockquote>
+<ul>
+<li>用于支持线程的操作系统</li>
+<li>操作系统来管理这些线程</li>
+<li>可以并行运行在多个处理器上，并发性好</li>
+<li>内核开销大</li>
+</ul>
+</blockquote>
+<h4 id="多对多模型"><a href="#多对多模型" class="headerlink" title="多对多模型"></a>多对多模型</h4><p>多个用户线程映射为相等或更小数码的内核线程：</p>
+<blockquote>
+<ul>
+<li>兼顾并发性和效率（实际上多对多指的是多个用户线程运行在多个核上）</li>
+<li>用户线程和内核线程之间需要添加一个映射层，增加了系统复杂度（该模型不常使用）</li>
+</ul>
+</blockquote>
+<p>两级模型：将多对一模型和一对一模型混合使用</p>
+<h3 id="4-4-线程库"><a href="#4-4-线程库" class="headerlink" title="4.4 线程库"></a>4.4 线程库</h3><p>用户库和内核库</p>
+<p>线程库：为程序员提供创建和管理线程的API</p>
+<blockquote>
+<ul>
+<li>无内和支持线程库：java线程库</li>
+<li>内核支持线程库：Windows线程库</li>
+</ul>
+</blockquote>
+<h3 id="4-5-隐式多线程"><a href="#4-5-隐式多线程" class="headerlink" title="4.5 隐式多线程"></a>4.5 隐式多线程</h3><p>线程池：</p>
+<blockquote>
+<ul>
+<li>从池中创建一批线程，任务来临时，从线程池中取出线程进行处理，处理完后在将线程放回池中</li>
+<li>若池中没有可以使用等线程，则任务进入等待状态</li>
+</ul>
+</blockquote>
+<h3 id="Linux多线程"><a href="#Linux多线程" class="headerlink" title="Linux多线程"></a>Linux多线程</h3><p>利用Pthreads线程库（第三方线程库）一种用户线程库</p>
+<p>Pthreads：</p>
+<blockquote>
+<ul>
+<li>pthread_exit()结束线程运行</li>
+<li>pthread_cancel(thread)利用消息终止其他线程</li>
+</ul>
+</blockquote>
+<h1 id="五、进程调度"><a href="#五、进程调度" class="headerlink" title="五、进程调度"></a>五、进程调度</h1><h2 id="5-1-概述"><a href="#5-1-概述" class="headerlink" title="5.1 概述"></a>5.1 概述</h2><p>调度分类：</p>
+<blockquote>
+<ul>
+<li>长程调度（作业/高级调度）：道（内存中可以同时运行的最大进程数）不够时，选择哪些进程可以新建进入等待状态</li>
+<li>中程调度：严格来说属于内存管理，负责将内存中长时间不运行的进程调出到外存中（内存交换）</li>
+<li>短程调度（CPU/低级调度）：CPU空闲时，从就绪队列中选择一个进程让其运行</li>
+</ul>
+</blockquote>
+<p>区别：</p>
+<blockquote>
+<ul>
+<li>长程调度在每个进程的生命周期中只出现一次，频率低、速度慢；有些操作系统没有长程调度</li>
+<li>短程调度可能出现成千上万次，开销小；操作系统必须有短程调度，一般进程调度指短程调度</li>
+</ul>
+</blockquote>
+<p>进程调度队列：</p>
+<blockquote>
+<ul>
+<li>作业队列：系统中所有进程的队列集合</li>
+<li>就绪队列：在主内存中就绪请等待执行的所有进程的队列集合</li>
+<li>设备队列：等待某一IO设备的进程队列集合</li>
+</ul>
+</blockquote>
+<p>调度过程：</p>
+<blockquote>
+<ul>
+<li>调度程序：选择进程来执行</li>
+<li>分派程序：做进程的上下文切换</li>
+</ul>
+</blockquote>
+<p>调度方式：</p>
+<blockquote>
+<ul>
+<li>非抢占式调度：系统不能抢占已分配进程的CPU（批处理）</li>
+<li>抢占式调度：调度程序可以根据某种原则暂停某个正在执行的进程</li>
+</ul>
+</blockquote>
+<p>调度时机：</p>
+<blockquote>
+<ul>
+<li>进程等待（非抢占）</li>
+<li>进程就绪（抢占）</li>
+<li>进程终止运行（非抢占）</li>
+</ul>
+</blockquote>
+<h2 id="5-2-调度准则"><a href="#5-2-调度准则" class="headerlink" title="5.2 调度准则"></a>5.2 调度准则</h2><p>基本指标：</p>
+<blockquote>
+<ul>
+<li>CPU利用率：固定时间CPU运行时间的比例</li>
+<li>吞吐量：单位时间运行完的进程数</li>
+<li>周转时间：进程从提交到运行结束需要的全部时间；</li>
+<li>等待时间：进程等待调度（不在运行）的时间片总和</li>
+<li>响应时间：从进程提出请求到第一次响应（运行）的时间</li>
+<li>周转时间=运行时间+等待时间；带权周转时间=周转时间/运行时间</li>
+</ul>
+</blockquote>
+<h2 id="5-3-调度算法"><a href="#5-3-调度算法" class="headerlink" title="5.3 调度算法"></a>5.3 调度算法</h2><h3 id="FCFS先来先服务"><a href="#FCFS先来先服务" class="headerlink" title="FCFS先来先服务"></a>FCFS先来先服务</h3><p>First-Come First-Served：非抢占式</p>
+<blockquote>
+<ul>
+<li>策略：按照进程请求CPU的先后顺序来使用CPU</li>
+<li>依据：进入就绪队列的时间</li>
+<li>方法：选取队头进程执行</li>
+</ul>
+</blockquote>
+<p>优点：策略简单，理解容易</p>
+<p>缺点：平均等待时间往往很长</p>
+<h3 id="SJF短作业优先"><a href="#SJF短作业优先" class="headerlink" title="SJF短作业优先"></a>SJF短作业优先</h3><p>Shortest-Job-First：</p>
+<blockquote>
+<ul>
+<li>策略：关联到每个进程下次运行的CPU脉冲长度，调度最短的进程</li>
+<li>依据：每个进程下次运行的CPU脉冲长度</li>
+<li>方法：选择最短的进程运行</li>
+</ul>
+</blockquote>
+<p>SJF有抢占式调度和非抢占式调度两种：新来的进程比当前执行的进程短</p>
+<p>抢占式SJF适合交互式系统，切换开销较大，但会出现饥饿现象</p>
+<blockquote>
+<p>饥饿：长作业一直得不到运行</p>
+</blockquote>
+<p>问题：无法准确得到程序将要运行的时间，算法难以实现</p>
+<blockquote>
+<ul>
+<li>使用过往CPU运行时间的指数平均来预测下一次CPU运行时间</li>
+</ul>
+</blockquote>
+<h3 id="PS优先级调度"><a href="#PS优先级调度" class="headerlink" title="PS优先级调度"></a>PS优先级调度</h3><p>优先级高的进程先运行</p>
+<p>PS有抢占式调度和非抢占式调度</p>
+<p>抢占式PS会出现饥饿问题</p>
+<blockquote>
+<p>解决方案：老化，即逐渐增加等待时间长的进程优先级</p>
+</blockquote>
+<p>优先级可以自定义</p>
+<h3 id="RR时间片轮转算法"><a href="#RR时间片轮转算法" class="headerlink" title="RR时间片轮转算法"></a>RR时间片轮转算法</h3><p>Rount-Robin：</p>
+<blockquote>
+<ul>
+<li>原理：将一段时间分割成若干个小时间片，每个需要运行的进程获得一个碎片执行</li>
+<li>策略：每个进程获得不超过p的时间来运行，执行完或时间用完时切换下一个进程</li>
+<li>若进程在时间片结束之前运行完，立刻运行下一个进程</li>
+</ul>
+</blockquote>
+<h3 id="MLQ多级队列调度"><a href="#MLQ多级队列调度" class="headerlink" title="MLQ多级队列调度"></a>MLQ多级队列调度</h3><p>对于不同类型的进程需要不同的调度策略：</p>
+<blockquote>
+<ul>
+<li>交互进程需要短的响应时间</li>
+<li>批处理进程需要短的等待时间</li>
+</ul>
+</blockquote>
+<p>多级队列调度：系统中存在多个就绪队列，每个队列有自己的调度算法</p>
+<blockquote>
+<ul>
+<li>队列个数</li>
+<li>各队列的调度算法</li>
+<li>决定新进程进入哪个队列</li>
+</ul>
+</blockquote>
+<p>例子：前台RR，后台FCFS</p>
+<p>优先调度哪个队列中的进程：</p>
+<blockquote>
+<ul>
+<li>固定优先级：前台运行完再运行后台，有可能产生饥饿</li>
+<li>给定时间片</li>
+</ul>
+</blockquote>
+<h3 id="MLFQ多级反馈队列调度"><a href="#MLFQ多级反馈队列调度" class="headerlink" title="MLFQ多级反馈队列调度"></a>MLFQ多级反馈队列调度</h3><p>多级反馈队列：进程能在不同队列中移动</p>
+<blockquote>
+<ul>
+<li>多级队列调度算法</li>
+<li>进程升级的方法</li>
+<li>进程降级的方法</li>
+</ul>
+</blockquote>
+<h2 id="5-4-多处理器调度"><a href="#5-4-多处理器调度" class="headerlink" title="5.4 多处理器调度"></a>5.4 多处理器调度</h2><blockquote>
+<ul>
+<li>SMP：每个处理器决定自己的调度方案</li>
+<li>ASMP：仅一个处理器能处理系统数据结</li>
+</ul>
+</blockquote>
+<p>多处理器调度算法和单处理器相似</p>
+<blockquote>
+<ul>
+<li>负载平衡：将任务平均分配给各个处理器</li>
+<li>亲和性：进程在某个CPU上运行尽量长的时间而不被迁移</li>
+</ul>
+</blockquote>
+<h3 id="SQMP单队列多核调度算法"><a href="#SQMP单队列多核调度算法" class="headerlink" title="SQMP单队列多核调度算法"></a>SQMP单队列多核调度算法</h3><p>系统有一个就绪队列，当任意一个CPU空闲时，就从就绪队列中选择一个进程到该CPU上运行</p>
+<blockquote>
+<ul>
+<li>实现简单，负载均衡</li>
+<li>不具有亲和性</li>
+<li>加锁问题</li>
+</ul>
+</blockquote>
+<h4 id="MQMP多队列调度方法"><a href="#MQMP多队列调度方法" class="headerlink" title="MQMP多队列调度方法"></a>MQMP多队列调度方法</h4><p>系统有多个就绪队列，一般每个CPU一个。每个就绪队列相对独立，有自己的调度算法</p>
+<blockquote>
+<ul>
+<li>亲和性好，不需要加锁</li>
+<li>负载不均衡，策略是偷进程</li>
+</ul>
+</blockquote>
+<h1 id="六、同步"><a href="#六、同步" class="headerlink" title="六、同步"></a>六、同步</h1><h2 id="竞争条件和临界区"><a href="#竞争条件和临界区" class="headerlink" title="竞争条件和临界区"></a>竞争条件和临界区</h2><p>多个进程并发或并行执行会导致数据不一致：</p>
+<blockquote>
+<ul>
+<li>不可再现性：同一进程在同一批数据上多次运行结果不一样</li>
+<li>原因：进程的并发或并行执行（并且之间有协作）</li>
+<li>解决方案：同步（互斥）机制</li>
+</ul>
+</blockquote>
+<p>原子操作：</p>
+<blockquote>
+<p>一个在执行期间不能被中断的操作</p>
+</blockquote>
+<p>竞争条件：</p>
+<blockquote>
+<ul>
+<li>多个进程并发访问同一共享数据</li>
+<li>共享数据的最终结果取决于最后操作的进程（写覆盖）</li>
+</ul>
+</blockquote>
+<h3 id="同步和互斥"><a href="#同步和互斥" class="headerlink" title="同步和互斥"></a>同步和互斥</h3><p>同步：</p>
+<blockquote>
+<ul>
+<li>协调进程的执行次序，使并发进程间能有效地共享资源和相互合作，保证数据一致性</li>
+<li>同步用于协调执行次序</li>
+</ul>
+</blockquote>
+<p>互斥：</p>
+<blockquote>
+<ul>
+<li>进程排他性地运行某段代码，任何时候只有一个进程能够运行</li>
+<li>互斥可以访问独占资源</li>
+</ul>
+</blockquote>
+<p>互斥是同步的一种特例</p>
+<h3 id="临界资源"><a href="#临界资源" class="headerlink" title="临界资源"></a>临界资源</h3><p>临界资源是一次只允许一个进程使用的资源</p>
+<blockquote>
+<ul>
+<li>又称互斥资源、独占资源或共享变量</li>
+<li>反义词：共享资源，一次允许多个进程使用等资源</li>
+</ul>
+</blockquote>
+<p>例子：输入机、打印机、磁带机等</p>
+<h3 id="临界区"><a href="#临界区" class="headerlink" title="临界区"></a>临界区</h3><p>临界区是涉及临界资源的代码段</p>
+<blockquote>
+<ul>
+<li>临界区是代码片段，是进程内的代码</li>
+<li>每个进程有一个或多个临界区</li>
+<li>临界区的设置方法由程序员来确定</li>
+</ul>
+</blockquote>
+<p>对临界资源的互斥访问可以保证进程互斥地进入关联到临界区</p>
+<p>临界区使用准则：</p>
+<blockquote>
+<ul>
+<li>互斥：有相同临界资源的临界区需要互斥；无相同临界资源的临界区不需要互斥</li>
+<li>有空让进：临界区内无进程执行时，不能无限期延长下一个要进入临界区进程的等待时间</li>
+<li>有限等待：每个进程进入临界区前的等待时间必须有限</li>
+</ul>
+</blockquote>
+<p>访问临界区的过程：</p>
+<blockquote>
+<ul>
+<li>进入区：互斥准则</li>
+<li>临界区：有限等待准则（临界区不能过大）</li>
+<li>退出区：有空让进准则</li>
+<li>其他区</li>
+</ul>
+</blockquote>
+<h2 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h2><p>早期同步和互斥采用硬件解决方案，设计起来十分复杂</p>
+<p>信号量是同步和互斥的一种软件解决方案</p>
+<blockquote>
+<ul>
+<li>保证两个或多个代码段不被并发调用</li>
+<li>在进入关键代码段前，进程必须获取一个信号量，否则不能运行</li>
+<li>执行完该关键代码段，必须释放信号量</li>
+<li>信号量有值，为正说明它空闲，为负说明其忙碌</li>
+</ul>
+</blockquote>
+<h3 id="整型信号量"><a href="#整型信号量" class="headerlink" title="整型信号量"></a>整型信号量</h3><p>信号量S是一个整型变量，它有两个原子操作</p>
+<blockquote>
+<ul>
+<li>wait(S)：P(S)，通过while等待S大于等于0，然后令S–</li>
+<li>signal(S)：V(S)，S++</li>
+<li>会出现wait忙等问题</li>
+</ul>
+</blockquote>
+<p>改进：记录型信号量，使用原子操作将等待进程加入队列</p>
+<blockquote>
+<ul>
+<li>记录型信号量可以为负数，绝对值表示等待信号量的进程个数</li>
+<li>执行原子操作本身其实也有忙等待问题</li>
+</ul>
+</blockquote>
+<h3 id="信号量类型"><a href="#信号量类型" class="headerlink" title="信号量类型"></a>信号量类型</h3><p>计数信号量：</p>
+<blockquote>
+<ul>
+<li>没有限制的整型值</li>
+<li>计数信号量为同步信号量</li>
+</ul>
+</blockquote>
+<p>二值信号:</p>
+<blockquote>
+<ul>
+<li>变化范围为0和1（整型）</li>
+<li>二值信号量为互斥信号量</li>
+<li>记录型二进制信号量可以为负</li>
+</ul>
+</blockquote>
+<p>信号量S的使用：</p>
+<blockquote>
+<ul>
+<li>S仅且只能设置一次初始值</li>
+<li>S的初始值不能为负数</li>
+<li>除了初始化，只能通过PV操作来访问S</li>
+</ul>
+</blockquote>
+<h3 id="信号量使用"><a href="#信号量使用" class="headerlink" title="信号量使用"></a>信号量使用</h3><p>互斥信号量的使用:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Semaphore *S; &#x2F;&#x2F;S&#x3D;1</span><br><span class="line">wait(S);</span><br><span class="line">CriticalSection();</span><br><span class="line">signal(S);</span><br></pre></td></tr></table></figure>
+
+<p>同步信号量的使用:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Semaphore S &#x3D; 0;</span><br><span class="line">P1: &#x2F;&#x2F; process 1</span><br><span class="line">	C1;</span><br><span class="line">    signal(S);</span><br><span class="line">P2: &#x2F;&#x2F; process 2</span><br><span class="line">    wait(S);</span><br><span class="line">    C2;</span><br></pre></td></tr></table></figure>
+
+<h2 id="生产者消费者问题"><a href="#生产者消费者问题" class="headerlink" title="生产者消费者问题"></a>生产者消费者问题</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>本质：协同进程共享有限缓冲区</p>
+<blockquote>
+<ul>
+<li>M个生产产品放入固定大小的缓冲区</li>
+<li>N个消费者从缓冲区中取出产品进行消费</li>
+</ul>
+</blockquote>
+<p>两个指针：in和out；in&gt;out</p>
+<p>一个计数值：count，用于记录缓冲区中点产品个数</p>
+<h3 id="互斥分析"><a href="#互斥分析" class="headerlink" title="互斥分析"></a>互斥分析</h3><p>临界资源：</p>
+<blockquote>
+<ul>
+<li>所有生产者对in指正互斥</li>
+<li>所有消费者对out指正互斥</li>
+<li>生产者和消费者多count互斥</li>
+</ul>
+</blockquote>
+<p>临界区：</p>
+<blockquote>
+<ul>
+<li>将产品放入缓冲区</li>
+<li>从缓冲区中取出产品</li>
+</ul>
+</blockquote>
+<p>互斥机制：此时可以只设置一个信号量，比较简单，但稍微拉长了临界区</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Semaphore *buffer &#x3D; new Semaphore(1); &#x2F;&#x2F; 互斥信号量</span><br><span class="line"></span><br><span class="line">Producer&#123;</span><br><span class="line">	producing;</span><br><span class="line">    </span><br><span class="line">    wait(buffer);</span><br><span class="line">    putting production;</span><br><span class="line">    signal(buffer);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Consumer&#123;</span><br><span class="line">	wait(buffer);</span><br><span class="line">    feching production;</span><br><span class="line">    signal(buffer);</span><br><span class="line">    </span><br><span class="line">    consuming production;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="同步问题"><a href="#同步问题" class="headerlink" title="同步问题"></a>同步问题</h3><p>查找需要按次序运行的代码和其执行顺序</p>
+<blockquote>
+<ul>
+<li>缓冲区为空，消费者进行消费，此时消费者阻塞直到生产者生产</li>
+<li>缓冲区为满，生产者进行生产，此时生产者阻塞直到消费者消费</li>
+</ul>
+</blockquote>
+<p>同步机制：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Semaphore *buffer &#x3D; new Semaphore(1);</span><br><span class="line">Semaphore *full &#x3D; new Semaphore(0); &#x2F;&#x2F; 有0个已填充</span><br><span class="line">Semaphore *empty &#x3D; new Semaphore(N); &#x2F;&#x2F; 有N个空位</span><br><span class="line"></span><br><span class="line">Producer&#123;</span><br><span class="line">	producing;</span><br><span class="line">    </span><br><span class="line">    wait(empty); &#x2F;&#x2F; 等待空位</span><br><span class="line">    wait(buffer);</span><br><span class="line">    puting production;</span><br><span class="line">    signal(buffer);</span><br><span class="line">    signal(full); &#x2F;&#x2F; 进行填充</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Consumer&#123;</span><br><span class="line">	wait(full); &#x2F;&#x2F; 等待填充</span><br><span class="line">    wait(buffer);</span><br><span class="line">    feching production;</span><br><span class="line">    signal(buffer);</span><br><span class="line">    signal(empty); &#x2F;&#x2F;给出空位</span><br><span class="line">    </span><br><span class="line">    consuming production;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="读者-写者问题"><a href="#读者-写者问题" class="headerlink" title="读者-写者问题"></a>读者-写者问题</h2><h3 id="问题描述-1"><a href="#问题描述-1" class="headerlink" title="问题描述"></a>问题描述</h3><p>读者和写者共享一组数据区进行读写：</p>
+<blockquote>
+<ul>
+<li>允许多个读者同时读</li>
+<li>不允许读者和写者同时读写</li>
+<li>不允许多个写者同时写</li>
+</ul>
+</blockquote>
+<h3 id="读者优先模式"><a href="#读者优先模式" class="headerlink" title="读者优先模式"></a>读者优先模式</h3><p>极端情况：设置一个互斥锁：</p>
+<blockquote>
+<p>违背了读者共享读的功能</p>
+</blockquote>
+<p>进行修改：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Semaphore M&#x3D;1；</span><br><span class="line">Semaphore W&#x3D;1;</span><br><span class="line">int rc&#x3D;0;</span><br><span class="line"></span><br><span class="line">Readers&#123;</span><br><span class="line">	P(M);</span><br><span class="line">    rc++;</span><br><span class="line">    if(rc&#x3D;&#x3D;1) P(W);</span><br><span class="line">    V(M);</span><br><span class="line">    reading;</span><br><span class="line">    P(M);</span><br><span class="line">    rc--;</span><br><span class="line">    if(rc&#x3D;&#x3D;0) V(W);</span><br><span class="line">    V(M);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Writers&#123;</span><br><span class="line">	P(W);</span><br><span class="line">    writing;</span><br><span class="line">    V(W);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>问题：一直有读者进行读的话，写者可能会长期饥饿</p>
+<h2 id="哲学家就餐问题"><a href="#哲学家就餐问题" class="headerlink" title="哲学家就餐问题"></a>哲学家就餐问题</h2><h3 id="问题描述-2"><a href="#问题描述-2" class="headerlink" title="问题描述"></a>问题描述</h3><p>共享资源竞争问题：</p>
+<blockquote>
+<ul>
+<li>5根筷子和5个哲学家间隔排成环</li>
+<li>每个哲学家左右各有一根筷子</li>
+<li>每个哲学家只有拿起左右两个筷子才能吃饭</li>
+</ul>
+</blockquote>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>为每个筷子设置一个互斥信号量：死锁问题</p>
+<p>防止死锁发生：</p>
+<blockquote>
+<ul>
+<li>最多允许4个哲学家同时坐在桌子周围</li>
+<li>一次封锁法：当且仅当哲学家左右两边筷子都可用时，才允许拿筷子（较好）</li>
+<li>顺序封锁法：给哲学家编号，奇数号哲学家必须首先拿左边筷子，偶数号反之</li>
+</ul>
+</blockquote>
+<h3 id="最多4个哲学家入座"><a href="#最多4个哲学家入座" class="headerlink" title="最多4个哲学家入座"></a>最多4个哲学家入座</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Semaphore *chopstick[5]</span><br></pre></td></tr></table></figure>
+
+<h2 id="管程"><a href="#管程" class="headerlink" title="管程"></a>管程</h2><p>信号量灵活，但维护困难，容易出错</p>
+<p>管程：</p>
+<blockquote>
+<ul>
+<li>管程定义了一个数据结构和一组能在该数据结构上并发执行的一组操作</li>
+<li>该操作能同步进程和改变管程中点数据</li>
+</ul>
+</blockquote>
+<p>管程功能：</p>
+<blockquote>
+<ul>
+<li>（互斥）管程中的变量只能被管程中的操作访问</li>
+<li>任何时候只有一个进程在管程中操作</li>
+<li>类似临界区</li>
+<li>由编译器完成</li>
+<li>（同步）条件变量</li>
+<li>唤醒和阻塞操作</li>
+</ul>
+</blockquote>
+<h2 id="Linux同步机制"><a href="#Linux同步机制" class="headerlink" title="Linux同步机制"></a>Linux同步机制</h2><ul>
+<li>短临界区：禁止中断</li>
+<li>自旋锁</li>
+<li>互斥锁</li>
+<li>条件变量</li>
+<li>信号量</li>
+</ul>
+<h2 id="Windows同步机制"><a href="#Windows同步机制" class="headerlink" title="Windows同步机制"></a>Windows同步机制</h2><ul>
+<li>事件</li>
+<li>临界区</li>
+<li>互斥锁</li>
+<li>自旋锁</li>
+<li>信号量</li>
+</ul>
+]]></content>
       <categories>
         <category>notes</category>
         <category>学位课程</category>
@@ -1510,13 +3781,14 @@
 <ul>
 <li>码元：时间轴上的一个信号编码单位</li>
 <li>波特率：每秒钟发送的码元数（每秒钟电压变化的次数）</li>
-<li>比特率：比特率C=波特率B*log2(N)；N为一个码元中的状态数</li>
+<li>比特率：比特率S=波特率B*log2(N)；N为一个码元中的状态数</li>
 <li>奈氏准则：理想低通信道最高码元传输速率为两倍的波特率</li>
 </ul>
 </blockquote>
 <p>信道的极限信息传输速率：</p>
 <blockquote>
 <ul>
+<li>信道：向某一个方向传送信息的媒体</li>
 <li>C = Wlog2(1+S/N) b/s</li>
 <li>W为信道带宽(Hz)</li>
 <li>S为信道内所传信号的平均功率</li>
@@ -1557,6 +3829,234 @@
 <li>差分Manchester：两个时钟信号之间电平变化表示0，不变表示1</li>
 </ul>
 </blockquote>
+<p>同步光纤网SONET：各级时钟都来自于一个非常精确的主时钟</p>
+<h3 id="PCM"><a href="#PCM" class="headerlink" title="PCM"></a>PCM</h3><blockquote>
+<ul>
+<li>模拟信号-PAM-采样模拟数据（水平采样频率是最高频率的两倍即可）</li>
+<li>采样模拟数据-量化-量化数据</li>
+<li>量化数据-二进制编码-二进制数据</li>
+<li>二进制数据-线性编码-数字信号</li>
+</ul>
+</blockquote>
+<h3 id="信道复用技术"><a href="#信道复用技术" class="headerlink" title="信道复用技术"></a>信道复用技术</h3><p>信道复用：多个信息源共享一个公共信道</p>
+<blockquote>
+<ul>
+<li>频分复用FDM：不同频率叠加然后恢复（传统电话、有线电视）</li>
+<li>同步时分复用TDM：不同终端严格分时使用信道（有可能造成线路利用率降低）</li>
+<li>统计时分复用TDM：分时使用信道，每个数据包前加头地址文件来区分（ATM，但使用复杂，现已弃用）</li>
+<li>波分复用WDM：光的频分复用；DWDM，高密度波分复用</li>
+<li>码分复用CDMA：各用户经过特殊挑选的不同码型，彼此之间不会干扰（抗干扰能力强，频谱类似白噪声）；每个码片序列必须正交</li>
+</ul>
+</blockquote>
+<p>T1信道：</p>
+<blockquote>
+<ul>
+<li>每秒8000次采样；24路信号，每路8位，每帧有1位同步比特</li>
+<li>数据速率：1.544Mbps</li>
+</ul>
+</blockquote>
+<p>E1信道：</p>
+<blockquote>
+<ul>
+<li>32路信号（2路同步信号）</li>
+<li>数据速率：2.048Mbps</li>
+</ul>
+</blockquote>
+<h3 id="宽带接入技术"><a href="#宽带接入技术" class="headerlink" title="宽带接入技术"></a>宽带接入技术</h3><blockquote>
+<ul>
+<li>ADSL：非对称数字用户线</li>
+<li>HFC：光纤同轴混合网</li>
+<li>FTTx：光纤到x（终端）</li>
+</ul>
+</blockquote>
+<h1 id="三、数据链路层"><a href="#三、数据链路层" class="headerlink" title="三、数据链路层"></a>三、数据链路层</h1><h2 id="3-1-基本概念"><a href="#3-1-基本概念" class="headerlink" title="3.1 基本概念"></a>3.1 基本概念</h2><p>链路：一条无源的点到点的物理线路段，中间没有任何其他的交换节点</p>
+<blockquote>
+<p>一条链路只是一条通路的一个组成部分</p>
+</blockquote>
+<p>数据链路：链路和通信协议与软件的组合</p>
+<p>数据链路传送的数据单位：帧</p>
+<p>主要功能：</p>
+<blockquote>
+<ul>
+<li>链路管理</li>
+<li>帧定界：如何确定帧的开始和结束</li>
+<li>流量控制：保证发送的速度不会超过接收端的最大接收速度</li>
+<li>差错控制</li>
+</ul>
+</blockquote>
+<h2 id="3-2-帧定界"><a href="#3-2-帧定界" class="headerlink" title="3.2 帧定界"></a>3.2 帧定界</h2><ul>
+<li>字节计数法：帧同步-帧长度-帧内容-校验位；若帧长度出错则整个帧丢失</li>
+<li>字符填充法：面相字符的通信协议，STX-帧内容-ETX；兼容性差，发送文本中不能出现STX和ETX（通过插入转义符DLE来进行区分）</li>
+<li>使用比特填充的首尾标记法：连续6个二进制1来界定帧的开始和结束（需要解决通明性）</li>
+<li>编码违例法：利用违反编码规律的策略来标志帧的边界；无需填充，需要物理层支持</li>
+</ul>
+<h2 id="3-3-差错控制"><a href="#3-3-差错控制" class="headerlink" title="3.3 差错控制"></a>3.3 差错控制</h2><p>附加监督位：通过在数据快中加入一些冗余信息来验证关联关系是否存在</p>
+<ul>
+<li>奇偶校验码：效率不高</li>
+<li>校验和：数据按比特位加和取补形成校验位发送；验证时校验位和前面加和，结果应为补码0</li>
+<li>循环冗余校验码CRC：利用除法计算（异或）；可检测出几乎所有错误，除非差错和除数变化规律相同；易于硬件实现</li>
+</ul>
+<p>差错控制策略：</p>
+<blockquote>
+<ul>
+<li>ARQ自动重发请求：发送方发送完一帧后一段时间没有收到应答，便进行重发</li>
+<li>前向纠错：发送端使用纠错码，接收端检出错误并纠正错误；纠错机制复杂，适合用于没有应答的单工通信中</li>
+</ul>
+</blockquote>
+<h2 id="3-4-PPP点对点协议"><a href="#3-4-PPP点对点协议" class="headerlink" title="3.4 PPP点对点协议"></a>3.4 PPP点对点协议</h2><p>组成部分：</p>
+<blockquote>
+<ul>
+<li>将IP数据报封装成串行链路的方法</li>
+<li>链路控制协议LCP</li>
+<li>网络控制协议NCP</li>
+</ul>
+</blockquote>
+<p>协议帧格式：F(1)-A(1)-C(1)-协议(2)-IP数据报(不超过1500字节)-FCS(2)-F(1)</p>
+<blockquote>
+<ul>
+<li>由01111110，7E来界定开始和结束</li>
+<li>A为地址，全1表示广播（不启用）；C为差错控制（不启用）</li>
+<li>通明传输问题：同步时进行比特填充；异步时进行字符填充</li>
+<li>FCS：检错位，帧检验序列</li>
+</ul>
+</blockquote>
+<p>特点：</p>
+<blockquote>
+<ul>
+<li>透明性，支持多个网络协议</li>
+<li>提供检错而非纠错机制，也没有ARQ超时重发机制</li>
+</ul>
+</blockquote>
+<h2 id="使用广播信道的数据链路层"><a href="#使用广播信道的数据链路层" class="headerlink" title="使用广播信道的数据链路层"></a>使用广播信道的数据链路层</h2><p>拓扑结构：</p>
+<blockquote>
+<ul>
+<li>总线结构：一根电缆连接所有节点</li>
+<li>环形结构：所有设备一个输入，一个输出</li>
+</ul>
+</blockquote>
+<p>信道分配策略：</p>
+<blockquote>
+<ul>
+<li>静态分配：站点少且固定；数据量大</li>
+<li>动态分配：抢占、分时或预约</li>
+</ul>
+</blockquote>
+<p>HLOHA NET：第一个局域网（无线）</p>
+<blockquote>
+<ul>
+<li>争用协议：想说就说</li>
+<li>边说边听</li>
+<li>随机重发</li>
+<li>时隙ALOHA：分时间片进行发送</li>
+</ul>
+</blockquote>
+<p>CSMA：监听多点接入局域网</p>
+<blockquote>
+<ul>
+<li>先听后说：先进行监听，信道空闲时进行发送</li>
+<li>坚持CSMA：一直监听信道，空闲即立马发送</li>
+<li>P坚持CSMA：监听信道，空闲之后隔概率发送</li>
+</ul>
+</blockquote>
+<p>CSMA/CD：载波监听多点接入/碰撞检测</p>
+<blockquote>
+<ul>
+<li>边发送边检测，2t之后没有发现冲突，便认为成功发送；否则发生冲突、停止发送（截断的二进制指数退避算法）</li>
+<li>发送后的一小段时间内存在着遭遇碰撞的不确定性</li>
+<li>半双工通信</li>
+<li>整个以太网平均通信速率远小于网络最大通信速率</li>
+</ul>
+</blockquote>
+<p>传统以太网：</p>
+<blockquote>
+<ul>
+<li>DIX Ethernet和IEEE 802协议（分为LLC帧和MAC帧）</li>
+<li>连接方法：铜缆、铜线（双绞线）、光缆</li>
+<li>10BASE-1、10BASE-2：同轴线、总线结构</li>
+<li>10BASE-T双绞线连接、物理上星型结构（逻辑上总线结构）</li>
+</ul>
+</blockquote>
+<h2 id="以太网的MAC层"><a href="#以太网的MAC层" class="headerlink" title="以太网的MAC层"></a>以太网的MAC层</h2><p>以太网V2 MAC帧：</p>
+<blockquote>
+<ul>
+<li>目的地址（6）</li>
+<li>源地址（6）</li>
+<li>类型（2）</li>
+<li>数据（46-1500）：IP数据报，46字节长度保证整个MAC帧不能少于64字节，保证2t的冲突检测时间</li>
+<li>FCS（4）</li>
+</ul>
+</blockquote>
+<p>EUI-48地址：16位</p>
+<blockquote>
+<ul>
+<li>网卡从网络上每收到一个MAC帧，首先用硬件检查目的地址</li>
+<li>如果是发往本站的帧则收下并进行处理，否则将帧丢弃</li>
+</ul>
+</blockquote>
+<h2 id="扩展的局域网"><a href="#扩展的局域网" class="headerlink" title="扩展的局域网"></a>扩展的局域网</h2><p>物理层的扩展：中继器Repeater</p>
+<ul>
+<li>用于双向信号复原放大、延长网络距离</li>
+<li>不能无限制扩展网络长度（有时延）</li>
+<li>处理单位是数据比特，不能识别链路层或网络层的协议，不提供网段之间的隔离</li>
+<li>集线器：多端口中继器；用多个集线器可以链接成更大的局域网；扩大了碰撞域</li>
+</ul>
+<p>数据链路层的扩展：网桥Bridge</p>
+<ul>
+<li>能够扩大网络地址范围，进行数据帧的过滤（同侧过滤）和转发（异侧转发）</li>
+<li>网桥内部有地址端口映射表，可以检测某个地址在网桥哪一侧的端口上</li>
+<li>优点：没有扩大碰撞域；扩大了网络的物理范围、提高了可靠性</li>
+<li>缺点：存储转发增加了时延（但不会对CSMA/CD产生影响）；隔离了冲突域但不能隔离广播域（过大的广播域会造成广播风暴）</li>
+<li>透明网桥的逆向学习法：<ul>
+<li>透明网桥是一种即插即用设备，刚接入时其不知道所发送的帧经过哪些网桥</li>
+<li>逆向学习法：有设备发送数据包时，网桥可以将其地址和所在端口进行绑定，学习到设备的地址</li>
+</ul>
+</li>
+<li>透明网桥的支撑树算法：避免两个局域网中存在多个网桥而造成的帧回路转发问题</li>
+</ul>
+<p>多端口网桥：以太网交换机</p>
+<blockquote>
+<ul>
+<li>交换机是一种快速多端口网桥</li>
+<li>其利用一个电子开关高速背板作为总线交换部件，可以进行硬件级别的数据并行传输</li>
+</ul>
+<p>转发方式：</p>
+<ul>
+<li>存储转发：将整个帧接受后进行差错校验然后进行转发；交换延迟较大</li>
+<li>穿通转发：接收到帧的前6个地址字节就进行转发；交换延迟小；但无法进行差错校验</li>
+<li>无碎片穿通：检查帧的前64字节（帧不满64字节表明其为冲突碎片，需要丢弃）然后直接进行转发；交换延迟相对较小；但无法检测长度大于64字节的错误帧</li>
+</ul>
+</blockquote>
+<p>虚拟局域网技术VLAN：解决广播风暴问题</p>
+<blockquote>
+<ul>
+<li>分割广播域</li>
+<li>原理：扩展交换机功能（两层交换机），在MAC帧中插入一个4字节的VLAN标记，用于在交换机之间进行传输（对于终端而言帧格式不变）</li>
+<li>不同虚拟局域网（子网）之间通信需要经过路由器；当然也有集成了路由功能的交换机（三层交换机）</li>
+</ul>
+</blockquote>
+<h2 id="3-5-高速以太网"><a href="#3-5-高速以太网" class="headerlink" title="3.5 高速以太网"></a>3.5 高速以太网</h2><p>100BASE-T为快速以太网</p>
+<p>在高速以太网中仍可使用CSMA/CD模式：</p>
+<blockquote>
+<ul>
+<li>帧时间间隔从9.6us减少为0.96us</li>
+</ul>
+</blockquote>
+<p>100BASE-T的物理层标准：</p>
+<blockquote>
+<ul>
+<li>100BASE-TX：2对UTP5类线，4B/5B编码，全双工通信</li>
+<li>100BASE-FX：2对光纤</li>
+<li>100BASE-T4：4对UTP3类线，8B/6T-NRZ编码，3对发送，只能半双工通信</li>
+</ul>
+</blockquote>
+<p>吉比特（千兆）以太网：</p>
+<blockquote>
+<ul>
+<li>半双工下使用CSMA/CD协议，全双工不需使用CSMA/CD</li>
+<li>半双工下的CSMA/CD需要增大逻辑帧的最小长度，需要进行载波延伸，争用时间增加为512字节，但保持最小帧长为64字节（分组突发，可以使用一次同时发多个帧的方式来延长检测时间）</li>
+</ul>
+</blockquote>
+<p>10吉比特以太网：使用光纤，无需CSMA/CD</p>
 ]]></content>
       <categories>
         <category>notes</category>
@@ -4607,7 +7107,7 @@
 <ul>
 <li>服务器名是要连接的数据库服务器的名字,可以是<blockquote>
 <ul>
-<li>服务器标识串,如<dbname>@<hostname>:<port></port></hostname></dbname></li>
+<li>服务器标识串,如<code>&lt;dbname&gt;@&lt;hostname&gt;:&lt;port&gt;</code></li>
 <li>包含服务器标识的SQL串常量</li>
 <li>DEFAULT</li>
 </ul>
@@ -8587,8 +11087,8 @@ $$
       </categories>
       <tags>
         <tag>learning</tag>
-        <tag>c#</tag>
         <tag>搜索引擎</tag>
+        <tag>c#</tag>
       </tags>
   </entry>
   <entry>
@@ -8698,7 +11198,7 @@ $$
 <li>考虑第每一位进位ci的产生条件:<br>$X_i,Y_i$均为1,或$X_i,Y_i$有一个为1且$C_{i-1}$为1,即<br>$C_i=X_iY_i+(X_i+Y_i)C_{i-1}$</li>
 <li>由$C_1=X_1Y_1+(X_1+Y_1)C_0$不停对$C_i$进行迭代化简,得到:<br>$$C_i=X_iY_i+\sum_{n=i-1}^1(X_nY_n\prod_{k=i}^{n}(X_k+Y_k))+C_0\prod_{k=i}^{1}(X_k+Y_k)$$<br>如:$C_4=X_4Y_4+(X_4+Y_4)X_3Y_3+(X_4+Y_4)(X_3+Y_3)X_2Y_2+…+..C_0$</li>
 <li>定义进位传递函数$P_i=X_i+Y_i$,表明$X_i,Y_i$有一个为1时,将前一位进位传给下一位,达到一种进位传递的效果<br>定义进位产生函数$G_i=X_iY_i$,表明$X_i,Y_i$都为1时,无论$P_i$如何必定向高位产生进位<br>如,此时$C_3=G_3+P_3G_2+P_3P_2G_1+P_3P_2P_1C_0$</li>
-<li>将各进位改成与非式,画出电路图,如下<br><img src="/2020/02/24/computer-composition0/compo5.jpg" alt="composition"></li>
+<li>将各进位改成与非式,画出电路图,如下<br> <img src="/2020/02/24/computer-composition0/compo5.jpg" alt="composition"></li>
 </ol>
 <h4 id="ALU算数逻辑单元"><a href="#ALU算数逻辑单元" class="headerlink" title="ALU算数逻辑单元"></a>ALU算数逻辑单元</h4><p>考虑到超前进位电路的复杂程度是随着位数呈指数增加,一般可以将4位超前进位电路封装成算数逻辑单元,然后再通过组间的串行或超前进位组成16位的ALU</p>
 <p>16位快速ALU:组间快速进位<br><img src="/2020/02/24/computer-composition0/compo6.jpg" alt="composition"></p>
@@ -8877,11 +11377,13 @@ $$
 <li>$E$: 阶码,有n+1位,一般为整数,第一位为符号位</li>
 <li>$M$: 尾数,有m位,和前面的$M_S$一同组成一个定点小数<blockquote>
 <ul>
-<li>规格化尾数:当R=2(二进制数)且尾数不为0时,其绝对值应大于或等于十进制的0.5(即最高位应当为1);对非规格化浮点数,需要将尾数左移或右移,并改变阶码使其满足规格化要求  <blockquote>
+<li><p>规格化尾数:当R=2(二进制数)且尾数不为0时,其绝对值应大于或等于十进制的0.5(即最高位应当为1);对非规格化浮点数,需要将尾数左移或右移,并改变阶码使其满足规格化要求  </p>
+<blockquote>
 <p>如:0.0011 -&gt; (0.11)*2^(0010)</p>
 </blockquote>
 </li>
-<li>机器零值:表示比机器数能表示的最小数还要小的值</li>
+<li><p>机器零值:表示比机器数能表示的最小数还要小的值</p>
+</li>
 </ul>
 </blockquote>
 </li>

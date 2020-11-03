@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">1.5k words</span>
+            <span class="post-count">3.4k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">5 minutes</span>
+            <span class="post-count">13 minutes</span>
         </span>
     </span>
 </div>
@@ -176,8 +176,9 @@
 <ol>
 <li>输入$a,b,\epsilon$</li>
 <li>令$[a_0,b_0]=[a,b],\ 且对 k=0,1,2…,\ x_k=\frac12(a_k+b_k)$，检验如果$|b_k-a_k|&lt;\epsilon$，则令$\overline x=x_k$,停止运算  </li>
-<li>做如下判断，并令$k=k+1$，返回2.：$$<br>f(a_k)f(x_k)=\begin{cases}<br>0\ then\ let\ [a_{k+1},b_{k+1}]=[x_{k+1},b_k]\<br>&lt;0\ then\ let\ [a_{k+1},b_{k+1}]=[a_k,x_{k+1}]\<br>=0\ then\ end\<br>\end{cases}<br>$$</li>
+<li>做如下判断，并令$k=k+1$，返回2.：</li>
 </ol>
+<p>$$f(a_k)f(x_k)=\begin{cases}<br>0 &amp;then\ let\ [a_{k+1},b_{k+1}]=[x_{k+1},b_k] \<br>&lt;0 &amp;then\ let\ [a_{k+1},b_{k+1}]=[a_k,x_{k+1}] \<br>=0 &amp;then\ end \<br>\end{cases}$$</p>
 </blockquote>
 <h3 id="二分法的收敛性与事前误差估计"><a href="#二分法的收敛性与事前误差估计" class="headerlink" title="二分法的收敛性与事前误差估计"></a>二分法的收敛性与事前误差估计</h3><p>收敛性：二分法总是收敛的，因为</p>
 <blockquote>
@@ -212,9 +213,7 @@
 <li>若${ x_k }$不收敛，迭代失败</li>
 </ul>
 </blockquote>
-<h3 id="迭代算法的收敛性"><a href="#迭代算法的收敛性" class="headerlink" title="迭代算法的收敛性"></a>迭代算法的收敛性</h3><p>一个定义：<br>$$在区间\Delta内,g(x)满足下列李普希兹条件：\<br>|g(x)-g(y)| \le L|x-y| 对 \forall x,y \in \delta, 常数0&lt;L&lt;1成立 \<br>则称g(x) 在 \Delta 内李普希兹连续$$</p>
-<p>可以知道：<br>$$若g’(x)在闭区间\Delta内连续且|g’(x)|\le L&lt;1对\forall x \in \Delta连续 \<br>则g(x)在\Delta内李普希兹连续$$</p>
-<p>此时，得到如下定理：<br>$$在方程x^<em>=g(x^</em>)中，若\<br>g(x)在闭区间\Delta内李普希兹连续，则\<br>对\forall x_0 \in \Delta，由迭代格式x_{k+1}=g(x_k)计算得到的解序列{x_k}收敛于x^<em>\<br>此时称迭代格式x_{k+1}=g(x_k)在x^</em>的邻域\Delta上局部收敛$$</p>
+<h3 id="迭代算法的收敛性"><a href="#迭代算法的收敛性" class="headerlink" title="迭代算法的收敛性"></a>迭代算法的收敛性</h3><p>一个定义：<br>$$<br>在区间\Delta内,g(x)满足下列李普希兹条件：\<br>|g(x)-g(y)| \le L|x-y| 对 \forall x,y \in \delta, 常数0&lt;L&lt;1成立 \<br>则称g(x) 在 \Delta 内李普希兹连续<br>$$<br>可以知道：<br>$$<br>若g’(x)在闭区间\Delta内连续且|g’(x)|\le L&lt;1对\forall x \in \Delta连续 \<br>则g(x)在\Delta内李普希兹连续<br>$$<br>此时，得到如下定理：<br>$$<br>在方程x^<em>=g(x^</em>)中，若\<br>g(x)在闭区间\Delta内李普希兹连续，则\<br>对\forall x_0 \in \Delta，由迭代格式x_{k+1}=g(x_k)计算得到的解序列{x_k}收敛于x^<em>\<br>此时称迭代格式x_{k+1}=g(x_k)在x^</em>的邻域\Delta上局部收敛<br>$$</p>
 <blockquote>
 <ul>
 <li>此时，$|x^*-x_k| \le \frac L{1-L}|x_k-x_{k-1}|$（误差估计）</li>
@@ -235,13 +234,155 @@
 <li>事后估计法：$|f(x_k)|&lt;\epsilon_3$</li>
 </ul>
 </blockquote>
+<p>一般迭代法需要构造的$g(x)$没有固定的格式，这在计算机上几乎无法实现</p>
+<h2 id="2-3-牛顿迭代法"><a href="#2-3-牛顿迭代法" class="headerlink" title="2.3 牛顿迭代法"></a>2.3 牛顿迭代法</h2><h3 id="算法思想-1"><a href="#算法思想-1" class="headerlink" title="算法思想"></a>算法思想</h3><p>设$f(x)$在$x^<em>$附近连续可微，记$x_k$为$x^</em>$的第k个近似值，则：<br>$$<br>f(x)=f(x_k)+f’(x_k)(x-x_k)+O((x-x_k)^2) \ \approx<br>f(x_k)+f’(x_k)(x-x_k) = P_1(x)<br>$$<br>实际上，$P_1(x)=0$就是$f(x)$在点$(x_k,f(x_k))$的切线方程</p>
+<p>取$P_1(x)=0$的根作为$x^*$的第$k+1$次近似值$x_{k+1}$,解得如下迭代格式：<br>$$<br>x_{k+1}=x_k-\frac{f(x_k)}{f’(x)}<br>$$</p>
+<h3 id="牛顿迭代法收敛性和收敛速度"><a href="#牛顿迭代法收敛性和收敛速度" class="headerlink" title="牛顿迭代法收敛性和收敛速度"></a>牛顿迭代法收敛性和收敛速度</h3><p>$$<br>设 {x_k} 收敛于x^* \<br>如果 e_k=|x_k-x^*| 在 k \to \infty 时满足：\<br>\frac{e_{k-1}}{e_k^P} \to C \ (C为常数且不为零) ，则：<br>$$</p>
+<blockquote>
+<ul>
+<li>P=1时：序列为线性收敛</li>
+<li>P=2时：序列为平方收敛</li>
+<li>1&lt;P&lt;2时：序列为超线性收敛</li>
+</ul>
+</blockquote>
+<p>定理：<br>$$<br>若 F(x) 在x^<em>附近二阶连续，且x^</em>为f(x)=0的单根，\<br>则牛顿迭代法在x^*附近至少是平方收敛的<br>$$</p>
+<blockquote>
+<ul>
+<li>牛顿迭代法需要求出$f(x)$的导函数，这对于计算机来说不好处理</li>
+<li>牛顿迭代法收敛速度快，但对初值要求比较高，可以和二分法结合使用</li>
+</ul>
+</blockquote>
+<h2 id="2-4-弦截法"><a href="#2-4-弦截法" class="headerlink" title="2.4 弦截法"></a>2.4 弦截法</h2><h3 id="算法思想-2"><a href="#算法思想-2" class="headerlink" title="算法思想"></a>算法思想</h3><p>要点：在牛顿迭代法的基础上以差商代替微商，即<br>$$<br>以\frac{f(x_k)-f(x_{k-1})}{x_k-x_{k-1}}代替f’(x_k)<br>$$<br>有：<br>$$<br>f(x) \approx f(x_k) + \frac{f(x_k)}{f(x_k)－f(x_{k-1})}(x_k-x_{k-1})<br>$$<br>实际上，该弦线为点$P(x_k,f(x_k))$和$Q(x_{k-1},f(x_{k-1}))$的连线；用其与$x$轴的交点作为$x^*$的近似值$x_{k+1}$</p>
+<p>解得弦截法的迭代格式：<br>$$<br>x_{k+1} = x_k - \frac{f(x_k)}{f(x_k)-f(x_{k-1})}(x_k-x_{k-1})<br>$$</p>
+<blockquote>
+<p>此迭代格式为多步迭代，需要$x_0,x_1$两个初始值</p>
+</blockquote>
+<h3 id="弦截法的收敛性"><a href="#弦截法的收敛性" class="headerlink" title="弦截法的收敛性"></a>弦截法的收敛性</h3><p>$$<br>设f(x)在其零点x^<em>的领域 \Delta=[x^</em>-\delta,x^*+\delta] 内二阶连续，且 \<br>对\forall x \in \Delta有f’(x) \neq 0,则 \<br>对\forall x_0,x_{-1} \in \Delta，弦截法是p \approx 1.618(超线性)收敛的<br>$$</p>
+<h1 id="三、线性代数方程组的数值解法"><a href="#三、线性代数方程组的数值解法" class="headerlink" title="三、线性代数方程组的数值解法"></a>三、线性代数方程组的数值解法</h1><h2 id="3-1-概述"><a href="#3-1-概述" class="headerlink" title="3.1 概述"></a>3.1 概述</h2><p>线性方程组的形式如下：<br>$$<br>\mathbf {Ax} = b \<br>\mathbf A = [a_{ij}]; x = [a_{1k}]<br>$$</p>
+<p>解法策略：</p>
+<blockquote>
+<ul>
+<li>直接法：消元法，矩阵分解法</li>
+<li>迭代法：$ \mathbf {Ax} =b \to \mathbf x^{k+1} = \mathbf {Mx}^k + f $</li>
+</ul>
+</blockquote>
+<h2 id="3-2-消元法"><a href="#3-2-消元法" class="headerlink" title="3.2 消元法"></a>3.2 消元法</h2><h3 id="高斯消去法"><a href="#高斯消去法" class="headerlink" title="高斯消去法"></a>高斯消去法</h3><p>基本原理：使用初等行变化将增广矩阵左部$\mathbf A$化为上三角矩阵$\mathbf U$<br>$$ [\mathbf A|b] \to [\mathbf U|\overline b]$$</p>
+<p>初等行变换：这里不包括行交换</p>
+<blockquote>
+<ul>
+<li>倍乘</li>
+<li>倍加</li>
+</ul>
+</blockquote>
+<p>过程：归一，消元，回代</p>
+<blockquote>
+<ol>
+<li>$i=1$</li>
+<li>将第$i$行的第$i$个未知数系数化为1</li>
+<li>将第$i$行倍乘加到第$i+1,…n$行中，将各行的第$i$个未知数系数化为0</li>
+<li>若$i \neq n-1$,$i = i+1$，返回2.</li>
+<li>回代，解得结果</li>
+</ol>
+</blockquote>
+<p>运算量：$\frac{n^3}3$</p>
+<h3 id="高斯-若当消去法"><a href="#高斯-若当消去法" class="headerlink" title="高斯-若当消去法"></a>高斯-若当消去法</h3><p>基本原理：使用初等行变化将增广矩阵左部$\mathbf A$化为单位矩阵$\mathbf I$<br>$$ [\mathbf A|b] \to [\mathbf I|\overline b]$$</p>
+<p>过程：</p>
+<blockquote>
+<ol>
+<li>$i=1$</li>
+<li>将第$i$行的第$i$个未知数系数化为1</li>
+<li>将第$i$行倍乘加到第$1,…i-1,i+1…n$行中，将各行的第$i$个未知数系数化为0</li>
+<li>若$i \neq n$,$i = i+1$，返回2.</li>
+<li>得到结果$x = [b]^T$</li>
+</ol>
+</blockquote>
+<p>运算量：$\frac{n^3}2$</p>
+<h3 id="消去法的可行性条件"><a href="#消去法的可行性条件" class="headerlink" title="消去法的可行性条件"></a>消去法的可行性条件</h3><p>线性代数中，方程组有解的条件</p>
+<blockquote>
+<ul>
+<li>阶不为0，有解</li>
+<li>阶等于秩，解唯一</li>
+<li>本质：行列式不为零</li>
+</ul>
+</blockquote>
+<p>若$\mathbf A$的各阶顺序主子式均不为零，则消去法可行</p>
+<blockquote>
+<ul>
+<li>$n$阶子式：任选$n$行和$n$列交叉点元素构成的行列式</li>
+<li>主子式：子式元素依对角线对称</li>
+<li>$n$阶顺序主子式：选取的$n$行和$n$列必须为$1,…n$</li>
+</ul>
+</blockquote>
+<p>推论：若$\mathbf A$严格对角占优，则消去法可行，此即：<br>$$ |a_{ii}|&gt;\sum_{j=1 \ j\neq i}^n|a_{ij}|,(i = 1,2,…n) $$</p>
+<h3 id="列主元高斯消去法（常用）"><a href="#列主元高斯消去法（常用）" class="headerlink" title="列主元高斯消去法（常用）"></a>列主元高斯消去法（常用）</h3><p>基本原理：通过选择主元，进行行变换来防止主元为零（此时之前的消去法不可行）或主元很小（会导致小数除法造成较大的误差累积）的情形</p>
+<p>过程</p>
+<blockquote>
+<ol>
+<li>k=1</li>
+<li>在第k列主对角线及以下的元素中选取绝对值最大的元素为主元$A[i]<a href="i>=k;j>=k;i>=j">j</a>$</li>
+<li>交换i，j两行，将主元调到主对角线上</li>
+<li>进行一次归一消元，此时消去的是第j列元素</li>
+<li>k+=1，返回2.，直到k=n</li>
+<li>回代得到解</li>
+</ol>
+</blockquote>
+<h3 id="全主元高斯-若当消去法"><a href="#全主元高斯-若当消去法" class="headerlink" title="全主元高斯-若当消去法"></a>全主元高斯-若当消去法</h3><p>原理：进行行列变换来选择主元</p>
+<p>过程：</p>
+<blockquote>
+<ol>
+<li>开始循环</li>
+<li>划去前面主元所在的行列后，在余下的元素中选择主元$A[i]<a href="i>=k;j>=k">j</a>$</li>
+<li>交换i，j两行，将主元调到主对角线上</li>
+<li>进行一次归一消元，此时消去的是第j列元素</li>
+<li>划去该主元所在的行和列</li>
+<li>循环上述操作n次</li>
+<li>直接得到结果</li>
+</ol>
+</blockquote>
+<h2 id="3-3-矩阵分解法"><a href="#3-3-矩阵分解法" class="headerlink" title="3.3 矩阵分解法"></a>3.3 矩阵分解法</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><p>思想：对$\mathbf Ax=b$进行变换，得<br>$$<br>\mathbf A = \mathbf {LU}，其中\mathbf L为下三角矩阵；\mathbf U为上三角矩阵，得 \<br>(\mathbf{LU})x = b，即 \<br>\mathbf Ly = b ；\mathbf Ux =y<br>$$</p>
+<blockquote>
+<ul>
+<li>分解后，只需要两次简单回代就可以解的y和x，得到最终结果</li>
+<li>注意：$\mathbf {LU}$并非唯一存在</li>
+</ul>
+</blockquote>
+<p>为使得$\mathbf {LU}$分解唯一存在，可以如下规定：</p>
+<blockquote>
+<ul>
+<li>克洛特(Crout)分解：$\mathbf U$为单位上三角矩阵</li>
+<li>杜利特尔(Doolittle)分解：$\mathbf L$为单位下三角矩阵</li>
+</ul>
+</blockquote>
+<p>矩阵分解法的计算量、稳定性和消去法大致相等；但对于相同的系数矩阵的一批方程组，矩阵分解法处理效率较高</p>
+<h3 id="克洛特分解"><a href="#克洛特分解" class="headerlink" title="克洛特分解"></a>克洛特分解</h3><p>思想：$\mathbf U$为单位上三角矩阵，有<br>$$\begin{align}<br>a_{ij} &amp;= l_{ij} + \sum_{k=1}^{j-1}l_{ik}u_{kj} ;i \le j\<br>a_{ij} &amp;= l_{ii}u_{ij} + \sum_{k=1}^{i-1}l_{ik}u_{kj} ;i&gt;j<br>\end{align}$$<br>得到：<br>$$\begin{align}<br>l_{ij} &amp;= a_{ij} - \sum_{k=1}^{j-1}l_{ik}u_{kj} \<br>u_{ij} &amp;=\frac{a_{ij}-\sum_{k=1}^{i-1}l_{ik}u_{kj}}{l_{ii}}<br>\end{align}$$</p>
+<p>计算顺序如下：$\mathbf L$第一列，$\mathbf U$第一行，$\mathbf L$第二列，$\mathbf U$第二行，….</p>
+<h2 id="3-4-迭代法"><a href="#3-4-迭代法" class="headerlink" title="3.4 迭代法"></a>3.4 迭代法</h2><h3 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h3><p>思想：将$\mathbf Ax=b$化为如下格式<br>$$<br>x = \mathbf Mx+f<br>$$</p>
+<p>则迭代格式如下（雅可比迭代）：<br>$$<br>x^{(k+1)}=\mathbf Mx^{(k)}+f<br>$$</p>
+<h3 id="矩阵的分解"><a href="#矩阵的分解" class="headerlink" title="矩阵的分解"></a>矩阵的分解</h3><p>矩阵分解用于迭代格式收敛的分析</p>
+<p>将$\mathbf A$进行如下分解<br>$$<br>\mathbf A = \mathbf D - \mathbf L - \mathbf U<br>$$</p>
+<blockquote>
+<ul>
+<li>$\mathbf D$为原矩阵的对角线部分（可逆）</li>
+<li>$-\mathbf L$和$-\mathbf U$为元矩阵以对角线为界的下三角和上三角部分（对角线为0）</li>
+</ul>
+</blockquote>
+<p>则雅可比迭代法迭代格式如下：（同步迭代）<br>$$\begin{align}<br>x^{(k+1)} &amp;= \mathbf M_Jx^{(k)}+f_J \<br>\mathbf M_J &amp;= \mathbf D^{-1}(\mathbf L + \mathbf U) \<br>f_J &amp;= \mathbf D^{-1}b<br>\end{align}$$</p>
+<blockquote>
+<p>$\mathbf M_J$为雅可比的迭代矩阵，用于做收敛分析</p>
+</blockquote>
+<p>高斯-塞德尔迭代法迭代格式如下：（异步迭代）<br>$$<br>x^{(k+1)} = \mathbf D^{-1}(b + \mathbf Lx^{(k+1)} + \mathbf Ux^{(k)})<br>$$<br>即：<br>$$\begin{align}<br>x^{(k+1)} &amp;= \mathbf M_Gx^{(k)}+f_G \<br>\mathbf M_G &amp;= (\mathbf D - \mathbf L)^{-1} \mathbf U \<br>f_G &amp;= (\mathbf D - \mathbf L)^{-1}b<br>\end{align}$$</p>
+<blockquote>
+<p>$M_G$为高斯-塞德尔的迭代矩阵</p>
+</blockquote>
+<p>高斯-塞德尔迭代法有助于提高收敛速度</p>
+<h3 id="迭代法对收敛性"><a href="#迭代法对收敛性" class="headerlink" title="迭代法对收敛性"></a>迭代法对收敛性</h3><p>若：<br>$$<br>\lim_{k\to \infty} \max_{1\le i \le n}|x_i</p>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/09/numeric-analysis0/" data-id="ckffegrqh001uaovnfezqfxn4"
+      <a data-url="http://georgechen1827.github.io/2020/09/09/numeric-analysis0/" data-id="ckh1rlc9w001jkovn6rngcq4x"
         class="article-share-link">share</a>
         
       
