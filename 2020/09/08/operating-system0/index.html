@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">9.3k words</span>
+            <span class="post-count">9.6k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">32 minutes</span>
+            <span class="post-count">33 minutes</span>
         </span>
     </span>
 </div>
@@ -1249,7 +1249,7 @@
 <h2 id="Linux同步机制"><a href="#Linux同步机制" class="headerlink" title="Linux同步机制"></a>Linux同步机制</h2><ul>
 <li>短临界区：禁止中断</li>
 <li>自旋锁</li>
-<li>互斥锁</li>
+<li>互斥锁：快速锁、递归锁</li>
 <li>条件变量</li>
 <li>信号量</li>
 </ul>
@@ -1260,13 +1260,97 @@
 <li>自旋锁</li>
 <li>信号量</li>
 </ul>
+<p>事件：</p>
+<blockquote>
+<ul>
+<li>HANDLE CreatEvent创建事件</li>
+<li>Open Event打开事件</li>
+<li>SetEvent</li>
+<li>WaitForSignalObject</li>
+</ul>
+</blockquote>
+<p>临界区：</p>
+<blockquote>
+<ul>
+<li>EnterCriticalSection</li>
+<li>LeaveCriticalSection</li>
+</ul>
+</blockquote>
+<p>互斥量：</p>
+<blockquote>
+<ul>
+<li>相比于不能命名的临界区，互斥量可以跨进程使用</li>
+</ul>
+</blockquote>
+<p>信号量：</p>
+<blockquote>
+<ul>
+<li>CreateSemaphore</li>
+<li>ReleaseSemaphore</li>
+</ul>
+</blockquote>
+<h1 id="七、死锁"><a href="#七、死锁" class="headerlink" title="七、死锁"></a>七、死锁</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>死锁：一组等待的进程，其中每一个进程都等待资源，并且该资源被组中其他进程所持有</p>
+<blockquote>
+<ul>
+<li>所有死锁进程无法推进</li>
+<li>原因：竞争互斥资源或进程推进不当</li>
+</ul>
+</blockquote>
+<p>死锁必要条件：</p>
+<blockquote>
+<ul>
+<li>互斥</li>
+<li>占有并等待</li>
+<li>非抢占</li>
+<li>循环等待</li>
+</ul>
+</blockquote>
+<p>注意，所有访问</p>
+<h2 id="资源分配图"><a href="#资源分配图" class="headerlink" title="资源分配图"></a>资源分配图</h2><p>组成部分：</p>
+<blockquote>
+<ul>
+<li>进程：圆形节点</li>
+<li>资源：方形区域</li>
+<li>资源实例：区域内的节点</li>
+<li>P请求一个R的实例：P-&gt;资源区域</li>
+<li>P持有一个R的实例：P-&gt;资源实例</li>
+</ul>
+</blockquote>
+<p>死锁判断：</p>
+<blockquote>
+<ul>
+<li>图中无环，则无死锁发生</li>
+<li>图中有环：若每一种资源类型只有一个实例，那么死锁发生，否则死锁可能发生</li>
+</ul>
+</blockquote>
+<h2 id="处理死锁的方式"><a href="#处理死锁的方式" class="headerlink" title="处理死锁的方式"></a>处理死锁的方式</h2><p>确保系统不会进入死锁状态：</p>
+<blockquote>
+<ul>
+<li>死锁预防</li>
+<li>死锁避免</li>
+</ul>
+</blockquote>
+<p>允许系统进入死锁状态，然后加以检测恢复</p>
+<blockquote>
+<ul>
+<li>死锁检测</li>
+<li>死锁恢复</li>
+</ul>
+</blockquote>
+<p>忽略此问题：</p>
+<blockquote>
+<ul>
+<li>通用做法（Windows、UNIX）</li>
+<li>开发人员自行处理死锁</li>
+</ul>
+</blockquote>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/08/operating-system0/" data-id="ckh1rlca1001vkovn91fi6nzv"
+      <a data-url="http://georgechen1827.github.io/2020/09/08/operating-system0/" data-id="ckh50e1zc002iucvn0b553r75"
         class="article-share-link">share</a>
         
       

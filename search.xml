@@ -1,439 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>会计学</title>
-    <url>/2020/10/24/accountancy/</url>
-    <content><![CDATA[<blockquote>
-<ul>
-<li>财务会计：基础（初级）、中级、高级会计</li>
-<li>管理会计</li>
-<li>成本会计</li>
+    <title>计算机网络（概念解释）</title>
+    <url>/2020/11/05/computer-network1/</url>
+    <content><![CDATA[<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
+<li>计算机网络: 一些相互连接、自治的计算机的集合;具有独立功能的计算机、终端、设备用通信线路连接起来，按一定方式进行通信并实现资源共享的系统</li>
 </ul>
-</blockquote>
-<h1 id="二、会计要素和会计等式"><a href="#二、会计要素和会计等式" class="headerlink" title="二、会计要素和会计等式"></a>二、会计要素和会计等式</h1><h2 id="会计对象"><a href="#会计对象" class="headerlink" title="会计对象"></a>会计对象</h2><p>会计对象：</p>
-<blockquote>
+<p>网络接入:</p>
 <ul>
-<li>是会计所反映和监督的内容</li>
-<li>是社会再生产过程中（企业）的资金运动</li>
+<li>NAP: Network Access Point网络接入点</li>
+<li>ISP: Internet Service Provider网络服务提供商</li>
+<li>NCP: Network Control Protocol网络控制协议</li>
+<li>HOST: 宿主机</li>
+<li>C/S: Client/Server主机客户端(模式)</li>
 </ul>
-</blockquote>
-<p>资金运动过程：<br>..</p>
-<h2 id="会计要素"><a href="#会计要素" class="headerlink" title="会计要素"></a>会计要素</h2><p>会计要素定义：</p>
-<blockquote>
+<p>网络分类:</p>
 <ul>
-<li>对会计对象内容（资金运动）的基本分类，是会计对象的实例化</li>
-<li>是反映会计主体财务状况和经营成果的基本单位</li>
-<li>分类：静态会计要素和动态会计要素</li>
+<li>分组交换: 将报文进行切割并发传输，到目标主机再进行组合的一种信息交换方式</li>
+<li>LAN,MAN,WAN,AN: 局域网,城域网,广域网,Access Network接入网</li>
 </ul>
-</blockquote>
-<p>会计要素</p>
-<blockquote>
+<p>网络指标:</p>
 <ul>
-<li>资产</li>
-<li>负债</li>
-<li>所有者权益（资产负债表）</li>
-<li>收入</li>
-<li>费用</li>
-<li>利润</li>
+<li>带宽: 本指信号具有的频带宽度(Hz); 现指数字信号所能传送的最高数据率(bit/s)</li>
+<li>发送时延（传输时延）: 主机或路由器发送数据帧所需要的时间</li>
+<li>传播时延: 电磁波在信道中传播一定的距离需要花费的时间</li>
+<li>RTT: 往返时延,从发送数据开始到发送端接收到确认信息的时延</li>
+<li>信道利用率: 某信道在某段时间内有百分之几的时间是被利用的（有数据通过）</li>
+<li>网络利用率: 全网络的信道利用率的加权平均值</li>
 </ul>
-</blockquote>
-<p>划分会计要素的意义：</p>
-<blockquote>
+<p>服务、接口和协议：</p>
 <ul>
-<li>是实现会计反映职能，分类、系统反映会计对象的需要</li>
-<li>是设置会计科目和会计账户的基本依据</li>
-<li>会计要素是构成会计报表的基本框架</li>
+<li>实体：每一个网络层中的活动元素,可以是硬件或软件进程</li>
+<li>对等实体：不同计算机上同一层的实体</li>
+<li>协议：为进行计算机网络中的数据交换而建立的规则、标准或约定的集合</li>
+<li>接口：相邻两层之间的边界</li>
+<li>服务访问点SAP：接口上相邻两层实体交换信息之处</li>
+<li>服务：某一层向上层提供的功能，下层是服务提供者、上层是服务用户</li>
+<li>网络体系结构：计算机网络各层级及其协议的集合</li>
+<li>协议栈：网络各层协议按照层次顺序排列而形成的协议序列</li>
 </ul>
-</blockquote>
-<h2 id="资产"><a href="#资产" class="headerlink" title="资产"></a>资产</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>定义：资产是一种满足如下三个条件的资源</p>
-<blockquote>
+<p>服务原语的种类:</p>
 <ul>
-<li>由过去的交易或者事项形成的资源</li>
-<li>由企业拥有或控制的资源</li>
-<li>预期会给企业带来经济利益的资源</li>
+<li>请求Request: 服务用户向服务提供者请求服务</li>
+<li>指示Indication: 服务提供者向用户回复指示性的消息</li>
+<li>响应Response: 用户对提供者的指示原语进行相应</li>
+<li>证实Confirm: 提供者向用户报告先前请求的答复</li>
 </ul>
-</blockquote>
-<p>由过去交易或事项形成的资源：</p>
-<blockquote>
+<p>网络参考模型:</p>
 <ul>
-<li>交易：企业主体和另外一个主体发生的价值交换，如购买</li>
-<li>事项：企业内部的价值转移形成的资源，如生产</li>
-<li>资产是过去事实形成的现实权利，注意，预期在未来产生的结果不属于现在的资产</li>
+<li>OSI/RM: Open System Interconnection Reference Model开放系统互联参考模型; 物理层-数据链路层-网络层-运输层-会话层-表示层-应用层</li>
+<li>TCP/IP: 网络接口层-网络互连层(网际层)-传输层-应用层</li>
+<li>五层结构: 物理层-数据链路层-网络互连层(网际层)-传输层-应用层</li>
 </ul>
-</blockquote>
-<p>由企业拥有或控制的资源：</p>
-<blockquote>
+<h3 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h3><ul>
+<li>物理层: 其功能是在物理媒体上传输原始的数据比特流; 其任务是确定与传输媒体的接口的一些特性</li>
+</ul>
+<p>一些术语:</p>
 <ul>
-<li>拥有：企业享有某项资源的所有权</li>
-<li>控制：企业享有某项资源的（排他性）使用权，如借入款项、融资租入（经营租赁现在也算）设备等</li>
+<li>数据: 运送信息的实体</li>
+<li>信号: 数据的电气特性或电磁表示; 模拟信号是连续变化的信号,数字信号是取值离散的信号</li>
+<li>调制: 将数字信号转换成模拟信号的过程</li>
+<li>解调: 将模拟信号转换成数字信号的过程</li>
+<li>单工通信: 只能有一个方向的通信</li>
+<li>半双工通信: 通信的双方都可以发送信息，但不能双方同时发送(当然也就不能同时接收)</li>
+<li>全双工通信: 通信的双方可以同时发送和接收信息</li>
 </ul>
-</blockquote>
-<p>预期会给企业带来经济利益：资产要素最本质的特征</p>
-<blockquote>
+<p>基带和宽带信号:</p>
 <ul>
-<li>直接或间接导致现金和现金等价物流入企业的潜力</li>
-<li>不具备该特征的资源不能再确认为企业资产，如报废的设备等</li>
+<li>基带信号: 将数字信号1或0直接用两种不同的电压来表示，然后送到线路上去传输</li>
+<li>宽带信号: 将基带信号进行调制后形成的频分复用的模拟信号</li>
 </ul>
-</blockquote>
-<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>资产分类：</p>
-<blockquote>
+<p>码元和波特率:</p>
 <ul>
-<li>流动资产：企业能够在1年或一个营业周期内变现或耗用的资产；营业周期：企业根据其经营活动的特点而划分的经营期间</li>
-<li>非流动资产：不能在1年货一个营业周期内变现或耗用的资产</li>
+<li>码元: 时间轴上的一个信号编码单位</li>
+<li>波特率: 每秒钟发送的码元数(baud)</li>
+<li>比特率: 每秒能传送的二进制位数(bps),S=B*log2N(N为一个码元中的状态数)</li>
 </ul>
-</blockquote>
-<p>流动资产：</p>
-<blockquote>
+<p>信道:</p>
 <ul>
-<li>库存现金：存于财务处库房中</li>
-<li>银行存款：存放在银行中的资金</li>
-<li>应收及预付款：（非长期）应收账款、应收票据、预付账款等；此时，该资产对对方企业来说是负债</li>
-<li>存货：原材料、生产成本（在产半成品）、库存商品（产成品）等</li>
+<li>信道: 向某一个信号传送信息的媒体</li>
+<li>奈氏准则: 理想低通信道最高码元传输速率为两倍的波特率</li>
+<li>香农定理: 信道的极限传输速率C=W*log2(1+S/N) b/s</li>
 </ul>
-</blockquote>
-<p>非流动资产：</p>
-<blockquote>
+<p>传输媒体:</p>
 <ul>
-<li>长期股权投资：持有时间超过1年，不变现或不准备变现或收回的股权投资；目的是为了获得稳定的投资收益、对被投资企业实施控制或影响</li>
-<li>固定资产：为生产产品、提供劳务、出租或经营管理而持有，使用寿命超过一个会计年度的资产；如房屋、机器设备等</li>
-<li>无形资产：企业拥有或控制的没有实物形态 的可辨认非货币资产；如专利权、商标权等</li>
-<li>投资性房产：企业为赚取租金或资本增值，或两者兼有而持有的房地产（非自用，否则为固定资产）</li>
-<li>生物资产：企业拥有的具有生命的动物和植物；如畜牧、农作物、森林等</li>
-<li>其他资产：除以上资产以外的各项资产；如长期待摊费用（如企业开办时发生的筹建费等）（区别于待摊费用）</li>
+<li>STP: Shielded Twisted Pair屏蔽双绞线</li>
+<li>UTP: Unshielded Twisted Pair无屏蔽双绞线</li>
+<li>CC: Coaxial Cable同轴电缆</li>
 </ul>
-</blockquote>
-<h2 id="负债"><a href="#负债" class="headerlink" title="负债"></a>负债</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>定义：负债是一种满足如下两个条件的现实义务</p>
-<blockquote>
+<p>连续波数字调制方式:数字信号-&gt;模拟信号</p>
 <ul>
-<li>企业过去的交易、事项所形成的现实义务</li>
-<li>预期会导致经济利益流出企业的现时义务</li>
+<li>ASK: Amplitude-shift Keying振幅键控(调幅),载波的振幅随基带数字信号变化而变化</li>
+<li>FSK: Frequency-..频移键控(调频),载波的频率随..</li>
+<li>PSK: Phase-..相移监控(调相),载波的初始相位随..</li>
+<li>QAM: Quadrature Amplitude Modulation正交振幅调制(APSK)</li>
+<li>PCM: Pulse Code Modulate脉冲编码调制,(三个步骤:采样,量化,编码)</li>
 </ul>
-</blockquote>
-<p>过去交易或事项所形成的现时义务：</p>
-<blockquote>
-<p>企业现行条件下（过去已签订借款合同或收到应付款账单）已承担的义务</p>
-</blockquote>
-<p>预期会导致经济利益流出企业：</p>
-<blockquote>
-<p>履行现时义务（偿还债务）时会直接或间接导致现金或等价物流出企业</p>
-</blockquote>
-<h3 id="分类-1"><a href="#分类-1" class="headerlink" title="分类"></a>分类</h3><p>分类：</p>
-<blockquote>
+<p>数字数据的数字信号编码:数字数据-&gt;数字信号</p>
 <ul>
-<li>流动负债：偿还期不超过1年</li>
-<li>非流动负债：偿还期超过1年</li>
+<li>NRZ: 不归零码;正电平0,负电平1,一个码元时间内电平恒定,不归零</li>
+<li>Manchester编码: 在一个码元时间内进行电平跳变,从高到底为1,从低到高为0</li>
+<li>差分Manchester编码: 码元时间内的跳变为同步信号;位起始处电平无跳变为0,跳变为1</li>
 </ul>
-</blockquote>
-<p>流动负债：</p>
-<blockquote>
+<p>多路复用技术:</p>
 <ul>
-<li>短期借款：还款期一年以内，临时周转需要</li>
-<li>应付及预收款项：应付账款、预收账款、应交税费等</li>
-<li>应付利息</li>
+<li>FDM: Frequency Division Multiplexing频分复用; 将多个模拟信号调制在不同的载波频率上</li>
+<li>TDM: Time..时分复用; 将物理信道按时间片轮换地分配给多路数字信号使用; STDM:统计时分复用</li>
+<li>WDM: Wavelength..波分复用: 不同信源在同一个光纤上使用不同波长的光来传输数据; DWDM:密集型波分复用</li>
+<li>CDMA: Code Division Multiple Access码分复用; 多个正交的码型在一个比特时间内的多个码片上异或后进行传输</li>
 </ul>
-</blockquote>
-<p>注意：有时在资产负债表上只有应收和预付两项，注意区分资产和负债</p>
-<p>非流动负债：</p>
-<blockquote>
+<p>光纤网:</p>
 <ul>
-<li>长期借款：还款期在1年以上，如工程项目建设</li>
-<li>应付债券：企业发行的债券到期后应付给购买者的本金和利息</li>
-<li>长期应付款：需要在1年以上偿还期内偿还的应付款项；如长期租赁</li>
+<li>SONET: Synchronous Optical Network同步光纤网</li>
 </ul>
-</blockquote>
-<h2 id="所有者权益"><a href="#所有者权益" class="headerlink" title="所有者权益"></a>所有者权益</h2><h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><p>定义：所有者权益是企业资产扣除负债后由所有者享有的剩余权益，是投资者对企业净资产的所有权</p>
-<blockquote>
+<p>宽带接入技术: </p>
 <ul>
-<li>所有者：投资者、即企业资本的提供者；在股份企业中指股东</li>
-<li>权益：权利</li>
-<li>剩余权益：资产扣除负债后由所有者享有的权利</li>
+<li>xDSL: Digital Subscriber Line数字用户线; 经过改造的,能承载宽带业务的模拟电话用户线<ul>
+<li>ADSL: Asymmetric..非对称数字用户线,32-640K~32K-6.4M下载速率</li>
+<li>HDSL: High speed..高速数字用户线</li>
+<li>SDSL: Symmetric..1对线的数字用户线</li>
+<li>VDSL: Very high speed..甚高速数字用户线; 短距离,1.5-2.5M~50-55M</li>
 </ul>
-</blockquote>
-<h3 id="组成内容"><a href="#组成内容" class="headerlink" title="组成内容"></a>组成内容</h3><p>所有者权益组成：</p>
-<blockquote>
-<ul>
-<li>投入资本：包括实收资本（股本）和资本公积（溢价）</li>
-<li>利得和损失：非日常活动形成的经济利益的流入和流出</li>
-<li>留存收益：盈余公积和未分配利润</li>
+</li>
+<li>HFC: Hybrid Fiber Coax光纤同轴混合网; 在有线电视网CATV的基础上开发的一种居民宽带接入网</li>
+<li>FTTx: Fiber to x光纤到终端技术<ul>
+<li>FTTH:..Home光纤到户;FTTB:..Building光纤到大楼:FTTC:光纤到路边</li>
 </ul>
-</blockquote>
-<h3 id="所有者权益和负债的区别"><a href="#所有者权益和负债的区别" class="headerlink" title="所有者权益和负债的区别"></a>所有者权益和负债的区别</h3><blockquote>
-<ul>
-<li>是否需要偿还：所有者权益一般不需归还；负债必须偿还</li>
-<li>享有权益内容：所有者权益具有参与利润分配和企业经营管理的权利；负债只有按期收回本息权</li>
-<li>企业清算时求偿权的区别：所有者权益没有优先求偿权；负债拥有优先求偿权（第一权益）</li>
-</ul>
-</blockquote>
-<h2 id="收入"><a href="#收入" class="headerlink" title="收入"></a>收入</h2><h3 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h3><p>定义：收入是一种符合如下三种经济利益的总流入</p>
-<blockquote>
-<ul>
-<li>企业在日常活动中形成的</li>
-<li>导致所有者权益增加</li>
-<li>与所有者投入资本无关</li>
-</ul>
-</blockquote>
-<p>日常活动：</p>
-<blockquote>
-<ul>
-<li>企业所进行的主要的、基本的业务活动</li>
-<li>企业在日常活动中产生的经济利益的流入</li>
-<li>严格区分于非日常活动产生的利得（固定资产盘盈（指数值增加）等）</li>
-</ul>
-</blockquote>
-<p>导致所有者权益增加：</p>
-<blockquote>
-<ul>
-<li>是由收入、费用及利润与所有者权益之间的关系所决定的</li>
-<li>如：预收款不是收入；第三方代收款项不是收入</li>
-</ul>
-</blockquote>
-<p>收入与收入与所有者投资无关：</p>
-<blockquote>
-<ul>
-<li>所有者投资属于企业的筹资业务，不属于日常活动收入</li>
-</ul>
-</blockquote>
-<h3 id="收入组成内容"><a href="#收入组成内容" class="headerlink" title="收入组成内容"></a>收入组成内容</h3><p>组成：企业日常活动产生的经济利益流入</p>
-<blockquote>
-<ul>
-<li>主营业务收入</li>
-<li>其他业务收入（和主营业务收入合称营业收入）</li>
-<li>投资收益：如购买其他企业的股票、债券所获得的收入</li>
-<li>营业外收入：广义的收入组成内容；如处置报废固定资产、对员工的罚款等</li>
-</ul>
-</blockquote>
-<h2 id="费用"><a href="#费用" class="headerlink" title="费用"></a>费用</h2><h3 id="定义-4"><a href="#定义-4" class="headerlink" title="定义"></a>定义</h3><p>费用：满足下列三条件的经济利益的总流出</p>
-<blockquote>
-<ul>
-<li>日常活动中发生的</li>
-<li>导致所有者权益减少的</li>
-<li>与向所有者分配利益无关的</li>
-</ul>
-</blockquote>
-<p>成本和费用的区别：广义上一致，狭义上成本和生产产品直接相关</p>
-<p>企业在日常活动中产生的经济利益流出：</p>
-<blockquote>
-<ul>
-<li>导致现金或等价物流出企业</li>
-<li>严格区别于非日常活动发生的损失，如处置损毁、报废固定资产发生的净损失</li>
-</ul>
-</blockquote>
-<h3 id="分类-2"><a href="#分类-2" class="headerlink" title="分类"></a>分类</h3><blockquote>
-<ul>
-<li>主营业务成本</li>
-<li>其他业务成本</li>
-<li>税金及附加：除增值税、所得税之外的其他税费</li>
-<li>投资损失：投资活动发生的损失</li>
-<li>期间费用：销售费用（广告）、管理费用（高管工资）、财务费用（借贷款利息等）</li>
-<li>资产减值损失：应收账款坏账、固定资产减值损失和存货跌价损失等</li>
-<li>所得税费用</li>
-<li>营业外支出：罚款支出、捐赠支出等</li>
-</ul>
-</blockquote>
-<h2 id="利润"><a href="#利润" class="headerlink" title="利润"></a>利润</h2><h3 id="定义-5"><a href="#定义-5" class="headerlink" title="定义"></a>定义</h3><p>利润是指企业在一定会计期间（月、季度、半年或年度）的经营成果</p>
-<p>利润的特征：狭义收入-狭义费用+营业外收入-营业外支出</p>
-<h2 id="会计等式"><a href="#会计等式" class="headerlink" title="会计等式"></a>会计等式</h2><p>会计等式（会计平衡公式）是描述会计要素之间的基本关系的恒等式：</p>
-<blockquote>
-<ul>
-<li>资产=负债+所有者权益</li>
-<li>收入-费用=利润</li>
-<li>资产=负债+(去年)所有者权益+(收入-费用)（未分配利润）</li>
-</ul>
-</blockquote>
-<h3 id="第一会计等式"><a href="#第一会计等式" class="headerlink" title="第一会计等式"></a>第一会计等式</h3><p>…</p>
-<h3 id="经济业务对基本会计等式的影响"><a href="#经济业务对基本会计等式的影响" class="headerlink" title="经济业务对基本会计等式的影响"></a>经济业务对基本会计等式的影响</h3><p>P24</p>
-<p>资产=负债+所有者权益</p>
-<blockquote>
-<ul>
-<li>资产项目此增彼减，总额不变</li>
-<li>负债项目此增彼减，总额不变：借新债还旧债</li>
-<li>所有者权益此增彼减，总额不变：股份回购</li>
-<li>负债增加，所有者权益减少</li>
-<li>所有者权益增加，负债项目减少：债转股</li>
-<li>资产增加，负债增加：贷款购买设备</li>
-<li>资产增加，所有者权益增加</li>
-<li>资产减少，负债减少</li>
-<li>资产减少，所有者权益减少：撤资</li>
-</ul>
-</blockquote>
-<h1 id="三、会计核算基础"><a href="#三、会计核算基础" class="headerlink" title="三、会计核算基础"></a>三、会计核算基础</h1><h2 id="会计假设"><a href="#会计假设" class="headerlink" title="会计假设"></a>会计假设</h2><p>会计假设是会计核算的基本前提，是为了保证会计工作正常进行和会计信息的质量，而对会计核算所处的空间范围、时间范围、基本程序和计量方法所做的合理设定。</p>
-<h3 id="会计主体假设"><a href="#会计主体假设" class="headerlink" title="会计主体假设"></a>会计主体假设</h3><p>定义：企业应当对其本身发生的交易或者事项进行会计确认、计量和报告。</p>
-<p>意义：</p>
-<blockquote>
-<ul>
-<li>明确了会计工作的空间范围，解决了核算谁的经济业务、为谁记账的问题。</li>
-</ul>
-</blockquote>
-<p>会计所服务的特定单位或组织：</p>
-<blockquote>
-<ul>
-<li>法人主体是一个会计主体，会计主体则不一定是法律主体（如企业集团）</li>
-</ul>
-</blockquote>
-<h3 id="持续经营假设"><a href="#持续经营假设" class="headerlink" title="持续经营假设"></a>持续经营假设</h3><p>定义：企业会计确认、计量和报告应当以持续经营为前提</p>
-<p>意义：</p>
-<blockquote>
-<ul>
-<li>明确了会计工作的时间范围——企业正常经营期间所发生的交易或事项。</li>
-<li>是合理选择会计程序及方法的基础。如跨期费用摊销、固定资产折旧的计提等。</li>
-<li>是“会计分期”假设等建立的基础。</li>
-</ul>
-</blockquote>
-<h3 id="会计分期假设"><a href="#会计分期假设" class="headerlink" title="会计分期假设"></a>会计分期假设</h3><p>定义：企业应当划分会计期间，分期结算账目和编制财务会计报告</p>
-<p>意义：</p>
-<blockquote>
-<ul>
-<li>明确了会计核算的基本程序，明确了何时记账、算账和报账问题</li>
-<li>界定了本期、前期和后期等概念，可以准确提供各期财务状况、经营成果资料，<br>也便于进行各期会计信息的对比。</li>
-</ul>
-</blockquote>
-<h3 id="货币计量假设"><a href="#货币计量假设" class="headerlink" title="货币计量假设"></a>货币计量假设</h3><p>定义：企业会计应当以货币计量</p>
-<blockquote>
-<ul>
-<li>以货币为主要计量单位记录和报告企业的经营情况</li>
-<li>采用币值稳定的货币为前提</li>
-</ul>
-</blockquote>
-<h2 id="会计信息质量特征"><a href="#会计信息质量特征" class="headerlink" title="会计信息质量特征"></a>会计信息质量特征</h2><ul>
-<li>可靠性：所有会计的确认计量和报告必须真实可靠</li>
-<li>相关性（有用性）：企业提供的会计信息应当与财务会计报告使用者的经济决策需要相关；有助于使用者对企业过去、现在或将来的情况做出评价或预测</li>
-<li>可理解性（明晰性）：企业提供的信息应当清晰明了，便于财务会计报告使用者理解和运用</li>
-<li>可比性：企业提供的会计信息应当具有可比性；同一企业在不同时间纵向可比，不同企业同一期间横向可比</li>
-<li>实质重于形式：企业应当按照交易或者事项的经济实质进行会计确认、计量和报告，不应仅以交易或者事项的法律形式作为依据。</li>
-<li>重要性：企业提供的会计信息应当反映与企业财务状况、经营成果和现金流量有关的所有重要交易或者事项。</li>
-<li>谨慎性（稳健性、保守性）：企业对交易或者事项进行会计确认、计量和报告应当保持应有的谨慎，不应高估资产或者收益、不应低估负债或费用。计预期损失而不计预期收入</li>
-<li>及时性：企业对于已经发生的交易或者事项，应当及时进行会计确认、计量和报告，不得提提前或者延后。</li>
-</ul>
-<h2 id="会计要素确认、计量及要求"><a href="#会计要素确认、计量及要求" class="headerlink" title="会计要素确认、计量及要求"></a>会计要素确认、计量及要求</h2><p>会计确认：将发生的交易或事项与一定会计要素联系起来加以认定的过程</p>
-<p>会计计量：对交易或事项引起的会计要素增减变动的金额加以认定的过程</p>
-<ul>
-<li>计量单位：以货币做主要计量单位</li>
-<li>计量属性：<blockquote>
-<ul>
-<li>历史成本：购置时的金额</li>
-<li>重置成本：按现实购买的金额</li>
-<li>可变现净值：按现时销售的金额</li>
-<li>现值：按照将来的金额折现</li>
-<li>公允价值：有序交易中出售资产能收到的价格</li>
-</ul>
-<p>计量属性选择原则：计量必须可靠，一般企业采用历史成本</p>
-</blockquote>
 </li>
 </ul>
-<h2 id="收付实现制与权责发生制"><a href="#收付实现制与权责发生制" class="headerlink" title="收付实现制与权责发生制"></a>收付实现制与权责发生制</h2><p>。。。</p>
-<h1 id="四、账户与复式记账"><a href="#四、账户与复式记账" class="headerlink" title="四、账户与复式记账"></a>四、账户与复式记账</h1><h2 id="账户与会计科目"><a href="#账户与会计科目" class="headerlink" title="账户与会计科目"></a>账户与会计科目</h2><p>账户：账户是根据会计科目设置的，具有专门<strong>格式</strong>，用以分类、连续的记录经济业务对工具；具有一定的格式的会计科目是称为会计账户</p>
-<p>账户记录内容：</p>
-<blockquote>
+<h3 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h3><ul>
+<li>链路link: 一条无源的点到点物理线路段,中间没有其他的交换节点</li>
+<li>数据链路: 链路与实现了通信协议的硬件和软件的结合, 其传输单位是帧</li>
+</ul>
+<p>帧定界:</p>
 <ul>
-<li>业务发生时间</li>
-<li>记录依据</li>
-<li>业务内容</li>
-<li>增减金额</li>
-<li>余额方向</li>
-<li>余额</li>
+<li>字节计数法: 帧同步标志后紧跟着帧长度</li>
+<li>字符填充法: 面向字符的通信协议,以STX标记帧文本开始,ETX结束; 透明传输时,使用DLE对帧首位的STX和ETX进行转义</li>
+<li>比特填充法: 以特殊比特(如01111110同步序列)标记帧的开始和结束; 透明传输时, 帧正文中连续的5个1后必须插入一个0</li>
+<li>编码违例法: 利用违反编码规律的策略来标志帧的边界</li>
 </ul>
-</blockquote>
-<p>会计科目的分类：</p>
-<blockquote>
+<p>差错控制:</p>
 <ul>
-<li>总分类科目：严格按照会计准则规范设置</li>
-<li>二级分类科目</li>
-<li>明细科目：根据核算和管理管理的需要设置</li>
+<li>CheckSum: 校验和; 以16位为单位进行累加,最后结果取反码得到校验和一起发送</li>
+<li>CRC: 循环冗余校验码; 将数据用除数d来相除，产生的余数作为CRC码，附加在数据后发送</li>
 </ul>
-</blockquote>
-<h2 id="复式记账原理"><a href="#复式记账原理" class="headerlink" title="复式记账原理"></a>复式记账原理</h2><p>基本含义：对任何一项经济业务（交易或事项）都以相等的金额在<strong>两个或两个以上</strong>有关账户中相互联系的进行登记，借以反映会计对象具体内容增减变化的一种记账方法</p>
-<p>例：企业用银行存款3000元购买原材料</p>
-<blockquote>
+<p>差错控制:</p>
 <ul>
-<li>原材料账户增加3000</li>
-<li>银行存款减少3000</li>
+<li>FEC: Forward Error Correction前向纠错; 发送端使用纠错码,接收端检出错误并纠正</li>
+<li>ARQ: Automatic Repeat Request自动重发请求; 发送端使用检错码,接收方收到数据,检验确认后进行反馈,否则发送端定时重发</li>
+<li>FCS: Frame Check Sequence帧检验序列; 在后面添加了冗余码的数据</li>
 </ul>
-</blockquote>
-<p>复式记账能够更加全面系统地反映经济业务对实质</p>
-<p>复式记账的理论依据：第一会计等式的存在</p>
-<p>基本原则：</p>
-<blockquote>
+<p>数据链路层协议:</p>
 <ul>
-<li>以反映资金运动的内在规律的会计等式为记账基础</li>
-<li>对每项业务必须在两个或两个以上相互联系的账户中等额记录</li>
-<li>必须按经济业务对会计等式的类型（四种）记录</li>
-<li>定期汇总的全部账户记录必须平衡</li>
+<li>PPP协议: 点对点协议</li>
+<li>CSMA/CD: 带冲突检测的载波侦听多路存取协议</li>
 </ul>
-</blockquote>
-<h2 id="借贷记账法"><a href="#借贷记账法" class="headerlink" title="借贷记账法"></a>借贷记账法</h2><ul>
-<li>对于资产、费用而言：借，增加；贷，减少；余额=借-贷</li>
-<li>对于负债、所有者权益、收入和利润而言：借，减少；贷，增加；余额=贷-借</li>
-</ul>
-<p>记账规则：有借必有贷，借贷必相等</p>
-<p>例：公司收到投资者8000，存入银行</p>
-<blockquote>
+<p>局域网结构:</p>
 <ul>
-<li>银行存款（资产）：借，8000</li>
-<li>实收资本（所有者权益）：贷，8000</li>
+<li>MESH: 无线网格网络</li>
+<li>星形网,总线网,环形网,树形网…</li>
 </ul>
-</blockquote>
-<p>例：公司用银行存款偿还银行账户1000元</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">借：短期贷款 1000</span><br><span class="line">	贷：银行存款 1000</span><br></pre></td></tr></table></figure>
-
-<p>会计分录：会计的初始确认，会计信息的入口</p>
-<blockquote>
+<p>传统以太网:</p>
 <ul>
-<li>讲经济业务登记账户前预先确定的应记账户的名称、方向和金额的记录形式</li>
-<li>在实物中，会计分录的载体是记账凭证</li>
+<li>两个标准: DIX Ethernet V2; IEEE802.3</li>
+<li>IEEE 802/OSI RM: 分为MAC层和LLC层</li>
+<li>MAC层: Media Access Control介质访问控制子层; 解决设备使用共享信道的问题</li>
+<li>LLC层: Logical Link Control逻辑链路控制子层; 完成通常意义下的数据链路层功能,如差错控制,流量控制等</li>
+<li>802.3：CSMA/CD总线网的 MAC 和 PHY 规范</li>
+<li>802.4：令牌总线网的 MAC 和 PHY 规范</li>
+<li>802.5：令牌环网的 MAC 和 PHY 规范</li>
+<li>802.6： 城域网 DQDB 的接入方法和物理层规范</li>
+<li>802.7： 宽带技术</li>
+<li>802.8： 光纤技术</li>
+<li>802.9： 综合话音数据局域网（Voice/Data Integration）</li>
+<li>802.10：可互操作的 LAN / MAN 安全</li>
+<li>802.11：无线局域网（WLAN）的 MAC 和 PHY 规范</li>
+<li>802.12：优先级高速局域网（100BaseVG AnyLan）</li>
+<li>802.14：电缆电视（Cable-TV）网上的数据传输</li>
+<li>802.15：无线个人网（WPAN / Bluetooth）</li>
 </ul>
-</blockquote>
-<h1 id="五、企业主要经济业务的核算"><a href="#五、企业主要经济业务的核算" class="headerlink" title="五、企业主要经济业务的核算"></a>五、企业主要经济业务的核算</h1><h2 id="企业主要经济业务概述"><a href="#企业主要经济业务概述" class="headerlink" title="企业主要经济业务概述"></a>企业主要经济业务概述</h2><p>企业是以产品生产和销售或劳务提供为主要内容的经济组织，主要业务如下</p>
-<blockquote>
+<p>网卡:</p>
 <ul>
-<li>资金筹集业务</li>
-<li>供应过程业务</li>
-<li>生产过程业务</li>
-<li>销售过程业务</li>
-<li>财务成果形成与分配业务等</li>
+<li>NIC: Network Interface Card网络接口卡</li>
 </ul>
-</blockquote>
-<h2 id="资金筹集的业务"><a href="#资金筹集的业务" class="headerlink" title="资金筹集的业务"></a>资金筹集的业务</h2><p>实收资本业务核算</p>
-<p>实收资本分类：</p>
-<blockquote>
+<p>10Mbps以太网:</p>
 <ul>
-<li>国家资本金</li>
-<li>法人资本金</li>
-<li>个人资本金</li>
-<li>外商资本金</li>
-<li>货币资金投资</li>
-<li>非货币资产投资</li>
+<li>3-4-5原则:<ul>
+<li>任意两个站点最多有3个网段有站点连接</li>
+<li>任意两个站点间最多有4个中继器</li>
+<li>任意两个站点间最多有5个以太网网段</li>
 </ul>
-</blockquote>
-<p>资本公积业务核算</p>
-<p>资本公积来源：</p>
-<blockquote>
+</li>
+<li>10BASE-5: 使用粗同轴电缆,CSMA/CD冲突检测,Manchester编码/译码的总线网</li>
+<li>10BASE-2: 使用细同轴电缆的总线网</li>
+<li>10BASE-T: 使用一对无屏蔽双绞线的星形网,使用集线器</li>
+</ul>
+<p>扩展的局域网:</p>
 <ul>
-<li>有投资者投入企业的在金额上超过其法定注册资本的部分</li>
-<li>直接计入资本公积的利得和损失</li>
+<li>中继器/集线器: 中继器用于在物理层上实现局域网网段的互连，主要起到信号再生放大、延长网络距离; 集线器时一个多端口的中继器</li>
+<li>网桥: 一种数据链路层的中继设备</li>
+<li>以太网交换机: 多端口网桥</li>
 </ul>
-</blockquote>
-<p>负债资金筹集业务核算:</p>
-<p>短期借款本金及利息的确认与计量:</p>
-<blockquote>
+<p>高速以太网:</p>
 <ul>
-<li>本金的确认与计量</li>
-<li>利息的确认与计量</li>
-<li>借款利息＝借款本金×利率×时间（按月、日）</li>
+<li>100BASE-T: 快速以太网; 使用802.3标准帧格式,全双工下CSMA/CD<ul>
+<li>100BASE-TX: 使用2对UTP5类线或屏蔽双绞线 STP; 1/2发送3/6接收,传输距离小于100m</li>
+<li>100BASE-FX: 使用2对光纤 </li>
+<li>100BASE-T4: 使用4对UTP3类线或5类线; 3对收发线,不能全双工,传输距离小于100m </li>
 </ul>
-</blockquote>
+</li>
+<li>1000BASE-T: 千兆以太网; 使用4对UTP5类线,用802.3标准帧格式,半双工下CSMA/CD(使用载波延伸)</li>
+<li>1000BASE-X  基于光纤通道的物理层</li>
+</ul>
 ]]></content>
       <categories>
         <category>notes</category>
-        <category>辅修</category>
+        <category>学位课程</category>
       </categories>
       <tags>
-        <tag>会计</tag>
         <tag>learning</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
     <title>微观经济学</title>
-    <url>/2020/10/18/microeconomics/</url>
+    <url>/2020/11/05/microeconomics/</url>
     <content><![CDATA[<h1 id="一、导言"><a href="#一、导言" class="headerlink" title="一、导言"></a>一、导言</h1><p>效率-经济学的灵魂</p>
 <p>自然科学-文学-哲学-美学-玄学</p>
 <p>人生艺术化？</p>
@@ -446,6 +237,8 @@
 <li>个人和社会的选择决定了各种资源是如何被利用，以及利用效率低高低</li>
 </ul>
 </blockquote>
+<a id="more"></a>
+
 <h2 id="2-经济学的基本问题"><a href="#2-经济学的基本问题" class="headerlink" title="2 经济学的基本问题"></a>2 经济学的基本问题</h2><p>如何进行选择，何种选择造成何种影响？</p>
 <blockquote>
 <ul>
@@ -862,6 +655,439 @@
       <tags>
         <tag>learning</tag>
         <tag>经济</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>会计学</title>
+    <url>/2020/11/05/accountancy/</url>
+    <content><![CDATA[<blockquote>
+<ul>
+<li>财务会计：基础（初级）、中级、高级会计</li>
+<li>管理会计</li>
+<li>成本会计</li>
+</ul>
+</blockquote>
+<h1 id="二、会计要素和会计等式"><a href="#二、会计要素和会计等式" class="headerlink" title="二、会计要素和会计等式"></a>二、会计要素和会计等式</h1><h2 id="会计对象"><a href="#会计对象" class="headerlink" title="会计对象"></a>会计对象</h2><p>会计对象：</p>
+<blockquote>
+<ul>
+<li>是会计所反映和监督的内容</li>
+<li>是社会再生产过程中（企业）的资金运动</li>
+</ul>
+</blockquote>
+<p>资金运动过程：<br>..</p>
+<h2 id="会计要素"><a href="#会计要素" class="headerlink" title="会计要素"></a>会计要素</h2><p>会计要素定义：</p>
+<blockquote>
+<ul>
+<li>对会计对象内容（资金运动）的基本分类，是会计对象的实例化</li>
+<li>是反映会计主体财务状况和经营成果的基本单位</li>
+<li>分类：静态会计要素和动态会计要素</li>
+</ul>
+</blockquote>
+<p>会计要素</p>
+<blockquote>
+<ul>
+<li>资产</li>
+<li>负债</li>
+<li>所有者权益（资产负债表）</li>
+<li>收入</li>
+<li>费用</li>
+<li>利润</li>
+</ul>
+</blockquote>
+<p>划分会计要素的意义：</p>
+<blockquote>
+<ul>
+<li>是实现会计反映职能，分类、系统反映会计对象的需要</li>
+<li>是设置会计科目和会计账户的基本依据</li>
+<li>会计要素是构成会计报表的基本框架</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="资产"><a href="#资产" class="headerlink" title="资产"></a>资产</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>定义：资产是一种满足如下三个条件的资源</p>
+<blockquote>
+<ul>
+<li>由过去的交易或者事项形成的资源</li>
+<li>由企业拥有或控制的资源</li>
+<li>预期会给企业带来经济利益的资源</li>
+</ul>
+</blockquote>
+<p>由过去交易或事项形成的资源：</p>
+<blockquote>
+<ul>
+<li>交易：企业主体和另外一个主体发生的价值交换，如购买</li>
+<li>事项：企业内部的价值转移形成的资源，如生产</li>
+<li>资产是过去事实形成的现实权利，注意，预期在未来产生的结果不属于现在的资产</li>
+</ul>
+</blockquote>
+<p>由企业拥有或控制的资源：</p>
+<blockquote>
+<ul>
+<li>拥有：企业享有某项资源的所有权</li>
+<li>控制：企业享有某项资源的（排他性）使用权，如借入款项、融资租入（经营租赁现在也算）设备等</li>
+</ul>
+</blockquote>
+<p>预期会给企业带来经济利益：资产要素最本质的特征</p>
+<blockquote>
+<ul>
+<li>直接或间接导致现金和现金等价物流入企业的潜力</li>
+<li>不具备该特征的资源不能再确认为企业资产，如报废的设备等</li>
+</ul>
+</blockquote>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>资产分类：</p>
+<blockquote>
+<ul>
+<li>流动资产：企业能够在1年或一个营业周期内变现或耗用的资产；营业周期：企业根据其经营活动的特点而划分的经营期间</li>
+<li>非流动资产：不能在1年货一个营业周期内变现或耗用的资产</li>
+</ul>
+</blockquote>
+<p>流动资产：</p>
+<blockquote>
+<ul>
+<li>库存现金：存于财务处库房中</li>
+<li>银行存款：存放在银行中的资金</li>
+<li>应收及预付款：（非长期）应收账款、应收票据、预付账款等；此时，该资产对对方企业来说是负债</li>
+<li>存货：原材料、生产成本（在产半成品）、库存商品（产成品）等</li>
+</ul>
+</blockquote>
+<p>非流动资产：</p>
+<blockquote>
+<ul>
+<li>长期股权投资：持有时间超过1年，不变现或不准备变现或收回的股权投资；目的是为了获得稳定的投资收益、对被投资企业实施控制或影响</li>
+<li>固定资产：为生产产品、提供劳务、出租或经营管理而持有，使用寿命超过一个会计年度的资产；如房屋、机器设备等</li>
+<li>无形资产：企业拥有或控制的没有实物形态 的可辨认非货币资产；如专利权、商标权等</li>
+<li>投资性房产：企业为赚取租金或资本增值，或两者兼有而持有的房地产（非自用，否则为固定资产）</li>
+<li>生物资产：企业拥有的具有生命的动物和植物；如畜牧、农作物、森林等</li>
+<li>其他资产：除以上资产以外的各项资产；如长期待摊费用（如企业开办时发生的筹建费等）（区别于待摊费用）</li>
+</ul>
+</blockquote>
+<h2 id="负债"><a href="#负债" class="headerlink" title="负债"></a>负债</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>定义：负债是一种满足如下两个条件的现实义务</p>
+<blockquote>
+<ul>
+<li>企业过去的交易、事项所形成的现实义务</li>
+<li>预期会导致经济利益流出企业的现时义务</li>
+</ul>
+</blockquote>
+<p>过去交易或事项所形成的现时义务：</p>
+<blockquote>
+<p>企业现行条件下（过去已签订借款合同或收到应付款账单）已承担的义务</p>
+</blockquote>
+<p>预期会导致经济利益流出企业：</p>
+<blockquote>
+<p>履行现时义务（偿还债务）时会直接或间接导致现金或等价物流出企业</p>
+</blockquote>
+<h3 id="分类-1"><a href="#分类-1" class="headerlink" title="分类"></a>分类</h3><p>分类：</p>
+<blockquote>
+<ul>
+<li>流动负债：偿还期不超过1年</li>
+<li>非流动负债：偿还期超过1年</li>
+</ul>
+</blockquote>
+<p>流动负债：</p>
+<blockquote>
+<ul>
+<li>短期借款：还款期一年以内，临时周转需要</li>
+<li>应付及预收款项：应付账款、预收账款、应交税费等</li>
+<li>应付利息</li>
+</ul>
+</blockquote>
+<p>注意：有时在资产负债表上只有应收和预付两项，注意区分资产和负债</p>
+<p>非流动负债：</p>
+<blockquote>
+<ul>
+<li>长期借款：还款期在1年以上，如工程项目建设</li>
+<li>应付债券：企业发行的债券到期后应付给购买者的本金和利息</li>
+<li>长期应付款：需要在1年以上偿还期内偿还的应付款项；如长期租赁</li>
+</ul>
+</blockquote>
+<h2 id="所有者权益"><a href="#所有者权益" class="headerlink" title="所有者权益"></a>所有者权益</h2><h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><p>定义：所有者权益是企业资产扣除负债后由所有者享有的剩余权益，是投资者对企业净资产的所有权</p>
+<blockquote>
+<ul>
+<li>所有者：投资者、即企业资本的提供者；在股份企业中指股东</li>
+<li>权益：权利</li>
+<li>剩余权益：资产扣除负债后由所有者享有的权利</li>
+</ul>
+</blockquote>
+<h3 id="组成内容"><a href="#组成内容" class="headerlink" title="组成内容"></a>组成内容</h3><p>所有者权益组成：</p>
+<blockquote>
+<ul>
+<li>投入资本：包括实收资本（股本）和资本公积（溢价）</li>
+<li>利得和损失：非日常活动形成的经济利益的流入和流出</li>
+<li>留存收益：盈余公积和未分配利润</li>
+</ul>
+</blockquote>
+<h3 id="所有者权益和负债的区别"><a href="#所有者权益和负债的区别" class="headerlink" title="所有者权益和负债的区别"></a>所有者权益和负债的区别</h3><blockquote>
+<ul>
+<li>是否需要偿还：所有者权益一般不需归还；负债必须偿还</li>
+<li>享有权益内容：所有者权益具有参与利润分配和企业经营管理的权利；负债只有按期收回本息权</li>
+<li>企业清算时求偿权的区别：所有者权益没有优先求偿权；负债拥有优先求偿权（第一权益）</li>
+</ul>
+</blockquote>
+<h2 id="收入"><a href="#收入" class="headerlink" title="收入"></a>收入</h2><h3 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h3><p>定义：收入是一种符合如下三种经济利益的总流入</p>
+<blockquote>
+<ul>
+<li>企业在日常活动中形成的</li>
+<li>导致所有者权益增加</li>
+<li>与所有者投入资本无关</li>
+</ul>
+</blockquote>
+<p>日常活动：</p>
+<blockquote>
+<ul>
+<li>企业所进行的主要的、基本的业务活动</li>
+<li>企业在日常活动中产生的经济利益的流入</li>
+<li>严格区分于非日常活动产生的利得（固定资产盘盈（指数值增加）等）</li>
+</ul>
+</blockquote>
+<p>导致所有者权益增加：</p>
+<blockquote>
+<ul>
+<li>是由收入、费用及利润与所有者权益之间的关系所决定的</li>
+<li>如：预收款不是收入；第三方代收款项不是收入</li>
+</ul>
+</blockquote>
+<p>收入与收入与所有者投资无关：</p>
+<blockquote>
+<ul>
+<li>所有者投资属于企业的筹资业务，不属于日常活动收入</li>
+</ul>
+</blockquote>
+<h3 id="收入组成内容"><a href="#收入组成内容" class="headerlink" title="收入组成内容"></a>收入组成内容</h3><p>组成：企业日常活动产生的经济利益流入</p>
+<blockquote>
+<ul>
+<li>主营业务收入</li>
+<li>其他业务收入（和主营业务收入合称营业收入）</li>
+<li>投资收益：如购买其他企业的股票、债券所获得的收入</li>
+<li>营业外收入：广义的收入组成内容；如处置报废固定资产、对员工的罚款等</li>
+</ul>
+</blockquote>
+<h2 id="费用"><a href="#费用" class="headerlink" title="费用"></a>费用</h2><h3 id="定义-4"><a href="#定义-4" class="headerlink" title="定义"></a>定义</h3><p>费用：满足下列三条件的经济利益的总流出</p>
+<blockquote>
+<ul>
+<li>日常活动中发生的</li>
+<li>导致所有者权益减少的</li>
+<li>与向所有者分配利益无关的</li>
+</ul>
+</blockquote>
+<p>成本和费用的区别：广义上一致，狭义上成本和生产产品直接相关</p>
+<p>企业在日常活动中产生的经济利益流出：</p>
+<blockquote>
+<ul>
+<li>导致现金或等价物流出企业</li>
+<li>严格区别于非日常活动发生的损失，如处置损毁、报废固定资产发生的净损失</li>
+</ul>
+</blockquote>
+<h3 id="分类-2"><a href="#分类-2" class="headerlink" title="分类"></a>分类</h3><blockquote>
+<ul>
+<li>主营业务成本</li>
+<li>其他业务成本</li>
+<li>税金及附加：除增值税、所得税之外的其他税费</li>
+<li>投资损失：投资活动发生的损失</li>
+<li>期间费用：销售费用（广告）、管理费用（高管工资）、财务费用（借贷款利息等）</li>
+<li>资产减值损失：应收账款坏账、固定资产减值损失和存货跌价损失等</li>
+<li>所得税费用</li>
+<li>营业外支出：罚款支出、捐赠支出等</li>
+</ul>
+</blockquote>
+<h2 id="利润"><a href="#利润" class="headerlink" title="利润"></a>利润</h2><h3 id="定义-5"><a href="#定义-5" class="headerlink" title="定义"></a>定义</h3><p>利润是指企业在一定会计期间（月、季度、半年或年度）的经营成果</p>
+<p>利润的特征：狭义收入-狭义费用+营业外收入-营业外支出</p>
+<h2 id="会计等式"><a href="#会计等式" class="headerlink" title="会计等式"></a>会计等式</h2><p>会计等式（会计平衡公式）是描述会计要素之间的基本关系的恒等式：</p>
+<blockquote>
+<ul>
+<li>资产=负债+所有者权益</li>
+<li>收入-费用=利润</li>
+<li>资产=负债+(去年)所有者权益+(收入-费用)（未分配利润）</li>
+</ul>
+</blockquote>
+<h3 id="第一会计等式"><a href="#第一会计等式" class="headerlink" title="第一会计等式"></a>第一会计等式</h3><p>…</p>
+<h3 id="经济业务对基本会计等式的影响"><a href="#经济业务对基本会计等式的影响" class="headerlink" title="经济业务对基本会计等式的影响"></a>经济业务对基本会计等式的影响</h3><p>P24</p>
+<p>资产=负债+所有者权益</p>
+<blockquote>
+<ul>
+<li>资产项目此增彼减，总额不变</li>
+<li>负债项目此增彼减，总额不变：借新债还旧债</li>
+<li>所有者权益此增彼减，总额不变：股份回购</li>
+<li>负债增加，所有者权益减少</li>
+<li>所有者权益增加，负债项目减少：债转股</li>
+<li>资产增加，负债增加：贷款购买设备</li>
+<li>资产增加，所有者权益增加</li>
+<li>资产减少，负债减少</li>
+<li>资产减少，所有者权益减少：撤资</li>
+</ul>
+</blockquote>
+<h1 id="三、会计核算基础"><a href="#三、会计核算基础" class="headerlink" title="三、会计核算基础"></a>三、会计核算基础</h1><h2 id="会计假设"><a href="#会计假设" class="headerlink" title="会计假设"></a>会计假设</h2><p>会计假设是会计核算的基本前提，是为了保证会计工作正常进行和会计信息的质量，而对会计核算所处的空间范围、时间范围、基本程序和计量方法所做的合理设定。</p>
+<h3 id="会计主体假设"><a href="#会计主体假设" class="headerlink" title="会计主体假设"></a>会计主体假设</h3><p>定义：企业应当对其本身发生的交易或者事项进行会计确认、计量和报告。</p>
+<p>意义：</p>
+<blockquote>
+<ul>
+<li>明确了会计工作的空间范围，解决了核算谁的经济业务、为谁记账的问题。</li>
+</ul>
+</blockquote>
+<p>会计所服务的特定单位或组织：</p>
+<blockquote>
+<ul>
+<li>法人主体是一个会计主体，会计主体则不一定是法律主体（如企业集团）</li>
+</ul>
+</blockquote>
+<h3 id="持续经营假设"><a href="#持续经营假设" class="headerlink" title="持续经营假设"></a>持续经营假设</h3><p>定义：企业会计确认、计量和报告应当以持续经营为前提</p>
+<p>意义：</p>
+<blockquote>
+<ul>
+<li>明确了会计工作的时间范围——企业正常经营期间所发生的交易或事项。</li>
+<li>是合理选择会计程序及方法的基础。如跨期费用摊销、固定资产折旧的计提等。</li>
+<li>是“会计分期”假设等建立的基础。</li>
+</ul>
+</blockquote>
+<h3 id="会计分期假设"><a href="#会计分期假设" class="headerlink" title="会计分期假设"></a>会计分期假设</h3><p>定义：企业应当划分会计期间，分期结算账目和编制财务会计报告</p>
+<p>意义：</p>
+<blockquote>
+<ul>
+<li>明确了会计核算的基本程序，明确了何时记账、算账和报账问题</li>
+<li>界定了本期、前期和后期等概念，可以准确提供各期财务状况、经营成果资料，<br>也便于进行各期会计信息的对比。</li>
+</ul>
+</blockquote>
+<h3 id="货币计量假设"><a href="#货币计量假设" class="headerlink" title="货币计量假设"></a>货币计量假设</h3><p>定义：企业会计应当以货币计量</p>
+<blockquote>
+<ul>
+<li>以货币为主要计量单位记录和报告企业的经营情况</li>
+<li>采用币值稳定的货币为前提</li>
+</ul>
+</blockquote>
+<h2 id="会计信息质量特征"><a href="#会计信息质量特征" class="headerlink" title="会计信息质量特征"></a>会计信息质量特征</h2><ul>
+<li>可靠性：所有会计的确认计量和报告必须真实可靠</li>
+<li>相关性（有用性）：企业提供的会计信息应当与财务会计报告使用者的经济决策需要相关；有助于使用者对企业过去、现在或将来的情况做出评价或预测</li>
+<li>可理解性（明晰性）：企业提供的信息应当清晰明了，便于财务会计报告使用者理解和运用</li>
+<li>可比性：企业提供的会计信息应当具有可比性；同一企业在不同时间纵向可比，不同企业同一期间横向可比</li>
+<li>实质重于形式：企业应当按照交易或者事项的经济实质进行会计确认、计量和报告，不应仅以交易或者事项的法律形式作为依据。</li>
+<li>重要性：企业提供的会计信息应当反映与企业财务状况、经营成果和现金流量有关的所有重要交易或者事项。</li>
+<li>谨慎性（稳健性、保守性）：企业对交易或者事项进行会计确认、计量和报告应当保持应有的谨慎，不应高估资产或者收益、不应低估负债或费用。计预期损失而不计预期收入</li>
+<li>及时性：企业对于已经发生的交易或者事项，应当及时进行会计确认、计量和报告，不得提提前或者延后。</li>
+</ul>
+<h2 id="会计要素确认、计量及要求"><a href="#会计要素确认、计量及要求" class="headerlink" title="会计要素确认、计量及要求"></a>会计要素确认、计量及要求</h2><p>会计确认：将发生的交易或事项与一定会计要素联系起来加以认定的过程</p>
+<p>会计计量：对交易或事项引起的会计要素增减变动的金额加以认定的过程</p>
+<ul>
+<li>计量单位：以货币做主要计量单位</li>
+<li>计量属性：<blockquote>
+<ul>
+<li>历史成本：购置时的金额</li>
+<li>重置成本：按现实购买的金额</li>
+<li>可变现净值：按现时销售的金额</li>
+<li>现值：按照将来的金额折现</li>
+<li>公允价值：有序交易中出售资产能收到的价格</li>
+</ul>
+<p>计量属性选择原则：计量必须可靠，一般企业采用历史成本</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="收付实现制与权责发生制"><a href="#收付实现制与权责发生制" class="headerlink" title="收付实现制与权责发生制"></a>收付实现制与权责发生制</h2><p>。。。</p>
+<h1 id="四、账户与复式记账"><a href="#四、账户与复式记账" class="headerlink" title="四、账户与复式记账"></a>四、账户与复式记账</h1><h2 id="账户与会计科目"><a href="#账户与会计科目" class="headerlink" title="账户与会计科目"></a>账户与会计科目</h2><p>账户：账户是根据会计科目设置的，具有专门<strong>格式</strong>，用以分类、连续的记录经济业务对工具；具有一定的格式的会计科目是称为会计账户</p>
+<p>账户记录内容：</p>
+<blockquote>
+<ul>
+<li>业务发生时间</li>
+<li>记录依据</li>
+<li>业务内容</li>
+<li>增减金额</li>
+<li>余额方向</li>
+<li>余额</li>
+</ul>
+</blockquote>
+<p>会计科目的分类：</p>
+<blockquote>
+<ul>
+<li>总分类科目：严格按照会计准则规范设置</li>
+<li>二级分类科目</li>
+<li>明细科目：根据核算和管理管理的需要设置</li>
+</ul>
+</blockquote>
+<h2 id="复式记账原理"><a href="#复式记账原理" class="headerlink" title="复式记账原理"></a>复式记账原理</h2><p>基本含义：对任何一项经济业务（交易或事项）都以相等的金额在<strong>两个或两个以上</strong>有关账户中相互联系的进行登记，借以反映会计对象具体内容增减变化的一种记账方法</p>
+<p>例：企业用银行存款3000元购买原材料</p>
+<blockquote>
+<ul>
+<li>原材料账户增加3000</li>
+<li>银行存款减少3000</li>
+</ul>
+</blockquote>
+<p>复式记账能够更加全面系统地反映经济业务对实质</p>
+<p>复式记账的理论依据：第一会计等式的存在</p>
+<p>基本原则：</p>
+<blockquote>
+<ul>
+<li>以反映资金运动的内在规律的会计等式为记账基础</li>
+<li>对每项业务必须在两个或两个以上相互联系的账户中等额记录</li>
+<li>必须按经济业务对会计等式的类型（四种）记录</li>
+<li>定期汇总的全部账户记录必须平衡</li>
+</ul>
+</blockquote>
+<h2 id="借贷记账法"><a href="#借贷记账法" class="headerlink" title="借贷记账法"></a>借贷记账法</h2><ul>
+<li>对于资产、费用而言：借，增加；贷，减少；余额=借-贷</li>
+<li>对于负债、所有者权益、收入和利润而言：借，减少；贷，增加；余额=贷-借</li>
+</ul>
+<p>记账规则：有借必有贷，借贷必相等</p>
+<p>例：公司收到投资者8000，存入银行</p>
+<blockquote>
+<ul>
+<li>银行存款（资产）：借，8000</li>
+<li>实收资本（所有者权益）：贷，8000</li>
+</ul>
+</blockquote>
+<p>例：公司用银行存款偿还银行账户1000元</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">借：短期贷款 1000</span><br><span class="line">	贷：银行存款 1000</span><br></pre></td></tr></table></figure>
+
+<p>会计分录：会计的初始确认，会计信息的入口</p>
+<blockquote>
+<ul>
+<li>讲经济业务登记账户前预先确定的应记账户的名称、方向和金额的记录形式</li>
+<li>在实物中，会计分录的载体是记账凭证</li>
+</ul>
+</blockquote>
+<h1 id="五、企业主要经济业务的核算"><a href="#五、企业主要经济业务的核算" class="headerlink" title="五、企业主要经济业务的核算"></a>五、企业主要经济业务的核算</h1><h2 id="企业主要经济业务概述"><a href="#企业主要经济业务概述" class="headerlink" title="企业主要经济业务概述"></a>企业主要经济业务概述</h2><p>企业是以产品生产和销售或劳务提供为主要内容的经济组织，主要业务如下</p>
+<blockquote>
+<ul>
+<li>资金筹集业务</li>
+<li>供应过程业务</li>
+<li>生产过程业务</li>
+<li>销售过程业务</li>
+<li>财务成果形成与分配业务等</li>
+</ul>
+</blockquote>
+<h2 id="资金筹集的业务"><a href="#资金筹集的业务" class="headerlink" title="资金筹集的业务"></a>资金筹集的业务</h2><p>实收资本业务核算</p>
+<p>实收资本分类：</p>
+<blockquote>
+<ul>
+<li>国家资本金</li>
+<li>法人资本金</li>
+<li>个人资本金</li>
+<li>外商资本金</li>
+<li>货币资金投资</li>
+<li>非货币资产投资</li>
+</ul>
+</blockquote>
+<p>资本公积业务核算</p>
+<p>资本公积来源：</p>
+<blockquote>
+<ul>
+<li>有投资者投入企业的在金额上超过其法定注册资本的部分</li>
+<li>直接计入资本公积的利得和损失</li>
+</ul>
+</blockquote>
+<p>负债资金筹集业务核算:</p>
+<p>短期借款本金及利息的确认与计量:</p>
+<blockquote>
+<ul>
+<li>本金的确认与计量</li>
+<li>利息的确认与计量</li>
+<li>借款利息＝借款本金×利率×时间（按月、日）</li>
+</ul>
+</blockquote>
+]]></content>
+      <categories>
+        <category>notes</category>
+        <category>辅修</category>
+      </categories>
+      <tags>
+        <tag>会计</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -1345,7 +1571,7 @@
 <blockquote>
 <ul>
 <li>框架由若干个槽（slot）组成，用于描述对象某一方面的属性</li>
-<li>每个槽可以划分成若干个赦免（facet），用于描述相应属性的一个方面</li>
+<li>每个槽可以划分成若干个侧面（facet），用于描述相应属性的一个方面</li>
 <li>槽和侧面所具有的属性值分别称为槽值和属性值</li>
 </ul>
 </blockquote>
@@ -1436,7 +1662,7 @@
 <li>拒取式推理：$P \to Q, \lnot Q \Rightarrow \lnot P$</li>
 </ul>
 </blockquote>
-<h2 id="3-3-为此公式化为子句集的方法"><a href="#3-3-为此公式化为子句集的方法" class="headerlink" title="3.3 为此公式化为子句集的方法"></a>3.3 为此公式化为子句集的方法</h2><p>子句是谓词公式及其否定的析取式</p>
+<h2 id="3-3-谓词公式化为子句集的方法"><a href="#3-3-谓词公式化为子句集的方法" class="headerlink" title="3.3 谓词公式化为子句集的方法"></a>3.3 谓词公式化为子句集的方法</h2><p>子句是谓词公式及其否定的析取式</p>
 <blockquote>
 <ul>
 <li>不包含任何谓词公式的子句为空子句</li>
@@ -1458,7 +1684,7 @@
 <li>子句变量标准化：即替换变量使得不同子句中的变量不同，因为子句之间是和取关系</li>
 </ul>
 </blockquote>
-<h2 id="3-4-鲁滨逊归结原理"><a href="#3-4-鲁滨逊归结原理" class="headerlink" title="3.4 鲁滨逊归结原理"></a>3.4 鲁滨逊归结原理</h2><p>鲁滨逊归结原理（消解原理）用于谓词公式的不可满足性分析</p>
+<h2 id="3-4-鲁滨逊归结原理"><a href="#3-4-鲁滨逊归结原理" class="headerlink" title="3.4 鲁滨逊归结原理"></a>3.4 鲁滨逊归结原理</h2><p>鲁滨逊归结原理（消解原理）用于谓词公式的不可满足性分析（充分条件）</p>
 <p>思想：子句集中子句之间是合区关系，只要有一个子句不可满足，则子句集就不可满足</p>
 <blockquote>
 <ul>
@@ -1489,8 +1715,24 @@
 <li>使用C12替换C1和C2，得到归结后的子句集S1的不可满足性和原子句集S等价</li>
 </ul>
 </blockquote>
-<h2 id="3-5-归结反演"><a href="#3-5-归结反演" class="headerlink" title="3.5 归结反演"></a>3.5 归结反演</h2><p>P68</p>
-<h2 id="3-6-归结原理的应用"><a href="#3-6-归结原理的应用" class="headerlink" title="3.6 归结原理的应用"></a>3.6 归结原理的应用</h2><p>P70</p>
+<h2 id="3-5-归结反演"><a href="#3-5-归结反演" class="headerlink" title="3.5 归结反演"></a>3.5 归结反演</h2><p>步骤：</p>
+<blockquote>
+<ul>
+<li>将前提化为谓词公式F</li>
+<li>将待证明结论表示为谓词公式Q，并得到否定not Q</li>
+<li>将谓词公式F and not Q化为子句集S</li>
+<li>对S进行归结，若出现空子句，则停止归结，此时Q为真</li>
+</ul>
+</blockquote>
+<h2 id="3-6-归结原理的应用"><a href="#3-6-归结原理的应用" class="headerlink" title="3.6 归结原理的应用"></a>3.6 归结原理的应用</h2><p>问题求解：</p>
+<blockquote>
+<ul>
+<li>将前提$P$和问题$\exist x Q(x)$（要求的是x）用谓词表示出来</li>
+<li>将问题取反并和$Answer$析取，即$\lnot \exist x Q(x) \land Answer(x)$</li>
+<li>将上述子句化为子句集，并进行归结</li>
+<li>若得到归结式$Answer$，则答案就在$Answer$中</li>
+</ul>
+</blockquote>
 <h1 id="四、不确定性推理方法"><a href="#四、不确定性推理方法" class="headerlink" title="四、不确定性推理方法"></a>四、不确定性推理方法</h1><h2 id="概述-3"><a href="#概述-3" class="headerlink" title="概述"></a>概述</h2><p>现实世界客观存在随机性和模糊性，需要进行不确定性的表示和推理</p>
 <p>基于概率论的不确定性的推理方法</p>
 <p>不确定性推理：</p>
@@ -1548,15 +1790,16 @@
 </blockquote>
 <h2 id="4-3-证据理论"><a href="#4-3-证据理论" class="headerlink" title="4.3 证据理论"></a>4.3 证据理论</h2><h3 id="概率分配函数"><a href="#概率分配函数" class="headerlink" title="概率分配函数"></a>概率分配函数</h3><p>设D是样本x的样本空间；则在证据理论中，D的任何一个子集A都可以对应x的一个命题“x的值在A中”</p>
 <p>概率分配函数M定义如下：<br>$$M: 2^{|D|} \to [0,1] 且 \<br>M(\empty)=0\<br>\sum_{A\in D}M(A)=1<br>$$</p>
-<p>P85</p>
+<p>概率分配函数的正交和（概率组合问题）：P85-86</p>
 <h3 id="基于证据理论的不确定性推理"><a href="#基于证据理论的不确定性推理" class="headerlink" title="基于证据理论的不确定性推理"></a>基于证据理论的不确定性推理</h3><p>步骤：</p>
 <blockquote>
 <ul>
 <li>建立问题的样本空间</li>
-<li>由经验给出各概率分配函数</li>
+<li>由经验给出各概率分配函数（先组合证据计算可信度，再组合概率）</li>
+<li>计算结论的信任函数</li>
+<li>得出结论</li>
 </ul>
 </blockquote>
-<p>…P87</p>
 <h2 id="4-4-模糊推理方法"><a href="#4-4-模糊推理方法" class="headerlink" title="4.4 模糊推理方法"></a>4.4 模糊推理方法</h2><p>模糊集合的定义（元素有限）：$A = {(x,u_A(x)),x\in X}$</p>
 <blockquote>
 <ul>
@@ -1566,7 +1809,7 @@
 <li>$u_A(x)$：隶属度函数，可以是正态分布等</li>
 </ul>
 </blockquote>
-<p>P91-92</p>
+<p>模糊关系的计算、合成以及推理：P91-101</p>
 <h1 id="五、搜索推理技术"><a href="#五、搜索推理技术" class="headerlink" title="五、搜索推理技术"></a>五、搜索推理技术</h1><h2 id="搜索的概念和种类"><a href="#搜索的概念和种类" class="headerlink" title="搜索的概念和种类"></a>搜索的概念和种类</h2><p>概念：根据问题实际情况，按照一定的策略或规则，从知识库中寻找可利用的知识，从而构造出一条使问题获得解决的推理路线的过程</p>
 <p>种类：</p>
 <blockquote>
@@ -1887,8 +2130,9 @@
 <p>$M_G$为高斯-塞德尔的迭代矩阵</p>
 </blockquote>
 <p>高斯-塞德尔迭代法有助于提高收敛速度</p>
-<h3 id="迭代法对收敛性"><a href="#迭代法对收敛性" class="headerlink" title="迭代法对收敛性"></a>迭代法对收敛性</h3><p>若：<br>$$<br>\lim_{k\to \infty} \max_{1\le i \le n}|x_i</p>
-]]></content>
+<h3 id="其他迭代法"><a href="#其他迭代法" class="headerlink" title="其他迭代法"></a>其他迭代法</h3><p>SOR迭代法<br>投影类算法：现代迭代法</p>
+<h3 id="迭代法对收敛性"><a href="#迭代法对收敛性" class="headerlink" title="迭代法对收敛性"></a>迭代法对收敛性</h3><p>若：<br>$$<br>\lim_{k\to \infty} \max_{1\le i \le n}|x_i^{k}-x_i^<em>|<br>$$<br>则$\lim_{k\to \infty} |x_i^{k}-x_i^</em>|=0$</p>
+<h1 id="四、函数的插值与拟合法"><a href="#四、函数的插值与拟合法" class="headerlink" title="四、函数的插值与拟合法"></a>四、函数的插值与拟合法</h1><h2 id="4-1"><a href="#4-1" class="headerlink" title="4.1"></a>4.1</h2>]]></content>
       <categories>
         <category>notes</category>
         <category>专业选修</category>
@@ -3491,7 +3735,7 @@
 <h2 id="Linux同步机制"><a href="#Linux同步机制" class="headerlink" title="Linux同步机制"></a>Linux同步机制</h2><ul>
 <li>短临界区：禁止中断</li>
 <li>自旋锁</li>
-<li>互斥锁</li>
+<li>互斥锁：快速锁、递归锁</li>
 <li>条件变量</li>
 <li>信号量</li>
 </ul>
@@ -3502,6 +3746,90 @@
 <li>自旋锁</li>
 <li>信号量</li>
 </ul>
+<p>事件：</p>
+<blockquote>
+<ul>
+<li>HANDLE CreatEvent创建事件</li>
+<li>Open Event打开事件</li>
+<li>SetEvent</li>
+<li>WaitForSignalObject</li>
+</ul>
+</blockquote>
+<p>临界区：</p>
+<blockquote>
+<ul>
+<li>EnterCriticalSection</li>
+<li>LeaveCriticalSection</li>
+</ul>
+</blockquote>
+<p>互斥量：</p>
+<blockquote>
+<ul>
+<li>相比于不能命名的临界区，互斥量可以跨进程使用</li>
+</ul>
+</blockquote>
+<p>信号量：</p>
+<blockquote>
+<ul>
+<li>CreateSemaphore</li>
+<li>ReleaseSemaphore</li>
+</ul>
+</blockquote>
+<h1 id="七、死锁"><a href="#七、死锁" class="headerlink" title="七、死锁"></a>七、死锁</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>死锁：一组等待的进程，其中每一个进程都等待资源，并且该资源被组中其他进程所持有</p>
+<blockquote>
+<ul>
+<li>所有死锁进程无法推进</li>
+<li>原因：竞争互斥资源或进程推进不当</li>
+</ul>
+</blockquote>
+<p>死锁必要条件：</p>
+<blockquote>
+<ul>
+<li>互斥</li>
+<li>占有并等待</li>
+<li>非抢占</li>
+<li>循环等待</li>
+</ul>
+</blockquote>
+<p>注意，所有访问</p>
+<h2 id="资源分配图"><a href="#资源分配图" class="headerlink" title="资源分配图"></a>资源分配图</h2><p>组成部分：</p>
+<blockquote>
+<ul>
+<li>进程：圆形节点</li>
+<li>资源：方形区域</li>
+<li>资源实例：区域内的节点</li>
+<li>P请求一个R的实例：P-&gt;资源区域</li>
+<li>P持有一个R的实例：P-&gt;资源实例</li>
+</ul>
+</blockquote>
+<p>死锁判断：</p>
+<blockquote>
+<ul>
+<li>图中无环，则无死锁发生</li>
+<li>图中有环：若每一种资源类型只有一个实例，那么死锁发生，否则死锁可能发生</li>
+</ul>
+</blockquote>
+<h2 id="处理死锁的方式"><a href="#处理死锁的方式" class="headerlink" title="处理死锁的方式"></a>处理死锁的方式</h2><p>确保系统不会进入死锁状态：</p>
+<blockquote>
+<ul>
+<li>死锁预防</li>
+<li>死锁避免</li>
+</ul>
+</blockquote>
+<p>允许系统进入死锁状态，然后加以检测恢复</p>
+<blockquote>
+<ul>
+<li>死锁检测</li>
+<li>死锁恢复</li>
+</ul>
+</blockquote>
+<p>忽略此问题：</p>
+<blockquote>
+<ul>
+<li>通用做法（Windows、UNIX）</li>
+<li>开发人员自行处理死锁</li>
+</ul>
+</blockquote>
 ]]></content>
       <categories>
         <category>notes</category>
@@ -3593,6 +3921,7 @@
 <li>步骤：报文进行切割并发传输，到目标主机再进行组合</li>
 <li>主机发送的数据不是独占的，一个用户可以并发的发送或接受数据</li>
 <li>可靠性好，网络中结点的损坏对整个网络影响很小</li>
+<li>优点: 高效,灵活,迅速,可靠</li>
 </ul>
 </blockquote>
 <h3 id="其他分类"><a href="#其他分类" class="headerlink" title="其他分类"></a>其他分类</h3><p>网络的覆盖范围：</p>

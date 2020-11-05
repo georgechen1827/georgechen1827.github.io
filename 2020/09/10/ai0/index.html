@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">3.8k words</span>
+            <span class="post-count">4k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">13 minutes</span>
+            <span class="post-count">14 minutes</span>
         </span>
     </span>
 </div>
@@ -312,7 +312,7 @@
 <blockquote>
 <ul>
 <li>框架由若干个槽（slot）组成，用于描述对象某一方面的属性</li>
-<li>每个槽可以划分成若干个赦免（facet），用于描述相应属性的一个方面</li>
+<li>每个槽可以划分成若干个侧面（facet），用于描述相应属性的一个方面</li>
 <li>槽和侧面所具有的属性值分别称为槽值和属性值</li>
 </ul>
 </blockquote>
@@ -403,7 +403,7 @@
 <li>拒取式推理：$P \to Q, \lnot Q \Rightarrow \lnot P$</li>
 </ul>
 </blockquote>
-<h2 id="3-3-为此公式化为子句集的方法"><a href="#3-3-为此公式化为子句集的方法" class="headerlink" title="3.3 为此公式化为子句集的方法"></a>3.3 为此公式化为子句集的方法</h2><p>子句是谓词公式及其否定的析取式</p>
+<h2 id="3-3-谓词公式化为子句集的方法"><a href="#3-3-谓词公式化为子句集的方法" class="headerlink" title="3.3 谓词公式化为子句集的方法"></a>3.3 谓词公式化为子句集的方法</h2><p>子句是谓词公式及其否定的析取式</p>
 <blockquote>
 <ul>
 <li>不包含任何谓词公式的子句为空子句</li>
@@ -425,7 +425,7 @@
 <li>子句变量标准化：即替换变量使得不同子句中的变量不同，因为子句之间是和取关系</li>
 </ul>
 </blockquote>
-<h2 id="3-4-鲁滨逊归结原理"><a href="#3-4-鲁滨逊归结原理" class="headerlink" title="3.4 鲁滨逊归结原理"></a>3.4 鲁滨逊归结原理</h2><p>鲁滨逊归结原理（消解原理）用于谓词公式的不可满足性分析</p>
+<h2 id="3-4-鲁滨逊归结原理"><a href="#3-4-鲁滨逊归结原理" class="headerlink" title="3.4 鲁滨逊归结原理"></a>3.4 鲁滨逊归结原理</h2><p>鲁滨逊归结原理（消解原理）用于谓词公式的不可满足性分析（充分条件）</p>
 <p>思想：子句集中子句之间是合区关系，只要有一个子句不可满足，则子句集就不可满足</p>
 <blockquote>
 <ul>
@@ -456,8 +456,24 @@
 <li>使用C12替换C1和C2，得到归结后的子句集S1的不可满足性和原子句集S等价</li>
 </ul>
 </blockquote>
-<h2 id="3-5-归结反演"><a href="#3-5-归结反演" class="headerlink" title="3.5 归结反演"></a>3.5 归结反演</h2><p>P68</p>
-<h2 id="3-6-归结原理的应用"><a href="#3-6-归结原理的应用" class="headerlink" title="3.6 归结原理的应用"></a>3.6 归结原理的应用</h2><p>P70</p>
+<h2 id="3-5-归结反演"><a href="#3-5-归结反演" class="headerlink" title="3.5 归结反演"></a>3.5 归结反演</h2><p>步骤：</p>
+<blockquote>
+<ul>
+<li>将前提化为谓词公式F</li>
+<li>将待证明结论表示为谓词公式Q，并得到否定not Q</li>
+<li>将谓词公式F and not Q化为子句集S</li>
+<li>对S进行归结，若出现空子句，则停止归结，此时Q为真</li>
+</ul>
+</blockquote>
+<h2 id="3-6-归结原理的应用"><a href="#3-6-归结原理的应用" class="headerlink" title="3.6 归结原理的应用"></a>3.6 归结原理的应用</h2><p>问题求解：</p>
+<blockquote>
+<ul>
+<li>将前提$P$和问题$\exist x Q(x)$（要求的是x）用谓词表示出来</li>
+<li>将问题取反并和$Answer$析取，即$\lnot \exist x Q(x) \land Answer(x)$</li>
+<li>将上述子句化为子句集，并进行归结</li>
+<li>若得到归结式$Answer$，则答案就在$Answer$中</li>
+</ul>
+</blockquote>
 <h1 id="四、不确定性推理方法"><a href="#四、不确定性推理方法" class="headerlink" title="四、不确定性推理方法"></a>四、不确定性推理方法</h1><h2 id="概述-3"><a href="#概述-3" class="headerlink" title="概述"></a>概述</h2><p>现实世界客观存在随机性和模糊性，需要进行不确定性的表示和推理</p>
 <p>基于概率论的不确定性的推理方法</p>
 <p>不确定性推理：</p>
@@ -515,15 +531,16 @@
 </blockquote>
 <h2 id="4-3-证据理论"><a href="#4-3-证据理论" class="headerlink" title="4.3 证据理论"></a>4.3 证据理论</h2><h3 id="概率分配函数"><a href="#概率分配函数" class="headerlink" title="概率分配函数"></a>概率分配函数</h3><p>设D是样本x的样本空间；则在证据理论中，D的任何一个子集A都可以对应x的一个命题“x的值在A中”</p>
 <p>概率分配函数M定义如下：<br>$$M: 2^{|D|} \to [0,1] 且 \<br>M(\empty)=0\<br>\sum_{A\in D}M(A)=1<br>$$</p>
-<p>P85</p>
+<p>概率分配函数的正交和（概率组合问题）：P85-86</p>
 <h3 id="基于证据理论的不确定性推理"><a href="#基于证据理论的不确定性推理" class="headerlink" title="基于证据理论的不确定性推理"></a>基于证据理论的不确定性推理</h3><p>步骤：</p>
 <blockquote>
 <ul>
 <li>建立问题的样本空间</li>
-<li>由经验给出各概率分配函数</li>
+<li>由经验给出各概率分配函数（先组合证据计算可信度，再组合概率）</li>
+<li>计算结论的信任函数</li>
+<li>得出结论</li>
 </ul>
 </blockquote>
-<p>…P87</p>
 <h2 id="4-4-模糊推理方法"><a href="#4-4-模糊推理方法" class="headerlink" title="4.4 模糊推理方法"></a>4.4 模糊推理方法</h2><p>模糊集合的定义（元素有限）：$A = {(x,u_A(x)),x\in X}$</p>
 <blockquote>
 <ul>
@@ -533,7 +550,7 @@
 <li>$u_A(x)$：隶属度函数，可以是正态分布等</li>
 </ul>
 </blockquote>
-<p>P91-92</p>
+<p>模糊关系的计算、合成以及推理：P91-101</p>
 <h1 id="五、搜索推理技术"><a href="#五、搜索推理技术" class="headerlink" title="五、搜索推理技术"></a>五、搜索推理技术</h1><h2 id="搜索的概念和种类"><a href="#搜索的概念和种类" class="headerlink" title="搜索的概念和种类"></a>搜索的概念和种类</h2><p>概念：根据问题实际情况，按照一定的策略或规则，从知识库中寻找可利用的知识，从而构造出一条使问题获得解决的推理路线的过程</p>
 <p>种类：</p>
 <blockquote>
@@ -572,7 +589,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/10/ai0/" data-id="ckh1rlc8t0002kovn0i4h59dg"
+      <a data-url="http://georgechen1827.github.io/2020/09/10/ai0/" data-id="ckh50e1yh000fucvn2ubkaxxn"
         class="article-share-link">share</a>
         
       
