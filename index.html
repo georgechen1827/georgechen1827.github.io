@@ -100,206 +100,15 @@
 <li>分组交换: 将报文进行切割并发传输，到目标主机再进行组合的一种信息交换方式</li>
 <li>LAN,MAN,WAN,AN: 局域网,城域网,广域网,Access Network接入网</li>
 </ul>
-<p>网络指标:</p>
-<ul>
-<li>带宽: 本指信号具有的频带宽度(Hz); 现指数字信号所能传送的最高数据率(bit/s)</li>
-<li>发送时延（传输时延）: 主机或路由器发送数据帧所需要的时间</li>
-<li>传播时延: 电磁波在信道中传播一定的距离需要花费的时间</li>
-<li>RTT: 往返时延,从发送数据开始到发送端接收到确认信息的时延</li>
-<li>信道利用率: 某信道在某段时间内有百分之几的时间是被利用的（有数据通过）</li>
-<li>网络利用率: 全网络的信道利用率的加权平均值</li>
-</ul>
-<p>服务、接口和协议：</p>
-<ul>
-<li>实体：每一个网络层中的活动元素,可以是硬件或软件进程</li>
-<li>对等实体：不同计算机上同一层的实体</li>
-<li>协议：为进行计算机网络中的数据交换而建立的规则、标准或约定的集合</li>
-<li>接口：相邻两层之间的边界</li>
-<li>服务访问点SAP：接口上相邻两层实体交换信息之处</li>
-<li>服务：某一层向上层提供的功能，下层是服务提供者、上层是服务用户</li>
-<li>网络体系结构：计算机网络各层级及其协议的集合</li>
-<li>协议栈：网络各层协议按照层次顺序排列而形成的协议序列</li>
-</ul>
-<p>服务原语的种类:</p>
-<ul>
-<li>请求Request: 服务用户向服务提供者请求服务</li>
-<li>指示Indication: 服务提供者向用户回复指示性的消息</li>
-<li>响应Response: 用户对提供者的指示原语进行相应</li>
-<li>证实Confirm: 提供者向用户报告先前请求的答复</li>
-</ul>
-<p>网络参考模型:</p>
-<ul>
-<li>OSI/RM: Open System Interconnection Reference Model开放系统互联参考模型; 物理层-数据链路层-网络层-运输层-会话层-表示层-应用层</li>
-<li>TCP/IP: 网络接口层-网络互连层(网际层)-传输层-应用层</li>
-<li>五层结构: 物理层-数据链路层-网络互连层(网际层)-传输层-应用层</li>
-</ul>
-<h3 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h3><ul>
-<li>物理层: 其功能是在物理媒体上传输原始的数据比特流; 其任务是确定与传输媒体的接口的一些特性</li>
-</ul>
-<p>一些术语:</p>
-<ul>
-<li>数据: 运送信息的实体</li>
-<li>信号: 数据的电气特性或电磁表示; 模拟信号是连续变化的信号,数字信号是取值离散的信号</li>
-<li>调制: 将数字信号转换成模拟信号的过程</li>
-<li>解调: 将模拟信号转换成数字信号的过程</li>
-<li>单工通信: 只能有一个方向的通信</li>
-<li>半双工通信: 通信的双方都可以发送信息，但不能双方同时发送(当然也就不能同时接收)</li>
-<li>全双工通信: 通信的双方可以同时发送和接收信息</li>
-</ul>
-<p>基带和宽带信号:</p>
-<ul>
-<li>基带信号: 将数字信号1或0直接用两种不同的电压来表示，然后送到线路上去传输</li>
-<li>宽带信号: 将基带信号进行调制后形成的频分复用的模拟信号</li>
-</ul>
-<p>码元和波特率:</p>
-<ul>
-<li>码元: 时间轴上的一个信号编码单位</li>
-<li>波特率: 每秒钟发送的码元数(baud)</li>
-<li>比特率: 每秒能传送的二进制位数(bps),S=B*log2N(N为一个码元中的状态数)</li>
-</ul>
-<p>信道:</p>
-<ul>
-<li>信道: 向某一个信号传送信息的媒体</li>
-<li>奈氏准则: 理想低通信道最高码元传输速率为两倍的波特率</li>
-<li>香农定理: 信道的极限传输速率C=W*log2(1+S/N) b/s</li>
-</ul>
-<p>传输媒体:</p>
-<ul>
-<li>STP: Shielded Twisted Pair屏蔽双绞线</li>
-<li>UTP: Unshielded Twisted Pair无屏蔽双绞线</li>
-<li>CC: Coaxial Cable同轴电缆</li>
-</ul>
-<p>连续波数字调制方式:数字信号-&gt;模拟信号</p>
-<ul>
-<li>ASK: Amplitude-shift Keying振幅键控(调幅),载波的振幅随基带数字信号变化而变化</li>
-<li>FSK: Frequency-..频移键控(调频),载波的频率随..</li>
-<li>PSK: Phase-..相移监控(调相),载波的初始相位随..</li>
-<li>QAM: Quadrature Amplitude Modulation正交振幅调制(APSK)</li>
-<li>PCM: Pulse Code Modulate脉冲编码调制,(三个步骤:采样,量化,编码)</li>
-</ul>
-<p>数字数据的数字信号编码:数字数据-&gt;数字信号</p>
-<ul>
-<li>NRZ: 不归零码;正电平0,负电平1,一个码元时间内电平恒定,不归零</li>
-<li>Manchester编码: 在一个码元时间内进行电平跳变,从高到底为1,从低到高为0</li>
-<li>差分Manchester编码: 码元时间内的跳变为同步信号;位起始处电平无跳变为0,跳变为1</li>
-</ul>
-<p>多路复用技术:</p>
-<ul>
-<li>FDM: Frequency Division Multiplexing频分复用; 将多个模拟信号调制在不同的载波频率上</li>
-<li>TDM: Time..时分复用; 将物理信道按时间片轮换地分配给多路数字信号使用; STDM:统计时分复用</li>
-<li>WDM: Wavelength..波分复用: 不同信源在同一个光纤上使用不同波长的光来传输数据; DWDM:密集型波分复用</li>
-<li>CDMA: Code Division Multiple Access码分复用; 多个正交的码型在一个比特时间内的多个码片上异或后进行传输</li>
-</ul>
-<p>光纤网:</p>
-<ul>
-<li>SONET: Synchronous Optical Network同步光纤网</li>
-</ul>
-<p>宽带接入技术: </p>
-<ul>
-<li>xDSL: Digital Subscriber Line数字用户线; 经过改造的,能承载宽带业务的模拟电话用户线<ul>
-<li>ADSL: Asymmetric..非对称数字用户线,32-640K~32K-6.4M下载速率</li>
-<li>HDSL: High speed..高速数字用户线</li>
-<li>SDSL: Symmetric..1对线的数字用户线</li>
-<li>VDSL: Very high speed..甚高速数字用户线; 短距离,1.5-2.5M~50-55M</li>
-</ul>
-</li>
-<li>HFC: Hybrid Fiber Coax光纤同轴混合网; 在有线电视网CATV的基础上开发的一种居民宽带接入网</li>
-<li>FTTx: Fiber to x光纤到终端技术<ul>
-<li>FTTH:..Home光纤到户;FTTB:..Building光纤到大楼:FTTC:光纤到路边</li>
-</ul>
-</li>
-</ul>
-<h3 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h3><ul>
-<li>链路link: 一条无源的点到点物理线路段,中间没有其他的交换节点</li>
-<li>数据链路: 链路与实现了通信协议的硬件和软件的结合, 其传输单位是帧</li>
-</ul>
-<p>帧定界:</p>
-<ul>
-<li>字节计数法: 帧同步标志后紧跟着帧长度</li>
-<li>字符填充法: 面向字符的通信协议,以STX标记帧文本开始,ETX结束; 透明传输时,使用DLE对帧首位的STX和ETX进行转义</li>
-<li>比特填充法: 以特殊比特(如01111110同步序列)标记帧的开始和结束; 透明传输时, 帧正文中连续的5个1后必须插入一个0</li>
-<li>编码违例法: 利用违反编码规律的策略来标志帧的边界</li>
-</ul>
-<p>差错控制:</p>
-<ul>
-<li>CheckSum: 校验和; 以16位为单位进行累加,最后结果取反码得到校验和一起发送</li>
-<li>CRC: 循环冗余校验码; 将数据用除数d来相除，产生的余数作为CRC码，附加在数据后发送</li>
-</ul>
-<p>差错控制:</p>
-<ul>
-<li>FEC: Forward Error Correction前向纠错; 发送端使用纠错码,接收端检出错误并纠正</li>
-<li>ARQ: Automatic Repeat Request自动重发请求; 发送端使用检错码,接收方收到数据,检验确认后进行反馈,否则发送端定时重发</li>
-<li>FCS: Frame Check Sequence帧检验序列; 在后面添加了冗余码的数据</li>
-</ul>
-<p>数据链路层协议:</p>
-<ul>
-<li>PPP协议: 点对点协议</li>
-<li>CSMA/CD: 带冲突检测的载波侦听多路存取协议</li>
-</ul>
-<p>局域网结构:</p>
-<ul>
-<li>MESH: 无线网格网络</li>
-<li>星形网,总线网,环形网,树形网…</li>
-</ul>
-<p>传统以太网:</p>
-<ul>
-<li>两个标准: DIX Ethernet V2; IEEE802.3</li>
-<li>IEEE 802/OSI RM: 分为MAC层和LLC层</li>
-<li>MAC层: Media Access Control介质访问控制子层; 解决设备使用共享信道的问题</li>
-<li>LLC层: Logical Link Control逻辑链路控制子层; 完成通常意义下的数据链路层功能,如差错控制,流量控制等</li>
-<li>802.3：CSMA/CD总线网的 MAC 和 PHY 规范</li>
-<li>802.4：令牌总线网的 MAC 和 PHY 规范</li>
-<li>802.5：令牌环网的 MAC 和 PHY 规范</li>
-<li>802.6： 城域网 DQDB 的接入方法和物理层规范</li>
-<li>802.7： 宽带技术</li>
-<li>802.8： 光纤技术</li>
-<li>802.9： 综合话音数据局域网（Voice/Data Integration）</li>
-<li>802.10：可互操作的 LAN / MAN 安全</li>
-<li>802.11：无线局域网（WLAN）的 MAC 和 PHY 规范</li>
-<li>802.12：优先级高速局域网（100BaseVG AnyLan）</li>
-<li>802.14：电缆电视（Cable-TV）网上的数据传输</li>
-<li>802.15：无线个人网（WPAN / Bluetooth）</li>
-</ul>
-<p>网卡:</p>
-<ul>
-<li>NIC: Network Interface Card网络接口卡</li>
-</ul>
-<p>10Mbps以太网:</p>
-<ul>
-<li>3-4-5原则:<ul>
-<li>任意两个站点最多有3个网段有站点连接</li>
-<li>任意两个站点间最多有4个中继器</li>
-<li>任意两个站点间最多有5个以太网网段</li>
-</ul>
-</li>
-<li>10BASE-5: 使用粗同轴电缆,CSMA/CD冲突检测,Manchester编码/译码的总线网</li>
-<li>10BASE-2: 使用细同轴电缆的总线网</li>
-<li>10BASE-T: 使用一对无屏蔽双绞线的星形网,使用集线器</li>
-</ul>
-<p>扩展的局域网:</p>
-<ul>
-<li>中继器/集线器: 中继器用于在物理层上实现局域网网段的互连，主要起到信号再生放大、延长网络距离; 集线器时一个多端口的中继器</li>
-<li>网桥: 一种数据链路层的中继设备</li>
-<li>以太网交换机: 多端口网桥</li>
-</ul>
-<p>高速以太网:</p>
-<ul>
-<li>100BASE-T: 快速以太网; 使用802.3标准帧格式,全双工下CSMA/CD<ul>
-<li>100BASE-TX: 使用2对UTP5类线或屏蔽双绞线 STP; 1/2发送3/6接收,传输距离小于100m</li>
-<li>100BASE-FX: 使用2对光纤 </li>
-<li>100BASE-T4: 使用4对UTP3类线或5类线; 3对收发线,不能全双工,传输距离小于100m </li>
-</ul>
-</li>
-<li>1000BASE-T: 千兆以太网; 使用4对UTP5类线,用802.3标准帧格式,半双工下CSMA/CD(使用载波延伸)</li>
-<li>1000BASE-X  基于光纤通道的物理层</li>
-</ul>
-
+      
+      <a class="article-more-link" href="/2020/11/05/computer-network1/">more...</a>
+      
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/11/05/computer-network1/" data-id="ckh50e1ym000pucvn405wd11x"
+      <a data-url="http://georgechen1827.github.io/2020/11/05/computer-network1/" data-id="ckh50gpxw000vowvn64d3htvw"
         class="article-share-link">share</a>
         
       
@@ -381,7 +190,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/11/05/microeconomics/" data-id="ckh50e1z5001wucvnayw7brvf"
+      <a data-url="http://georgechen1827.github.io/2020/11/05/microeconomics/" data-id="ckh50gpyh001zowvn5o632ffe"
         class="article-share-link">share</a>
         
       
@@ -493,7 +302,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/11/05/accountancy/" data-id="ckh50e1xx0001ucvn36useg3j"
+      <a data-url="http://georgechen1827.github.io/2020/11/05/accountancy/" data-id="ckh50gpxe0007owvn4a5l0iqa"
         class="article-share-link">share</a>
         
       
@@ -580,7 +389,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/10/computer-graphics0/" data-id="ckh50e1ys0014ucvnh3mucfj5"
+      <a data-url="http://georgechen1827.github.io/2020/09/10/computer-graphics0/" data-id="ckh50gpxv000rowvne4a662tf"
         class="article-share-link">share</a>
         
       
@@ -660,7 +469,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/10/ai0/" data-id="ckh50e1yh000fucvn2ubkaxxn"
+      <a data-url="http://georgechen1827.github.io/2020/09/10/ai0/" data-id="ckh50gpxf0008owvngnzlahpl"
         class="article-share-link">share</a>
         
       
@@ -771,7 +580,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/09/numeric-analysis0/" data-id="ckh50e1zd002lucvn4v8a5i3u"
+      <a data-url="http://georgechen1827.github.io/2020/09/09/numeric-analysis0/" data-id="ckh50gpyj0027owvn2ioq8yiy"
         class="article-share-link">share</a>
         
       
@@ -863,7 +672,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/08/algorithm0/" data-id="ckh50e1ye000cucvn5vr87rzs"
+      <a data-url="http://georgechen1827.github.io/2020/09/08/algorithm0/" data-id="ckh50gpxi000cowvngmo84org"
         class="article-share-link">share</a>
         
       
@@ -954,7 +763,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/08/operating-system0/" data-id="ckh50e1zc002iucvn0b553r75"
+      <a data-url="http://georgechen1827.github.io/2020/09/08/operating-system0/" data-id="ckh50gpym002eowvnh9v217fb"
         class="article-share-link">share</a>
         
       
@@ -1029,7 +838,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/06/computer-network0/" data-id="ckh50e1yi000iucvngsfs7183"
+      <a data-url="http://georgechen1827.github.io/2020/09/06/computer-network0/" data-id="ckh50gpxz000xowvn2ejwbz3v"
         class="article-share-link">share</a>
         
       
@@ -1123,7 +932,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/06/21/object-oriented0/" data-id="ckh50e1z9002cucvng6nteu1m"
+      <a data-url="http://georgechen1827.github.io/2020/06/21/object-oriented0/" data-id="ckh50gpyl002cowvnfj1w7uw4"
         class="article-share-link">share</a>
         
       

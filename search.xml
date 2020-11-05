@@ -19,6 +19,8 @@
 <li>分组交换: 将报文进行切割并发传输，到目标主机再进行组合的一种信息交换方式</li>
 <li>LAN,MAN,WAN,AN: 局域网,城域网,广域网,Access Network接入网</li>
 </ul>
+<a id="more"></a>
+
 <p>网络指标:</p>
 <ul>
 <li>带宽: 本指信号具有的频带宽度(Hz); 现指数字信号所能传送的最高数据率(bit/s)</li>
@@ -1086,8 +1088,8 @@
         <category>辅修</category>
       </categories>
       <tags>
-        <tag>会计</tag>
         <tag>learning</tag>
+        <tag>会计</tag>
       </tags>
   </entry>
   <entry>
@@ -9855,8 +9857,8 @@
         <category>notes</category>
       </categories>
       <tags>
-        <tag>learning</tag>
         <tag>c#</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -9883,9 +9885,9 @@
         <category>notes</category>
       </categories>
       <tags>
-        <tag>learning</tag>
         <tag>c#</tag>
         <tag>python</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -11155,8 +11157,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>learning</tag>
         <tag>python</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -11210,8 +11212,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>learning</tag>
         <tag>python</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -11415,9 +11417,9 @@ $$
         <category>notes</category>
       </categories>
       <tags>
+        <tag>c#</tag>
         <tag>learning</tag>
         <tag>搜索引擎</tag>
-        <tag>c#</tag>
       </tags>
   </entry>
   <entry>
@@ -13710,8 +13712,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>learning</tag>
         <tag>python</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -13991,8 +13993,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>learning</tag>
         <tag>c#</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
