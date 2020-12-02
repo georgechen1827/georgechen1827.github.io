@@ -5,7 +5,7 @@
     <url>/2020/11/08/management/</url>
     <content><![CDATA[<p>东吴商学院：陈东健</p>
 <p>13063885748</p>
-<p><a href="mailto:&#x63;&#x64;&#106;&#x34;&#48;&#53;&#64;&#x31;&#54;&#x33;&#46;&#x63;&#111;&#x6d;">&#x63;&#x64;&#106;&#x34;&#48;&#53;&#64;&#x31;&#54;&#x33;&#46;&#x63;&#111;&#x6d;</a></p>
+<p><a href="mailto:&#x63;&#100;&#106;&#52;&#48;&#x35;&#x40;&#x31;&#x36;&#51;&#46;&#99;&#111;&#x6d;">&#x63;&#100;&#106;&#52;&#48;&#x35;&#x40;&#x31;&#x36;&#51;&#46;&#99;&#111;&#x6d;</a></p>
 <h1 id="一、总论"><a href="#一、总论" class="headerlink" title="一、总论"></a>一、总论</h1><p>管理学是研究人类管理活动一般规律的科学，研究对象：</p>
 <blockquote>
 <ul>
@@ -1004,8 +1004,8 @@
         <category>辅修</category>
       </categories>
       <tags>
-        <tag>会计</tag>
         <tag>learning</tag>
+        <tag>会计</tag>
       </tags>
   </entry>
   <entry>
@@ -2946,7 +2946,7 @@
 <p>则插值多项式构造如下：<br>$$<br>\begin{align}<br>N_n(x) &amp;= f(x_0) + \sum_{k=1}^nf[x_0,x_1,…,x_k]\omega_k(x) \<br>&amp;= N_{n-1} + f[x_0,x_1,…x_n]\omega_n(x) \<br>\omega_{k}(x)&amp;=\prod_{j=0}^{k-1}(x-x_j)<br>\end{align}<br>$$</p>
 <p>可知，余项$R_n(x) = f[x_0,x_1,…,x_n,x]\omega_{n+1}(x)$</p>
 <h2 id="4-3-分段低次插值"><a href="#4-3-分段低次插值" class="headerlink" title="4.3 分段低次插值"></a>4.3 分段低次插值</h2><p>龙格现象：有时高次多项式插值的误差、稳定性较差</p>
-<h2 id="4-4-最小二乘拟合法"><a href="#4-4-最小二乘拟合法" class="headerlink" title="4.4 最小二乘拟合法"></a>4.4 最小二乘拟合法</h2><h3 id="概述-3"><a href="#概述-3" class="headerlink" title="概述"></a>概述</h3><p>插值使用$n-1$阶的多项式来近似$n$个数据点；拟合则使用更少的$m(m&lt;n-1)$阶多项式来近似原函数</p>
+<h2 id="4-4-最小二乘拟合法"><a href="#4-4-最小二乘拟合法" class="headerlink" title="4.4 最小二乘拟合法"></a>4.4 最小二乘拟合法</h2><p>插值使用$n-1$阶的多项式来近似$n$个数据点；拟合则使用更少的$m(m&lt;n-1)$阶多项式来近似原函数</p>
 <p>目标：构造$m$次多项式$P_m(x)=\sum_{k=0}^m\alpha_kx^k$使得在拟合点$(x_1,y_1),…(x_n,y_n)$上，方差和<br>$$<br>\sum_{i=1}^nR_i^2 =\sum_{i=1}^n(P_m(x_i)-y_i)^2<br>$$<br>最小，即<br>$$<br>F(\alpha_0,…,\alpha_m)=\sum_{i=1}^n(\sum_{k=0}^m\alpha_ix_i^k-y_i)^2<br>$$<br>最小，其条件为<br>$$<br>\frac{\partial F}{\partial\alpha_0}=\frac{\partial F}{\partial\alpha_1}=…=\frac{\partial F}{\partial\alpha_n}=0<br>$$<br>整理可得$m+1$阶方程组<br>$$<br>\begin{bmatrix}<br>S_0&amp;S_1&amp;\cdots&amp;S_m\<br>S_1&amp;S_2&amp;\cdots&amp;S_{m+1}\<br>\vdots&amp;\vdots&amp;\ddots&amp;\vdots\<br>S_m&amp;S_{m+1}&amp;\cdots&amp;S_{2m}<br>\end{bmatrix}<br>\begin{bmatrix}<br>\alpha_0\\alpha_1\\vdots\\alpha_m<br>\end{bmatrix}<br>=<br>\begin{bmatrix}<br>T_0\T_1\\vdots\T_m<br>\end{bmatrix}<br>$$<br>其中：<br>$$<br>\begin{align}<br>S_k&amp;=\sum_{i=1}^nx_i^k\<br>T_k&amp;=\sum_{i=1}^nx_i^ky_i<br>\end{align}<br>$$</p>
 <blockquote>
 <ul>
@@ -2954,6 +2954,17 @@
 <li>$m=n-1$时，目标函数最小值为0，此时拟合函数为插值多项式</li>
 </ul>
 </blockquote>
+<p>最小二乘法的应用：P93</p>
+<blockquote>
+<ul>
+<li>数据的指数拟合</li>
+<li>超定方程组的最小二乘解</li>
+</ul>
+</blockquote>
+<h1 id="五、插值型数值微分与数值积分"><a href="#五、插值型数值微分与数值积分" class="headerlink" title="五、插值型数值微分与数值积分"></a>五、插值型数值微分与数值积分</h1><p>对于函数$y=f(x)$，其插值多项式为<br>$$<br>f(x) \approx Ln(x)<br>$$</p>
+<p>则有<br>$$<br>f’(x) \approx Ln’(x) \<br>\int_a^b f(x)dx \approx \int_a^b Ln(x) dx<br>$$</p>
+<h2 id="5-1-数值微分"><a href="#5-1-数值微分" class="headerlink" title="5.1 数值微分"></a>5.1 数值微分</h2><p>$$<br>f’(x_i) = \frac{y_{i+1}-y_{i-1}}{2\delta}\<br>f’’(x_i) = \frac{y_{i+1}-2y_i+y_{i-1}}{\delta^2}<br>$$</p>
+<h2 id="5-2-数值积分"><a href="#5-2-数值积分" class="headerlink" title="5.2 数值积分"></a>5.2 数值积分</h2><p>牛顿-柯林斯公式（等距采样）<br>$$<br>\mathbf I_n = (b-a)\sum_{i=0}^nC_i^{(n)}f(x_i)<br>$$</p>
 ]]></content>
       <categories>
         <category>notes</category>
@@ -11922,8 +11933,8 @@
         <category>notes</category>
       </categories>
       <tags>
-        <tag>learning</tag>
         <tag>c#</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -11950,9 +11961,9 @@
         <category>notes</category>
       </categories>
       <tags>
-        <tag>learning</tag>
         <tag>c#</tag>
         <tag>python</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -13222,8 +13233,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>learning</tag>
         <tag>python</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -13277,8 +13288,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>learning</tag>
         <tag>python</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -13482,9 +13493,9 @@ $$
         <category>notes</category>
       </categories>
       <tags>
+        <tag>c#</tag>
         <tag>learning</tag>
         <tag>搜索引擎</tag>
-        <tag>c#</tag>
       </tags>
   </entry>
   <entry>
@@ -15777,8 +15788,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>learning</tag>
         <tag>python</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -16058,8 +16069,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>learning</tag>
         <tag>c#</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
