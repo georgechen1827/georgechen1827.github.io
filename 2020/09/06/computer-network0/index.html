@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">5.1k words</span>
+            <span class="post-count">10.4k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">17 minutes</span>
+            <span class="post-count">36 minutes</span>
         </span>
     </span>
 </div>
@@ -256,7 +256,7 @@
 <ul>
 <li>实体：一个特定的网络模块、软件</li>
 <li>对等实体：不同计算机上同一层的实体</li>
-<li>协议：为进行计算机网络中的数据交换而建立的规则、标准或约定的集合</li>
+<li>协议：为进行计算机网络中的数据交换而建立的对等实体间的通信规则、标准或约定的集合</li>
 <li>接口：相邻两层之间的边界；规定了下层向上层提供的服务</li>
 <li>服务：某一层向上层提供的功能</li>
 <li>网络体系结构：计算机网络各层级及其协议的集合</li>
@@ -280,8 +280,7 @@
 </ul>
 </blockquote>
 <p>协议的困惑：无法设计一个100%可靠的协议（山头进攻问题）</p>
-<h3 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h3><p>面相连接的服务：面向连接服务具有连接建立、数据传输和连接释放三个阶段</p>
-<p>无连接服务：两个实体之间通信不需要先建立好连接</p>
+<h3 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h3><p>面相连接的服务：面向连接服务具有连接建立、数据传输和连接释放三个阶段<br>那你<br>无连接服务：两个实体之间通信不需要先建立好连接</p>
 <h3 id="网络参考模型"><a href="#网络参考模型" class="headerlink" title="网络参考模型"></a>网络参考模型</h3><p>OSI参考模型：开放系统互联模型</p>
 <blockquote>
 <ul>
@@ -368,7 +367,7 @@
 <li>码元：时间轴上的一个信号编码单位</li>
 <li>波特率：每秒钟发送的码元数（每秒钟电压变化的次数）</li>
 <li>比特率：比特率S=波特率B*log2(N)；N为一个码元中的状态数</li>
-<li>奈氏准则：理想低通信道最高码元传输速率为两倍的波特率</li>
+<li>奈氏准则：理想低通信道最高码元传输速率为两倍的信道带宽</li>
 </ul>
 </blockquote>
 <p>信道的极限信息传输速率：</p>
@@ -643,13 +642,561 @@
 </ul>
 </blockquote>
 <p>10吉比特以太网：使用光纤，无需CSMA/CD</p>
+<h1 id="四、网络互联"><a href="#四、网络互联" class="headerlink" title="四、网络互联"></a>四、网络互联</h1><p>网际层、IP层</p>
+<h2 id="4-1-基本概念"><a href="#4-1-基本概念" class="headerlink" title="4.1 基本概念"></a>4.1 基本概念</h2><p>直接交付和间接交付：</p>
+<blockquote>
+<ul>
+<li>直接交付：将数据交付到局域网，通过数据链路层即可</li>
+<li>间接交付：将数据交付到另外一个网络，需要路由器</li>
+</ul>
+</blockquote>
+<p>网络层提供的服务：</p>
+<blockquote>
+<ul>
+<li>虚电路服务：保证双方通信所需的一切网络资源（主要用于电话服务）</li>
+<li>数据报服务：无需预留资源，按需分配但不可靠（广泛用于网络服务）</li>
+</ul>
+</blockquote>
+<h2 id="4-2-网际协议IP"><a href="#4-2-网际协议IP" class="headerlink" title="4.2 网际协议IP"></a>4.2 网际协议IP</h2><p>IP协议的配套协议：</p>
+<blockquote>
+<ul>
+<li>ARP：地址解析协议；IP地址-&gt;MAC地址</li>
+<li>RARP：逆地址解析协议；MAC地址-&gt;IP地址</li>
+<li>ICMP：因特网控制报文协议</li>
+<li>IGMP：因特网组管理协议</li>
+</ul>
+</blockquote>
+<h3 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h3><p>表示方法：32bit的标识符</p>
+<p>编址方法：</p>
+<blockquote>
+<ul>
+<li>分类的IP地址</li>
+<li>子网的划分</li>
+<li>构成超网</li>
+</ul>
+</blockquote>
+<p>分类的IP地址：分为网络号和主机号：</p>
+<blockquote>
+<ul>
+<li>A类地址(0-127)：第一位为0，取前8位为网络号，后面为主机号</li>
+<li>B类地址(128-191)：开头为10，取前16位为网络号</li>
+<li>C类地址(192-223)：开头为110，取前24位为网络号</li>
+<li>D类地址(224-239)：开头为1110，整个IP地址为多播地址</li>
+<li>E类地址(240-255)：开头为11110，保留地址</li>
+</ul>
+</blockquote>
+<p>IP地址分配原则：</p>
+<blockquote>
+<ul>
+<li>同一个网络中网络号必须一样</li>
+<li>路由器总是具有两个或以上的IP地址，其每一个接口都有一个不同网络号的IP地址</li>
+</ul>
+</blockquote>
+<p>IP地址与硬件地址：IP数据报首部为IP地址，IP数据报作为数据分装在MAC帧中</p>
+<p>数据报的转发：</p>
+<blockquote>
+<ul>
+<li>数据链路层：MAC帧的转发；每经过一个路由器时MAC地址都会改变</li>
+<li>网际层：IP数据报的转发；转发过程中IP源地址和目标地址不会改变</li>
+</ul>
+</blockquote>
+<h3 id="ARP和RARP协议"><a href="#ARP和RARP协议" class="headerlink" title="ARP和RARP协议"></a>ARP和RARP协议</h3><p>ARP协议：在数据链路层中传输数据帧时需要用到MAC地址</p>
+<blockquote>
+<ul>
+<li>主机A广播发送ARP请求分组：使用广播MAC帧，其中包含A主机的IP和MAC地址与主机B的IP地址</li>
+<li>主机B向A发送ARP相应分组：使用单播MAC帧，其中包含B主机的IP地址和MAC地址</li>
+<li>获得到相应的IP地址后，主机将各IP地址和硬件地址的映射存入ARP高速缓存中，定期更新（地址解析是自动进行的）</li>
+<li>安全性问题：ARP攻击，主机C伪装成主机B提前对A进行回应</li>
+<li>性能问题：网络风暴</li>
+</ul>
+</blockquote>
+<p>RARP协议（目前少用）：</p>
+<blockquote>
+<ul>
+<li>主机A广播发送RARP请求，查询自己的IP地址：其中包括自己的MAC地址</li>
+<li>RARP服务器相应RARP请求，返回主机A的MAC地址和IP地址</li>
+<li>RARP思路的应用：BOOTP网络启动协议、DHCP动态主机配置协议</li>
+</ul>
+</blockquote>
+<h3 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h3><p>数据报的格式：首部(20*8)-数据报</p>
+<p><img src="/2020/09/06/computer-network0/IP0.jpg" alt="IP"></p>
+<blockquote>
+<ul>
+<li>首部32位一行，一共6行，最后一行为可选字段和填充</li>
+<li>版本：ipv4/ipv6；首部长度：5/6行；总长度：最长64k</li>
+<li>当IP数据报较大时，无法传输的路由器需要将其进行分片，到目的地进行组装</li>
+<li>标识：产生分片数据报标识</li>
+<li>标志：标志是否允许分片以及是否是是最后分片</li>
+<li>片偏移：该分组在原数据报中点相对位置，偏移以8个字节为偏移单位</li>
+<li>生存时间TTL：计数器，每经过一个路由器减一，值为0时丢弃，防止路由回路；初始值一般为255或128</li>
+<li>协议：指明数据部分采用何种协议（ICMP、IGMP、TCP、UDP…），以便上层进一步处理数据</li>
+<li>首部检验和：检验和保证首部的校验和恒为0（全1）否则出错；数据部分不参与检验和的计算</li>
+<li>源地址：必须为单播地址</li>
+</ul>
+</blockquote>
+<p>IP分组转发：路由表</p>
+<blockquote>
+<ul>
+<li>路由器感觉收到的网络目标地址，查找路由表，找出下一个路由器滨江数据从下一个路由器中转发出去</li>
+</ul>
+</blockquote>
+<h2 id="4-3-子网的划分和超网的构造"><a href="#4-3-子网的划分和超网的构造" class="headerlink" title="4.3 子网的划分和超网的构造"></a>4.3 子网的划分和超网的构造</h2><h3 id="子网划分"><a href="#子网划分" class="headerlink" title="子网划分"></a>子网划分</h3><p>较大的局域网会发生广播风暴，需要对子网进行划分</p>
+<p>从主机号中占用若干个比特作为子网号</p>
+<blockquote>
+<ul>
+<li>三级IP地址：网络号-子网号-主机号</li>
+<li>子网掩码：用于屏蔽主机号，只取网络号和子网号（取并）</li>
+<li>IP地址 AND 子网掩码 = 网络地址</li>
+</ul>
+</blockquote>
+<p>子网的划分会导致实际可用IP地址减少</p>
+<h3 id="路由聚合"><a href="#路由聚合" class="headerlink" title="路由聚合"></a>路由聚合</h3><p>无分类编址CIDR：</p>
+<blockquote>
+<ul>
+<li>IP地址：网络前缀,主机号</li>
+<li>CIDR地址快带一个后缀n，表明前n位为CIDR地址块，后32-n位可自行分配</li>
+</ul>
+</blockquote>
+<p>一个CIDR地址块可以包含多个IP地址，这些地址合起来就构成超网</p>
+<blockquote>
+<ul>
+<li>路由聚合使得路由表中点一个项目可以表示多个原来传统分类地址的路由</li>
+<li>CIDR一般用于主干网络中</li>
+<li>使用最长前缀匹配来查找下一跳地址</li>
+</ul>
+</blockquote>
+<p>一些特殊IP地址：</p>
+<blockquote>
+<ul>
+<li>网络地址 | 00000000：用于标识一个网络，一般不分配给主机</li>
+<li>网络地址 | 11111111：直接广播地址，向网络中所有主机广播</li>
+<li>全0：本主机，不可作为有效目的地址使用</li>
+<li>全1：有限广播地址，不可作为源主机地址</li>
+<li>00…00 | 主机地址：表示本网某台主机，不可作为有效目的地址使用</li>
+<li>01111111 | …：同送地址，表示本主机(127.0.0.1)，其在IP层会被弹回，不进入数据链路层</li>
+</ul>
+</blockquote>
+<h2 id="4-4-因特网控制报文协议ICMP"><a href="#4-4-因特网控制报文协议ICMP" class="headerlink" title="4.4 因特网控制报文协议ICMP"></a>4.4 因特网控制报文协议ICMP</h2><p>ICMP允许主机或路由器报告差错情况提供有关异常情况的报告</p>
+<blockquote>
+<ul>
+<li>差错报告：终点不可达、源站抑制、超时、参数问题、改变路由（重定向）</li>
+<li>询问报文：回送/时间戳/掩码地址请求和回答报文、路由询问和通告报文</li>
+</ul>
+</blockquote>
+<p>ICMP不是高层协议，而是IP层内的协议</p>
+<p>报文格式：</p>
+<blockquote>
+<ul>
+<li>类型(8)-代码(8)-检验和(16)-报文类型(32)-数据部分</li>
+<li>该报文作为IP报文的数据部分进行封装传输</li>
+</ul>
+</blockquote>
+<p>PING回送请求：用于测试两个主机之间的连通性</p>
+<p>Traceroute跟踪路径方法：</p>
+<blockquote>
+<ul>
+<li>假设同一主机到达同一目标主机的IP数据报经过的路径相同</li>
+<li>发送一系列ICMP询问报文，其TTL设置为1、2、3等</li>
+<li>超时后返回的ICMP差错报告中会包含丢弃包的路由器地址，按顺序收集这些路由器地址即可</li>
+</ul>
+</blockquote>
+<h2 id="4-5-因特网的路由选择协议"><a href="#4-5-因特网的路由选择协议" class="headerlink" title="4.5 因特网的路由选择协议"></a>4.5 因特网的路由选择协议</h2><h3 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h3><p>理想路由算法：</p>
+<blockquote>
+<ul>
+<li>正确性和完整性</li>
+<li>计算的简单性</li>
+<li>具有自适应性：能适应通信两和网络拓扑的变化</li>
+<li>具有稳定性</li>
+<li>算法应是公平、最佳的</li>
+</ul>
+</blockquote>
+<p>代价衡量标准：链路长度、数据率、链路容量、保密性、传播时延等</p>
+<p>典型的路由器结构：</p>
+<blockquote>
+<ul>
+<li>检错</li>
+<li>确定路由选择/转发</li>
+<li>封装IP数据报（修改TTL、并重新计算检验和），发送</li>
+</ul>
+</blockquote>
+<h3 id="路由算法的分类"><a href="#路由算法的分类" class="headerlink" title="路由算法的分类"></a>路由算法的分类</h3><p>静态路由选择策略：</p>
+<blockquote>
+<ul>
+<li>非自适应路由选择</li>
+<li>简单、开销小但不能及时适应网络状态的变化</li>
+</ul>
+</blockquote>
+<p>动态路由选择策略：</p>
+<blockquote>
+<ul>
+<li>自适应路由选择</li>
+<li>能较好地适应网络状态变化但实现起来较为困难</li>
+</ul>
+</blockquote>
+<h3 id="分层的路由选择协议"><a href="#分层的路由选择协议" class="headerlink" title="分层的路由选择协议"></a>分层的路由选择协议</h3><p>这是动态路由选择</p>
+<p>自治系统：</p>
+<blockquote>
+<ul>
+<li>一个自治系统是一个互联网，其有权选择系统内部的路由选择协议</li>
+<li>一个自治系统内部的所有网络都属于一个行政单位</li>
+<li>一个自治系统的所有路由器在本自治系统内部必须是连通的</li>
+</ul>
+</blockquote>
+<p>路由选择协议：</p>
+<blockquote>
+<ul>
+<li>内部网关协议：自治系统内部使用等路由选择协议</li>
+<li>外部网关协议：不同自治系统之间的信息传递的协议</li>
+</ul>
+</blockquote>
+<h4 id="路由信息协议RIP"><a href="#路由信息协议RIP" class="headerlink" title="路由信息协议RIP"></a>路由信息协议RIP</h4><p>原理：</p>
+<blockquote>
+<ul>
+<li>距离采用距离矢量算法（DVA）计算最佳路由（Bellman-Ford算法）</li>
+<li>每个路由器仅和相邻路由器定期交换自己所知道的全部信息（路由表）</li>
+</ul>
+</blockquote>
+<p>距离（跳数）的定义：</p>
+<blockquote>
+<ul>
+<li>路由器到直连网络的距离为1</li>
+<li>路由器到非直连网络的距离为路径所经过的路由器加1</li>
+</ul>
+</blockquote>
+<p>RIP报文：首部-路由部分</p>
+<blockquote>
+<ul>
+<li>RIP协议使用运输层的用户数据报UDP进行传送（端口520）</li>
+</ul>
+</blockquote>
+<p>协议特点：</p>
+<blockquote>
+<ul>
+<li>（优点）实现简单，开销小</li>
+<li>（缺点）收敛慢</li>
+<li>适合小规模、稳定的网络拓扑结构</li>
+<li>路由器和网络之间的最大距离为15（16表示不可达）</li>
+<li>没有安全措施</li>
+<li>好消息传播得快，坏消息传播得慢</li>
+</ul>
+</blockquote>
+<h4 id="开放最短路径优先OSPF"><a href="#开放最短路径优先OSPF" class="headerlink" title="开放最短路径优先OSPF"></a>开放最短路径优先OSPF</h4><p>原理：</p>
+<blockquote>
+<ul>
+<li>构造包含发现信息的L-S报文(LSP)向全网广播</li>
+<li>根据收集的LSP建立拓扑数据库LSDB</li>
+<li>启动SPF算法以C为源点计算SPF树</li>
+<li>建立到达所有信宿的路由表（端口和代价）</li>
+</ul>
+</blockquote>
+<p>要点：</p>
+<blockquote>
+<ul>
+<li>更新发送：只有当链路状态发生变化时，路由器才用洪泛法向所有路由器发送信息</li>
+<li>洪泛法：向本自治系统中所有的路由器发送信息</li>
+</ul>
+</blockquote>
+<p>协议特点：适合大型网络、提供了安全鉴别信息</p>
+<blockquote>
+<ul>
+<li>定时刷新（30分钟）</li>
+<li>通信量少</li>
+<li>收敛快</li>
+<li>计算复杂</li>
+</ul>
+</blockquote>
+<p>OSPF分组：</p>
+<blockquote>
+<ul>
+<li>直接将OSPF分组封装在IP数据报中进行发送</li>
+</ul>
+</blockquote>
+<h4 id="外部网关协议BGP"><a href="#外部网关协议BGP" class="headerlink" title="外部网关协议BGP"></a>外部网关协议BGP</h4><p>BGP是不同自治系统的路由器之间交换路由信息的协议</p>
+<blockquote>
+<ul>
+<li>目标：力求寻找一条能够到达目的网络且比较好（无环）的路由，而非最佳路由</li>
+<li>每个自治系统都有多个边界路由器和其他自治系统相连，其称为BGP发言人</li>
+<li>BGP发言人之间可以交换路径向量</li>
+</ul>
+</blockquote>
+<h2 id="4-6-IGMP组管理协议和多播路由选择协议"><a href="#4-6-IGMP组管理协议和多播路由选择协议" class="headerlink" title="4.6 IGMP组管理协议和多播路由选择协议"></a>4.6 IGMP组管理协议和多播路由选择协议</h2><p>IGMP用于标识局域网上某主机是否参加或退出了某个多播组</p>
+<h2 id="4-7-IP多播"><a href="#4-7-IP多播" class="headerlink" title="4.7 IP多播*"></a>4.7 IP多播*</h2><p>应用：视频服务器减少网络资源消耗</p>
+<p>IP多播特点：</p>
+<blockquote>
+<ul>
+<li>使用组地址：D类地址进行多播</li>
+<li>动态的组成员</li>
+<li>使用硬件进行多播</li>
+</ul>
+</blockquote>
+<p>局域网上的硬件多播：在MAC层上进行组播</p>
+<h2 id="4-8-隧道技术"><a href="#4-8-隧道技术" class="headerlink" title="4.8 隧道技术"></a>4.8 隧道技术</h2><p>对于路由中不支持多播的路由器，需要采用隧道技术</p>
+<blockquote>
+<ul>
+<li>将多播IP数据报封装在普通IP数据报中到支持多播的路由器再解封</li>
+</ul>
+</blockquote>
+<h3 id="虚拟专用网VPN"><a href="#虚拟专用网VPN" class="headerlink" title="虚拟专用网VPN"></a>虚拟专用网VPN</h3><p>本地地址：仅在机构内部使用的 IP 地址，可以由本机构自行分配，而不需要向因特网的管理机构申请。</p>
+<p>全球地址：全球惟一的IP地址，必须向因特网的管理机构申请。</p>
+<p>专用地址：</p>
+<blockquote>
+<ul>
+<li>这些地址只能用于一个机构的内部通信，而不能用于和因特网上的主机通信。</li>
+<li>专用地址只能用作本地地址而不能用作全球地址。在因特网中的所有路由器对目的地址是专用地址的数据报一律不进行转发。</li>
+</ul>
+</blockquote>
+<p>VPN使用隧道技术实现：将内部网络的IP数据封装到在外网传输到IP数据报中</p>
+<blockquote>
+<ul>
+<li>需要解决加密、鉴别、安全问题</li>
+<li>安全措施：IPsec、SSL</li>
+</ul>
+</blockquote>
+<h3 id="网络地址转换NAT"><a href="#网络地址转换NAT" class="headerlink" title="网络地址转换NAT"></a>网络地址转换NAT</h3><p>将内联网地址转换成外联网地址</p>
+<blockquote>
+<ul>
+<li>一对一映射：没有减少IP地址</li>
+<li>一对多映射：直接在IP层映射会产生抢占问题</li>
+<li>一对多映射的网络地址翻译NPAT：在TCP层用端口（套接字Socket）解决一对多映射问题；单一一个全局IP地址可以提供65535个连接</li>
+</ul>
+</blockquote>
+<h2 id="4-9-IPv6，解决IP地址耗尽的措施"><a href="#4-9-IPv6，解决IP地址耗尽的措施" class="headerlink" title="4.9 IPv6，解决IP地址耗尽的措施*"></a>4.9 IPv6，解决IP地址耗尽的措施*</h2><p>IPv6数据报：基本首部-扩展首部(1-n)-数据部分</p>
+<blockquote>
+<ul>
+<li>目的：扩展地址，提高路由器转发效率</li>
+<li>首部：丢弃分片、首部检验和功能；校验和由最后一个扩展首部实现</li>
+<li>基本首部：版本-通信两类-流标号-有效在和长度-下一个首部（首部和扩展以链表实现）-下一个首部-跳数限制-源地址(128)-目的地址(128)-其他扩展首部</li>
+<li>扩展首部：逐跳选项、路由选择、分配、鉴别、封装安全有效载荷、目的站选项</li>
+</ul>
+</blockquote>
+<p>分片依据：源站在发送数据前完成路径最大传送单元发现，或者采用保证的最小发送单元</p>
+<p>特点：</p>
+<blockquote>
+<ul>
+<li>IPv6数据报目的地址可以是单播、多播、任播</li>
+<li>IPv6将实现IPv6的主机和路由器均称为结点</li>
+<li>IPv6用冒号十六进制进行表示，依然支持CIDR</li>
+<li>地址分配</li>
+</ul>
+</blockquote>
+<h1 id="五、运输层"><a href="#五、运输层" class="headerlink" title="五、运输层"></a>五、运输层</h1><h2 id="5-1-概述"><a href="#5-1-概述" class="headerlink" title="5.1 概述"></a>5.1 概述</h2><p>运输层（传输层）为相互通信的应用进程提供了逻辑通信方法</p>
+<p>功能：</p>
+<blockquote>
+<ul>
+<li>运输层为应用进程之间提供端到端的逻辑通信（网络层则是为主机之间提供逻辑通信）</li>
+<li>运输层要对收到的报文进行差错检测</li>
+<li>运输协议：面向连接的TCP（可靠），无连接的UDP（不可靠）</li>
+</ul>
+</blockquote>
+<p>传输服务原语：</p>
+<blockquote>
+<ul>
+<li>OSI传输服务原语</li>
+<li>Berkeley套接字</li>
+</ul>
+</blockquote>
+<h2 id="5-2-端口"><a href="#5-2-端口" class="headerlink" title="5.2 端口"></a>5.2 端口</h2><p>端口是运输层服务访问点TSAP</p>
+<blockquote>
+<ul>
+<li>端口用来标志应用层的进程</li>
+<li>这里得端口是软件端口</li>
+<li>端口在京城通信中起到TCP/UDP复用技术</li>
+<li>端口号只具有本地意义，用于标识本计算机应用层中的各进程；网络中不同计算机的相同端口号是没有联系的</li>
+</ul>
+</blockquote>
+<p>端口分类：</p>
+<blockquote>
+<ul>
+<li>熟知端口0-1023</li>
+<li>登记端口1024-49151</li>
+<li>临时端口49152-65535</li>
+</ul>
+</blockquote>
+<p>端口号：</p>
+<blockquote>
+<ul>
+<li>21：FTP</li>
+<li>23：telnet</li>
+<li>25：SMTP</li>
+<li>53：DNS</li>
+<li>69：TFTP</li>
+<li>161：SNMP</li>
+<li>…</li>
+</ul>
+</blockquote>
+<p>插口socket：TCP连接的端点；IP和端口结合形成套接字</p>
+<h2 id="5-3-用户数据报协议UDP"><a href="#5-3-用户数据报协议UDP" class="headerlink" title="5.3 用户数据报协议UDP"></a>5.3 用户数据报协议UDP</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>UDP只在IP服务之上增加端口功能和差错检测功能</p>
+<p>UDP提供不可靠的交付，但具有如下优点</p>
+<blockquote>
+<ul>
+<li>发送数据之前不需要建立连接</li>
+<li>UDP 的主机不需要维持复杂的连接状态表。</li>
+<li>UDP 用户数据报只有8个字节的首部开销。</li>
+<li>网络出现的拥塞不会使源主机的发送速率降低。这对某些实时应用是很重要的。</li>
+</ul>
+</blockquote>
+<h3 id="UDP格式"><a href="#UDP格式" class="headerlink" title="UDP格式"></a>UDP格式</h3><p>UDP用户数据报：首部-数据</p>
+<blockquote>
+<ul>
+<li>首部：伪首部(12)-源端口(2)-目的端口(2)-长度(2)-检验和(2)</li>
+<li>伪首部：源IP地址(4)-目的IP地址(4)-0(1)-17(1)-UDP长度(2)</li>
+</ul>
+</blockquote>
+<h2 id="5-4-传输控制协议TCP"><a href="#5-4-传输控制协议TCP" class="headerlink" title="5.4 传输控制协议TCP"></a>5.4 传输控制协议TCP</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><p>TCP用于在一个不可靠的互联网中为应用程序提供可靠的端到端的字节流服务</p>
+<blockquote>
+<ul>
+<li>提供缓冲、流量控制、差错控制</li>
+<li>全双工、点对点（不支持广播和组播功能）</li>
+</ul>
+</blockquote>
+<h3 id="可靠传输的工作原理"><a href="#可靠传输的工作原理" class="headerlink" title="可靠传输的工作原理"></a>可靠传输的工作原理</h3><p>停止等待协议SW</p>
+<blockquote>
+<ul>
+<li>发送方发送后等待对方确认回复</li>
+<li>若报文产生差错或路由不可达，则对方不会回复</li>
+<li>超时后发送方重传信息</li>
+<li>停等ARQ：确认丢失和确认迟到</li>
+<li>注意，停等是一种流量控制；ARQ是一种差错控制，但两者通常结合使用</li>
+</ul>
+</blockquote>
+<p>停等协议简单，但信道利用率太低</p>
+<blockquote>
+<ul>
+<li>解决方案：流水线传输</li>
+<li>流水线传输：发送方连续发送多个分组，不停止等待；然后连续收到对方ARK（有流量控制问题）</li>
+</ul>
+</blockquote>
+<h3 id="TCP格式"><a href="#TCP格式" class="headerlink" title="TCP格式"></a>TCP格式</h3><p>TCP首部（32bit）</p>
+<blockquote>
+<ul>
+<li>源端口(16)-目的端口(16)</li>
+<li>序号(32)：表示本报文所发送的数据的第一个字节的序号</li>
+<li>确认号(32)：表示回复报文中希望收到的下一个字节的序号，即该序号之前的字节已经成功收到</li>
+<li>数据偏移/首部长度(4)-保留(6)-标志字段(6)-窗口(16)</li>
+<li>检验和(16)-紧急指针(16)</li>
+<li>选项(可变长)-填充</li>
+</ul>
+</blockquote>
+<p>字段意义：</p>
+<blockquote>
+<ul>
+<li>数据偏移相当于首部长度</li>
+<li>窗口用于流量控制，由对方设置，单位为字节</li>
+</ul>
+</blockquote>
+<p>6个标志字段：</p>
+<blockquote>
+<ul>
+<li>URG：紧急数据，配合紧急指针使用</li>
+<li>ACK：确认标志，配合确认号使用</li>
+<li>PSH：推送标志，尽快交付而尽量不缓存，常用于交互应用</li>
+<li>RST：复位标志，中断然后重新建立连接</li>
+<li>SYN：同步标志，请求建立连接</li>
+<li>FIN：终止标志，用于释放连接</li>
+</ul>
+</blockquote>
+<h3 id="TCP的流量控制"><a href="#TCP的流量控制" class="headerlink" title="TCP的流量控制"></a>TCP的流量控制</h3><p>流量控制本质上是抑制发送端发送数据的速率（窗口大小），以便接收端来得及接收</p>
+<h4 id="滑动窗口概念"><a href="#滑动窗口概念" class="headerlink" title="滑动窗口概念"></a>滑动窗口概念</h4><p>TCP传输的是字节流，窗口大小单位为字节</p>
+<blockquote>
+<ul>
+<li>窗口大小由双方的接收能力决定、窗口后沿和前沿只能前移</li>
+<li>窗口中的数据为未发送、收到和已发送但未确认的数据</li>
+<li>窗口前位已发送并确认收到的数据，窗口后为不允许发送/接收数据</li>
+</ul>
+</blockquote>
+<p>滑动窗口：</p>
+<blockquote>
+<ul>
+<li>对于发送端，窗口（通知窗口）内为已发送但未确认与未发送数据（可用窗口）</li>
+<li>对于接收端，窗口内为未按顺序收到与未收到的数据</li>
+<li>接收端成功收到某个字节数据并成功确认后，发送端和接收端的窗口向前移动</li>
+<li>当接收端接受能力提高时，可以请求发送端扩大窗口</li>
+</ul>
+</blockquote>
+<h4 id="超时和重传机制"><a href="#超时和重传机制" class="headerlink" title="超时和重传机制*"></a>超时和重传机制*</h4><p>TCP协议要求接收方收到TCP段后必须给予应答，发送方必须采用超时重传的机制来重发久未应答的段</p>
+<p>问题：不同网络环境下往返时延差异很大</p>
+<blockquote>
+<ul>
+<li>解决方案：加权平均往返时间、超时重传时间</li>
+</ul>
+</blockquote>
+<p>加权平均往返时间RTTs：</p>
+<blockquote>
+<ul>
+<li>RTTs=(1-a)*oldRTT+a*newRTT</li>
+<li>第一次测量得到的RTT值就是加权平均值RTTs，a推荐值为0.125</li>
+</ul>
+</blockquote>
+<p>超时重传时间RTO</p>
+<blockquote>
+<ul>
+<li>RTO=RTTs+4*RTTd；RTTd=(1-b)oldRTTd+b*|RTTs-newRTT|</li>
+<li>RTTd为加权偏差平均值，初始值为第一次测量的RTT值的一半，b推荐值为0.25</li>
+<li>Karn算法及其修正：对于重传的样本，可能会收到多个ACK，不对其RTT进行采样；报文每重传一次，将RTO增大y倍，y典型值为2</li>
+</ul>
+</blockquote>
+<p>持续计时器：解决接收方掉线问题</p>
+<h3 id="TCP的拥塞控制"><a href="#TCP的拥塞控制" class="headerlink" title="TCP的拥塞控制"></a>TCP的拥塞控制</h3><p>在某段时间，若对网络中某资源的需求超过了该资源所能提供的可用部分，网络的性能就要变坏，此时会产生拥塞(congestion)。</p>
+<blockquote>
+<ul>
+<li>拥塞控制需要让网络能够承受现有的负荷，其进行读是一个全局控制</li>
+<li>不同于流量控制，流量控制只控制发送端和接收端之间的点对点通信量</li>
+</ul>
+</blockquote>
+<p>开环控制和闭环控制：</p>
+<blockquote>
+<ul>
+<li>开环控制：事前控制</li>
+<li>闭环控制：反馈控制（常用）</li>
+</ul>
+</blockquote>
+<h4 id="拥塞避免"><a href="#拥塞避免" class="headerlink" title="拥塞避免*"></a>拥塞避免*</h4><p>设置接收端窗口和拥塞窗口，分别用于流量控制和拥塞控制</p>
+<blockquote>
+<ul>
+<li>接收者窗口是接收端用于标志自己接受能力而设置的窗口值</li>
+<li>网络窗口是发送端根据自己估计的网络拥塞程度而设置的窗口值</li>
+<li>实际窗口大小为两者的较小值</li>
+</ul>
+</blockquote>
+<p>发送窗口的设置：慢开始算法</p>
+<blockquote>
+<ul>
+<li>TCP连接初始化时将拥塞窗口设置为1</li>
+<li>成功接收没有丢包后，让拥塞窗口进行指数增长，达到阈值后进行线性增大</li>
+<li>发生超时后，说明网络拥塞了，重新进行慢开始，并调整阈值</li>
+<li>乘法减小：阈值 = 0.5*拥塞发生时的窗口值</li>
+</ul>
+</blockquote>
+<h4 id="快重传和快恢复"><a href="#快重传和快恢复" class="headerlink" title="快重传和快恢复"></a>快重传和快恢复</h4><p>快重传：发送端每收到一个失序报文就立即发送重复确认。</p>
+<blockquote>
+<ul>
+<li>这样做可以让发送方及早知道有报文段没有到达接收方</li>
+<li>发送方只要一连收到三个重复确认就应当立即重传对方尚未收到的报文段</li>
+</ul>
+</blockquote>
+<p>快恢复Reno版本：</p>
+<blockquote>
+<ul>
+<li>发送端连续收到三个重复确认后，重传对方未收到的报文字段，并转入拥塞避免</li>
+<li>拥塞避免时，不直接重新进行慢开始，而是从新的阈值开始直接进行加法增大</li>
+</ul>
+</blockquote>
+<h4 id="随机早期检测RED"><a href="#随机早期检测RED" class="headerlink" title="随机早期检测RED"></a>随机早期检测RED</h4><p>随机早期检测算法是由路由器执行的，用于缓解路由器队列溢出所带来的问题</p>
+<blockquote>
+<ul>
+<li>缓冲区最小门限之内的数据不丢弃</li>
+<li>在最小门限和最大门限之内的数据以概率p随机丢弃</li>
+<li>在最大门限之外的数据全部丢弃（溢出）</li>
+</ul>
+</blockquote>
+<p>该算法可以使得队列长度变化较为平滑</p>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/06/computer-network0/" data-id="ckh50gpxz000xowvn2ejwbz3v"
+      <a data-url="http://georgechen1827.github.io/2020/09/06/computer-network0/" data-id="cki6tkq6x000incvndv8h9077"
         class="article-share-link">share</a>
         
       

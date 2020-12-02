@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">3.4k words</span>
+            <span class="post-count">4.5k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">14 minutes</span>
+            <span class="post-count">19 minutes</span>
         </span>
     </span>
 </div>
@@ -375,15 +375,53 @@
 <p>$M_G$为高斯-塞德尔的迭代矩阵</p>
 </blockquote>
 <p>高斯-塞德尔迭代法有助于提高收敛速度</p>
-<h3 id="其他迭代法"><a href="#其他迭代法" class="headerlink" title="其他迭代法"></a>其他迭代法</h3><p>SOR迭代法<br>投影类算法：现代迭代法</p>
-<h3 id="迭代法对收敛性"><a href="#迭代法对收敛性" class="headerlink" title="迭代法对收敛性"></a>迭代法对收敛性</h3><p>若：<br>$$<br>\lim_{k\to \infty} \max_{1\le i \le n}|x_i^{k}-x_i^<em>|<br>$$<br>则$\lim_{k\to \infty} |x_i^{k}-x_i^</em>|=0$</p>
-<h1 id="四、函数的插值与拟合法"><a href="#四、函数的插值与拟合法" class="headerlink" title="四、函数的插值与拟合法"></a>四、函数的插值与拟合法</h1><h2 id="4-1"><a href="#4-1" class="headerlink" title="4.1"></a>4.1</h2>
+<h3 id="其他迭代法"><a href="#其他迭代法" class="headerlink" title="其他迭代法"></a>其他迭代法</h3><p>SOR迭代法、投影类算法：现代迭代法</p>
+<p>SOR迭代法:<br>$$\begin{align}<br>&amp;\mathbf Ax = b \<br>&amp;\Rightarrow \sum_{j=1}^n a_{ij}x_j = b_i, \ (i=1,2,…n) \<br>&amp;\Rightarrow a_{ii}x_i = a_{ii}x_i+\omega(b_i-\sum_{j=1}^n a_{ij}x_j)\<br>&amp;\Rightarrow x_i=x_i+\frac \omega a_{ii}(b_i-\sum_{j=1}^n a_{ij}x_j)<br>\end{align}$$</p>
+<p>建立类似高斯-赛德尔迭代格式:<br>$$<br>x_i^{(k+1)}=x_i^{(k)} + \frac \omega a_{ii}(b_i  - \sum_{j=1}^{i-1}a_{ij}x_j^{(k+1)}-\sum_{j=i}^n a_{ij}x_j^{(k)})<br>$$<br>即<br>$$<br>x_i^{(k+1)}=(1-\omega)x_i^{(k)} + \frac \omega a_{ii}(b_i  - \sum_{j=1}^{i-1}a_{ij}x_j^{(k+1)}-\sum_{j=i+1}^n a_{ij}x_j^{(k)})<br>$$</p>
+<h3 id="迭代法的收敛性"><a href="#迭代法的收敛性" class="headerlink" title="迭代法的收敛性"></a>迭代法的收敛性</h3><p>若：<br>$$<br>\lim_{k\to \infty} \max_{1\le i \le n}|x_i^{k}-x_i^<em>|<br>$$<br>则$\lim_{k\to \infty} |x_i^{k}-x_i^</em>|=0$</p>
+<p>对于迭代格式，其迭代矩阵$\mathbf M$满足如下条件，则迭代格式对任何初始向量均收敛<br>$$<br>\rho(\mathbf M) = \max_{1\le i \le n}|\lambda_i| &lt;1<br>$$</p>
+<h1 id="四、函数的插值与拟合法"><a href="#四、函数的插值与拟合法" class="headerlink" title="四、函数的插值与拟合法"></a>四、函数的插值与拟合法</h1><h2 id="4-1-概述"><a href="#4-1-概述" class="headerlink" title="4.1 概述"></a>4.1 概述</h2><p>若函数$f(x)$存在点列$&lt;x_0,y_0&gt;,&lt;x_1,y_1&gt;…&lt;x_n,y_n&gt;$，若函数$P(n)$有<br>$$<br>P(x_i)=y_i<br>$$<br>则$P(x)$为原函数$f(x)$的插值函数，上述条件为插值条件</p>
+<blockquote>
+<ul>
+<li>$P(x)$为多项式时，该插值法为多项式插值</li>
+<li>还有三角插值、分段插值等</li>
+</ul>
+</blockquote>
+<p>多项式插值的插值函数为：<br>$$<br>P_n(x) = \sum_{k=0}^n a_kx^k<br>$$</p>
+<p>此时，在$n+1$个互异点$x_0…x_n$上满足插值条件的次数不超过$n$的插值多项式$P_n(x)$存在且唯一</p>
+<h2 id="4-2-插值多项式的构造"><a href="#4-2-插值多项式的构造" class="headerlink" title="4.2 插值多项式的构造"></a>4.2 插值多项式的构造</h2><h3 id="拉格朗日插值法"><a href="#拉格朗日插值法" class="headerlink" title="拉格朗日插值法"></a>拉格朗日插值法</h3><p>Largrange插值多项式基函数：<br>$$<br>l_i(x) = \prod_{j=0,j\neq i}^n \frac {x-x_j}{x_i-x_j} \ (i = 0,1,…n)<br>$$</p>
+<p>则$n$次Largrange插值多项式：<br>$$<br>L_i(x) = \sum_{i=0}^ny_il_i(x)<br>$$</p>
+<p>此时，$L_i(x)$是满足条件的插值多项式</p>
+<blockquote>
+<ul>
+<li>$L_1(x)$：线性插值</li>
+<li>$L_2(x)$：抛物插值</li>
+</ul>
+</blockquote>
+<p>插值函数和原函数的关系：</p>
+<p>$f^{(n)}(x)$在$[a,b]$上连续，$f^{(n+1)}(x)$在$(a,b)$上存在，$x_i \in [a,b]$，$L_n(x)$为满足插值条件的Largrange插值多项式，则存在<br>$$<br>\xi = \xi(x) \in [a,b]<br>$$<br>使得插值余项<br>$$<br>f(x)-L_n(x)=R_n(x) = \frac {f^{(n+1)}(\xi)}{(n+1)!}\omega_{n+1}(x), x\in[a,b] \<br>\omega_{n+1}(x)=\prod_{j=0}^n(x-x_j)<br>$$</p>
+<p>做误差估计时，取$M_{(n+1)} = \max_{a\le x\le b}|f^{(n+1)}(x)|$，此时误差<br>$$<br>|R_n(x)| \le \frac{M_{n+1}}{(n+1)!}|\omega_{n+1}(x)|<br>$$</p>
+<h3 id="牛顿均差值"><a href="#牛顿均差值" class="headerlink" title="牛顿均差值"></a>牛顿均差值</h3><p>对于$f(x)$在$[a,b]$上的互异点$x_0,…x_{k-1}$，有：<br>$$<br>g_k(x)=\frac{g_{k-1}(x)-g_{k-1}(x_{k-1})}{x-x_{k-1}}<br>$$<br>其中：<br>$$<br>g_k(x) = f[x_0,…,x_{k-1},x]\<br>g_1(x) = \frac{f(x)-f(x_0)}{x-x_0},\ x \neq x_0<br>$$<br>此时$g_k(x)$为$f(x)$在$[a,b]$上关于点$x_0,…x_{k-1}$的$k$阶均差函数</p>
+<p>$f[x_0,…,x_k-1,x_k]$为$f(x)$在均差节点$x_0,…,x_k$上的$k$阶均差（差商），且</p>
+<p>$$<br>\begin{align}<br>f[x_0,x_1,…,x_k]&amp;=\frac{f[x_1,…x_k]-f[x_0,…x_{k-1}]}{x_k-x_0} \ (构造均差表)\<br>&amp;=\sum_{i=0}^k\frac{f(x_i)}{\prod_{j=i\ j\neq 0}^k(x_i-x_j)} \<br>&amp;=\frac{f^{(k)}(\eta)}{k!}, \ \eta \in (x_0,x_k)<br>\end{align}<br>$$</p>
+<p>则插值多项式构造如下：<br>$$<br>\begin{align}<br>N_n(x) &amp;= f(x_0) + \sum_{k=1}^nf[x_0,x_1,…,x_k]\omega_k(x) \<br>&amp;= N_{n-1} + f[x_0,x_1,…x_n]\omega_n(x) \<br>\omega_{k}(x)&amp;=\prod_{j=0}^{k-1}(x-x_j)<br>\end{align}<br>$$</p>
+<p>可知，余项$R_n(x) = f[x_0,x_1,…,x_n,x]\omega_{n+1}(x)$</p>
+<h2 id="4-3-分段低次插值"><a href="#4-3-分段低次插值" class="headerlink" title="4.3 分段低次插值"></a>4.3 分段低次插值</h2><p>龙格现象：有时高次多项式插值的误差、稳定性较差</p>
+<h2 id="4-4-最小二乘拟合法"><a href="#4-4-最小二乘拟合法" class="headerlink" title="4.4 最小二乘拟合法"></a>4.4 最小二乘拟合法</h2><h3 id="概述-3"><a href="#概述-3" class="headerlink" title="概述"></a>概述</h3><p>插值使用$n-1$阶的多项式来近似$n$个数据点；拟合则使用更少的$m(m&lt;n-1)$阶多项式来近似原函数</p>
+<p>目标：构造$m$次多项式$P_m(x)=\sum_{k=0}^m\alpha_kx^k$使得在拟合点$(x_1,y_1),…(x_n,y_n)$上，方差和<br>$$<br>\sum_{i=1}^nR_i^2 =\sum_{i=1}^n(P_m(x_i)-y_i)^2<br>$$<br>最小，即<br>$$<br>F(\alpha_0,…,\alpha_m)=\sum_{i=1}^n(\sum_{k=0}^m\alpha_ix_i^k-y_i)^2<br>$$<br>最小，其条件为<br>$$<br>\frac{\partial F}{\partial\alpha_0}=\frac{\partial F}{\partial\alpha_1}=…=\frac{\partial F}{\partial\alpha_n}=0<br>$$<br>整理可得$m+1$阶方程组<br>$$<br>\begin{bmatrix}<br>S_0&amp;S_1&amp;\cdots&amp;S_m\<br>S_1&amp;S_2&amp;\cdots&amp;S_{m+1}\<br>\vdots&amp;\vdots&amp;\ddots&amp;\vdots\<br>S_m&amp;S_{m+1}&amp;\cdots&amp;S_{2m}<br>\end{bmatrix}<br>\begin{bmatrix}<br>\alpha_0\\alpha_1\\vdots\\alpha_m<br>\end{bmatrix}<br>=<br>\begin{bmatrix}<br>T_0\T_1\\vdots\T_m<br>\end{bmatrix}<br>$$<br>其中：<br>$$<br>\begin{align}<br>S_k&amp;=\sum_{i=1}^nx_i^k\<br>T_k&amp;=\sum_{i=1}^nx_i^ky_i<br>\end{align}<br>$$</p>
+<blockquote>
+<ul>
+<li>$m&lt;n$时，方程组存在唯一解使得目标函数最小化</li>
+<li>$m=n-1$时，目标函数最小值为0，此时拟合函数为插值多项式</li>
+</ul>
+</blockquote>
+
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/09/numeric-analysis0/" data-id="ckh50gpyj0027owvn2ioq8yiy"
+      <a data-url="http://georgechen1827.github.io/2020/09/09/numeric-analysis0/" data-id="cki6tkq7p001yncvn7rjccfj6"
         class="article-share-link">share</a>
         
       

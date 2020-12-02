@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">1.8k words</span>
+            <span class="post-count">2.3k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">6 minutes</span>
+            <span class="post-count">8 minutes</span>
         </span>
     </span>
 </div>
@@ -353,14 +353,49 @@
 </ul>
 </blockquote>
 <p>Cohen-Sutherland算法</p>
-<h1 id="四、图形几何变化"><a href="#四、图形几何变化" class="headerlink" title="四、图形几何变化"></a>四、图形几何变化</h1><p>平移、旋转、缩放、反射、错切、复合变换</p>
+<h1 id="四、图形几何变化"><a href="#四、图形几何变化" class="headerlink" title="四、图形几何变化"></a>四、图形几何变化</h1><p>类型：平移、旋转、缩放、反射、错切、复合变换</p>
+<h2 id="二维几何变换"><a href="#二维几何变换" class="headerlink" title="二维几何变换"></a>二维几何变换</h2><h3 id="变换通式"><a href="#变换通式" class="headerlink" title="变换通式"></a>变换通式</h3><p>$$<br>\mathbf{P[2,1]’=M[2,2]_1\cdot P[2,1]+M[2,2]_2}<br>$$<br>其中，$\mathbf M_1$用于旋转缩放，$\mathbf M_2$用于平移</p>
+<p>若将二维向量表示成三维向量，变换矩阵$\mathbf {M_1,M_2}$可以合二为一</p>
+<h3 id="齐次坐标表示法"><a href="#齐次坐标表示法" class="headerlink" title="齐次坐标表示法"></a>齐次坐标表示法</h3><p>齐次坐标表示法：用$n+1$维向量表示$n$维向量<br>$$<br>[a_1,a_2,…a_n] \to [ha_1,ha_2,…ha_n,h]<br>$$</p>
+<blockquote>
+<ul>
+<li>$h$为哑坐标，$h=1$时其为规格化坐标</li>
+<li>同一点的齐次坐标不唯一</li>
+</ul>
+</blockquote>
+<h3 id="平移变换"><a href="#平移变换" class="headerlink" title="平移变换"></a>平移变换</h3><p>$$<br>\begin{bmatrix}<br>x’ \ y’ \ 1<br>\end{bmatrix}<br>=<br>\begin{bmatrix}<br>1&amp;0&amp;t_x\<br>0&amp;1&amp;t_y\<br>0&amp;0&amp;1<br>\end{bmatrix}<br>\cdot<br>\begin{bmatrix}<br>x\ y\ 1<br>\end{bmatrix}<br>$$</p>
+<h3 id="旋转变换"><a href="#旋转变换" class="headerlink" title="旋转变换"></a>旋转变换</h3><p>$$<br>\begin{bmatrix}<br>x’ \ y’ \ 1<br>\end{bmatrix}<br>=<br>\begin{bmatrix}<br>cos\theta&amp;-sin\theta&amp;0\<br>sin\theta&amp;cos\theta&amp;0\<br>0&amp;0&amp;1<br>\end{bmatrix}<br>\cdot<br>\begin{bmatrix}<br>x\ y\ 1<br>\end{bmatrix}<br>$$</p>
+<h3 id="缩放变换"><a href="#缩放变换" class="headerlink" title="缩放变换"></a>缩放变换</h3><p>$$<br>\begin{bmatrix}<br>x’ \ y’ \ 1<br>\end{bmatrix}<br>=<br>\begin{bmatrix}<br>s_x&amp;0&amp;0\<br>0&amp;s_y&amp;0\<br>0&amp;0&amp;1<br>\end{bmatrix}<br>\cdot<br>\begin{bmatrix}<br>x\ y\ 1<br>\end{bmatrix}<br>$$</p>
+<h3 id="复合变换"><a href="#复合变换" class="headerlink" title="复合变换"></a>复合变换</h3><p>$$<br>\mathbf {P’=M_2\cdot M_1\cdot P}<br>$$<br>先进行$\mathbf{M_1}$后进行$\mathbf{M_2}$</p>
+<h2 id="三维几何变换"><a href="#三维几何变换" class="headerlink" title="三维几何变换"></a>三维几何变换</h2><p>三维几何变换是二维几何变换的扩展</p>
+<h2 id="图形几何变换的模式"><a href="#图形几何变换的模式" class="headerlink" title="图形几何变换的模式"></a>图形几何变换的模式</h2><h3 id="固定坐标系模式（图形模式）"><a href="#固定坐标系模式（图形模式）" class="headerlink" title="固定坐标系模式（图形模式）"></a>固定坐标系模式（图形模式）</h3><p>先调用的变换先执行，后调用的变换后执行</p>
+<p>实际上，该变换变换的是图形</p>
+<h3 id="活动坐标系模式（空间模式）"><a href="#活动坐标系模式（空间模式）" class="headerlink" title="活动坐标系模式（空间模式）"></a>活动坐标系模式（空间模式）</h3><p>openGL采用空间模式</p>
+<p>先调用的变换后执行，后调用的变换先执行</p>
+<p>实际上，该变换变换的是坐标系，这在三维观察中十分有用</p>
+<h1 id="五、三维观察"><a href="#五、三维观察" class="headerlink" title="五、三维观察"></a>五、三维观察</h1><h2 id="坐标系的变换"><a href="#坐标系的变换" class="headerlink" title="坐标系的变换"></a>坐标系的变换</h2><p>将世界坐标系中的物体转换到观察坐标系中</p>
+<blockquote>
+<ul>
+<li>世界坐标系为球面坐标系，右手系</li>
+<li>观察坐标系为左手系，z轴为视线方向（朝向原点），x轴为视线正右方，y轴为视线正上方</li>
+</ul>
+</blockquote>
+<p>从世界坐标系到观察坐标系的过程：</p>
+<blockquote>
+<ul>
+<li>平移原点</li>
+<li>旋转（两次）</li>
+<li>反射（变换左右手系）</li>
+</ul>
+</blockquote>
+<h2 id="投影变换"><a href="#投影变换" class="headerlink" title="投影变换"></a>投影变换</h2><h3 id="平行投影"><a href="#平行投影" class="headerlink" title="平行投影"></a>平行投影</h3><p>三视图</p>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/10/computer-graphics0/" data-id="ckh50gpxv000rowvne4a662tf"
+      <a data-url="http://georgechen1827.github.io/2020/09/10/computer-graphics0/" data-id="cki6tkq6w000fncvn3siw5skg"
         class="article-share-link">share</a>
         
       
@@ -374,11 +409,11 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/11/05/accountancy/" class="article-nav-link">
+      <a href="/2020/11/05/microeconomics/" class="article-nav-link">
         <strong class="article-nav-caption">Prev Post</strong>
         <div class="article-nav-title">
           
-            会计学
+            微观经济学
           
         </div>
       </a>
