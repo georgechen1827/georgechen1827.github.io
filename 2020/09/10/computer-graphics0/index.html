@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">2.3k words</span>
+            <span class="post-count">2.6k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">8 minutes</span>
+            <span class="post-count">9 minutes</span>
         </span>
     </span>
 </div>
@@ -388,14 +388,34 @@
 <li>反射（变换左右手系）</li>
 </ul>
 </blockquote>
-<h2 id="投影变换"><a href="#投影变换" class="headerlink" title="投影变换"></a>投影变换</h2><h3 id="平行投影"><a href="#平行投影" class="headerlink" title="平行投影"></a>平行投影</h3><p>三视图</p>
+<h2 id="投影变换"><a href="#投影变换" class="headerlink" title="投影变换"></a>投影变换</h2><h3 id="平行投影"><a href="#平行投影" class="headerlink" title="平行投影"></a>平行投影</h3><p>平行投影实际上是投影中心在无穷远处的透视投影</p>
+<p>三视图</p>
+<h3 id="透视投影"><a href="#透视投影" class="headerlink" title="透视投影"></a>透视投影</h3><p>投影平面、视距、视点</p>
+<p>观察坐标系为左手坐标系，投影屏幕坐标系也是左手坐标系，而且它们z轴同向（重合）</p>
+<p>视点（观察坐标系原点）和视心（投影屏幕坐标系原点）距离为视距d</p>
+<p>投影过程：模型坐标-世界坐标系-观察坐标系-投影屏幕坐标系（包含伪深度）-屏幕坐标</p>
+<p>一个观察坐标系的点到投影屏幕坐标系的点的变换过程如下：</p>
+<blockquote>
+<ul>
+<li>透视变换（相似三角形）</li>
+<li>正投影</li>
+</ul>
+</blockquote>
+<p>一些结论：</p>
+<blockquote>
+<ul>
+<li>与屏幕平行的直线，其透视仍与屏幕保持平行</li>
+<li>与投影屏幕相交的直线，其透视为一条直线，无穷远处为灭点</li>
+<li>与视点相交的直线，其透视为平行于z轴的一条直线，透视投影为一个点</li>
+</ul>
+</blockquote>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/10/computer-graphics0/" data-id="cki7bs5l8000opwvn18ifecdr"
+      <a data-url="http://georgechen1827.github.io/2020/09/10/computer-graphics0/" data-id="ckis8tgub000ozsvnd08p7dpc"
         class="article-share-link">share</a>
         
       
@@ -419,9 +439,9 @@
       </a>
     
     
-      <a href="/2020/09/10/ai0/" class="article-nav-link">
+      <a href="/2020/09/09/numeric-analysis0/" class="article-nav-link">
         <strong class="article-nav-caption">Next Post</strong>
-        <div class="article-nav-title">人工智能与知识工程</div>
+        <div class="article-nav-title">数值分析</div>
       </a>
     
   </nav>

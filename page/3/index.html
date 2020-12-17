@@ -42,79 +42,6 @@
     
     
     
-    <article id="post-python-multithreading" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/04/python-multithreading/"
-    >python多线程、多进程</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/04/python-multithreading/" class="article-date">
-  <time datetime="2020-03-04T03:36:58.000Z" itemprop="datePublished">2020-03-04</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/notes/">notes</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>浅尝辄止,能用就行</p>
-<hr>
-<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line">lock = threading.Lock() <span class="comment"># 设置一个全局线程锁,某个线程在获得此锁之后其他线程不能再获得</span></span><br><span class="line"></span><br><span class="line">sem = threading.Semaphore(<span class="number">12</span>) <span class="comment"># 设置最大线程数量</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> sem:</span><br><span class="line">    t = threading.Thread(target=function,args=(a,b,c))  <span class="comment"># 用function(a,b,c)创建一个线程</span></span><br><span class="line">    t.setDaemon(<span class="literal">True</span>)   <span class="comment">#   设置t线程为主线程的守护线程,即主线程结束后会自动杀死子线程(默认为false)</span></span><br><span class="line">    t.start()   <span class="comment"># 启动线程</span></span><br><span class="line">    t.join(<span class="number">60</span>)  <span class="comment"># 线程同步，主线程任务结束之后，进入阻塞状态，一直等待其他的子线程执行结束之后，主线程再终止;如果超时主线程也会终止(默认为无)</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">#   若在function中执行lock.acquire(),则线程阻塞直到其他线程释放此锁</span></span><br><span class="line"><span class="comment">#   function中执行完lock.acquire()后必须进行lock.release(),否则其他线程将永远无法获得此锁</span></span><br></pre></td></tr></table></figure>
-      
-      <a class="article-more-link" href="/2020/03/04/python-multithreading/">more...</a>
-      
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/03/04/python-multithreading/" data-id="cki7bs5mu002lpwvn2dxqgzou"
-        class="article-share-link">share</a>
-        
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
     <article id="post-python-spider" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -170,7 +97,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/03/04/python-spider/" data-id="cki7bs5mz002tpwvn72pdeeem"
+      <a data-url="http://georgechen1827.github.io/2020/03/04/python-spider/" data-id="ckis8tgvk002izsvn8roafytz"
         class="article-share-link">share</a>
         
       
@@ -250,7 +177,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/03/03/mao-theory/" data-id="cki7bs5ma001wpwvn57v8dicp"
+      <a data-url="http://georgechen1827.github.io/2020/03/03/mao-theory/" data-id="ckis8tguo001kzsvn23tsdkbu"
         class="article-share-link">share</a>
         
       
@@ -320,7 +247,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/26/featured-chinese-culture/" data-id="cki7bs5lr0018pwvn3t2keqax"
+      <a data-url="http://georgechen1827.github.io/2020/02/26/featured-chinese-culture/" data-id="ckis8tgui0013zsvnene0cicr"
         class="article-share-link">share</a>
         
       
@@ -390,7 +317,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/25/chinese-garden/" data-id="cki7bs5ky000gpwvnft2z0fj0"
+      <a data-url="http://georgechen1827.github.io/2020/02/25/chinese-garden/" data-id="ckis8tgtz0008zsvn32oj0a6q"
         class="article-share-link">share</a>
         
       
@@ -464,7 +391,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/Lucence0/" data-id="cki7bs5kc0002pwvnal3u1dze"
+      <a data-url="http://georgechen1827.github.io/2020/02/24/Lucence0/" data-id="ckis8tgty0007zsvnc3w08lc5"
         class="article-share-link">share</a>
         
       
@@ -567,7 +494,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/computer-composition0/" data-id="cki7bs5nv005cpwvn8yyhfcx1"
+      <a data-url="http://georgechen1827.github.io/2020/02/24/computer-composition0/" data-id="ckis8tgwj0057zsvn60pb64gx"
         class="article-share-link">share</a>
         
       
@@ -663,7 +590,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/java0/" data-id="cki7bs5m2001jpwvnbfxsgsby"
+      <a data-url="http://georgechen1827.github.io/2020/02/24/java0/" data-id="ckis8tgut001pzsvnaw4n6z6y"
         class="article-share-link">share</a>
         
       
@@ -732,7 +659,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/12/python-plot1/" data-id="cki7bs5mw002ppwvngwird97h"
+      <a data-url="http://georgechen1827.github.io/2020/02/12/python-plot1/" data-id="ckis8tgv7002azsvnd5021h4v"
         class="article-share-link">share</a>
         
       
@@ -813,11 +740,83 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/09/matlab/" data-id="cki7bs5mc001zpwvn1toq7tvh"
+      <a data-url="http://georgechen1827.github.io/2020/02/09/matlab/" data-id="ckis8tguv001wzsvndbt13qbx"
         class="article-share-link">share</a>
         
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/matlab/" rel="tag">matlab</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-making-rolls" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/02/08/making-rolls/"
+    >From Flour to Rolls</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/02/08/making-rolls/" class="article-date">
+  <time datetime="2020-02-08T15:25:34.000Z" itemprop="datePublished">2020-02-08</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/life/">life</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p><em>这是一次从面粉到面花卷过程</em>  </p>
+<hr>
+      
+      <a class="article-more-link" href="/2020/02/08/making-rolls/">more...</a>
+      
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/02/08/making-rolls/" data-id="ckis8tgum001ezsvnc5xnhry9"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/life/" rel="tag">life</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/playing/" rel="tag">playing</a></li></ul>
 
     </footer>
 

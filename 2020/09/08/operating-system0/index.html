@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">15.5k words</span>
+            <span class="post-count">19.4k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">53 minutes</span>
+            <span class="post-count">67 minutes</span>
         </span>
     </span>
 </div>
@@ -2042,13 +2042,510 @@
 <p>其他因素（编译器、载入器、程序设计语言）对调页都有影响</p>
 <h3 id="IO互锁"><a href="#IO互锁" class="headerlink" title="IO互锁"></a>IO互锁</h3><p>IO互锁允许某些页在内存中被锁住</p>
 <p>IO时，正在进行IO的页面不允许被置换算法置换出内存</p>
+<h2 id="Linux和Windows存储管理技术"><a href="#Linux和Windows存储管理技术" class="headerlink" title="Linux和Windows存储管理技术*"></a>Linux和Windows存储管理技术*</h2><h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>Linux内存映像：</p>
+<blockquote>
+<ul>
+<li>内存低端：kernel Memory</li>
+<li>内存高端：user Memory</li>
+</ul>
+</blockquote>
+<p>Linux分页：</p>
+<blockquote>
+<ul>
+<li>四级分页</li>
+<li>页全局目录、页上级目录、页中间目录、页表</li>
+</ul>
+</blockquote>
+<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>Windows采用工作集模型</p>
+<h1 id="十、文件系统"><a href="#十、文件系统" class="headerlink" title="十、文件系统"></a>十、文件系统</h1><p>操作系统功能：信息处理、信息存储、输入输出</p>
+<h2 id="文件系统接口"><a href="#文件系统接口" class="headerlink" title="文件系统接口"></a>文件系统接口</h2><p>文件系统接口是面相用户的</p>
+<p>文件：</p>
+<blockquote>
+<ul>
+<li>文件是计算机中信息存储的基本形式</li>
+<li>文件是相关信息的结合</li>
+<li>文件具有文件名</li>
+</ul>
+</blockquote>
+<p>文件名：文件在计算机中存储位置是由数字表示的</p>
+<blockquote>
+<ul>
+<li>按名存取：用户可以通过文件名来访问文件存储位置</li>
+<li>文件名由一串ASCII码或（和）汉字构成</li>
+<li>Linux文件名大小写敏感，Windows文件名大小写不敏感</li>
+</ul>
+</blockquote>
+<p>文件结构：文件结构由操作系统和程序决定</p>
+<blockquote>
+<ul>
+<li>无结构：文字流、字节流等</li>
+<li>简单记录结构：线性、固定长度、可变长度等</li>
+<li>复杂结构：格式化文档、多媒体文件等</li>
+</ul>
+</blockquote>
+<p>文件类型：文件类型一般由扩展名决定</p>
+<blockquote>
+<ul>
+<li>文件类型也称文件后缀名</li>
+<li>是标识文件类型的一种机制</li>
+<li>其扩展名跟在主文件名后面，由一个分隔符“.”分隔</li>
+</ul>
+</blockquote>
+<p>文件属性：文件名、文件位置、文件类型、文件大小、保护、时间等…</p>
+<p>文件操作：创建文件、写文件、读文件、文件内重定位、删除文件、截断文件、打开文件、关闭文件</p>
+<p>打开文件操作：其需要一个数据结构，用于方便文件共享、提高文件存取效率</p>
+<blockquote>
+<ul>
+<li>打开文件表：跟踪打开文件</li>
+<li>文件指针:指向最后一次读写的位置，每个进程1个</li>
+<li>打开文件计数器：打开文件次数（调用open次数）</li>
+<li>文件存储位置：文件存放在存储设备上的位置信息</li>
+<li>访问权限：每个进程的访问权限</li>
+</ul>
+</blockquote>
+<h2 id="逻辑文件及其访问方法"><a href="#逻辑文件及其访问方法" class="headerlink" title="逻辑文件及其访问方法"></a>逻辑文件及其访问方法</h2><h3 id="文件访问"><a href="#文件访问" class="headerlink" title="文件访问"></a>文件访问</h3><blockquote>
+<ul>
+<li>逻辑文件：呈现在用户面前的组织结构，其决定了文件访问方法</li>
+<li>目录：文件组织方式，是物理文件和逻辑文件之间的桥梁</li>
+<li>物理文件：面相系统的问价存储方式</li>
+</ul>
+</blockquote>
+<h3 id="文件访问方式"><a href="#文件访问方式" class="headerlink" title="文件访问方式"></a>文件访问方式</h3><p>顺序（遍历）是访问：磁带</p>
+<blockquote>
+<ul>
+<li>顺序文件：依次访问数据，不能直接跳转到文件的指定位置</li>
+<li>顺序文件特点：节省存储空间但访问效率差</li>
+</ul>
+</blockquote>
+<p>直接（随机）访问：磁盘</p>
+<blockquote>
+<ul>
+<li>直接文件：直接通过计算得到需要读写记录的位置，直接跳转进行文件读写</li>
+<li>直接文件特点：浪费存储空间，访问效率好</li>
+</ul>
+</blockquote>
+<p>索引文件：为顺序文件建立索引表</p>
+<h2 id="文件目录"><a href="#文件目录" class="headerlink" title="文件目录"></a>文件目录</h2><h3 id="文件控制块FCB"><a href="#文件控制块FCB" class="headerlink" title="文件控制块FCB"></a>文件控制块FCB</h3><p>FCB存放操控文件所需的各类文件属性信息：</p>
+<blockquote>
+<ul>
+<li>文件名、长度、创建时间、存放位置、访问控制权限等</li>
+<li>FCB类似一个索引项</li>
+</ul>
+</blockquote>
+<h3 id="目录项和目录"><a href="#目录项和目录" class="headerlink" title="目录项和目录"></a>目录项和目录</h3><p>目录项：</p>
+<blockquote>
+<ul>
+<li>存放一个文件等各类属性</li>
+<li>在一些系统中，目录项相当于FCB</li>
+<li>每个目录项都是等长的</li>
+</ul>
+</blockquote>
+<p>目录：</p>
+<blockquote>
+<ul>
+<li>其包含着所有文件信息的节点集合</li>
+<li>目录是根据文件名检索文件的桥梁</li>
+<li>目录是目录项的有序集合</li>
+</ul>
+</blockquote>
+<p>目录文件：</p>
+<blockquote>
+<ul>
+<li>目录文件是目录的组织形式</li>
+<li>实际上，目录也是作为一个文件存在于文件系统</li>
+</ul>
+</blockquote>
+<h3 id="目录和文件"><a href="#目录和文件" class="headerlink" title="目录和文件"></a>目录和文件</h3><p>每个目录项中存放了文件在存储设备上的地址</p>
+<p>目录和文件都驻留在存储设备中</p>
+<p>目录相关操作：</p>
+<blockquote>
+<ul>
+<li>搜索文件</li>
+<li>创建文件（其和文件本身没有关系，不会为文件分配空间）</li>
+<li>删除文件（其和文件本身没有关系，不会修改文件的FCB和数据，仅回收其在目录中的位置）</li>
+<li>截断文件（其和文件数据没有关系，仅修改其在目录中的FCB）</li>
+<li>重命名文件、跟踪文件系统、列出目录、打开/创建/删除/遍历/读/切换目录…</li>
+</ul>
+</blockquote>
+<h3 id="文件检索过程"><a href="#文件检索过程" class="headerlink" title="文件检索过程"></a>文件检索过程</h3><p>文件检索过程为一个遍历目录项的过程：</p>
+<blockquote>
+<ul>
+<li>打开目录文件</li>
+<li>从磁盘读入该目录文件的1个(物理)块，该块包含若干个目录项</li>
+<li>根据文件名遍历内存中的该块，如找到则结束</li>
+<li>判断该目录文件是否还有物理块没有读入，如果是转2；否则，结束。表示该目录中没有此文件名的文件</li>
+</ul>
+</blockquote>
+<h3 id="目录性能"><a href="#目录性能" class="headerlink" title="目录性能"></a>目录性能</h3><p>物理块：内存和存储设备数据交换到基本单位</p>
+<p>目录性能目标：读入尽可能少的物理块</p>
+<blockquote>
+<ul>
+<li>降低目录项大小ds</li>
+<li>降低目录中的文件数n</li>
+</ul>
+</blockquote>
+<p>i Node目录项（Linux使用）：</p>
+<blockquote>
+<ul>
+<li>使用仅存储文件名的i Node指向FCB，FCB再指向文件数据</li>
+<li>目录文件将变小</li>
+</ul>
+</blockquote>
+<h3 id="文件保护"><a href="#文件保护" class="headerlink" title="文件保护"></a>文件保护</h3><p>文件等所有者/创建者应有的控制权：</p>
+<blockquote>
+<ul>
+<li>能做什么</li>
+<li>由谁来做</li>
+</ul>
+</blockquote>
+<p>文件访问控制：读R、写W、执行X</p>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><p>目录结构的设计目标：</p>
+<blockquote>
+<ul>
+<li>效率：快速定位文件位置，提高文件访问效率</li>
+<li>命名：方便用户使用，并对同名不同文件和不同名的相同文件（共享）提供解决方案</li>
+<li>分组：提供文件分组（子目录），兼顾效率和方便性</li>
+</ul>
+</blockquote>
+<h3 id="单层目录"><a href="#单层目录" class="headerlink" title="单层目录"></a>单层目录</h3><p>所有文件在同一个目录中，只有一级根目录</p>
+<blockquote>
+<ul>
+<li>根目录/：最顶层的目录</li>
+<li>应用在早期文件数量较少的操作系统中</li>
+<li>优点：结构简单</li>
+</ul>
+</blockquote>
+<p>缺点：</p>
+<blockquote>
+<ul>
+<li>检索效率查：目录下文件过多</li>
+<li>不能有同名文件</li>
+<li>不能分组</li>
+</ul>
+</blockquote>
+<h3 id="双层目录"><a href="#双层目录" class="headerlink" title="双层目录"></a>双层目录</h3><p>每个用户有自己的目录结构</p>
+<blockquote>
+<ul>
+<li>缺点：1）无法分组；2）同一用户不能有相同文件名的文件</li>
+<li>优点：1）不同用户可有相同文件名的文件；2）比单层目录提高检索效率（文件分布在多个用户目录中）</li>
+</ul>
+</blockquote>
+<p>同名文件问题解决方案：路径名</p>
+<h3 id="树形目录"><a href="#树形目录" class="headerlink" title="树形目录"></a>树形目录</h3><p>特点：</p>
+<blockquote>
+<ul>
+<li>检索高效：子目录增多，每个目录下文件减少</li>
+<li>可以分组</li>
+<li>允许重名</li>
+</ul>
+</blockquote>
+<p>当前目录：工作目录，用”.”表示</p>
+<blockquote>
+<ul>
+<li>绝对路径：用根目录开始的路径名</li>
+<li>相对路径：从当前目录开始的路径名，其能够提高检索效率</li>
+</ul>
+</blockquote>
+<p>树形目录不能实现文件共享，需要使用图目录</p>
+<h3 id="无环图目录"><a href="#无环图目录" class="headerlink" title="无环图目录"></a>无环图目录</h3><p>无环图目录中：有向无环</p>
+<p>文件共享方式：</p>
+<blockquote>
+<ul>
+<li>硬链接（Linux）：在同一个卷/磁盘中，创建多个i Node指向同一个文件的FCB</li>
+<li>符号链接/软链接（Win/Linux）：创建一个含有文件绝对路径的符号链接文件（快捷方式）</li>
+</ul>
+</blockquote>
+<p>相比于硬连接，符号链接可以跨文件系统、实现简单但效率稍差</p>
+<h3 id="通用图目录"><a href="#通用图目录" class="headerlink" title="通用图目录"></a>通用图目录</h3><p>通用图目录中存在环（广泛采用）</p>
+<p>遍历时需要解决无穷递归问题</p>
+<h1 id="十一、文件系统实现"><a href="#十一、文件系统实现" class="headerlink" title="十一、文件系统实现"></a>十一、文件系统实现</h1><h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><p>文教系统是在存储设备上组织文件的方法和数据结构</p>
+<p>文件系统层次架构：</p>
+<blockquote>
+<ul>
+<li>应用程序</li>
+<li>逻辑文件系统（第十章所述）</li>
+<li>文件组织模块</li>
+<li>基本文件系统</li>
+<li>I/O控制</li>
+<li>设备</li>
+</ul>
+</blockquote>
+<h3 id="文件系统基本概念"><a href="#文件系统基本概念" class="headerlink" title="文件系统基本概念"></a>文件系统基本概念</h3><p>物理块（簇）：一个或多个（2^n）扇区组成，是基本的文件读写单位</p>
+<p>（物理）分区Partition：磁盘所分割成的若干个独立的空间</p>
+<blockquote>
+<ul>
+<li>分区的类别：主分区、扩展分区</li>
+<li>主分区：能够安装操作系统的启动分区，现在操作系统中一个盘最多可分为4个主分区</li>
+<li>扩展分区：不能够直接使用，必须分为若干个逻辑分区</li>
+</ul>
+</blockquote>
+<p>（卷）逻辑磁盘Volume：建立在物理分区上的逻辑分区，每个卷可以使用不同的文件系统</p>
+<h3 id="文件系统实现"><a href="#文件系统实现" class="headerlink" title="文件系统实现"></a>文件系统实现</h3><p>磁盘文件系统：</p>
+<blockquote>
+<ul>
+<li>引导控制块：只有安装操作系统的分区才有，包含系统应到操作系统的各种信息</li>
+<li>分区控制块：包含分区信息，UFS中为超级块</li>
+<li>目录和FCB</li>
+<li>用户文件</li>
+</ul>
+</blockquote>
+<p>磁盘结构：MBR-BPT分区表-主分区-扩展分区</p>
+<blockquote>
+<ul>
+<li>UFS的主分区：引导块-超级块-空闲区表-i node-根目录-文件</li>
+<li>FAT主分区：引导区-FAT1-FAT2恢复-根目录-文件</li>
+</ul>
+</blockquote>
+<p>内存文件系统：通过缓冲技术提高文件系统性能</p>
+<blockquote>
+<ul>
+<li>分区表：所有安装分区信息</li>
+<li>目录缓冲结构：保存最近访问的目录信息</li>
+<li>系统打开文件表</li>
+<li>进程打开文件表</li>
+</ul>
+</blockquote>
+<p>虚拟文件系统VFS（Linux）：一个操作系统可能会读取不同的文件系统，需要为它们统一访问接口</p>
+<blockquote>
+<ul>
+<li>为各类不同的文件系统定义VFS接口</li>
+<li>符合该接口的文件系统都可以接入VFS</li>
+</ul>
+</blockquote>
+<p>网络文件系统NFS</p>
+<h2 id="连续分配"><a href="#连续分配" class="headerlink" title="连续分配"></a>连续分配</h2><h3 id="物理块和逻辑块"><a href="#物理块和逻辑块" class="headerlink" title="物理块和逻辑块"></a>物理块和逻辑块</h3><p>物理块：</p>
+<blockquote>
+<ul>
+<li>读写存储设备的基本单位</li>
+<li>存储设备的基本分配单位</li>
+<li>物理块和内存的页面大小相对应（一般为页面大小的整数倍）</li>
+<li>每个物理块可以有一个一维的物理块块号</li>
+</ul>
+</blockquote>
+<p>逻辑块：</p>
+<blockquote>
+<ul>
+<li>逻辑块是在文件空间中的块，应当是一个相对地址块</li>
+<li>大小和物理块一致</li>
+<li>一个逻辑块存储在一个物理块中</li>
+<li>逻辑块号和物理块号应当是一一对应的</li>
+</ul>
+</blockquote>
+<h3 id="连续分配概念"><a href="#连续分配概念" class="headerlink" title="连续分配概念"></a>连续分配概念</h3><p>连续分配：</p>
+<blockquote>
+<ul>
+<li>每个文件在磁盘上占用一组连续的物理块</li>
+<li>文件的FCB仅给出文件等起始块号和长度</li>
+</ul>
+</blockquote>
+<p>地址映射方式：</p>
+<blockquote>
+<ul>
+<li>逻辑地址为文件内的相对地址LA</li>
+<li>物理地址为某物理块中的某个地址(B,D)</li>
+<li>物理块大小为S，逻辑块号为D=LA/S，则映射方式为：LA-&gt;(Q,D)-&gt;(B,D)</li>
+</ul>
+</blockquote>
+<p>优点：</p>
+<blockquote>
+<ul>
+<li>支持随机访问（可直接访问 指定块号的物理块）</li>
+<li>存取速度块（连续访问性能高）</li>
+<li>适用于一次性写入操作</li>
+</ul>
+</blockquote>
+<p>缺点：</p>
+<blockquote>
+<ul>
+<li>浪费空间（存在外碎片，小空间无法分配）</li>
+<li>文件不能动态增长（如日志文件需要动态增长）</li>
+<li>不利于文件的插入和删除（需要移动数据）</li>
+</ul>
+</blockquote>
+<p>改进：局部连续</p>
+<h2 id="链接分配"><a href="#链接分配" class="headerlink" title="链接分配"></a>链接分配</h2><h3 id="概述-4"><a href="#概述-4" class="headerlink" title="概述"></a>概述</h3><p>离散物理块的分配方式：</p>
+<blockquote>
+<ul>
+<li>链接分配</li>
+<li>索引分配</li>
+</ul>
+</blockquote>
+<p>链接分配：</p>
+<blockquote>
+<ul>
+<li>文件信息存放在若干个不连续的物理块中</li>
+<li>文件的所有物理块通过指针链接形成链表结构</li>
+<li>链接分配有显式链接和隐式链接</li>
+</ul>
+</blockquote>
+<h3 id="隐式链接"><a href="#隐式链接" class="headerlink" title="隐式链接"></a>隐式链接</h3><p>策略：</p>
+<blockquote>
+<ul>
+<li>链表的指针隐藏在物理块中</li>
+<li>每个物理块中的指针指向下一个物理块</li>
+<li>文件结束于空指针</li>
+<li>FCB给出文件的首块地址（也可能包括结束地址）</li>
+</ul>
+</blockquote>
+<p>地址映射方式：</p>
+<blockquote>
+<ul>
+<li>逻辑地址为LA，物理块大小为S，指针大小为P</li>
+<li>逻辑块号Q = LA/(S-P) … D</li>
+<li>映射过程：LA-&gt;(Q,D)-&gt;(B,D)</li>
+</ul>
+</blockquote>
+<p>优点：</p>
+<blockquote>
+<ul>
+<li>文件离散存放，提高磁盘利用率</li>
+<li>支持动态扩充文件大小</li>
+<li>便于文件的插入和删除</li>
+</ul>
+</blockquote>
+<p>缺点：</p>
+<blockquote>
+<ul>
+<li>不支持随机访问，访问一个指针的同时也需要读入整个物理块</li>
+<li>每个物理块实际可用空间变小</li>
+<li>可靠性较差，中间块的丢失可能造成后续块无法找到</li>
+</ul>
+</blockquote>
+<p>缓解方案：可以多块集合成组</p>
+<h3 id="显式链接"><a href="#显式链接" class="headerlink" title="显式链接"></a>显式链接</h3><p>策略：</p>
+<blockquote>
+<ul>
+<li>所有指针单独为一张链接表，数据跟在指针之后，指针不和物理块挂钩</li>
+<li>链接表一般在文件系统装载时装入内存</li>
+<li>检索时，先访问链接表，再访问物理块；提高检索速度</li>
+</ul>
+</blockquote>
+<p>缺点：不适合大容量磁盘；大容量磁盘的链接表也很大</p>
+<h3 id="文件分配表FAT"><a href="#文件分配表FAT" class="headerlink" title="文件分配表FAT"></a>文件分配表FAT</h3><p>FAT文件系统是链接分配的一个重要变种</p>
+<p>FAT32：</p>
+<blockquote>
+<ul>
+<li>引导扇区(1)-保留扇区(31)-FAT1-FAT2(备份)-根文件夹首簇-其他文件夹及所有文件</li>
+<li>每个簇（物理块）固定为4-32KB</li>
+<li>FAT表的表项占据32位，在块大小为4KB时，FAT最大管理的磁盘空间为2TB</li>
+<li>FAT带个文件不能大于4G</li>
+</ul>
+</blockquote>
+<h2 id="索引分配"><a href="#索引分配" class="headerlink" title="索引分配"></a>索引分配</h2><h3 id="概述-5"><a href="#概述-5" class="headerlink" title="概述"></a>概述</h3><p>索引分配类似一种分散的FAT</p>
+<blockquote>
+<ul>
+<li>其为诶个文件建立一张文件分配表，即索引表</li>
+<li>索引块：存放指向文件每个物理块块号的物理块</li>
+<li>索引块中的第i项为第i个逻辑块对应的物理块块号</li>
+<li>FCB指向索引块</li>
+</ul>
+</blockquote>
+<p>地址映射方式和连续分配一样，中间加入一个指针地址转换</p>
+<p>优点：</p>
+<blockquote>
+<ul>
+<li>支持随机访问</li>
+<li>离散存放，没有碎片</li>
+</ul>
+</blockquote>
+<p>缺点：</p>
+<blockquote>
+<ul>
+<li>需要额外的空间存放索引表</li>
+<li>磁盘访问时间增加</li>
+</ul>
+</blockquote>
+<p>大文件无法用单级索引实现，可以采用多级索引或链接策略，注意地址映射的计算问题</p>
+<h2 id="空闲空间管理"><a href="#空闲空间管理" class="headerlink" title="空闲空间管理"></a>空闲空间管理</h2><h3 id="空闲表"><a href="#空闲表" class="headerlink" title="空闲表"></a>空闲表</h3><p>空闲表适用于连续分配</p>
+<blockquote>
+<ul>
+<li>将连续的未分配的物理块集合成空闲区</li>
+<li>空闲区由首块块号和空闲块数目（长度）组成</li>
+<li>空闲表的每个表项对应一个空闲区</li>
+</ul>
+</blockquote>
+<p>空闲表的分配和额回收方式和内存的连续分配类似</p>
+<p>空闲表需要占据额外的存储空间</p>
+<h3 id="空闲链表"><a href="#空闲链表" class="headerlink" title="空闲链表"></a>空闲链表</h3><p>空闲链表将磁盘上的所有空闲块链接在一个链表中</p>
+<blockquote>
+<ul>
+<li>分配空间：从链表头依次取出适当数目的空闲块</li>
+<li>回收空间：将空闲块加入链表尾部</li>
+</ul>
+</blockquote>
+<p>优点：不需要专用块存放管理信息</p>
+<p>缺点：增加IO操作，得到连续空间难</p>
+<h3 id="位示图"><a href="#位示图" class="headerlink" title="位示图"></a>位示图</h3><p>利用一个二进制位来表示一个块的使用情况</p>
+<blockquote>
+<ul>
+<li>1：块空闲；0：块已分配</li>
+<li>所有块都有一个二进制位与之对应</li>
+<li>所有块对应的位集合成位示图</li>
+</ul>
+</blockquote>
+<p>位示图需要额外的空间，其占用一些物理块</p>
+<blockquote>
+<ul>
+<li>比较容易得到连续的物理块</li>
+<li>是Linux和Windows的常用空闲空间管理方式</li>
+</ul>
+</blockquote>
+<h3 id="成组链接"><a href="#成组链接" class="headerlink" title="成组链接"></a>成组链接</h3><p>成组链接结合了空闲表和空闲链表</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>一致性检查和磁盘整理</p>
+<h1 id="十二、大容量存储器"><a href="#十二、大容量存储器" class="headerlink" title="十二、大容量存储器"></a>十二、大容量存储器</h1><h2 id="磁盘结构和管理"><a href="#磁盘结构和管理" class="headerlink" title="磁盘结构和管理"></a>磁盘结构和管理</h2><p>磁盘结构：</p>
+<blockquote>
+<ul>
+<li>盘片</li>
+<li>磁头</li>
+<li>主轴</li>
+<li>接口、磁盘控制器、缓冲区</li>
+</ul>
+</blockquote>
+<p>盘片结构：</p>
+<blockquote>
+<ul>
+<li>磁道</li>
+<li>扇区</li>
+<li>柱面</li>
+</ul>
+</blockquote>
+<p>磁盘访问时间</p>
+<blockquote>
+<ul>
+<li>寻道时间：平均1/3磁道移动时间</li>
+<li>旋转时间：平均1/2磁道旋转一周时间</li>
+<li>传输时间：传输总字数/传输率</li>
+</ul>
+</blockquote>
+<p>磁盘管理：</p>
+<blockquote>
+<ul>
+<li>低级格式化（物理格式化）：将磁盘分成扇区</li>
+<li>分区：将磁盘分成分区</li>
+<li>高级格式化：逻辑格式化，创建文件系统</li>
+<li>引导块</li>
+</ul>
+</blockquote>
+<p>分区：MBR主引导记录，512字节</p>
+<p>坏块检查和标记</p>
+<h2 id="磁盘调度和RAID"><a href="#磁盘调度和RAID" class="headerlink" title="磁盘调度和RAID"></a>磁盘调度和RAID</h2><p>磁盘调度：缺省一般为SSTF和LOOK，请求多时采用SCAN或C-SCAN提高性能</p>
+<blockquote>
+<ul>
+<li>FCFS：先来先服务；寻道时间长</li>
+<li>SSTF：最短寻道时间优先；从请求序列中寻找离磁头最近的；存在饥饿、磁头频繁变换方向、增加寻道时间</li>
+<li>SCAN：扫描算法（电梯算法）；磁头来回在柱面上扫描，处理每个请求</li>
+<li>C-SCAN：仅正向扫描处理请求，等待时间更均匀</li>
+<li>LOOK：双向扫描时仅移动到方向最远的请求为止（C-LOOK同理）</li>
+</ul>
+</blockquote>
+<p>RAID结构：磁盘冗余阵列</p>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/08/operating-system0/" data-id="cki7bs5mr002ipwvnft1v4vup"
+      <a data-url="http://georgechen1827.github.io/2020/09/08/operating-system0/" data-id="ckis8tgwd0054zsvn6hbg7egf"
         class="article-share-link">share</a>
         
       

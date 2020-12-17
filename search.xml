@@ -5,7 +5,7 @@
     <url>/2020/11/08/management/</url>
     <content><![CDATA[<p>东吴商学院：陈东健</p>
 <p>13063885748</p>
-<p><a href="mailto:&#x63;&#100;&#106;&#52;&#48;&#x35;&#x40;&#x31;&#x36;&#51;&#46;&#99;&#111;&#x6d;">&#x63;&#100;&#106;&#52;&#48;&#x35;&#x40;&#x31;&#x36;&#51;&#46;&#99;&#111;&#x6d;</a></p>
+<p><a href="mailto:&#x63;&#x64;&#106;&#52;&#48;&#53;&#x40;&#49;&#54;&#x33;&#46;&#x63;&#x6f;&#109;">&#x63;&#x64;&#106;&#52;&#48;&#53;&#x40;&#49;&#54;&#x33;&#46;&#x63;&#x6f;&#109;</a></p>
 <h1 id="一、总论"><a href="#一、总论" class="headerlink" title="一、总论"></a>一、总论</h1><p>管理学是研究人类管理活动一般规律的科学，研究对象：</p>
 <blockquote>
 <ul>
@@ -1004,8 +1004,8 @@
         <category>辅修</category>
       </categories>
       <tags>
-        <tag>learning</tag>
         <tag>会计</tag>
+        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -1958,7 +1958,27 @@
 <li>反射（变换左右手系）</li>
 </ul>
 </blockquote>
-<h2 id="投影变换"><a href="#投影变换" class="headerlink" title="投影变换"></a>投影变换</h2><h3 id="平行投影"><a href="#平行投影" class="headerlink" title="平行投影"></a>平行投影</h3><p>三视图</p>
+<h2 id="投影变换"><a href="#投影变换" class="headerlink" title="投影变换"></a>投影变换</h2><h3 id="平行投影"><a href="#平行投影" class="headerlink" title="平行投影"></a>平行投影</h3><p>平行投影实际上是投影中心在无穷远处的透视投影</p>
+<p>三视图</p>
+<h3 id="透视投影"><a href="#透视投影" class="headerlink" title="透视投影"></a>透视投影</h3><p>投影平面、视距、视点</p>
+<p>观察坐标系为左手坐标系，投影屏幕坐标系也是左手坐标系，而且它们z轴同向（重合）</p>
+<p>视点（观察坐标系原点）和视心（投影屏幕坐标系原点）距离为视距d</p>
+<p>投影过程：模型坐标-世界坐标系-观察坐标系-投影屏幕坐标系（包含伪深度）-屏幕坐标</p>
+<p>一个观察坐标系的点到投影屏幕坐标系的点的变换过程如下：</p>
+<blockquote>
+<ul>
+<li>透视变换（相似三角形）</li>
+<li>正投影</li>
+</ul>
+</blockquote>
+<p>一些结论：</p>
+<blockquote>
+<ul>
+<li>与屏幕平行的直线，其透视仍与屏幕保持平行</li>
+<li>与投影屏幕相交的直线，其透视为一条直线，无穷远处为灭点</li>
+<li>与视点相交的直线，其透视为平行于z轴的一条直线，透视投影为一个点</li>
+</ul>
+</blockquote>
 ]]></content>
       <categories>
         <category>notes</category>
@@ -1966,674 +1986,6 @@
       </categories>
       <tags>
         <tag>计算机图形学，learning</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>人工智能与知识工程</title>
-    <url>/2020/09/10/ai0/</url>
-    <content><![CDATA[<p>陈文亮：<a href="mailto:wlchen@suda.edu.cn">wlchen@suda.edu.cn</a>;<a href="http://hlt.suda.edu.cn" target="_blank" rel="noopener">http://hlt.suda.edu.cn</a></p>
-<p>课程目标：研究计算机实现智能的原理以及如何建造智能计算机</p>
-<p>课程要求：</p>
-<blockquote>
-<ul>
-<li>了解人工智能的基本概念、原理和方法（搜索推理技术、知识表示方法）</li>
-<li>计算智能、专家系统、机器学习、强化学习、分布式人工智能、具有一定的人工智能算法的编程能力</li>
-</ul>
-</blockquote>
-<p>考核：平时30%（上课问答10%、实验20%），考试70%（填空选择和简答）</p>
-<a id="more"></a>
-
-<h1 id="一、绪论"><a href="#一、绪论" class="headerlink" title="一、绪论"></a>一、绪论</h1><h2 id="1-1-人工智能的定义与发展"><a href="#1-1-人工智能的定义与发展" class="headerlink" title="1.1 人工智能的定义与发展"></a>1.1 人工智能的定义与发展</h2><p>定义：</p>
-<blockquote>
-<ul>
-<li>智能机器：能够在各种环境中自主地或交互地执行各种拟人任务的机器</li>
-<li>人工智能（学科）：是计算机科学中涉及研究、设计和应用智能机器的一个分支</li>
-<li>人工智能（能力）：是智能机器所执行的通常与人类智能有关的智能行为</li>
-</ul>
-</blockquote>
-<p>起源和发展：</p>
-<blockquote>
-<ul>
-<li>20世纪30年代：数理逻辑和关于计算的新思想</li>
-<li>1956：人工智能概念的提出</li>
-<li>50年代以游戏、博弈为对象进行研究</li>
-<li>60年代以搜索方法、一般问题求解研究为主；机器定理证明</li>
-<li>70年代：低谷；以自然语言理解、知识表示的研究为主</li>
-<li>80年代：专家系统等</li>
-<li>现状：人工智能实用化</li>
-</ul>
-</blockquote>
-<h2 id="1-2-人工智能学派"><a href="#1-2-人工智能学派" class="headerlink" title="1.2 人工智能学派"></a>1.2 人工智能学派</h2><blockquote>
-<ul>
-<li>符号主义</li>
-<li>连接主义</li>
-<li>行为主义</li>
-</ul>
-</blockquote>
-<h1 id="二、知识表示"><a href="#二、知识表示" class="headerlink" title="二、知识表示"></a>二、知识表示</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>知识表示需要：</p>
-<blockquote>
-<ul>
-<li>定义符号结构和必要操作</li>
-<li>在搜索过程开始前，先用某（几）种方法的混合来表示问题</li>
-</ul>
-</blockquote>
-<p>知识到特点：</p>
-<blockquote>
-<ul>
-<li>相对正确性</li>
-<li>不确定性</li>
-<li>可表示性</li>
-<li>可利用性</li>
-</ul>
-</blockquote>
-<p>知识到分类：</p>
-<blockquote>
-<ul>
-<li>知识的作用范围：常识和领域知识</li>
-<li>知识的作用及表示：事实性知识（属性、概念知识）和规则知识（因果关系知识）</li>
-<li>知识到确定性：确定和不确定</li>
-<li>逻辑性</li>
-</ul>
-</blockquote>
-<h2 id="2-1-状态空间法"><a href="#2-1-状态空间法" class="headerlink" title="2.1 状态空间法"></a>2.1 状态空间法</h2><p>元素：</p>
-<blockquote>
-<ul>
-<li>状态：用于描述同类事物的不同实例而引入的一组最少的分量组成的有序的集合</li>
-<li>算符/操作符：使问题从一种状态变化为另一种状态的手段</li>
-<li>问题的状态空间：表示问题的全部可能状态及其关系的图</li>
-</ul>
-</blockquote>
-<p>状态空间可以表示为三元组(S,F,G)21</p>
-<blockquote>
-<ul>
-<li>S：初始状态集合</li>
-<li>F：算符集合</li>
-<li>G：目标状态集合</li>
-</ul>
-</blockquote>
-<p>状态空间表示问题的步骤：</p>
-<blockquote>
-<ul>
-<li>定义状态的描述形式</li>
-<li>表示出所有状态，并确定初始状态集合和目标状态集合</li>
-<li>定义一组算符</li>
-</ul>
-</blockquote>
-<p>问题的解：从问题的初始状态出发到目标状态所经过的所有算符构成的序列</p>
-<h2 id="2-2-产生式表示法"><a href="#2-2-产生式表示法" class="headerlink" title="2.2 产生式表示法"></a>2.2 产生式表示法</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><p>产生式表示：基于规则的表示方法，主要应用于专家系统中</p>
-<p>特点：</p>
-<blockquote>
-<ul>
-<li>清晰</li>
-<li>模块性</li>
-<li>自然性</li>
-</ul>
-</blockquote>
-<p>产生式可表示的知识种类：</p>
-<blockquote>
-<ul>
-<li>事实性知识</li>
-<li>规则知识</li>
-</ul>
-</blockquote>
-<p>产生式表示方法（可用元组表示）：</p>
-<blockquote>
-<ul>
-<li>确定性事实：if P then Q</li>
-<li>不确定性事实：if P then Q (置信度)</li>
-</ul>
-</blockquote>
-<p>产生式系统的组成：一组产生式的相互配合，互相推理来得到结果的系统</p>
-<blockquote>
-<ul>
-<li>规则库</li>
-<li>综合数据库</li>
-<li>推理机</li>
-</ul>
-</blockquote>
-<h3 id="规则库"><a href="#规则库" class="headerlink" title="规则库"></a>规则库</h3><blockquote>
-<ul>
-<li>规则库是用于描述某个领域内知识到产生式集合，是某个领域知识到存储器</li>
-<li>规则库包含将问题从初始状态转换成目标状态的转换规则</li>
-<li>规则库是系统的核心，知识到完整性、一致性、准确性和灵活性都对知识的性能和运行效率产生直接的影响</li>
-</ul>
-</blockquote>
-<h3 id="综合数据库"><a href="#综合数据库" class="headerlink" title="综合数据库"></a>综合数据库</h3><blockquote>
-<ul>
-<li>综合数据库用于存放输入的事实，它们可从规则推理得到</li>
-<li>综合数据库是不断改变的</li>
-</ul>
-</blockquote>
-<h3 id="推理机"><a href="#推理机" class="headerlink" title="推理机"></a>推理机</h3><p>推理机的动作：</p>
-<blockquote>
-<ul>
-<li>匹配：将数据库中的知识和规则中的条件相比较</li>
-<li>冲突解决：有多种规则匹配数据库的同一条信息时，需要进行排序取舍，确定执行策略</li>
-<li>操作：修改数据库</li>
-</ul>
-</blockquote>
-<p>推理机的推理方式</p>
-<blockquote>
-<ul>
-<li>正向推理</li>
-<li>反向推理</li>
-<li>双向推理</li>
-</ul>
-</blockquote>
-<h2 id="2-3-命题和谓词逻辑"><a href="#2-3-命题和谓词逻辑" class="headerlink" title="2.3 命题和谓词逻辑"></a>2.3 命题和谓词逻辑</h2><p>P25-P33</p>
-<p>用谓词公式表示知识到步骤：</p>
-<blockquote>
-<ul>
-<li>定义谓词及个体</li>
-<li>将谓词公式中的变量替换为个体实例得到逻辑表达式</li>
-<li>根据语义将上述表达式连接起来</li>
-</ul>
-</blockquote>
-<h2 id="2-4-语义网络法"><a href="#2-4-语义网络法" class="headerlink" title="2.4 语义网络法"></a>2.4 语义网络法</h2><h3 id="语义网络"><a href="#语义网络" class="headerlink" title="语义网络"></a>语义网络</h3><p>语义网络是知识表示的一种结构化图解表示，它由节点和弧线或连接线表示</p>
-<blockquote>
-<ul>
-<li>节点：实体、概念或情况，每个节点可以有若干个属性（来区分不同对象）</li>
-<li>弧线：节点间的语义关系</li>
-</ul>
-</blockquote>
-<p>语义网络可由三元组（节点1，弧，节点2）表示</p>
-<blockquote>
-<p>也可以表示成谓词关系：P（节点1，节点2）；P表示弧的含义</p>
-</blockquote>
-<h3 id="语义网络表示知识到方法"><a href="#语义网络表示知识到方法" class="headerlink" title="语义网络表示知识到方法"></a>语义网络表示知识到方法</h3><p>步骤：</p>
-<blockquote>
-<ul>
-<li>确定问题中的所有对象以及各个对象的属性</li>
-<li>确定所讨论对象的关系</li>
-<li>整理同一类对象的共同属性，将它们抽象</li>
-<li>将各对象标注成节点，并用弧线表示它们之间的关系</li>
-</ul>
-</blockquote>
-<p>事实知识的表示：</p>
-<blockquote>
-<ul>
-<li>可以用节点和有向边表示</li>
-<li>事实知识是有关领域内的概念、定义等事实性知识</li>
-</ul>
-</blockquote>
-<p>规则性知识表示方法：</p>
-<blockquote>
-<ul>
-<li>弧线上的标注用“如果…那么…”表示</li>
-</ul>
-</blockquote>
-<h3 id="语义网络常见关系"><a href="#语义网络常见关系" class="headerlink" title="语义网络常见关系"></a>语义网络常见关系</h3><blockquote>
-<ul>
-<li>ISA/AKO关系：ISA偏向于一种类和实例的关系、AKO偏向于子类和父类的关系</li>
-<li>Part-of关系：用于表示部分和整体的关系，部分不一定具有整体的所有属性</li>
-<li>IS关系：用于表示一个节点是另一个节点的属性</li>
-<li>If-then关系：表示因果关系</li>
-<li>Composed-of关系：表示组合关系，与Part-of有区别</li>
-<li>Have关系</li>
-<li>Located关系</li>
-</ul>
-</blockquote>
-<h3 id="语义网络的推理过程"><a href="#语义网络的推理过程" class="headerlink" title="语义网络的推理过程"></a>语义网络的推理过程</h3><blockquote>
-<ul>
-<li>根据提出的待求解问题，构造一个局部网络或网络片段</li>
-<li>根据局部网络到知识库中去寻找语义网络，匹配并得到结果</li>
-</ul>
-</blockquote>
-<h2 id="2-5-框架表示法"><a href="#2-5-框架表示法" class="headerlink" title="2.5 框架表示法"></a>2.5 框架表示法</h2><h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><p>框架是一种所论对象属性的数据结构。该对象可以是一个事物、一个事件或者一个概念</p>
-<blockquote>
-<ul>
-<li>框架由若干个槽（slot）组成，用于描述对象某一方面的属性</li>
-<li>每个槽可以划分成若干个侧面（facet），用于描述相应属性的一个方面</li>
-<li>槽和侧面所具有的属性值分别称为槽值和属性值</li>
-</ul>
-</blockquote>
-<h3 id="框架表示法基本步骤"><a href="#框架表示法基本步骤" class="headerlink" title="框架表示法基本步骤"></a>框架表示法基本步骤</h3><blockquote>
-<ul>
-<li>分析待表达知识中的对象及其属性，对框架中的槽进行定义</li>
-<li>分析各对象之间的关系</li>
-<li>定义槽中的侧面和各侧面的属性值</li>
-</ul>
-</blockquote>
-<h3 id="框架法的推理过程"><a href="#框架法的推理过程" class="headerlink" title="框架法的推理过程"></a>框架法的推理过程</h3><blockquote>
-<ul>
-<li>将求解问题用一个框架表示出来</li>
-<li>将该框架与知识库中已有框架进行匹配</li>
-<li>合并冲突</li>
-<li>将待解决问题框架中需要求解的属性进行补充</li>
-</ul>
-</blockquote>
-<h1 id="三、确定性推理方法"><a href="#三、确定性推理方法" class="headerlink" title="三、确定性推理方法"></a>三、确定性推理方法</h1><h2 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h2><p>知识和推理共同构成智能</p>
-<p>推理：</p>
-<blockquote>
-<ul>
-<li>确定性推理（经典逻辑推理）</li>
-<li>不确定性推理</li>
-</ul>
-</blockquote>
-<h2 id="3-1-推理的基本概念"><a href="#3-1-推理的基本概念" class="headerlink" title="3.1 推理的基本概念"></a>3.1 推理的基本概念</h2><h3 id="推理的方式和分类"><a href="#推理的方式和分类" class="headerlink" title="推理的方式和分类"></a>推理的方式和分类</h3><p>推理是依据已知事实和某种策略来得出结论的过程</p>
-<p>推理方式及其分类：</p>
-<blockquote>
-<ul>
-<li>演绎推理：三段论</li>
-<li>归纳推理：完全归纳法（数学归纳法），不完全归纳法（抽样调查）</li>
-<li>默认推理：在知识不完全的情况下假设某些条件已经具备所进行的推理（有时不成立）</li>
-<li>确定性推理：推理时所用到的知识和证据都是确定的，推出的结论也是确定的</li>
-<li>不确定性推理：</li>
-<li>单调推理：推理所得出的结论越来越接近最终目标</li>
-<li>非单调推理：对真理的一种螺旋式认识，有时会否定之前的结论</li>
-<li>启发性推理：运用能加快推理、提高搜索效率的知识（启发式知识）进行推理</li>
-<li>非启发性推理</li>
-</ul>
-</blockquote>
-<h3 id="推理的方向"><a href="#推理的方向" class="headerlink" title="推理的方向"></a>推理的方向</h3><ul>
-<li><p>正向推理：P53</p>
-<blockquote>
-<ul>
-<li>确定匹配方法</li>
-<li>按什么策略搜索知识库</li>
-<li>冲突消解策略</li>
-<li>简单、易实现，但目的性不强，效率低</li>
-</ul>
-</blockquote>
-</li>
-<li><p>逆向推理</p>
-<blockquote>
-<ul>
-<li>目的性强，有利于向用户提供解释；但选择初始目标具有盲目性</li>
-</ul>
-</blockquote>
-</li>
-<li><p>混合推理</p>
-</li>
-<li><p>双向推理</p>
-</li>
-</ul>
-<h3 id="冲突消解策略"><a href="#冲突消解策略" class="headerlink" title="冲突消解策略"></a>冲突消解策略</h3><p>已知事实与知识的匹配情况：</p>
-<blockquote>
-<ul>
-<li>一对一匹配</li>
-<li>不能匹配</li>
-<li>一对多或多对多的匹配</li>
-</ul>
-</blockquote>
-<p>消解策略：</p>
-<blockquote>
-<ul>
-<li>按针对性排序</li>
-<li>按事实新鲜性（时间）排序</li>
-<li>按匹配度排序</li>
-<li>…</li>
-</ul>
-</blockquote>
-<h2 id="3-2-自然演绎推理"><a href="#3-2-自然演绎推理" class="headerlink" title="3.2 自然演绎推理"></a>3.2 自然演绎推理</h2><p>从已知为真的事实运用经典逻辑推理规则推出结论</p>
-<blockquote>
-<ul>
-<li>P规则：给出的结论</li>
-<li>T规则：综合推导出的结论</li>
-<li>假言推理：$P, \ P \to Q \Rightarrow Q$</li>
-<li>拒取式推理：$P \to Q, \lnot Q \Rightarrow \lnot P$</li>
-</ul>
-</blockquote>
-<h2 id="3-3-谓词公式化为子句集的方法"><a href="#3-3-谓词公式化为子句集的方法" class="headerlink" title="3.3 谓词公式化为子句集的方法"></a>3.3 谓词公式化为子句集的方法</h2><p>子句是谓词公式及其否定的析取式</p>
-<blockquote>
-<ul>
-<li>不包含任何谓词公式的子句为空子句</li>
-<li>空子句永假</li>
-</ul>
-</blockquote>
-<p>子句集是子句的集合，子句间的关系是合取</p>
-<p>谓词公式化为子句集：</p>
-<blockquote>
-<ul>
-<li>消去公式中的等价和蕴含箭头</li>
-<li>展开带否定符号的公式</li>
-<li>量词代还、变量标准化</li>
-<li>消去存在量词：无全称管辖的存在量词常量化，有全称管辖的量词skolem化，即$P(x,y) \Rightarrow P(x,f(x))$</li>
-<li>化为前束范式：量词提前</li>
-<li>主公式化为子句和取形式</li>
-<li>略去全称量词</li>
-<li>消去和取词，形成子句集</li>
-<li>子句变量标准化：即替换变量使得不同子句中的变量不同，因为子句之间是和取关系</li>
-</ul>
-</blockquote>
-<h2 id="3-4-鲁滨逊归结原理"><a href="#3-4-鲁滨逊归结原理" class="headerlink" title="3.4 鲁滨逊归结原理"></a>3.4 鲁滨逊归结原理</h2><p>鲁滨逊归结原理（消解原理）用于谓词公式的不可满足性分析（充分条件）</p>
-<p>思想：子句集中子句之间是合区关系，只要有一个子句不可满足，则子句集就不可满足</p>
-<blockquote>
-<ul>
-<li>检查子句集S中是否包含空子句，若有则S不可满足</li>
-<li>从子句集中寻找合适的子句进行归结，若结果得到空子句，则S不可满足</li>
-<li>若没有归结出空子句，则不能下任何结论</li>
-</ul>
-</blockquote>
-<p>归结过程：</p>
-<blockquote>
-<ul>
-<li>C1和C2是两个子句</li>
-<li>取出两个子句中互补的文字（原子公式）并消去</li>
-<li>余下部分析取，得到C12</li>
-<li>此时，C1和C2为C12的亲本子句</li>
-</ul>
-</blockquote>
-<p>在归结过程中消去带变元的谓词互补时，需要用到置换与合一的概念：<a href="https://blog.csdn.net/tianranhe/article/details/8287534" target="_blank" rel="noopener">https://blog.csdn.net/tianranhe/article/details/8287534</a></p>
-<blockquote>
-<ul>
-<li>合一置换之后，变元相同，直接消去即可</li>
-</ul>
-</blockquote>
-<p>定理：</p>
-<blockquote>
-<ul>
-<li>归结式C12是亲本子句C1和C2的逻辑结论。</li>
-<li>使用C12替换C1和C2，得到归结后的子句集S1的不可满足性和原子句集S等价</li>
-</ul>
-</blockquote>
-<h2 id="3-5-归结反演"><a href="#3-5-归结反演" class="headerlink" title="3.5 归结反演"></a>3.5 归结反演</h2><p>步骤：</p>
-<blockquote>
-<ul>
-<li>将前提化为谓词公式F</li>
-<li>将待证明结论表示为谓词公式Q，并得到否定not Q</li>
-<li>将谓词公式F and not Q化为子句集S</li>
-<li>对S进行归结，若出现空子句，则停止归结，此时Q为真</li>
-</ul>
-</blockquote>
-<h2 id="3-6-归结原理的应用"><a href="#3-6-归结原理的应用" class="headerlink" title="3.6 归结原理的应用"></a>3.6 归结原理的应用</h2><p>问题求解：</p>
-<blockquote>
-<ul>
-<li>将前提$P$和问题$\exist x Q(x)$（要求的是x）用谓词表示出来</li>
-<li>将问题取反并和$Answer$析取，即$\lnot \exist x Q(x) \land Answer(x)$</li>
-<li>将上述子句化为子句集，并进行归结</li>
-<li>若得到归结式$Answer$，则答案就在$Answer$中</li>
-</ul>
-</blockquote>
-<h1 id="四、不确定性推理方法"><a href="#四、不确定性推理方法" class="headerlink" title="四、不确定性推理方法"></a>四、不确定性推理方法</h1><h2 id="概述-3"><a href="#概述-3" class="headerlink" title="概述"></a>概述</h2><p>现实世界客观存在随机性和模糊性，需要进行不确定性的表示和推理</p>
-<p>基于概率论的不确定性的推理方法</p>
-<p>不确定性推理：</p>
-<blockquote>
-<p>从不确定的初始证据出发，通过运用不确性的知识，最终推理出一定程度的不确定性但是合理或近乎合理的结论的思维过程</p>
-</blockquote>
-<p>不确定性的表示与度量：</p>
-<blockquote>
-<ul>
-<li>知识到不确定性的表示：一般由专家系统中的专家给出；是一种数值形式的静态强度</li>
-<li>证据的不确定性的表示：用户在求解问题时提供的初始证据；是一种动态强度</li>
-<li>不确定性的量度：确定一个客观的不确定性的量度</li>
-</ul>
-</blockquote>
-<p>要点：</p>
-<blockquote>
-<ul>
-<li>不确定性的匹配算法和阈值</li>
-<li>组合证据的不确定性算法</li>
-<li>不确定性传递算法</li>
-<li>结论的不确定性合成</li>
-</ul>
-</blockquote>
-<h2 id="4-2-可信度方法"><a href="#4-2-可信度方法" class="headerlink" title="4.2 可信度方法"></a>4.2 可信度方法</h2><p>可信度：根据经验对一个事物或现象为真的相信程度，其具有较大的主观性和经验性</p>
-<p>C-F模型</p>
-<p>知识的不确定性表示：IF E THEN H (CF(H,E))</p>
-<blockquote>
-<ul>
-<li>C-F：可信度因子，反映前提条件与结论的联系强度（主观参数）</li>
-<li>CF也可以理解成：E为真时对H的影响程度</li>
-<li>CF$\in$[-1,1]: 可信度从假到真；0为不相关</li>
-</ul>
-</blockquote>
-<p>证据不确定性的表示：CF(E)</p>
-<blockquote>
-<ul>
-<li>此时CF是一个动态的强度，表示E为真的可能性</li>
-</ul>
-</blockquote>
-<p>组合证据的不确定性：</p>
-<blockquote>
-<ul>
-<li>证据和取：CF(E) = min{CF(E1),CF(E2)…}</li>
-<li>证据析取：CF(E) = max{CF(E1),CF(E2)…}</li>
-</ul>
-</blockquote>
-<p>不确定性的传递算法：CF(H)=CF(H,E)*max{0,CF(E)}</p>
-<p>不确定性的合成算法：P82</p>
-<p>算证据的可信度：</p>
-<blockquote>
-<ul>
-<li>算出每一条知识的结论的可信度</li>
-<li>合成结论的可信度得到结果的可信度</li>
-</ul>
-</blockquote>
-<h2 id="4-3-证据理论"><a href="#4-3-证据理论" class="headerlink" title="4.3 证据理论"></a>4.3 证据理论</h2><h3 id="概率分配函数"><a href="#概率分配函数" class="headerlink" title="概率分配函数"></a>概率分配函数</h3><p>设D是样本x的样本空间；则在证据理论中，D的任何一个子集A都可以对应x的一个命题“x的值在A中”</p>
-<p>概率分配函数M定义如下：<br>$$M: 2^{|D|} \to [0,1] 且 \<br>M(\empty)=0\<br>\sum_{A\in D}M(A)=1<br>$$</p>
-<p>概率分配函数的正交和（概率组合问题）：P85-86</p>
-<h3 id="基于证据理论的不确定性推理"><a href="#基于证据理论的不确定性推理" class="headerlink" title="基于证据理论的不确定性推理"></a>基于证据理论的不确定性推理</h3><p>步骤：</p>
-<blockquote>
-<ul>
-<li>建立问题的样本空间</li>
-<li>由经验给出各概率分配函数（先组合证据计算可信度，再组合概率）</li>
-<li>计算结论的信任函数</li>
-<li>得出结论</li>
-</ul>
-</blockquote>
-<h2 id="4-4-模糊推理方法"><a href="#4-4-模糊推理方法" class="headerlink" title="4.4 模糊推理方法"></a>4.4 模糊推理方法</h2><p>模糊集合的定义（元素有限）：$A = {(x,u_A(x)),x\in X}$</p>
-<blockquote>
-<ul>
-<li>$X$：全集</li>
-<li>$x$：对象</li>
-<li>$A$：集合</li>
-<li>$u_A(x)$：隶属度函数，可以是正态分布等</li>
-</ul>
-</blockquote>
-<p>模糊关系的计算、合成以及推理：P91-101</p>
-<h1 id="五、搜索推理技术"><a href="#五、搜索推理技术" class="headerlink" title="五、搜索推理技术"></a>五、搜索推理技术</h1><h2 id="搜索的概念和种类"><a href="#搜索的概念和种类" class="headerlink" title="搜索的概念和种类"></a>搜索的概念和种类</h2><p>概念：根据问题实际情况，按照一定的策略或规则，从知识库中寻找可利用的知识，从而构造出一条使问题获得解决的推理路线的过程</p>
-<p>种类：</p>
-<blockquote>
-<ul>
-<li>盲目搜索：按既定策略搜索，无任何中间信息来改变控制策略</li>
-<li>启发式搜索：有信息搜索，效率相对而言更高</li>
-</ul>
-</blockquote>
-<h2 id="图搜索策略"><a href="#图搜索策略" class="headerlink" title="图搜索策略"></a>图搜索策略</h2><p>P106</p>
-<h2 id="盲目搜索"><a href="#盲目搜索" class="headerlink" title="盲目搜索"></a>盲目搜索</h2><p>深度优先、广度优先搜索</p>
-<h2 id="启发式搜索"><a href="#启发式搜索" class="headerlink" title="启发式搜索"></a>启发式搜索</h2><h1 id="专题、信息检索"><a href="#专题、信息检索" class="headerlink" title="专题、信息检索"></a>专题、信息检索</h1><p>信息检索：给定需求，从非结构化数据信息库中找出与之最匹配的信息（相似度匹配）</p>
-<p>信息的获取、存储、组织和访问</p>
-<p>应用：</p>
-<blockquote>
-<ul>
-<li>舆情分析</li>
-<li>情报处理</li>
-<li>内容安全</li>
-<li>搜索引擎</li>
-<li>推荐系统</li>
-<li>信息挖掘</li>
-</ul>
-</blockquote>
-<p>信息规模</p>
-<blockquote>
-<ul>
-<li>个人搜索</li>
-<li>企业级搜索</li>
-<li>web搜索</li>
-</ul>
-</blockquote>
-<p>要点：</p>
-<ul>
-<li>倒排索引与布尔查询</li>
-<li>搜索过程：需要注意搜索过程中是否对需求进行了转义</li>
-<li>效率的评价</li>
-<li>词条化：查询和文档切分时采用一致的分词系统、停用词</li>
-<li>词条归一化Normalization：同义词词典以及soundex词纠错</li>
-<li>词形还原、词干还原(Porter算法)</li>
-</ul>
-<p>倒排表的合并：跳表指针</p>
-<h1 id="六、智能计算"><a href="#六、智能计算" class="headerlink" title="六、智能计算"></a>六、智能计算</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>智能计算是利用自然界生物界规律的启迪，根据其原理魔方设计求解问题的算法</p>
-<p>遗传算法、免疫算法、模拟退火算法…</p>
-<h2 id="进化计算"><a href="#进化计算" class="headerlink" title="进化计算"></a>进化计算</h2><p>进化算法是基于自然选择和自然遗传等生物进化机制的一种搜索算法</p>
-<blockquote>
-<ul>
-<li>遗传算法</li>
-<li>遗传规划</li>
-<li>进化策略</li>
-<li>进化规划…</li>
-</ul>
-</blockquote>
-<p>遗传变异理论：繁殖、变异、竞争、选择</p>
-<h3 id="遗传理论"><a href="#遗传理论" class="headerlink" title="遗传理论"></a>遗传理论</h3><p>遗传是指父代利用遗传基因将自身的基因信息遗传给下一代，使子代能够继承父代的特征或性状的生命现象</p>
-<p>概念：</p>
-<blockquote>
-<ul>
-<li>适者生存：目标值比较大的解被选择的可能性较大</li>
-<li>个体：解</li>
-<li>染色体：解的编码</li>
-<li>基因：解的编码中的每一分量，即染色体中的每一个位</li>
-<li>适应性：适应性函数，评估某个个体对当前环境的适应程度</li>
-<li>群体：根据适应度值选择的一组解；种群可以为初始情况下的解的集合</li>
-<li>婚配：交叉选择两个染色体进行交叉产生一组新的染色体的过程</li>
-<li>变异：编码的某一分量发生变化的过程</li>
-</ul>
-</blockquote>
-<h3 id="遗传算法"><a href="#遗传算法" class="headerlink" title="遗传算法"></a>遗传算法</h3><p>特点：通用、鲁棒、可能得到次优解（满意解），可以用于解决高度复杂的非线性问题</p>
-<p>要素：</p>
-<blockquote>
-<ul>
-<li>参数编码</li>
-<li>初始种群设定</li>
-<li>适应性函数的设计</li>
-<li>选择操作</li>
-<li>交叉操作</li>
-</ul>
-</blockquote>
-<p>流程：</p>
-<ol>
-<li>编码、生成初始种群</li>
-<li>计算种群个体对适应度并进行评价</li>
-<li>判断是否满足终止条件，满足则终止</li>
-<li>进行选择、交叉、变异，转2.</li>
-</ol>
-<p>与普通优化（迭代）算法的区别：</p>
-<blockquote>
-<ul>
-<li>初始状态从一组点开始而非一个点开始</li>
-<li>易于形成通用算法程序</li>
-<li>容错能力强</li>
-<li>利用概率转移规则，算法是非确定性的</li>
-</ul>
-</blockquote>
-<h4 id="遗传编码"><a href="#遗传编码" class="headerlink" title="遗传编码"></a>遗传编码</h4><p>遗传编码：二进制编码、实数编码</p>
-<p>二进制编码：格雷编码</p>
-<blockquote>
-<ul>
-<li>原编码中每一位和其前一位异或（最高位不变）</li>
-</ul>
-</blockquote>
-<h4 id="初始种群的产生"><a href="#初始种群的产生" class="headerlink" title="初始种群的产生"></a>初始种群的产生</h4><p>规模的确定：</p>
-<blockquote>
-<ul>
-<li>太小：容易陷入局部最优解</li>
-<li>太大：计算复杂</li>
-<li>适合：20-100个</li>
-</ul>
-</blockquote>
-<h4 id="适应度函数"><a href="#适应度函数" class="headerlink" title="适应度函数"></a>适应度函数</h4><p>可将待求解的目标函数转化成适应度函数</p>
-<blockquote>
-<ul>
-<li>目标函数最大化</li>
-<li>目标函数最小化</li>
-</ul>
-</blockquote>
-<p>欺骗问题</p>
-<h4 id="选择操作"><a href="#选择操作" class="headerlink" title="选择操作"></a>选择操作</h4><p>根据选择概率按照某种策略从当前种群中挑选出一定数目的个体，使它们能够有更多的机会被遗传到下一代中</p>
-<blockquote>
-<ul>
-<li>适者生存</li>
-<li>保持多样性：避免快速收敛到局部最优解</li>
-</ul>
-</blockquote>
-<p>蒙特卡洛算法、排序算法、轮盘赌选择、锦标赛选择（随机选k个个体取其大加入集合，直到数量满足）</p>
-<p>最佳个体保存：最佳个体不进行交叉直接复制到下一代</p>
-<h4 id="交叉操作"><a href="#交叉操作" class="headerlink" title="交叉操作"></a>交叉操作</h4><p>概述：</p>
-<blockquote>
-<ul>
-<li>单点（多点）交叉：将交叉点部分结构进行互换</li>
-<li>均匀交叉：产生一个随机掩码，1的部分交换，0的部分不交换</li>
-<li>交叉之后可能子代不符合要求，需要进行修正</li>
-</ul>
-</blockquote>
-<p>交叉概率的选择：</p>
-<blockquote>
-<ul>
-<li>概率过高：破坏性较大</li>
-<li>概率过低：父代子代差异过小</li>
-<li>适合的概率：0.25-1</li>
-</ul>
-</blockquote>
-<h4 id="变异"><a href="#变异" class="headerlink" title="变异"></a>变异</h4><p>对选中个体的染色体中点某些基因进行变动，以形成新的个体</p>
-<blockquote>
-<ul>
-<li>它可以增强种群的多样性</li>
-<li>二进制变异：随机产生一个或多个变异位</li>
-<li>实值变异：将某一个位置替换成一个符合范围的随机数</li>
-<li>基于位置的变异：随机产生两个变异位置，将位置上的值进行交换…</li>
-</ul>
-</blockquote>
-<p>变异是辅助性的，其概率不应太大：0.001左右</p>
-<h2 id="七、机器学习"><a href="#七、机器学习" class="headerlink" title="七、机器学习"></a>七、机器学习</h2><h3 id="人工智能系统的技术架构"><a href="#人工智能系统的技术架构" class="headerlink" title="人工智能系统的技术架构"></a>人工智能系统的技术架构</h3><p>基础层-技术层-应用层</p>
-<p>要点：</p>
-<blockquote>
-<ul>
-<li>训练数据集</li>
-<li>模型的选择</li>
-<li>评价模型</li>
-</ul>
-</blockquote>
-<h3 id="机器学习概述"><a href="#机器学习概述" class="headerlink" title="机器学习概述"></a>机器学习概述</h3><p>预测：分类、回归</p>
-<p>分类：二分类、多分类、多标签分类</p>
-<p>监督学习、半监督学习、迁移学习、强化学习</p>
-<p>基本概念：</p>
-<blockquote>
-<ul>
-<li>样本(x,y)，训练输入和输出的集合</li>
-<li>特征x、特征的表示</li>
-</ul>
-</blockquote>
-<p>方法=模型+策略+算法</p>
-<blockquote>
-<ul>
-<li>模型：学习模型</li>
-<li>策略：经验风险、结构风险最小化；损失函数</li>
-<li>算法：求解目标函数</li>
-</ul>
-</blockquote>
-<p>划分训练集（训练集、验证集），测试集；交叉验证</p>
-<h3 id="感知机"><a href="#感知机" class="headerlink" title="感知机"></a>感知机</h3><p>感知机是神经网络和SVM的基础</p>
-<blockquote>
-<ul>
-<li>二分类的线性分类模型</li>
-</ul>
-</blockquote>
-<p><strong>输入：</strong> 特征向量</p>
-<p><strong>输出：</strong> 实例的类别</p>
-<p>模型：<br>$$<br>f(x) = signal(wx_i+b)<br>$$</p>
-<p>学习策略：损失函数设计（误分类点到超平面距离之和），需要损失函数最小化<br>$$<br>\sum_i (-y_i(wx_i+b) if y_i(wx_i+b)&lt;0 else 0)<br>$$</p>
-<p>损失函数最小化策略：梯度下降算法</p>
-<blockquote>
-<ul>
-<li>选择一个分类错误的点：误分类点梯度下降</li>
-<li>随机选择点：随机梯度下降算法（速度快）</li>
-<li>每个样本都进行误差累加之后更新权重：普通梯度下降算法（速度慢）</li>
-<li>选部分样本进行梯度下降：批量梯度下降算法<br>$$<br>w = w + \eta y_ix_i \<br>b = b + \eta y_i<br>$$</li>
-</ul>
-</blockquote>
-<p>感知机扩展：线性回归<br>$$<br>L(w,b) = \sum_{n=1}^N(y^n - (wx+b)^2)<br>$$</p>
-<h3 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h3><p>相比于感知机，支持向量机努力提高模型的泛华能力</p>
-<p>基础模型：二分类，同感知机<br>$$<br>f(x) = signal(wx_i+b)<br>$$</p>
-<p>目标：在特征空间上找出间隔最大的超平面</p>
-<p>间隔：<br>$$<br>min_{w,b} \frac12 ||w||^2 \<br>s.t. y_i(wx_i+b) -1 \le 0<br>$$</p>
-]]></content>
-      <categories>
-        <category>notes</category>
-        <category>专业选修</category>
-      </categories>
-      <tags>
-        <tag>learning</tag>
-        <tag>人工智能</tag>
       </tags>
   </entry>
   <entry>
@@ -2947,7 +2299,8 @@
 <p>可知，余项$R_n(x) = f[x_0,x_1,…,x_n,x]\omega_{n+1}(x)$</p>
 <h2 id="4-3-分段低次插值"><a href="#4-3-分段低次插值" class="headerlink" title="4.3 分段低次插值"></a>4.3 分段低次插值</h2><p>龙格现象：有时高次多项式插值的误差、稳定性较差</p>
 <h2 id="4-4-最小二乘拟合法"><a href="#4-4-最小二乘拟合法" class="headerlink" title="4.4 最小二乘拟合法"></a>4.4 最小二乘拟合法</h2><p>插值使用$n-1$阶的多项式来近似$n$个数据点；拟合则使用更少的$m(m&lt;n-1)$阶多项式来近似原函数</p>
-<p>目标：构造$m$次多项式$P_m(x)=\sum_{k=0}^m\alpha_kx^k$使得在拟合点$(x_1,y_1),…(x_n,y_n)$上，方差和<br>$$<br>\sum_{i=1}^nR_i^2 =\sum_{i=1}^n(P_m(x_i)-y_i)^2<br>$$<br>最小，即<br>$$<br>F(\alpha_0,…,\alpha_m)=\sum_{i=1}^n(\sum_{k=0}^m\alpha_ix_i^k-y_i)^2<br>$$<br>最小，其条件为<br>$$<br>\frac{\partial F}{\partial\alpha_0}=\frac{\partial F}{\partial\alpha_1}=…=\frac{\partial F}{\partial\alpha_n}=0<br>$$<br>整理可得$m+1$阶方程组<br>$$<br>\begin{bmatrix}<br>S_0&amp;S_1&amp;\cdots&amp;S_m\<br>S_1&amp;S_2&amp;\cdots&amp;S_{m+1}\<br>\vdots&amp;\vdots&amp;\ddots&amp;\vdots\<br>S_m&amp;S_{m+1}&amp;\cdots&amp;S_{2m}<br>\end{bmatrix}<br>\begin{bmatrix}<br>\alpha_0\\alpha_1\\vdots\\alpha_m<br>\end{bmatrix}<br>=<br>\begin{bmatrix}<br>T_0\T_1\\vdots\T_m<br>\end{bmatrix}<br>$$<br>其中：<br>$$<br>\begin{align}<br>S_k&amp;=\sum_{i=1}^nx_i^k\<br>T_k&amp;=\sum_{i=1}^nx_i^ky_i<br>\end{align}<br>$$</p>
+<p>目标：构造$m$次多项式$P_m(x)=\sum_{k=0}^m\alpha_kx^k$使得在拟合点$(x_1,y_1),…(x_n,y_n)$上，方差和<br>$$<br>\sum_{i=1}^nR_i^2 =\sum_{i=1}^n(P_m(x_i)-y_i)^2<br>$$<br>最小，即<br>$$<br>F(\alpha_0,…,\alpha_m)=\sum_{i=1}^n(\sum_{k=0}^m\alpha_ix_i^k-y_i)^2<br>$$<br>最小，其条件为<br>$$<br>\frac{\partial F}{\partial\alpha_0}=\frac{\partial F}{\partial\alpha_1}=…=\frac{\partial F}{\partial\alpha_n}=0<br>$$<br>整理可得$m+1$阶方程组</p>
+<p>$$<br>\begin{bmatrix}<br>S_0&amp;S_1&amp;\cdots&amp;S_m \<br>S_1&amp;S_2&amp;\cdots&amp;S_{m+1} \<br>\vdots&amp;\vdots&amp;\ddots&amp;\vdots \<br>S_m&amp;S_{m+1}&amp;\cdots&amp;S_{2m}<br>\end{bmatrix}<br>\begin{bmatrix}<br>\alpha_0 \ \alpha_1 \ \vdots \ \alpha_m<br>\end{bmatrix}<br>=<br>\begin{bmatrix}<br>T_0 \ T_1 \ \vdots \ T_m<br>\end{bmatrix}<br>$$<br>其中：<br>$$<br>\begin{align}<br>S_k&amp;=\sum_{i=1}^nx_i^k \<br>T_k&amp;=\sum_{i=1}^nx_i^ky_i<br>\end{align}<br>$$</p>
 <blockquote>
 <ul>
 <li>$m&lt;n$时，方程组存在唯一解使得目标函数最小化</li>
@@ -2964,8 +2317,18 @@
 <h1 id="五、插值型数值微分与数值积分"><a href="#五、插值型数值微分与数值积分" class="headerlink" title="五、插值型数值微分与数值积分"></a>五、插值型数值微分与数值积分</h1><p>对于函数$y=f(x)$，其插值多项式为<br>$$<br>f(x) \approx Ln(x)<br>$$</p>
 <p>则有<br>$$<br>f’(x) \approx Ln’(x) \<br>\int_a^b f(x)dx \approx \int_a^b Ln(x) dx<br>$$</p>
 <h2 id="5-1-数值微分"><a href="#5-1-数值微分" class="headerlink" title="5.1 数值微分"></a>5.1 数值微分</h2><p>$$<br>f’(x_i) = \frac{y_{i+1}-y_{i-1}}{2\delta}\<br>f’’(x_i) = \frac{y_{i+1}-2y_i+y_{i-1}}{\delta^2}<br>$$</p>
-<h2 id="5-2-数值积分"><a href="#5-2-数值积分" class="headerlink" title="5.2 数值积分"></a>5.2 数值积分</h2><p>牛顿-柯林斯公式（等距采样）<br>$$<br>\mathbf I_n = (b-a)\sum_{i=0}^nC_i^{(n)}f(x_i)<br>$$</p>
-]]></content>
+<p>数值微分误差通常用泰勒公式估计</p>
+<h2 id="5-2-数值积分"><a href="#5-2-数值积分" class="headerlink" title="5.2 数值积分"></a>5.2 数值积分</h2><p>牛顿-柯林斯公式（等距采样）<br>$$<br>\mathbf I_n = (b-a)\sum_{i=0}^nC_i^{(n)}f(x_i)<br>$$<br>其中：<br>$$<br>C_i^{(n)} = \frac{(-1)^{n-i}}{i!(n-i)!n}\int_0^n\prod_{j=0\ j\neq i}^n (t-j)dt<br>$$</p>
+<h2 id="5-3-复合求积公式"><a href="#5-3-复合求积公式" class="headerlink" title="5.3 复合求积公式"></a>5.3 复合求积公式</h2><p>牛顿-柯林斯公式在低次插值误差较大、高次插值不稳定</p>
+<p>基于分段低次插值来构造求积公式：对$[a,b]$做等距分割$x_k=a+kh$，其中$k=0,1,…n; h=\frac{b-a}{h}$，然后在$[x_{k-1},x_k]$上求积</p>
+<p>复合梯形公式：<br>$$<br>\begin{align}<br>T_n &amp;= \sum_{k=1}^n \frac h2 [f(x_{k-1})+f(x_k)] \<br>&amp;= \frac {b-a}{2n}[f(a)+f(b)+2\sum_{k=1}^{n-1}f(x_k)]<br>\end{align}<br>$$</p>
+<h2 id="数值积分误差分析"><a href="#数值积分误差分析" class="headerlink" title="数值积分误差分析"></a>数值积分误差分析</h2><p>要使得积分结果达到目标精度，需要修改上述方法，使得误差能够得到计算</p>
+<p>P109，过于复杂<br><img src="/2020/09/09/numeric-analysis0/P109.jpg" alt></p>
+<p>步长减半算法：<br><img src="/2020/09/09/numeric-analysis0/P111.jpg" alt></p>
+<p>龙贝格积分法：高次插值可由低次插值等线性组合构成<br><img src="/2020/09/09/numeric-analysis0/P114.jpg" alt></p>
+<h1 id="六、常微分方程的数值解"><a href="#六、常微分方程的数值解" class="headerlink" title="六、常微分方程的数值解"></a>六、常微分方程的数值解</h1><p>一阶常微分方程初值问题：<br>$$<br>\begin{cases}<br>y’ = f(x,y) \<br>y(x_0)=y_0<br>\end{cases}<br>x \in [x_0,b]<br>$$</p>
+<p>此时，求解的结果为$[x_0,b]$上的一组等距分割的离散点</p>
+<h2 id="欧拉方法"><a href="#欧拉方法" class="headerlink" title="欧拉方法"></a>欧拉方法</h2>]]></content>
       <categories>
         <category>notes</category>
         <category>专业选修</category>
@@ -5361,6 +4724,503 @@
 <p>其他因素（编译器、载入器、程序设计语言）对调页都有影响</p>
 <h3 id="IO互锁"><a href="#IO互锁" class="headerlink" title="IO互锁"></a>IO互锁</h3><p>IO互锁允许某些页在内存中被锁住</p>
 <p>IO时，正在进行IO的页面不允许被置换算法置换出内存</p>
+<h2 id="Linux和Windows存储管理技术"><a href="#Linux和Windows存储管理技术" class="headerlink" title="Linux和Windows存储管理技术*"></a>Linux和Windows存储管理技术*</h2><h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>Linux内存映像：</p>
+<blockquote>
+<ul>
+<li>内存低端：kernel Memory</li>
+<li>内存高端：user Memory</li>
+</ul>
+</blockquote>
+<p>Linux分页：</p>
+<blockquote>
+<ul>
+<li>四级分页</li>
+<li>页全局目录、页上级目录、页中间目录、页表</li>
+</ul>
+</blockquote>
+<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>Windows采用工作集模型</p>
+<h1 id="十、文件系统"><a href="#十、文件系统" class="headerlink" title="十、文件系统"></a>十、文件系统</h1><p>操作系统功能：信息处理、信息存储、输入输出</p>
+<h2 id="文件系统接口"><a href="#文件系统接口" class="headerlink" title="文件系统接口"></a>文件系统接口</h2><p>文件系统接口是面相用户的</p>
+<p>文件：</p>
+<blockquote>
+<ul>
+<li>文件是计算机中信息存储的基本形式</li>
+<li>文件是相关信息的结合</li>
+<li>文件具有文件名</li>
+</ul>
+</blockquote>
+<p>文件名：文件在计算机中存储位置是由数字表示的</p>
+<blockquote>
+<ul>
+<li>按名存取：用户可以通过文件名来访问文件存储位置</li>
+<li>文件名由一串ASCII码或（和）汉字构成</li>
+<li>Linux文件名大小写敏感，Windows文件名大小写不敏感</li>
+</ul>
+</blockquote>
+<p>文件结构：文件结构由操作系统和程序决定</p>
+<blockquote>
+<ul>
+<li>无结构：文字流、字节流等</li>
+<li>简单记录结构：线性、固定长度、可变长度等</li>
+<li>复杂结构：格式化文档、多媒体文件等</li>
+</ul>
+</blockquote>
+<p>文件类型：文件类型一般由扩展名决定</p>
+<blockquote>
+<ul>
+<li>文件类型也称文件后缀名</li>
+<li>是标识文件类型的一种机制</li>
+<li>其扩展名跟在主文件名后面，由一个分隔符“.”分隔</li>
+</ul>
+</blockquote>
+<p>文件属性：文件名、文件位置、文件类型、文件大小、保护、时间等…</p>
+<p>文件操作：创建文件、写文件、读文件、文件内重定位、删除文件、截断文件、打开文件、关闭文件</p>
+<p>打开文件操作：其需要一个数据结构，用于方便文件共享、提高文件存取效率</p>
+<blockquote>
+<ul>
+<li>打开文件表：跟踪打开文件</li>
+<li>文件指针:指向最后一次读写的位置，每个进程1个</li>
+<li>打开文件计数器：打开文件次数（调用open次数）</li>
+<li>文件存储位置：文件存放在存储设备上的位置信息</li>
+<li>访问权限：每个进程的访问权限</li>
+</ul>
+</blockquote>
+<h2 id="逻辑文件及其访问方法"><a href="#逻辑文件及其访问方法" class="headerlink" title="逻辑文件及其访问方法"></a>逻辑文件及其访问方法</h2><h3 id="文件访问"><a href="#文件访问" class="headerlink" title="文件访问"></a>文件访问</h3><blockquote>
+<ul>
+<li>逻辑文件：呈现在用户面前的组织结构，其决定了文件访问方法</li>
+<li>目录：文件组织方式，是物理文件和逻辑文件之间的桥梁</li>
+<li>物理文件：面相系统的问价存储方式</li>
+</ul>
+</blockquote>
+<h3 id="文件访问方式"><a href="#文件访问方式" class="headerlink" title="文件访问方式"></a>文件访问方式</h3><p>顺序（遍历）是访问：磁带</p>
+<blockquote>
+<ul>
+<li>顺序文件：依次访问数据，不能直接跳转到文件的指定位置</li>
+<li>顺序文件特点：节省存储空间但访问效率差</li>
+</ul>
+</blockquote>
+<p>直接（随机）访问：磁盘</p>
+<blockquote>
+<ul>
+<li>直接文件：直接通过计算得到需要读写记录的位置，直接跳转进行文件读写</li>
+<li>直接文件特点：浪费存储空间，访问效率好</li>
+</ul>
+</blockquote>
+<p>索引文件：为顺序文件建立索引表</p>
+<h2 id="文件目录"><a href="#文件目录" class="headerlink" title="文件目录"></a>文件目录</h2><h3 id="文件控制块FCB"><a href="#文件控制块FCB" class="headerlink" title="文件控制块FCB"></a>文件控制块FCB</h3><p>FCB存放操控文件所需的各类文件属性信息：</p>
+<blockquote>
+<ul>
+<li>文件名、长度、创建时间、存放位置、访问控制权限等</li>
+<li>FCB类似一个索引项</li>
+</ul>
+</blockquote>
+<h3 id="目录项和目录"><a href="#目录项和目录" class="headerlink" title="目录项和目录"></a>目录项和目录</h3><p>目录项：</p>
+<blockquote>
+<ul>
+<li>存放一个文件等各类属性</li>
+<li>在一些系统中，目录项相当于FCB</li>
+<li>每个目录项都是等长的</li>
+</ul>
+</blockquote>
+<p>目录：</p>
+<blockquote>
+<ul>
+<li>其包含着所有文件信息的节点集合</li>
+<li>目录是根据文件名检索文件的桥梁</li>
+<li>目录是目录项的有序集合</li>
+</ul>
+</blockquote>
+<p>目录文件：</p>
+<blockquote>
+<ul>
+<li>目录文件是目录的组织形式</li>
+<li>实际上，目录也是作为一个文件存在于文件系统</li>
+</ul>
+</blockquote>
+<h3 id="目录和文件"><a href="#目录和文件" class="headerlink" title="目录和文件"></a>目录和文件</h3><p>每个目录项中存放了文件在存储设备上的地址</p>
+<p>目录和文件都驻留在存储设备中</p>
+<p>目录相关操作：</p>
+<blockquote>
+<ul>
+<li>搜索文件</li>
+<li>创建文件（其和文件本身没有关系，不会为文件分配空间）</li>
+<li>删除文件（其和文件本身没有关系，不会修改文件的FCB和数据，仅回收其在目录中的位置）</li>
+<li>截断文件（其和文件数据没有关系，仅修改其在目录中的FCB）</li>
+<li>重命名文件、跟踪文件系统、列出目录、打开/创建/删除/遍历/读/切换目录…</li>
+</ul>
+</blockquote>
+<h3 id="文件检索过程"><a href="#文件检索过程" class="headerlink" title="文件检索过程"></a>文件检索过程</h3><p>文件检索过程为一个遍历目录项的过程：</p>
+<blockquote>
+<ul>
+<li>打开目录文件</li>
+<li>从磁盘读入该目录文件的1个(物理)块，该块包含若干个目录项</li>
+<li>根据文件名遍历内存中的该块，如找到则结束</li>
+<li>判断该目录文件是否还有物理块没有读入，如果是转2；否则，结束。表示该目录中没有此文件名的文件</li>
+</ul>
+</blockquote>
+<h3 id="目录性能"><a href="#目录性能" class="headerlink" title="目录性能"></a>目录性能</h3><p>物理块：内存和存储设备数据交换到基本单位</p>
+<p>目录性能目标：读入尽可能少的物理块</p>
+<blockquote>
+<ul>
+<li>降低目录项大小ds</li>
+<li>降低目录中的文件数n</li>
+</ul>
+</blockquote>
+<p>i Node目录项（Linux使用）：</p>
+<blockquote>
+<ul>
+<li>使用仅存储文件名的i Node指向FCB，FCB再指向文件数据</li>
+<li>目录文件将变小</li>
+</ul>
+</blockquote>
+<h3 id="文件保护"><a href="#文件保护" class="headerlink" title="文件保护"></a>文件保护</h3><p>文件等所有者/创建者应有的控制权：</p>
+<blockquote>
+<ul>
+<li>能做什么</li>
+<li>由谁来做</li>
+</ul>
+</blockquote>
+<p>文件访问控制：读R、写W、执行X</p>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><p>目录结构的设计目标：</p>
+<blockquote>
+<ul>
+<li>效率：快速定位文件位置，提高文件访问效率</li>
+<li>命名：方便用户使用，并对同名不同文件和不同名的相同文件（共享）提供解决方案</li>
+<li>分组：提供文件分组（子目录），兼顾效率和方便性</li>
+</ul>
+</blockquote>
+<h3 id="单层目录"><a href="#单层目录" class="headerlink" title="单层目录"></a>单层目录</h3><p>所有文件在同一个目录中，只有一级根目录</p>
+<blockquote>
+<ul>
+<li>根目录/：最顶层的目录</li>
+<li>应用在早期文件数量较少的操作系统中</li>
+<li>优点：结构简单</li>
+</ul>
+</blockquote>
+<p>缺点：</p>
+<blockquote>
+<ul>
+<li>检索效率查：目录下文件过多</li>
+<li>不能有同名文件</li>
+<li>不能分组</li>
+</ul>
+</blockquote>
+<h3 id="双层目录"><a href="#双层目录" class="headerlink" title="双层目录"></a>双层目录</h3><p>每个用户有自己的目录结构</p>
+<blockquote>
+<ul>
+<li>缺点：1）无法分组；2）同一用户不能有相同文件名的文件</li>
+<li>优点：1）不同用户可有相同文件名的文件；2）比单层目录提高检索效率（文件分布在多个用户目录中）</li>
+</ul>
+</blockquote>
+<p>同名文件问题解决方案：路径名</p>
+<h3 id="树形目录"><a href="#树形目录" class="headerlink" title="树形目录"></a>树形目录</h3><p>特点：</p>
+<blockquote>
+<ul>
+<li>检索高效：子目录增多，每个目录下文件减少</li>
+<li>可以分组</li>
+<li>允许重名</li>
+</ul>
+</blockquote>
+<p>当前目录：工作目录，用”.”表示</p>
+<blockquote>
+<ul>
+<li>绝对路径：用根目录开始的路径名</li>
+<li>相对路径：从当前目录开始的路径名，其能够提高检索效率</li>
+</ul>
+</blockquote>
+<p>树形目录不能实现文件共享，需要使用图目录</p>
+<h3 id="无环图目录"><a href="#无环图目录" class="headerlink" title="无环图目录"></a>无环图目录</h3><p>无环图目录中：有向无环</p>
+<p>文件共享方式：</p>
+<blockquote>
+<ul>
+<li>硬链接（Linux）：在同一个卷/磁盘中，创建多个i Node指向同一个文件的FCB</li>
+<li>符号链接/软链接（Win/Linux）：创建一个含有文件绝对路径的符号链接文件（快捷方式）</li>
+</ul>
+</blockquote>
+<p>相比于硬连接，符号链接可以跨文件系统、实现简单但效率稍差</p>
+<h3 id="通用图目录"><a href="#通用图目录" class="headerlink" title="通用图目录"></a>通用图目录</h3><p>通用图目录中存在环（广泛采用）</p>
+<p>遍历时需要解决无穷递归问题</p>
+<h1 id="十一、文件系统实现"><a href="#十一、文件系统实现" class="headerlink" title="十一、文件系统实现"></a>十一、文件系统实现</h1><h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><p>文教系统是在存储设备上组织文件的方法和数据结构</p>
+<p>文件系统层次架构：</p>
+<blockquote>
+<ul>
+<li>应用程序</li>
+<li>逻辑文件系统（第十章所述）</li>
+<li>文件组织模块</li>
+<li>基本文件系统</li>
+<li>I/O控制</li>
+<li>设备</li>
+</ul>
+</blockquote>
+<h3 id="文件系统基本概念"><a href="#文件系统基本概念" class="headerlink" title="文件系统基本概念"></a>文件系统基本概念</h3><p>物理块（簇）：一个或多个（2^n）扇区组成，是基本的文件读写单位</p>
+<p>（物理）分区Partition：磁盘所分割成的若干个独立的空间</p>
+<blockquote>
+<ul>
+<li>分区的类别：主分区、扩展分区</li>
+<li>主分区：能够安装操作系统的启动分区，现在操作系统中一个盘最多可分为4个主分区</li>
+<li>扩展分区：不能够直接使用，必须分为若干个逻辑分区</li>
+</ul>
+</blockquote>
+<p>（卷）逻辑磁盘Volume：建立在物理分区上的逻辑分区，每个卷可以使用不同的文件系统</p>
+<h3 id="文件系统实现"><a href="#文件系统实现" class="headerlink" title="文件系统实现"></a>文件系统实现</h3><p>磁盘文件系统：</p>
+<blockquote>
+<ul>
+<li>引导控制块：只有安装操作系统的分区才有，包含系统应到操作系统的各种信息</li>
+<li>分区控制块：包含分区信息，UFS中为超级块</li>
+<li>目录和FCB</li>
+<li>用户文件</li>
+</ul>
+</blockquote>
+<p>磁盘结构：MBR-BPT分区表-主分区-扩展分区</p>
+<blockquote>
+<ul>
+<li>UFS的主分区：引导块-超级块-空闲区表-i node-根目录-文件</li>
+<li>FAT主分区：引导区-FAT1-FAT2恢复-根目录-文件</li>
+</ul>
+</blockquote>
+<p>内存文件系统：通过缓冲技术提高文件系统性能</p>
+<blockquote>
+<ul>
+<li>分区表：所有安装分区信息</li>
+<li>目录缓冲结构：保存最近访问的目录信息</li>
+<li>系统打开文件表</li>
+<li>进程打开文件表</li>
+</ul>
+</blockquote>
+<p>虚拟文件系统VFS（Linux）：一个操作系统可能会读取不同的文件系统，需要为它们统一访问接口</p>
+<blockquote>
+<ul>
+<li>为各类不同的文件系统定义VFS接口</li>
+<li>符合该接口的文件系统都可以接入VFS</li>
+</ul>
+</blockquote>
+<p>网络文件系统NFS</p>
+<h2 id="连续分配"><a href="#连续分配" class="headerlink" title="连续分配"></a>连续分配</h2><h3 id="物理块和逻辑块"><a href="#物理块和逻辑块" class="headerlink" title="物理块和逻辑块"></a>物理块和逻辑块</h3><p>物理块：</p>
+<blockquote>
+<ul>
+<li>读写存储设备的基本单位</li>
+<li>存储设备的基本分配单位</li>
+<li>物理块和内存的页面大小相对应（一般为页面大小的整数倍）</li>
+<li>每个物理块可以有一个一维的物理块块号</li>
+</ul>
+</blockquote>
+<p>逻辑块：</p>
+<blockquote>
+<ul>
+<li>逻辑块是在文件空间中的块，应当是一个相对地址块</li>
+<li>大小和物理块一致</li>
+<li>一个逻辑块存储在一个物理块中</li>
+<li>逻辑块号和物理块号应当是一一对应的</li>
+</ul>
+</blockquote>
+<h3 id="连续分配概念"><a href="#连续分配概念" class="headerlink" title="连续分配概念"></a>连续分配概念</h3><p>连续分配：</p>
+<blockquote>
+<ul>
+<li>每个文件在磁盘上占用一组连续的物理块</li>
+<li>文件的FCB仅给出文件等起始块号和长度</li>
+</ul>
+</blockquote>
+<p>地址映射方式：</p>
+<blockquote>
+<ul>
+<li>逻辑地址为文件内的相对地址LA</li>
+<li>物理地址为某物理块中的某个地址(B,D)</li>
+<li>物理块大小为S，逻辑块号为D=LA/S，则映射方式为：LA-&gt;(Q,D)-&gt;(B,D)</li>
+</ul>
+</blockquote>
+<p>优点：</p>
+<blockquote>
+<ul>
+<li>支持随机访问（可直接访问 指定块号的物理块）</li>
+<li>存取速度块（连续访问性能高）</li>
+<li>适用于一次性写入操作</li>
+</ul>
+</blockquote>
+<p>缺点：</p>
+<blockquote>
+<ul>
+<li>浪费空间（存在外碎片，小空间无法分配）</li>
+<li>文件不能动态增长（如日志文件需要动态增长）</li>
+<li>不利于文件的插入和删除（需要移动数据）</li>
+</ul>
+</blockquote>
+<p>改进：局部连续</p>
+<h2 id="链接分配"><a href="#链接分配" class="headerlink" title="链接分配"></a>链接分配</h2><h3 id="概述-4"><a href="#概述-4" class="headerlink" title="概述"></a>概述</h3><p>离散物理块的分配方式：</p>
+<blockquote>
+<ul>
+<li>链接分配</li>
+<li>索引分配</li>
+</ul>
+</blockquote>
+<p>链接分配：</p>
+<blockquote>
+<ul>
+<li>文件信息存放在若干个不连续的物理块中</li>
+<li>文件的所有物理块通过指针链接形成链表结构</li>
+<li>链接分配有显式链接和隐式链接</li>
+</ul>
+</blockquote>
+<h3 id="隐式链接"><a href="#隐式链接" class="headerlink" title="隐式链接"></a>隐式链接</h3><p>策略：</p>
+<blockquote>
+<ul>
+<li>链表的指针隐藏在物理块中</li>
+<li>每个物理块中的指针指向下一个物理块</li>
+<li>文件结束于空指针</li>
+<li>FCB给出文件的首块地址（也可能包括结束地址）</li>
+</ul>
+</blockquote>
+<p>地址映射方式：</p>
+<blockquote>
+<ul>
+<li>逻辑地址为LA，物理块大小为S，指针大小为P</li>
+<li>逻辑块号Q = LA/(S-P) … D</li>
+<li>映射过程：LA-&gt;(Q,D)-&gt;(B,D)</li>
+</ul>
+</blockquote>
+<p>优点：</p>
+<blockquote>
+<ul>
+<li>文件离散存放，提高磁盘利用率</li>
+<li>支持动态扩充文件大小</li>
+<li>便于文件的插入和删除</li>
+</ul>
+</blockquote>
+<p>缺点：</p>
+<blockquote>
+<ul>
+<li>不支持随机访问，访问一个指针的同时也需要读入整个物理块</li>
+<li>每个物理块实际可用空间变小</li>
+<li>可靠性较差，中间块的丢失可能造成后续块无法找到</li>
+</ul>
+</blockquote>
+<p>缓解方案：可以多块集合成组</p>
+<h3 id="显式链接"><a href="#显式链接" class="headerlink" title="显式链接"></a>显式链接</h3><p>策略：</p>
+<blockquote>
+<ul>
+<li>所有指针单独为一张链接表，数据跟在指针之后，指针不和物理块挂钩</li>
+<li>链接表一般在文件系统装载时装入内存</li>
+<li>检索时，先访问链接表，再访问物理块；提高检索速度</li>
+</ul>
+</blockquote>
+<p>缺点：不适合大容量磁盘；大容量磁盘的链接表也很大</p>
+<h3 id="文件分配表FAT"><a href="#文件分配表FAT" class="headerlink" title="文件分配表FAT"></a>文件分配表FAT</h3><p>FAT文件系统是链接分配的一个重要变种</p>
+<p>FAT32：</p>
+<blockquote>
+<ul>
+<li>引导扇区(1)-保留扇区(31)-FAT1-FAT2(备份)-根文件夹首簇-其他文件夹及所有文件</li>
+<li>每个簇（物理块）固定为4-32KB</li>
+<li>FAT表的表项占据32位，在块大小为4KB时，FAT最大管理的磁盘空间为2TB</li>
+<li>FAT带个文件不能大于4G</li>
+</ul>
+</blockquote>
+<h2 id="索引分配"><a href="#索引分配" class="headerlink" title="索引分配"></a>索引分配</h2><h3 id="概述-5"><a href="#概述-5" class="headerlink" title="概述"></a>概述</h3><p>索引分配类似一种分散的FAT</p>
+<blockquote>
+<ul>
+<li>其为诶个文件建立一张文件分配表，即索引表</li>
+<li>索引块：存放指向文件每个物理块块号的物理块</li>
+<li>索引块中的第i项为第i个逻辑块对应的物理块块号</li>
+<li>FCB指向索引块</li>
+</ul>
+</blockquote>
+<p>地址映射方式和连续分配一样，中间加入一个指针地址转换</p>
+<p>优点：</p>
+<blockquote>
+<ul>
+<li>支持随机访问</li>
+<li>离散存放，没有碎片</li>
+</ul>
+</blockquote>
+<p>缺点：</p>
+<blockquote>
+<ul>
+<li>需要额外的空间存放索引表</li>
+<li>磁盘访问时间增加</li>
+</ul>
+</blockquote>
+<p>大文件无法用单级索引实现，可以采用多级索引或链接策略，注意地址映射的计算问题</p>
+<h2 id="空闲空间管理"><a href="#空闲空间管理" class="headerlink" title="空闲空间管理"></a>空闲空间管理</h2><h3 id="空闲表"><a href="#空闲表" class="headerlink" title="空闲表"></a>空闲表</h3><p>空闲表适用于连续分配</p>
+<blockquote>
+<ul>
+<li>将连续的未分配的物理块集合成空闲区</li>
+<li>空闲区由首块块号和空闲块数目（长度）组成</li>
+<li>空闲表的每个表项对应一个空闲区</li>
+</ul>
+</blockquote>
+<p>空闲表的分配和额回收方式和内存的连续分配类似</p>
+<p>空闲表需要占据额外的存储空间</p>
+<h3 id="空闲链表"><a href="#空闲链表" class="headerlink" title="空闲链表"></a>空闲链表</h3><p>空闲链表将磁盘上的所有空闲块链接在一个链表中</p>
+<blockquote>
+<ul>
+<li>分配空间：从链表头依次取出适当数目的空闲块</li>
+<li>回收空间：将空闲块加入链表尾部</li>
+</ul>
+</blockquote>
+<p>优点：不需要专用块存放管理信息</p>
+<p>缺点：增加IO操作，得到连续空间难</p>
+<h3 id="位示图"><a href="#位示图" class="headerlink" title="位示图"></a>位示图</h3><p>利用一个二进制位来表示一个块的使用情况</p>
+<blockquote>
+<ul>
+<li>1：块空闲；0：块已分配</li>
+<li>所有块都有一个二进制位与之对应</li>
+<li>所有块对应的位集合成位示图</li>
+</ul>
+</blockquote>
+<p>位示图需要额外的空间，其占用一些物理块</p>
+<blockquote>
+<ul>
+<li>比较容易得到连续的物理块</li>
+<li>是Linux和Windows的常用空闲空间管理方式</li>
+</ul>
+</blockquote>
+<h3 id="成组链接"><a href="#成组链接" class="headerlink" title="成组链接"></a>成组链接</h3><p>成组链接结合了空闲表和空闲链表</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>一致性检查和磁盘整理</p>
+<h1 id="十二、大容量存储器"><a href="#十二、大容量存储器" class="headerlink" title="十二、大容量存储器"></a>十二、大容量存储器</h1><h2 id="磁盘结构和管理"><a href="#磁盘结构和管理" class="headerlink" title="磁盘结构和管理"></a>磁盘结构和管理</h2><p>磁盘结构：</p>
+<blockquote>
+<ul>
+<li>盘片</li>
+<li>磁头</li>
+<li>主轴</li>
+<li>接口、磁盘控制器、缓冲区</li>
+</ul>
+</blockquote>
+<p>盘片结构：</p>
+<blockquote>
+<ul>
+<li>磁道</li>
+<li>扇区</li>
+<li>柱面</li>
+</ul>
+</blockquote>
+<p>磁盘访问时间</p>
+<blockquote>
+<ul>
+<li>寻道时间：平均1/3磁道移动时间</li>
+<li>旋转时间：平均1/2磁道旋转一周时间</li>
+<li>传输时间：传输总字数/传输率</li>
+</ul>
+</blockquote>
+<p>磁盘管理：</p>
+<blockquote>
+<ul>
+<li>低级格式化（物理格式化）：将磁盘分成扇区</li>
+<li>分区：将磁盘分成分区</li>
+<li>高级格式化：逻辑格式化，创建文件系统</li>
+<li>引导块</li>
+</ul>
+</blockquote>
+<p>分区：MBR主引导记录，512字节</p>
+<p>坏块检查和标记</p>
+<h2 id="磁盘调度和RAID"><a href="#磁盘调度和RAID" class="headerlink" title="磁盘调度和RAID"></a>磁盘调度和RAID</h2><p>磁盘调度：缺省一般为SSTF和LOOK，请求多时采用SCAN或C-SCAN提高性能</p>
+<blockquote>
+<ul>
+<li>FCFS：先来先服务；寻道时间长</li>
+<li>SSTF：最短寻道时间优先；从请求序列中寻找离磁头最近的；存在饥饿、磁头频繁变换方向、增加寻道时间</li>
+<li>SCAN：扫描算法（电梯算法）；磁头来回在柱面上扫描，处理每个请求</li>
+<li>C-SCAN：仅正向扫描处理请求，等待时间更均匀</li>
+<li>LOOK：双向扫描时仅移动到方向最远的请求为止（C-LOOK同理）</li>
+</ul>
+</blockquote>
+<p>RAID结构：磁盘冗余阵列</p>
 ]]></content>
       <categories>
         <category>notes</category>
@@ -6345,7 +6205,7 @@
 <ul>
 <li>源端口(16)-目的端口(16)</li>
 <li>序号(32)：表示本报文所发送的数据的第一个字节的序号</li>
-<li>确认号(32)：表示回复报文中希望收到的下一个字节的序号，即该序号之前的字节已经成功收到</li>
+<li>确认号ark(32)：表示回复报文中希望收到的下一个字节的序号，即该序号之前的字节已经成功收到</li>
 <li>数据偏移/首部长度(4)-保留(6)-标志字段(6)-窗口(16)</li>
 <li>检验和(16)-紧急指针(16)</li>
 <li>选项(可变长)-填充</li>
@@ -6464,6 +6324,157 @@
 </ul>
 </blockquote>
 <p>该算法可以使得队列长度变化较为平滑</p>
+<h3 id="TCP的运输连接管理"><a href="#TCP的运输连接管理" class="headerlink" title="TCP的运输连接管理"></a>TCP的运输连接管理</h3><p>运输连接的三个阶段：</p>
+<blockquote>
+<ul>
+<li>连接建立</li>
+<li>数据传输</li>
+<li>连接释放</li>
+</ul>
+</blockquote>
+<h4 id="连接建立"><a href="#连接建立" class="headerlink" title="连接建立"></a>连接建立</h4><p>连接建立需要解决的问题：</p>
+<blockquote>
+<ul>
+<li>知晓对方的存在</li>
+<li>协商一些连接参数</li>
+<li>对运输实体资源进行分配</li>
+</ul>
+</blockquote>
+<p>三次握手：</p>
+<blockquote>
+<ul>
+<li>客户-&gt;服务器：SYN=1，seq=x（发送连接请求）</li>
+<li>服务器-&gt;客户：SYN=1，ACK=1，seq=y，ack=x+1（回复请求）</li>
+<li>客户-&gt;服务器：ACK=1，seq=x+1，ack=y+1（已经可以开始传数据量）</li>
+</ul>
+</blockquote>
+<h4 id="连接释放"><a href="#连接释放" class="headerlink" title="连接释放"></a>连接释放</h4><p>数据传输结束后，通信双方都可以释放连接</p>
+<p>变化的三次握手（四次挥手）：</p>
+<blockquote>
+<ul>
+<li>A-&gt;B：FIN=1，seq=u（此时A不能主动发送数据，但必须回复B发送的数据）</li>
+<li>B-&gt;A：ACK=1，seq=v，ack=u+1（B进行回复，此时B仍可以单方向发送信息）</li>
+<li>B-&gt;A：FIN=1，ACK=1，seq=w，ack=u+1（再次对A进行回复，完全释放连接）</li>
+<li>A-&gt;B：ACK=1，seq=u+1，ack=w+1</li>
+</ul>
+</blockquote>
+<p>其中，第二、三次挥手可以合并</p>
+<h1 id="六、应用层"><a href="#六、应用层" class="headerlink" title="六、应用层"></a>六、应用层</h1><p>应用层协议许多都是基于客户-服务器方式</p>
+<h2 id="6-1-域名系统DNS"><a href="#6-1-域名系统DNS" class="headerlink" title="6.1 域名系统DNS"></a>6.1 域名系统DNS</h2><p>概述：</p>
+<blockquote>
+<ul>
+<li>域名用于通过名称来查找地址</li>
+<li>因特网采用层次结构的命名树作为主机的名字，并使用分布式的域名系统DNS</li>
+<li>名字到域名的解析是由若干个域名服务器端程序完成的，可以为TCP或UDP</li>
+<li>域名服务器程序在专设的结点上运行，运行该程序的机器称为域名服务器。</li>
+</ul>
+</blockquote>
+<p>域名结构：层次树状</p>
+<blockquote>
+<ul>
+<li>…三级域名.二级域名.顶级域名</li>
+<li>顶级域域名有三种类型：arpa域、通用域、国家域</li>
+<li>反向域名：如121.45.34.132.in.addr.arpa</li>
+</ul>
+</blockquote>
+<p>授权域名服务器：</p>
+<blockquote>
+<ul>
+<li>服务器分为根、顶级、权限、本地域名服务器，其根据域划分管辖区</li>
+<li>因特网允许各个单位根据具体情况将本单位的域名划分为若干个域名服务器管辖区</li>
+<li>每个管辖区中可以设置相应的授权域名服务器</li>
+<li>根域名服务器共有13套装置，每套根域名服务器有多个镜像</li>
+</ul>
+</blockquote>
+<p>域名解析的C/S模型：</p>
+<blockquote>
+<ul>
+<li>本地域名服务器的递归查询：查询由根（结点）域名服务器执行</li>
+<li>本地域名服务器的迭代查询：查询由本地域名服务器执行</li>
+<li>递归与迭代相结合的查询：结点根据自己负载情况选择不同的查询方式</li>
+</ul>
+</blockquote>
+<p>DNS资源记录*</p>
+<blockquote>
+<ul>
+<li>每个域都有一个相关的资源记录集合，常见的记录是其的IP地址</li>
+<li>资源记录类型：A、PTR、CNAME、HINFO、MX、NS…</li>
+</ul>
+</blockquote>
+<p>DNS劫持：攻击DNS服务器来篡改记录、伪造主机</p>
+<h2 id="6-2-FTP文件传输协议"><a href="#6-2-FTP文件传输协议" class="headerlink" title="6.2 FTP文件传输协议"></a>6.2 FTP文件传输协议</h2><p>FTP使用两个TCP连接完成：</p>
+<blockquote>
+<ul>
+<li>一个TCP连接为控制进程（命令），服务器端口默认21</li>
+<li>一个TCP连接为数据传输进程（数据），服务器端口默认20</li>
+<li>数据连接其实可以有多个（多个文件同时传输）</li>
+</ul>
+</blockquote>
+<p>NFS、SMB</p>
+<p>TFTP简单文件传输协议：</p>
+<blockquote>
+<ul>
+<li>其为一个小且易于实现的文件传输协议</li>
+<li>使用UDP数据报，TFTP自己提供差错控制</li>
+<li>只支持文件传输，没有交互</li>
+<li>没有庞大的命令集，没有列举目录功能，不能对用户身份鉴别</li>
+</ul>
+</blockquote>
+<h2 id="6-3-远程终端协议TELNET"><a href="#6-3-远程终端协议TELNET" class="headerlink" title="6.3 远程终端协议TELNET"></a>6.3 远程终端协议TELNET</h2><p>TELNET使用TCP连接传输数据</p>
+<p>只能进行终端操作，无法进行图形化界面操作</p>
+<h2 id="6-4-电子邮件"><a href="#6-4-电子邮件" class="headerlink" title="6.4 电子邮件"></a>6.4 电子邮件</h2><p>优点：普及性、快捷性、廉价性</p>
+<p>缺点：非实时性、垃圾邮件</p>
+<p>电子邮件组成部分：</p>
+<blockquote>
+<ul>
+<li>发件人用户代理</li>
+<li>发送方邮件服务器</li>
+<li>接收方邮件服务器</li>
+<li>收件人用户代理</li>
+</ul>
+</blockquote>
+<p>邮件格式协议RFC822：邮件头（表明邮件发送者和接收者）、邮件体（邮件实际内容）</p>
+<blockquote>
+<ul>
+<li>邮件地址格式：收信人邮箱名@邮箱所在主机域名</li>
+<li>常用邮件标题：From、To、Cc、Date、Subject、Message-id、Received</li>
+</ul>
+</blockquote>
+<p>邮件格式协议MIME</p>
+<blockquote>
+<ul>
+<li>RFC822无法传输二进制文件</li>
+<li>MIME由版本（只有1.0）、邮件体类型、编码类型、可读字符串、标识符组成</li>
+<li>邮件体类型：文本（text、html、rtf）、图像、音频、视频、应用类型（其他任意二进制字节流）、复合类型</li>
+<li>编码类型：ASCII、Extended ASCII、Base64（Outlook）、QP（Foxmail）</li>
+</ul>
+</blockquote>
+<p>简单邮件传送协议SMTP：</p>
+<blockquote>
+<ul>
+<li>SMTP使用TCP连接将邮件从发送者的邮件服务器传输到接收者的邮件服务器中</li>
+<li>发送者为客户端、接收者为服务端（默认端口25）</li>
+<li>明文传输，不加密；解决方案：SMTP认真、加密</li>
+</ul>
+</blockquote>
+<p>邮件读取协议：POP3和IMAP</p>
+<blockquote>
+<ul>
+<li>POP：邮局协议；POP3负责将邮件从邮箱中取出后传输到接收者的主机上</li>
+<li>POP3采用TCP连接，服务器端口默认110</li>
+<li>POP3传输过程：认证阶段、传输阶段、确认阶段</li>
+<li>POP3用户名和口令明文传输，不加密；解决方案：POP3安全认证（APOP）对口令加密</li>
+</ul>
+</blockquote>
+<p>基于万维网的电子邮件：</p>
+<blockquote>
+<ul>
+<li>对邮件服务器的发件和收件采用HTTP协议</li>
+<li>邮件服务器之间采用SMTP协议</li>
+<li>缺点：HTTP不适合传输大文件</li>
+</ul>
+</blockquote>
+<p>IMAP协议  </p>
 ]]></content>
       <categories>
         <category>notes</category>
@@ -11933,8 +11944,8 @@
         <category>notes</category>
       </categories>
       <tags>
-        <tag>c#</tag>
         <tag>learning</tag>
+        <tag>c#</tag>
       </tags>
   </entry>
   <entry>
@@ -11961,9 +11972,9 @@
         <category>notes</category>
       </categories>
       <tags>
+        <tag>learning</tag>
         <tag>c#</tag>
         <tag>python</tag>
-        <tag>learning</tag>
       </tags>
   </entry>
   <entry>
@@ -13233,8 +13244,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>learning</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -13288,8 +13299,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>learning</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -13493,8 +13504,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>c#</tag>
         <tag>learning</tag>
+        <tag>c#</tag>
         <tag>搜索引擎</tag>
       </tags>
   </entry>
@@ -15788,8 +15799,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>learning</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -16069,8 +16080,8 @@ $$
         <category>notes</category>
       </categories>
       <tags>
-        <tag>c#</tag>
         <tag>learning</tag>
+        <tag>c#</tag>
       </tags>
   </entry>
   <entry>
