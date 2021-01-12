@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">2.6k words</span>
+            <span class="post-count">3.6k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">9 minutes</span>
+            <span class="post-count">12 minutes</span>
         </span>
     </span>
 </div>
@@ -353,6 +353,15 @@
 </ul>
 </blockquote>
 <p>Cohen-Sutherland算法</p>
+<blockquote>
+<p>(1)输入直线段的两端点坐标：p1(x1,y1)、p2(x2,y2)，以及窗口的四条边界坐标：wyt、wyb、wxl和wxr。</p>
+<p>(2)对p1、p2进行编码：点p1的编码为code1，点p2的编码为code2。</p>
+<p>(3)若code1|code2=0，对直线段应简取之，转(6)；否则，若code1&amp;code2≠0，对直线段可简弃之，转(7)；当上述两条均不满足时，进行步骤(4)。</p>
+<p>(4)确保p1在窗口外部：若p1在窗口内，则交换p1和p2的坐标值和编码</p>
+<p>(5)<strong>按左、右、上、下的顺序求出直线段与窗口边界的交点</strong>，并用该交点的坐标值替换p1的坐标值。也即在交点s处把线段一分为二，并去掉p1s这一段。考虑到p1是窗口外的一点，因此可以去掉p1s, 转(2)</p>
+<p>(6)用直线扫描转换算法绘制当前的直线段p1p2</p>
+<p>(7)算法结束</p>
+</blockquote>
 <h1 id="四、图形几何变化"><a href="#四、图形几何变化" class="headerlink" title="四、图形几何变化"></a>四、图形几何变化</h1><p>类型：平移、旋转、缩放、反射、错切、复合变换</p>
 <h2 id="二维几何变换"><a href="#二维几何变换" class="headerlink" title="二维几何变换"></a>二维几何变换</h2><h3 id="变换通式"><a href="#变换通式" class="headerlink" title="变换通式"></a>变换通式</h3><p>$$<br>\mathbf{P[2,1]’=M[2,2]_1\cdot P[2,1]+M[2,2]_2}<br>$$<br>其中，$\mathbf M_1$用于旋转缩放，$\mathbf M_2$用于平移</p>
 <p>若将二维向量表示成三维向量，变换矩阵$\mathbf {M_1,M_2}$可以合二为一</p>
@@ -409,13 +418,22 @@
 <li>与视点相交的直线，其透视为平行于z轴的一条直线，透视投影为一个点</li>
 </ul>
 </blockquote>
+<h2 id="CG发展趋势"><a href="#CG发展趋势" class="headerlink" title="CG发展趋势"></a>CG发展趋势</h2><p>目前我国 CG 行业的发展主要集中于以下四个领域：建筑信息可视化、影视制作、动漫设计和游戏美术。</p>
+<p>（1）建筑信息可视化</p>
+<p>建筑信息可视化，是以建筑产品为对象的设计、表现方式。建筑信息可视化可以辅助传统建筑设计师虚构三维环境，用动态交互的方式全方位展示建筑作品，让施工方、检验人员、消费者身临其境的观赏建筑实物。CG 技术带动的建筑信息可视化业务，拥有着广阔的市场前景。目前我国建筑的三维效果图、建筑动画动漫市场竞争较为激烈，中小型公司较多。而 BIM 技术的兴起，使建筑信息可视技术直接带动了建筑行业各领域的变革和发展，使建筑行业的思维模式及习惯方法产生深刻变化。目前，公司主要专注于建筑信息可视化领域，其中 BIM技术服务业务将成为公司未来重点发展的方向之一。</p>
+<p>（2）影视制作</p>
+<p>CG 影视制作主要应用于影视后期加工、栏目包装和电视广告设计等方面，即运用电脑合成特效实现摄像机和人工道具无法实现效果的过程，在达到制作者意愿的同时，也给电影电视观众带来前所未有的视觉享受。CG 影视制作业务成本极高，市场容量有限，再加上影视观众口味的日益挑剔，其带来的商业盈利效果在逐步弱化。</p>
+<p>（3）动漫艺术</p>
+<p>动漫艺术是 CG 行业中最为人熟知的领域。近些年来，随着国外电影类动画大片在国内火热上映，精彩逼真的视觉效果带来的巨大盈利引发了我国动漫艺术产业的巨大变革。在政府的大力扶持下，我国培养出了大批动漫艺术专业人才，与此同时，从事动漫艺术开发创作的企业也日益增多，国产动漫作品也如同雨后春笋般相继诞生。然而，由于入行门槛较低，市场机制不健全等，国产动漫作品盈利空间有限。</p>
+<p>（4）游戏美术</p>
+<p>我国网络行业飞速发展的最好证明，是国产网游交出的漂亮成绩单。除了游戏研发、运营两大核心业务产值攀升之外，国内许多游戏厂商开始尝试平台服务，以“娱乐互动化”为核心理念，更大限度地挖掘游戏玩家带来的价值。无论单纯的游戏画面，还是延伸的 SNS 等互动社交平台运营，都需要 CG 行业的支持，CG游戏美术业务在未来将会有广阔的市场前景。</p>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/10/computer-graphics0/" data-id="ckis8tgub000ozsvnd08p7dpc"
+      <a data-url="http://georgechen1827.github.io/2020/09/10/computer-graphics0/" data-id="ckjtux3n4000np0vna6lwag0z"
         class="article-share-link">share</a>
         
       
@@ -515,7 +533,7 @@
     <ul class="list-inline">
       <li>
         &copy;
-        2019-2020
+        2019-2021
         George Chen
       </li>
       <li>

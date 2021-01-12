@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">4.9k words</span>
+            <span class="post-count">5k words</span>
         </span>
     </span>
 
@@ -437,13 +437,16 @@
 <p>龙贝格积分法：高次插值可由低次插值等线性组合构成<br><img src="/2020/09/09/numeric-analysis0/P114.jpg" alt></p>
 <h1 id="六、常微分方程的数值解"><a href="#六、常微分方程的数值解" class="headerlink" title="六、常微分方程的数值解"></a>六、常微分方程的数值解</h1><p>一阶常微分方程初值问题：<br>$$<br>\begin{cases}<br>y’ = f(x,y) \<br>y(x_0)=y_0<br>\end{cases}<br>x \in [x_0,b]<br>$$</p>
 <p>此时，求解的结果为$[x_0,b]$上的一组等距分割的离散点</p>
-<h2 id="欧拉方法"><a href="#欧拉方法" class="headerlink" title="欧拉方法"></a>欧拉方法</h2>
+<h2 id="欧拉方法"><a href="#欧拉方法" class="headerlink" title="欧拉方法"></a>欧拉方法</h2><p>$$ y_{i+1}=y_i+hf(x_i,y_i) $$</p>
+<h3 id="改进欧拉方法"><a href="#改进欧拉方法" class="headerlink" title="改进欧拉方法"></a>改进欧拉方法</h3><p>做积分时采用梯形公式<br>$$ y_{i+1} = y_i + \frac h2[f(x_i,y_i)+f(x_{i+1},y_{i+1})] $$</p>
+<p>可先用欧拉方法进行预估，然后用改进方法（梯形公式）进行校正</p>
+
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/09/numeric-analysis0/" data-id="ckis8tguu001szsvnbltw2ts2"
+      <a data-url="http://georgechen1827.github.io/2020/09/09/numeric-analysis0/" data-id="ckjtux3oq003wp0vnc11a0t4i"
         class="article-share-link">share</a>
         
       
@@ -543,7 +546,7 @@
     <ul class="list-inline">
       <li>
         &copy;
-        2019-2020
+        2019-2021
         George Chen
       </li>
       <li>
