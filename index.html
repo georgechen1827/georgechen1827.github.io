@@ -42,6 +42,345 @@
     
     
     
+    <article id="post-software-engineering0" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/09/software-engineering0/"
+    >软件工程实践</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2021/03/09/software-engineering0/" class="article-date">
+  <time datetime="2021-03-09T02:12:36.757Z" itemprop="datePublished">2021-03-09</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a> / <a class="article-category-link" href="/categories/notes/%E5%AD%A6%E4%BD%8D%E8%AF%BE%E7%A8%8B/">学位课程</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h2 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h2><p>开发软件的过程：</p>
+<ol>
+<li>可行性分析<ul>
+<li>是否符合相关规定</li>
+<li>技术上的可行性</li>
+<li>经济上的可行性</li>
+</ul>
+</li>
+<li>软件需求分析<ul>
+<li>把握到用户在业务上的需求</li>
+<li>通过对用户的访谈得到用户真正想要的东西</li>
+<li>引导用户的需求</li>
+<li>需求报告: 便于共享, 作为验收标准</li>
+</ul>
+</li>
+<li>…</li>
+</ol>
+<p>软件危机典型表现：</p>
+<ol>
+<li>对软件开发成本和进度的估计常常不准确</li>
+<li>用户对已完成的软件系统不满意</li>
+<li>软件产品质量往往靠不住</li>
+<li>软件常常是不可维护的</li>
+</ol>
+<p>软件工程的方法、工具、过程</p>
+<p>传统瀑布模型</p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2021/03/09/software-engineering0/" data-id="ckmcrlz5k003nh8vn1wqzgdrc"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" rel="tag">软件工程</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-linux" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/08/linux/"
+    >Linux操作系统</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2021/03/08/linux/" class="article-date">
+  <time datetime="2021-03-08T00:33:24.000Z" itemprop="datePublished">2021-03-08</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a> / <a class="article-category-link" href="/categories/notes/%E4%B8%93%E4%B8%9A%E9%80%89%E4%BF%AE/">专业选修</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Linux发行商：</p>
+<ul>
+<li>Ubuntu</li>
+<li>RedHat</li>
+<li>Centos</li>
+</ul>
+<p>命令样式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uname -a <span class="comment">## (-all)</span></span><br><span class="line">Linux KVD-Standard-PC 4.15.0-33-generic <span class="comment">#36-Ubuntu SMP Wed Aug 15</span></span><br><span class="line">16:00:05 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux</span><br></pre></td></tr></table></figure>
+
+<p>Ubuntu资源管理器：</p>
+<ul>
+<li>家目录Home Folder</li>
+<li>（家目录下）桌面Desktop</li>
+<li>文档Documents</li>
+<li>音乐、图片、视频、公共….</li>
+</ul>
+<p>Ubuntu工作区Workplace（桌面）：默认有4个工作区</p>
+<p>终端Terminal： Terminal是用于连接内核的一个shell</p>
+<p>Linux的文件:</p>
+<ul>
+<li>大小写区分</li>
+<li>文件名最长256字节, 不推荐用中文</li>
+<li>除了<code>/</code>外所有字符都可以作为文件名</li>
+<li>文件隐藏用<code>.name</code>表示, 可以用<code>ls -a</code>查看</li>
+</ul>
+<p>多用户支持:</p>
+<ul>
+<li>同时支持多个用户登录</li>
+<li>区分存储读写和隐私保护</li>
+</ul>
+<p>一些Linux的命令举例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ uname -a :命令是uname;-a是选项(显示全部的信息)。可以查看内核（kernel）版本号等。</span><br><span class="line">$ uname:查看名字</span><br><span class="line">$ PS1=<span class="string">'hi'</span>:设置提示符</span><br><span class="line">$ <span class="built_in">pwd</span>:显示当前工作目录（present working directory）</span><br><span class="line">$ ls :显示目标列表（list）</span><br><span class="line">$ <span class="built_in">cd</span> :切换目录（change directory）。</span><br><span class="line">$ cat: 显示文件内容</span><br><span class="line">$ sudo adduser ll12:创建一个新用户命令。sudo--以root的身份执行后面的命令; useradd命令比较低级，使用起来比较麻烦</span><br><span class="line">$ sudo su:可以进入root账户</span><br><span class="line"><span class="comment"># cd :切换到root的家目录下（/root）</span></span><br><span class="line"><span class="comment"># exit :回到普通用户下</span></span><br><span class="line">$ <span class="built_in">cd</span> ~ :回到当前用户的根目录下</span><br><span class="line">$/bin$ <span class="built_in">cd</span> /home/zhanghua/Download：用绝对路径进行切换</span><br></pre></td></tr></table></figure>
+
+<h2 id="Linux目录树结构"><a href="#Linux目录树结构" class="headerlink" title="Linux目录树结构"></a>Linux目录树结构</h2><p>root目录结构如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;</span><br><span class="line">	bin 可执行文件</span><br><span class="line">	etc 系统配置文件（windows使用注册表进行系统配置）</span><br><span class="line">	boot 启动</span><br><span class="line">	root 超级管理员文件夹 </span><br><span class="line">	home 家目录，里面是每个用户的家目录</span><br></pre></td></tr></table></figure>
+
+<h2 id="Linux用户身份"><a href="#Linux用户身份" class="headerlink" title="Linux用户身份"></a>Linux用户身份</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">useradd （低级）添加用户</span><br><span class="line">adduser  添加用户，同时可以自动添加用户组等</span><br><span class="line">deluser</span><br></pre></td></tr></table></figure>
+<p>每个用户属于一个工作组</p>
+<p><code>sudo</code>可以让用户以root的身份执行指令</p>
+<blockquote>
+<ul>
+<li>能够进行sudo的用户为sudoer</li>
+<li>sudoer进行sudo时，需要输入该用户的密码</li>
+<li>root用户需要谨慎分配sudo权限</li>
+<li>root和sudoer的需要保证自己账号的安全</li>
+<li>不推荐直接在root用户下做大量操作，使用<code>sudo</code>会更谨慎</li>
+</ul>
+</blockquote>
+<p><code>su</code>用于切换用户(<code>switch user</code>)</p>
+<blockquote>
+<ul>
+<li><code>su user</code>并输入相应用户密码就可以切换到对应用户</li>
+<li>不输入用户名，默认切换到root用户</li>
+</ul>
+</blockquote>
+<h2 id="Linux命令"><a href="#Linux命令" class="headerlink" title="Linux命令"></a>Linux命令</h2><p>举例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -a</span><br><span class="line">pwd</span><br><span class="line">cd</span><br></pre></td></tr></table></figure>
+
+<p>shell和命令：<code># cmd option argument</code></p>
+<ul>
+<li><code>#</code>：提示符</li>
+<li>cmd：操作对象</li>
+<li>option：操作方式</li>
+<li>命令<code>cmd</code>和参数<code>argument</code>选项<code>option</code>之间需要有一个空格</li>
+</ul>
+<p>默认参数举例：</p>
+<ul>
+<li><code>cd</code>默认切换到当前用户家目录</li>
+<li><code>su</code>默认切换到root用户</li>
+<li><code>ls</code>默认看当前目录下的文件</li>
+</ul>
+<p><code>ls</code>(<code>list contents</code>)查看目录下的所有文件</p>
+<blockquote>
+<ul>
+<li><code>-a</code>查看隐藏文件</li>
+<li><code>-c</code>排序，和<code>-lt</code>一起使用</li>
+<li><code>-l</code>显示长信息，total为目录下文件和目录文件总占用字节数</li>
+<li><code>-d</code>,<code>--color</code>…</li>
+<li>…</li>
+</ul>
+</blockquote>
+<p><code>touch</code>创建一个文件</p>
+<blockquote>
+<ul>
+<li><code>touch name</code>创建一个名为name的文件</li>
+<li>若文件存在，则将其时间信息更新</li>
+</ul>
+</blockquote>
+<p><code>man</code>查看命令文档</p>
+<blockquote>
+<ul>
+<li><code>Name</code>名称</li>
+<li><code>Synopsis</code>用法</li>
+<li><code>Description</code>描述</li>
+</ul>
+</blockquote>
+<p><code>date</code>用于看时间</p>
+<p><code>cal calendar</code>用于看日历</p>
+<p><code>echo</code>用于向命令行打印信息</p>
+<p><code>uname</code>用于询问Linux的名字</p>
+<p><code>uptime</code>用于查看系统启动时间、登录用户数</p>
+<p><code>hostname</code>用于查看机器名</p>
+<p><code>users</code>用于查看登录系统的用户（一个终端登录一个用户，图形界面占用一个用户）</p>
+<p><code>who``w</code>用于查看登录用户的详细信息，<code>w</code>还可以查看用户当前执行的任务</p>
+<p><code>whoami</code>查看当前用户名</p>
+<p><code>du</code>查看目录及子文件总大小</p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2021/03/08/linux/" data-id="ckmcrlz4z0029h8vn9uitadz4"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-english-papers0" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/08/english-papers0/"
+    >文献阅读与写作</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2021/03/08/english-papers0/" class="article-date">
+  <time datetime="2021-03-07T23:45:42.000Z" itemprop="datePublished">2021-03-08</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a> / <a class="article-category-link" href="/categories/notes/%E5%AD%A6%E4%BD%8D%E8%AF%BE%E7%A8%8B/">学位课程</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>张莉</p>
+<hr>
+<p>期中20分；期末40分；平时20+20</p>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2021/03/08/english-papers0/" data-id="ckmcrlz4v0025h8vn6hokdbds"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BA%E6%96%87/" rel="tag">论文</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-management" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -86,7 +425,7 @@
       
       <p>东吴商学院：陈东健</p>
 <p>13063885748</p>
-<p><a href="mailto:&#x63;&#x64;&#106;&#x34;&#48;&#53;&#x40;&#x31;&#54;&#x33;&#46;&#99;&#111;&#x6d;">&#x63;&#x64;&#106;&#x34;&#48;&#53;&#x40;&#x31;&#54;&#x33;&#46;&#99;&#111;&#x6d;</a></p>
+<p><a href="mailto:&#99;&#x64;&#106;&#52;&#48;&#53;&#x40;&#49;&#x36;&#x33;&#x2e;&#x63;&#x6f;&#x6d;">&#99;&#x64;&#106;&#52;&#48;&#53;&#x40;&#49;&#x36;&#x33;&#x2e;&#x63;&#x6f;&#x6d;</a></p>
 <h1 id="一、总论"><a href="#一、总论" class="headerlink" title="一、总论"></a>一、总论</h1><p>管理学是研究人类管理活动一般规律的科学，研究对象：</p>
 <blockquote>
 <ul>
@@ -133,7 +472,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/11/08/management/" data-id="ckjv98eny001l0wvnbz94815s"
+      <a data-url="http://georgechen1827.github.io/2020/11/08/management/" data-id="ckmcrlz5h0036h8vn186p7hoo"
         class="article-share-link">share</a>
         
       
@@ -245,7 +584,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/11/07/accountancy/" data-id="ckjv98en100070wvn59dj2itb"
+      <a data-url="http://georgechen1827.github.io/2020/11/07/accountancy/" data-id="ckmcrlz3b0006h8vndxjj0ynt"
         class="article-share-link">share</a>
         
       
@@ -336,7 +675,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/11/05/computer-network1/" data-id="ckjv98enk000y0wvnhv0nbrys"
+      <a data-url="http://georgechen1827.github.io/2020/11/05/computer-network1/" data-id="ckmcrlz4r0022h8vn7x35826m"
         class="article-share-link">share</a>
         
       
@@ -418,7 +757,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/11/05/microeconomics/" data-id="ckjv98eo500200wvn6f065701"
+      <a data-url="http://georgechen1827.github.io/2020/11/05/microeconomics/" data-id="ckmcrlz5i0039h8vn11m80uh2"
         class="article-share-link">share</a>
         
       
@@ -505,7 +844,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/10/computer-graphics0/" data-id="ckjv98enl00120wvnaear5i1p"
+      <a data-url="http://georgechen1827.github.io/2020/09/10/computer-graphics0/" data-id="ckmcrlz3n000mh8vn0dl9bagq"
         class="article-share-link">share</a>
         
       
@@ -616,7 +955,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/09/numeric-analysis0/" data-id="ckjv98eo600230wvn35zz5uhe"
+      <a data-url="http://georgechen1827.github.io/2020/09/09/numeric-analysis0/" data-id="ckmcrlz5m003qh8vn0jjcb5pm"
         class="article-share-link">share</a>
         
       
@@ -708,271 +1047,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/08/algorithm0/" data-id="ckjv98en4000b0wvngc16gpmo"
+      <a data-url="http://georgechen1827.github.io/2020/09/08/algorithm0/" data-id="ckmcrlz3d0008h8vn9t2v3042"
         class="article-share-link">share</a>
         
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-operating-system0" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/09/08/operating-system0/"
-    >操作系统原理概论</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/09/08/operating-system0/" class="article-date">
-  <time datetime="2020-09-08T00:55:17.000Z" itemprop="datePublished">2020-09-08</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/notes/">notes</a> / <a class="article-category-link" href="/categories/notes/%E5%AD%A6%E4%BD%8D%E8%AF%BE%E7%A8%8B/">学位课程</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>李培峰：<a href="mailto:pfli_suda@126.com">pfli_suda@126.com</a>; 13606216291</p>
-<p>课程内容和要求：</p>
-<blockquote>
-<ul>
-<li>掌握操作系统的基本原理和组成结构</li>
-<li>掌握基本概念和相关新概念、名词及术语</li>
-<li>理解各组成部分之间的关系、结构和综合工作原理</li>
-<li>分析、修改和设计操作系统的功能</li>
-<li>使用基本的操作系统</li>
-<li>学习内容：导论、进程管理、内存管理、存储管理；会穿插案例研究内容</li>
-</ul>
-</blockquote>
-<p>广义上，操作系统是数据结构的衍生，涵盖数据结构、算法和编程</p>
-<blockquote>
-<ul>
-<li>先修课程：汇编语言程序设计、c和java、计算机组成、数据结构、面向对象程序设计</li>
-</ul>
-</blockquote>
-<p>参考书目：《现代操作系统Andrew.S》（偏向实例）、《操作系统精髓与设计原理》（更偏向实例系统）</p>
-<p>一个视频<a href="https://vo.youku.com/v_show/id_XMTAwNTg5MzA0.html" target="_blank" rel="noopener">https://vo.youku.com/v_show/id_XMTAwNTg5MzA0.html</a></p>
-<p>平时成绩20%、期中考试20%、期末考试60%</p>
-      
-      <a class="article-more-link" href="/2020/09/08/operating-system0/">more...</a>
-      
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/08/operating-system0/" data-id="ckjv98ep400590wvn3ah77grq"
-        class="article-share-link">share</a>
-        
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-computer-network0" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/09/06/computer-network0/"
-    >计算机网络</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/09/06/computer-network0/" class="article-date">
-  <time datetime="2020-09-06T14:33:43.000Z" itemprop="datePublished">2020-09-06</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/notes/">notes</a> / <a class="article-category-link" href="/categories/notes/%E5%AD%A6%E4%BD%8D%E8%AF%BE%E7%A8%8B/">学位课程</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>钱龙华：<a href="mailto:qianglonghua@suda.edu.cn">qianglonghua@suda.edu.cn</a></p>
-<p><a href="http://nlp.suda.edu.cn/˜qianlonghua" target="_blank" rel="noopener">http://nlp.suda.edu.cn/˜qianlonghua</a></p>
-<p>课程目标：理解网络工作的原理以及实现</p>
-<p>没有多少理论，但课程课程的实践性很强</p>
-<p>参考教材：《数据通信与网络》、《计算机网络技术Andrew S.》、《计算机网络自顶向下方法（从宏观到微观的设计）》</p>
-      
-      <a class="article-more-link" href="/2020/09/06/computer-network0/">more...</a>
-      
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/09/06/computer-network0/" data-id="ckjv98enb000i0wvn74j68y7n"
-        class="article-share-link">share</a>
-        
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-object-oriented0" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/06/21/object-oriented0/"
-    >面向对象分析与设计</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/06/21/object-oriented0/" class="article-date">
-  <time datetime="2020-06-21T08:02:53.000Z" itemprop="datePublished">2020-06-21</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/notes/">notes</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>课程定义:</p>
-<blockquote>
-<ul>
-<li>面向对象分析与设计是一种思维方式</li>
-<li>面向对象分析与设计是一种思考如何用面向对象方法去思考的课程</li>
-</ul>
-</blockquote>
-<p>关于思维方式: 思维方式有无数种,而本课程要学习面向对象思维方式;并利用它去思考实际问题</p>
-<p>前导知识:</p>
-<blockquote>
-<ul>
-<li>UML统一建模语言</li>
-<li>面向对象的编程语言</li>
-<li>设计模式: 用于解决实际问题的一些框架</li>
-<li>分析系统</li>
-</ul>
-</blockquote>
-<p>思考的问题:</p>
-<blockquote>
-<ul>
-<li>为何要设计,什么是好的设计,什么是面向对象设计,它有何优势,如何去设计</li>
-</ul>
-</blockquote>
-<p>要细致分析问题: 先有问题后有解决方案</p>
-      
-      <a class="article-more-link" href="/2020/06/21/object-oriented0/">more...</a>
-      
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/06/21/object-oriented0/" data-id="ckjv98eo600280wvn11wm4gvv"
-        class="article-share-link">share</a>
-        
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li></ul>
 
     </footer>
 

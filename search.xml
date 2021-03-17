@@ -1,11 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>软件工程实践</title>
+    <url>/2021/03/09/software-engineering0/</url>
+    <content><![CDATA[<h2 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h2><p>开发软件的过程：</p>
+<ol>
+<li>可行性分析<ul>
+<li>是否符合相关规定</li>
+<li>技术上的可行性</li>
+<li>经济上的可行性</li>
+</ul>
+</li>
+<li>软件需求分析<ul>
+<li>把握到用户在业务上的需求</li>
+<li>通过对用户的访谈得到用户真正想要的东西</li>
+<li>引导用户的需求</li>
+<li>需求报告: 便于共享, 作为验收标准</li>
+</ul>
+</li>
+<li>…</li>
+</ol>
+<p>软件危机典型表现：</p>
+<ol>
+<li>对软件开发成本和进度的估计常常不准确</li>
+<li>用户对已完成的软件系统不满意</li>
+<li>软件产品质量往往靠不住</li>
+<li>软件常常是不可维护的</li>
+</ol>
+<p>软件工程的方法、工具、过程</p>
+<p>传统瀑布模型</p>
+]]></content>
+      <categories>
+        <category>notes</category>
+        <category>学位课程</category>
+      </categories>
+      <tags>
+        <tag>learning</tag>
+        <tag>软件工程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux操作系统</title>
+    <url>/2021/03/08/linux/</url>
+    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Linux发行商：</p>
+<ul>
+<li>Ubuntu</li>
+<li>RedHat</li>
+<li>Centos</li>
+</ul>
+<p>命令样式：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uname -a <span class="comment">## (-all)</span></span><br><span class="line">Linux KVD-Standard-PC 4.15.0-33-generic <span class="comment">#36-Ubuntu SMP Wed Aug 15</span></span><br><span class="line">16:00:05 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux</span><br></pre></td></tr></table></figure>
+
+<p>Ubuntu资源管理器：</p>
+<ul>
+<li>家目录Home Folder</li>
+<li>（家目录下）桌面Desktop</li>
+<li>文档Documents</li>
+<li>音乐、图片、视频、公共….</li>
+</ul>
+<p>Ubuntu工作区Workplace（桌面）：默认有4个工作区</p>
+<p>终端Terminal： Terminal是用于连接内核的一个shell</p>
+<p>Linux的文件:</p>
+<ul>
+<li>大小写区分</li>
+<li>文件名最长256字节, 不推荐用中文</li>
+<li>除了<code>/</code>外所有字符都可以作为文件名</li>
+<li>文件隐藏用<code>.name</code>表示, 可以用<code>ls -a</code>查看</li>
+</ul>
+<p>多用户支持:</p>
+<ul>
+<li>同时支持多个用户登录</li>
+<li>区分存储读写和隐私保护</li>
+</ul>
+<p>一些Linux的命令举例</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ uname -a :命令是uname;-a是选项(显示全部的信息)。可以查看内核（kernel）版本号等。</span><br><span class="line">$ uname:查看名字</span><br><span class="line">$ PS1=<span class="string">'hi'</span>:设置提示符</span><br><span class="line">$ <span class="built_in">pwd</span>:显示当前工作目录（present working directory）</span><br><span class="line">$ ls :显示目标列表（list）</span><br><span class="line">$ <span class="built_in">cd</span> :切换目录（change directory）。</span><br><span class="line">$ cat: 显示文件内容</span><br><span class="line">$ sudo adduser ll12:创建一个新用户命令。sudo--以root的身份执行后面的命令; useradd命令比较低级，使用起来比较麻烦</span><br><span class="line">$ sudo su:可以进入root账户</span><br><span class="line"><span class="comment"># cd :切换到root的家目录下（/root）</span></span><br><span class="line"><span class="comment"># exit :回到普通用户下</span></span><br><span class="line">$ <span class="built_in">cd</span> ~ :回到当前用户的根目录下</span><br><span class="line">$/bin$ <span class="built_in">cd</span> /home/zhanghua/Download：用绝对路径进行切换</span><br></pre></td></tr></table></figure>
+
+<h2 id="Linux目录树结构"><a href="#Linux目录树结构" class="headerlink" title="Linux目录树结构"></a>Linux目录树结构</h2><p>root目录结构如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;</span><br><span class="line">	bin 可执行文件</span><br><span class="line">	etc 系统配置文件（windows使用注册表进行系统配置）</span><br><span class="line">	boot 启动</span><br><span class="line">	root 超级管理员文件夹 </span><br><span class="line">	home 家目录，里面是每个用户的家目录</span><br></pre></td></tr></table></figure>
+
+<h2 id="Linux用户身份"><a href="#Linux用户身份" class="headerlink" title="Linux用户身份"></a>Linux用户身份</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">useradd （低级）添加用户</span><br><span class="line">adduser  添加用户，同时可以自动添加用户组等</span><br><span class="line">deluser</span><br></pre></td></tr></table></figure>
+<p>每个用户属于一个工作组</p>
+<p><code>sudo</code>可以让用户以root的身份执行指令</p>
+<blockquote>
+<ul>
+<li>能够进行sudo的用户为sudoer</li>
+<li>sudoer进行sudo时，需要输入该用户的密码</li>
+<li>root用户需要谨慎分配sudo权限</li>
+<li>root和sudoer的需要保证自己账号的安全</li>
+<li>不推荐直接在root用户下做大量操作，使用<code>sudo</code>会更谨慎</li>
+</ul>
+</blockquote>
+<p><code>su</code>用于切换用户(<code>switch user</code>)</p>
+<blockquote>
+<ul>
+<li><code>su user</code>并输入相应用户密码就可以切换到对应用户</li>
+<li>不输入用户名，默认切换到root用户</li>
+</ul>
+</blockquote>
+<h2 id="Linux命令"><a href="#Linux命令" class="headerlink" title="Linux命令"></a>Linux命令</h2><p>举例</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ls -a</span><br><span class="line">pwd</span><br><span class="line">cd</span><br></pre></td></tr></table></figure>
+
+<p>shell和命令：<code># cmd option argument</code></p>
+<ul>
+<li><code>#</code>：提示符</li>
+<li>cmd：操作对象</li>
+<li>option：操作方式</li>
+<li>命令<code>cmd</code>和参数<code>argument</code>选项<code>option</code>之间需要有一个空格</li>
+</ul>
+<p>默认参数举例：</p>
+<ul>
+<li><code>cd</code>默认切换到当前用户家目录</li>
+<li><code>su</code>默认切换到root用户</li>
+<li><code>ls</code>默认看当前目录下的文件</li>
+</ul>
+<p><code>ls</code>(<code>list contents</code>)查看目录下的所有文件</p>
+<blockquote>
+<ul>
+<li><code>-a</code>查看隐藏文件</li>
+<li><code>-c</code>排序，和<code>-lt</code>一起使用</li>
+<li><code>-l</code>显示长信息，total为目录下文件和目录文件总占用字节数</li>
+<li><code>-d</code>,<code>--color</code>…</li>
+<li>…</li>
+</ul>
+</blockquote>
+<p><code>touch</code>创建一个文件</p>
+<blockquote>
+<ul>
+<li><code>touch name</code>创建一个名为name的文件</li>
+<li>若文件存在，则将其时间信息更新</li>
+</ul>
+</blockquote>
+<p><code>man</code>查看命令文档</p>
+<blockquote>
+<ul>
+<li><code>Name</code>名称</li>
+<li><code>Synopsis</code>用法</li>
+<li><code>Description</code>描述</li>
+</ul>
+</blockquote>
+<p><code>date</code>用于看时间</p>
+<p><code>cal calendar</code>用于看日历</p>
+<p><code>echo</code>用于向命令行打印信息</p>
+<p><code>uname</code>用于询问Linux的名字</p>
+<p><code>uptime</code>用于查看系统启动时间、登录用户数</p>
+<p><code>hostname</code>用于查看机器名</p>
+<p><code>users</code>用于查看登录系统的用户（一个终端登录一个用户，图形界面占用一个用户）</p>
+<p><code>who``w</code>用于查看登录用户的详细信息，<code>w</code>还可以查看用户当前执行的任务</p>
+<p><code>whoami</code>查看当前用户名</p>
+<p><code>du</code>查看目录及子文件总大小</p>
+]]></content>
+      <categories>
+        <category>notes</category>
+        <category>专业选修</category>
+      </categories>
+      <tags>
+        <tag>learning</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>文献阅读与写作</title>
+    <url>/2021/03/08/english-papers0/</url>
+    <content><![CDATA[<p>张莉</p>
+<hr>
+<p>期中20分；期末40分；平时20+20</p>
+]]></content>
+      <categories>
+        <category>notes</category>
+        <category>学位课程</category>
+      </categories>
+      <tags>
+        <tag>learning</tag>
+        <tag>论文</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>管理学基本原理</title>
     <url>/2020/11/08/management/</url>
     <content><![CDATA[<p>东吴商学院：陈东健</p>
 <p>13063885748</p>
-<p><a href="mailto:&#x63;&#x64;&#106;&#x34;&#48;&#53;&#x40;&#x31;&#54;&#x33;&#46;&#99;&#111;&#x6d;">&#x63;&#x64;&#106;&#x34;&#48;&#53;&#x40;&#x31;&#54;&#x33;&#46;&#99;&#111;&#x6d;</a></p>
+<p><a href="mailto:&#99;&#x64;&#106;&#52;&#48;&#53;&#x40;&#49;&#x36;&#x33;&#x2e;&#x63;&#x6f;&#x6d;">&#99;&#x64;&#106;&#52;&#48;&#53;&#x40;&#49;&#x36;&#x33;&#x2e;&#x63;&#x6f;&#x6d;</a></p>
 <h1 id="一、总论"><a href="#一、总论" class="headerlink" title="一、总论"></a>一、总论</h1><p>管理学是研究人类管理活动一般规律的科学，研究对象：</p>
 <blockquote>
 <ul>
@@ -4971,9 +5145,9 @@
 <blockquote>
 <ul>
 <li>应用程序</li>
-<li>逻辑文件系统（第十章所述）</li>
-<li>文件组织模块</li>
-<li>基本文件系统</li>
+<li>逻辑文件系统（第十章所述）：管理目录结构、FCB等</li>
+<li>文件组织模块：管理物理块、可用空间、文件分配</li>
+<li>基本文件系统：向驱动器发送命令</li>
 <li>I/O控制</li>
 <li>设备</li>
 </ul>
@@ -5365,7 +5539,7 @@
 <ul>
 <li>解决设备之间的速度差异</li>
 <li>协调传输数据大小不一致</li>
-<li>维持“复制语义”（防止读脏数据）</li>
+<li>支持应用程序IO的“复制语义”（防止读脏数据）</li>
 </ul>
 </blockquote>
 <h3 id="高速缓存Cache"><a href="#高速缓存Cache" class="headerlink" title="高速缓存Cache"></a>高速缓存Cache</h3><p>Cache－ 保留数据拷贝的高速内存</p>
@@ -12265,6 +12439,29 @@
         <tag>c#</tag>
         <tag>python</tag>
         <tag>learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>微机原理</title>
+    <url>/2020/03/08/micro-computer0/</url>
+    <content><![CDATA[<p>罗喜召</p>
+<h1 id="一、微型计算机基本结构及信息表示"><a href="#一、微型计算机基本结构及信息表示" class="headerlink" title="一、微型计算机基本结构及信息表示"></a>一、微型计算机基本结构及信息表示</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>微型计算机：处理器为核心</p>
+<blockquote>
+<ul>
+<li>地址总线</li>
+<li>数据总线</li>
+<li>控制总线</li>
+</ul>
+</blockquote>
+<p>冯诺依曼结构：指令和数据存储器统一编址<br>哈佛结构：指令和数据存储器分开编址</p>
+]]></content>
+      <categories>
+        <category>notes</category>
+        <category>专业选修</category>
+      </categories>
+      <tags>
+        <tag>learning</tag>
+        <tag>微机原理</tag>
       </tags>
   </entry>
   <entry>
