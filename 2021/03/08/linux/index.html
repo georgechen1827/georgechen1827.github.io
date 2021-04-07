@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">911 words</span>
+            <span class="post-count">2.1k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">3 minutes</span>
+            <span class="post-count">8 minutes</span>
         </span>
     </span>
 </div>
@@ -131,10 +131,10 @@
 <li>区分存储读写和隐私保护</li>
 </ul>
 <p>一些Linux的命令举例</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ uname -a :命令是uname;-a是选项(显示全部的信息)。可以查看内核（kernel）版本号等。</span><br><span class="line">$ uname:查看名字</span><br><span class="line">$ PS1=<span class="string">'hi'</span>:设置提示符</span><br><span class="line">$ <span class="built_in">pwd</span>:显示当前工作目录（present working directory）</span><br><span class="line">$ ls :显示目标列表（list）</span><br><span class="line">$ <span class="built_in">cd</span> :切换目录（change directory）。</span><br><span class="line">$ cat: 显示文件内容</span><br><span class="line">$ sudo adduser ll12:创建一个新用户命令。sudo--以root的身份执行后面的命令; useradd命令比较低级，使用起来比较麻烦</span><br><span class="line">$ sudo su:可以进入root账户</span><br><span class="line"><span class="comment"># cd :切换到root的家目录下（/root）</span></span><br><span class="line"><span class="comment"># exit :回到普通用户下</span></span><br><span class="line">$ <span class="built_in">cd</span> ~ :回到当前用户的根目录下</span><br><span class="line">$/bin$ <span class="built_in">cd</span> /home/zhanghua/Download：用绝对路径进行切换</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ uname -a :命令是uname;-a是选项(显示全部的信息)。可以查看内核（kernel）版本号等。</span><br><span class="line">$ uname:查看名字</span><br><span class="line">$ PS1=<span class="string">'hi'</span>:设置提示符</span><br><span class="line">$ <span class="built_in">pwd</span>:显示当前工作目录（<span class="built_in">print</span> working directory）</span><br><span class="line">$ ls :显示目标列表（list）</span><br><span class="line">$ <span class="built_in">cd</span> :切换目录（change directory）。</span><br><span class="line">$ cat: 显示文件内容</span><br><span class="line">$ sudo adduser ll12:创建一个新用户命令。sudo--以root的身份执行后面的命令; useradd命令比较低级，使用起来比较麻烦</span><br><span class="line">$ sudo su:可以进入root账户</span><br><span class="line"><span class="comment"># cd :切换到root的家目录下（/root）</span></span><br><span class="line"><span class="comment"># exit :回到普通用户下</span></span><br><span class="line">$ <span class="built_in">cd</span> ~ :回到当前用户的根目录下</span><br><span class="line">$/bin$ <span class="built_in">cd</span> /home/zhanghua/Download：用绝对路径进行切换</span><br></pre></td></tr></table></figure>
 
 <h2 id="Linux目录树结构"><a href="#Linux目录树结构" class="headerlink" title="Linux目录树结构"></a>Linux目录树结构</h2><p>root目录结构如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;</span><br><span class="line">	bin 可执行文件</span><br><span class="line">	etc 系统配置文件（windows使用注册表进行系统配置）</span><br><span class="line">	boot 启动</span><br><span class="line">	root 超级管理员文件夹 </span><br><span class="line">	home 家目录，里面是每个用户的家目录</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;</span><br><span class="line">	bin 可执行文件</span><br><span class="line">	etc （and so on）系统配置文件（windows使用注册表进行系统配置）</span><br><span class="line">	boot 启动</span><br><span class="line">	root 超级管理员文件夹 </span><br><span class="line">	home 家目录，里面是每个用户的家目录</span><br></pre></td></tr></table></figure>
 
 <h2 id="Linux用户身份"><a href="#Linux用户身份" class="headerlink" title="Linux用户身份"></a>Linux用户身份</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">useradd （低级）添加用户</span><br><span class="line">adduser  添加用户，同时可以自动添加用户组等</span><br><span class="line">deluser</span><br></pre></td></tr></table></figure>
 <p>每个用户属于一个工作组</p>
@@ -142,7 +142,7 @@
 <blockquote>
 <ul>
 <li>能够进行sudo的用户为sudoer</li>
-<li>sudoer进行sudo时，需要输入该用户的密码</li>
+<li>sudoer进行sudo时，需要输入当前用户的密码</li>
 <li>root用户需要谨慎分配sudo权限</li>
 <li>root和sudoer的需要保证自己账号的安全</li>
 <li>不推荐直接在root用户下做大量操作，使用<code>sudo</code>会更谨慎</li>
@@ -196,6 +196,12 @@
 <li><code>Description</code>描述</li>
 </ul>
 </blockquote>
+<p><code>passwd</code>修改用户密码</p>
+<blockquote>
+<ul>
+<li>sudo passwd (root) 修改的是root密码</li>
+</ul>
+</blockquote>
 <p><code>date</code>用于看时间</p>
 <p><code>cal calendar</code>用于看日历</p>
 <p><code>echo</code>用于向命令行打印信息</p>
@@ -203,16 +209,157 @@
 <p><code>uptime</code>用于查看系统启动时间、登录用户数</p>
 <p><code>hostname</code>用于查看机器名</p>
 <p><code>users</code>用于查看登录系统的用户（一个终端登录一个用户，图形界面占用一个用户）</p>
-<p><code>who``w</code>用于查看登录用户的详细信息，<code>w</code>还可以查看用户当前执行的任务</p>
+<p><code>who</code> <code>w</code>用于查看登录用户的详细信息，<code>w</code>还可以查看用户当前执行的任务</p>
 <p><code>whoami</code>查看当前用户名</p>
 <p><code>du</code>查看目录及子文件总大小</p>
+<h2 id="第三次课"><a href="#第三次课" class="headerlink" title="第三次课"></a>第三次课</h2><p><code>adduser</code>添加用户</p>
+<blockquote>
+<ul>
+<li>默认添加用户、家目录、同名用户组</li>
+</ul>
+</blockquote>
+<p><code>visudo</code>修改sudoer配置</p>
+<blockquote>
+<ul>
+<li>^O表示control+O</li>
+<li>M-D表示alt/option+D</li>
+</ul>
+</blockquote>
+<p><code>usermod</code>修改用户账号</p>
+<blockquote>
+<ul>
+<li><code>-G</code>添加用户组，<code>-g</code>覆盖用户组，重新登录即可生效</li>
+</ul>
+</blockquote>
+<p><code>sudo</code>的好处</p>
+<blockquote>
+<ul>
+<li>安全，相当于增加对命令的一次确认，让用户明白自己正在使用root权限</li>
+<li>使得可以有多个管理员账号同时管理系统</li>
+<li>当然，root账户还是需要的，比如可以在sudoer文件被破坏时进行恢复</li>
+</ul>
+</blockquote>
+<p><code>chmod</code></p>
+<h2 id="常见命令选项"><a href="#常见命令选项" class="headerlink" title="常见命令选项"></a>常见命令选项</h2><ul>
+<li><code>-a</code>: -all</li>
+<li><code>-r -R</code>: –reverse, –recursive</li>
+<li><code>-t</code>: –target</li>
+</ul>
+<p><code>cp target(s) dest</code>：拷贝</p>
+<p><code>mv target dest</code>：剪切，移动</p>
+<p><code>whereis target</code>: 寻找二进制文件、源文件、文档文件或命令的地址  </p>
+<p><code>hexdump</code>：查看二进制文件</p>
+<p><code>mkdir dir(s)</code>：创建文件夹</p>
+<p><code>rmdir dir(s)</code>：移除空文件夹</p>
+<p><code>rm file(s)</code>：</p>
+<p>命令行参数：argc argv</p>
+<p>文本文件、二进制文件</p>
+<p><code>cat</code>：concatenate拼接</p>
+<p><code>tail -n linenum target</code>：查看文件尾部；<code>-f</code>持续监测</p>
+<p><code>head</code>：查看文件头部，选项同<code>tail</code></p>
+<p><code>wc</code>：wordcount</p>
+<p><code>more(less)</code>：查看文件<code>less</code>适合大文件</p>
+<ul>
+<li>上下箭头 按行移动；</li>
+<li>空格 forward翻屏</li>
+<li>ctrl + f/b forward/backward翻屏</li>
+<li>/regex 字符串或者正则表达式 进行搜索</li>
+</ul>
+<p><code>man</code>在线文档：</p>
+<ul>
+<li>1 用户命令</li>
+<li>2 系统调用（内核函数）</li>
+<li>3 库函数</li>
+<li>7 杂项 miscellaneous（macro宏；micro微）</li>
+<li>8 系统管理员命令，root可以调用</li>
+<li>man -f printf 非常简洁的说明</li>
+<li>man -k search 查找名字或说明中包含search的文件、命令等</li>
+</ul>
+<p><code>printf</code>：格式化打印</p>
+<p><code>vim</code>：vi iMproved；</p>
+<h2 id="第四节课"><a href="#第四节课" class="headerlink" title="第四节课"></a>第四节课</h2><p>命令行<code>path/cmd [option]... [arg]...</code>：</p>
+<ul>
+<li>选项<code>option config choice selection alternative</code>：确定功能（方式）</li>
+<li>参数<code>arg parameter</code>：确定对象</li>
+</ul>
+<p><code>ls -aldrRs</code></p>
+<p><code>stat fname</code>：文件信息</p>
+<h4 id="文件三时间"><a href="#文件三时间" class="headerlink" title="文件三时间"></a>文件三时间</h4><p><code>stat fname</code>文件信息</p>
+<ul>
+<li><code>Access</code>访问时间<code>atime</code></li>
+<li><code>Modify</code>文件属性或内容改变时间<code>ctime</code></li>
+<li><code>Change</code>文件属性(inode)改变时间</li>
+</ul>
+<p><code>ls -l</code>输出文件内容修改时间；<code>-ltc</code></p>
+<p><code>ls -ld &lt;dirname&gt;</code>查看文件夹本身的信息</p>
+<p><code>cp</code>文件拷贝</p>
+<ul>
+<li><code>cp a.txt ~/b.txt</code> <code>cp -r dir1 ~/dir2</code></li>
+<li><code>cp a.txt b.txt ~[/]</code></li>
+<li><code>cp -t ~/ a.txt b.txt</code></li>
+</ul>
+<h2 id="Vim相关"><a href="#Vim相关" class="headerlink" title="Vim相关"></a>Vim相关</h2><p>查看文本文件的相关命令：</p>
+<ul>
+<li>less, more, cat, head, tail</li>
+</ul>
+<p>文件操作命令：</p>
+<ul>
+<li>cp, mv, mkdir, rm</li>
+</ul>
+<p>查看帮助命令：</p>
+<ul>
+<li>man, info, help</li>
+</ul>
+<p>文本编辑器：</p>
+<ul>
+<li>vim, emacs</li>
+</ul>
+<p><code>type</code>类型：查看命令名字如何被执行</p>
+<ul>
+<li>外部命令hash：寻找可执行文件、创建子进程、执行、返回shell</li>
+<li>别名alias</li>
+<li>内部命令builtin，由shell实现</li>
+</ul>
+<p><code>alias</code>给命令取别名</p>
+<blockquote>
+<p><code>alias &lt;aliasName&gt;=&#39;&lt;command&gt;&#39;</code></p>
+</blockquote>
+<p>PATH环境变量：</p>
+<ul>
+<li>shell会在PAHT所指定的文件夹中寻找命令（不递归）</li>
+<li>由于当前文件夹<code>.</code>默认不在PATH中，因此在运行可执行文件时需要<code>./XX.out</code></li>
+</ul>
+<p><code>vim</code>：Vi IMproved</p>
+<p>vim几种模式：</p>
+<ul>
+<li>命令模式</li>
+<li>插入模式</li>
+<li>末行模式<code>:/?</code></li>
+<li>视图模式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">命令---&gt;插入模式（i&#x2F;I光标在行首&#x2F;a&#x2F;A光标在行尾&#x2F;o光标在下一行&#x2F;O上面再插入一行，光标在下一行）</span><br><span class="line">插入模式---&gt;命令模式下（ESC键，u撤销，x删除一个字符，r替换，yy复制一行，p粘贴，dd删除一行，3dd删除三行：set nu 显示行号；^光标到行首，$光标到行尾，G光标到最后一行，：5直接跑到第五行，3G跑到第三行）</span><br><span class="line">命令---&gt;视图模式（v）  按字符选择</span><br><span class="line">命令---&gt;视图行模式（V） 按行选择 </span><br><span class="line">命令---&gt;按列选择（ctrl+v）</span><br><span class="line">命令---&gt;底行模式（&#x2F;搜索 n正向找，N反着找； ？反向搜索；正则表达式查找&#x2F;o[uv]---找到所有含有ou或者ov的字符；“:!date”可查看时间;“:r!date”将命令执行的结果保存在当前文本中；“:n1,n2s&#x2F;word1&#x2F;word2&#x2F;g   n1和n2为数字，在第n1行和n2行之间寻找word字符串，并将该字符串替换为word2  :1,$s&#x2F;word1&#x2F;word2&#x2F;g    从第一行到最后一行查找字符串word1字符串，并将字符串word1替换为word2 :1,$s&#x2F;word1&#x2F;word2&#x2F;gc   从第一行到最后一行查找字符串word1，并将字符串word1替换为word2,在替换之前提示用户确认是否替换(confirm)”替换）</span><br><span class="line">vi wenjianming---进入命令模式---输入“i&#x2F;insert”---进入插入模式----按“ESC”---进入命令模式---“：wq”---保存退出</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">命令模式“:sp”利用“ctrl +w+w”进行切换</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="第五节课"><a href="#第五节课" class="headerlink" title="第五节课"></a>第五节课</h2><p><code>mv</code>移动文件或文件夹<code>mv dir1 path/dir2</code>：</p>
+<ul>
+<li><code>dir2</code>存在则移动到此文件夹下，不存在则将<code>dir1</code>改为<code>dir2</code></li>
+<li>若<code>path</code>不存在则报错</li>
+</ul>
+<p><code>mkdir</code>创建文件夹：</p>
+<ul>
+<li><code>-p</code>递归创建多级目录</li>
+</ul>
+<p><code>rm</code>删除只读文件时不加<code>-f</code>会进行提示</p>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2021/03/08/linux/" data-id="ckmcrlz4z0029h8vn9uitadz4"
+      <a data-url="http://georgechen1827.github.io/2021/03/08/linux/" data-id="ckn6wffgk002ykovn0vf22s37"
         class="article-share-link">share</a>
         
       
