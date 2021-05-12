@@ -49,7 +49,7 @@
 <li>Centos</li>
 </ul>
 <p>命令样式：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uname -a <span class="comment">## (-all)</span></span><br><span class="line">Linux KVD-Standard-PC 4.15.0-33-generic <span class="comment">#36-Ubuntu SMP Wed Aug 15</span></span><br><span class="line">16:00:05 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nuname -a <span class="comment">## (-all)</span></span><br><span class="line">Linux KVD-Standard-PC 4.15.0-33-generic <span class="comment">#36-Ubuntu SMP Wed Aug 15</span></span><br><span class="line">16:00:05 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux</span><br></pre></td></tr></table></figure>
 
 <p>Ubuntu资源管理器：</p>
 <ul>
@@ -295,7 +295,79 @@
 <li><code>-p</code>递归创建多级目录</li>
 </ul>
 <p><code>rm</code>删除只读文件时不加<code>-f</code>会进行提示</p>
-]]></content>
+<p>命令搜索的顺序：(alias)-&gt;内部命令-&gt;外部命令</p>
+<h2 id="通配符wildcard"><a href="#通配符wildcard" class="headerlink" title="通配符wildcard"></a>通配符wildcard</h2><p>内部命令也有文档？</p>
+<p>man builtin</p>
+<p>tab键补全文件名、命令名</p>
+<p>通配符*由shell处理</p>
+<h2 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int main(int argc, char *argv[])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>argc为参数个数</li>
+<li>argv为参数，第一个为命令本身（路径）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt; 重定向新建</span><br><span class="line">&gt;&gt; 重定向追加</span><br></pre></td></tr></table></figure>
+
+<h2 id="第六次课"><a href="#第六次课" class="headerlink" title="第六次课"></a>第六次课</h2><p>分隔符delimiter</p>
+<p><code>$abc</code>取abc的值</p>
+<p><code>\</code>用于转义对于shell而言有特殊意义的字符，如通配符或空格、&gt;&lt;&amp;|$等</p>
+<h3 id="查找和正则表达式（第七次课）"><a href="#查找和正则表达式（第七次课）" class="headerlink" title="查找和正则表达式（第七次课）"></a>查找和正则表达式（第七次课）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">find &lt;dir...&gt; -name &#39;&lt;fname pattern...&gt;&#39;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用sudo可以防止拒绝访问</li>
+<li>使用<code>2&gt;x</code>可以将拒绝访问错误重定向到指定地点（不输出）</li>
+<li><code>/dev/null</code>是一个黑洞文件，任何输入都会被丢弃</li>
+</ul>
+<p>find可以查找近一段时间访问过的文件</p>
+<p>正则表达式regular expression，正则语言regular language</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[]字符集</span><br><span class="line">[^](不包含)字符集</span><br><span class="line">.匹配任意一个字符,除了\r和\n</span><br><span class="line">*重复修饰符(贪心匹配greeding)</span><br><span class="line">+匹配1到多次</span><br><span class="line">?0或1次匹配(贪心)</span><br><span class="line">&#123;n,m&#125;匹配n到m次</span><br><span class="line">| 或,作用域不局限于前一个模式</span><br><span class="line">^定位行首$定位行尾</span><br><span class="line">\d [[:digit:]] \D [^[:digit:]]</span><br></pre></td></tr></table></figure>
+
+<p><strong>the ? only works for Perl-based regexp, not for POSIX</strong></p>
+<p>grep:查找并输出可以匹配指定模式的所有行 Get RE Pattern</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">egrep [-n] &lt;re pattern&gt; &lt;fname&#x2F;string&gt;</span><br><span class="line">grep -P &lt;re pattern&gt;可以以POSIX标准支持?非贪心</span><br><span class="line">-o可以只输出匹配内容，可用于管道</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="vi中的正则表达式和sed"><a href="#vi中的正则表达式和sed" class="headerlink" title="vi中的正则表达式和sed"></a>vi中的正则表达式和sed</h3><p>vi中的查找</p>
+<ul>
+<li>末行模式下<code>/</code>为前向查找，<code>?</code>为反向查找</li>
+<li>n表示next，N表示previous</li>
+</ul>
+<p>vi中的替换<code>:&lt;opt1[num,num|%]&gt;s/&lt;source&gt;/&lt;target&gt;/&lt;opt2[g][num]&gt;</code></p>
+<ul>
+<li><code>opt2</code>：g表示（从当前行开始）全局替换（否则替换某行或文本第一个），数字表示从当前行往下多行进行替换</li>
+<li><code>opt1</code>：%表示对所有行应用替换，<code>num</code>表示对某行进行替换，<code>num1,num2</code>表示对从num1到num2行进行替换，其中<code>.</code>表示当前行、<code>$</code>表示最后一行；<code>.+3</code>表示当前行下第三行</li>
+</ul>
+<p>分组<code>s/(...)(...)/\2..\1..</code></p>
+<ul>
+<li>若发生嵌套，以左括号出现先后来标序号</li>
+<li>source内部也可以使用分组，它能记住之前括号中匹配 的内容</li>
+</ul>
+<p>sed：Stream EDitor，<code>sed [opt] &#39;cmd&#39; file</code></p>
+<ul>
+<li>对file中的每一行应用cmd命令并按行输出，使用<code>&gt; target</code>可以保存输出结果</li>
+<li>不用直接打开文件，不会修改文件（使用<code>-i inplace</code>可以就地替换不输出），按行操作效率高适合大文件</li>
+<li><code>-r</code>可以支持扩展的RE选项</li>
+<li><code>cmd</code>：<code>s...</code>替换，<code>num1,num2d</code>删除行，<code>/pattern/d</code>删除pattern匹配的所在行</li>
+</ul>
+<h3 id="第八次课"><a href="#第八次课" class="headerlink" title="第八次课"></a>第八次课</h3><p>find命令</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">find -name &lt;通配符&gt; &#x2F;&#x2F;默认当前目录树下查找</span><br><span class="line">-maxdepth 最高下降深度 -mindepth 最低</span><br><span class="line">-name 用通配符匹配文件名 -path 用通配符匹配路径名</span><br><span class="line">-regex 用正则表达式匹配路径名 -iregex 大小写不敏感 -regextype type 选择正则表达式标准</span><br><span class="line">-links n 文件链接数</span><br><span class="line"></span><br><span class="line">-newerXY ref查找某些时间早于ref文件的文件</span><br><span class="line">-empty 空文件</span><br><span class="line"></span><br><span class="line">find -amin(-atime) n &#x2F;&#x2F;n分钟(天)内访问的文件</span><br><span class="line">find -cmin(-ctime) n</span><br><span class="line">-anewer ref</span><br><span class="line">-cnewer ref</span><br><span class="line"></span><br><span class="line">find ... -exec cmd &#123;&#125; \; &#x2F;&#x2F;将find的结果以&#123;&#125;的形式作为参数执行cmd，使用\;表示对每条结果应用cmd，使用+表示所有结果一次</span><br></pre></td></tr></table></figure>
+
+<p>目录的权限x表示searchable</p>
+<p>diff a b查看ab文件的区别</p>
+<h2 id="awk、管道pipeline"><a href="#awk、管道pipeline" class="headerlink" title="awk、管道pipeline"></a>awk、管道pipeline</h2><p>awk为一个强大的文本处理语言：<code>awk &#39;condition/pattern {action}&#39; file</code>，其对文本进行按行处理</p>
+<ul>
+<li><p><code>$colNum</code>为按列分割后的某一列值</p>
+</li>
+<li><p><code>condition</code>可以为判断语句</p>
+</li>
+<li><p><code>{print}</code>可以打印行内容<code>{print $2 &quot; &quot; $5}</code>可以打印每行第2、5列内容</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">awk是以行为单位进行处理，根据分隔符（可配置）将一行分为列（field）</span><br><span class="line">是一种编程语言</span><br><span class="line">语句：&#39;pattern &#123;action&#125;’</span><br><span class="line">awk &#39;pattern action&#39; file</span><br><span class="line">awk &#39;$3 &gt;&#x3D; 60 &#123;print&#125;&#39; file </span><br><span class="line">awk &#39;&#123;sum&#x3D;sum+$3&#125;&#39; file   </span><br><span class="line">$0表示整行</span><br><span class="line">特殊模式：BEGIN END</span><br><span class="line">语言自带变量：NF（Number of field，当前行的列数）；NR（number of record，当前行号）</span><br><span class="line">用户自定义变量sum&#x3D;sum+$3</span><br></pre></td></tr></table></figure>
+
+<p>管道<code>|</code>将前一个命令的标准输出内容作为后一个命令的标准输入内容                                                                          </p>
+<h2 id="第九次课"><a href="#第九次课" class="headerlink" title="第九次课"></a>第九次课</h2>]]></content>
       <categories>
         <category>notes</category>
         <category>专业选修</category>
@@ -326,7 +398,7 @@
     <url>/2020/11/08/management/</url>
     <content><![CDATA[<p>东吴商学院：陈东健</p>
 <p>13063885748</p>
-<p><a href="mailto:&#99;&#100;&#x6a;&#52;&#48;&#x35;&#64;&#49;&#54;&#x33;&#46;&#x63;&#111;&#x6d;">&#99;&#100;&#x6a;&#52;&#48;&#x35;&#64;&#49;&#54;&#x33;&#46;&#x63;&#111;&#x6d;</a></p>
+<p><a href="mailto:&#x63;&#100;&#x6a;&#52;&#48;&#53;&#x40;&#49;&#54;&#x33;&#46;&#99;&#111;&#109;">&#x63;&#100;&#x6a;&#52;&#48;&#53;&#x40;&#49;&#54;&#x33;&#46;&#99;&#111;&#109;</a></p>
 <h1 id="一、总论"><a href="#一、总论" class="headerlink" title="一、总论"></a>一、总论</h1><p>管理学是研究人类管理活动一般规律的科学，研究对象：</p>
 <blockquote>
 <ul>
@@ -8271,7 +8343,7 @@
 <ol>
 <li>构建一个含有已匹配,栈,输入,动作四个列的表</li>
 <li>初始化: 无已匹配字符,栈顶中压入开始符号和结束符$,输入为w和结束符$</li>
-<li>执行下列while动作<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ip为输入符号串的最左端符号</span></span><br><span class="line"><span class="comment">// X为栈顶符号</span></span><br><span class="line"><span class="keyword">while</span>(X != $)&#123;</span><br><span class="line">   <span class="keyword">if</span>(X == ip) ip得到匹配,弹出栈顶符号,ip指向下一个输入符号;</span><br><span class="line">   <span class="keyword">else</span> <span class="keyword">if</span>(X是一个终结符号) 执行错误处理;</span><br><span class="line">   <span class="keyword">else</span> <span class="keyword">if</span>(M[X,a]为空或是一个报错条目) 执行错误处理;</span><br><span class="line">   <span class="keyword">else</span> <span class="keyword">if</span>(M[X,a]为产生式A-&gt;b)&#123;</span><br><span class="line">       输出产生式A-&gt;b</span><br><span class="line">       弹出栈顶符号</span><br><span class="line">       将b中各符号倒序压入栈中(确保b中最左端元素在栈顶)</span><br><span class="line">   &#125;</span><br><span class="line">   X = 栈顶符号;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<li>执行下列while动作<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ip为输入符号串的最左端符号</span></span><br><span class="line"><span class="comment">// X为栈顶符号</span></span><br><span class="line"><span class="keyword">while</span>(X != $)&#123;</span><br><span class="line">  <span class="keyword">if</span>(X == ip) ip得到匹配,弹出栈顶符号,ip指向下一个输入符号;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(X是一个终结符号) 执行错误处理;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(M[X,a]为空或是一个报错条目) 执行错误处理;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(M[X,a]为产生式A-&gt;b)&#123;</span><br><span class="line">      输出产生式A-&gt;b</span><br><span class="line">      弹出栈顶符号</span><br><span class="line">      将b中各符号倒序压入栈中(确保b中最左端元素在栈顶)</span><br><span class="line">  &#125;</span><br><span class="line">  X = 栈顶符号;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
@@ -8427,7 +8499,7 @@
 <blockquote>
 <ol>
 <li>构建一个含有栈,符号,输入,动作四个列的表</li>
-<li>执行下列while动作<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">a = w$的第一个符号;</span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">   s = 栈顶状态;</span><br><span class="line">   <span class="keyword">if</span>(ACTION[I,x] == 移入状态t)&#123;</span><br><span class="line">       将t压入栈中;</span><br><span class="line">       a = 下一个符号;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">else</span> <span class="keyword">if</span>(ACTION[I,x] == 归约 A -&gt; a)&#123;</span><br><span class="line">       从栈中弹出|a|个符号;</span><br><span class="line">       t = 栈顶状态;</span><br><span class="line">       将GOTO(t,A)状态压入栈中; (状态转移)</span><br><span class="line">       输出产生式A -&gt; a;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">else</span> <span class="keyword">if</span>(ACTION[I,x] == 接受) <span class="keyword">break</span>;</span><br><span class="line">   <span class="keyword">else</span> 调用错误恢复程序;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<li>执行下列while动作<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&gt;a = w$的第一个符号;</span><br><span class="line">&gt;<span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line"> s = 栈顶状态;</span><br><span class="line"> <span class="keyword">if</span>(ACTION[I,x] == 移入状态t)&#123;</span><br><span class="line">     将t压入栈中;</span><br><span class="line">     a = 下一个符号;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">else</span> <span class="keyword">if</span>(ACTION[I,x] == 归约 A -&gt; a)&#123;</span><br><span class="line">     从栈中弹出|a|个符号;</span><br><span class="line">     t = 栈顶状态;</span><br><span class="line">     将GOTO(t,A)状态压入栈中; (状态转移)</span><br><span class="line">     输出产生式A -&gt; a;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">else</span> <span class="keyword">if</span>(ACTION[I,x] == 接受) <span class="keyword">break</span>;</span><br><span class="line"> <span class="keyword">else</span> 调用错误恢复程序;</span><br><span class="line">&gt;&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 </blockquote>
@@ -8498,7 +8570,7 @@
 <ol>
 <li>构造出该文法的LR(0)项集,结果仅以核心项表示</li>
 <li>初始化一个以项集,项,向前看符号构成的表格</li>
-<li>对于每个LR(0)项集中的核心K,应用下列算法来发现向前看符号的传播和自发生成<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(K中的每个项 A -&gt; a.b)&#123;</span><br><span class="line">   J = [A -&gt; a.b, #]的闭包, #为一个不在当前文法中的符号;</span><br><span class="line">   if( [B -&gt; y.Xc, a]在J中且a不为#)</span><br><span class="line">       该项集I的GOTO(I,X)中的项B -&gt; yX.c的向前看符号a是自发生成的;</span><br><span class="line">       <span class="comment">//将a加入相应项集中项的向前看符号中</span></span><br><span class="line">   if( [B -&gt; y.Xc, #]在J中)</span><br><span class="line">       某向前看符号从当前项 A -&gt; a.b 传播到了GOTO(I,X)中的项B -&gt; y.Xc上;</span><br><span class="line">       <span class="comment">//将当前项的向前看符号加入被传播的项的向前看符号中</span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure></li>
+<li>对于每个LR(0)项集中的核心K,应用下列算法来发现向前看符号的传播和自发生成<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&gt;<span class="keyword">for</span>(K中的每个项 A -&gt; a.b)&#123;</span><br><span class="line"> J = [A -&gt; a.b, #]的闭包, #为一个不在当前文法中的符号;</span><br><span class="line"> if( [B -&gt; y.Xc, a]在J中且a不为#)</span><br><span class="line">     该项集I的GOTO(I,X)中的项B -&gt; yX.c的向前看符号a是自发生成的;</span><br><span class="line">     <span class="comment">//将a加入相应项集中项的向前看符号中</span></span><br><span class="line"> if( [B -&gt; y.Xc, #]在J中)</span><br><span class="line">     某向前看符号从当前项 A -&gt; a.b 传播到了GOTO(I,X)中的项B -&gt; y.Xc上;</span><br><span class="line">     <span class="comment">//将当前项的向前看符号加入被传播的项的向前看符号中</span></span><br><span class="line">&gt;&#125;</span><br></pre></td></tr></table></figure></li>
 <li>通过3.中所有自发生成的向前看符号给项来赋初值,并赋<code>S -&gt; .S</code>的向前看符号为$,</li>
 <li>反复执行3., 直到没有新的向前看符号被传播为止</li>
 </ol>
@@ -8681,7 +8753,7 @@
 <p>从SDT中消除左递归:</p>
 <blockquote>
 <p>在一个含有语义动作的后缀SDT文法中消除左递归,会导致出现继承属性</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;这里只有一个属性的符号不显示属性名</span><br><span class="line">&#x2F;&#x2F;变换前</span><br><span class="line">A -&gt; A&#39;a &#123;A&#x3D;f(A&#39;,a)&#125;</span><br><span class="line">A -&gt; b  &#123;A&#x3D;g(b)&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;变换后</span><br><span class="line">A -&gt; b &#123;R.i&#x3D;g(b)&#125; R &#123;A &#x3D; R.s&#125;</span><br><span class="line">R -&gt; a &#123;R&#39;.i&#x3D;f(R.i,a)&#125; R&#39; &#123;R.s&#x3D;R&#39;.s&#125;</span><br><span class="line">R -&gt; e &#123;R.s&#x3D;R.i&#125; </span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;这里只有一个属性的符号不显示属性名</span><br><span class="line">&#x2F;&#x2F;变换前</span><br><span class="line">A -&gt; A&#39;a &#123;A&#x3D;f(A&#39;,a)&#125;</span><br><span class="line">A -&gt; b  &#123;A&#x3D;g(b)&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;变换后</span><br><span class="line">A -&gt; b &#123;R.i&#x3D;g(b)&#125; R &#123;A &#x3D; R.s&#125;</span><br><span class="line">R -&gt; a &#123;R&#39;.i&#x3D;f(R.i,a)&#125; R&#39; &#123;R.s&#x3D;R&#39;.s&#125;</span><br><span class="line">R -&gt; e &#123;R.s&#x3D;R.i&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>该文法用于匹配baaa…字符串</li>
 <li>原文法中,自上而下计算时,每出现一次a递归调用一次f(),直到遇到b时执行g()并逐层返回,递归计算f(f(…f(g</li>
@@ -12601,7 +12673,49 @@
 <li>控制总线</li>
 </ul>
 </blockquote>
-<p>冯诺依曼结构：指令和数据存储器统一编址<br>哈佛结构：指令和数据存储器分开编址</p>
+<p>微型计算机的基本结构</p>
+<p><img src="/2020/03/08/micro-computer0/image-20210429141655320.png" alt="image-20210429141655320"></p>
+<p>冯诺依曼结构：指令和数据存储器统一编址</p>
+<p>哈佛结构：指令和数据存储器分开编址</p>
+<h3 id="数制与数值转换"><a href="#数制与数值转换" class="headerlink" title="数制与数值转换"></a>数制与数值转换</h3><p>基数：数制基本符号的个数</p>
+<p>。。。</p>
+<h3 id="信息表示"><a href="#信息表示" class="headerlink" title="信息表示"></a>信息表示</h3><p>机器字长：计算机在运算过程中一次能吞吐的二进制位数</p>
+<p>整数表示：</p>
+<ul>
+<li>符号位：0正1负</li>
+<li>原码、反码（负数数值部分按位取反）、补码（负数按位取反加一）</li>
+</ul>
+<p>。。。</p>
+<h2 id="二、微型计算机的硬件系统"><a href="#二、微型计算机的硬件系统" class="headerlink" title="二、微型计算机的硬件系统"></a>二、微型计算机的硬件系统</h2><p>微型计算机MCU是在内部集成了CPU，RAM/ROM，定时器/计数器及多种输入输出接口的比较完善的数字处理系统</p>
+<p>基本性能指标：</p>
+<ul>
+<li>字长：计算机内部一次可以处理的二进制数位数</li>
+<li>主频：微机中CPU的时钟频率</li>
+<li>存储容量：包括内存和外存</li>
+<li>外设扩展、软件配置</li>
+</ul>
+<p>Cortex-M4微处理器</p>
+<ul>
+<li>32位处理器，指令、内部寄存器、数据总线都为32位（支持16位指令）</li>
+<li>哈佛总线，最多支持4G存储空间，三级流水线</li>
+<li>集成NVIC，最多240个中断向量</li>
+<li>M4F拥有单精度浮点单元</li>
+</ul>
+<p>寄存器类型</p>
+<ul>
+<li>数据缓冲寄存器：存放各种数据</li>
+<li>栈指针：保存栈指针（SP）</li>
+<li>程序指针：PC</li>
+<li>程序运行状态：NZCV</li>
+<li>其他功能：浮点数运算、中断屏蔽等</li>
+</ul>
+<p>Cortex-M4中的寄存器</p>
+<ul>
+<li>R0-R12，其中R8-R12为高位寄存器，只能被32位指令访问</li>
+<li>R13：栈指针</li>
+</ul>
+<p>。。。</p>
+<p>STM32L4</p>
 ]]></content>
       <categories>
         <category>notes</category>
@@ -12732,7 +12846,7 @@
 </blockquote>
 </li>
 </ul>
-<p>每一个1型文法都等价于这样一个文法(证明略),它的产生式形如<br>$$ uAv \to u \alpha v $$  </p>
+<p>每一个1型文法都等价于这样一个文法(证明略),它的产生式形如<br>$$<br>uAv \to u \alpha v<br>$$</p>
 <blockquote>
 <p>这里$ A \in V, u,v \in (V \cup T)^* ,\alpha \ne \epsilon$  </p>
 </blockquote>

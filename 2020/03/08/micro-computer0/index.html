@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">77 words</span>
+            <span class="post-count">433 words</span>
         </span>
     </span>
 
@@ -109,14 +109,56 @@
 <li>控制总线</li>
 </ul>
 </blockquote>
-<p>冯诺依曼结构：指令和数据存储器统一编址<br>哈佛结构：指令和数据存储器分开编址</p>
+<p>微型计算机的基本结构</p>
+<p><img src="/2020/03/08/micro-computer0/image-20210429141655320.png" alt="image-20210429141655320"></p>
+<p>冯诺依曼结构：指令和数据存储器统一编址</p>
+<p>哈佛结构：指令和数据存储器分开编址</p>
+<h3 id="数制与数值转换"><a href="#数制与数值转换" class="headerlink" title="数制与数值转换"></a>数制与数值转换</h3><p>基数：数制基本符号的个数</p>
+<p>。。。</p>
+<h3 id="信息表示"><a href="#信息表示" class="headerlink" title="信息表示"></a>信息表示</h3><p>机器字长：计算机在运算过程中一次能吞吐的二进制位数</p>
+<p>整数表示：</p>
+<ul>
+<li>符号位：0正1负</li>
+<li>原码、反码（负数数值部分按位取反）、补码（负数按位取反加一）</li>
+</ul>
+<p>。。。</p>
+<h2 id="二、微型计算机的硬件系统"><a href="#二、微型计算机的硬件系统" class="headerlink" title="二、微型计算机的硬件系统"></a>二、微型计算机的硬件系统</h2><p>微型计算机MCU是在内部集成了CPU，RAM/ROM，定时器/计数器及多种输入输出接口的比较完善的数字处理系统</p>
+<p>基本性能指标：</p>
+<ul>
+<li>字长：计算机内部一次可以处理的二进制数位数</li>
+<li>主频：微机中CPU的时钟频率</li>
+<li>存储容量：包括内存和外存</li>
+<li>外设扩展、软件配置</li>
+</ul>
+<p>Cortex-M4微处理器</p>
+<ul>
+<li>32位处理器，指令、内部寄存器、数据总线都为32位（支持16位指令）</li>
+<li>哈佛总线，最多支持4G存储空间，三级流水线</li>
+<li>集成NVIC，最多240个中断向量</li>
+<li>M4F拥有单精度浮点单元</li>
+</ul>
+<p>寄存器类型</p>
+<ul>
+<li>数据缓冲寄存器：存放各种数据</li>
+<li>栈指针：保存栈指针（SP）</li>
+<li>程序指针：PC</li>
+<li>程序运行状态：NZCV</li>
+<li>其他功能：浮点数运算、中断屏蔽等</li>
+</ul>
+<p>Cortex-M4中的寄存器</p>
+<ul>
+<li>R0-R12，其中R8-R12为高位寄存器，只能被32位指令访问</li>
+<li>R13：栈指针</li>
+</ul>
+<p>。。。</p>
+<p>STM32L4</p>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/03/08/micro-computer0/" data-id="ckn6wffgs0038kovn7scyfcho"
+      <a data-url="http://georgechen1827.github.io/2020/03/08/micro-computer0/" data-id="ckoktuy1u00292svn4uygbevx"
         class="article-share-link">share</a>
         
       
