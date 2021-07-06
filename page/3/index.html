@@ -42,6 +42,90 @@
     
     
     
+    <article id="post-FIFO" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/10/FIFO/"
+    >命名管道和进程通讯</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/10/FIFO/" class="article-date">
+  <time datetime="2020-03-10T05:36:26.000Z" itemprop="datePublished">2020-03-10</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/notes/">notes</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h2 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h2><p>参考<a href="https://blog.csdn.net/wh_sjc/article/details/70283843" target="_blank" rel="noopener">https://blog.csdn.net/wh_sjc/article/details/70283843</a><br>IPC（进程间通讯）的方式通常有管道（包括无名管道和命名管道）、消息队列、信号量、共享存储、Socket、Streams等。</p>
+<h2 id="命名管道"><a href="#命名管道" class="headerlink" title="命名管道"></a>命名管道</h2><p>“命名管道”是一种简单的进程间通信（IPC）机制，命名管道可在同一台计算机的不同进程之间或在跨越一个网络的不同计算机的不同进程之间，支持可靠的、单向或双向的数据通信。</p>
+<h2 id="python中的命名管道"><a href="#python中的命名管道" class="headerlink" title="python中的命名管道"></a>python中的命名管道</h2><p>参考<a href="https://blog.csdn.net/kongxx/article/details/78037069" target="_blank" rel="noopener">https://blog.csdn.net/kongxx/article/details/78037069</a><br><a href="https://www.programcreek.com/python/example/62752/win32pipe.PIPE_WAIT" target="_blank" rel="noopener">https://www.programcreek.com/python/example/62752/win32pipe.PIPE_WAIT</a><br><a href="https://www.cnblogs.com/achillis/p/10462585.html" target="_blank" rel="noopener">https://www.cnblogs.com/achillis/p/10462585.html</a>  </p>
+<p>在 Windows 上的命名管道主要是通过调用 win32 api 的以下方法来实现的</p>
+<h3 id="server端"><a href="#server端" class="headerlink" title="server端"></a>server端</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> win32file</span><br><span class="line"><span class="keyword">import</span> win32pipe</span><br><span class="line"></span><br><span class="line">PIPE_NAME = <span class="string">r'\\.\pipe\test_pipe'</span></span><br><span class="line">PIPE_BUFFER_SIZE = <span class="number">65535</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    named_pipe = win32pipe.CreateNamedPipe(PIPE_NAME,</span><br><span class="line">                                           win32pipe.PIPE_ACCESS_DUPLEX,</span><br><span class="line">                                           win32pipe.PIPE_TYPE_MESSAGE | win32pipe.PIPE_WAIT | win32pipe.PIPE_READMODE_MESSAGE,</span><br><span class="line">                                           win32pipe.PIPE_UNLIMITED_INSTANCES,</span><br><span class="line">                                           PIPE_BUFFER_SIZE,</span><br><span class="line">                                           PIPE_BUFFER_SIZE, <span class="number">500</span>, <span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                win32pipe.ConnectNamedPipe(named_pipe, <span class="literal">None</span>)    <span class="comment">#连接管道</span></span><br><span class="line">                data = win32file.ReadFile(named_pipe, PIPE_BUFFER_SIZE, <span class="literal">None</span>)   <span class="comment">#接收消息</span></span><br><span class="line">                win32file.WriteFile(named_pipe, bytes(<span class="string">"OK"</span>, encoding=<span class="string">'utf-8'</span>))  <span class="comment">#发送消息(二进制)</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> data <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> len(data) &lt; <span class="number">2</span>:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">                print(<span class="string">'receive msg:'</span>, data)</span><br><span class="line">            <span class="keyword">except</span> BaseException <span class="keyword">as</span> e:</span><br><span class="line">                print(<span class="string">"exception:"</span>, e)  </span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            win32pipe.DisconnectNamedPipe(named_pipe)   <span class="comment">#断开连接</span></span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="client客户端"><a href="#client客户端" class="headerlink" title="client客户端"></a>client客户端</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> win32pipe, win32file</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">PIPE_NAME = <span class="string">r'\\.\pipe\test_pipe'</span></span><br><span class="line"></span><br><span class="line">file_handle = win32file.CreateFile(PIPE_NAME,</span><br><span class="line">                                   win32file.GENERIC_READ | win32file.GENERIC_WRITE,</span><br><span class="line">                                   win32file.FILE_SHARE_WRITE, <span class="literal">None</span>,</span><br><span class="line">                                   win32file.OPEN_EXISTING, <span class="number">0</span>, <span class="literal">None</span>)    <span class="comment"># 连接管道</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">11</span>):</span><br><span class="line">        msg = str(i)</span><br><span class="line">        print(<span class="string">'send msg:'</span>, msg)</span><br><span class="line">        win32file.WriteFile(file_handle, bytes(msg,encoding=<span class="string">'utf-8'</span>))   <span class="comment"># 发送信息</span></span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        data = win32file.ReadFile(file_handle, <span class="number">65535</span>, <span class="literal">None</span>) <span class="comment"># 接收信息(阻塞)</span></span><br><span class="line">        print(data)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        win32file.CloseHandle(file_handle)  <span class="comment"># 关闭连接</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="C-中的命名管道"><a href="#C-中的命名管道" class="headerlink" title="C#中的命名管道"></a>C#中的命名管道</h2><h3 id="server端-1"><a href="#server端-1" class="headerlink" title="server端"></a>server端</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">NamedPipeServerStream server = <span class="keyword">new</span> NamedPipeServerStream(<span class="string">"test_pipe"</span>, PipeDirection.InOut, <span class="number">100</span>, PipeTransmissionMode.Byte, PipeOptions.None, <span class="number">65535</span>, <span class="number">65535</span>);</span><br><span class="line">server.WaitForConnection();</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (server.IsConnected)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> n = server.Read(res, <span class="number">0</span>, <span class="number">65535</span>); <span class="comment">//接收信息</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">string</span> s = System.Text.Encoding.UTF8.GetString(res,<span class="number">0</span>,n);</span><br><span class="line"></span><br><span class="line">        Console.WriteLine(s);</span><br><span class="line"></span><br><span class="line">        n = Encoding.UTF8.GetBytes(s, <span class="number">0</span>, s.Length, res, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        server.Write(res, <span class="number">0</span>, n);    <span class="comment">//发送信息</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="client端"><a href="#client端" class="headerlink" title="client端"></a>client端</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">NamedPipeClientStream client = <span class="keyword">new</span> NamedPipeClientStream(<span class="string">"test_pipe"</span>);</span><br><span class="line">client.Connect();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (client.IsConnected)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> n = client.Read(res, <span class="number">0</span>, <span class="number">65535</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">string</span> s = System.Text.Encoding.UTF8.GetString(res,<span class="number">0</span>,n);</span><br><span class="line"></span><br><span class="line">    Console.WriteLine(s);</span><br><span class="line"></span><br><span class="line">    n = Encoding.UTF8.GetBytes(s, <span class="number">0</span>, s.Length, res, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    client.Write(res, <span class="number">0</span>, n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="python和C-交互代码示例"><a href="#python和C-交互代码示例" class="headerlink" title="python和C#交互代码示例"></a>python和C#交互代码示例</h2><p>python端  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> win32file</span><br><span class="line"><span class="keyword">import</span> win32pipe</span><br><span class="line"></span><br><span class="line">PIPE_NAME = <span class="string">r'\\.\pipe\test_pipe'</span></span><br><span class="line">PIPE_BUFFER_SIZE = <span class="number">65535</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    named_pipe = win32pipe.CreateNamedPipe(PIPE_NAME,</span><br><span class="line">                                           win32pipe.PIPE_ACCESS_DUPLEX,</span><br><span class="line">                                           win32pipe.PIPE_TYPE_MESSAGE | win32pipe.PIPE_WAIT | win32pipe.PIPE_READMODE_MESSAGE,</span><br><span class="line">                                           win32pipe.PIPE_UNLIMITED_INSTANCES,</span><br><span class="line">                                           PIPE_BUFFER_SIZE,</span><br><span class="line">                                           PIPE_BUFFER_SIZE, <span class="number">500</span>, <span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                win32pipe.ConnectNamedPipe(named_pipe, <span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line">                win32file.WriteFile(named_pipe, bytes(<span class="string">"hello"</span>, encoding=<span class="string">'utf-8'</span>))</span><br><span class="line"></span><br><span class="line">                data = win32file.ReadFile(named_pipe, PIPE_BUFFER_SIZE, <span class="literal">None</span>)</span><br><span class="line">                time.sleep(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">                <span class="comment"># data = str.encode()</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> data <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> len(data) &lt; <span class="number">2</span>:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">                print(<span class="string">'receive msg:'</span>, data)</span><br><span class="line">            <span class="keyword">except</span> BaseException <span class="keyword">as</span> e:</span><br><span class="line">                print(<span class="string">"exception:"</span>, e)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            win32pipe.DisconnectNamedPipe(named_pipe)</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>C#端</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>   &#123;</span><br><span class="line">   <span class="keyword">byte</span>[] res = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">65535</span>];</span><br><span class="line"></span><br><span class="line">       NamedPipeClientStream client = <span class="keyword">new</span> NamedPipeClientStream(<span class="string">"test_pipe"</span>);</span><br><span class="line">       client.Connect();</span><br><span class="line">       </span><br><span class="line"></span><br><span class="line">       <span class="keyword">while</span> (client.IsConnected)</span><br><span class="line">       &#123;</span><br><span class="line">           <span class="keyword">int</span> n = client.Read(res, <span class="number">0</span>, <span class="number">65535</span>);</span><br><span class="line"></span><br><span class="line">           <span class="keyword">string</span> s = System.Text.Encoding.UTF8.GetString(res,<span class="number">0</span>,n);</span><br><span class="line"></span><br><span class="line">           Console.WriteLine(s);</span><br><span class="line"></span><br><span class="line">           n = Encoding.UTF8.GetBytes(s, <span class="number">0</span>, s.Length, res, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">           client.Write(res, <span class="number">0</span>, n);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://georgechen1827.github.io/2020/03/10/FIFO/" data-id="ckqs8feh90000h0vn0ytxdifl"
+        class="article-share-link">share</a>
+        
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/" rel="tag">c#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-micro-computer0" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -85,43 +169,75 @@
 
       
       <p>罗喜召</p>
-<h1 id="一、微型计算机基本结构及信息表示"><a href="#一、微型计算机基本结构及信息表示" class="headerlink" title="一、微型计算机基本结构及信息表示"></a>一、微型计算机基本结构及信息表示</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>微型计算机：处理器为核心</p>
-<blockquote>
-<ul>
-<li>地址总线</li>
-<li>数据总线</li>
-<li>控制总线</li>
-</ul>
-</blockquote>
+<h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><p>个人计算机：Personal Computer, PC</p>
+<p>电子数字计算机：Electronic Numerical Intergrator And Calculator, ENIAC</p>
+<p>桌面计算机：Desktop Computer</p>
+<p>多媒体应用处理器: Multimedia Application Processor, MAP</p>
+<p>微控制器：Microcontroller Unit, MCU</p>
+<p>单片机</p>
+<p>工控机：Industrial Personal Computer, IPC</p>
+<p>笔记本计算机：Notebook Computer</p>
+<p>随机存取存储器：RAM</p>
+<p>嵌套中断向量控制器：Nested Vectored Interrupt Controller, NVIC</p>
+<h2 id="一、微型计算机基本结构及信息表示"><a href="#一、微型计算机基本结构及信息表示" class="headerlink" title="一、微型计算机基本结构及信息表示"></a>一、微型计算机基本结构及信息表示</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>ENIAC：1946年，宾夕法尼亚大学莫尔电工学院，30t，90m3，170m2，140kW</p>
+<p>计算机种类：超级计算机、微型计算机</p>
+<p>发展简史：开端（1971，Intel，4位4004）、初步发展（1974，8位8080；1978，16位8086）、无处不在（1982，286、386、486；1993，奔腾；2005，酷睿）</p>
+<p>arm公司1990年成立</p>
 <p>微型计算机的基本结构</p>
 <p><img src="/2020/03/08/micro-computer0/image-20210429141655320.png" alt="image-20210429141655320"></p>
-<p>冯诺依曼结构：指令和数据存储器统一编址</p>
-<p>哈佛结构：指令和数据存储器分开编址</p>
-<h3 id="数制与数值转换"><a href="#数制与数值转换" class="headerlink" title="数制与数值转换"></a>数制与数值转换</h3><p>基数：数制基本符号的个数</p>
-<p>。。。</p>
+<ul>
+<li>冯诺依曼结构：指令和数据存储器统一编址</li>
+<li>哈佛结构：指令和数据存储器分开编址</li>
+</ul>
+<p>CPU的组成部分：</p>
+<ul>
+<li>CPU的功能：从外部设备获得数据，通过加工处理，再把结果送到CPU的外部</li>
+<li>功能角度：运算器、寄存器和控制器</li>
+<li>变成角度：寄存器、可执行的指令系统</li>
+</ul>
+<p>存储器：用来存储数据和指令的记忆部件</p>
+<p>微型计算机的三总线</p>
+<ul>
+<li>地址总线：寻址空间</li>
+<li>数据总线：字长、一次可同时传输的数据位数</li>
+<li>控制总线：控制信号、时序信号</li>
+</ul>
+<p>执行指令的简明过程：取指、译码、取操作数、执行指令、数据写回、执行下一条指令</p>
+<h3 id="数制与数值转换"><a href="#数制与数值转换" class="headerlink" title="数制与数值转换"></a>数制与数值转换</h3><p>数制：计数法则</p>
+<p>基数：数制基本符号的个数</p>
+<p>基数计数法：按位计数、进位计数法（基数、位权）</p>
+<p>数制转换：整数除二取余、小数乘二取整</p>
 <h3 id="信息表示"><a href="#信息表示" class="headerlink" title="信息表示"></a>信息表示</h3><p>机器字长：计算机在运算过程中一次能吞吐的二进制位数</p>
 <p>整数表示：</p>
 <ul>
 <li>符号位：0正1负</li>
 <li>原码、反码（负数数值部分按位取反）、补码（负数按位取反加一）</li>
 </ul>
-<p>。。。</p>
-<h2 id="二、微型计算机的硬件系统"><a href="#二、微型计算机的硬件系统" class="headerlink" title="二、微型计算机的硬件系统"></a>二、微型计算机的硬件系统</h2><p>微型计算机MCU是在内部集成了CPU，RAM/ROM，定时器/计数器及多种输入输出接口的比较完善的数字处理系统</p>
-<p>基本性能指标：</p>
+<p>补码设计思想：</p>
+<ul>
+<li>为了解决0表示的二义性和符号位不能参与数值运算的问题</li>
+<li>思想：模和同余</li>
+</ul>
+<h3 id="文字在计算机中的存储方式"><a href="#文字在计算机中的存储方式" class="headerlink" title="文字在计算机中的存储方式"></a>文字在计算机中的存储方式</h3><p>ASCII编码：小于128位，最高位为0，48‘0’，65‘A’，97‘a’</p>
+<p>中文编码：变形国标码（国标码加上0x8080）两个字节，每个字节大于128，解决国标码与西文字符ASCII冲突问题、给编程判断提供了依据</p>
+<h2 id="二、微型计算机的硬件系统"><a href="#二、微型计算机的硬件系统" class="headerlink" title="二、微型计算机的硬件系统"></a>二、微型计算机的硬件系统</h2><h3 id="微型计算机结构和性能指标"><a href="#微型计算机结构和性能指标" class="headerlink" title="微型计算机结构和性能指标"></a>微型计算机结构和性能指标</h3><p>微型计算机MCU是在内部集成了CPU，RAM/ROM，定时器/计数器及多种输入输出接口的比较完善的数字处理系统（共性结构）</p>
+<p>其以MCU内部总线为桥梁，沟通CPU、RAM、Flash存储器、工作支撑模块、定时器接口、串行通信接口、A/D转换接口、其他IO接口等</p>
+<p>微型计算机基本性能指标：</p>
 <ul>
 <li>字长：计算机内部一次可以处理的二进制数位数</li>
 <li>主频：微机中CPU的时钟频率</li>
 <li>存储容量：包括内存和外存</li>
 <li>外设扩展、软件配置</li>
 </ul>
-<p>Cortex-M4微处理器</p>
+<h3 id="Arm-Cortex-M系列处理器"><a href="#Arm-Cortex-M系列处理器" class="headerlink" title="Arm Cortex-M系列处理器"></a>Arm Cortex-M系列处理器</h3><p>Cortex-M4微处理器</p>
 <ul>
 <li>32位处理器，指令、内部寄存器、数据总线都为32位（支持16位指令）</li>
 <li>哈佛总线，最多支持4G存储空间，三级流水线</li>
 <li>集成NVIC，最多240个中断向量</li>
 <li>M4F拥有单精度浮点单元</li>
 </ul>
-<p>寄存器类型</p>
+<h3 id="CPU寄存器与存储器"><a href="#CPU寄存器与存储器" class="headerlink" title="CPU寄存器与存储器"></a>CPU寄存器与存储器</h3><p>寄存器：CPU内部寄存器负责信息的暂存（程序员视角）</p>
+<p>寄存器类型（共性知识角度及功能视角）</p>
 <ul>
 <li>数据缓冲寄存器：存放各种数据</li>
 <li>栈指针：保存栈指针（SP）</li>
@@ -131,18 +247,361 @@
 </ul>
 <p>Cortex-M4中的寄存器</p>
 <ul>
-<li>R0-R12，其中R8-R12为高位寄存器，只能被32位指令访问</li>
-<li>R13：栈指针</li>
+<li>通用寄存器：R0-R12，其中R8-R12为高位寄存器，只能被32位指令访问</li>
+<li>栈指针：R13，主栈指针MSP（复位缺省、内核中断、异常处理），进程栈指针PSP</li>
+<li>连接寄存器：R14(Link Register,LR)，函数、子程序或异常返回地址</li>
+<li>程序计数寄存器：R15(PC)</li>
+<li>程序状态字寄存器：xPSR，Process State Register<ul>
+<li>A(LU)PSR：应用程序状态寄存器，高位保存算数运算单元ALU状态位信息NZCVQ(饱和位：高位溢出)、GE(大于等于标志位)</li>
+<li>I(nterrupt)PSR：中断程序状态寄存器，低位0-8存储中断状态下的异常号</li>
+<li>E(xecuter)PSR：执行程序状态寄存器，在24位使用T标志位指示当前是否运行Thumb指令</li>
 </ul>
-<p>。。。</p>
-<p>STM32L4</p>
+</li>
+</ul>
+<p>Cortex-M4存储器映像：将处理器直接寻址空间（4GB）当做存储器来看待，分成若干个区间以安排一些实际的物理资源（STM32L4采用小端格式）</p>
+<h3 id="STM32L431RCT6（80MHz）"><a href="#STM32L431RCT6（80MHz）" class="headerlink" title="STM32L431RCT6（80MHz）"></a>STM32L431RCT6（80MHz）</h3><p>字段说明：</p>
+<ul>
+<li>STM</li>
+<li>32：32位MCU</li>
+<li>L：超低功耗；F基础H高性能</li>
+<li>431：产品系列</li>
+<li>R：引脚数目64个</li>
+<li>C：Flash大小256KB，128扇区*一个扇区2KB</li>
+<li>T：QFP封装</li>
+<li>6：温度范围-40~85度</li>
+</ul>
+<p>中断向量号：</p>
+<ul>
+<li><p>中断：程序运行过程中，内核异常（内核中断）或有模块发出请求（外部中断）引起MCU停驶正在运行的程序转而去处理中断处理程序</p>
+</li>
+<li><p>外部中断又称可屏蔽中断</p>
+</li>
+<li><p>1-16为内核中断：1用于填写启动堆栈指针SP；2用于复位启动</p>
+</li>
+</ul>
+<p>STM32L4硬件最小系统：</p>
+<ul>
+<li>电源及滤波电路：引脚必须外接适当的滤波电容以抑制高频噪音</li>
+<li>复位电路：复位引脚NRST(7)，冷复位（无电到上电）、热复位（带电复位、不会引起RAM内容丢失）</li>
+<li>晶振电路：为MCU提供工作时钟，内部时钟源默认4MHz</li>
+<li>SWD(serial wire debug)接口电路：写入调试器电路</li>
+</ul>
+<p>通用嵌入式计算机（GEC）：</p>
+<ul>
+<li>硬件方面，将MCU硬件最小系统及面向具体应用的共性电路封装成一个整体，为用户提供SOC级芯片的可重用的硬件实体</li>
+<li>软件方面，把嵌入式软件分为BIOS程序与User程序两个部分，BIOS程序先于User程序固化于MCU内的Flash中，运行之后转向User程序。</li>
+</ul>
+<h2 id="三、指令系统"><a href="#三、指令系统" class="headerlink" title="三、指令系统"></a>三、指令系统</h2><h3 id="指令保留字与寻址方式"><a href="#指令保留字与寻址方式" class="headerlink" title="指令保留字与寻址方式"></a>指令保留字与寻址方式</h3><p>寻址方式：</p>
+<ul>
+<li>立即数寻址：操作数直接通过指令给出，#0xff</li>
+<li>寄存器直接寻址：操作数来自于寄存器，MOV R1,R2</li>
+<li>直接地址寻址：指令中直接给出存储单元地址，操作数来自于存储单元，BEQ label</li>
+<li>寄存器加偏移间接寻址：指令中给出寄存器（及偏移量）来给出存储单元的地址，LDR R3, [PC, #100]</li>
+</ul>
+<h3 id="GNU汇编器"><a href="#GNU汇编器" class="headerlink" title="GNU汇编器"></a>GNU汇编器</h3><p>指令与伪指令的区别：伪指令为汇编器提供的指令，它不产生运行阶段执行的机器码</p>
+<h2 id="四、汇编语言框架"><a href="#四、汇编语言框架" class="headerlink" title="四、汇编语言框架"></a>四、汇编语言框架</h2><h3 id="程序运行"><a href="#程序运行" class="headerlink" title="程序运行"></a>程序运行</h3><p>字符串定义方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">string_name1: &#x2F;&#x2F;给出标号，指定字符串的首地址</span><br><span class="line">	.ascii &quot;string\0&quot;</span><br><span class="line">string_name2:</span><br><span class="line">	.asciz &quot;string&quot;</span><br><span class="line">string_name3:</span><br><span class="line">	.string &quot;string&quot;</span><br></pre></td></tr></table></figure>
+
+<p>变量定义和使用方法（字、半字、字节）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.align 4 &#x2F;&#x2F;.word格式需要4字节对齐</span><br><span class="line">var1:</span><br><span class="line">	.word 0 &#x2F;&#x2F;字类型</span><br><span class="line"></span><br><span class="line">var2:</span><br><span class="line">	.byte &#39;A&#39; &#x2F;&#x2F;字节类型</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;变量取值时，一般格式如下</span><br><span class="line">ldr r2,&#x3D;var1 &#x2F;&#x2F;将var1变量地址(&gt;256)存入r2</span><br><span class="line">ldr r1,[r2]</span><br><span class="line">add r1,#1</span><br></pre></td></tr></table></figure>
+
+<p>常量定义和使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.equ const1,556677</span><br><span class="line">.set const2,128</span><br><span class="line">&#x2F;&#x2F;const1用&quot;mov r1,#const1&quot;引用; const2用&quot;ldr r1,&#x3D;const2&quot;引用</span><br></pre></td></tr></table></figure>
+
+<p>printf函数使用方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;r0存储待显示字符串(用%d和%x格式化),r1存储参数,使用bl调用printf</span><br><span class="line">ldr r0,&#x3D;data_format</span><br><span class="line">ldr r2,&#x3D;var1</span><br><span class="line">ldr r1,[r2]</span><br><span class="line">bl printf</span><br></pre></td></tr></table></figure>
+
+<h3 id="汇编工程框架及执行过程"><a href="#汇编工程框架及执行过程" class="headerlink" title="汇编工程框架及执行过程"></a>汇编工程框架及执行过程</h3><p>芯片上电启动过程：</p>
+<ul>
+<li>芯片上电复位后，芯片内部机制首先从Flash的0x08000000（Bootloader占据了前面的空间）地址中取出第一个表项内容赋值给堆栈寄存器SP，完成堆栈指针初始化。</li>
+<li>芯片内部机制将第二个表项的内容赋值给程序计数器PC，完成程序计数器初始化</li>
+<li>MCU从程序计数器取指、译码，开始执行Reset_Handler函数，关闭总中断</li>
+<li>函数跳转并执行SystemInit函数，进行芯片部分初始化设置：关闭看门狗、系统时钟初始化</li>
+<li>函数返回Reset_Handler继续执行，开总中断，将ROM数据拷贝到RAM中，清零未初始化的BSS数据段（全局变量和静态变量段），进入用户主函数main</li>
+</ul>
+<p>工程文件夹结构：</p>
+<ul>
+<li>CPU文件夹：包含内核外设访问层头文件、编译器头文件、微控制器软件接口标准头文件等。它的标准化能够提高程序的可移植性</li>
+<li>MCU文件夹：包含芯片启动文件、芯片头文件和系统初始化文件等</li>
+<li>应用程序文件夹：包括总头文件include.inc，主程序文件main.s和中断处理程序文件isr.s</li>
+<li>Debug文件夹：存放可执行链接格式文件(.elf)、映像文件(.map)（查看各种变量常量堆栈的地址信息）、和列表文件(.lst)（函数机器码和源代码对应关系，用于程序分析）</li>
+</ul>
+<p>链接脚本文件的作用：用于控制程序编译中链接的过程，它规定了如何把输入的中间文件.o中的section映射到最终的目标文件.out内，并控制目标文件内各部分的地址分配</p>
+<p>hex文件格式：</p>
+<ul>
+<li>“记录标记”-“记录长度”-”偏移量“-”记录类型“-“数据区”-”校验和”</li>
+<li>“:”-“10”-“D000”-“00”-“FFFF00…..0008”-“F8”</li>
+<li>记录类型：00数据记录、01文件结束记录、02扩展段地址、03开始段地址、04扩展线性地址、05连接开始地址</li>
+</ul>
+<h3 id="GPIO构件"><a href="#GPIO构件" class="headerlink" title="GPIO构件"></a>GPIO构件</h3><p>GPIO：通用I/O、MCU与外界进行交互的重要通道</p>
+<p>输出引脚的基本接法：</p>
+<ul>
+<li>直接通过发光二极管和电阻连接VCC（低有效）</li>
+<li>通过电阻连接三极管，控制外部设备</li>
+</ul>
+<p>输入引脚的基本接法：</p>
+<ul>
+<li>悬空，开关直接置于大电阻和VCC之间</li>
+<li>通过连接大阻值的上下拉电阻置初始输入</li>
+</ul>
+<p>GPIO驱动构件知识要素：</p>
+<ul>
+<li>引脚初始化：gpio_init(port_pin,dir,state)</li>
+<li>引脚状态设置：gpio_set(port_pin,state)</li>
+<li>引脚状态获取：gpio_get(port_pin)</li>
+</ul>
+<p>GPIO使用方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">.equ LIGHT_RED,(PTB_NUM|7)</span><br><span class="line">.equ LIGHT_ON,0</span><br><span class="line">.equ LIGHT_OFF,1</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;初始化GPIO</span><br><span class="line">ldr r0,&#x3D;LIGHT_RED</span><br><span class="line">mov r1,#GPIO_OUTPUT</span><br><span class="line">mov r2,#LIGHT_ON</span><br><span class="line">bl gpio_init</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;设置参数</span><br><span class="line">ldr r0,&#x3D;LIGHT_RED</span><br><span class="line">mov r2,#LIGHT_OFF</span><br><span class="line">bl gpio_set</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、基于构建的汇编程序设计"><a href="#五、基于构建的汇编程序设计" class="headerlink" title="五、基于构建的汇编程序设计"></a>五、基于构建的汇编程序设计</h2><h3 id="构件及其设计方法"><a href="#构件及其设计方法" class="headerlink" title="构件及其设计方法"></a>构件及其设计方法</h3><p>设计软件构件的原因：面对嵌入式软硬件设计越来越复杂，构件的设计与应用能够提高软硬件设计的可重用性与可移植性。</p>
+<p>软件构件的基本概念：构件是可复用的软件成分，它具有规范的接口规约和显式的语境以来，是有一定功能、能够协同或独立工作的程序体</p>
+<p>构建设计的基本思想：</p>
+<ul>
+<li><p>构件由头文件和源程序组成</p>
+</li>
+<li><p>设计底层构件时应尽量做到，当一个底层构件应用到不同系统中时，仅需修改构件的头文件，对于构件的源程序文件则不必修改或改动很小</p>
+</li>
+</ul>
+<p>良好的底层驱动构件应该具备的特性：</p>
+<ul>
+<li>封装性：内部封装实现细节，调用者只需调用接口</li>
+<li>描述性：构件必须为调用者提供统一、规范的使用信息</li>
+<li>可移植性：底层构件应在较少的改动下就能在同系列及不同系列芯片内方便的使用</li>
+<li>可复用性：当满足一定使用要求时，构件应不经过任何修改就能直接使用</li>
+</ul>
+<p>构件设计的基本原则：</p>
+<ul>
+<li>层次化原则：构件之间的关联关系应当被清晰地组织<ul>
+<li>针对应用场景和服务对象，分层组织构建</li>
+<li>上层构建可以调用下层构件提供的服务，同一层次的构件不存在相互依赖关系</li>
+</ul>
+</li>
+<li>易用性原则：调用者能够快速理解构件所提供的服务功能并进行使用</li>
+<li>健壮性原则：构件提供的服务应当是安全的，避免在用户程序的运行过程中出现异常状况</li>
+<li>内存可靠使用原则：<ul>
+<li>优先使用静态分配内存</li>
+<li>谨慎使用变量：不使用全局变量</li>
+</ul>
+</li>
+</ul>
+<p>构件的类型：</p>
+<ul>
+<li>基础构件：根据MCU内部功能模块的基本知识要素，针对MCU引脚功能或内部功能，以用MCU内部寄存器所制作的直接干预硬件的构件（GPIO、UART、Flash构件）</li>
+<li>应用构件：使用基础构件并面向对象编程的构件（printf构件）</li>
+<li>软件构件：面向对象的具有规范接口和确定的上下文依赖的组装单元，它能被独立使用或被其他构件调用（数字类型转换valueType构件）</li>
+</ul>
+<h3 id="程序流程控制"><a href="#程序流程控制" class="headerlink" title="程序流程控制"></a>程序流程控制</h3><p>顺序结构举例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mov r0,#15</span><br><span class="line">mov r1,#24</span><br><span class="line">add r1,r0</span><br><span class="line">ldr ro,&#x3D;data_format</span><br><span class="line">bl printf</span><br></pre></td></tr></table></figure>
+
+<p>分支结构举例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mov r0,#15</span><br><span class="line">mov r1,#24</span><br><span class="line">cmp r0,r1 &#x2F;&#x2F;r0-r1</span><br><span class="line">beq &#x3D;</span><br><span class="line">bne !&#x3D;</span><br><span class="line">bge &gt;&#x3D;</span><br><span class="line">ble &lt;&#x3D;</span><br><span class="line">bgt &gt;</span><br><span class="line">blt &lt;</span><br></pre></td></tr></table></figure>
+
+<p>循环结构举例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mov r0,#1 &#x2F;&#x2F;主循环变量</span><br><span class="line">mov r1,#1 &#x2F;&#x2F;初始化变量</span><br><span class="line">loop:</span><br><span class="line">	add r0,#1</span><br><span class="line">	add r1,r0</span><br><span class="line">	cmp r0,#100 &#x2F;&#x2F;判断是否循环</span><br><span class="line">	bne loop &#x2F;&#x2F;进行循环</span><br><span class="line">	ldr r0,&#x3D;data_format &#x2F;&#x2F;退出循环</span><br><span class="line">	bl printf</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、存储器"><a href="#六、存储器" class="headerlink" title="六、存储器"></a>六、存储器</h2><h3 id="存储器的分类"><a href="#存储器的分类" class="headerlink" title="存储器的分类"></a>存储器的分类</h3><p>按介质分类：</p>
+<ul>
+<li>半导体存储器</li>
+<li>磁表面存储器</li>
+<li>光存储器</li>
+</ul>
+<p>按功能分类：</p>
+<ul>
+<li>控制存储器：存放指令系统与微指令</li>
+<li>高速缓冲存储器（cache）</li>
+<li>主存储器（主存）</li>
+<li>辅助存储器（外存）</li>
+</ul>
+<p>按存取方式分类：</p>
+<ul>
+<li>顺序访问存储器SAM Sequential Access Memory</li>
+<li>随机访问存储器RAM</li>
+</ul>
+<h3 id="随机存储器与只读存储器"><a href="#随机存储器与只读存储器" class="headerlink" title="随机存储器与只读存储器"></a>随机存储器与只读存储器</h3><p>RAM的分类：</p>
+<ul>
+<li>SRAM：MOS管触发器实现，不需要刷新电路，集成度低、功耗大</li>
+<li>DRAM：使用少量MOS管，需要定期刷新电路，读取是破坏性的</li>
+</ul>
+<p>ROM的分类：</p>
+<ul>
+<li>掩膜ROM：使用行列地址译码器进行单元选择，无法改变存储状态</li>
+<li>PROM：一次性编程只读存储器</li>
+<li>EPROM：可擦可编程只读存储器，通过紫外线照射或电器方法进行擦除</li>
+<li>EEPROM：掉电后数据不丢失，可以在计算机或专业设备上直接重新编程</li>
+</ul>
+<h3 id="高速缓存"><a href="#高速缓存" class="headerlink" title="高速缓存"></a>高速缓存</h3><p>程序访问的局部性原理：在一个较小的时间间隔内，程序访问的地址往往集中在一个很小的范围内</p>
+<p>cache命中率: CPU所要访问的信息在cache中的比率，其影响因素如下</p>
+<ul>
+<li>cache大小</li>
+<li>cache组织结构</li>
+<li>程序特性</li>
+</ul>
+<p>全相联映像cache：</p>
+<ul>
+<li>任意贮存单元的数据或指令均可以存放到cache的任意位置</li>
+<li>查找时主存块号需要和所有cache标记对比一次</li>
+<li>命中率高、速度低、成本高</li>
+<li>主存地址由块号和块内偏移（字号）组成</li>
+</ul>
+<p>直接映像cache： </p>
+<ul>
+<li>主存中第$2^i+k$块只能映射到cache中第k块,其中,i&gt;c(c为cache字块地址位数)</li>
+<li>只需要一次比较即可确定是否命中</li>
+<li>主存地址由区号、块号和块内偏移构成</li>
+</ul>
+<p>组相联映像cache：</p>
+<ul>
+<li>直接映射和全相联映射的一个折中,主存中的每一块可以映射到cache中的$2^{c-r}$块</li>
+<li>主存地址由区号、块号和块内偏移构成</li>
+</ul>
+<h3 id="Flash存储器"><a href="#Flash存储器" class="headerlink" title="Flash存储器"></a>Flash存储器</h3><p>Flash存储器特点：存储器不易失、可擦除、可在线编程、存储密度高、功耗和成本较低</p>
+<p>Flash编程模式：</p>
+<ul>
+<li>ICP in-circuit programming：监控模式（写入器编程模式），通过编程器将程序固化到Flash存储器中，可以整片擦除Flash</li>
+<li>IAP in-application programming：用户模式（在线编程模式），在程序运行过程中对Flash存储区的数据或程序进行更新（通过运行Flash内部程序对Flash其他区域进行擦除和写入）</li>
+</ul>
+<p>Flash编程的基本操作：</p>
+<ul>
+<li>擦除(0-&gt;1)：需要以页（块、扇区）或整个Flash为单位进行操作</li>
+<li>写入(1-&gt;0)：该单元需要先擦除，才能写入</li>
+<li>读取：可以随机读取</li>
+</ul>
+<p>Flash驱动构件知识要素：</p>
+<ul>
+<li>flash初始化：flash_init</li>
+<li>扇区擦除：flash_erase(section)，擦除后扇区数据为0xff</li>
+<li>扇区写：flash_write(sect, offset, len, *buff)</li>
+<li>扇区读：flash_read_logic(*dest, sect, offset, len)</li>
+<li>地址写：flash_write_physical(addr, len, *buff)</li>
+<li>地址读：flash_read_physical(*dest, addr, len)</li>
+<li>扇区保护：flash_protect(section)</li>
+<li>判断指定区域（扇区）是否为空：flash_isempty(section, len)</li>
+</ul>
+<p>Flash驱动构建使用方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">bl flash_init</span><br><span class="line">mov r0,#0x40</span><br><span class="line">bl flash_erase</span><br><span class="line"></span><br><span class="line">ldr r0,&#x3D;address</span><br><span class="line">mov r1,#len_addr</span><br><span class="line">ldr r2,&#x3D;flash_content</span><br><span class="line">bl flash_write_physical</span><br><span class="line"></span><br><span class="line">ldr r0,&#x3D;content_destination</span><br><span class="line">mov r1,#0x30</span><br><span class="line">mov r2,#0x0</span><br><span class="line">mov r3,#0x20</span><br><span class="line">bl flash_read_logic</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="七、串行通信接口"><a href="#七、串行通信接口" class="headerlink" title="七、串行通信接口"></a>七、串行通信接口</h2><h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><p>UART：通用异步收发接口；SCI：串行通信接口</p>
+<p>串口通信特点：以字节为单位、按位的顺序（高位优先）从一条传输线上发送出去</p>
+<p>异步通信和同步通信的区别：</p>
+<ul>
+<li>同步通信中通信双方由统一时钟控制数据的传送</li>
+<li>异步通信中通信双方利用收发部件之间的相互”握手“信号来实现总线的数据传送</li>
+</ul>
+<p>异步通信数据格式：</p>
+<ul>
+<li>采用NRZ数据格式</li>
+<li>1为空闲状态，发送0表示一个字节传输开始，发送（8-9位）完成后恢复高位停止</li>
+</ul>
+<p>串行通信波特率：</p>
+<ul>
+<li>波特率：单位时间内传输位的个数（bit/s）</li>
+<li>我们实验中串口通信的波特率为115200</li>
+</ul>
+<p>串行通信传输方式：</p>
+<ul>
+<li>全双工：数据双向同时传输，MCU的UART默认采用该方式</li>
+<li>半双工：数据双向间隔传输</li>
+<li>单工：数据单向传输</li>
+</ul>
+<h3 id="UART驱动构件"><a href="#UART驱动构件" class="headerlink" title="UART驱动构件"></a>UART驱动构件</h3><p>UART驱动构件知识要素</p>
+<ul>
+<li>初始化：uart_init(uartNumber, baud_rate)</li>
+<li>发送1个字节：uart_send1(uartNo, char)</li>
+<li>发送N个字节：uart_sendN(uartNo, len, *buff)</li>
+<li>发送字符串（\0结尾）：uart_send_string(uartNo, *buff)</li>
+<li>接收1个字节：uart_re1(uartNo, *fp)</li>
+<li>接收N个字节：uart_reN(uartNo, len, buff)</li>
+<li>开串口接收中断：uart_enable_re_int(uartNo)</li>
+<li>关串口接收中断：uart_disable_re_int(uartNo)</li>
+<li>获取接收中断标志（并禁止发送中断）：uart_get_re_int(uartNo)</li>
+<li>UART反初始化：uart_deinit(uartNo)</li>
+</ul>
+<p>uart驱动构件使用方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">mov r0,#UARTA</span><br><span class="line">ldr r1,&#x3D;UART_BUAD</span><br><span class="line">bl uart_init</span><br><span class="line"></span><br><span class="line">mov r0,#UARTA</span><br><span class="line">ldr r1,&#x3D;string</span><br><span class="line">bl uart_send_string</span><br><span class="line"></span><br><span class="line">mov r0,#UARTA</span><br><span class="line">bl uart_enable_re_int</span><br><span class="line"></span><br><span class="line">UARTA_Handler:</span><br><span class="line">	cpsid i</span><br><span class="line">	push &#123;lr&#125;</span><br><span class="line">	...</span><br><span class="line">	cpsie i</span><br><span class="line">	pop &#123;pc&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="八、中断系统及定时器"><a href="#八、中断系统及定时器" class="headerlink" title="八、中断系统及定时器"></a>八、中断系统及定时器</h2><h3 id="中断系统"><a href="#中断系统" class="headerlink" title="中断系统"></a>中断系统</h3><p>中断：来自CPU外围设备的强行任务切换请求，它能将程序计数器执政强制转到中断处理程序入口地址运行</p>
+<p>一些问题：</p>
+<ul>
+<li>为什么默认的缺省中断处理程序不是无限循环而是直接返回<ul>
+<li>如果使用无限循环，那么错误的中断会导致死机，直接返回就不会</li>
+</ul>
+</li>
+<li>为什么需要弱定义<ul>
+<li>弱定义将未实例化的中断服务程序（ISR）指向一个缺省的ISR首地址，保证所有的中断响应都有一个去处</li>
+</ul>
+</li>
+<li>中断服务程序和一般函数有什么区别<ul>
+<li>调用方式不同：函数需要用户调用，中断服务程序由MCU控制自己执行</li>
+<li>保护机制不同：中断服务程序会保护上下文，保存CPU寄存器的值</li>
+<li>一般函数的调用会自动返回地址</li>
+</ul>
+</li>
+</ul>
+<h3 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h3><p>SysTick模块编程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mov r0,#20 &#x2F;&#x2F;每20ms中断一次</span><br><span class="line">bl systick_init</span><br><span class="line"></span><br><span class="line">SysTick_Handler:</span><br><span class="line">	push &#123;要用的寄存器,lr&#125;</span><br><span class="line">	...</span><br><span class="line">	pop &#123;压入的寄存器,pc&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="九、模数转换和数模转换"><a href="#九、模数转换和数模转换" class="headerlink" title="九、模数转换和数模转换"></a>九、模数转换和数模转换</h2><p>模拟量：在一定范围内连续变化的物理量</p>
+<p>数字量：离散变化的量</p>
+<p>模数转换：将连续变化的电信号转换成计算机可以处理的离散变化的数字量的操作</p>
+<h3 id="与模数转换相关的基本概念"><a href="#与模数转换相关的基本概念" class="headerlink" title="与模数转换相关的基本概念"></a>与模数转换相关的基本概念</h3><p>转换精度：数字量变化一个最小量时对应模拟信号的变化量，$acc = \frac{A_{max}-A_{min}}{2^D}$</p>
+<p>单端输入和差分输入：</p>
+<ul>
+<li>以GND作为参考电平进行输入，简单但易受干扰</li>
+<li>以两个引脚的插值作为采样值，降低了干扰</li>
+</ul>
+<p>AD转换速度：完成一次AD转换所需要花费的时间，其与转换精度、采样时间有关</p>
+<p>软件滤波：对模拟量的采样可能会出现误差，可以通过软件滤波的方式来解决（中值滤波、均值滤波）</p>
+<p>物理量回归：将采样值和实际物理量对应起来（非线性回归）</p>
+<p>简单AD转换采样电路举例：V_ref——光敏/热敏电阻——A/D采样点——定值电阻——GND</p>
+<h3 id="ADC驱动构件"><a href="#ADC驱动构件" class="headerlink" title="ADC驱动构件"></a>ADC驱动构件</h3><p>ADC驱动构件知识要素：</p>
+<ul>
+<li>初始化：adc_init(channel, single/diff)</li>
+<li>采样：adc_read(channel)</li>
+<li>软件滤波：adc_filter</li>
+<li>物理量回归：adc_regression</li>
+</ul>
+<p>ADC驱动构件使用方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mov r0,#ADC_CH_1</span><br><span class="line">mov r1,#AD_SINGLE</span><br><span class="line">bl adc_init</span><br><span class="line"></span><br><span class="line">mov r0,#ADC_CH_1</span><br><span class="line">bl adc_read</span><br><span class="line"></span><br><span class="line">mov r1,r0</span><br><span class="line">ldr r0,&#x3D;data_format</span><br><span class="line">bl printf</span><br></pre></td></tr></table></figure>
+
+<h2 id="十、直接存储器"><a href="#十、直接存储器" class="headerlink" title="十、直接存储器"></a>十、直接存储器</h2><h3 id="DMA的基本概念"><a href="#DMA的基本概念" class="headerlink" title="DMA的基本概念"></a>DMA的基本概念</h3><p>DMA：DMA传输方式可以使数据不通过CPU而直接在存储器与IO设备之间、不同存储器之间进行传输</p>
+<p>优点：传输速度块，且不占用CPU资源</p>
+<p>DMA控制器：MCU内部的DMA控制器能够通过专用总线将存储器与其他外设连接起来，它含有自己的地址总线、数据总线和控制寄存器</p>
+<p>DMA的一般操作流程：</p>
+<ul>
+<li>DMA请求：CPU初始化DMA控制器，并向IO接口发出操作命令，IO接口向DMA控制器提出请求</li>
+<li>DMA响应：DMA接收IO请求，并请求总线，通知IO接口开始DMA传输</li>
+<li>DMA传输：DMA控制器获得总线控制权，控制通信设备之间的传输</li>
+<li>DMA结束：DMA控制权释放总线控制权，通知IO接口结束工作</li>
+</ul>
+<h3 id="DMA驱动构件"><a href="#DMA驱动构件" class="headerlink" title="DMA驱动构件"></a>DMA驱动构件</h3><p>DMA驱动构件要素：</p>
+<ul>
+<li>DMA初始化：DMA_Init(channelNumber)</li>
+<li>DMA传送：DMA_Start(chN, srcAddress, dstAddress, len)</li>
+<li>DMA反初始化：DMA_Deinit(chN)</li>
+</ul>
+<p>利用DMA-UART通过串口发送字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">bl DMA_init</span><br><span class="line"></span><br><span class="line">mov r0,&#x3D;string</span><br><span class="line">mov r1,#UARTA</span><br><span class="line">mov r3,&#x3D;nextString</span><br><span class="line">sub r2,r3,r0</span><br><span class="line">bl DMA_UART</span><br></pre></td></tr></table></figure>
+
+<h2 id="十一、其他"><a href="#十一、其他" class="headerlink" title="十一、其他"></a>十一、其他</h2><p>开关量输入输出类硬件：人体红外传感器、红外循迹传感器、按钮；彩灯、蜂鸣器、电动机、数码管</p>
+<p>微机发展的方向：</p>
+<ul>
+<li>CPU结构不断优化、速度不断提高</li>
+<li>存储器性能更高、容量增加、速度变快</li>
+<li>指令系统从发展从简单到复杂</li>
+<li>编译技术不断提高，并行、交叉、动态编译技术都得到了发展</li>
+<li>前沿技术突破给微机发展带来了更多可能性，如纳米、激光、量子技术等</li>
+</ul>
 
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/03/08/micro-computer0/" data-id="ckoktuy1u00292svn4uygbevx"
+      <a data-url="http://georgechen1827.github.io/2020/03/08/micro-computer0/" data-id="ckqs8feji003hh0vne3ss9opj"
         class="article-share-link">share</a>
         
       
@@ -217,7 +676,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/03/04/formal-language-and-automata/" data-id="ckoktuy1l001e2svnf8efbfn6"
+      <a data-url="http://georgechen1827.github.io/2020/03/04/formal-language-and-automata/" data-id="ckqs8fejb0036h0vnf751fjrc"
         class="article-share-link">share</a>
         
       
@@ -293,7 +752,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/03/04/markdown-formula-editor/" data-id="ckoktuy22003c2svn5jxn62k2"
+      <a data-url="http://georgechen1827.github.io/2020/03/04/markdown-formula-editor/" data-id="ckqs8fekb004th0vn16n7ekwb"
         class="article-share-link">share</a>
         
       
@@ -366,7 +825,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/03/04/python-multithreading/" data-id="ckoktuy1y002s2svneensek58"
+      <a data-url="http://georgechen1827.github.io/2020/03/04/python-multithreading/" data-id="ckqs8fek30041h0vn3c5p3937"
         class="article-share-link">share</a>
         
       
@@ -441,7 +900,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/03/04/python-spider/" data-id="ckoktuy1z002x2svnbxrc9nxi"
+      <a data-url="http://georgechen1827.github.io/2020/03/04/python-spider/" data-id="ckqs8fek9004fh0vnb0gne1jt"
         class="article-share-link">share</a>
         
       
@@ -521,7 +980,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/03/03/mao-theory/" data-id="ckoktuy1s001z2svnd7d7hybr"
+      <a data-url="http://georgechen1827.github.io/2020/03/03/mao-theory/" data-id="ckqs8fejw003uh0vn0hwb1nd3"
         class="article-share-link">share</a>
         
       
@@ -591,7 +1050,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/26/featured-chinese-culture/" data-id="ckoktuy1k001a2svn2n7l2pa3"
+      <a data-url="http://georgechen1827.github.io/2020/02/26/featured-chinese-culture/" data-id="ckqs8fei4000yh0vn9431awjx"
         class="article-share-link">share</a>
         
       
@@ -661,7 +1120,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/25/chinese-garden/" data-id="ckoktuy1100072svnee776y8y"
+      <a data-url="http://georgechen1827.github.io/2020/02/25/chinese-garden/" data-id="ckqs8fehk0006h0vn8d4ggjij"
         class="article-share-link">share</a>
         
       
@@ -735,114 +1194,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/Lucence0/" data-id="ckoktuy0w00022svn4r27enaf"
+      <a data-url="http://georgechen1827.github.io/2020/02/24/Lucence0/" data-id="ckqs8fehi0004h0vn66rq8jxl"
         class="article-share-link">share</a>
         
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/" rel="tag">c#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" rel="tag">搜索引擎</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-computer-composition0" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/24/computer-composition0/"
-    >计算机组成相关知识</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/02/24/computer-composition0/" class="article-date">
-  <time datetime="2020-02-24T02:32:00.000Z" itemprop="datePublished">2020-02-24</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/notes/">notes</a> / <a class="article-category-link" href="/categories/notes/%E5%AD%A6%E4%BD%8D%E8%AF%BE%E7%A8%8B/">学位课程</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p><del>未完结,持续更新</del>完结</p>
-<hr>
-<p>网课资源: (智慧树)长春师范大学计算机组成</p>
-<p>参考教材: 清华大学出版社《计算机组成与结构(第5版)》</p>
-<p>课程内容:</p>
-<ul>
-<li>讨论单机系统范围内计算机各部件和系统的组成原理以及内部工作机制</li>
-</ul>
-<p>课程目标:</p>
-<ul>
-<li>计算机个大部件的组成原理</li>
-<li>计算机各大部件的逻辑实现</li>
-<li>计算机各大部件的设计方法</li>
-<li>计算机各大部件互联构成整体系统的技术</li>
-<li>(为后继课程的学习打好基础)</li>
-</ul>
-<p>课程地位: 承上启下</p>
-<ul>
-<li>先导课程: 计算机导论,数字逻辑</li>
-<li>后继课程: 微机原理,接口技术,计算机系统结构</li>
-</ul>
-<p>重点难点:</p>
-<ul>
-<li>掌握五大基本部件的原理及实现</li>
-<li>掌握各部件互联构成整机系统的知识(整机概念的建立)</li>
-</ul>
-<p>课程要求:</p>
-<ul>
-<li>重点掌握: 多层次的存储器,中央处理器</li>
-<li>掌握: 运算方法和运算器,指令系统,总线系统</li>
-<li>理解: 外存与io设备</li>
-<li>了解: 计算机系统概论,输入输出系统</li>
-</ul>
-      
-      <a class="article-more-link" href="/2020/02/24/computer-composition0/">more...</a>
-      
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/computer-composition0/" data-id="ckoktuy2000342svn7s482cwd"
-        class="article-share-link">share</a>
-        
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/" rel="tag">计算机组成</a></li></ul>
 
     </footer>
 

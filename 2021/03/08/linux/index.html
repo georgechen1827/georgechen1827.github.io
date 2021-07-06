@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> about </span>
-            <span class="post-count">3.2k words</span>
+            <span class="post-count">4.2k words</span>
         </span>
     </span>
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> costs </span>
-            <span class="post-count">12 minutes</span>
+            <span class="post-count">16 minutes</span>
         </span>
     </span>
 </div>
@@ -107,7 +107,7 @@
 <li>Centos</li>
 </ul>
 <p>命令样式：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nuname -a <span class="comment">## (-all)</span></span><br><span class="line">Linux KVD-Standard-PC 4.15.0-33-generic <span class="comment">#36-Ubuntu SMP Wed Aug 15</span></span><br><span class="line">16:00:05 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nb   uname -a <span class="comment">## (-all)</span></span><br><span class="line">Linux KVD-Standard-PC 4.15.0-33-generic <span class="comment">#36-Ubuntu SMP Wed Aug 15</span></span><br><span class="line">16:00:05 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux</span><br></pre></td></tr></table></figure>
 
 <p>Ubuntu资源管理器：</p>
 <ul>
@@ -382,7 +382,7 @@
 
 <p><strong>the ? only works for Perl-based regexp, not for POSIX</strong></p>
 <p>grep:查找并输出可以匹配指定模式的所有行 Get RE Pattern</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">egrep [-n] &lt;re pattern&gt; &lt;fname&#x2F;string&gt;</span><br><span class="line">grep -P &lt;re pattern&gt;可以以POSIX标准支持?非贪心</span><br><span class="line">-o可以只输出匹配内容，可用于管道</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">egrep [-n] &lt;re pattern&gt; &lt;fname&#x2F;string&gt;</span><br><span class="line">grep -P &lt;re pattern&gt;可以以Perl标准支持?非贪心</span><br><span class="line">-o可以只输出匹配内容，可用于管道</span><br></pre></td></tr></table></figure>
 
 
 
@@ -398,8 +398,8 @@
 </ul>
 <p>分组<code>s/(...)(...)/\2..\1..</code></p>
 <ul>
-<li>若发生嵌套，以左括号出现先后来标序号</li>
-<li>source内部也可以使用分组，它能记住之前括号中匹配 的内容</li>
+<li>若发生嵌套，以左括号出现的先后顺序来标记组号</li>
+<li>source内部也可以使用分组，它能记住之前括号中最后一次匹配的内容</li>
 </ul>
 <p>sed：Stream EDitor，<code>sed [opt] &#39;cmd&#39; file</code></p>
 <ul>
@@ -409,7 +409,7 @@
 <li><code>cmd</code>：<code>s...</code>替换，<code>num1,num2d</code>删除行，<code>/pattern/d</code>删除pattern匹配的所在行</li>
 </ul>
 <h3 id="第八次课"><a href="#第八次课" class="headerlink" title="第八次课"></a>第八次课</h3><p>find命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">find -name &lt;通配符&gt; &#x2F;&#x2F;默认当前目录树下查找</span><br><span class="line">-maxdepth 最高下降深度 -mindepth 最低</span><br><span class="line">-name 用通配符匹配文件名 -path 用通配符匹配路径名</span><br><span class="line">-regex 用正则表达式匹配路径名 -iregex 大小写不敏感 -regextype type 选择正则表达式标准</span><br><span class="line">-links n 文件链接数</span><br><span class="line"></span><br><span class="line">-newerXY ref查找某些时间早于ref文件的文件</span><br><span class="line">-empty 空文件</span><br><span class="line"></span><br><span class="line">find -amin(-atime) n &#x2F;&#x2F;n分钟(天)内访问的文件</span><br><span class="line">find -cmin(-ctime) n</span><br><span class="line">-anewer ref</span><br><span class="line">-cnewer ref</span><br><span class="line"></span><br><span class="line">find ... -exec cmd &#123;&#125; \; &#x2F;&#x2F;将find的结果以&#123;&#125;的形式作为参数执行cmd，使用\;表示对每条结果应用cmd，使用+表示所有结果一次</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">find -name &lt;通配符&gt; &#x2F;&#x2F;默认当前目录树下查找</span><br><span class="line">-maxdepth 最高下降深度 -mindepth 最低</span><br><span class="line">-name 用通配符匹配文件名 -path 用通配符匹配路径名</span><br><span class="line">-regex 用正则表达式匹配路径名 -iregex 大小写不敏感 -regextype type 选择正则表达式标准</span><br><span class="line">-links n 文件链接数</span><br><span class="line"></span><br><span class="line">-newerXY ref查找某些时间早于ref文件的文件</span><br><span class="line">-empty 空文件</span><br><span class="line"></span><br><span class="line">find -amin(-atime) n &#x2F;&#x2F;n分钟(天)内访问的文件</span><br><span class="line">find -cmin(-ctime) n</span><br><span class="line">-anewer ref</span><br><span class="line">-cnewer ref</span><br><span class="line"></span><br><span class="line">find ... -exec cmd &#123;&#125; \; &#x2F;&#x2F;将find的结果以&#123;&#125;的形式作为参数执行cmd，使用\;表示对每条结果应用cmd，使用+表示所有结果一次</span><br><span class="line">find ... -execdir cmd &#123;&#125; \; &#x2F;&#x2F;与前者不同，execdir进入到目标所在目录执行cmd命令，使用+会合并同父目录下的文件批量执行</span><br></pre></td></tr></table></figure>
 
 <p>目录的权限x表示searchable</p>
 <p>diff a b查看ab文件的区别</p>
@@ -422,16 +422,69 @@
 <li><p><code>{print}</code>可以打印行内容<code>{print $2 &quot; &quot; $5}</code>可以打印每行第2、5列内容</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">awk是以行为单位进行处理，根据分隔符（可配置）将一行分为列（field）</span><br><span class="line">是一种编程语言</span><br><span class="line">语句：&#39;pattern &#123;action&#125;’</span><br><span class="line">awk &#39;pattern action&#39; file</span><br><span class="line">awk &#39;$3 &gt;&#x3D; 60 &#123;print&#125;&#39; file </span><br><span class="line">awk &#39;&#123;sum&#x3D;sum+$3&#125;&#39; file   </span><br><span class="line">$0表示整行</span><br><span class="line">特殊模式：BEGIN END</span><br><span class="line">语言自带变量：NF（Number of field，当前行的列数）；NR（number of record，当前行号）</span><br><span class="line">用户自定义变量sum&#x3D;sum+$3</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">awk是以行为单位进行处理，根据分隔符（可配置）将一行分为列（field）</span><br><span class="line">是一种编程语言</span><br><span class="line">语句：&#39;pattern &#123;action&#125;’</span><br><span class="line">awk &#39;pattern action&#39; file</span><br><span class="line">awk &#39;$3 &gt;&#x3D; 60 &#123;print&#125;&#39; file </span><br><span class="line">awk &#39;&#123;sum&#x3D;sum+$3&#125;&#39; file   </span><br><span class="line">$0表示整行</span><br><span class="line">特殊模式：BEGIN END</span><br><span class="line">语言自带变量：NF（Number of field，当前行的列数）；NR（number of record，当前行号）</span><br><span class="line">用户自定义变量sum&#x3D;sum+$3</span><br><span class="line">-F 在action中指定field split: &quot;BEGIN&#123;RS&#x3D;...;FS&#x3D;...&#125;&quot;</span><br><span class="line">-v 在选项中定义变量</span><br></pre></td></tr></table></figure>
 
 <p>管道<code>|</code>将前一个命令的标准输出内容作为后一个命令的标准输入内容                                                                          </p>
-<h2 id="第九次课"><a href="#第九次课" class="headerlink" title="第九次课"></a>第九次课</h2>
+<h2 id="第九次课"><a href="#第九次课" class="headerlink" title="第九次课"></a>第九次课</h2><h2 id="第十次课"><a href="#第十次课" class="headerlink" title="第十次课"></a>第十次课</h2><p><code>tr</code>以一些规则来翻译或删除字符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tr set1 set2</span><br></pre></td></tr></table></figure>
+
+<h2 id="第十一次课"><a href="#第十一次课" class="headerlink" title="第十一次课"></a>第十一次课</h2><p>过滤器filter</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cmd1 | cmd2 | cmd3</span><br><span class="line">&#x2F;&#x2F;cmd2从标准输入读入数据，输出到标准输出</span><br><span class="line">&#x2F;&#x2F;cmd2的特点：能从标准输入连续读取字符串,如不带文件参数的cat、egrep等</span><br></pre></td></tr></table></figure>
+
+<p>sort</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sort [options] [files] &#x2F;&#x2F;将files拼接并按行排序（默认字母序）</span><br><span class="line">-k num &#x2F;&#x2F;根据第num列排序</span><br><span class="line">-r 倒序排列 -R 随机排列</span><br><span class="line">-n 按数值排序</span><br><span class="line">-u unique</span><br></pre></td></tr></table></figure>
+
+<p>diff</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">diff [fileA] [fileB]</span><br><span class="line">对第一个文件(A)逐步修改，最终和第二个文件(B)完全一致。</span><br><span class="line">&lt;n1..&gt;d&lt;n2&gt;：删除，删除源文件的n1等行，删除点位于目标文件的n2行</span><br><span class="line">&lt;n1&gt;a&lt;n2..&gt;：增加，把第目标文件的n2等行增加到源文件的n1行后</span><br><span class="line">&lt;n1..&gt;c&lt;n2&gt;：替换，使用目标的第n2行替换源的第n1等行</span><br><span class="line">&lt;：文件A的内容</span><br><span class="line">&gt;：文件B的内容</span><br><span class="line">修改过程中两个文件的相关行号不变</span><br></pre></td></tr></table></figure>
+
+<p>xargs</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">将非过滤器命令放到管道中</span><br></pre></td></tr></table></figure>
+
+<h2 id="第十二次课"><a href="#第十二次课" class="headerlink" title="第十二次课"></a>第十二次课</h2><p>shell脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> !/bin/bash 指定默认执行程序</span></span><br><span class="line">x = 3 # 赋值语句，类型有Int和String(有时需要带引号)</span><br><span class="line"><span class="meta">$</span><span class="bash">&#123;x&#125; <span class="comment"># 取值</span></span></span><br><span class="line">k = $x$y # 字符串拼接</span><br><span class="line">k = $(($x+$y)) # 数值运算</span><br><span class="line">for i in $x; do ... ; done # x可以是数组或空格隔开的字符串</span><br></pre></td></tr></table></figure>
+
+<p>shell变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">1.默认都是字符串</span><br><span class="line">2.declare -i 整数类型</span><br><span class="line">3.如果做整数运算，会把非整数都理解为0</span><br><span class="line">4.declare +i 把变量的整数属性去掉</span><br><span class="line">5.unset删除一个变量</span><br><span class="line">6.echo $notexistvar 等价于 echo $emptystrvar（空字符串）</span><br><span class="line">7.declare -r var （read-only）等价于 const int i &#x3D; 1;</span><br><span class="line">8.环境变量：指可以继承给儿子进程的变量</span><br><span class="line">	export x 或 declare -x x</span><br><span class="line">  注：shell中的继承只能通过环境变量</span><br><span class="line">9.数组变量</span><br><span class="line">	a&#x3D;(A B C 1 2 30)</span><br><span class="line">	echo $&#123;a[0]&#125;</span><br><span class="line">数组长度：echo $&#123;#a[@]&#125;</span><br><span class="line">增加元素：a[100]&#x3D;40</span><br><span class="line">总结</span><br><span class="line">a.下标可以不连续</span><br><span class="line">b.下标不合法输出空字符串</span><br><span class="line">c.#a[@]表示数组长度 #a表示字符串长度</span><br><span class="line">10.特殊变量</span><br><span class="line">$变量：当前shell的进程编号</span><br><span class="line">?变量：返回上个命令的状态编号（上个命令执行成功返回0，未成功返回大于0）</span><br><span class="line">11.把命令结果保存到变量中</span><br><span class="line">a.$(cmd)	例：a&#x3D;$(ls)</span><br><span class="line">b.&#96;cmd&#96;	例：a&#x3D;&#96;date +%y-%m-%d&#96;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第-次课"><a href="#第-次课" class="headerlink" title="第.次课"></a>第.次课</h2><p>ext2文件系统</p>
+<ul>
+<li>inode</li>
+<li>block</li>
+<li>超级块</li>
+</ul>
+<p>df 查看看文件系统磁盘使用情况 -h可读性高</p>
+<p>du查看文件夹占用情况</p>
+<p>ls可以查看文件硬链接数，目录的硬链接数包括.和..</p>
+<p>硬链接（建立inode指向文件）、符号链接（建立链接文件指向（可能是）inode）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln [-s(软链接)] [source] [target]</span><br><span class="line">unlink</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -czvf -xzvf -tzvf 压缩、解压、查看</span><br><span class="line">zip\gzip</span><br></pre></td></tr></table></figure>
+
+<p>进程管理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">top</span><br><span class="line">kill</span><br><span class="line">ps: process snapshot 进程快照</span><br></pre></td></tr></table></figure>
+
+<h2 id="考点"><a href="#考点" class="headerlink" title="考点"></a>考点</h2><p>开卷、简答14选10、操作题5选3、编程题4选2（awk、shell、sed）、find</p>
+<p>awk 选出每句话的第一个词</p>
+<ul>
+<li>装Linux注意事项</li>
+<li>Linux、Windows区别、图形界面、终端、目录结构特点</li>
+<li>用户添加等、sudo和su区别</li>
+<li>man</li>
+<li>文件操作cp、mv、rm</li>
+<li>inode、block</li>
+<li>文本编辑、shell环境变量</li>
+<li>通配符（特殊连字符、与正则表达式区别</li>
+<li>重定向意思、如何用</li>
+<li>软硬链接、文件系统卸载挂载</li>
+<li>管道、awk</li>
+</ul>
+
       
       <!-- 打赏 -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2021/03/08/linux/" data-id="ckoktuy1m001h2svn3d4fegjs"
+      <a data-url="http://georgechen1827.github.io/2021/03/08/linux/" data-id="ckqs8fejd003bh0vn48yrem5h"
         class="article-share-link">share</a>
         
       

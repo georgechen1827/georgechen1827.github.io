@@ -752,15 +752,13 @@
 </ul>
 <p>计算机的存储层次解决了速度与成本之间的矛盾</p>
 <p>现代计算机同时采用上述两种存储层次,构成cache-主存-辅存三级存储层次</p>
-<h2 id="5-2-高速缓冲存储器"><a href="#5-2-高速缓冲存储器" class="headerlink" title="5.2 高速缓冲存储器"></a>5.2 高速缓冲存储器</h2><h3 id="cache存在的合理性"><a href="#cache存在的合理性" class="headerlink" title="cache存在的合理性"></a>cache存在的合理性</h3><ul>
-<li>程序访问的局部性原理: 在一个较短的时间间隔内,程序访问的地址往往集中在一个很小的范围内<blockquote>
+<h2 id="5-2-高速缓冲存储器"><a href="#5-2-高速缓冲存储器" class="headerlink" title="5.2 高速缓冲存储器"></a>5.2 高速缓冲存储器</h2><h3 id="cache存在的合理性"><a href="#cache存在的合理性" class="headerlink" title="cache存在的合理性"></a>cache存在的合理性</h3><p>程序访问的局部性原理: 在一个较短的时间间隔内,程序访问的地址往往集中在一个很小的范围内</p>
+<blockquote>
 <ul>
 <li>程序指令地址本身就是连续分布的,且循环程序段和子程序段经常被反复执行</li>
 <li>程序数据分布虽然不一定是集中的,但短时间内对数组的存储和访问以及对工作单元的选择也需要使用到局部范围的存储器地址</li>
 </ul>
 </blockquote>
-</li>
-</ul>
 <p>根据局部性原理,在主存和CPU之间设置一个高速而容量相对较小的存储器,将当前执行的程序和数据存放在这个存储器中;当程序运行时,不需要再从主存储器中取指令和数据,访问cache即可</p>
 <h3 id="cache的结构"><a href="#cache的结构" class="headerlink" title="cache的结构"></a>cache的结构</h3><p>cache一般由SRAM组成,它的工作速度数倍于主存,全部功能由硬件实现,并且对程序员是透明的</p>
 <p>其基本结构如下:<br><img src="/2020/02/24/computer-composition0/cache0.jpg" alt="cache">  </p>
@@ -807,7 +805,7 @@
 <p><img src="/2020/02/24/computer-composition0/cache2.jpg" alt="cache"></p>
 <p>这种方式最灵活,cache命中率最高,但成本也最高,开销大速度慢</p>
 <h4 id="组相联映射"><a href="#组相联映射" class="headerlink" title="组相联映射"></a>组相联映射</h4><ul>
-<li>特点: 是直接映射和全相联映射的一个折衷,主存中的每一块可以映射到cache中的$2^{c-r}$块<blockquote>
+<li>特点: 是直接映射和全相联映射的一个折中,主存中的每一块可以映射到cache中的$2^{c-r}$块<blockquote>
 <ul>
 <li>主存和cache分成r组,取主存块地址和cache块地址的后r位</li>
 <li>组间为直接映射,组内为全相联映射</li>
@@ -2138,7 +2136,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://georgechen1827.github.io/2020/02/24/computer-composition0/" data-id="ckoktuy2000342svn7s482cwd"
+      <a data-url="http://georgechen1827.github.io/2020/02/24/computer-composition0/" data-id="ckqs8fek9004mh0vn4hhkcdp3"
         class="article-share-link">share</a>
         
       

@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>融合论据识别的BERT立场分析模型</title>
+    <url>/2021/05/13/%E8%9E%8D%E5%90%88%E8%AE%BA%E6%8D%AE%E8%AF%86%E5%88%AB%E7%9A%84BERT%E7%AB%8B%E5%9C%BA%E5%88%86%E6%9E%90%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<p>融合论据识别的BERT立场分析模型</p>
+]]></content>
+  </entry>
+  <entry>
     <title>软件工程实践</title>
     <url>/2021/03/09/software-engineering0/</url>
     <content><![CDATA[<h2 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h2><p>开发软件的过程：</p>
@@ -49,7 +55,7 @@
 <li>Centos</li>
 </ul>
 <p>命令样式：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nuname -a <span class="comment">## (-all)</span></span><br><span class="line">Linux KVD-Standard-PC 4.15.0-33-generic <span class="comment">#36-Ubuntu SMP Wed Aug 15</span></span><br><span class="line">16:00:05 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nb   uname -a <span class="comment">## (-all)</span></span><br><span class="line">Linux KVD-Standard-PC 4.15.0-33-generic <span class="comment">#36-Ubuntu SMP Wed Aug 15</span></span><br><span class="line">16:00:05 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux</span><br></pre></td></tr></table></figure>
 
 <p>Ubuntu资源管理器：</p>
 <ul>
@@ -324,7 +330,7 @@
 
 <p><strong>the ? only works for Perl-based regexp, not for POSIX</strong></p>
 <p>grep:查找并输出可以匹配指定模式的所有行 Get RE Pattern</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">egrep [-n] &lt;re pattern&gt; &lt;fname&#x2F;string&gt;</span><br><span class="line">grep -P &lt;re pattern&gt;可以以POSIX标准支持?非贪心</span><br><span class="line">-o可以只输出匹配内容，可用于管道</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">egrep [-n] &lt;re pattern&gt; &lt;fname&#x2F;string&gt;</span><br><span class="line">grep -P &lt;re pattern&gt;可以以Perl标准支持?非贪心</span><br><span class="line">-o可以只输出匹配内容，可用于管道</span><br></pre></td></tr></table></figure>
 
 
 
@@ -340,8 +346,8 @@
 </ul>
 <p>分组<code>s/(...)(...)/\2..\1..</code></p>
 <ul>
-<li>若发生嵌套，以左括号出现先后来标序号</li>
-<li>source内部也可以使用分组，它能记住之前括号中匹配 的内容</li>
+<li>若发生嵌套，以左括号出现的先后顺序来标记组号</li>
+<li>source内部也可以使用分组，它能记住之前括号中最后一次匹配的内容</li>
 </ul>
 <p>sed：Stream EDitor，<code>sed [opt] &#39;cmd&#39; file</code></p>
 <ul>
@@ -351,7 +357,7 @@
 <li><code>cmd</code>：<code>s...</code>替换，<code>num1,num2d</code>删除行，<code>/pattern/d</code>删除pattern匹配的所在行</li>
 </ul>
 <h3 id="第八次课"><a href="#第八次课" class="headerlink" title="第八次课"></a>第八次课</h3><p>find命令</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">find -name &lt;通配符&gt; &#x2F;&#x2F;默认当前目录树下查找</span><br><span class="line">-maxdepth 最高下降深度 -mindepth 最低</span><br><span class="line">-name 用通配符匹配文件名 -path 用通配符匹配路径名</span><br><span class="line">-regex 用正则表达式匹配路径名 -iregex 大小写不敏感 -regextype type 选择正则表达式标准</span><br><span class="line">-links n 文件链接数</span><br><span class="line"></span><br><span class="line">-newerXY ref查找某些时间早于ref文件的文件</span><br><span class="line">-empty 空文件</span><br><span class="line"></span><br><span class="line">find -amin(-atime) n &#x2F;&#x2F;n分钟(天)内访问的文件</span><br><span class="line">find -cmin(-ctime) n</span><br><span class="line">-anewer ref</span><br><span class="line">-cnewer ref</span><br><span class="line"></span><br><span class="line">find ... -exec cmd &#123;&#125; \; &#x2F;&#x2F;将find的结果以&#123;&#125;的形式作为参数执行cmd，使用\;表示对每条结果应用cmd，使用+表示所有结果一次</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">find -name &lt;通配符&gt; &#x2F;&#x2F;默认当前目录树下查找</span><br><span class="line">-maxdepth 最高下降深度 -mindepth 最低</span><br><span class="line">-name 用通配符匹配文件名 -path 用通配符匹配路径名</span><br><span class="line">-regex 用正则表达式匹配路径名 -iregex 大小写不敏感 -regextype type 选择正则表达式标准</span><br><span class="line">-links n 文件链接数</span><br><span class="line"></span><br><span class="line">-newerXY ref查找某些时间早于ref文件的文件</span><br><span class="line">-empty 空文件</span><br><span class="line"></span><br><span class="line">find -amin(-atime) n &#x2F;&#x2F;n分钟(天)内访问的文件</span><br><span class="line">find -cmin(-ctime) n</span><br><span class="line">-anewer ref</span><br><span class="line">-cnewer ref</span><br><span class="line"></span><br><span class="line">find ... -exec cmd &#123;&#125; \; &#x2F;&#x2F;将find的结果以&#123;&#125;的形式作为参数执行cmd，使用\;表示对每条结果应用cmd，使用+表示所有结果一次</span><br><span class="line">find ... -execdir cmd &#123;&#125; \; &#x2F;&#x2F;与前者不同，execdir进入到目标所在目录执行cmd命令，使用+会合并同父目录下的文件批量执行</span><br></pre></td></tr></table></figure>
 
 <p>目录的权限x表示searchable</p>
 <p>diff a b查看ab文件的区别</p>
@@ -364,10 +370,63 @@
 <li><p><code>{print}</code>可以打印行内容<code>{print $2 &quot; &quot; $5}</code>可以打印每行第2、5列内容</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">awk是以行为单位进行处理，根据分隔符（可配置）将一行分为列（field）</span><br><span class="line">是一种编程语言</span><br><span class="line">语句：&#39;pattern &#123;action&#125;’</span><br><span class="line">awk &#39;pattern action&#39; file</span><br><span class="line">awk &#39;$3 &gt;&#x3D; 60 &#123;print&#125;&#39; file </span><br><span class="line">awk &#39;&#123;sum&#x3D;sum+$3&#125;&#39; file   </span><br><span class="line">$0表示整行</span><br><span class="line">特殊模式：BEGIN END</span><br><span class="line">语言自带变量：NF（Number of field，当前行的列数）；NR（number of record，当前行号）</span><br><span class="line">用户自定义变量sum&#x3D;sum+$3</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">awk是以行为单位进行处理，根据分隔符（可配置）将一行分为列（field）</span><br><span class="line">是一种编程语言</span><br><span class="line">语句：&#39;pattern &#123;action&#125;’</span><br><span class="line">awk &#39;pattern action&#39; file</span><br><span class="line">awk &#39;$3 &gt;&#x3D; 60 &#123;print&#125;&#39; file </span><br><span class="line">awk &#39;&#123;sum&#x3D;sum+$3&#125;&#39; file   </span><br><span class="line">$0表示整行</span><br><span class="line">特殊模式：BEGIN END</span><br><span class="line">语言自带变量：NF（Number of field，当前行的列数）；NR（number of record，当前行号）</span><br><span class="line">用户自定义变量sum&#x3D;sum+$3</span><br><span class="line">-F 在action中指定field split: &quot;BEGIN&#123;RS&#x3D;...;FS&#x3D;...&#125;&quot;</span><br><span class="line">-v 在选项中定义变量</span><br></pre></td></tr></table></figure>
 
 <p>管道<code>|</code>将前一个命令的标准输出内容作为后一个命令的标准输入内容                                                                          </p>
-<h2 id="第九次课"><a href="#第九次课" class="headerlink" title="第九次课"></a>第九次课</h2>]]></content>
+<h2 id="第九次课"><a href="#第九次课" class="headerlink" title="第九次课"></a>第九次课</h2><h2 id="第十次课"><a href="#第十次课" class="headerlink" title="第十次课"></a>第十次课</h2><p><code>tr</code>以一些规则来翻译或删除字符</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tr set1 set2</span><br></pre></td></tr></table></figure>
+
+<h2 id="第十一次课"><a href="#第十一次课" class="headerlink" title="第十一次课"></a>第十一次课</h2><p>过滤器filter</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cmd1 | cmd2 | cmd3</span><br><span class="line">&#x2F;&#x2F;cmd2从标准输入读入数据，输出到标准输出</span><br><span class="line">&#x2F;&#x2F;cmd2的特点：能从标准输入连续读取字符串,如不带文件参数的cat、egrep等</span><br></pre></td></tr></table></figure>
+
+<p>sort</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sort [options] [files] &#x2F;&#x2F;将files拼接并按行排序（默认字母序）</span><br><span class="line">-k num &#x2F;&#x2F;根据第num列排序</span><br><span class="line">-r 倒序排列 -R 随机排列</span><br><span class="line">-n 按数值排序</span><br><span class="line">-u unique</span><br></pre></td></tr></table></figure>
+
+<p>diff</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">diff [fileA] [fileB]</span><br><span class="line">对第一个文件(A)逐步修改，最终和第二个文件(B)完全一致。</span><br><span class="line">&lt;n1..&gt;d&lt;n2&gt;：删除，删除源文件的n1等行，删除点位于目标文件的n2行</span><br><span class="line">&lt;n1&gt;a&lt;n2..&gt;：增加，把第目标文件的n2等行增加到源文件的n1行后</span><br><span class="line">&lt;n1..&gt;c&lt;n2&gt;：替换，使用目标的第n2行替换源的第n1等行</span><br><span class="line">&lt;：文件A的内容</span><br><span class="line">&gt;：文件B的内容</span><br><span class="line">修改过程中两个文件的相关行号不变</span><br></pre></td></tr></table></figure>
+
+<p>xargs</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">将非过滤器命令放到管道中</span><br></pre></td></tr></table></figure>
+
+<h2 id="第十二次课"><a href="#第十二次课" class="headerlink" title="第十二次课"></a>第十二次课</h2><p>shell脚本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> !/bin/bash 指定默认执行程序</span></span><br><span class="line">x = 3 # 赋值语句，类型有Int和String(有时需要带引号)</span><br><span class="line"><span class="meta">$</span><span class="bash">&#123;x&#125; <span class="comment"># 取值</span></span></span><br><span class="line">k = $x$y # 字符串拼接</span><br><span class="line">k = $(($x+$y)) # 数值运算</span><br><span class="line">for i in $x; do ... ; done # x可以是数组或空格隔开的字符串</span><br></pre></td></tr></table></figure>
+
+<p>shell变量：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1.默认都是字符串</span><br><span class="line">2.declare -i 整数类型</span><br><span class="line">3.如果做整数运算，会把非整数都理解为0</span><br><span class="line">4.declare +i 把变量的整数属性去掉</span><br><span class="line">5.unset删除一个变量</span><br><span class="line">6.echo $notexistvar 等价于 echo $emptystrvar（空字符串）</span><br><span class="line">7.declare -r var （read-only）等价于 const int i &#x3D; 1;</span><br><span class="line">8.环境变量：指可以继承给儿子进程的变量</span><br><span class="line">	export x 或 declare -x x</span><br><span class="line">  注：shell中的继承只能通过环境变量</span><br><span class="line">9.数组变量</span><br><span class="line">	a&#x3D;(A B C 1 2 30)</span><br><span class="line">	echo $&#123;a[0]&#125;</span><br><span class="line">数组长度：echo $&#123;#a[@]&#125;</span><br><span class="line">增加元素：a[100]&#x3D;40</span><br><span class="line">总结</span><br><span class="line">a.下标可以不连续</span><br><span class="line">b.下标不合法输出空字符串</span><br><span class="line">c.#a[@]表示数组长度 #a表示字符串长度</span><br><span class="line">10.特殊变量</span><br><span class="line">$变量：当前shell的进程编号</span><br><span class="line">?变量：返回上个命令的状态编号（上个命令执行成功返回0，未成功返回大于0）</span><br><span class="line">11.把命令结果保存到变量中</span><br><span class="line">a.$(cmd)	例：a&#x3D;$(ls)</span><br><span class="line">b.&#96;cmd&#96;	例：a&#x3D;&#96;date +%y-%m-%d&#96;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第-次课"><a href="#第-次课" class="headerlink" title="第.次课"></a>第.次课</h2><p>ext2文件系统</p>
+<ul>
+<li>inode</li>
+<li>block</li>
+<li>超级块</li>
+</ul>
+<p>df 查看看文件系统磁盘使用情况 -h可读性高</p>
+<p>du查看文件夹占用情况</p>
+<p>ls可以查看文件硬链接数，目录的硬链接数包括.和..</p>
+<p>硬链接（建立inode指向文件）、符号链接（建立链接文件指向（可能是）inode）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ln [-s(软链接)] [source] [target]</span><br><span class="line">unlink</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tar -czvf -xzvf -tzvf 压缩、解压、查看</span><br><span class="line">zip\gzip</span><br></pre></td></tr></table></figure>
+
+<p>进程管理</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">top</span><br><span class="line">kill</span><br><span class="line">ps: process snapshot 进程快照</span><br></pre></td></tr></table></figure>
+
+<h2 id="考点"><a href="#考点" class="headerlink" title="考点"></a>考点</h2><p>开卷、简答14选10、操作题5选3、编程题4选2（awk、shell、sed）、find</p>
+<p>awk 选出每句话的第一个词</p>
+<ul>
+<li>装Linux注意事项</li>
+<li>Linux、Windows区别、图形界面、终端、目录结构特点</li>
+<li>用户添加等、sudo和su区别</li>
+<li>man</li>
+<li>文件操作cp、mv、rm</li>
+<li>inode、block</li>
+<li>文本编辑、shell环境变量</li>
+<li>通配符（特殊连字符、与正则表达式区别</li>
+<li>重定向意思、如何用</li>
+<li>软硬链接、文件系统卸载挂载</li>
+<li>管道、awk</li>
+</ul>
+]]></content>
       <categories>
         <category>notes</category>
         <category>专业选修</category>
@@ -398,7 +457,7 @@
     <url>/2020/11/08/management/</url>
     <content><![CDATA[<p>东吴商学院：陈东健</p>
 <p>13063885748</p>
-<p><a href="mailto:&#x63;&#100;&#x6a;&#52;&#48;&#53;&#x40;&#49;&#54;&#x33;&#46;&#99;&#111;&#109;">&#x63;&#100;&#x6a;&#52;&#48;&#53;&#x40;&#49;&#54;&#x33;&#46;&#99;&#111;&#109;</a></p>
+<p><a href="mailto:&#99;&#x64;&#x6a;&#52;&#x30;&#53;&#x40;&#49;&#x36;&#x33;&#x2e;&#99;&#x6f;&#x6d;">&#99;&#x64;&#x6a;&#52;&#x30;&#53;&#x40;&#49;&#x36;&#x33;&#x2e;&#99;&#x6f;&#x6d;</a></p>
 <h1 id="一、总论"><a href="#一、总论" class="headerlink" title="一、总论"></a>一、总论</h1><p>管理学是研究人类管理活动一般规律的科学，研究对象：</p>
 <blockquote>
 <ul>
@@ -5359,7 +5418,7 @@
 <p>相比于硬连接，符号链接可以跨文件系统、实现简单但效率稍差</p>
 <h3 id="通用图目录"><a href="#通用图目录" class="headerlink" title="通用图目录"></a>通用图目录</h3><p>通用图目录中存在环（广泛采用）</p>
 <p>遍历时需要解决无穷递归问题</p>
-<h1 id="十一、文件系统实现"><a href="#十一、文件系统实现" class="headerlink" title="十一、文件系统实现"></a>十一、文件系统实现</h1><h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><p>文教系统是在存储设备上组织文件的方法和数据结构</p>
+<h1 id="十一、文件系统实现"><a href="#十一、文件系统实现" class="headerlink" title="十一、文件系统实现"></a>十一、文件系统实现</h1><h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><p>文件系统是在存储设备上组织文件的方法和数据结构</p>
 <p>文件系统层次架构：</p>
 <blockquote>
 <ul>
@@ -12665,43 +12724,75 @@
     <title>微机原理</title>
     <url>/2020/03/08/micro-computer0/</url>
     <content><![CDATA[<p>罗喜召</p>
-<h1 id="一、微型计算机基本结构及信息表示"><a href="#一、微型计算机基本结构及信息表示" class="headerlink" title="一、微型计算机基本结构及信息表示"></a>一、微型计算机基本结构及信息表示</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>微型计算机：处理器为核心</p>
-<blockquote>
-<ul>
-<li>地址总线</li>
-<li>数据总线</li>
-<li>控制总线</li>
-</ul>
-</blockquote>
+<h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><p>个人计算机：Personal Computer, PC</p>
+<p>电子数字计算机：Electronic Numerical Intergrator And Calculator, ENIAC</p>
+<p>桌面计算机：Desktop Computer</p>
+<p>多媒体应用处理器: Multimedia Application Processor, MAP</p>
+<p>微控制器：Microcontroller Unit, MCU</p>
+<p>单片机</p>
+<p>工控机：Industrial Personal Computer, IPC</p>
+<p>笔记本计算机：Notebook Computer</p>
+<p>随机存取存储器：RAM</p>
+<p>嵌套中断向量控制器：Nested Vectored Interrupt Controller, NVIC</p>
+<h2 id="一、微型计算机基本结构及信息表示"><a href="#一、微型计算机基本结构及信息表示" class="headerlink" title="一、微型计算机基本结构及信息表示"></a>一、微型计算机基本结构及信息表示</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>ENIAC：1946年，宾夕法尼亚大学莫尔电工学院，30t，90m3，170m2，140kW</p>
+<p>计算机种类：超级计算机、微型计算机</p>
+<p>发展简史：开端（1971，Intel，4位4004）、初步发展（1974，8位8080；1978，16位8086）、无处不在（1982，286、386、486；1993，奔腾；2005，酷睿）</p>
+<p>arm公司1990年成立</p>
 <p>微型计算机的基本结构</p>
 <p><img src="/2020/03/08/micro-computer0/image-20210429141655320.png" alt="image-20210429141655320"></p>
-<p>冯诺依曼结构：指令和数据存储器统一编址</p>
-<p>哈佛结构：指令和数据存储器分开编址</p>
-<h3 id="数制与数值转换"><a href="#数制与数值转换" class="headerlink" title="数制与数值转换"></a>数制与数值转换</h3><p>基数：数制基本符号的个数</p>
-<p>。。。</p>
+<ul>
+<li>冯诺依曼结构：指令和数据存储器统一编址</li>
+<li>哈佛结构：指令和数据存储器分开编址</li>
+</ul>
+<p>CPU的组成部分：</p>
+<ul>
+<li>CPU的功能：从外部设备获得数据，通过加工处理，再把结果送到CPU的外部</li>
+<li>功能角度：运算器、寄存器和控制器</li>
+<li>变成角度：寄存器、可执行的指令系统</li>
+</ul>
+<p>存储器：用来存储数据和指令的记忆部件</p>
+<p>微型计算机的三总线</p>
+<ul>
+<li>地址总线：寻址空间</li>
+<li>数据总线：字长、一次可同时传输的数据位数</li>
+<li>控制总线：控制信号、时序信号</li>
+</ul>
+<p>执行指令的简明过程：取指、译码、取操作数、执行指令、数据写回、执行下一条指令</p>
+<h3 id="数制与数值转换"><a href="#数制与数值转换" class="headerlink" title="数制与数值转换"></a>数制与数值转换</h3><p>数制：计数法则</p>
+<p>基数：数制基本符号的个数</p>
+<p>基数计数法：按位计数、进位计数法（基数、位权）</p>
+<p>数制转换：整数除二取余、小数乘二取整</p>
 <h3 id="信息表示"><a href="#信息表示" class="headerlink" title="信息表示"></a>信息表示</h3><p>机器字长：计算机在运算过程中一次能吞吐的二进制位数</p>
 <p>整数表示：</p>
 <ul>
 <li>符号位：0正1负</li>
 <li>原码、反码（负数数值部分按位取反）、补码（负数按位取反加一）</li>
 </ul>
-<p>。。。</p>
-<h2 id="二、微型计算机的硬件系统"><a href="#二、微型计算机的硬件系统" class="headerlink" title="二、微型计算机的硬件系统"></a>二、微型计算机的硬件系统</h2><p>微型计算机MCU是在内部集成了CPU，RAM/ROM，定时器/计数器及多种输入输出接口的比较完善的数字处理系统</p>
-<p>基本性能指标：</p>
+<p>补码设计思想：</p>
+<ul>
+<li>为了解决0表示的二义性和符号位不能参与数值运算的问题</li>
+<li>思想：模和同余</li>
+</ul>
+<h3 id="文字在计算机中的存储方式"><a href="#文字在计算机中的存储方式" class="headerlink" title="文字在计算机中的存储方式"></a>文字在计算机中的存储方式</h3><p>ASCII编码：小于128位，最高位为0，48‘0’，65‘A’，97‘a’</p>
+<p>中文编码：变形国标码（国标码加上0x8080）两个字节，每个字节大于128，解决国标码与西文字符ASCII冲突问题、给编程判断提供了依据</p>
+<h2 id="二、微型计算机的硬件系统"><a href="#二、微型计算机的硬件系统" class="headerlink" title="二、微型计算机的硬件系统"></a>二、微型计算机的硬件系统</h2><h3 id="微型计算机结构和性能指标"><a href="#微型计算机结构和性能指标" class="headerlink" title="微型计算机结构和性能指标"></a>微型计算机结构和性能指标</h3><p>微型计算机MCU是在内部集成了CPU，RAM/ROM，定时器/计数器及多种输入输出接口的比较完善的数字处理系统（共性结构）</p>
+<p>其以MCU内部总线为桥梁，沟通CPU、RAM、Flash存储器、工作支撑模块、定时器接口、串行通信接口、A/D转换接口、其他IO接口等</p>
+<p>微型计算机基本性能指标：</p>
 <ul>
 <li>字长：计算机内部一次可以处理的二进制数位数</li>
 <li>主频：微机中CPU的时钟频率</li>
 <li>存储容量：包括内存和外存</li>
 <li>外设扩展、软件配置</li>
 </ul>
-<p>Cortex-M4微处理器</p>
+<h3 id="Arm-Cortex-M系列处理器"><a href="#Arm-Cortex-M系列处理器" class="headerlink" title="Arm Cortex-M系列处理器"></a>Arm Cortex-M系列处理器</h3><p>Cortex-M4微处理器</p>
 <ul>
 <li>32位处理器，指令、内部寄存器、数据总线都为32位（支持16位指令）</li>
 <li>哈佛总线，最多支持4G存储空间，三级流水线</li>
 <li>集成NVIC，最多240个中断向量</li>
 <li>M4F拥有单精度浮点单元</li>
 </ul>
-<p>寄存器类型</p>
+<h3 id="CPU寄存器与存储器"><a href="#CPU寄存器与存储器" class="headerlink" title="CPU寄存器与存储器"></a>CPU寄存器与存储器</h3><p>寄存器：CPU内部寄存器负责信息的暂存（程序员视角）</p>
+<p>寄存器类型（共性知识角度及功能视角）</p>
 <ul>
 <li>数据缓冲寄存器：存放各种数据</li>
 <li>栈指针：保存栈指针（SP）</li>
@@ -12711,11 +12802,354 @@
 </ul>
 <p>Cortex-M4中的寄存器</p>
 <ul>
-<li>R0-R12，其中R8-R12为高位寄存器，只能被32位指令访问</li>
-<li>R13：栈指针</li>
+<li>通用寄存器：R0-R12，其中R8-R12为高位寄存器，只能被32位指令访问</li>
+<li>栈指针：R13，主栈指针MSP（复位缺省、内核中断、异常处理），进程栈指针PSP</li>
+<li>连接寄存器：R14(Link Register,LR)，函数、子程序或异常返回地址</li>
+<li>程序计数寄存器：R15(PC)</li>
+<li>程序状态字寄存器：xPSR，Process State Register<ul>
+<li>A(LU)PSR：应用程序状态寄存器，高位保存算数运算单元ALU状态位信息NZCVQ(饱和位：高位溢出)、GE(大于等于标志位)</li>
+<li>I(nterrupt)PSR：中断程序状态寄存器，低位0-8存储中断状态下的异常号</li>
+<li>E(xecuter)PSR：执行程序状态寄存器，在24位使用T标志位指示当前是否运行Thumb指令</li>
 </ul>
-<p>。。。</p>
-<p>STM32L4</p>
+</li>
+</ul>
+<p>Cortex-M4存储器映像：将处理器直接寻址空间（4GB）当做存储器来看待，分成若干个区间以安排一些实际的物理资源（STM32L4采用小端格式）</p>
+<h3 id="STM32L431RCT6（80MHz）"><a href="#STM32L431RCT6（80MHz）" class="headerlink" title="STM32L431RCT6（80MHz）"></a>STM32L431RCT6（80MHz）</h3><p>字段说明：</p>
+<ul>
+<li>STM</li>
+<li>32：32位MCU</li>
+<li>L：超低功耗；F基础H高性能</li>
+<li>431：产品系列</li>
+<li>R：引脚数目64个</li>
+<li>C：Flash大小256KB，128扇区*一个扇区2KB</li>
+<li>T：QFP封装</li>
+<li>6：温度范围-40~85度</li>
+</ul>
+<p>中断向量号：</p>
+<ul>
+<li><p>中断：程序运行过程中，内核异常（内核中断）或有模块发出请求（外部中断）引起MCU停驶正在运行的程序转而去处理中断处理程序</p>
+</li>
+<li><p>外部中断又称可屏蔽中断</p>
+</li>
+<li><p>1-16为内核中断：1用于填写启动堆栈指针SP；2用于复位启动</p>
+</li>
+</ul>
+<p>STM32L4硬件最小系统：</p>
+<ul>
+<li>电源及滤波电路：引脚必须外接适当的滤波电容以抑制高频噪音</li>
+<li>复位电路：复位引脚NRST(7)，冷复位（无电到上电）、热复位（带电复位、不会引起RAM内容丢失）</li>
+<li>晶振电路：为MCU提供工作时钟，内部时钟源默认4MHz</li>
+<li>SWD(serial wire debug)接口电路：写入调试器电路</li>
+</ul>
+<p>通用嵌入式计算机（GEC）：</p>
+<ul>
+<li>硬件方面，将MCU硬件最小系统及面向具体应用的共性电路封装成一个整体，为用户提供SOC级芯片的可重用的硬件实体</li>
+<li>软件方面，把嵌入式软件分为BIOS程序与User程序两个部分，BIOS程序先于User程序固化于MCU内的Flash中，运行之后转向User程序。</li>
+</ul>
+<h2 id="三、指令系统"><a href="#三、指令系统" class="headerlink" title="三、指令系统"></a>三、指令系统</h2><h3 id="指令保留字与寻址方式"><a href="#指令保留字与寻址方式" class="headerlink" title="指令保留字与寻址方式"></a>指令保留字与寻址方式</h3><p>寻址方式：</p>
+<ul>
+<li>立即数寻址：操作数直接通过指令给出，#0xff</li>
+<li>寄存器直接寻址：操作数来自于寄存器，MOV R1,R2</li>
+<li>直接地址寻址：指令中直接给出存储单元地址，操作数来自于存储单元，BEQ label</li>
+<li>寄存器加偏移间接寻址：指令中给出寄存器（及偏移量）来给出存储单元的地址，LDR R3, [PC, #100]</li>
+</ul>
+<h3 id="GNU汇编器"><a href="#GNU汇编器" class="headerlink" title="GNU汇编器"></a>GNU汇编器</h3><p>指令与伪指令的区别：伪指令为汇编器提供的指令，它不产生运行阶段执行的机器码</p>
+<h2 id="四、汇编语言框架"><a href="#四、汇编语言框架" class="headerlink" title="四、汇编语言框架"></a>四、汇编语言框架</h2><h3 id="程序运行"><a href="#程序运行" class="headerlink" title="程序运行"></a>程序运行</h3><p>字符串定义方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">string_name1: &#x2F;&#x2F;给出标号，指定字符串的首地址</span><br><span class="line">	.ascii &quot;string\0&quot;</span><br><span class="line">string_name2:</span><br><span class="line">	.asciz &quot;string&quot;</span><br><span class="line">string_name3:</span><br><span class="line">	.string &quot;string&quot;</span><br></pre></td></tr></table></figure>
+
+<p>变量定义和使用方法（字、半字、字节）：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.align 4 &#x2F;&#x2F;.word格式需要4字节对齐</span><br><span class="line">var1:</span><br><span class="line">	.word 0 &#x2F;&#x2F;字类型</span><br><span class="line"></span><br><span class="line">var2:</span><br><span class="line">	.byte &#39;A&#39; &#x2F;&#x2F;字节类型</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;变量取值时，一般格式如下</span><br><span class="line">ldr r2,&#x3D;var1 &#x2F;&#x2F;将var1变量地址(&gt;256)存入r2</span><br><span class="line">ldr r1,[r2]</span><br><span class="line">add r1,#1</span><br></pre></td></tr></table></figure>
+
+<p>常量定义和使用：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.equ const1,556677</span><br><span class="line">.set const2,128</span><br><span class="line">&#x2F;&#x2F;const1用&quot;mov r1,#const1&quot;引用; const2用&quot;ldr r1,&#x3D;const2&quot;引用</span><br></pre></td></tr></table></figure>
+
+<p>printf函数使用方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;r0存储待显示字符串(用%d和%x格式化),r1存储参数,使用bl调用printf</span><br><span class="line">ldr r0,&#x3D;data_format</span><br><span class="line">ldr r2,&#x3D;var1</span><br><span class="line">ldr r1,[r2]</span><br><span class="line">bl printf</span><br></pre></td></tr></table></figure>
+
+<h3 id="汇编工程框架及执行过程"><a href="#汇编工程框架及执行过程" class="headerlink" title="汇编工程框架及执行过程"></a>汇编工程框架及执行过程</h3><p>芯片上电启动过程：</p>
+<ul>
+<li>芯片上电复位后，芯片内部机制首先从Flash的0x08000000（Bootloader占据了前面的空间）地址中取出第一个表项内容赋值给堆栈寄存器SP，完成堆栈指针初始化。</li>
+<li>芯片内部机制将第二个表项的内容赋值给程序计数器PC，完成程序计数器初始化</li>
+<li>MCU从程序计数器取指、译码，开始执行Reset_Handler函数，关闭总中断</li>
+<li>函数跳转并执行SystemInit函数，进行芯片部分初始化设置：关闭看门狗、系统时钟初始化</li>
+<li>函数返回Reset_Handler继续执行，开总中断，将ROM数据拷贝到RAM中，清零未初始化的BSS数据段（全局变量和静态变量段），进入用户主函数main</li>
+</ul>
+<p>工程文件夹结构：</p>
+<ul>
+<li>CPU文件夹：包含内核外设访问层头文件、编译器头文件、微控制器软件接口标准头文件等。它的标准化能够提高程序的可移植性</li>
+<li>MCU文件夹：包含芯片启动文件、芯片头文件和系统初始化文件等</li>
+<li>应用程序文件夹：包括总头文件include.inc，主程序文件main.s和中断处理程序文件isr.s</li>
+<li>Debug文件夹：存放可执行链接格式文件(.elf)、映像文件(.map)（查看各种变量常量堆栈的地址信息）、和列表文件(.lst)（函数机器码和源代码对应关系，用于程序分析）</li>
+</ul>
+<p>链接脚本文件的作用：用于控制程序编译中链接的过程，它规定了如何把输入的中间文件.o中的section映射到最终的目标文件.out内，并控制目标文件内各部分的地址分配</p>
+<p>hex文件格式：</p>
+<ul>
+<li>“记录标记”-“记录长度”-”偏移量“-”记录类型“-“数据区”-”校验和”</li>
+<li>“:”-“10”-“D000”-“00”-“FFFF00…..0008”-“F8”</li>
+<li>记录类型：00数据记录、01文件结束记录、02扩展段地址、03开始段地址、04扩展线性地址、05连接开始地址</li>
+</ul>
+<h3 id="GPIO构件"><a href="#GPIO构件" class="headerlink" title="GPIO构件"></a>GPIO构件</h3><p>GPIO：通用I/O、MCU与外界进行交互的重要通道</p>
+<p>输出引脚的基本接法：</p>
+<ul>
+<li>直接通过发光二极管和电阻连接VCC（低有效）</li>
+<li>通过电阻连接三极管，控制外部设备</li>
+</ul>
+<p>输入引脚的基本接法：</p>
+<ul>
+<li>悬空，开关直接置于大电阻和VCC之间</li>
+<li>通过连接大阻值的上下拉电阻置初始输入</li>
+</ul>
+<p>GPIO驱动构件知识要素：</p>
+<ul>
+<li>引脚初始化：gpio_init(port_pin,dir,state)</li>
+<li>引脚状态设置：gpio_set(port_pin,state)</li>
+<li>引脚状态获取：gpio_get(port_pin)</li>
+</ul>
+<p>GPIO使用方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.equ LIGHT_RED,(PTB_NUM|7)</span><br><span class="line">.equ LIGHT_ON,0</span><br><span class="line">.equ LIGHT_OFF,1</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;初始化GPIO</span><br><span class="line">ldr r0,&#x3D;LIGHT_RED</span><br><span class="line">mov r1,#GPIO_OUTPUT</span><br><span class="line">mov r2,#LIGHT_ON</span><br><span class="line">bl gpio_init</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;设置参数</span><br><span class="line">ldr r0,&#x3D;LIGHT_RED</span><br><span class="line">mov r2,#LIGHT_OFF</span><br><span class="line">bl gpio_set</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、基于构建的汇编程序设计"><a href="#五、基于构建的汇编程序设计" class="headerlink" title="五、基于构建的汇编程序设计"></a>五、基于构建的汇编程序设计</h2><h3 id="构件及其设计方法"><a href="#构件及其设计方法" class="headerlink" title="构件及其设计方法"></a>构件及其设计方法</h3><p>设计软件构件的原因：面对嵌入式软硬件设计越来越复杂，构件的设计与应用能够提高软硬件设计的可重用性与可移植性。</p>
+<p>软件构件的基本概念：构件是可复用的软件成分，它具有规范的接口规约和显式的语境以来，是有一定功能、能够协同或独立工作的程序体</p>
+<p>构建设计的基本思想：</p>
+<ul>
+<li><p>构件由头文件和源程序组成</p>
+</li>
+<li><p>设计底层构件时应尽量做到，当一个底层构件应用到不同系统中时，仅需修改构件的头文件，对于构件的源程序文件则不必修改或改动很小</p>
+</li>
+</ul>
+<p>良好的底层驱动构件应该具备的特性：</p>
+<ul>
+<li>封装性：内部封装实现细节，调用者只需调用接口</li>
+<li>描述性：构件必须为调用者提供统一、规范的使用信息</li>
+<li>可移植性：底层构件应在较少的改动下就能在同系列及不同系列芯片内方便的使用</li>
+<li>可复用性：当满足一定使用要求时，构件应不经过任何修改就能直接使用</li>
+</ul>
+<p>构件设计的基本原则：</p>
+<ul>
+<li>层次化原则：构件之间的关联关系应当被清晰地组织<ul>
+<li>针对应用场景和服务对象，分层组织构建</li>
+<li>上层构建可以调用下层构件提供的服务，同一层次的构件不存在相互依赖关系</li>
+</ul>
+</li>
+<li>易用性原则：调用者能够快速理解构件所提供的服务功能并进行使用</li>
+<li>健壮性原则：构件提供的服务应当是安全的，避免在用户程序的运行过程中出现异常状况</li>
+<li>内存可靠使用原则：<ul>
+<li>优先使用静态分配内存</li>
+<li>谨慎使用变量：不使用全局变量</li>
+</ul>
+</li>
+</ul>
+<p>构件的类型：</p>
+<ul>
+<li>基础构件：根据MCU内部功能模块的基本知识要素，针对MCU引脚功能或内部功能，以用MCU内部寄存器所制作的直接干预硬件的构件（GPIO、UART、Flash构件）</li>
+<li>应用构件：使用基础构件并面向对象编程的构件（printf构件）</li>
+<li>软件构件：面向对象的具有规范接口和确定的上下文依赖的组装单元，它能被独立使用或被其他构件调用（数字类型转换valueType构件）</li>
+</ul>
+<h3 id="程序流程控制"><a href="#程序流程控制" class="headerlink" title="程序流程控制"></a>程序流程控制</h3><p>顺序结构举例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov r0,#15</span><br><span class="line">mov r1,#24</span><br><span class="line">add r1,r0</span><br><span class="line">ldr ro,&#x3D;data_format</span><br><span class="line">bl printf</span><br></pre></td></tr></table></figure>
+
+<p>分支结构举例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov r0,#15</span><br><span class="line">mov r1,#24</span><br><span class="line">cmp r0,r1 &#x2F;&#x2F;r0-r1</span><br><span class="line">beq &#x3D;</span><br><span class="line">bne !&#x3D;</span><br><span class="line">bge &gt;&#x3D;</span><br><span class="line">ble &lt;&#x3D;</span><br><span class="line">bgt &gt;</span><br><span class="line">blt &lt;</span><br></pre></td></tr></table></figure>
+
+<p>循环结构举例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov r0,#1 &#x2F;&#x2F;主循环变量</span><br><span class="line">mov r1,#1 &#x2F;&#x2F;初始化变量</span><br><span class="line">loop:</span><br><span class="line">	add r0,#1</span><br><span class="line">	add r1,r0</span><br><span class="line">	cmp r0,#100 &#x2F;&#x2F;判断是否循环</span><br><span class="line">	bne loop &#x2F;&#x2F;进行循环</span><br><span class="line">	ldr r0,&#x3D;data_format &#x2F;&#x2F;退出循环</span><br><span class="line">	bl printf</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、存储器"><a href="#六、存储器" class="headerlink" title="六、存储器"></a>六、存储器</h2><h3 id="存储器的分类"><a href="#存储器的分类" class="headerlink" title="存储器的分类"></a>存储器的分类</h3><p>按介质分类：</p>
+<ul>
+<li>半导体存储器</li>
+<li>磁表面存储器</li>
+<li>光存储器</li>
+</ul>
+<p>按功能分类：</p>
+<ul>
+<li>控制存储器：存放指令系统与微指令</li>
+<li>高速缓冲存储器（cache）</li>
+<li>主存储器（主存）</li>
+<li>辅助存储器（外存）</li>
+</ul>
+<p>按存取方式分类：</p>
+<ul>
+<li>顺序访问存储器SAM Sequential Access Memory</li>
+<li>随机访问存储器RAM</li>
+</ul>
+<h3 id="随机存储器与只读存储器"><a href="#随机存储器与只读存储器" class="headerlink" title="随机存储器与只读存储器"></a>随机存储器与只读存储器</h3><p>RAM的分类：</p>
+<ul>
+<li>SRAM：MOS管触发器实现，不需要刷新电路，集成度低、功耗大</li>
+<li>DRAM：使用少量MOS管，需要定期刷新电路，读取是破坏性的</li>
+</ul>
+<p>ROM的分类：</p>
+<ul>
+<li>掩膜ROM：使用行列地址译码器进行单元选择，无法改变存储状态</li>
+<li>PROM：一次性编程只读存储器</li>
+<li>EPROM：可擦可编程只读存储器，通过紫外线照射或电器方法进行擦除</li>
+<li>EEPROM：掉电后数据不丢失，可以在计算机或专业设备上直接重新编程</li>
+</ul>
+<h3 id="高速缓存"><a href="#高速缓存" class="headerlink" title="高速缓存"></a>高速缓存</h3><p>程序访问的局部性原理：在一个较小的时间间隔内，程序访问的地址往往集中在一个很小的范围内</p>
+<p>cache命中率: CPU所要访问的信息在cache中的比率，其影响因素如下</p>
+<ul>
+<li>cache大小</li>
+<li>cache组织结构</li>
+<li>程序特性</li>
+</ul>
+<p>全相联映像cache：</p>
+<ul>
+<li>任意贮存单元的数据或指令均可以存放到cache的任意位置</li>
+<li>查找时主存块号需要和所有cache标记对比一次</li>
+<li>命中率高、速度低、成本高</li>
+<li>主存地址由块号和块内偏移（字号）组成</li>
+</ul>
+<p>直接映像cache： </p>
+<ul>
+<li>主存中第$2^i+k$块只能映射到cache中第k块,其中,i&gt;c(c为cache字块地址位数)</li>
+<li>只需要一次比较即可确定是否命中</li>
+<li>主存地址由区号、块号和块内偏移构成</li>
+</ul>
+<p>组相联映像cache：</p>
+<ul>
+<li>直接映射和全相联映射的一个折中,主存中的每一块可以映射到cache中的$2^{c-r}$块</li>
+<li>主存地址由区号、块号和块内偏移构成</li>
+</ul>
+<h3 id="Flash存储器"><a href="#Flash存储器" class="headerlink" title="Flash存储器"></a>Flash存储器</h3><p>Flash存储器特点：存储器不易失、可擦除、可在线编程、存储密度高、功耗和成本较低</p>
+<p>Flash编程模式：</p>
+<ul>
+<li>ICP in-circuit programming：监控模式（写入器编程模式），通过编程器将程序固化到Flash存储器中，可以整片擦除Flash</li>
+<li>IAP in-application programming：用户模式（在线编程模式），在程序运行过程中对Flash存储区的数据或程序进行更新（通过运行Flash内部程序对Flash其他区域进行擦除和写入）</li>
+</ul>
+<p>Flash编程的基本操作：</p>
+<ul>
+<li>擦除(0-&gt;1)：需要以页（块、扇区）或整个Flash为单位进行操作</li>
+<li>写入(1-&gt;0)：该单元需要先擦除，才能写入</li>
+<li>读取：可以随机读取</li>
+</ul>
+<p>Flash驱动构件知识要素：</p>
+<ul>
+<li>flash初始化：flash_init</li>
+<li>扇区擦除：flash_erase(section)，擦除后扇区数据为0xff</li>
+<li>扇区写：flash_write(sect, offset, len, *buff)</li>
+<li>扇区读：flash_read_logic(*dest, sect, offset, len)</li>
+<li>地址写：flash_write_physical(addr, len, *buff)</li>
+<li>地址读：flash_read_physical(*dest, addr, len)</li>
+<li>扇区保护：flash_protect(section)</li>
+<li>判断指定区域（扇区）是否为空：flash_isempty(section, len)</li>
+</ul>
+<p>Flash驱动构建使用方法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bl flash_init</span><br><span class="line">mov r0,#0x40</span><br><span class="line">bl flash_erase</span><br><span class="line"></span><br><span class="line">ldr r0,&#x3D;address</span><br><span class="line">mov r1,#len_addr</span><br><span class="line">ldr r2,&#x3D;flash_content</span><br><span class="line">bl flash_write_physical</span><br><span class="line"></span><br><span class="line">ldr r0,&#x3D;content_destination</span><br><span class="line">mov r1,#0x30</span><br><span class="line">mov r2,#0x0</span><br><span class="line">mov r3,#0x20</span><br><span class="line">bl flash_read_logic</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="七、串行通信接口"><a href="#七、串行通信接口" class="headerlink" title="七、串行通信接口"></a>七、串行通信接口</h2><h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><p>UART：通用异步收发接口；SCI：串行通信接口</p>
+<p>串口通信特点：以字节为单位、按位的顺序（高位优先）从一条传输线上发送出去</p>
+<p>异步通信和同步通信的区别：</p>
+<ul>
+<li>同步通信中通信双方由统一时钟控制数据的传送</li>
+<li>异步通信中通信双方利用收发部件之间的相互”握手“信号来实现总线的数据传送</li>
+</ul>
+<p>异步通信数据格式：</p>
+<ul>
+<li>采用NRZ数据格式</li>
+<li>1为空闲状态，发送0表示一个字节传输开始，发送（8-9位）完成后恢复高位停止</li>
+</ul>
+<p>串行通信波特率：</p>
+<ul>
+<li>波特率：单位时间内传输位的个数（bit/s）</li>
+<li>我们实验中串口通信的波特率为115200</li>
+</ul>
+<p>串行通信传输方式：</p>
+<ul>
+<li>全双工：数据双向同时传输，MCU的UART默认采用该方式</li>
+<li>半双工：数据双向间隔传输</li>
+<li>单工：数据单向传输</li>
+</ul>
+<h3 id="UART驱动构件"><a href="#UART驱动构件" class="headerlink" title="UART驱动构件"></a>UART驱动构件</h3><p>UART驱动构件知识要素</p>
+<ul>
+<li>初始化：uart_init(uartNumber, baud_rate)</li>
+<li>发送1个字节：uart_send1(uartNo, char)</li>
+<li>发送N个字节：uart_sendN(uartNo, len, *buff)</li>
+<li>发送字符串（\0结尾）：uart_send_string(uartNo, *buff)</li>
+<li>接收1个字节：uart_re1(uartNo, *fp)</li>
+<li>接收N个字节：uart_reN(uartNo, len, buff)</li>
+<li>开串口接收中断：uart_enable_re_int(uartNo)</li>
+<li>关串口接收中断：uart_disable_re_int(uartNo)</li>
+<li>获取接收中断标志（并禁止发送中断）：uart_get_re_int(uartNo)</li>
+<li>UART反初始化：uart_deinit(uartNo)</li>
+</ul>
+<p>uart驱动构件使用方法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov r0,#UARTA</span><br><span class="line">ldr r1,&#x3D;UART_BUAD</span><br><span class="line">bl uart_init</span><br><span class="line"></span><br><span class="line">mov r0,#UARTA</span><br><span class="line">ldr r1,&#x3D;string</span><br><span class="line">bl uart_send_string</span><br><span class="line"></span><br><span class="line">mov r0,#UARTA</span><br><span class="line">bl uart_enable_re_int</span><br><span class="line"></span><br><span class="line">UARTA_Handler:</span><br><span class="line">	cpsid i</span><br><span class="line">	push &#123;lr&#125;</span><br><span class="line">	...</span><br><span class="line">	cpsie i</span><br><span class="line">	pop &#123;pc&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="八、中断系统及定时器"><a href="#八、中断系统及定时器" class="headerlink" title="八、中断系统及定时器"></a>八、中断系统及定时器</h2><h3 id="中断系统"><a href="#中断系统" class="headerlink" title="中断系统"></a>中断系统</h3><p>中断：来自CPU外围设备的强行任务切换请求，它能将程序计数器执政强制转到中断处理程序入口地址运行</p>
+<p>一些问题：</p>
+<ul>
+<li>为什么默认的缺省中断处理程序不是无限循环而是直接返回<ul>
+<li>如果使用无限循环，那么错误的中断会导致死机，直接返回就不会</li>
+</ul>
+</li>
+<li>为什么需要弱定义<ul>
+<li>弱定义将未实例化的中断服务程序（ISR）指向一个缺省的ISR首地址，保证所有的中断响应都有一个去处</li>
+</ul>
+</li>
+<li>中断服务程序和一般函数有什么区别<ul>
+<li>调用方式不同：函数需要用户调用，中断服务程序由MCU控制自己执行</li>
+<li>保护机制不同：中断服务程序会保护上下文，保存CPU寄存器的值</li>
+<li>一般函数的调用会自动返回地址</li>
+</ul>
+</li>
+</ul>
+<h3 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h3><p>SysTick模块编程</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov r0,#20 &#x2F;&#x2F;每20ms中断一次</span><br><span class="line">bl systick_init</span><br><span class="line"></span><br><span class="line">SysTick_Handler:</span><br><span class="line">	push &#123;要用的寄存器,lr&#125;</span><br><span class="line">	...</span><br><span class="line">	pop &#123;压入的寄存器,pc&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="九、模数转换和数模转换"><a href="#九、模数转换和数模转换" class="headerlink" title="九、模数转换和数模转换"></a>九、模数转换和数模转换</h2><p>模拟量：在一定范围内连续变化的物理量</p>
+<p>数字量：离散变化的量</p>
+<p>模数转换：将连续变化的电信号转换成计算机可以处理的离散变化的数字量的操作</p>
+<h3 id="与模数转换相关的基本概念"><a href="#与模数转换相关的基本概念" class="headerlink" title="与模数转换相关的基本概念"></a>与模数转换相关的基本概念</h3><p>转换精度：数字量变化一个最小量时对应模拟信号的变化量，$acc = \frac{A_{max}-A_{min}}{2^D}$</p>
+<p>单端输入和差分输入：</p>
+<ul>
+<li>以GND作为参考电平进行输入，简单但易受干扰</li>
+<li>以两个引脚的插值作为采样值，降低了干扰</li>
+</ul>
+<p>AD转换速度：完成一次AD转换所需要花费的时间，其与转换精度、采样时间有关</p>
+<p>软件滤波：对模拟量的采样可能会出现误差，可以通过软件滤波的方式来解决（中值滤波、均值滤波）</p>
+<p>物理量回归：将采样值和实际物理量对应起来（非线性回归）</p>
+<p>简单AD转换采样电路举例：V_ref——光敏/热敏电阻——A/D采样点——定值电阻——GND</p>
+<h3 id="ADC驱动构件"><a href="#ADC驱动构件" class="headerlink" title="ADC驱动构件"></a>ADC驱动构件</h3><p>ADC驱动构件知识要素：</p>
+<ul>
+<li>初始化：adc_init(channel, single/diff)</li>
+<li>采样：adc_read(channel)</li>
+<li>软件滤波：adc_filter</li>
+<li>物理量回归：adc_regression</li>
+</ul>
+<p>ADC驱动构件使用方法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov r0,#ADC_CH_1</span><br><span class="line">mov r1,#AD_SINGLE</span><br><span class="line">bl adc_init</span><br><span class="line"></span><br><span class="line">mov r0,#ADC_CH_1</span><br><span class="line">bl adc_read</span><br><span class="line"></span><br><span class="line">mov r1,r0</span><br><span class="line">ldr r0,&#x3D;data_format</span><br><span class="line">bl printf</span><br></pre></td></tr></table></figure>
+
+<h2 id="十、直接存储器"><a href="#十、直接存储器" class="headerlink" title="十、直接存储器"></a>十、直接存储器</h2><h3 id="DMA的基本概念"><a href="#DMA的基本概念" class="headerlink" title="DMA的基本概念"></a>DMA的基本概念</h3><p>DMA：DMA传输方式可以使数据不通过CPU而直接在存储器与IO设备之间、不同存储器之间进行传输</p>
+<p>优点：传输速度块，且不占用CPU资源</p>
+<p>DMA控制器：MCU内部的DMA控制器能够通过专用总线将存储器与其他外设连接起来，它含有自己的地址总线、数据总线和控制寄存器</p>
+<p>DMA的一般操作流程：</p>
+<ul>
+<li>DMA请求：CPU初始化DMA控制器，并向IO接口发出操作命令，IO接口向DMA控制器提出请求</li>
+<li>DMA响应：DMA接收IO请求，并请求总线，通知IO接口开始DMA传输</li>
+<li>DMA传输：DMA控制器获得总线控制权，控制通信设备之间的传输</li>
+<li>DMA结束：DMA控制权释放总线控制权，通知IO接口结束工作</li>
+</ul>
+<h3 id="DMA驱动构件"><a href="#DMA驱动构件" class="headerlink" title="DMA驱动构件"></a>DMA驱动构件</h3><p>DMA驱动构件要素：</p>
+<ul>
+<li>DMA初始化：DMA_Init(channelNumber)</li>
+<li>DMA传送：DMA_Start(chN, srcAddress, dstAddress, len)</li>
+<li>DMA反初始化：DMA_Deinit(chN)</li>
+</ul>
+<p>利用DMA-UART通过串口发送字符串</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bl DMA_init</span><br><span class="line"></span><br><span class="line">mov r0,&#x3D;string</span><br><span class="line">mov r1,#UARTA</span><br><span class="line">mov r3,&#x3D;nextString</span><br><span class="line">sub r2,r3,r0</span><br><span class="line">bl DMA_UART</span><br></pre></td></tr></table></figure>
+
+<h2 id="十一、其他"><a href="#十一、其他" class="headerlink" title="十一、其他"></a>十一、其他</h2><p>开关量输入输出类硬件：人体红外传感器、红外循迹传感器、按钮；彩灯、蜂鸣器、电动机、数码管</p>
+<p>微机发展的方向：</p>
+<ul>
+<li>CPU结构不断优化、速度不断提高</li>
+<li>存储器性能更高、容量增加、速度变快</li>
+<li>指令系统从发展从简单到复杂</li>
+<li>编译技术不断提高，并行、交叉、动态编译技术都得到了发展</li>
+<li>前沿技术突破给微机发展带来了更多可能性，如纳米、激光、量子技术等</li>
+</ul>
 ]]></content>
       <categories>
         <category>notes</category>
@@ -13964,7 +14398,6 @@ $$
 
 
 
-
 ]]></content>
       <categories>
         <category>instructions</category>
@@ -14913,15 +15346,13 @@ $$
 </ul>
 <p>计算机的存储层次解决了速度与成本之间的矛盾</p>
 <p>现代计算机同时采用上述两种存储层次,构成cache-主存-辅存三级存储层次</p>
-<h2 id="5-2-高速缓冲存储器"><a href="#5-2-高速缓冲存储器" class="headerlink" title="5.2 高速缓冲存储器"></a>5.2 高速缓冲存储器</h2><h3 id="cache存在的合理性"><a href="#cache存在的合理性" class="headerlink" title="cache存在的合理性"></a>cache存在的合理性</h3><ul>
-<li>程序访问的局部性原理: 在一个较短的时间间隔内,程序访问的地址往往集中在一个很小的范围内<blockquote>
+<h2 id="5-2-高速缓冲存储器"><a href="#5-2-高速缓冲存储器" class="headerlink" title="5.2 高速缓冲存储器"></a>5.2 高速缓冲存储器</h2><h3 id="cache存在的合理性"><a href="#cache存在的合理性" class="headerlink" title="cache存在的合理性"></a>cache存在的合理性</h3><p>程序访问的局部性原理: 在一个较短的时间间隔内,程序访问的地址往往集中在一个很小的范围内</p>
+<blockquote>
 <ul>
 <li>程序指令地址本身就是连续分布的,且循环程序段和子程序段经常被反复执行</li>
 <li>程序数据分布虽然不一定是集中的,但短时间内对数组的存储和访问以及对工作单元的选择也需要使用到局部范围的存储器地址</li>
 </ul>
 </blockquote>
-</li>
-</ul>
 <p>根据局部性原理,在主存和CPU之间设置一个高速而容量相对较小的存储器,将当前执行的程序和数据存放在这个存储器中;当程序运行时,不需要再从主存储器中取指令和数据,访问cache即可</p>
 <h3 id="cache的结构"><a href="#cache的结构" class="headerlink" title="cache的结构"></a>cache的结构</h3><p>cache一般由SRAM组成,它的工作速度数倍于主存,全部功能由硬件实现,并且对程序员是透明的</p>
 <p>其基本结构如下:<br><img src="/2020/02/24/computer-composition0/cache0.jpg" alt="cache">  </p>
@@ -14968,7 +15399,7 @@ $$
 <p><img src="/2020/02/24/computer-composition0/cache2.jpg" alt="cache"></p>
 <p>这种方式最灵活,cache命中率最高,但成本也最高,开销大速度慢</p>
 <h4 id="组相联映射"><a href="#组相联映射" class="headerlink" title="组相联映射"></a>组相联映射</h4><ul>
-<li>特点: 是直接映射和全相联映射的一个折衷,主存中的每一块可以映射到cache中的$2^{c-r}$块<blockquote>
+<li>特点: 是直接映射和全相联映射的一个折中,主存中的每一块可以映射到cache中的$2^{c-r}$块<blockquote>
 <ul>
 <li>主存和cache分成r组,取主存块地址和cache块地址的后r位</li>
 <li>组间为直接映射,组内为全相联映射</li>
